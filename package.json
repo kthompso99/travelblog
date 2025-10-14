@@ -4,8 +4,12 @@
   "description": "Build script for travel blog - geocodes locations and converts markdown offline",
   "main": "build.js",
   "scripts": {
-    "build": "node build.js",
-    "watch": "nodemon --watch config.json --watch content/ --exec 'node build.js'"
+    "validate": "node validate.js",
+    "build": "node validate.js && node build.js",
+    "watch": "nodemon --watch config.json --watch content/ --exec 'node validate.js && node build.js'",
+    "serve": "npx http-server -p 8000 -o",
+    "add": "node add-destination.js",
+    "deploy-check": "node deploy-check.js"
   },
   "dependencies": {
     "marked": "^9.1.6"
