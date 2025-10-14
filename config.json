@@ -1,0 +1,35 @@
+{
+  "site": {
+    "title": "Two Travel Nuts",
+    "description": "Exploring the world, one destination at a time"
+  },
+  "destinations": [
+    {
+      "id": "SouthernAfrica",
+      "name": "SouthernAfrica",
+      "continent": "Africa",
+      "country": "South Africa",
+      "location": "Okavango Delta",
+      "contentFile": "content/botswana.md",
+      "thumbnail": "images/botswana.jpg"
+    },
+    {
+      "id": "Greece",
+      "name": "Athens and Greek Islands",
+      "continent": "Europe",
+      "country": "Greece",
+      "location": "Paros",
+      "contentFile": "content/greece.md",
+      "thumbnail": "images/greece.jpg"
+    },
+    {
+      "id": "newzealand",
+      "name": "New Zealand",
+      "continent": "Oceania",
+      "country": "New Zealand",
+	"location": "Wellington, New Zealand",
+      "contentFile": "content/newzealand.md",
+      "thumbnail": "images/newzealand.jpg"
+    },
+  ]
+}

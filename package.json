@@ -1,0 +1,19 @@
+{
+  "name": "travel-blog-builder",
+  "version": "1.0.0",
+  "description": "Build script for travel blog - geocodes locations and converts markdown offline",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "nodemon --watch config.json --watch content/ --exec 'node build.js'"
+  },
+  "dependencies": {
+    "marked": "^9.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["travel", "blog", "static-site"],
+  "author": "",
+  "license": "MIT"
+}

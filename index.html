@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Travel Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content .continent-group {
+            position: relative;
+        }
+
+        .dropdown-content .continent-title {
+            padding: 0.75rem 1rem;
+            font-weight: bold;
+            color: #667eea;
+            background: white;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: relative;
+        }
+
+        .dropdown-content .continent-title:hover {
+            background: #f8f9fa;
+        }
+
+        .dropdown-content .continent-title::after {
+            content: '›';
+            position: absolute;
+            right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .continent-submenu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            margin-left: 0.5rem;
+        }
+
+        .continent-group:hover .continent-submenu {
+            display: block;
+        }
+
+        .continent-submenu a {
+            color: #333;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .continent-submenu a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        #map-container {
+            margin: 2rem 0;
+        }
+
+        #map {
+            height: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #content-area {
+            margin-top: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .destination-card-content {
+            padding: 1rem;
+        }
+
+        .destination-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .markdown-content h1, .markdown-content h2, .markdown-content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .markdown-content p {
+            margin-bottom: 1rem;
+        }
+
+        .markdown-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🌍 My Travel Blog</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showHome(); return false;">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="return false;">Destinations ▾</a>
+                    <div class="dropdown-content" id="destinations-menu"></div>
+                </li>
+                <li><a href="#" onclick="showMap(); return false;">Map</a></li>
+                <li><a href="#" onclick="showAbout(); return false;">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="home-view">
+            <div class="hero">
+                <h1 id="site-title">My Travel Blog</h1>
+                <p id="site-description">Exploring the world, one destination at a time</p>
+            </div>
+            
+            <h2 style="margin-bottom: 1rem;">Featured Destinations</h2>
+            <div class="destination-grid" id="destination-grid"></div>
+        </div>
+
+        <div id="map-view" style="display: none;">
+            <h2>World Map of Destinations</h2>
+            <div id="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <div id="content-view" style="display: none;">
+            <a href="#" class="back-button" onclick="showHome(); return false;">← Back to Home</a>
+            <div id="content-area"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Travel Blog. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let config = null;
+        let map = null;
+        let markers = [];
+
+        // Load pre-built configuration (coordinates and HTML already processed)
+        async function loadConfig() {
+            try {
+                // Try to load the built config first (generated by build.js)
+                const response = await fetch('config.built.json');
+                config = await response.json();
+                
+                document.getElementById('site-title').textContent = config.site.title;
+                document.getElementById('site-description').textContent = config.site.description;
+                document.querySelector('.logo').textContent = '🌍 ' + config.site.title;
+                document.title = config.site.title;
+                
+                buildDestinationsMenu();
+                buildDestinationGrid();
+                initMap();
+            } catch (error) {
+                console.error('Error loading config.built.json:', error);
+                console.log('Falling back to config.json with real-time processing...');
+                // Fallback to regular config with real-time processing
+                loadConfigRealtime();
+            }
+        }
+
+        // Fallback: real-time processing (for development)
+        async function loadConfigRealtime() {
+            try {
+                const response = await fetch('config.json');
+                config = await response.json();
+                
+                document.getElementById('site-title').textContent = config.site.title;
+                document.getElementById('site-description').textContent = config.site.description;
+                document.querySelector('.logo').textContent = '🌍 ' + config.site.title;
+                document.title = config.site.title;
+                
+                console.log('⚠️ Using real-time mode. Run "node build.js" for better performance.');
+                
+                // Geocode all locations that don't have coordinates
+                await geocodeAllDestinations();
+                
+                buildDestinationsMenu();
+                buildDestinationGrid();
+                initMap();
+            } catch (error) {
+                console.error('Error loading config:', error);
+                useDemoConfig();
+            }
+        }
+
+        // Geocode a location name to coordinates (only used in fallback mode)
+        async function geocodeLocation(locationName) {
+            try {
+                const response = await fetch(
+                    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationName)}&limit=1`
+                );
+                const data = await response.json();
+                
+                if (data && data.length > 0) {
+                    return {
+                        lat: parseFloat(data[0].lat),
+                        lng: parseFloat(data[0].lon)
+                    };
+                }
+            } catch (error) {
+                console.error('Geocoding error for', locationName, error);
+            }
+            
+            return { lat: 0, lng: 0 };
+        }
+
+        async function geocodeAllDestinations() {
+            const promises = config.destinations.map(async (dest) => {
+                if (!dest.coordinates && dest.location) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    dest.coordinates = await geocodeLocation(dest.location);
+                    console.log(`Geocoded ${dest.name}: ${dest.coordinates.lat}, ${dest.coordinates.lng}`);
+                } else if (!dest.coordinates && !dest.location) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    dest.coordinates = await geocodeLocation(dest.name);
+                    console.log(`Geocoded ${dest.name}: ${dest.coordinates.lat}, ${dest.coordinates.lng}`);
+                }
+            });
+            
+            await Promise.all(promises);
+        }
+
+        function useDemoConfig() {
+            config = {
+                site: { title: "My Travel Blog", description: "Exploring the world, one destination at a time" },
+                destinations: [
+                    { id: "paris", name: "Paris, France", continent: "Europe", country: "France", 
+                      coordinates: { lat: 48.8584, lng: 2.2945 }, 
+                      contentHtml: "<h1>Paris, France</h1><p>The City of Light awaits...</p>" },
+                    { id: "tokyo", name: "Tokyo, Japan", continent: "Asia", country: "Japan",
+                      coordinates: { lat: 35.6586, lng: 139.7454 },
+                      contentHtml: "<h1>Tokyo, Japan</h1><p>A blend of tradition and innovation...</p>" },
+                    { id: "new-york", name: "New York, USA", continent: "North America", country: "USA",
+                      coordinates: { lat: 40.6892, lng: -74.0445 },
+                      contentHtml: "<h1>New York, USA</h1><p>The city that never sleeps...</p>" }
+                ]
+            };
+            buildDestinationsMenu();
+            buildDestinationGrid();
+            initMap();
+        }
+
+        function buildDestinationsMenu() {
+            const menu = document.getElementById('destinations-menu');
+            const continents = {};
+            
+            config.destinations.forEach(dest => {
+                if (!continents[dest.continent]) {
+                    continents[dest.continent] = [];
+                }
+                continents[dest.continent].push(dest);
+            });
+            
+            menu.innerHTML = '';
+            Object.keys(continents).sort().forEach(continent => {
+                const group = document.createElement('div');
+                group.className = 'continent-group';
+                
+                const title = document.createElement('div');
+                title.className = 'continent-title';
+                title.textContent = continent;
+                group.appendChild(title);
+                
+                const submenu = document.createElement('div');
+                submenu.className = 'continent-submenu';
+                
+                continents[continent].forEach(dest => {
+                    const link = document.createElement('a');
+                    link.href = '#';
+                    link.textContent = dest.name;
+                    link.onclick = (e) => {
+                        e.preventDefault();
+                        loadDestination(dest.id);
+                    };
+                    submenu.appendChild(link);
+                });
+                
+                group.appendChild(submenu);
+                menu.appendChild(group);
+            });
+        }
+
+        function buildDestinationGrid() {
+            const grid = document.getElementById('destination-grid');
+            grid.innerHTML = '';
+            
+            config.destinations.forEach(dest => {
+                const card = document.createElement('div');
+                card.className = 'destination-card';
+                card.onclick = () => loadDestination(dest.id);
+                
+                card.innerHTML = `
+                    ${dest.thumbnail ? `<img src="${dest.thumbnail}" alt="${dest.name}" onerror="this.src='https://via.placeholder.com/280x200?text=${encodeURIComponent(dest.name)}'">` : `<img src="https://via.placeholder.com/280x200?text=${encodeURIComponent(dest.name)}">`}
+                    <div class="destination-card-content">
+                        <h3>${dest.name}</h3>
+                        <p>${dest.continent}</p>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        function initMap() {
+            if (!map) {
+                map = L.map('map').setView([20, 0], 2);
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors',
+                    maxZoom: 18
+                }).addTo(map);
+            }
+            
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+            
+            config.destinations.forEach(dest => {
+                const marker = L.marker([dest.coordinates.lat, dest.coordinates.lng])
+                    .addTo(map)
+                    .bindPopup(`<b>${dest.name}</b><br><a href="#" onclick="loadDestination('${dest.id}'); return false;">Read more</a>`);
+                
+                marker.on('click', () => {
+                    loadDestination(dest.id);
+                });
+                
+                markers.push(marker);
+            });
+        }
+
+        async function loadDestination(id) {
+            const dest = config.destinations.find(d => d.id === id);
+            if (!dest) return;
+            
+            showContent();
+            
+            try {
+                const response = await fetch(dest.contentFile);
+                const markdown = await response.text();
+                const html = marked.parse(markdown);
+                
+                document.getElementById('content-area').innerHTML = `
+                    <h1>${dest.name}</h1>
+                    <div class="markdown-content">${html}</div>
+                `;
+            } catch (error) {
+                console.error('Error loading content:', error);
+                document.getElementById('content-area').innerHTML = `
+                    <h1>${dest.name}</h1>
+                    <div class="markdown-content">
+                        <p>Welcome to ${dest.name}!</p>
+                        <p>Content file not found. Please create <code>${dest.contentFile}</code> with your travel stories and experiences.</p>
+                        <h2>Getting Started</h2>
+                        <p>Create a markdown file with information about this destination, including:</p>
+                        <ul>
+                            <li>Travel tips and recommendations</li>
+                            <li>Best places to visit</li>
+                            <li>Local cuisine highlights</li>
+                            <li>Cultural insights</li>
+                            <li>Photos and experiences</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+
+        function showHome() {
+            document.getElementById('home-view').style.display = 'block';
+            document.getElementById('map-view').style.display = 'none';
+            document.getElementById('content-view').style.display = 'none';
+        }
+
+        function showMap() {
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('map-view').style.display = 'block';
+            document.getElementById('content-view').style.display = 'none';
+            
+            setTimeout(() => {
+                if (map) {
+                    map.invalidateSize();
+                }
+            }, 100);
+        }
+
+        function showContent() {
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('map-view').style.display = 'none';
+            document.getElementById('content-view').style.display = 'block';
+        }
+
+        function showAbout() {
+            showContent();
+            document.getElementById('content-area').innerHTML = `
+                <h1>About This Blog</h1>
+                <div class="markdown-content">
+                    <p>Welcome to my travel blog! This is a place where I share my adventures, experiences, and discoveries from around the world.</p>
+                    <p>Use the map to explore all the destinations I've visited, or browse by continent in the Destinations menu.</p>
+                </div>
+            `;
+        }
+
+        // Initialize on page load
+        loadConfig();
+    </script>
+</body>
+</html>
