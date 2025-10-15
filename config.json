@@ -23,6 +23,15 @@
       "thumbnail": "images/greece.jpg"
     },
     {
+      "id": "utah",
+      "name": "Utah and the Grand Canyon",
+      "continent": "North America",
+      "country": "USA",
+      "location": "Moab, Utah",
+      "contentFile": "content/utah.md",
+      "thumbnail": "images/utah.jpg"
+    },
+    {
       "id": "newzealand",
       "name": "New Zealand",
       "continent": "Oceania",
