@@ -69,9 +69,21 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             z-index: 1000;
             border-radius: 4px;
-            margin-top: 0.5rem;
+            margin-top: 0;
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
+            top: 100%;
+        }
+
+        /* Create invisible bridge to prevent menu from closing */
+        .dropdown::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 0.5rem;
+            background: transparent;
         }
 
         .dropdown:hover .dropdown-content,
@@ -113,9 +125,20 @@
             min-width: 220px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             border-radius: 4px;
-            margin-left: 0.5rem;
+            margin-left: -0.25rem;
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
+        }
+
+        /* Create invisible bridge for submenu */
+        .continent-group::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 0.5rem;
+            height: 100%;
+            background: transparent;
         }
 
         .continent-group:hover .continent-submenu,
