@@ -18,8 +18,8 @@ travel-blog/
 ├── index.html              # Main website file
 ├── config.json            # Configuration for all destinations
 ├── content/               # Markdown files for each location
-│   ├── paris.md
-│   ├── tokyo.md
+│   ├── greece.md
+│   ├── newzealand.md
 │   └── [destination].md
 └── images/                # Optional thumbnail images
     ├── paris.jpg
