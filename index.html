@@ -70,9 +70,12 @@
             z-index: 1000;
             border-radius: 4px;
             margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
         }
 
-        .dropdown:hover .dropdown-content {
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover {
             display: block;
         }
 
@@ -105,15 +108,18 @@
             display: none;
             position: absolute;
             left: 100%;
-            top: 0;
+            top: -0.5rem;
             background: white;
             min-width: 220px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             border-radius: 4px;
             margin-left: 0.5rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
         }
 
-        .continent-group:hover .continent-submenu {
+        .continent-group:hover .continent-submenu,
+        .continent-submenu:hover {
             display: block;
         }
 
@@ -244,6 +250,48 @@
         .back-button:hover {
             background: #764ba2;
         }
+
+        .leaflet-popup-content {
+            margin: 0;
+            padding: 0;
+        }
+
+        .marker-popup {
+            min-width: 200px;
+        }
+
+        .marker-popup-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .marker-popup-content {
+            padding: 0.75rem;
+        }
+
+        .marker-popup-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .marker-popup-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .marker-popup-link:hover {
+            background: #764ba2;
+        }
     </style>
 </head>
 <body>
@@ -287,7 +335,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 My Travel Blog. All rights reserved.</p>
+        <p>&copy; 2025 Two Travel Nuts. All rights reserved.</p>
     </footer>
 
     <script>
@@ -476,9 +524,44 @@
             
             config.destinations.forEach(dest => {
                 const marker = L.marker([dest.coordinates.lat, dest.coordinates.lng])
-                    .addTo(map)
-                    .bindPopup(`<b>${dest.name}</b><br><a href="#" onclick="loadDestination('${dest.id}'); return false;">Read more</a>`);
+                    .addTo(map);
                 
+                // Create popup content with thumbnail
+                const thumbnailUrl = dest.thumbnail || `https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.name)}`;
+                
+                const popupContent = `
+                    <div class="marker-popup">
+                        <img src="${thumbnailUrl}" alt="${dest.name}" class="marker-popup-image" onerror="this.src='https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.name)}'">
+                        <div class="marker-popup-content">
+                            <div class="marker-popup-title">${dest.name}</div>
+                            <a href="#" onclick="loadDestination('${dest.id}'); return false;" class="marker-popup-link">Read More →</a>
+                        </div>
+                    </div>
+                `;
+                
+                marker.bindPopup(popupContent, {
+                    maxWidth: 250,
+                    className: 'custom-popup'
+                });
+                
+                // Show popup on hover
+                marker.on('mouseover', function(e) {
+                    this.openPopup();
+                });
+                
+                // Keep popup open when hovering over it
+                marker.on('mouseout', function(e) {
+                    setTimeout(() => {
+                        if (!this.isPopupOpen()) return;
+                        const popup = this.getPopup();
+                        const popupElement = popup.getElement();
+                        if (popupElement && !popupElement.matches(':hover')) {
+                            this.closePopup();
+                        }
+                    }, 100);
+                });
+                
+                // Click to load destination
                 marker.on('click', () => {
                     loadDestination(dest.id);
                 });
@@ -487,41 +570,51 @@
             });
         }
 
-async function loadDestination(id) {
-    const dest = config.destinations.find(d => d.id === id);
-    if (!dest) return;
-    
-    showContent();
-    
-    // If contentHtml exists (from build script), use it directly
-    if (dest.contentHtml) {
-        document.getElementById('content-area').innerHTML = `
-            <h1>${dest.name}</h1>
-            <div class="markdown-content">${dest.contentHtml}</div>
-        `;
-        return;
-    }
-    
-    // Fallback: fetch and convert markdown in real-time (only if contentHtml missing)
-    try {
-        const response = await fetch(dest.contentFile);
-        const markdown = await response.text();
-        const html = marked.parse(markdown);
-        
-        document.getElementById('content-area').innerHTML = `
-            <h1>${dest.name}</h1>
-            <div class="markdown-content">${html}</div>
-        `;
-    } catch (error) {
-        console.error('Error loading content:', error);
-        document.getElementById('content-area').innerHTML = `
-            <h1>${dest.name}</h1>
-            <div class="markdown-content">
-                <p>Content not found.</p>
-            </div>
-        `;
-    }
-}
+        async function loadDestination(id) {
+            const dest = config.destinations.find(d => d.id === id);
+            if (!dest) return;
+            
+            showContent();
+            
+            // If contentHtml exists (from build script), use it directly
+            if (dest.contentHtml) {
+                document.getElementById('content-area').innerHTML = `
+                    <h1>${dest.name}</h1>
+                    <div class="markdown-content">${dest.contentHtml}</div>
+                `;
+                return;
+            }
+            
+            // Fallback: fetch and convert markdown in real-time
+            try {
+                const response = await fetch(dest.contentFile);
+                const markdown = await response.text();
+                const html = marked.parse(markdown);
+                
+                document.getElementById('content-area').innerHTML = `
+                    <h1>${dest.name}</h1>
+                    <div class="markdown-content">${html}</div>
+                `;
+            } catch (error) {
+                console.error('Error loading content:', error);
+                document.getElementById('content-area').innerHTML = `
+                    <h1>${dest.name}</h1>
+                    <div class="markdown-content">
+                        <p>Welcome to ${dest.name}!</p>
+                        <p>Content file not found. Please create <code>${dest.contentFile}</code> with your travel stories and experiences.</p>
+                        <h2>Getting Started</h2>
+                        <p>Create a markdown file with information about this destination, including:</p>
+                        <ul>
+                            <li>Travel tips and recommendations</li>
+                            <li>Best places to visit</li>
+                            <li>Local cuisine highlights</li>
+                            <li>Cultural insights</li>
+                            <li>Photos and experiences</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
 
         function showHome() {
             document.getElementById('home-view').style.display = 'block';
