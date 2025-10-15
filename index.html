@@ -487,41 +487,41 @@
             });
         }
 
-        async function loadDestination(id) {
-            const dest = config.destinations.find(d => d.id === id);
-            if (!dest) return;
-            
-            showContent();
-            
-            try {
-                const response = await fetch(dest.contentFile);
-                const markdown = await response.text();
-                const html = marked.parse(markdown);
-                
-                document.getElementById('content-area').innerHTML = `
-                    <h1>${dest.name}</h1>
-                    <div class="markdown-content">${html}</div>
-                `;
-            } catch (error) {
-                console.error('Error loading content:', error);
-                document.getElementById('content-area').innerHTML = `
-                    <h1>${dest.name}</h1>
-                    <div class="markdown-content">
-                        <p>Welcome to ${dest.name}!</p>
-                        <p>Content file not found. Please create <code>${dest.contentFile}</code> with your travel stories and experiences.</p>
-                        <h2>Getting Started</h2>
-                        <p>Create a markdown file with information about this destination, including:</p>
-                        <ul>
-                            <li>Travel tips and recommendations</li>
-                            <li>Best places to visit</li>
-                            <li>Local cuisine highlights</li>
-                            <li>Cultural insights</li>
-                            <li>Photos and experiences</li>
-                        </ul>
-                    </div>
-                `;
-            }
-        }
+async function loadDestination(id) {
+    const dest = config.destinations.find(d => d.id === id);
+    if (!dest) return;
+    
+    showContent();
+    
+    // If contentHtml exists (from build script), use it directly
+    if (dest.contentHtml) {
+        document.getElementById('content-area').innerHTML = `
+            <h1>${dest.name}</h1>
+            <div class="markdown-content">${dest.contentHtml}</div>
+        `;
+        return;
+    }
+    
+    // Fallback: fetch and convert markdown in real-time (only if contentHtml missing)
+    try {
+        const response = await fetch(dest.contentFile);
+        const markdown = await response.text();
+        const html = marked.parse(markdown);
+        
+        document.getElementById('content-area').innerHTML = `
+            <h1>${dest.name}</h1>
+            <div class="markdown-content">${html}</div>
+        `;
+    } catch (error) {
+        console.error('Error loading content:', error);
+        document.getElementById('content-area').innerHTML = `
+            <h1>${dest.name}</h1>
+            <div class="markdown-content">
+                <p>Content not found.</p>
+            </div>
+        `;
+    }
+}
 
         function showHome() {
             document.getElementById('home-view').style.display = 'block';
