@@ -5,8 +5,8 @@
   },
   "destinations": [
     {
-      "id": "SouthernAfrica",
-      "name": "SouthernAfrica",
+      "id": "southernafrica",
+      "name": "Southern Africa",
       "continent": "Africa",
       "country": "South Africa",
       "location": "Okavango Delta",
@@ -14,7 +14,7 @@
       "thumbnail": "images/botswana.jpg"
     },
     {
-      "id": "Greece",
+      "id": "greece",
       "name": "Athens and Greek Islands",
       "continent": "Europe",
       "country": "Greece",
@@ -30,6 +30,6 @@
 	"location": "Wellington, New Zealand",
       "contentFile": "content/newzealand.md",
       "thumbnail": "images/newzealand.jpg"
-    },
+    }
   ]
 }
