@@ -17,7 +17,11 @@
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
-  "keywords": ["travel", "blog", "static-site"],
+  "keywords": [
+    "travel",
+    "blog",
+    "static-site"
+  ],
   "author": "",
   "license": "MIT"
 }
