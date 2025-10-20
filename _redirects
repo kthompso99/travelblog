@@ -1,0 +1,5 @@
+# Netlify redirect rules for SPA routing
+# This file tells Netlify to serve index.html for all routes
+# See: https://docs.netlify.com/routing/redirects/
+
+/*    /index.html   200
