@@ -217,6 +217,7 @@
         .destination-card h3 {
             color: #667eea;
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .hero {
@@ -537,12 +538,13 @@
         function buildTripsMenu() {
             const menu = document.getElementById('destinations-menu');
             const continents = {};
-            
+
             config.trips.forEach(dest => {
-                if (!continents[dest.continent]) {
-                    continents[dest.continent] = [];
+                const continent = dest.metadata?.continent || 'Other';
+                if (!continents[continent]) {
+                    continents[continent] = [];
                 }
-                continents[dest.continent].push(dest);
+                continents[continent].push(dest);
             });
             
             menu.innerHTML = '';
@@ -587,7 +589,7 @@
                     ${dest.thumbnail ? `<img src="${dest.thumbnail}" alt="${dest.title}" onerror="this.src='https://via.placeholder.com/280x200?text=${encodeURIComponent(dest.title)}'">` : `<img src="https://via.placeholder.com/280x200?text=${encodeURIComponent(dest.title)}">`}
                     <div class="destination-card-content">
                         <h3>${dest.title}</h3>
-                        <p>${dest.continent}</p>
+                        <p>${dest.metadata?.continent || ''}</p>
                     </div>
                 `;
                 
