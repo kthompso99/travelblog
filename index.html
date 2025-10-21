@@ -817,6 +817,13 @@
                 console.log('   Destination IDs:', config.destinations?.map(d => d.id));
             }
 
+            // Strip APP_BASE from path to get relative path
+            let relativePath = path;
+            if (path.startsWith(APP_BASE)) {
+                relativePath = path.substring(APP_BASE.length);
+            }
+            console.log('   Relative path:', relativePath);
+
             // Normalize path - /travelblog/ or /travelblog should be treated as home
             const cleanPath = path.replace(/\/$/, ''); // Remove trailing slash
             const isHome = cleanPath === '' || cleanPath === '/' || cleanPath === '/index.html' ||
@@ -825,14 +832,14 @@
             if (isHome) {
                 console.log('   → Showing HOME');
                 showHome(false);
-            } else if (path.includes('/map')) {
+            } else if (relativePath.includes('map')) {
                 console.log('   → Showing MAP');
                 showMap(false);
-            } else if (path === '/about') {
+            } else if (relativePath.includes('about')) {
                 console.log('   → Showing ABOUT');
                 showAbout(false);
-            } else if (path.startsWith('/destination/')) {
-                const id = path.replace('/destination/', '');
+            } else if (relativePath.startsWith('destination/')) {
+                const id = relativePath.replace('destination/', '');
                 console.log('   → Loading DESTINATION:', id);
                 loadDestination(id, false);
             } else {
