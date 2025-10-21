@@ -63,17 +63,11 @@
         window.location.href = `./trips/${id}/`;
     }
 
-    // Intercept clicks on trip cards
+    // Load config on page load (for future SPA enhancements)
     document.addEventListener('DOMContentLoaded', () => {
         loadConfig();
 
-        // Add click handlers to trip cards if they don't have href
-        document.querySelectorAll('[data-trip-id]').forEach(card => {
-            card.addEventListener('click', (e) => {
-                e.preventDefault();
-                const tripId = card.getAttribute('data-trip-id');
-                loadTrip(tripId);
-            });
-        });
+        // No click interception needed - let the browser follow href attributes naturally
+        // This ensures correct relative path navigation
     });
 </script>
