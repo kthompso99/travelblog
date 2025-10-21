@@ -36,6 +36,7 @@ jobs:
           mkdir -p deploy
           cp index.html deploy/
           cp 404.html deploy/
+          cp test-routing.html deploy/
           cp config.built.json deploy/
           [ -d images ] && cp -r images deploy/ || true
       
