@@ -103,8 +103,8 @@ server.listen(PORT, () => {
     console.log(`  Home:      http://localhost:${PORT}/`);
     console.log(`  Map:       http://localhost:${PORT}/map`);
     console.log(`  About:     http://localhost:${PORT}/about`);
-    console.log(`  Greece:    http://localhost:${PORT}/destination/greece`);
-    console.log(`  Botswana:  http://localhost:${PORT}/destination/botswana`);
+    console.log(`  Greece:    http://localhost:${PORT}/trip/greece`);
+    console.log(`  S. Africa: http://localhost:${PORT}/trip/southernafrica`);
     console.log('');
     console.log('Press Ctrl+C to stop');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
