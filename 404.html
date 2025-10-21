@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=./">
     <script>
-        // Preserve the path for client-side routing by redirecting to the base of the current site
-        // This works both at root and in subdirectories
+        // Simple redirect to the app base without loops
+        // For /travelblog/some/404/path -> /travelblog/
+        // For /some/404/path -> /
         const pathParts = window.location.pathname.split('/').filter(p => p);
-        // Remove the last part (the 404 path) and go to the base
-        window.location.href = '/' + (pathParts[0] || '');
+        const base = pathParts.length > 0 && pathParts[0] !== '404.html' ? '/' + pathParts[0] + '/' : '/';
+
+        // Only redirect if we're not already at the base
+        if (window.location.pathname !== base) {
+            window.location.replace(base);
+        }
     </script>
     <title>Redirecting...</title>
 </head>
