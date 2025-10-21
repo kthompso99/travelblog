@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
 /**
- * Build script for travel blog
+ * Build script for travel blog - Trips Architecture
  * Geocodes locations and converts markdown to HTML offline
- * Run with: node build.js
+ * Run with: node build.js or npm run build
  */
 
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-// You'll need to install marked: npm install marked
+// Load marked for markdown conversion
 let marked;
 try {
     marked = require('marked');
@@ -19,17 +19,19 @@ try {
     process.exit(1);
 }
 
-const CONFIG_FILE = 'config.json';
+const SITE_CONFIG = 'config/site.json';
+const INDEX_CONFIG = 'config/index.json';
+const TRIPS_DIR = 'config/trips';
 const OUTPUT_FILE = 'config.built.json';
 
 // Geocode a location using Nominatim
 function geocodeLocation(locationName) {
     return new Promise((resolve, reject) => {
         const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationName)}&limit=1`;
-        
+
         https.get(url, {
             headers: {
-                'User-Agent': 'TravelBlogBuilder/1.0'
+                'User-Agent': 'TravelBlogBuilder/2.0'
             }
         }, (res) => {
             let data = '';
@@ -71,74 +73,205 @@ function convertMarkdown(filePath) {
     });
 }
 
+// Calculate duration between two dates
+function calculateDuration(beginDate, endDate) {
+    if (!beginDate || !endDate) {
+        return "Ongoing";
+    }
+    const start = new Date(beginDate);
+    const end = new Date(endDate);
+    const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+    return `${days} days`;
+}
+
+// Process a single content item (location or article)
+async function processContentItem(item, tripId, order) {
+    const processed = {
+        type: item.type,
+        title: item.title,
+        order: order
+    };
+
+    // Convert markdown to HTML
+    if (item.file) {
+        try {
+            console.log(`    📝 Converting markdown: ${item.file}`);
+            processed.contentHtml = await convertMarkdown(item.file);
+            console.log(`    ✅ HTML generated (${processed.contentHtml.length} chars)`);
+        } catch (e) {
+            console.log(`    ⚠️  Markdown conversion failed: ${e.message}`);
+            processed.contentHtml = `<p>Content not found</p>`;
+        }
+    }
+
+    // If it's a location, geocode it
+    if (item.type === 'location') {
+        processed.place = item.place;
+        processed.duration = item.duration;
+
+        // Geocode the place
+        try {
+            console.log(`    🗺️  Geocoding: ${item.place}`);
+            processed.coordinates = await geocodeLocation(item.place);
+            console.log(`    ✅ Coordinates: ${processed.coordinates.lat}, ${processed.coordinates.lng}`);
+
+            // Respect rate limits (1 request per second)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        } catch (e) {
+            console.log(`    ⚠️  Geocoding failed: ${e.message}`);
+            processed.coordinates = { lat: 0, lng: 0 };
+        }
+    }
+
+    return processed;
+}
+
+// Process a single trip
+async function processTrip(tripId) {
+    console.log(`\n📍 Processing trip: ${tripId}`);
+
+    const tripConfigPath = path.join(TRIPS_DIR, `${tripId}.json`);
+
+    if (!fs.existsSync(tripConfigPath)) {
+        console.log(`  ⚠️  Config file not found: ${tripConfigPath}`);
+        return null;
+    }
+
+    const tripConfig = JSON.parse(fs.readFileSync(tripConfigPath, 'utf8'));
+
+    // Calculate duration
+    const duration = calculateDuration(tripConfig.beginDate, tripConfig.endDate);
+    console.log(`  ⏱️  Duration: ${duration}`);
+
+    // Process content items in order
+    const processedContent = [];
+    console.log(`  📚 Processing ${tripConfig.content.length} content items...\n`);
+
+    for (let i = 0; i < tripConfig.content.length; i++) {
+        const item = tripConfig.content[i];
+        const order = i + 1; // 1-based ordering
+
+        console.log(`  [${i + 1}/${tripConfig.content.length}] ${item.type}: ${item.title}`);
+        const processed = await processContentItem(item, tripId, order);
+        processedContent.push(processed);
+        console.log('');
+    }
+
+    // Extract locations for mapping
+    const locations = processedContent
+        .filter(item => item.type === 'location')
+        .map(item => ({
+            name: item.title,
+            coordinates: item.coordinates
+        }));
+
+    // Resolve mapCenter to coordinates
+    let mapCenter = null;
+    if (tripConfig.mapCenter) {
+        const centerLocation = processedContent.find(item =>
+            item.type === 'location' &&
+            (item.title === tripConfig.mapCenter || item.place.includes(tripConfig.mapCenter))
+        );
+
+        if (centerLocation) {
+            mapCenter = {
+                name: tripConfig.mapCenter,
+                coordinates: centerLocation.coordinates
+            };
+        } else if (locations.length > 0) {
+            // Fallback to first location
+            mapCenter = {
+                name: locations[0].name,
+                coordinates: locations[0].coordinates
+            };
+        }
+    } else if (locations.length > 0) {
+        mapCenter = {
+            name: locations[0].name,
+            coordinates: locations[0].coordinates
+        };
+    }
+
+    // Build final trip object
+    return {
+        id: tripConfig.id,
+        title: tripConfig.title,
+        slug: tripConfig.slug,
+        published: tripConfig.published,
+
+        beginDate: tripConfig.beginDate,
+        endDate: tripConfig.endDate,
+        duration: duration,
+
+        metadata: tripConfig.metadata,
+
+        coverImage: tripConfig.coverImage,
+        thumbnail: tripConfig.thumbnail,
+
+        mapCenter: mapCenter,
+
+        content: processedContent,
+        locations: locations,
+
+        relatedTrips: tripConfig.relatedTrips || []
+    };
+}
+
 // Main build function
 async function build() {
-    console.log('🚀 Starting build process...\n');
+    console.log('🚀 Starting build process (Trips Architecture)...\n');
 
-    // Read config file
-    let config;
+    // Read site config
+    let siteConfig;
     try {
-        const configData = fs.readFileSync(CONFIG_FILE, 'utf8');
-        config = JSON.parse(configData);
+        siteConfig = JSON.parse(fs.readFileSync(SITE_CONFIG, 'utf8'));
+        console.log(`✅ Loaded site config: ${siteConfig.title}\n`);
     } catch (e) {
-        console.error('❌ Error reading config.json:', e.message);
+        console.error(`❌ Error reading ${SITE_CONFIG}:`, e.message);
         process.exit(1);
     }
 
-    console.log(`📍 Processing ${config.destinations.length} destinations...\n`);
-
-    // Process each destination
-    for (let i = 0; i < config.destinations.length; i++) {
-        const dest = config.destinations[i];
-        console.log(`[${i + 1}/${config.destinations.length}] Processing ${dest.name}...`);
-
-        // Geocode if needed
-        if (!dest.coordinates) {
-            const locationName = dest.location || dest.name;
-            try {
-                console.log(`  🗺️  Geocoding: ${locationName}`);
-                dest.coordinates = await geocodeLocation(locationName);
-                console.log(`  ✅ Coordinates: ${dest.coordinates.lat}, ${dest.coordinates.lng}`);
-                
-                // Respect rate limits (1 request per second)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            } catch (e) {
-                console.log(`  ⚠️  Geocoding failed: ${e.message}`);
-                dest.coordinates = { lat: 0, lng: 0 };
-            }
-        } else {
-            console.log(`  ✅ Using provided coordinates`);
-        }
-
-        // Convert markdown to HTML
-        if (dest.contentFile) {
-            try {
-                console.log(`  📝 Converting markdown: ${dest.contentFile}`);
-                dest.contentHtml = await convertMarkdown(dest.contentFile);
-                console.log(`  ✅ HTML generated (${dest.contentHtml.length} chars)`);
-            } catch (e) {
-                console.log(`  ⚠️  Markdown conversion failed: ${e.message}`);
-                dest.contentHtml = `<p>Content not found</p>`;
-            }
-        }
-
-        console.log('');
+    // Read index config (list of trips)
+    let indexConfig;
+    try {
+        indexConfig = JSON.parse(fs.readFileSync(INDEX_CONFIG, 'utf8'));
+        console.log(`📋 Found ${indexConfig.trips.length} trips to process\n`);
+    } catch (e) {
+        console.error(`❌ Error reading ${INDEX_CONFIG}:`, e.message);
+        process.exit(1);
     }
+
+    // Process each trip
+    const processedTrips = [];
+    for (const tripId of indexConfig.trips) {
+        const trip = await processTrip(tripId);
+        if (trip) {
+            processedTrips.push(trip);
+        }
+    }
+
+    // Build final output
+    const output = {
+        site: siteConfig,
+        trips: processedTrips
+    };
 
     // Write built config
     try {
         fs.writeFileSync(
             OUTPUT_FILE,
-            JSON.stringify(config, null, 2),
+            JSON.stringify(output, null, 2),
             'utf8'
         );
-        console.log(`✅ Build complete! Output written to ${OUTPUT_FILE}`);
+        console.log(`\n✅ Build complete! Output written to ${OUTPUT_FILE}`);
         console.log(`\n📊 Summary:`);
-        console.log(`   - Geocoded: ${config.destinations.filter(d => d.coordinates).length} locations`);
-        console.log(`   - Converted: ${config.destinations.filter(d => d.contentHtml).length} markdown files`);
+        console.log(`   - Trips processed: ${processedTrips.length}`);
+        console.log(`   - Total locations: ${processedTrips.reduce((sum, t) => sum + t.locations.length, 0)}`);
+        console.log(`   - Total content items: ${processedTrips.reduce((sum, t) => sum + t.content.length, 0)}`);
         console.log(`\n🎯 Next steps:`);
-        console.log(`   1. Update index.html to use '${OUTPUT_FILE}' instead of 'config.json'`);
-        console.log(`   2. Deploy your site!`);
+        console.log(`   1. Update index.html to use '${OUTPUT_FILE}'`);
+        console.log(`   2. Test locally with: npm run serve`);
+        console.log(`   3. Deploy your site!`);
     } catch (e) {
         console.error('❌ Error writing output file:', e.message);
         process.exit(1);

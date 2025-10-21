@@ -1,0 +1,33 @@
+{
+  "id": "greece",
+  "title": "Athens and Greek Islands",
+  "slug": "greece",
+  "published": true,
+  "beginDate": "2024-04-01",
+  "endDate": "2024-04-14",
+  "metadata": {
+    "year": 2024,
+    "continent": "Europe",
+    "country": "Greece",
+    "tripType": [
+      "adventure"
+    ],
+    "tags": [
+      "europe",
+      "greece"
+    ]
+  },
+  "coverImage": "images/greece.jpg",
+  "thumbnail": "images/greece.jpg",
+  "mapCenter": "Paros",
+  "content": [
+    {
+      "type": "location",
+      "title": "Athens and Greek Islands",
+      "place": "Paros",
+      "duration": "14 days",
+      "file": "content/trips/greece/greece.md"
+    }
+  ],
+  "relatedTrips": []
+}

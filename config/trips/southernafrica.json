@@ -1,0 +1,33 @@
+{
+  "id": "southernafrica",
+  "title": "Southern Africa",
+  "slug": "southernafrica",
+  "published": true,
+  "beginDate": "2024-01-01",
+  "endDate": "2024-01-14",
+  "metadata": {
+    "year": 2024,
+    "continent": "Africa",
+    "country": "South Africa",
+    "tripType": [
+      "adventure"
+    ],
+    "tags": [
+      "africa",
+      "south-africa"
+    ]
+  },
+  "coverImage": "images/botswana.jpg",
+  "thumbnail": "images/botswana.jpg",
+  "mapCenter": "Okavango Delta",
+  "content": [
+    {
+      "type": "location",
+      "title": "Southern Africa",
+      "place": "Okavango Delta",
+      "duration": "14 days",
+      "file": "content/trips/southernafrica/botswana.md"
+    }
+  ],
+  "relatedTrips": []
+}

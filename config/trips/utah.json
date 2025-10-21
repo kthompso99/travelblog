@@ -1,0 +1,33 @@
+{
+  "id": "utah",
+  "title": "Utah and the Grand Canyon",
+  "slug": "utah",
+  "published": true,
+  "beginDate": "2024-07-01",
+  "endDate": "2024-07-14",
+  "metadata": {
+    "year": 2024,
+    "continent": "North America",
+    "country": "USA",
+    "tripType": [
+      "adventure"
+    ],
+    "tags": [
+      "north america",
+      "usa"
+    ]
+  },
+  "coverImage": "images/utah.jpg",
+  "thumbnail": "images/utah.jpg",
+  "mapCenter": "Moab, Utah",
+  "content": [
+    {
+      "type": "location",
+      "title": "Utah and the Grand Canyon",
+      "place": "Moab, Utah",
+      "duration": "14 days",
+      "file": "content/trips/utah/utah.md"
+    }
+  ],
+  "relatedTrips": []
+}
