@@ -368,20 +368,34 @@
 
         // Auto-detect base path for the application
         // This works both locally (/) and on GitHub Pages (/travelblog/)
-        const basePath = window.location.pathname.split('/').slice(0, -1).join('/') || '/';
         const getBasePath = () => {
-            // If we're at root or a top-level path, base is root
-            // Otherwise, extract base from current script location
             const path = window.location.pathname;
-            if (path === '/' || path === '/index.html') {
+
+            // Remove trailing slash and filename
+            let cleanPath = path.replace(/\/$/, '').replace(/\/[^\/]*\.html$/, '');
+
+            // If at root, base is current directory
+            if (cleanPath === '' || cleanPath === '/') {
                 return './';
             }
-            // Calculate how many levels deep we are
-            const depth = path.split('/').filter(p => p).length;
-            return '../'.repeat(depth);
+
+            // Count how deep we are from the base
+            // E.g., /travelblog/ = 0 levels deep (base)
+            // E.g., /travelblog/destination/greece = 2 levels deep
+            const segments = cleanPath.split('/').filter(p => p);
+            const appBase = segments[0] || ''; // 'travelblog' or empty for root
+
+            // If we're at the app base (/travelblog/), use current dir
+            if (segments.length === 1) {
+                return './';
+            }
+
+            // If we're deeper (/travelblog/destination/greece), go up to app base
+            const levelsDeep = segments.length - 1;
+            return '../'.repeat(levelsDeep);
         };
         const BASE_PATH = getBasePath();
-        console.log('📂 Base path detected:', BASE_PATH);
+        console.log('📂 Base path detected:', BASE_PATH, 'for path:', window.location.pathname);
 
         // Load pre-built configuration (coordinates and HTML already processed)
         async function loadConfig() {
