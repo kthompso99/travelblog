@@ -26,28 +26,28 @@
       "title": "Milos",
       "place": "Milos Greece",
       "duration": "2 days",
-      "file": "content/trips/greece/greece.md"
+      "file": "content/trips/greece/milos.md"
     },
     {
       "type": "location",
       "title": "Santorini",
       "place": "Dreams Luxury Suites Santorini",
       "duration": "2 days",
-      "file": "content/trips/greece/greece.md"
+      "file": "content/trips/greece/santorini.md"
     },
     {
       "type": "location",
       "title": "Paros",
       "place": "Avant Mar Paros",
       "duration": "3 days",
-      "file": "content/trips/greece/greece.md"
+      "file": "content/trips/greece/paros.md"
     },
     {
       "type": "location",
       "title": "Athens",
       "place": "Electra Metropolis Athens",
       "duration": "3 days",
-      "file": "content/trips/greece/greece.md"
+      "file": "content/trips/greece/athens.md"
     }
   ],
   "relatedTrips": []
