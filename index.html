@@ -401,11 +401,17 @@
         const getAppBase = () => {
             const path = window.location.pathname;
             const segments = path.split('/').filter(p => p);
-            // If first segment is not a file, it's likely the app base
-            if (segments.length > 0 && !segments[0].includes('.')) {
-                return '/' + segments[0] + '/';
+
+            // Known app routes (not base paths)
+            const appRoutes = ['destination', 'map', 'about', 'index.html', '404.html'];
+
+            // If first segment is an app route or a file, base is '/'
+            if (segments.length === 0 || appRoutes.includes(segments[0]) || segments[0].includes('.')) {
+                return '/';
             }
-            return '/';
+
+            // Otherwise, first segment is the base path (e.g., 'travelblog')
+            return '/' + segments[0] + '/';
         };
         const APP_BASE = getAppBase();
         console.log('🏠 App base:', APP_BASE);
