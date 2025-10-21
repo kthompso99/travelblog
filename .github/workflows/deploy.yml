@@ -39,6 +39,7 @@ jobs:
           cp test-routing.html deploy/
           cp config.built.json deploy/
           [ -d images ] && cp -r images deploy/ || true
+          [ -d trips ] && cp -r trips deploy/ || true
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

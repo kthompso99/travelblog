@@ -364,6 +364,7 @@
 
     <script>
         let config = null;
+        const tripContentCache = {}; // Cache for lazy-loaded trip content
         let map = null;
         let markers = [];
 
@@ -666,80 +667,102 @@
             console.log('   ID:', id);
             console.log('   pushState:', pushState);
 
-            const dest = config.trips.find(d => d.id === id);
-            console.log('   Trip found?', dest !== undefined);
+            const tripMetadata = config.trips.find(d => d.id === id);
+            console.log('   Trip found?', tripMetadata !== undefined);
 
-            if (!dest) {
+            if (!tripMetadata) {
                 console.error('❌ Trip not found:', id);
                 console.error('   Available IDs:', config.trips.map(d => d.id));
                 return;
             }
 
-            console.log('   Trip:', dest.title);
-            console.log('   Has contentHtml?', dest.contentHtml !== undefined);
-            console.log('   Content file:', dest.contentFile);
+            console.log('   Trip:', tripMetadata.title);
 
             // Update URL for analytics tracking
             if (pushState) {
                 const newUrl = `${APP_BASE}trip/${id}`;
-                history.pushState({ view: 'trip', id: id }, dest.title, newUrl);
+                history.pushState({ view: 'trip', id: id }, tripMetadata.title, newUrl);
                 console.log('   URL updated to:', newUrl);
             }
 
             console.log('   Calling showContent()...');
             showContent();
 
-            // Render trip content (from content array)
-            if (dest.content && dest.content.length > 0) {
-                console.log('   ✅ Using trip content array with', dest.content.length, 'items');
-
-                // Build HTML for all content items
-                let contentHtml = `<h1>${dest.title}</h1>`;
-                if (dest.duration) {
-                    contentHtml += `<p class="trip-meta"><strong>Duration:</strong> ${dest.duration}</p>`;
-                }
-                if (dest.beginDate) {
-                    contentHtml += `<p class="trip-meta"><strong>Dates:</strong> ${dest.beginDate}`;
-                    if (dest.endDate) {
-                        contentHtml += ` to ${dest.endDate}`;
-                    }
-                    contentHtml += `</p>`;
-                }
-
-                // Render each content item in order
-                dest.content.forEach((item, index) => {
-                    if (item.type === 'location') {
-                        contentHtml += `
-                            <div class="content-item location-item">
-                                <h2>${item.title}</h2>
-                                ${item.place ? `<p class="location-meta"><strong>Location:</strong> ${item.place}</p>` : ''}
-                                ${item.duration ? `<p class="location-meta"><strong>Duration:</strong> ${item.duration}</p>` : ''}
-                                <div class="markdown-content">${item.contentHtml || '<p>Content not available</p>'}</div>
-                            </div>
-                        `;
-                    } else if (item.type === 'article') {
-                        contentHtml += `
-                            <div class="content-item article-item">
-                                <h2>${item.title}</h2>
-                                <div class="markdown-content">${item.contentHtml || '<p>Content not available</p>'}</div>
-                            </div>
-                        `;
-                    }
-                });
-
-                document.getElementById('content-area').innerHTML = contentHtml;
+            // Check cache first
+            if (tripContentCache[id]) {
+                console.log('   ✅ Using cached trip content');
+                renderTripContent(tripMetadata, tripContentCache[id]);
                 return;
             }
 
-            // Fallback: no content array
-            console.error('❌ No content array found');
-            document.getElementById('content-area').innerHTML = `
-                <h1>${dest.title}</h1>
-                <div class="markdown-content">
-                    <p>Welcome to ${dest.title}!</p>
-                    <p>Content not available. Please run the build script to process trip content.</p>
-                </div>
-            `;
+            // Lazy load trip content
+            console.log('   📥 Lazy loading trip content from trips/' + id + '.json');
+            try {
+                const tripContentUrl = `${APP_BASE}trips/${id}.json`;
+                console.log('   Fetching:', tripContentUrl);
+
+                const response = await fetch(tripContentUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const tripContent = await response.json();
+                console.log('   ✅ Trip content loaded:', tripContent.content.length, 'items');
+
+                // Cache the content
+                tripContentCache[id] = tripContent.content;
+
+                // Render the content
+                renderTripContent(tripMetadata, tripContent.content);
+
+            } catch (error) {
+                console.error('❌ Error loading trip content:', error);
+                document.getElementById('content-area').innerHTML = `
+                    <h1>${tripMetadata.title}</h1>
+                    <div class="markdown-content">
+                        <p>Error loading trip content. Please try again.</p>
+                        <p class="error-detail">${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderTripContent(tripMetadata, content) {
+            // Build HTML for all content items
+            let contentHtml = `<h1>${tripMetadata.title}</h1>`;
+            if (tripMetadata.duration) {
+                contentHtml += `<p class="trip-meta"><strong>Duration:</strong> ${tripMetadata.duration}</p>`;
+            }
+            if (tripMetadata.beginDate) {
+                contentHtml += `<p class="trip-meta"><strong>Dates:</strong> ${tripMetadata.beginDate}`;
+                if (tripMetadata.endDate) {
+                    contentHtml += ` to ${tripMetadata.endDate}`;
+                }
+                contentHtml += `</p>`;
+            }
+
+            // Render each content item in order
+            content.forEach((item, index) => {
+                if (item.type === 'location') {
+                    contentHtml += `
+                        <div class="content-item location-item">
+                            <h2>${item.title}</h2>
+                            ${item.place ? `<p class="location-meta"><strong>Location:</strong> ${item.place}</p>` : ''}
+                            ${item.duration ? `<p class="location-meta"><strong>Duration:</strong> ${item.duration}</p>` : ''}
+                            <div class="markdown-content">${item.contentHtml || '<p>Content not available</p>'}</div>
+                        </div>
+                    `;
+                } else if (item.type === 'article') {
+                    contentHtml += `
+                        <div class="content-item article-item">
+                            <h2>${item.title}</h2>
+                            <div class="markdown-content">${item.contentHtml || '<p>Content not available</p>'}</div>
+                        </div>
+                    `;
+                }
+            });
+
+            document.getElementById('content-area').innerHTML = contentHtml;
         }
 
         function showHome(pushState = true) {

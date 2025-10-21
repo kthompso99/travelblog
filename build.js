@@ -23,6 +23,7 @@ const SITE_CONFIG = 'config/site.json';
 const INDEX_CONFIG = 'config/index.json';
 const TRIPS_DIR = 'config/trips';
 const OUTPUT_FILE = 'config.built.json';
+const TRIPS_OUTPUT_DIR = 'trips';
 
 // Geocode a location using Nominatim
 function geocodeLocation(locationName) {
@@ -241,16 +242,58 @@ async function build() {
         process.exit(1);
     }
 
+    // Create trips output directory
+    if (!fs.existsSync(TRIPS_OUTPUT_DIR)) {
+        fs.mkdirSync(TRIPS_OUTPUT_DIR, { recursive: true });
+    }
+
     // Process each trip
     const processedTrips = [];
+    let totalContentSize = 0;
+
     for (const tripId of indexConfig.trips) {
         const trip = await processTrip(tripId);
         if (trip) {
-            processedTrips.push(trip);
+            // Save full trip content to separate file
+            const tripContentFile = path.join(TRIPS_OUTPUT_DIR, `${tripId}.json`);
+            const tripContent = {
+                id: trip.id,
+                content: trip.content
+            };
+
+            fs.writeFileSync(
+                tripContentFile,
+                JSON.stringify(tripContent, null, 2),
+                'utf8'
+            );
+
+            const fileSize = fs.statSync(tripContentFile).size;
+            totalContentSize += fileSize;
+            console.log(`  💾 Saved ${tripContentFile} (${(fileSize / 1024).toFixed(1)}KB)`);
+
+            // Create lightweight metadata version for index
+            const tripMetadata = {
+                id: trip.id,
+                title: trip.title,
+                slug: trip.slug,
+                published: trip.published,
+                beginDate: trip.beginDate,
+                endDate: trip.endDate,
+                duration: trip.duration,
+                metadata: trip.metadata,
+                coverImage: trip.coverImage,
+                thumbnail: trip.thumbnail,
+                mapCenter: trip.mapCenter,
+                locations: trip.locations,
+                relatedTrips: trip.relatedTrips
+                // NO content array here - that's in the separate file!
+            };
+
+            processedTrips.push(tripMetadata);
         }
     }
 
-    // Build final output
+    // Build lightweight index file
     const output = {
         site: siteConfig,
         trips: processedTrips
@@ -263,13 +306,22 @@ async function build() {
             JSON.stringify(output, null, 2),
             'utf8'
         );
-        console.log(`\n✅ Build complete! Output written to ${OUTPUT_FILE}`);
+
+        const indexSize = fs.statSync(OUTPUT_FILE).size;
+
+        console.log(`\n✅ Build complete!`);
         console.log(`\n📊 Summary:`);
         console.log(`   - Trips processed: ${processedTrips.length}`);
         console.log(`   - Total locations: ${processedTrips.reduce((sum, t) => sum + t.locations.length, 0)}`);
-        console.log(`   - Total content items: ${processedTrips.reduce((sum, t) => sum + t.content.length, 0)}`);
+        console.log(`\n💾 File sizes:`);
+        console.log(`   - Index (${OUTPUT_FILE}): ${(indexSize / 1024).toFixed(1)}KB`);
+        console.log(`   - Trip content files: ${(totalContentSize / 1024).toFixed(1)}KB`);
+        console.log(`   - Total: ${((indexSize + totalContentSize) / 1024).toFixed(1)}KB`);
+        console.log(`\n⚡ Performance:`);
+        console.log(`   - Initial load: ${(indexSize / 1024).toFixed(1)}KB (index only)`);
+        console.log(`   - Per trip load: ~${(totalContentSize / processedTrips.length / 1024).toFixed(1)}KB average`);
         console.log(`\n🎯 Next steps:`);
-        console.log(`   1. Update index.html to use '${OUTPUT_FILE}'`);
+        console.log(`   1. Update index.html to lazy-load from trips/ directory`);
         console.log(`   2. Test locally with: npm run serve`);
         console.log(`   3. Deploy your site!`);
     } catch (e) {
