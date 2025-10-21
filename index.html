@@ -804,10 +804,15 @@
                 console.log('   Destination IDs:', config.destinations?.map(d => d.id));
             }
 
-            if (path === '/' || path === '/index.html') {
+            // Normalize path - /travelblog/ or /travelblog should be treated as home
+            const cleanPath = path.replace(/\/$/, ''); // Remove trailing slash
+            const isHome = cleanPath === '' || cleanPath === '/' || cleanPath === '/index.html' ||
+                          cleanPath === '/travelblog' || cleanPath === '/travelblog/index.html';
+
+            if (isHome) {
                 console.log('   → Showing HOME');
                 showHome(false);
-            } else if (path === '/map') {
+            } else if (path.includes('/map')) {
                 console.log('   → Showing MAP');
                 showMap(false);
             } else if (path === '/about') {
