@@ -217,6 +217,7 @@
         .destination-card h3 {
             color: #667eea;
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .hero {
@@ -324,7 +325,7 @@
             <ul class="nav-links">
                 <li><a href="#" onclick="showHome(); return false;">Home</a></li>
                 <li class="dropdown">
-                    <a href="#" onclick="return false;">Destinations ▾</a>
+                    <a href="#" onclick="return false;">Trips ▾</a>
                     <div class="dropdown-content" id="destinations-menu"></div>
                 </li>
                 <li><a href="#" onclick="showMap(); return false;">Map</a></li>
@@ -340,12 +341,12 @@
                 <p id="site-description">Exploring the world, one destination at a time</p>
             </div>
 
-            <h2 style="margin-bottom: 1rem;">Featured Destinations</h2>
+            <h2 style="margin-bottom: 1rem;">Featured Trips</h2>
             <div class="destination-grid" id="destination-grid"></div>
         </div>
 
         <div id="map-view" style="display: none;">
-            <h2>World Map of Destinations</h2>
+            <h2>World Map of Trips</h2>
             <div id="map-container">
                 <div id="map"></div>
             </div>
@@ -363,6 +364,7 @@
 
     <script>
         let config = null;
+        const tripContentCache = {}; // Cache for lazy-loaded trip content
         let map = null;
         let markers = [];
 
@@ -381,7 +383,7 @@
 
             // Count how deep we are from the base
             // E.g., /travelblog/ = 0 levels deep (base)
-            // E.g., /travelblog/destination/greece = 2 levels deep
+            // E.g., /travelblog/trip/greece = 2 levels deep
             const segments = cleanPath.split('/').filter(p => p);
             const appBase = segments[0] || ''; // 'travelblog' or empty for root
 
@@ -390,7 +392,7 @@
                 return './';
             }
 
-            // If we're deeper (/travelblog/destination/greece), go up to app base
+            // If we're deeper (/travelblog/trip/greece), go up to app base
             const levelsDeep = segments.length - 1;
             return '../'.repeat(levelsDeep);
         };
@@ -403,7 +405,7 @@
             const segments = path.split('/').filter(p => p);
 
             // Known app routes (not base paths)
-            const appRoutes = ['destination', 'map', 'about', 'index.html', '404.html'];
+            const appRoutes = ['trip', 'map', 'about', 'index.html', '404.html'];
 
             // If first segment is an app route or a file, base is '/'
             if (segments.length === 0 || appRoutes.includes(segments[0]) || segments[0].includes('.')) {
@@ -429,7 +431,7 @@
                 config = await response.json();
                 console.log('   ✅ config.built.json loaded successfully');
                 console.log('   Site:', config.site.title);
-                console.log('   Destinations:', config.destinations.length);
+                console.log('   Trips:', config.trips.length);
 
                 document.getElementById('site-title').textContent = config.site.title;
                 document.getElementById('site-description').textContent = config.site.description;
@@ -438,7 +440,7 @@
 
                 // Build the navigation menu (always needed)
                 console.log('   Building destinations menu...');
-                buildDestinationsMenu();
+                buildTripsMenu();
 
                 // Don't build UI components here - let the router decide what to show
                 console.log('   Config loaded, ready for routing');
@@ -465,10 +467,10 @@
                 console.log('⚠️ Using real-time mode. Run "node build.js" for better performance.');
 
                 // Geocode all locations that don't have coordinates
-                await geocodeAllDestinations();
+                await geocodeAllTrips();
 
                 // Build the navigation menu (always needed)
-                buildDestinationsMenu();
+                buildTripsMenu();
 
                 // Don't build UI components here - let the router decide what to show
             } catch (error) {
@@ -498,16 +500,16 @@
             return { lat: 0, lng: 0 };
         }
 
-        async function geocodeAllDestinations() {
-            const promises = config.destinations.map(async (dest) => {
+        async function geocodeAllTrips() {
+            const promises = config.trips.map(async (dest) => {
                 if (!dest.coordinates && dest.location) {
                     await new Promise(resolve => setTimeout(resolve, 100));
                     dest.coordinates = await geocodeLocation(dest.location);
-                    console.log(`Geocoded ${dest.name}: ${dest.coordinates.lat}, ${dest.coordinates.lng}`);
+                    console.log(`Geocoded ${dest.title}: ${dest.coordinates.lat}, ${dest.coordinates.lng}`);
                 } else if (!dest.coordinates && !dest.location) {
                     await new Promise(resolve => setTimeout(resolve, 100));
-                    dest.coordinates = await geocodeLocation(dest.name);
-                    console.log(`Geocoded ${dest.name}: ${dest.coordinates.lat}, ${dest.coordinates.lng}`);
+                    dest.coordinates = await geocodeLocation(dest.title);
+                    console.log(`Geocoded ${dest.title}: ${dest.coordinates.lat}, ${dest.coordinates.lng}`);
                 }
             });
             
@@ -529,20 +531,21 @@
                       contentHtml: "<h1>New York, USA</h1><p>The city that never sleeps...</p>" }
                 ]
             };
-            buildDestinationsMenu();
-            buildDestinationGrid();
+            buildTripsMenu();
+            buildTripGrid();
             initMap();
         }
 
-        function buildDestinationsMenu() {
+        function buildTripsMenu() {
             const menu = document.getElementById('destinations-menu');
             const continents = {};
-            
-            config.destinations.forEach(dest => {
-                if (!continents[dest.continent]) {
-                    continents[dest.continent] = [];
+
+            config.trips.forEach(dest => {
+                const continent = dest.metadata?.continent || 'Other';
+                if (!continents[continent]) {
+                    continents[continent] = [];
                 }
-                continents[dest.continent].push(dest);
+                continents[continent].push(dest);
             });
             
             menu.innerHTML = '';
@@ -561,10 +564,10 @@
                 continents[continent].forEach(dest => {
                     const link = document.createElement('a');
                     link.href = '#';
-                    link.textContent = dest.name;
+                    link.textContent = dest.title;
                     link.onclick = (e) => {
                         e.preventDefault();
-                        loadDestination(dest.id);
+                        loadTrip(dest.id);
                     };
                     submenu.appendChild(link);
                 });
@@ -574,20 +577,20 @@
             });
         }
 
-        function buildDestinationGrid() {
+        function buildTripGrid() {
             const grid = document.getElementById('destination-grid');
             grid.innerHTML = '';
             
-            config.destinations.forEach(dest => {
+            config.trips.forEach(dest => {
                 const card = document.createElement('div');
                 card.className = 'destination-card';
-                card.onclick = () => loadDestination(dest.id);
+                card.onclick = () => loadTrip(dest.id);
                 
                 card.innerHTML = `
-                    ${dest.thumbnail ? `<img src="${dest.thumbnail}" alt="${dest.name}" onerror="this.src='https://via.placeholder.com/280x200?text=${encodeURIComponent(dest.name)}'">` : `<img src="https://via.placeholder.com/280x200?text=${encodeURIComponent(dest.name)}">`}
+                    ${dest.thumbnail ? `<img src="${dest.thumbnail}" alt="${dest.title}" onerror="this.src='https://via.placeholder.com/280x200?text=${encodeURIComponent(dest.title)}'">` : `<img src="https://via.placeholder.com/280x200?text=${encodeURIComponent(dest.title)}">`}
                     <div class="destination-card-content">
-                        <h3>${dest.name}</h3>
-                        <p>${dest.continent}</p>
+                        <h3>${dest.title}</h3>
+                        <p>${dest.metadata?.continent || ''}</p>
                     </div>
                 `;
                 
@@ -608,19 +611,22 @@
             markers.forEach(marker => map.removeLayer(marker));
             markers = [];
             
-            config.destinations.forEach(dest => {
-                const marker = L.marker([dest.coordinates.lat, dest.coordinates.lng])
+            config.trips.forEach(dest => {
+                // Skip trips without map center coordinates
+                if (!dest.mapCenter || !dest.mapCenter.coordinates) return;
+
+                const marker = L.marker([dest.mapCenter.coordinates.lat, dest.mapCenter.coordinates.lng])
                     .addTo(map);
                 
                 // Create popup content with thumbnail
-                const thumbnailUrl = dest.thumbnail || `https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.name)}`;
+                const thumbnailUrl = dest.thumbnail || `https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.title)}`;
                 
                 const popupContent = `
                     <div class="marker-popup">
-                        <img src="${thumbnailUrl}" alt="${dest.name}" class="marker-popup-image" onerror="this.src='https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.name)}'">
+                        <img src="${thumbnailUrl}" alt="${dest.title}" class="marker-popup-image" onerror="this.src='https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.title)}'">
                         <div class="marker-popup-content">
-                            <div class="marker-popup-title">${dest.name}</div>
-                            <a href="#" onclick="loadDestination('${dest.id}'); return false;" class="marker-popup-link">Read More →</a>
+                            <div class="marker-popup-title">${dest.title}</div>
+                            <a href="#" onclick="loadTrip('${dest.id}'); return false;" class="marker-popup-link">Read More →</a>
                         </div>
                     </div>
                 `;
@@ -649,87 +655,114 @@
                 
                 // Click to load destination
                 marker.on('click', () => {
-                    loadDestination(dest.id);
+                    loadTrip(dest.id);
                 });
                 
                 markers.push(marker);
             });
         }
 
-        async function loadDestination(id, pushState = true) {
-            console.log('🟢 loadDestination() called');
+        async function loadTrip(id, pushState = true) {
+            console.log('🟢 loadTrip() called');
             console.log('   ID:', id);
             console.log('   pushState:', pushState);
 
-            const dest = config.destinations.find(d => d.id === id);
-            console.log('   Destination found?', dest !== undefined);
+            const tripMetadata = config.trips.find(d => d.id === id);
+            console.log('   Trip found?', tripMetadata !== undefined);
 
-            if (!dest) {
-                console.error('❌ Destination not found:', id);
-                console.error('   Available IDs:', config.destinations.map(d => d.id));
+            if (!tripMetadata) {
+                console.error('❌ Trip not found:', id);
+                console.error('   Available IDs:', config.trips.map(d => d.id));
                 return;
             }
 
-            console.log('   Destination:', dest.name);
-            console.log('   Has contentHtml?', dest.contentHtml !== undefined);
-            console.log('   Content file:', dest.contentFile);
+            console.log('   Trip:', tripMetadata.title);
 
             // Update URL for analytics tracking
             if (pushState) {
-                const newUrl = `${APP_BASE}destination/${id}`;
-                history.pushState({ view: 'destination', id: id }, dest.name, newUrl);
+                const newUrl = `${APP_BASE}trip/${id}`;
+                history.pushState({ view: 'trip', id: id }, tripMetadata.title, newUrl);
                 console.log('   URL updated to:', newUrl);
             }
 
             console.log('   Calling showContent()...');
             showContent();
 
-            // If contentHtml exists (from build script), use it directly
-            if (dest.contentHtml) {
-                console.log('   ✅ Using pre-rendered contentHtml');
-                document.getElementById('content-area').innerHTML = `
-                    <h1>${dest.name}</h1>
-                    <div class="markdown-content">${dest.contentHtml}</div>
-                `;
+            // Check cache first
+            if (tripContentCache[id]) {
+                console.log('   ✅ Using cached trip content');
+                renderTripContent(tripMetadata, tripContentCache[id]);
                 return;
             }
 
-            // Fallback: fetch and convert markdown in real-time
-            console.log('   ⚠️ No contentHtml, fetching markdown from:', dest.contentFile);
+            // Lazy load trip content
+            console.log('   📥 Lazy loading trip content from trips/' + id + '.json');
             try {
-                const response = await fetch(dest.contentFile);
-                console.log('   Fetch response status:', response.status);
+                const tripContentUrl = `${APP_BASE}trips/${id}.json`;
+                console.log('   Fetching:', tripContentUrl);
 
-                const markdown = await response.text();
-                console.log('   Markdown loaded, length:', markdown.length);
+                const response = await fetch(tripContentUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
 
-                const html = marked.parse(markdown);
-                console.log('   Markdown converted to HTML, length:', html.length);
+                const tripContent = await response.json();
+                console.log('   ✅ Trip content loaded:', tripContent.content.length, 'items');
 
-                document.getElementById('content-area').innerHTML = `
-                    <h1>${dest.name}</h1>
-                    <div class="markdown-content">${html}</div>
-                `;
-                console.log('   ✅ Content loaded successfully');
+                // Cache the content
+                tripContentCache[id] = tripContent.content;
+
+                // Render the content
+                renderTripContent(tripMetadata, tripContent.content);
+
             } catch (error) {
-                console.error('❌ Error loading content:', error);
+                console.error('❌ Error loading trip content:', error);
                 document.getElementById('content-area').innerHTML = `
-                    <h1>${dest.name}</h1>
+                    <h1>${tripMetadata.title}</h1>
                     <div class="markdown-content">
-                        <p>Welcome to ${dest.name}!</p>
-                        <p>Content file not found. Please create <code>${dest.contentFile}</code> with your travel stories and experiences.</p>
-                        <h2>Getting Started</h2>
-                        <p>Create a markdown file with information about this destination, including:</p>
-                        <ul>
-                            <li>Travel tips and recommendations</li>
-                            <li>Best places to visit</li>
-                            <li>Local cuisine highlights</li>
-                            <li>Cultural insights</li>
-                            <li>Photos and experiences</li>
-                        </ul>
+                        <p>Error loading trip content. Please try again.</p>
+                        <p class="error-detail">${error.message}</p>
                     </div>
                 `;
             }
+        }
+
+        function renderTripContent(tripMetadata, content) {
+            // Build HTML for all content items
+            let contentHtml = `<h1>${tripMetadata.title}</h1>`;
+            if (tripMetadata.duration) {
+                contentHtml += `<p class="trip-meta"><strong>Duration:</strong> ${tripMetadata.duration}</p>`;
+            }
+            if (tripMetadata.beginDate) {
+                contentHtml += `<p class="trip-meta"><strong>Dates:</strong> ${tripMetadata.beginDate}`;
+                if (tripMetadata.endDate) {
+                    contentHtml += ` to ${tripMetadata.endDate}`;
+                }
+                contentHtml += `</p>`;
+            }
+
+            // Render each content item in order
+            content.forEach((item, index) => {
+                if (item.type === 'location') {
+                    contentHtml += `
+                        <div class="content-item location-item">
+                            <h2>${item.title}</h2>
+                            ${item.place ? `<p class="location-meta"><strong>Location:</strong> ${item.place}</p>` : ''}
+                            ${item.duration ? `<p class="location-meta"><strong>Duration:</strong> ${item.duration}</p>` : ''}
+                            <div class="markdown-content">${item.contentHtml || '<p>Content not available</p>'}</div>
+                        </div>
+                    `;
+                } else if (item.type === 'article') {
+                    contentHtml += `
+                        <div class="content-item article-item">
+                            <h2>${item.title}</h2>
+                            <div class="markdown-content">${item.contentHtml || '<p>Content not available</p>'}</div>
+                        </div>
+                    `;
+                }
+            });
+
+            document.getElementById('content-area').innerHTML = contentHtml;
         }
 
         function showHome(pushState = true) {
@@ -740,7 +773,7 @@
             // Build the destination grid if not already built
             const grid = document.getElementById('destination-grid');
             if (!grid.hasChildNodes()) {
-                buildDestinationGrid();
+                buildTripGrid();
             }
 
             document.getElementById('home-view').style.display = 'block';
@@ -784,7 +817,7 @@
                 <h1>About This Blog</h1>
                 <div class="markdown-content">
                     <p>Welcome to my travel blog! This is a place where I share my adventures, experiences, and discoveries from around the world.</p>
-                    <p>Use the map to explore all the destinations I've visited, or browse by continent in the Destinations menu.</p>
+                    <p>Use the map to explore all the destinations I've visited, or browse by continent in the Trips menu.</p>
                 </div>
             `;
         }
@@ -806,8 +839,8 @@
                 case 'about':
                     showAbout(false);
                     break;
-                case 'destination':
-                    loadDestination(event.state.id, false);
+                case 'trip':
+                    loadTrip(event.state.id, false);
                     break;
             }
         });
@@ -819,8 +852,8 @@
             console.log('   Path:', path);
             console.log('   Config loaded?', config !== null);
             if (config) {
-                console.log('   Config has', config.destinations?.length, 'destinations');
-                console.log('   Destination IDs:', config.destinations?.map(d => d.id));
+                console.log('   Config has', config.trips?.length, 'destinations');
+                console.log('   Trip IDs:', config.trips?.map(d => d.id));
             }
 
             // Strip APP_BASE from path to get relative path
@@ -844,10 +877,10 @@
             } else if (relativePath.includes('about')) {
                 console.log('   → Showing ABOUT');
                 showAbout(false);
-            } else if (relativePath.startsWith('destination/')) {
-                const id = relativePath.replace('destination/', '');
+            } else if (relativePath.startsWith('trip/')) {
+                const id = relativePath.replace('trip/', '');
                 console.log('   → Loading DESTINATION:', id);
-                loadDestination(id, false);
+                loadTrip(id, false);
             } else {
                 console.log('   → Unknown path, showing HOME');
                 // Unknown path, redirect to home

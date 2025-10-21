@@ -1,5 +1,11 @@
-# Netlify redirect rules for SPA routing
-# This file tells Netlify to serve index.html for all routes
+# Netlify redirect rules for SSG + SPA hybrid routing
+# Static files are served first, SPA fallback for dynamic routes
 # See: https://docs.netlify.com/routing/redirects/
 
-/*    /index.html   200
+# Serve static HTML pages first (SSG)
+/trips/*      /trips/:splat/index.html    200
+/map          /map/index.html             200
+/about        /about/index.html           200
+
+# SPA fallback for any unmatched routes
+/*            /index.html                 200

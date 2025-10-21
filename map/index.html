@@ -4,35 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Primary Meta Tags -->
-    <title>Two Travel Nuts</title>
-    <meta name="title" content="Two Travel Nuts">
-    <meta name="description" content="Exploring the world, one destination at a time">
-    <link rel="canonical" href="https://twotravelnuts.com/">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://twotravelnuts.com/">
-    <meta property="og:title" content="Two Travel Nuts">
-    <meta property="og:description" content="Exploring the world, one destination at a time">
-    <meta property="og:site_name" content="Two Travel Nuts">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:url" content="https://twotravelnuts.com/">
-    <meta property="twitter:title" content="Two Travel Nuts">
-    <meta property="twitter:description" content="Exploring the world, one destination at a time">
-
-    <!-- Schema.org structured data -->
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Two Travel Nuts",
-  "description": "Exploring the world, one destination at a time",
-  "url": "https://twotravelnuts.com/"
-}
-    </script>
+    <title>Map | Two Travel Nuts</title>
+    <meta name="description" content="Explore all our travel destinations on an interactive world map.">
+    <link rel="canonical" href="https://twotravelnuts.com/map/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
@@ -366,7 +340,7 @@
         <nav>
             <div class="logo">🌍 Two Travel Nuts</div>
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
+                <li><a href="../">Home</a></li>
                 <li class="dropdown">
                     <a href="#">Trips ▾</a>
                     <div class="dropdown-content" id="destinations-menu">
@@ -374,143 +348,296 @@
                         <div class="continent-group">
                             <div class="continent-title">Africa</div>
                             <div class="continent-submenu">
-                                <a href="/trips/southernafrica/">Southern Africa</a>
+                                <a href="../trips/southernafrica/">Southern Africa</a>
                             </div>
                         </div>
                         <div class="continent-group">
                             <div class="continent-title">Europe</div>
                             <div class="continent-submenu">
-                                <a href="/trips/greece/">Athens and Greek Islands</a>
+                                <a href="../trips/greece/">Athens and Greek Islands</a>
                             </div>
                         </div>
                         <div class="continent-group">
                             <div class="continent-title">North America</div>
                             <div class="continent-submenu">
-                                <a href="/trips/utah/">Utah and the Grand Canyon</a>
+                                <a href="../trips/utah/">Utah and the Grand Canyon</a>
                             </div>
                         </div>
                         <div class="continent-group">
                             <div class="continent-title">Oceania</div>
                             <div class="continent-submenu">
-                                <a href="/trips/newzealand/">New Zealand</a>
+                                <a href="../trips/newzealand/">New Zealand</a>
                             </div>
                         </div>
                     </div>
                 </li>
-                <li><a href="/map/">Map</a></li>
-                <li><a href="/about/">About</a></li>
+                <li><a href="../map/">Map</a></li>
+                <li><a href="../about/">About</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <div id="home-view">
-    <div class="hero">
-        <h1>Two Travel Nuts</h1>
-        <p>Exploring the world, one destination at a time</p>
-    </div>
-
-    <h2 style="margin-bottom: 1rem;">Featured Trips</h2>
-    <div class="destination-grid" id="destination-grid">
         
-        <a href="/trips/southernafrica/" class="destination-card" data-trip-id="southernafrica">
-            <img src="/images/botswana.jpg" alt="Southern Africa" onerror="this.src='https://via.placeholder.com/280x200?text=Southern%20Africa'">
-            <div class="destination-card-content">
-                <h3>Southern Africa</h3>
-                <p>Africa</p>
-            </div>
-        </a>
-        <a href="/trips/greece/" class="destination-card" data-trip-id="greece">
-            <img src="/images/greece.jpg" alt="Athens and Greek Islands" onerror="this.src='https://via.placeholder.com/280x200?text=Athens%20and%20Greek%20Islands'">
-            <div class="destination-card-content">
-                <h3>Athens and Greek Islands</h3>
-                <p>Europe</p>
-            </div>
-        </a>
-        <a href="/trips/utah/" class="destination-card" data-trip-id="utah">
-            <img src="/images/utah.jpg" alt="Utah and the Grand Canyon" onerror="this.src='https://via.placeholder.com/280x200?text=Utah%20and%20the%20Grand%20Canyon'">
-            <div class="destination-card-content">
-                <h3>Utah and the Grand Canyon</h3>
-                <p>North America</p>
-            </div>
-        </a>
-        <a href="/trips/newzealand/" class="destination-card" data-trip-id="newzealand">
-            <img src="/images/newzealand.jpg" alt="New Zealand" onerror="this.src='https://via.placeholder.com/280x200?text=New%20Zealand'">
-            <div class="destination-card-content">
-                <h3>New Zealand</h3>
-                <p>Oceania</p>
-            </div>
-        </a>
+<div id="map-view">
+    <h2>World Map of Trips</h2>
+    <div id="map-container">
+        <div id="map"></div>
     </div>
 </div>
 
 <script>
-    // SPA enhancement for homepage
-    let config = null;
-    const tripContentCache = {};
     let map = null;
     let markers = [];
-
+    const config = {
+  "site": {
+    "title": "Two Travel Nuts",
+    "description": "Exploring the world, one destination at a time",
+    "domain": "https://twotravelnuts.com"
+  },
+  "trips": [
+    {
+      "id": "southernafrica",
+      "title": "Southern Africa",
+      "slug": "southernafrica",
+      "published": true,
+      "beginDate": "2024-01-01",
+      "endDate": "2024-01-14",
+      "duration": "13 days",
+      "metadata": {
+        "year": 2024,
+        "continent": "Africa",
+        "country": "South Africa",
+        "tripType": [
+          "adventure"
+        ],
+        "tags": [
+          "africa",
+          "south-africa"
+        ]
+      },
+      "coverImage": "images/botswana.jpg",
+      "thumbnail": "images/botswana.jpg",
+      "mapCenter": {
+        "name": "Okavango Delta",
+        "coordinates": {
+          "lat": -19.1540047,
+          "lng": 22.9800936
+        }
+      },
+      "locations": [
+        {
+          "name": "Southern Africa",
+          "coordinates": {
+            "lat": -19.1540047,
+            "lng": 22.9800936
+          }
+        }
+      ],
+      "relatedTrips": []
+    },
+    {
+      "id": "greece",
+      "title": "Athens and Greek Islands",
+      "slug": "greece",
+      "published": true,
+      "beginDate": "2024-04-01",
+      "endDate": "2024-04-14",
+      "duration": "13 days",
+      "metadata": {
+        "year": 2024,
+        "continent": "Europe",
+        "country": "Greece",
+        "tripType": [
+          "adventure"
+        ],
+        "tags": [
+          "europe",
+          "greece"
+        ]
+      },
+      "coverImage": "images/greece.jpg",
+      "thumbnail": "images/greece.jpg",
+      "mapCenter": {
+        "name": "Paros",
+        "coordinates": {
+          "lat": 37.1225059,
+          "lng": 25.2323586
+        }
+      },
+      "locations": [
+        {
+          "name": "Milos",
+          "coordinates": {
+            "lat": 36.709344,
+            "lng": 24.5068338
+          }
+        },
+        {
+          "name": "Santorini",
+          "coordinates": {
+            "lat": 0,
+            "lng": 0
+          }
+        },
+        {
+          "name": "Paros",
+          "coordinates": {
+            "lat": 37.1225059,
+            "lng": 25.2323586
+          }
+        },
+        {
+          "name": "Athens",
+          "coordinates": {
+            "lat": 37.9751863,
+            "lng": 23.7321504
+          }
+        }
+      ],
+      "relatedTrips": []
+    },
+    {
+      "id": "utah",
+      "title": "Utah and the Grand Canyon",
+      "slug": "utah",
+      "published": true,
+      "beginDate": "2024-07-01",
+      "endDate": "2024-07-14",
+      "duration": "13 days",
+      "metadata": {
+        "year": 2024,
+        "continent": "North America",
+        "country": "USA",
+        "tripType": [
+          "adventure"
+        ],
+        "tags": [
+          "north america",
+          "usa"
+        ]
+      },
+      "coverImage": "images/utah.jpg",
+      "thumbnail": "images/utah.jpg",
+      "mapCenter": {
+        "name": "Moab, Utah",
+        "coordinates": {
+          "lat": 38.5738096,
+          "lng": -109.546214
+        }
+      },
+      "locations": [
+        {
+          "name": "Utah and the Grand Canyon",
+          "coordinates": {
+            "lat": 38.5738096,
+            "lng": -109.546214
+          }
+        }
+      ],
+      "relatedTrips": []
+    },
+    {
+      "id": "newzealand",
+      "title": "New Zealand",
+      "slug": "newzealand",
+      "published": true,
+      "beginDate": "2024-10-01",
+      "endDate": "2024-10-14",
+      "duration": "13 days",
+      "metadata": {
+        "year": 2024,
+        "continent": "Oceania",
+        "country": "New Zealand",
+        "tripType": [
+          "adventure"
+        ],
+        "tags": [
+          "oceania",
+          "new-zealand"
+        ]
+      },
+      "coverImage": "images/newzealand.jpg",
+      "thumbnail": "images/newzealand.jpg",
+      "mapCenter": {
+        "name": "Wellington, New Zealand",
+        "coordinates": {
+          "lat": -41.2887953,
+          "lng": 174.7772114
+        }
+      },
+      "locations": [
+        {
+          "name": "New Zealand",
+          "coordinates": {
+            "lat": -41.2887953,
+            "lng": 174.7772114
+          }
+        }
+      ],
+      "relatedTrips": []
+    }
+  ]
+};
     const APP_BASE = '/';
-    const BASE_PATH = './';
 
-    async function loadConfig() {
-        try {
-            const response = await fetch(APP_BASE + 'config.built.json');
-            config = await response.json();
-        } catch (error) {
-            console.log('Config not loaded, static mode only');
-        }
-    }
+    function initMap() {
+        if (!map) {
+            map = L.map('map').setView([20, 0], 2);
 
-    // Load trip with SPA navigation
-    async function loadTrip(id, pushState = true) {
-        if (!config) {
-            // Fallback to static navigation
-            window.location.href = `${APP_BASE}trips/${id}/`;
-            return;
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
         }
 
-        const tripMetadata = config.trips.find(d => d.id === id);
-        if (!tripMetadata) {
-            window.location.href = `${APP_BASE}trips/${id}/`;
-            return;
-        }
+        markers.forEach(marker => map.removeLayer(marker));
+        markers = [];
 
-        if (pushState) {
-            history.pushState({ view: 'trip', id: id }, tripMetadata.title, `${APP_BASE}trips/${id}/`);
-        }
+        config.trips.forEach(dest => {
+            if (!dest.mapCenter || !dest.mapCenter.coordinates) return;
 
-        // Check cache first
-        if (tripContentCache[id]) {
-            navigateToTrip(id);
-            return;
-        }
+            const marker = L.marker([dest.mapCenter.coordinates.lat, dest.mapCenter.coordinates.lng])
+                .addTo(map);
 
-        // For now, do full page navigation to static page
-        // Full SPA implementation can be added later
-        window.location.href = `${APP_BASE}trips/${id}/`;
-    }
+            const thumbnailUrl = dest.thumbnail || `https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.title)}`;
 
-    function navigateToTrip(id) {
-        window.location.href = `${APP_BASE}trips/${id}/`;
-    }
+            const popupContent = `
+                <div class="marker-popup">
+                    <img src="/${thumbnailUrl}" alt="${dest.title}" class="marker-popup-image" onerror="this.src='https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.title)}'">
+                    <div class="marker-popup-content">
+                        <div class="marker-popup-title">${dest.title}</div>
+                        <a href="/trips/${dest.slug}/" class="marker-popup-link">Read More →</a>
+                    </div>
+                </div>
+            `;
 
-    // Intercept clicks on trip cards
-    document.addEventListener('DOMContentLoaded', () => {
-        loadConfig();
-
-        // Add click handlers to trip cards if they don't have href
-        document.querySelectorAll('[data-trip-id]').forEach(card => {
-            card.addEventListener('click', (e) => {
-                e.preventDefault();
-                const tripId = card.getAttribute('data-trip-id');
-                loadTrip(tripId);
+            marker.bindPopup(popupContent, {
+                maxWidth: 250,
+                className: 'custom-popup'
             });
+
+            marker.on('mouseover', function(e) {
+                this.openPopup();
+            });
+
+            marker.on('click', () => {
+                window.location.href = `/trips/${dest.slug}/`;
+            });
+
+            markers.push(marker);
         });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initMap();
+        setTimeout(() => {
+            if (map) {
+                map.invalidateSize();
+            }
+        }, 100);
     });
 </script>
-
     </main>
 
     <footer>

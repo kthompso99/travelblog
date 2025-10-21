@@ -3,36 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary Meta Tags -->
-    <title>Two Travel Nuts</title>
-    <meta name="title" content="Two Travel Nuts">
-    <meta name="description" content="Exploring the world, one destination at a time">
-    <link rel="canonical" href="https://twotravelnuts.com/">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://twotravelnuts.com/">
-    <meta property="og:title" content="Two Travel Nuts">
-    <meta property="og:description" content="Exploring the world, one destination at a time">
-    <meta property="og:site_name" content="Two Travel Nuts">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:url" content="https://twotravelnuts.com/">
-    <meta property="twitter:title" content="Two Travel Nuts">
-    <meta property="twitter:description" content="Exploring the world, one destination at a time">
-
-    <!-- Schema.org structured data -->
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Two Travel Nuts",
-  "description": "Exploring the world, one destination at a time",
-  "url": "https://twotravelnuts.com/"
-}
-    </script>
+    {{SEO_METADATA}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
@@ -364,159 +335,29 @@
 <body>
     <header>
         <nav>
-            <div class="logo">🌍 Two Travel Nuts</div>
+            <div class="logo">🌍 {{SITE_TITLE}}</div>
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
+                <li><a href="{{BASE_PATH}}">Home</a></li>
                 <li class="dropdown">
                     <a href="#">Trips ▾</a>
                     <div class="dropdown-content" id="destinations-menu">
-                        
-                        <div class="continent-group">
-                            <div class="continent-title">Africa</div>
-                            <div class="continent-submenu">
-                                <a href="/trips/southernafrica/">Southern Africa</a>
-                            </div>
-                        </div>
-                        <div class="continent-group">
-                            <div class="continent-title">Europe</div>
-                            <div class="continent-submenu">
-                                <a href="/trips/greece/">Athens and Greek Islands</a>
-                            </div>
-                        </div>
-                        <div class="continent-group">
-                            <div class="continent-title">North America</div>
-                            <div class="continent-submenu">
-                                <a href="/trips/utah/">Utah and the Grand Canyon</a>
-                            </div>
-                        </div>
-                        <div class="continent-group">
-                            <div class="continent-title">Oceania</div>
-                            <div class="continent-submenu">
-                                <a href="/trips/newzealand/">New Zealand</a>
-                            </div>
-                        </div>
+                        {{TRIPS_MENU}}
                     </div>
                 </li>
-                <li><a href="/map/">Map</a></li>
-                <li><a href="/about/">About</a></li>
+                <li><a href="{{BASE_PATH}}map/">Map</a></li>
+                <li><a href="{{BASE_PATH}}about/">About</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <div id="home-view">
-    <div class="hero">
-        <h1>Two Travel Nuts</h1>
-        <p>Exploring the world, one destination at a time</p>
-    </div>
-
-    <h2 style="margin-bottom: 1rem;">Featured Trips</h2>
-    <div class="destination-grid" id="destination-grid">
-        
-        <a href="/trips/southernafrica/" class="destination-card" data-trip-id="southernafrica">
-            <img src="/images/botswana.jpg" alt="Southern Africa" onerror="this.src='https://via.placeholder.com/280x200?text=Southern%20Africa'">
-            <div class="destination-card-content">
-                <h3>Southern Africa</h3>
-                <p>Africa</p>
-            </div>
-        </a>
-        <a href="/trips/greece/" class="destination-card" data-trip-id="greece">
-            <img src="/images/greece.jpg" alt="Athens and Greek Islands" onerror="this.src='https://via.placeholder.com/280x200?text=Athens%20and%20Greek%20Islands'">
-            <div class="destination-card-content">
-                <h3>Athens and Greek Islands</h3>
-                <p>Europe</p>
-            </div>
-        </a>
-        <a href="/trips/utah/" class="destination-card" data-trip-id="utah">
-            <img src="/images/utah.jpg" alt="Utah and the Grand Canyon" onerror="this.src='https://via.placeholder.com/280x200?text=Utah%20and%20the%20Grand%20Canyon'">
-            <div class="destination-card-content">
-                <h3>Utah and the Grand Canyon</h3>
-                <p>North America</p>
-            </div>
-        </a>
-        <a href="/trips/newzealand/" class="destination-card" data-trip-id="newzealand">
-            <img src="/images/newzealand.jpg" alt="New Zealand" onerror="this.src='https://via.placeholder.com/280x200?text=New%20Zealand'">
-            <div class="destination-card-content">
-                <h3>New Zealand</h3>
-                <p>Oceania</p>
-            </div>
-        </a>
-    </div>
-</div>
-
-<script>
-    // SPA enhancement for homepage
-    let config = null;
-    const tripContentCache = {};
-    let map = null;
-    let markers = [];
-
-    const APP_BASE = '/';
-    const BASE_PATH = './';
-
-    async function loadConfig() {
-        try {
-            const response = await fetch(APP_BASE + 'config.built.json');
-            config = await response.json();
-        } catch (error) {
-            console.log('Config not loaded, static mode only');
-        }
-    }
-
-    // Load trip with SPA navigation
-    async function loadTrip(id, pushState = true) {
-        if (!config) {
-            // Fallback to static navigation
-            window.location.href = `${APP_BASE}trips/${id}/`;
-            return;
-        }
-
-        const tripMetadata = config.trips.find(d => d.id === id);
-        if (!tripMetadata) {
-            window.location.href = `${APP_BASE}trips/${id}/`;
-            return;
-        }
-
-        if (pushState) {
-            history.pushState({ view: 'trip', id: id }, tripMetadata.title, `${APP_BASE}trips/${id}/`);
-        }
-
-        // Check cache first
-        if (tripContentCache[id]) {
-            navigateToTrip(id);
-            return;
-        }
-
-        // For now, do full page navigation to static page
-        // Full SPA implementation can be added later
-        window.location.href = `${APP_BASE}trips/${id}/`;
-    }
-
-    function navigateToTrip(id) {
-        window.location.href = `${APP_BASE}trips/${id}/`;
-    }
-
-    // Intercept clicks on trip cards
-    document.addEventListener('DOMContentLoaded', () => {
-        loadConfig();
-
-        // Add click handlers to trip cards if they don't have href
-        document.querySelectorAll('[data-trip-id]').forEach(card => {
-            card.addEventListener('click', (e) => {
-                e.preventDefault();
-                const tripId = card.getAttribute('data-trip-id');
-                loadTrip(tripId);
-            });
-        });
-    });
-</script>
-
+        {{CONTENT}}
     </main>
 
     <footer>
-        <p>&copy; 2025 Two Travel Nuts. All rights reserved.</p>
+        <p>&copy; 2025 {{SITE_TITLE}}. All rights reserved.</p>
     </footer>
 
-    
+    {{SCRIPTS}}
 </body>
 </html>

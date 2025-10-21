@@ -19,6 +19,10 @@ try {
     process.exit(1);
 }
 
+// Load HTML generators
+const { generateHomepage, generateTripPage, generateMapPage, generateAboutPage } = require('./lib/generate-html');
+const { generateSitemap, generateRobotsTxt } = require('./lib/generate-sitemap');
+
 const SITE_CONFIG = 'config/site.json';
 const INDEX_CONFIG = 'config/index.json';
 const TRIPS_DIR = 'config/trips';
@@ -309,7 +313,7 @@ async function build() {
 
         const indexSize = fs.statSync(OUTPUT_FILE).size;
 
-        console.log(`\n✅ Build complete!`);
+        console.log(`\n✅ JSON build complete!`);
         console.log(`\n📊 Summary:`);
         console.log(`   - Trips processed: ${processedTrips.length}`);
         console.log(`   - Total locations: ${processedTrips.reduce((sum, t) => sum + t.locations.length, 0)}`);
@@ -320,12 +324,107 @@ async function build() {
         console.log(`\n⚡ Performance:`);
         console.log(`   - Initial load: ${(indexSize / 1024).toFixed(1)}KB (index only)`);
         console.log(`   - Per trip load: ~${(totalContentSize / processedTrips.length / 1024).toFixed(1)}KB average`);
-        console.log(`\n🎯 Next steps:`);
-        console.log(`   1. Update index.html to lazy-load from trips/ directory`);
-        console.log(`   2. Test locally with: npm run serve`);
-        console.log(`   3. Deploy your site!`);
     } catch (e) {
         console.error('❌ Error writing output file:', e.message);
+        process.exit(1);
+    }
+
+    // Generate static HTML pages (SSG)
+    console.log(`\n🏗️  Generating static HTML pages...\n`);
+
+    const domain = siteConfig.domain || 'https://example.com';
+    let htmlSizeTotal = 0;
+
+    try {
+        // Generate homepage
+        console.log(`   📄 Generating homepage...`);
+        const homepageHtml = generateHomepage(output, domain);
+        fs.writeFileSync('index.html.new', homepageHtml, 'utf8');
+        const homepageSize = fs.statSync('index.html.new').size;
+        htmlSizeTotal += homepageSize;
+        console.log(`   ✅ Homepage generated (${(homepageSize / 1024).toFixed(1)}KB)`);
+
+        // Generate map page
+        console.log(`   📄 Generating map page...`);
+        if (!fs.existsSync('map')) {
+            fs.mkdirSync('map', { recursive: true });
+        }
+        const mapHtml = generateMapPage(output, domain);
+        fs.writeFileSync('map/index.html', mapHtml, 'utf8');
+        const mapSize = fs.statSync('map/index.html').size;
+        htmlSizeTotal += mapSize;
+        console.log(`   ✅ Map page generated (${(mapSize / 1024).toFixed(1)}KB)`);
+
+        // Generate about page
+        console.log(`   📄 Generating about page...`);
+        if (!fs.existsSync('about')) {
+            fs.mkdirSync('about', { recursive: true });
+        }
+        const aboutHtml = generateAboutPage(output, domain);
+        fs.writeFileSync('about/index.html', aboutHtml, 'utf8');
+        const aboutSize = fs.statSync('about/index.html').size;
+        htmlSizeTotal += aboutSize;
+        console.log(`   ✅ About page generated (${(aboutSize / 1024).toFixed(1)}KB)`);
+
+        // Generate trip pages
+        console.log(`   📄 Generating ${processedTrips.length} trip pages...\n`);
+        for (let i = 0; i < processedTrips.length; i++) {
+            const tripMetadata = processedTrips[i];
+            const tripId = tripMetadata.id;
+
+            // Load full trip content
+            const tripContentPath = path.join(TRIPS_OUTPUT_DIR, `${tripId}.json`);
+            const tripContentData = JSON.parse(fs.readFileSync(tripContentPath, 'utf8'));
+
+            // Create trip directory
+            const tripDir = path.join('trips', tripMetadata.slug);
+            if (!fs.existsSync(tripDir)) {
+                fs.mkdirSync(tripDir, { recursive: true });
+            }
+
+            // Generate trip page
+            const tripHtml = generateTripPage(tripMetadata, tripContentData.content, output, domain);
+            const tripHtmlPath = path.join(tripDir, 'index.html');
+            fs.writeFileSync(tripHtmlPath, tripHtml, 'utf8');
+            const tripSize = fs.statSync(tripHtmlPath).size;
+            htmlSizeTotal += tripSize;
+
+            console.log(`   [${i + 1}/${processedTrips.length}] ${tripMetadata.title} → ${tripHtmlPath} (${(tripSize / 1024).toFixed(1)}KB)`);
+        }
+
+        // Generate sitemap.xml
+        console.log(`\n   📄 Generating sitemap.xml...`);
+        const sitemapXml = generateSitemap(processedTrips, domain);
+        fs.writeFileSync('sitemap.xml', sitemapXml, 'utf8');
+        const sitemapSize = fs.statSync('sitemap.xml').size;
+        console.log(`   ✅ Sitemap generated (${(sitemapSize / 1024).toFixed(1)}KB)`);
+
+        // Generate robots.txt
+        console.log(`   📄 Generating robots.txt...`);
+        const robotsTxt = generateRobotsTxt(domain);
+        fs.writeFileSync('robots.txt', robotsTxt, 'utf8');
+        const robotsSize = fs.statSync('robots.txt').size;
+        console.log(`   ✅ Robots.txt generated (${(robotsSize / 1024).toFixed(0)} bytes)`);
+
+        console.log(`\n✅ SSG complete!`);
+        console.log(`\n💾 Static HTML sizes:`);
+        console.log(`   - Total HTML files: ${(htmlSizeTotal / 1024).toFixed(1)}KB`);
+        console.log(`   - Average trip page: ${(htmlSizeTotal / (processedTrips.length + 3) / 1024).toFixed(1)}KB`);
+
+        console.log(`\n⚠️  IMPORTANT: New homepage saved as index.html.new`);
+        console.log(`   Review it, then rename to index.html when ready:`);
+        console.log(`   $ mv index.html index.html.backup`);
+        console.log(`   $ mv index.html.new index.html`);
+
+        console.log(`\n🎯 Next steps:`);
+        console.log(`   1. Review generated HTML files`);
+        console.log(`   2. Update domain in config/site.json`);
+        console.log(`   3. Test locally with: npm run serve`);
+        console.log(`   4. Validate SEO with online tools`);
+        console.log(`   5. Deploy your site!`);
+    } catch (e) {
+        console.error('❌ Error generating HTML:', e.message);
+        console.error(e.stack);
         process.exit(1);
     }
 }
