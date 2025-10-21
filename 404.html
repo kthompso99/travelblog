@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=/index.html">
+    <meta http-equiv="refresh" content="0; url=./">
     <script>
-        // Preserve the path for client-side routing
-        window.location.href = '/index.html';
+        // Preserve the path for client-side routing by redirecting to the base of the current site
+        // This works both at root and in subdirectories
+        const pathParts = window.location.pathname.split('/').filter(p => p);
+        // Remove the last part (the 404 path) and go to the base
+        window.location.href = '/' + (pathParts[0] || '');
     </script>
     <title>Redirecting...</title>
 </head>
