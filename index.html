@@ -366,7 +366,7 @@
         <nav>
             <div class="logo">🌍 Two Travel Nuts</div>
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
+                <li><a href="./">Home</a></li>
                 <li class="dropdown">
                     <a href="#">Trips ▾</a>
                     <div class="dropdown-content" id="destinations-menu">
@@ -374,31 +374,31 @@
                         <div class="continent-group">
                             <div class="continent-title">Africa</div>
                             <div class="continent-submenu">
-                                <a href="/trips/southernafrica/">Southern Africa</a>
+                                <a href="./trips/southernafrica/">Southern Africa</a>
                             </div>
                         </div>
                         <div class="continent-group">
                             <div class="continent-title">Europe</div>
                             <div class="continent-submenu">
-                                <a href="/trips/greece/">Athens and Greek Islands</a>
+                                <a href="./trips/greece/">Athens and Greek Islands</a>
                             </div>
                         </div>
                         <div class="continent-group">
                             <div class="continent-title">North America</div>
                             <div class="continent-submenu">
-                                <a href="/trips/utah/">Utah and the Grand Canyon</a>
+                                <a href="./trips/utah/">Utah and the Grand Canyon</a>
                             </div>
                         </div>
                         <div class="continent-group">
                             <div class="continent-title">Oceania</div>
                             <div class="continent-submenu">
-                                <a href="/trips/newzealand/">New Zealand</a>
+                                <a href="./trips/newzealand/">New Zealand</a>
                             </div>
                         </div>
                     </div>
                 </li>
-                <li><a href="/map/">Map</a></li>
-                <li><a href="/about/">About</a></li>
+                <li><a href="./map/">Map</a></li>
+                <li><a href="./about/">About</a></li>
             </ul>
         </nav>
     </header>
@@ -413,29 +413,29 @@
     <h2 style="margin-bottom: 1rem;">Featured Trips</h2>
     <div class="destination-grid" id="destination-grid">
         
-        <a href="/trips/southernafrica/" class="destination-card" data-trip-id="southernafrica">
-            <img src="/images/botswana.jpg" alt="Southern Africa" onerror="this.src='https://via.placeholder.com/280x200?text=Southern%20Africa'">
+        <a href="./trips/southernafrica/" class="destination-card" data-trip-id="southernafrica">
+            <img src="./images/botswana.jpg" alt="Southern Africa" onerror="this.src='https://via.placeholder.com/280x200?text=Southern%20Africa'">
             <div class="destination-card-content">
                 <h3>Southern Africa</h3>
                 <p>Africa</p>
             </div>
         </a>
-        <a href="/trips/greece/" class="destination-card" data-trip-id="greece">
-            <img src="/images/greece.jpg" alt="Athens and Greek Islands" onerror="this.src='https://via.placeholder.com/280x200?text=Athens%20and%20Greek%20Islands'">
+        <a href="./trips/greece/" class="destination-card" data-trip-id="greece">
+            <img src="./images/greece.jpg" alt="Athens and Greek Islands" onerror="this.src='https://via.placeholder.com/280x200?text=Athens%20and%20Greek%20Islands'">
             <div class="destination-card-content">
                 <h3>Athens and Greek Islands</h3>
                 <p>Europe</p>
             </div>
         </a>
-        <a href="/trips/utah/" class="destination-card" data-trip-id="utah">
-            <img src="/images/utah.jpg" alt="Utah and the Grand Canyon" onerror="this.src='https://via.placeholder.com/280x200?text=Utah%20and%20the%20Grand%20Canyon'">
+        <a href="./trips/utah/" class="destination-card" data-trip-id="utah">
+            <img src="./images/utah.jpg" alt="Utah and the Grand Canyon" onerror="this.src='https://via.placeholder.com/280x200?text=Utah%20and%20the%20Grand%20Canyon'">
             <div class="destination-card-content">
                 <h3>Utah and the Grand Canyon</h3>
                 <p>North America</p>
             </div>
         </a>
-        <a href="/trips/newzealand/" class="destination-card" data-trip-id="newzealand">
-            <img src="/images/newzealand.jpg" alt="New Zealand" onerror="this.src='https://via.placeholder.com/280x200?text=New%20Zealand'">
+        <a href="./trips/newzealand/" class="destination-card" data-trip-id="newzealand">
+            <img src="./images/newzealand.jpg" alt="New Zealand" onerror="this.src='https://via.placeholder.com/280x200?text=New%20Zealand'">
             <div class="destination-card-content">
                 <h3>New Zealand</h3>
                 <p>Oceania</p>
@@ -451,12 +451,12 @@
     let map = null;
     let markers = [];
 
-    const APP_BASE = '/';
+    const APP_BASE = './';
     const BASE_PATH = './';
 
     async function loadConfig() {
         try {
-            const response = await fetch(APP_BASE + 'config.built.json');
+            const response = await fetch('./config.built.json');
             config = await response.json();
         } catch (error) {
             console.log('Config not loaded, static mode only');
@@ -467,18 +467,19 @@
     async function loadTrip(id, pushState = true) {
         if (!config) {
             // Fallback to static navigation
-            window.location.href = `${APP_BASE}trips/${id}/`;
+            window.location.href = `./trips/${id}/`;
             return;
         }
 
         const tripMetadata = config.trips.find(d => d.id === id);
         if (!tripMetadata) {
-            window.location.href = `${APP_BASE}trips/${id}/`;
+            window.location.href = `./trips/${id}/`;
             return;
         }
 
         if (pushState) {
-            history.pushState({ view: 'trip', id: id }, tripMetadata.title, `${APP_BASE}trips/${id}/`);
+            const tripUrl = `./trips/${id}/`;
+            history.pushState({ view: 'trip', id: id }, tripMetadata.title, tripUrl);
         }
 
         // Check cache first
@@ -489,11 +490,11 @@
 
         // For now, do full page navigation to static page
         // Full SPA implementation can be added later
-        window.location.href = `${APP_BASE}trips/${id}/`;
+        window.location.href = `./trips/${id}/`;
     }
 
     function navigateToTrip(id) {
-        window.location.href = `${APP_BASE}trips/${id}/`;
+        window.location.href = `./trips/${id}/`;
     }
 
     // Intercept clicks on trip cards

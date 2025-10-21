@@ -22,7 +22,7 @@
 
     async function loadConfig() {
         try {
-            const response = await fetch(APP_BASE + 'config.built.json');
+            const response = await fetch('./config.built.json');
             config = await response.json();
         } catch (error) {
             console.log('Config not loaded, static mode only');
@@ -33,18 +33,19 @@
     async function loadTrip(id, pushState = true) {
         if (!config) {
             // Fallback to static navigation
-            window.location.href = `${APP_BASE}trips/${id}/`;
+            window.location.href = `./trips/${id}/`;
             return;
         }
 
         const tripMetadata = config.trips.find(d => d.id === id);
         if (!tripMetadata) {
-            window.location.href = `${APP_BASE}trips/${id}/`;
+            window.location.href = `./trips/${id}/`;
             return;
         }
 
         if (pushState) {
-            history.pushState({ view: 'trip', id: id }, tripMetadata.title, `${APP_BASE}trips/${id}/`);
+            const tripUrl = `./trips/${id}/`;
+            history.pushState({ view: 'trip', id: id }, tripMetadata.title, tripUrl);
         }
 
         // Check cache first
@@ -55,11 +56,11 @@
 
         // For now, do full page navigation to static page
         // Full SPA implementation can be added later
-        window.location.href = `${APP_BASE}trips/${id}/`;
+        window.location.href = `./trips/${id}/`;
     }
 
     function navigateToTrip(id) {
-        window.location.href = `${APP_BASE}trips/${id}/`;
+        window.location.href = `./trips/${id}/`;
     }
 
     // Intercept clicks on trip cards

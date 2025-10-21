@@ -19,7 +19,7 @@
 
     async function loadConfig() {
         try {
-            const response = await fetch(APP_BASE + 'config.built.json');
+            const response = await fetch('../../config.built.json');
             config = await response.json();
 
             // Cache this trip's content since we already have it

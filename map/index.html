@@ -604,10 +604,10 @@
 
             const popupContent = `
                 <div class="marker-popup">
-                    <img src="/${thumbnailUrl}" alt="${dest.title}" class="marker-popup-image" onerror="this.src='https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.title)}'">
+                    <img src="../${thumbnailUrl}" alt="${dest.title}" class="marker-popup-image" onerror="this.src='https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.title)}'">
                     <div class="marker-popup-content">
                         <div class="marker-popup-title">${dest.title}</div>
-                        <a href="/trips/${dest.slug}/" class="marker-popup-link">Read More →</a>
+                        <a href="../trips/${dest.slug}/" class="marker-popup-link">Read More →</a>
                     </div>
                 </div>
             `;
@@ -622,7 +622,7 @@
             });
 
             marker.on('click', () => {
-                window.location.href = `/trips/${dest.slug}/`;
+                window.location.href = `../trips/${dest.slug}/`;
             });
 
             markers.push(marker);
