@@ -6,6 +6,7 @@
   "scripts": {
     "validate": "node validate.js",
     "build": "node validate.js && node build.js",
+    "build:smart": "node build-smart.js",
     "watch": "nodemon --watch config.json --watch content/ --exec 'node validate.js && node build.js'",
     "serve": "node server.js 8000",
     "add": "node add-destination.js",

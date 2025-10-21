@@ -190,8 +190,11 @@ Done! Your new trip is live.
 # Validate configuration
 npm run validate
 
-# Build static site
+# Build static site (full build)
 npm run build
+
+# Smart build (only rebuilds changed files) ⚡
+npm run build:smart
 
 # Watch for changes (auto-rebuild)
 npm run watch
@@ -202,6 +205,26 @@ npm run serve
 # Pre-deployment checks
 npm run deploy-check
 ```
+
+### Smart Build System ⚡
+
+The smart build system detects file changes and skips unnecessary work:
+
+```bash
+# Normal use - only rebuilds what changed
+npm run build:smart
+
+# Force full rebuild
+npm run build:smart -- --force
+```
+
+**Benefits:**
+- ✅ Skips builds when nothing changed
+- ✅ Detects which trips need rebuilding
+- ✅ Saves time as your site grows
+- ✅ Safe fallback to full build when needed
+
+See [Smart Build Documentation](docs/implementation/SMART_BUILD.md) for details.
 
 ## 🛠️ Technologies
 
