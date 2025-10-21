@@ -397,6 +397,19 @@
         const BASE_PATH = getBasePath();
         console.log('📂 Base path detected:', BASE_PATH, 'for path:', window.location.pathname);
 
+        // Get the app base URL (e.g., '/travelblog/' or '/')
+        const getAppBase = () => {
+            const path = window.location.pathname;
+            const segments = path.split('/').filter(p => p);
+            // If first segment is not a file, it's likely the app base
+            if (segments.length > 0 && !segments[0].includes('.')) {
+                return '/' + segments[0] + '/';
+            }
+            return '/';
+        };
+        const APP_BASE = getAppBase();
+        console.log('🏠 App base:', APP_BASE);
+
         // Load pre-built configuration (coordinates and HTML already processed)
         async function loadConfig() {
             console.log('🟡 loadConfig() called');
@@ -657,7 +670,7 @@
 
             // Update URL for analytics tracking
             if (pushState) {
-                const newUrl = `/destination/${id}`;
+                const newUrl = `${APP_BASE}destination/${id}`;
                 history.pushState({ view: 'destination', id: id }, dest.name, newUrl);
                 console.log('   URL updated to:', newUrl);
             }
@@ -715,7 +728,7 @@
 
         function showHome(pushState = true) {
             if (pushState) {
-                history.pushState({ view: 'home' }, 'Home', '/');
+                history.pushState({ view: 'home' }, 'Home', APP_BASE);
             }
 
             // Build the destination grid if not already built
@@ -731,7 +744,7 @@
 
         function showMap(pushState = true) {
             if (pushState) {
-                history.pushState({ view: 'map' }, 'Map', '/map');
+                history.pushState({ view: 'map' }, 'Map', `${APP_BASE}map`);
             }
 
             // Initialize map if not already initialized
@@ -758,7 +771,7 @@
 
         function showAbout(pushState = true) {
             if (pushState) {
-                history.pushState({ view: 'about' }, 'About', '/about');
+                history.pushState({ view: 'about' }, 'About', `${APP_BASE}about`);
             }
             showContent();
             document.getElementById('content-area').innerHTML = `
