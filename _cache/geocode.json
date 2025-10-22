@@ -1,0 +1,30 @@
+{
+  "Okavango Delta": {
+    "lat": -19.1540047,
+    "lng": 22.9800936
+  },
+  "Milos Greece": {
+    "lat": 36.709344,
+    "lng": 24.5068338
+  },
+  "Avant Mar Paros": {
+    "lat": 37.1225059,
+    "lng": 25.2323586
+  },
+  "Electra Metropolis Athens": {
+    "lat": 37.9751863,
+    "lng": 23.7321504
+  },
+  "Moab, Utah": {
+    "lat": 38.5738096,
+    "lng": -109.546214
+  },
+  "Wellington, New Zealand": {
+    "lat": -41.2887953,
+    "lng": 174.7772114
+  },
+  "Santorini Greece": {
+    "lat": 36.4071112,
+    "lng": 25.4566637
+  }
+}

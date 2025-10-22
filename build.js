@@ -20,7 +20,7 @@ try {
 }
 
 // Load HTML generators
-const { generateHomepage, generateTripPage, generateMapPage, generateAboutPage } = require('./lib/generate-html');
+const { generateHomepage, generateTripPage, generateTripIntroPage, generateTripLocationPage, generateMapPage, generateAboutPage } = require('./lib/generate-html');
 const { generateSitemap, generateRobotsTxt } = require('./lib/generate-sitemap');
 
 const SITE_CONFIG = 'config/site.json';
@@ -28,9 +28,35 @@ const INDEX_CONFIG = 'config/index.json';
 const TRIPS_DIR = 'config/trips';
 const OUTPUT_FILE = 'config.built.json';
 const TRIPS_OUTPUT_DIR = 'trips';
+const CACHE_DIR = '_cache';
+const GEOCODE_CACHE_FILE = '_cache/geocode.json';
 
-// Geocode a location using Nominatim
+// Load geocode cache
+let geocodeCache = {};
+if (fs.existsSync(GEOCODE_CACHE_FILE)) {
+    try {
+        geocodeCache = JSON.parse(fs.readFileSync(GEOCODE_CACHE_FILE, 'utf8'));
+        console.log(`✅ Loaded geocode cache with ${Object.keys(geocodeCache).length} entries\n`);
+    } catch (e) {
+        console.log('⚠️  Could not load geocode cache, starting fresh\n');
+    }
+}
+
+// Save geocode cache
+function saveGeocodeCache() {
+    if (!fs.existsSync(CACHE_DIR)) {
+        fs.mkdirSync(CACHE_DIR, { recursive: true });
+    }
+    fs.writeFileSync(GEOCODE_CACHE_FILE, JSON.stringify(geocodeCache, null, 2), 'utf8');
+}
+
+// Geocode a location using Nominatim (with caching)
 function geocodeLocation(locationName) {
+    // Check cache first
+    if (geocodeCache[locationName]) {
+        console.log(`    💾 Using cached coordinates for: ${locationName}`);
+        return Promise.resolve(geocodeCache[locationName]);
+    }
     return new Promise((resolve, reject) => {
         const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationName)}&limit=1`;
 
@@ -45,10 +71,14 @@ function geocodeLocation(locationName) {
                 try {
                     const json = JSON.parse(data);
                     if (json && json.length > 0) {
-                        resolve({
+                        const coords = {
                             lat: parseFloat(json[0].lat),
                             lng: parseFloat(json[0].lon)
-                        });
+                        };
+                        // Cache the result
+                        geocodeCache[locationName] = coords;
+                        saveGeocodeCache();
+                        resolve(coords);
                     } else {
                         reject(new Error('No results found'));
                     }
@@ -144,9 +174,29 @@ async function processTrip(tripId) {
 
     const tripConfig = JSON.parse(fs.readFileSync(tripConfigPath, 'utf8'));
 
+    // Validate main.md exists
+    const mainMdPath = path.join('content/trips', tripId, 'main.md');
+    if (!fs.existsSync(mainMdPath)) {
+        console.log(`  ⚠️  WARNING: main.md not found at ${mainMdPath}`);
+        console.log(`     Every trip should have a main.md file for the intro page.\n`);
+    }
+
     // Calculate duration
     const duration = calculateDuration(tripConfig.beginDate, tripConfig.endDate);
     console.log(`  ⏱️  Duration: ${duration}`);
+
+    // Process main.md (intro content)
+    let introHtml = null;
+    if (fs.existsSync(mainMdPath)) {
+        try {
+            console.log(`  📝 Converting intro markdown: ${mainMdPath}`);
+            introHtml = await convertMarkdown(mainMdPath);
+            console.log(`  ✅ Intro HTML generated (${introHtml.length} chars)\n`);
+        } catch (e) {
+            console.log(`  ⚠️  Intro markdown conversion failed: ${e.message}\n`);
+            introHtml = `<p>Trip introduction not available</p>`;
+        }
+    }
 
     // Process content items in order
     const processedContent = [];
@@ -215,6 +265,7 @@ async function processTrip(tripId) {
 
         mapCenter: mapCenter,
 
+        introHtml: introHtml,
         content: processedContent,
         locations: locations,
 
@@ -262,6 +313,7 @@ async function build() {
             const tripContentFile = path.join(TRIPS_OUTPUT_DIR, `${tripId}.json`);
             const tripContent = {
                 id: trip.id,
+                introHtml: trip.introHtml,
                 content: trip.content
             };
 
@@ -367,7 +419,7 @@ async function build() {
         console.log(`   ✅ About page generated (${(aboutSize / 1024).toFixed(1)}KB)`);
 
         // Generate trip pages
-        console.log(`   📄 Generating ${processedTrips.length} trip pages...\n`);
+        console.log(`   📄 Generating trip pages...\n`);
         for (let i = 0; i < processedTrips.length; i++) {
             const tripMetadata = processedTrips[i];
             const tripId = tripMetadata.id;
@@ -382,14 +434,34 @@ async function build() {
                 fs.mkdirSync(tripDir, { recursive: true });
             }
 
-            // Generate trip page
-            const tripHtml = generateTripPage(tripMetadata, tripContentData.content, output, domain);
-            const tripHtmlPath = path.join(tripDir, 'index.html');
-            fs.writeFileSync(tripHtmlPath, tripHtml, 'utf8');
-            const tripSize = fs.statSync(tripHtmlPath).size;
-            htmlSizeTotal += tripSize;
+            // Get locations for this trip
+            const locations = tripContentData.content.filter(item => item.type === 'location');
 
-            console.log(`   [${i + 1}/${processedTrips.length}] ${tripMetadata.title} → ${tripHtmlPath} (${(tripSize / 1024).toFixed(1)}KB)`);
+            console.log(`   [${i + 1}/${processedTrips.length}] ${tripMetadata.title}`);
+
+            // Add introHtml to metadata for page generation
+            tripMetadata.introHtml = tripContentData.introHtml;
+
+            // Generate trip intro page (index.html)
+            const introHtml = generateTripIntroPage(tripMetadata, locations, output, domain);
+            const introHtmlPath = path.join(tripDir, 'index.html');
+            fs.writeFileSync(introHtmlPath, introHtml, 'utf8');
+            const introSize = fs.statSync(introHtmlPath).size;
+            htmlSizeTotal += introSize;
+            console.log(`      ✅ Intro page → ${introHtmlPath} (${(introSize / 1024).toFixed(1)}KB)`);
+
+            // Generate individual location pages
+            locations.forEach((location, locationIndex) => {
+                const locationSlug = location.title.toLowerCase().replace(/\s+/g, '-');
+                const locationHtml = generateTripLocationPage(tripMetadata, location, locations, locationIndex, output, domain);
+                const locationHtmlPath = path.join(tripDir, `${locationSlug}.html`);
+                fs.writeFileSync(locationHtmlPath, locationHtml, 'utf8');
+                const locationSize = fs.statSync(locationHtmlPath).size;
+                htmlSizeTotal += locationSize;
+                console.log(`      ✅ ${location.title} → ${locationHtmlPath} (${(locationSize / 1024).toFixed(1)}KB)`);
+            });
+
+            console.log('');
         }
 
         // Generate sitemap.xml
