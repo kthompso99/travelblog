@@ -2,6 +2,19 @@
 
 A modern, SEO-optimized travel blog with static site generation, interactive maps, and lazy-loading architecture.
 
+---
+
+## ⚠️ For Developers & AI Assistants
+
+**BEFORE making code changes, READ:**
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Development guidelines (START HERE!)
+- **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Configuration management (REQUIRED!)
+- **[lib/config-paths.js](lib/config-paths.js)** - Single source of truth for all paths
+
+**Key Rule:** Never hardcode paths. Always use `lib/config-paths.js`.
+
+---
+
 ## 🌟 Features
 
 - **🎯 Static Site Generation (SSG)**: Pre-rendered HTML pages for perfect SEO
