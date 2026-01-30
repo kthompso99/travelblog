@@ -23,13 +23,10 @@ try {
 const { generateHomepage, generateTripPage, generateTripIntroPage, generateTripLocationPage, generateMapPage, generateAboutPage } = require('../lib/generate-html');
 const { generateSitemap, generateRobotsTxt } = require('../lib/generate-sitemap');
 
-const SITE_CONFIG = 'config/site.json';
-const INDEX_CONFIG = 'content/index.json';
-const TRIPS_DIR = 'content/trips';
-const OUTPUT_FILE = 'config.built.json';
-const TRIPS_OUTPUT_DIR = 'trips';
-const CACHE_DIR = '_cache';
-const GEOCODE_CACHE_FILE = '_cache/geocode.json';
+// Import centralized configuration paths
+const CONFIG = require('../lib/config-paths');
+
+const { SITE_CONFIG, INDEX_CONFIG, TRIPS_DIR, OUTPUT_FILE, TRIPS_OUTPUT_DIR, CACHE_DIR, GEOCODE_CACHE_FILE } = CONFIG;
 
 // Load geocode cache
 let geocodeCache = {};
@@ -165,7 +162,7 @@ async function processContentItem(item, tripId, order) {
 async function processTrip(tripId) {
     console.log(`\n📍 Processing trip: ${tripId}`);
 
-    const tripConfigPath = path.join(TRIPS_DIR, tripId, 'trip.json');
+    const tripConfigPath = CONFIG.getTripConfigPath(tripId);
 
     if (!fs.existsSync(tripConfigPath)) {
         console.log(`  ⚠️  Config file not found: ${tripConfigPath}`);
@@ -175,7 +172,7 @@ async function processTrip(tripId) {
     const tripConfig = JSON.parse(fs.readFileSync(tripConfigPath, 'utf8'));
 
     // Validate main.md exists
-    const mainMdPath = path.join('content/trips', tripId, 'main.md');
+    const mainMdPath = CONFIG.getTripMainPath(tripId);
     if (!fs.existsSync(mainMdPath)) {
         console.log(`  ⚠️  WARNING: main.md not found at ${mainMdPath}`);
         console.log(`     Every trip should have a main.md file for the intro page.\n`);

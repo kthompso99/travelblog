@@ -9,16 +9,11 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 
-const INDEX_CONFIG = 'content/index.json';
-const CONTINENTS = [
-    'Africa',
-    'Antarctica',
-    'Asia',
-    'Europe',
-    'North America',
-    'South America',
-    'Oceania'
-];
+// Import centralized configuration paths
+const CONFIG = require('../lib/config-paths');
+
+const { INDEX_CONFIG, TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
+const CONTINENTS = VALID_CONTINENTS;
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -70,7 +65,7 @@ async function addTrip() {
     }
 
     // Check if trip directory already exists
-    const tripDir = path.join('content/trips', id);
+    const tripDir = CONFIG.getTripDir(id);
     if (fs.existsSync(tripDir)) {
         console.log(`❌ Directory "${tripDir}" already exists`);
         rl.close();
@@ -111,7 +106,7 @@ async function addTrip() {
             title: locationTitle,
             place: place || locationTitle,
             duration: duration || '1 day',
-            file: `content/trips/${id}/${locationSlug}.md`
+            file: `${CONFIG.getTripDir(id)}/${locationSlug}.md`
         });
 
         locationNum++;
@@ -159,7 +154,7 @@ async function addTrip() {
 
     // Save trip.json
     try {
-        const tripConfigPath = path.join(tripDir, 'trip.json');
+        const tripConfigPath = CONFIG.getTripConfigPath(id);
         fs.writeFileSync(tripConfigPath, JSON.stringify(tripConfig, null, 2), 'utf8');
         console.log(`✅ Created ${tripConfigPath}`);
     } catch (e) {
@@ -193,7 +188,7 @@ Add general planning information, tips, and recommendations here.
 `;
 
     try {
-        const mainPath = path.join(tripDir, 'main.md');
+        const mainPath = CONFIG.getTripMainPath(id);
         fs.writeFileSync(mainPath, mainTemplate, 'utf8');
         console.log(`✅ Created ${mainPath}`);
     } catch (e) {

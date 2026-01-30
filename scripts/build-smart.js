@@ -14,17 +14,20 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const CACHE_FILE = '.build-cache.json';
+// Import centralized configuration paths
+const CONFIG = require('../lib/config-paths');
 
-// File/directory paths
+const CACHE_FILE = CONFIG.BUILD_CACHE_FILE;
+
+// File/directory paths (using centralized config)
 const PATHS = {
-    siteConfig: 'config/site.json',
-    indexConfig: 'content/index.json',
-    tripsDir: 'content/trips',
-    contentDir: 'content/trips',
-    templatesDir: 'templates',
-    libDir: 'lib',
-    buildScript: 'scripts/build.js'
+    siteConfig: CONFIG.SITE_CONFIG,
+    indexConfig: CONFIG.INDEX_CONFIG,
+    tripsDir: CONFIG.TRIPS_DIR,
+    contentDir: CONFIG.TRIPS_DIR,
+    templatesDir: CONFIG.TEMPLATES_DIR,
+    libDir: CONFIG.LIB_DIR,
+    buildScript: CONFIG.BUILD_SCRIPT
 };
 
 /**

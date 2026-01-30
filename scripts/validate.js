@@ -9,19 +9,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE_CONFIG = 'config/site.json';
-const INDEX_CONFIG = 'content/index.json';
-const TRIPS_DIR = 'content/trips';
+// Import centralized configuration paths
+const CONFIG = require('../lib/config-paths');
 
-const VALID_CONTINENTS = [
-    'Africa',
-    'Antarctica',
-    'Asia',
-    'Europe',
-    'North America',
-    'South America',
-    'Oceania'
-];
+const { SITE_CONFIG, INDEX_CONFIG, TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
 
 let errors = [];
 let warnings = [];
@@ -85,9 +76,9 @@ function validate() {
 
     // Validate each trip
     indexConfig.trips.forEach((tripId, index) => {
-        const tripDir = path.join(TRIPS_DIR, tripId);
-        const tripConfigPath = path.join(tripDir, 'trip.json');
-        const mainMdPath = path.join(tripDir, 'main.md');
+        const tripDir = CONFIG.getTripDir(tripId);
+        const tripConfigPath = CONFIG.getTripConfigPath(tripId);
+        const mainMdPath = CONFIG.getTripMainPath(tripId);
 
         const prefix = `Trip #${index + 1} (${tripId})`;
 
