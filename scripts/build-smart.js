@@ -19,12 +19,12 @@ const CACHE_FILE = '.build-cache.json';
 // File/directory paths
 const PATHS = {
     siteConfig: 'config/site.json',
-    indexConfig: 'config/index.json',
-    tripsDir: 'config/trips',
+    indexConfig: 'content/index.json',
+    tripsDir: 'content/trips',
     contentDir: 'content/trips',
     templatesDir: 'templates',
     libDir: 'lib',
-    buildScript: 'build.js'
+    buildScript: 'scripts/build.js'
 };
 
 /**
@@ -276,7 +276,7 @@ function main() {
         console.log('✅ No changes detected - nothing to build!\n');
         console.log('💡 Tips:');
         console.log('   • Use --force to rebuild everything');
-        console.log('   • Edit files in content/trips/ or config/trips/ to trigger rebuild\n');
+        console.log('   • Edit files in content/trips/ to trigger rebuild\n');
         return true;
     }
 

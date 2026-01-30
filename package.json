@@ -2,15 +2,15 @@
   "name": "travel-blog-builder",
   "version": "1.0.0",
   "description": "Build script for travel blog - geocodes locations and converts markdown offline",
-  "main": "build.js",
+  "main": "scripts/build.js",
   "scripts": {
-    "validate": "node validate.js",
-    "build": "node validate.js && node build.js",
-    "build:smart": "node build-smart.js",
-    "watch": "nodemon --watch config.json --watch content/ --exec 'node validate.js && node build.js'",
-    "serve": "node server.js 8000",
-    "add": "node add-destination.js",
-    "deploy-check": "node deploy-check.js"
+    "validate": "node scripts/validate.js",
+    "build": "node scripts/validate.js && node scripts/build.js",
+    "build:smart": "node scripts/build-smart.js",
+    "watch": "nodemon --watch content/ --exec 'node scripts/validate.js && node scripts/build.js'",
+    "serve": "node scripts/server.js 8000",
+    "add": "node scripts/add-trip.js",
+    "deploy-check": "node scripts/deploy-check.js"
   },
   "dependencies": {
     "marked": "^9.1.6"

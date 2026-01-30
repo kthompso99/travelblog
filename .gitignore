@@ -3,11 +3,14 @@
 
 # Build output
 config.built.json
+/trips/
+.build-cache.json
 
 # Dependencies
 node_modules/
 
 # Optional: npm lock file (remove this line if you want to commit package-lock.json)
 package-lock.json
-/trips/
-.build-cache.json
+
+# Archive directory contains legacy/obsolete files (committed for reference)
+# archive/

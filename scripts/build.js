@@ -19,9 +19,9 @@ try {
     process.exit(1);
 }
 
-// Load HTML generators
-const { generateHomepage, generateTripPage, generateTripIntroPage, generateTripLocationPage, generateMapPage, generateAboutPage } = require('./lib/generate-html');
-const { generateSitemap, generateRobotsTxt } = require('./lib/generate-sitemap');
+// Load HTML generators (paths relative to project root since script runs from root)
+const { generateHomepage, generateTripPage, generateTripIntroPage, generateTripLocationPage, generateMapPage, generateAboutPage } = require('../lib/generate-html');
+const { generateSitemap, generateRobotsTxt } = require('../lib/generate-sitemap');
 
 const SITE_CONFIG = 'config/site.json';
 const INDEX_CONFIG = 'content/index.json';
