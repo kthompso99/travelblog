@@ -5,12 +5,13 @@ A modern, SEO-optimized travel blog with static site generation, interactive map
 ## 🌟 Features
 
 - **🎯 Static Site Generation (SSG)**: Pre-rendered HTML pages for perfect SEO
-- **📍 Interactive World Map**: Click map markers to navigate to destinations
-- **🗺️ Smart Navigation**: Continent-based menus with dropdown organization
+- **📍 Interactive Trip Maps**: Leaflet maps with route visualization and hover markers
+- **🗺️ Smart Navigation**: Trip sub-menus and prev/next navigation between locations
 - **📝 Markdown Content**: Write travel stories in simple markdown format
-- **⚡ Lazy Loading**: Fast initial load with on-demand content loading
+- **🚶 Trip Organization**: Intro pages with table of contents + individual location pages
+- **⚡ Geocoding Cache**: Automatic location geocoding with caching
 - **🔍 SEO Optimized**: Full meta tags, Open Graph, Twitter Cards, Schema.org
-- **📱 Responsive Design**: Beautiful on all devices
+- **📱 Responsive Design**: Beautiful on all devices (side-by-side on desktop, stacked on mobile)
 - **🚀 GitHub Pages Ready**: Deploy-ready with relative paths
 
 ## 🏗️ Architecture
@@ -65,16 +66,26 @@ travelblog/
 ├── content/
 │   └── trips/             # Markdown content by trip
 │       ├── greece/
-│       │   └── greece.md
+│       │   ├── main.md           # Trip intro (required)
+│       │   ├── milos.md          # Individual location
+│       │   ├── santorini.md
+│       │   ├── paros.md
+│       │   └── athens.md
 │       └── ...
 ├── trips/                 # Generated trip pages (SSG output)
 │   ├── greece/
-│   │   └── index.html
+│   │   ├── index.html            # Trip intro with map & TOC
+│   │   ├── milos.html            # Location pages
+│   │   ├── santorini.html
+│   │   ├── paros.html
+│   │   └── athens.html
 │   └── ...
 ├── map/                   # Generated map page
 │   └── index.html
 ├── about/                 # Generated about page
 │   └── index.html
+├── _cache/                # Build cache
+│   └── geocode.json       # Geocoding cache
 ├── lib/                   # Build libraries
 │   ├── seo-metadata.js
 │   ├── generate-html.js
@@ -82,6 +93,8 @@ travelblog/
 ├── templates/             # HTML templates
 │   ├── base.html
 │   ├── trip-page.html
+│   ├── trip-intro-page.html      # Intro with map & TOC
+│   ├── trip-location-page.html   # Location with prev/next
 │   └── home-page.html
 ├── build.js               # Main build script
 ├── validate.js            # Configuration validator
@@ -135,6 +148,14 @@ See **[Custom Domain Deployment Guide](docs/deployment/CUSTOM_DOMAIN_DEPLOYMENT.
 
 ## ✨ Adding New Trips
 
+Every trip requires:
+1. A trip configuration file
+2. A `main.md` intro file (required)
+3. Individual location markdown files
+4. Entry in index.json
+
+### Step-by-Step Guide
+
 1. **Create trip config** in `config/trips/newtrip.json`:
    ```json
    {
@@ -155,9 +176,16 @@ See **[Custom Domain Deployment Guide](docs/deployment/CUSTOM_DOMAIN_DEPLOYMENT.
        {
          "type": "location",
          "title": "Rome",
-         "place": "Colosseum, Rome",
+         "place": "Rome, Italy",
          "duration": "3 days",
          "file": "content/trips/newtrip/rome.md"
+       },
+       {
+         "type": "location",
+         "title": "Florence",
+         "place": "Florence, Italy",
+         "duration": "2 days",
+         "file": "content/trips/newtrip/florence.md"
        }
      ]
    }
@@ -170,19 +198,37 @@ See **[Custom Domain Deployment Guide](docs/deployment/CUSTOM_DOMAIN_DEPLOYMENT.
    }
    ```
 
-3. **Create content** in `content/trips/newtrip/rome.md`:
+3. **Create intro content** in `content/trips/newtrip/main.md`:
+   ```markdown
+   # Italy Adventure 2025
+
+   Our incredible journey through Italy, exploring ancient history and Renaissance art...
+   ```
+
+4. **Create location content** in `content/trips/newtrip/rome.md`:
    ```markdown
    # Rome
 
    Our amazing adventure in Rome...
    ```
 
-4. **Rebuild**:
+   And `content/trips/newtrip/florence.md`:
+   ```markdown
+   # Florence
+
+   The birthplace of the Renaissance...
+   ```
+
+5. **Rebuild**:
    ```bash
    npm run build
    ```
 
-Done! Your new trip is live.
+Done! Your new trip will have:
+- Intro page at `trips/newtrip/` with interactive map and table of contents
+- Location pages: `trips/newtrip/rome.html`, `trips/newtrip/florence.html`
+- Trip sub-menu navigation on all pages
+- Previous/Next navigation between locations
 
 ## 🔧 Development Scripts
 
@@ -230,8 +276,9 @@ See [Smart Build Documentation](docs/implementation/SMART_BUILD.md) for details.
 
 - **Build**: Node.js, Custom SSG
 - **Markdown**: marked.js
-- **Maps**: Leaflet.js + OpenStreetMap
-- **Geocoding**: Nominatim API
+- **Maps**: Leaflet.js + OpenStreetMap tiles
+- **Geocoding**: Nominatim API with caching
+- **Templates**: Custom HTML templating system
 - **Deployment**: GitHub Pages / Cloudflare Pages / Netlify
 - **SEO**: Open Graph, Twitter Cards, Schema.org
 
