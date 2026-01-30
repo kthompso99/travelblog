@@ -52,7 +52,7 @@
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1rem 0;
+            padding: 0.5rem 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
@@ -66,13 +66,13 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: bold;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
         }
 
@@ -80,6 +80,7 @@
             color: white;
             text-decoration: none;
             transition: opacity 0.3s;
+            font-size: 0.9rem;
         }
 
         .nav-links a:hover {
@@ -246,22 +247,22 @@
         .destination-card h3 {
             color: #667eea;
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
 
         .hero {
             text-align: center;
-            padding: 3rem 0;
+            padding: 1.5rem 0;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: #333;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #666;
         }
 
@@ -287,10 +288,30 @@
             vertical-align: middle;
         }
 
-        .markdown-content h1, .markdown-content h2, .markdown-content h3 {
+        .markdown-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .markdown-content h1 {
             margin-top: 1.5rem;
             margin-bottom: 1rem;
             color: #667eea;
+            font-size: 1.5rem;
+        }
+
+        .markdown-content h2 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+            font-size: 1.3rem;
+        }
+
+        .markdown-content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+            font-size: 1.1rem;
         }
 
         .markdown-content p {
@@ -373,6 +394,148 @@
             color: #666;
             font-size: 0.95rem;
         }
+
+        /* Trip submenu styles */
+        .trip-submenu {
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            padding: 0.75rem 0;
+        }
+
+        .trip-submenu-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .trip-submenu-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .trip-submenu-links a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .trip-submenu-links a.active {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Trip bottom section (map + TOC) */
+        .trip-bottom-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #dee2e6;
+        }
+
+        .trip-bottom-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Desktop: side-by-side layout */
+        @media (min-width: 768px) {
+            .trip-bottom-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Mobile: stacked layout */
+        @media (max-width: 767px) {
+            .trip-bottom-section {
+                display: block;
+            }
+
+            .trip-toc-container {
+                margin-top: 2rem;
+            }
+        }
+
+        .trip-static-map {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid #dee2e6;
+        }
+
+        .trip-toc {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+
+        .trip-toc li {
+            margin-bottom: 0.75rem;
+        }
+
+        .trip-toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin-left: 0.5rem;
+        }
+
+        .trip-toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Location navigation (prev/next) */
+        .location-navigation {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #dee2e6;
+        }
+
+        .prev-next-links {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .prev-link, .next-link {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        .prev-link:hover, .next-link:hover {
+            background: #764ba2;
+        }
+
+        .next-link {
+            margin-left: auto;
+        }
+
+        @media (max-width: 600px) {
+            .prev-next-links {
+                flex-direction: column;
+            }
+
+            .next-link {
+                margin-left: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -415,6 +578,7 @@
                 <li><a href="./about/">About</a></li>
             </ul>
         </nav>
+        
     </header>
 
     <main>
@@ -431,28 +595,24 @@
             <img src="./images/botswana.jpg" alt="Southern Africa" onerror="this.src='https://via.placeholder.com/280x200?text=Southern%20Africa'">
             <div class="destination-card-content">
                 <h3>Southern Africa</h3>
-                <p>Africa</p>
             </div>
         </a>
         <a href="./trips/greece/" class="destination-card" data-trip-id="greece">
             <img src="./images/greece.jpg" alt="Athens and Greek Islands" onerror="this.src='https://via.placeholder.com/280x200?text=Athens%20and%20Greek%20Islands'">
             <div class="destination-card-content">
                 <h3>Athens and Greek Islands</h3>
-                <p>Europe</p>
             </div>
         </a>
         <a href="./trips/utah/" class="destination-card" data-trip-id="utah">
             <img src="./images/utah.jpg" alt="Utah and the Grand Canyon" onerror="this.src='https://via.placeholder.com/280x200?text=Utah%20and%20the%20Grand%20Canyon'">
             <div class="destination-card-content">
                 <h3>Utah and the Grand Canyon</h3>
-                <p>North America</p>
             </div>
         </a>
         <a href="./trips/newzealand/" class="destination-card" data-trip-id="newzealand">
             <img src="./images/newzealand.jpg" alt="New Zealand" onerror="this.src='https://via.placeholder.com/280x200?text=New%20Zealand'">
             <div class="destination-card-content">
                 <h3>New Zealand</h3>
-                <p>Oceania</p>
             </div>
         </a>
     </div>

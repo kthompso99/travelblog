@@ -57,15 +57,12 @@ Visit `http://localhost:8000`
 travelblog/
 ├── index.html              # Homepage (SSG-generated)
 ├── config/
-│   ├── site.json          # Site configuration (title, domain)
-│   ├── index.json         # List of trips to build
-│   └── trips/             # Trip configuration files
-│       ├── greece.json
-│       ├── utah.json
-│       └── ...
+│   └── site.json          # Site configuration (title, domain)
 ├── content/
-│   └── trips/             # Markdown content by trip
+│   ├── index.json         # List of trips to build
+│   └── trips/             # Trip directories (self-contained)
 │       ├── greece/
+│       │   ├── trip.json         # Trip configuration
 │       │   ├── main.md           # Trip intro (required)
 │       │   ├── milos.md          # Individual location
 │       │   ├── santorini.md
@@ -156,7 +153,9 @@ Every trip requires:
 
 ### Step-by-Step Guide
 
-1. **Create trip config** in `config/trips/newtrip.json`:
+1. **Create trip directory**: `content/trips/newtrip/`
+
+2. **Create trip config** in `content/trips/newtrip/trip.json`:
    ```json
    {
      "id": "newtrip",
@@ -191,21 +190,21 @@ Every trip requires:
    }
    ```
 
-2. **Add to index** in `config/index.json`:
+3. **Add to index** in `content/index.json`:
    ```json
    {
      "trips": ["greece", "utah", "newtrip"]
    }
    ```
 
-3. **Create intro content** in `content/trips/newtrip/main.md`:
+4. **Create intro content** in `content/trips/newtrip/main.md`:
    ```markdown
    # Italy Adventure 2025
 
    Our incredible journey through Italy, exploring ancient history and Renaissance art...
    ```
 
-4. **Create location content** in `content/trips/newtrip/rome.md`:
+5. **Create location content** in `content/trips/newtrip/rome.md`:
    ```markdown
    # Rome
 
@@ -219,7 +218,7 @@ Every trip requires:
    The birthplace of the Renaissance...
    ```
 
-5. **Rebuild**:
+6. **Rebuild**:
    ```bash
    npm run build
    ```

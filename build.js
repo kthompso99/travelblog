@@ -24,8 +24,8 @@ const { generateHomepage, generateTripPage, generateTripIntroPage, generateTripL
 const { generateSitemap, generateRobotsTxt } = require('./lib/generate-sitemap');
 
 const SITE_CONFIG = 'config/site.json';
-const INDEX_CONFIG = 'config/index.json';
-const TRIPS_DIR = 'config/trips';
+const INDEX_CONFIG = 'content/index.json';
+const TRIPS_DIR = 'content/trips';
 const OUTPUT_FILE = 'config.built.json';
 const TRIPS_OUTPUT_DIR = 'trips';
 const CACHE_DIR = '_cache';
@@ -165,7 +165,7 @@ async function processContentItem(item, tripId, order) {
 async function processTrip(tripId) {
     console.log(`\n📍 Processing trip: ${tripId}`);
 
-    const tripConfigPath = path.join(TRIPS_DIR, `${tripId}.json`);
+    const tripConfigPath = path.join(TRIPS_DIR, tripId, 'trip.json');
 
     if (!fs.existsSync(tripConfigPath)) {
         console.log(`  ⚠️  Config file not found: ${tripConfigPath}`);
