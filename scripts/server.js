@@ -15,7 +15,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.argv[2] || 8000;
-const PUBLIC_DIR = __dirname;
+const PUBLIC_DIR = path.join(__dirname, '..');
 
 // MIME types for common file extensions
 const MIME_TYPES = {
