@@ -11,23 +11,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
     <style>
-        * {
+        /* ─── Reset & Base ─── */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
+            color: #1e293b;
+            background: #f8fafc;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* ─── Header & Nav ─── */
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0f172a;
             color: white;
-            padding: 0.5rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
         nav {
@@ -37,282 +43,391 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
+            height: 3.5rem;
         }
 
         .logo {
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: white;
+            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 0.25rem;
             list-style: none;
         }
 
-        .nav-links a {
-            color: white;
+        .nav-links > li > a {
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
-            transition: opacity 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
         }
 
-        .nav-links a:hover {
-            opacity: 0.8;
+        .nav-links > li > a:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
         }
 
+        /* ─── Dropdown (click-toggled top level, hover cascade) ─── */
         .dropdown {
             position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            user-select: none;
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
-            background: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 1000;
-            border-radius: 4px;
-            margin-top: 0;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            top: 100%;
-        }
-
-        /* Create invisible bridge to prevent menu from closing */
-        .dropdown::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 0;
+            top: calc(100% + 0.5rem);
             right: 0;
-            height: 0.5rem;
-            background: transparent;
+            background: #1e293b;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            min-width: 200px;
+            padding: 0.4rem;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+            z-index: 1000;
         }
 
-        .dropdown:hover .dropdown-content,
-        .dropdown-content:hover {
+        .dropdown.open .dropdown-content {
             display: block;
         }
 
-        .dropdown-content .continent-group {
+        /* ─── Continent Groups ─── */
+        .continent-group {
             position: relative;
         }
 
-        .dropdown-content .continent-title {
-            padding: 0.75rem 1rem;
-            font-weight: bold;
-            color: #667eea;
-            background: white;
-            cursor: pointer;
-            transition: background 0.3s;
-            position: relative;
+        .continent-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.55rem 0.75rem;
+            border-radius: 6px;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: default;
+            transition: background 0.15s;
+            white-space: nowrap;
         }
 
-        .dropdown-content .continent-title:hover {
-            background: #f8f9fa;
+        .continent-group:hover .continent-title {
+            background: rgba(255,255,255,0.07);
         }
 
-        .dropdown-content .continent-title::after {
-            content: '›';
-            position: absolute;
-            right: 1rem;
-            font-size: 1.2rem;
+        .continent-arrow {
+            color: rgba(255,255,255,0.4);
+            font-size: 1rem;
+            margin-left: 0.75rem;
+            transition: transform 0.15s;
         }
 
+        .continent-group:hover .continent-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* ─── Continent Submenu (opens LEFT) ─── */
         .continent-submenu {
             display: none;
             position: absolute;
-            left: 100%;
-            top: -0.5rem;
-            background: white;
-            min-width: 220px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            border-radius: 4px;
-            margin-left: -0.25rem;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+            top: 0;
+            right: calc(100% + 0.4rem);
+            background: #1e293b;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            min-width: 180px;
+            padding: 0.4rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            z-index: 1001;
         }
 
-        /* Create invisible bridge for submenu */
+        .continent-group:hover .continent-submenu {
+            display: block;
+        }
+
+        /* Invisible bridge: fills the gap between continent-title and submenu */
         .continent-group::after {
             content: '';
             position: absolute;
             top: 0;
-            left: 100%;
-            width: 0.5rem;
+            right: -0.4rem;
+            width: 0.4rem;
             height: 100%;
             background: transparent;
+            z-index: 1002;
         }
 
-        .continent-group:hover .continent-submenu,
-        .continent-submenu:hover {
+        .continent-submenu-item {
             display: block;
-        }
-
-        .continent-submenu a {
-            color: #333;
-            padding: 0.75rem 1rem;
+            padding: 0.5rem 0.7rem;
+            border-radius: 6px;
+            color: rgba(255,255,255,0.75);
+            font-size: 0.82rem;
+            font-weight: 500;
             text-decoration: none;
-            display: block;
-            transition: background 0.3s;
+            white-space: nowrap;
+            transition: background 0.15s, color 0.15s;
         }
 
-        .continent-submenu a:hover {
-            background: #f8f9fa;
-            color: #667eea;
+        .continent-submenu-item:hover {
+            background: rgba(255,255,255,0.07);
+            color: white;
         }
 
+        /* ─── Main Content ─── */
         main {
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
         }
 
-        #map-container {
-            margin: 2rem 0;
+        /* ─── Hero ─── */
+        .hero {
+            text-align: center;
+            padding: 3.5rem 0 2rem;
         }
 
-        #map {
-            height: 500px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
         }
 
-        #content-area {
-            margin-top: 2rem;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .hero p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
+        /* ─── Trip Grid & Cards ─── */
         .destination-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .destination-card {
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
         }
 
         .destination-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            border-color: #cbd5e1;
         }
 
         .destination-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            display: block;
         }
 
         .destination-card-content {
-            padding: 1rem;
+            padding: 1.25rem;
         }
 
         .destination-card h3 {
-            color: #667eea;
+            color: #0f172a;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0;
+        }
+
+        /* ─── Content Area (trip/location pages) ─── */
+        #content-area {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 2.5rem;
+            margin-top: 1.5rem;
+        }
+
+        #content-area > h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.02em;
             margin-bottom: 0.5rem;
-            font-size: 0.95rem;
         }
 
-        .hero {
-            text-align: center;
-            padding: 1.5rem 0;
+        /* ─── Trip & Location Metadata ─── */
+        .trip-meta, .location-meta {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
         }
 
-        .hero h1 {
-            font-size: 1.8rem;
-            color: #333;
-            margin-bottom: 0.5rem;
+        .trip-meta strong, .location-meta strong {
+            color: #475569;
         }
 
-        .hero p {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-            font-size: 0.75rem;
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: underline;
-        }
-
-        footer a:hover {
-            color: #667eea;
-        }
-
-        footer img {
-            vertical-align: middle;
-        }
-
+        /* ─── Markdown Content ─── */
         .markdown-content {
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.8;
+            color: #334155;
+            margin-top: 1.5rem;
         }
 
         .markdown-content h1 {
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-            color: #667eea;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .markdown-content h1:first-child {
+            margin-top: 0;
         }
 
         .markdown-content h2 {
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-            color: #667eea;
             font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-top: 1.75rem;
+            margin-bottom: 0.6rem;
         }
 
         .markdown-content h3 {
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-            color: #667eea;
             font-size: 1.1rem;
+            font-weight: 600;
+            color: #334155;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .markdown-content p {
             margin-bottom: 1rem;
         }
 
+        .markdown-content ul, .markdown-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .markdown-content li {
+            margin-bottom: 0.4rem;
+        }
+
+        .markdown-content a {
+            color: #6366f1;
+            text-decoration: none;
+            border-bottom: 1px solid #a5b4fc;
+            transition: border-color 0.2s;
+        }
+
+        .markdown-content a:hover {
+            border-color: #6366f1;
+        }
+
         .markdown-content img {
             max-width: 100%;
             border-radius: 8px;
             margin: 1rem 0;
+            border: 1px solid #e2e8f0;
         }
 
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.88rem;
+        }
+
+        .markdown-content th {
+            text-align: left;
+            padding: 0.7rem 0.85rem;
+            background: #f1f5f9;
+            color: #475569;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .markdown-content td {
+            padding: 0.7rem 0.85rem;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+        }
+
+        .markdown-content tr:last-child td {
+            border-bottom: none;
+        }
+
+        .markdown-content tr:hover td {
+            background: #f8fafc;
+        }
+
+        /* ─── Back Button ─── */
         .back-button {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: #667eea;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 0.85rem;
+            background: #f1f5f9;
+            color: #475569;
             text-decoration: none;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            transition: background 0.3s;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+            transition: background 0.2s, border-color 0.2s;
         }
 
         .back-button:hover {
-            background: #764ba2;
+            background: #e2e8f0;
+            border-color: #cbd5e1;
         }
 
+        /* ─── Map ─── */
+        #map-container {
+            margin: 1.5rem 0;
+        }
+
+        #map {
+            height: 500px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+
+        #map-view h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* ─── Leaflet Popup ─── */
         .leaflet-popup-content {
             margin: 0;
             padding: 0;
@@ -326,7 +441,8 @@
             width: 100%;
             height: 120px;
             object-fit: cover;
-            border-radius: 4px 4px 0 0;
+            border-radius: 6px 6px 0 0;
+            display: block;
         }
 
         .marker-popup-content {
@@ -334,46 +450,33 @@
         }
 
         .marker-popup-title {
-            font-weight: bold;
-            color: #667eea;
+            font-weight: 600;
+            color: #0f172a;
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
 
         .marker-popup-link {
             display: inline-block;
-            padding: 0.5rem 1rem;
-            background: #667eea;
+            padding: 0.4rem 0.85rem;
+            background: #6366f1;
             color: white;
             text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: background 0.3s;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: background 0.2s;
         }
 
         .marker-popup-link:hover {
-            background: #764ba2;
+            background: #4f46e5;
         }
 
-        .trip-meta {
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-
-        .content-item {
-            margin-bottom: 3rem;
-        }
-
-        .location-meta {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        /* Trip submenu styles */
+        /* ─── Trip Submenu (location nav bar) ─── */
         .trip-submenu {
-            background: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
-            padding: 0.75rem 0;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0;
         }
 
         .trip-submenu-links {
@@ -381,54 +484,58 @@
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
-            gap: 1.5rem;
+            gap: 0.25rem;
             list-style: none;
             flex-wrap: wrap;
         }
 
         .trip-submenu-links a {
-            color: #667eea;
+            color: #64748b;
             text-decoration: none;
-            padding: 0.5rem 0.75rem;
-            border-radius: 4px;
-            transition: background 0.3s, color 0.3s;
-            font-size: 0.95rem;
+            padding: 0.75rem 0.7rem;
+            font-size: 0.82rem;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+            white-space: nowrap;
         }
 
         .trip-submenu-links a:hover {
-            background: #667eea;
-            color: white;
+            color: #6366f1;
+            border-bottom-color: #6366f1;
         }
 
         .trip-submenu-links a.active {
-            background: #667eea;
-            color: white;
-            font-weight: bold;
+            color: #6366f1;
+            border-bottom-color: #6366f1;
+            font-weight: 600;
         }
 
-        /* Trip bottom section (map + TOC) */
+        /* ─── Trip Bottom Section (map + TOC) ─── */
         .trip-bottom-section {
-            margin-top: 3rem;
+            margin-top: 2.5rem;
             padding-top: 2rem;
-            border-top: 2px solid #dee2e6;
+            border-top: 1px solid #e2e8f0;
         }
 
         .trip-bottom-section h2 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.78rem;
         }
 
-        /* Desktop: side-by-side layout */
         @media (min-width: 768px) {
             .trip-bottom-section {
                 display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
+                grid-template-columns: 1.6fr 1fr;
+                gap: 2.5rem;
             }
         }
 
-        /* Mobile: stacked layout */
         @media (max-width: 767px) {
             .trip-bottom-section {
                 display: block;
@@ -442,37 +549,56 @@
         .trip-static-map {
             width: 100%;
             height: 400px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
         }
 
         .trip-toc {
-            list-style-position: inside;
+            list-style: none;
             padding-left: 0;
+            counter-reset: toc-counter;
         }
 
         .trip-toc li {
-            margin-bottom: 0.75rem;
+            counter-increment: toc-counter;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .trip-toc li::before {
+            content: counter(toc-counter);
+            background: #f1f5f9;
+            color: #6366f1;
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .trip-toc a {
-            color: #667eea;
+            color: #475569;
             text-decoration: none;
-            transition: color 0.3s;
-            margin-left: 0.5rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
         .trip-toc a:hover {
-            color: #764ba2;
-            text-decoration: underline;
+            color: #6366f1;
         }
 
-        /* Location navigation (prev/next) */
+        /* ─── Location Navigation (prev/next) ─── */
         .location-navigation {
-            margin-top: 3rem;
+            margin-top: 2.5rem;
             padding-top: 2rem;
-            border-top: 2px solid #dee2e6;
+            border-top: 1px solid #e2e8f0;
         }
 
         .prev-next-links {
@@ -483,18 +609,24 @@
         }
 
         .prev-link, .next-link {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: #667eea;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: white;
+            color: #475569;
             text-decoration: none;
-            border-radius: 4px;
-            transition: background 0.3s;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            font-size: 0.82rem;
             font-weight: 500;
+            transition: border-color 0.2s, background 0.2s, color 0.2s;
         }
 
         .prev-link:hover, .next-link:hover {
-            background: #764ba2;
+            border-color: #6366f1;
+            background: #eef2ff;
+            color: #6366f1;
         }
 
         .next-link {
@@ -510,6 +642,70 @@
                 margin-left: 0;
             }
         }
+
+        /* ─── Footer ─── */
+        footer {
+            background: #0f172a;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 0.72rem;
+            line-height: 1.8;
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            transition: border-color 0.2s;
+        }
+
+        footer a:hover {
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        footer img {
+            vertical-align: middle;
+            opacity: 0.6;
+        }
+
+        /* ─── Content Item ─── */
+        .content-item {
+            margin-bottom: 3rem;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 640px) {
+            nav {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 0.1rem;
+            }
+
+            .nav-links > li > a {
+                padding: 0.4rem 0.5rem;
+                font-size: 0.78rem;
+            }
+
+            main {
+                padding: 1.5rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            #content-area {
+                padding: 1.5rem;
+            }
+
+            .destination-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -518,32 +714,32 @@
             <div class="logo">🌍 Two Travel Nuts</div>
             <ul class="nav-links">
                 <li><a href="../">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">Trips ▾</a>
+                <li class="dropdown" id="trips-dropdown">
+                    <a href="#" class="dropdown-toggle" onclick="event.preventDefault(); document.getElementById('trips-dropdown').classList.toggle('open')">Trips ▾</a>
                     <div class="dropdown-content" id="destinations-menu">
                         
                         <div class="continent-group">
-                            <div class="continent-title">Africa</div>
+                            <div class="continent-title">Africa<span class="continent-arrow">›</span></div>
                             <div class="continent-submenu">
-                                <a href="../trips/southernafrica/">Southern Africa</a>
+                                <a href="../trips/southernafrica/" class="continent-submenu-item">Southern Africa</a>
                             </div>
                         </div>
                         <div class="continent-group">
-                            <div class="continent-title">Europe</div>
+                            <div class="continent-title">Europe<span class="continent-arrow">›</span></div>
                             <div class="continent-submenu">
-                                <a href="../trips/greece/">Athens and Greek Islands</a>
+                                <a href="../trips/greece/" class="continent-submenu-item">Athens and Greek Islands</a>
                             </div>
                         </div>
                         <div class="continent-group">
-                            <div class="continent-title">North America</div>
+                            <div class="continent-title">North America<span class="continent-arrow">›</span></div>
                             <div class="continent-submenu">
-                                <a href="../trips/utah/">Utah and the Grand Canyon</a>
+                                <a href="../trips/utah/" class="continent-submenu-item">Utah and the Grand Canyon</a>
                             </div>
                         </div>
                         <div class="continent-group">
-                            <div class="continent-title">Oceania</div>
+                            <div class="continent-title">Oceania<span class="continent-arrow">›</span></div>
                             <div class="continent-submenu">
-                                <a href="../trips/newzealand/">New Zealand</a>
+                                <a href="../trips/newzealand/" class="continent-submenu-item">New Zealand</a>
                             </div>
                         </div>
                     </div>
@@ -573,6 +769,15 @@
         <p><a href="http://twotravelnuts.com">Two Travel Nuts</a> © 2025 by <a href="https://creativecommons.org">Kevin Thompson</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
     </footer>
 
+    <script>
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            var dropdown = document.getElementById('trips-dropdown');
+            if (dropdown && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
+    </script>
     
 </body>
 </html>
