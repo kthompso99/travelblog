@@ -458,6 +458,35 @@ async function build() {
                 console.log(`      ✅ ${location.title} → ${locationHtmlPath} (${(locationSize / 1024).toFixed(1)}KB)`);
             });
 
+            // Copy trip images directory if it exists
+            const tripImagesSource = path.join(TRIPS_DIR, tripId, 'images');
+            const tripImagesTarget = path.join(tripDir, 'images');
+
+            if (fs.existsSync(tripImagesSource)) {
+                if (!fs.existsSync(tripImagesTarget)) {
+                    fs.mkdirSync(tripImagesTarget, { recursive: true });
+                }
+
+                // Copy all files from source to target
+                const imageFiles = fs.readdirSync(tripImagesSource);
+                let imageCount = 0;
+
+                imageFiles.forEach(file => {
+                    const sourcePath = path.join(tripImagesSource, file);
+                    const targetPath = path.join(tripImagesTarget, file);
+
+                    // Only copy files, not directories
+                    if (fs.statSync(sourcePath).isFile()) {
+                        fs.copyFileSync(sourcePath, targetPath);
+                        imageCount++;
+                    }
+                });
+
+                if (imageCount > 0) {
+                    console.log(`      📷 Copied ${imageCount} image(s) → ${tripImagesTarget}`);
+                }
+            }
+
             console.log('');
         }
 
