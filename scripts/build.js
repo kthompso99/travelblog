@@ -527,8 +527,20 @@ async function build() {
     }
 }
 
-// Run build
-build().catch(err => {
-    console.error('❌ Build failed:', err);
-    process.exit(1);
-});
+// Export reusable functions for incremental builds
+module.exports = {
+    processTrip,
+    convertMarkdown,
+    geocodeLocation,
+    saveGeocodeCache,
+    getGeocodeCache: () => geocodeCache,
+    setGeocodeCache: (cache) => { geocodeCache = cache; }
+};
+
+// Only run full build when executed directly (not when required by build-smart)
+if (require.main === module) {
+    build().catch(err => {
+        console.error('❌ Build failed:', err);
+        process.exit(1);
+    });
+}

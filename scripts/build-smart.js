@@ -14,17 +14,16 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-// Import centralized configuration paths
 const CONFIG = require('../lib/config-paths');
+const { generateHomepage, generateTripIntroPage, generateTripLocationPage, generateMapPage } = require('../lib/generate-html');
+const { generateSitemap } = require('../lib/generate-sitemap');
 
 const CACHE_FILE = CONFIG.BUILD_CACHE_FILE;
 
-// File/directory paths (using centralized config)
 const PATHS = {
     siteConfig: CONFIG.SITE_CONFIG,
     indexConfig: CONFIG.INDEX_CONFIG,
     tripsDir: CONFIG.TRIPS_DIR,
-    contentDir: CONFIG.TRIPS_DIR,
     templatesDir: CONFIG.TEMPLATES_DIR,
     libDir: CONFIG.LIB_DIR,
     buildScript: CONFIG.BUILD_SCRIPT
@@ -100,35 +99,31 @@ function getDirModTime(dirPath) {
 /**
  * Check if core build files changed (forces full rebuild)
  */
-function coreBuildFilesChanged(cache) {
-    const coreFiles = [
+function getCoreFiles() {
+    const files = [
         PATHS.buildScript,
         path.join(PATHS.libDir, 'seo-metadata.js'),
         path.join(PATHS.libDir, 'generate-html.js'),
         path.join(PATHS.libDir, 'generate-sitemap.js'),
+        path.join(PATHS.libDir, 'config-paths.js'),
         PATHS.siteConfig,
         PATHS.indexConfig
     ];
-
-    // Check template files
     if (fs.existsSync(PATHS.templatesDir)) {
-        const templates = fs.readdirSync(PATHS.templatesDir)
+        files.push(...fs.readdirSync(PATHS.templatesDir)
             .filter(f => f.endsWith('.html'))
-            .map(f => path.join(PATHS.templatesDir, f));
-
-        coreFiles.push(...templates);
+            .map(f => path.join(PATHS.templatesDir, f)));
     }
+    return files;
+}
 
-    for (const file of coreFiles) {
-        const modTime = getFileModTime(file);
-        const cachedTime = cache.files[file] || 0;
-
-        if (modTime > cachedTime) {
+function coreBuildFilesChanged(cache) {
+    for (const file of getCoreFiles()) {
+        if (getFileModTime(file) > (cache.files[file] || 0)) {
             console.log(`   📝 Changed: ${file}`);
             return true;
         }
     }
-
     return false;
 }
 
@@ -137,91 +132,48 @@ function coreBuildFilesChanged(cache) {
  */
 function getChangedTrips(cache) {
     const changed = [];
-
     try {
         const indexConfig = JSON.parse(fs.readFileSync(PATHS.indexConfig, 'utf8'));
-
         for (const tripId of indexConfig.trips) {
-            const tripConfigFile = path.join(PATHS.tripsDir, `${tripId}.json`);
-            const tripContentDir = path.join(PATHS.contentDir, tripId);
-
-            const configModTime = getFileModTime(tripConfigFile);
-            const contentModTime = getDirModTime(tripContentDir);
-
-            const cachedTrip = cache.trips[tripId] || {};
-
-            if (configModTime > (cachedTrip.configModTime || 0) ||
-                contentModTime > (cachedTrip.contentModTime || 0)) {
+            const configModTime = getFileModTime(CONFIG.getTripConfigPath(tripId));
+            const contentModTime = getDirModTime(path.join(PATHS.tripsDir, tripId));
+            const cached = cache.trips[tripId] || {};
+            if (configModTime > (cached.configModTime || 0) || contentModTime > (cached.contentModTime || 0)) {
                 changed.push(tripId);
             }
         }
     } catch (e) {
         console.error('Error reading trip configs:', e.message);
     }
-
     return changed;
 }
 
-/**
- * Update cache with current file times
- */
-function updateCache(cache) {
-    // Update core files
-    const coreFiles = [
-        PATHS.buildScript,
-        path.join(PATHS.libDir, 'seo-metadata.js'),
-        path.join(PATHS.libDir, 'generate-html.js'),
-        path.join(PATHS.libDir, 'generate-sitemap.js'),
-        PATHS.siteConfig,
-        PATHS.indexConfig
-    ];
-
-    // Add template files
-    if (fs.existsSync(PATHS.templatesDir)) {
-        const templates = fs.readdirSync(PATHS.templatesDir)
-            .filter(f => f.endsWith('.html'))
-            .map(f => path.join(PATHS.templatesDir, f));
-
-        coreFiles.push(...templates);
-    }
-
-    coreFiles.forEach(file => {
-        cache.files[file] = getFileModTime(file);
-    });
-
-    // Update trip times
-    try {
-        const indexConfig = JSON.parse(fs.readFileSync(PATHS.indexConfig, 'utf8'));
-
-        for (const tripId of indexConfig.trips) {
-            const tripConfigFile = path.join(PATHS.tripsDir, `${tripId}.json`);
-            const tripContentDir = path.join(PATHS.contentDir, tripId);
-
-            cache.trips[tripId] = {
-                configModTime: getFileModTime(tripConfigFile),
-                contentModTime: getDirModTime(tripContentDir),
-                lastBuilt: Date.now()
-            };
-        }
-    } catch (e) {
-        console.error('Error updating trip cache:', e.message);
+function updateCacheForTrips(cache, tripIds) {
+    for (const tripId of tripIds) {
+        cache.trips[tripId] = {
+            configModTime: getFileModTime(CONFIG.getTripConfigPath(tripId)),
+            contentModTime: getDirModTime(path.join(PATHS.tripsDir, tripId)),
+            lastBuilt: Date.now()
+        };
     }
 }
 
-/**
- * Run full build
- */
+function updateFullCache(cache) {
+    getCoreFiles().forEach(file => { cache.files[file] = getFileModTime(file); });
+    try {
+        const indexConfig = JSON.parse(fs.readFileSync(PATHS.indexConfig, 'utf8'));
+        updateCacheForTrips(cache, indexConfig.trips);
+    } catch (e) { /* ignore */ }
+    cache.lastFullBuild = Date.now();
+}
+
 function runFullBuild() {
     console.log('🔄 Running full build...\n');
-
     try {
         execSync('npm run build', { stdio: 'inherit' });
-
         const cache = createEmptyCache();
-        cache.lastFullBuild = Date.now();
-        updateCache(cache);
+        updateFullCache(cache);
         saveCache(cache);
-
         console.log('\n✅ Full build complete and cache updated\n');
         return true;
     } catch (e) {
@@ -230,46 +182,170 @@ function runFullBuild() {
     }
 }
 
-/**
- * Main function
- */
-function main() {
+// ─── Incremental build ───────────────────────────────────────────────────────
+
+async function runIncrementalBuild(tripIds) {
+    console.log(`\n🔄 Incremental build for: ${tripIds.join(', ')}\n`);
+
+    // Load build.js as a module to reuse processTrip and geocode functions
+    const buildModule = require('./build');
+
+    // Load geocode cache into the build module
+    if (fs.existsSync(CONFIG.GEOCODE_CACHE_FILE)) {
+        try {
+            buildModule.setGeocodeCache(JSON.parse(fs.readFileSync(CONFIG.GEOCODE_CACHE_FILE, 'utf8')));
+            console.log(`✅ Loaded geocode cache with ${Object.keys(buildModule.getGeocodeCache()).length} entries\n`);
+        } catch (e) { /* start fresh */ }
+    }
+
+    const siteConfig = JSON.parse(fs.readFileSync(PATHS.siteConfig, 'utf8'));
+    const domain = siteConfig.domain || 'https://example.com';
+
+    // Process only the changed trips
+    const rebuiltTrips = {};
+    for (const tripId of tripIds) {
+        const trip = await buildModule.processTrip(tripId);
+        if (trip) {
+            rebuiltTrips[tripId] = trip;
+
+            // Write per-trip content JSON
+            const tripContentFile = path.join(CONFIG.TRIPS_OUTPUT_DIR, `${tripId}.json`);
+            fs.writeFileSync(tripContentFile, JSON.stringify({
+                id: trip.id,
+                introHtml: trip.introHtml,
+                content: trip.content
+            }, null, 2), 'utf8');
+            console.log(`  💾 Saved ${tripContentFile}`);
+        }
+    }
+
+    // Persist geocode cache (may have new entries)
+    buildModule.saveGeocodeCache();
+
+    // Load existing config.built.json and merge in updated trip metadata
+    let output;
+    if (fs.existsSync(CONFIG.OUTPUT_FILE)) {
+        output = JSON.parse(fs.readFileSync(CONFIG.OUTPUT_FILE, 'utf8'));
+    } else {
+        output = { site: siteConfig, trips: [] };
+    }
+
+    for (const tripId of tripIds) {
+        const trip = rebuiltTrips[tripId];
+        if (!trip) continue;
+
+        const tripMetadata = {
+            id: trip.id, title: trip.title, slug: trip.slug,
+            published: trip.published, beginDate: trip.beginDate,
+            endDate: trip.endDate, duration: trip.duration,
+            metadata: trip.metadata, coverImage: trip.coverImage,
+            thumbnail: trip.thumbnail, mapCenter: trip.mapCenter,
+            locations: trip.locations, relatedTrips: trip.relatedTrips
+        };
+
+        const idx = output.trips.findIndex(t => t.id === tripId);
+        if (idx >= 0) { output.trips[idx] = tripMetadata; }
+        else { output.trips.push(tripMetadata); }
+    }
+
+    fs.writeFileSync(CONFIG.OUTPUT_FILE, JSON.stringify(output, null, 2), 'utf8');
+    console.log(`  💾 Updated ${CONFIG.OUTPUT_FILE}\n`);
+
+    // Generate HTML for only the changed trips
+    console.log('🏗️  Generating HTML for changed trips...\n');
+    for (const tripId of tripIds) {
+        if (!rebuiltTrips[tripId]) continue;
+
+        const tripMetadata = output.trips.find(t => t.id === tripId);
+        const tripContentData = JSON.parse(fs.readFileSync(
+            path.join(CONFIG.TRIPS_OUTPUT_DIR, `${tripId}.json`), 'utf8'));
+
+        const tripDir = path.join('trips', tripMetadata.slug);
+        if (!fs.existsSync(tripDir)) fs.mkdirSync(tripDir, { recursive: true });
+
+        const locations = tripContentData.content.filter(item => item.type === 'location');
+        tripMetadata.introHtml = tripContentData.introHtml;
+
+        // Intro page
+        fs.writeFileSync(path.join(tripDir, 'index.html'),
+            generateTripIntroPage(tripMetadata, locations, output, domain), 'utf8');
+        console.log(`      ✅ Intro page → ${tripDir}/index.html`);
+
+        // Location pages
+        locations.forEach((location, locationIndex) => {
+            const locationSlug = location.title.toLowerCase().replace(/\s+/g, '-');
+            fs.writeFileSync(path.join(tripDir, `${locationSlug}.html`),
+                generateTripLocationPage(tripMetadata, location, locations, locationIndex, output, domain), 'utf8');
+            console.log(`      ✅ ${location.title} → ${tripDir}/${locationSlug}.html`);
+        });
+
+        // Copy images
+        const imgSrc = path.join(CONFIG.TRIPS_DIR, tripId, 'images');
+        const imgDst = path.join(tripDir, 'images');
+        if (fs.existsSync(imgSrc)) {
+            if (!fs.existsSync(imgDst)) fs.mkdirSync(imgDst, { recursive: true });
+            let count = 0;
+            for (const file of fs.readdirSync(imgSrc)) {
+                const src = path.join(imgSrc, file);
+                if (fs.statSync(src).isFile()) { fs.copyFileSync(src, path.join(imgDst, file)); count++; }
+            }
+            if (count > 0) console.log(`      📷 Copied ${count} image(s)`);
+        }
+        console.log('');
+    }
+
+    // Regenerate shared pages — these reference all trips so must always run
+    console.log('🏗️  Regenerating shared pages...\n');
+
+    fs.writeFileSync('index.html.new', generateHomepage(output, domain), 'utf8');
+    // Auto-promote in incremental mode (you're actively iterating)
+    if (fs.existsSync('index.html')) fs.copyFileSync('index.html', 'index.html.backup');
+    fs.renameSync('index.html.new', 'index.html');
+    console.log('   ✅ Homepage updated');
+
+    if (!fs.existsSync('map')) fs.mkdirSync('map', { recursive: true });
+    fs.writeFileSync('map/index.html', generateMapPage(output, domain), 'utf8');
+    console.log('   ✅ Map page updated');
+
+    fs.writeFileSync('sitemap.xml', generateSitemap(output.trips, domain), 'utf8');
+    console.log('   ✅ Sitemap updated');
+
+    console.log('\n✅ Incremental build complete!\n');
+    return true;
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
+
+async function main() {
     const args = process.argv.slice(2);
     const forceRebuild = args.includes('--force');
     const specificTrips = args.filter(arg => !arg.startsWith('--'));
 
     console.log('🚀 Smart Build System\n');
 
-    // Force rebuild
     if (forceRebuild) {
         console.log('🔄 Force rebuild requested\n');
         return runFullBuild();
     }
 
-    // Specific trip rebuild
+    // Specific trip(s) on command line — skip change detection
     if (specificTrips.length > 0) {
-        console.log(`🎯 Specific trip build not yet implemented: ${specificTrips.join(', ')}`);
-        console.log('   Running full build for now...\n');
-        return runFullBuild();
+        console.log(`🎯 Building specific trip(s): ${specificTrips.join(', ')}\n`);
+        return await runIncrementalBuild(specificTrips);
     }
 
-    // Load cache
+    // Auto-detect mode
     const cache = loadCache();
 
-    // First build ever
     if (!cache.lastFullBuild) {
         console.log('📦 First build - running full build\n');
         return runFullBuild();
     }
 
-    // Check what changed
     console.log('🔍 Checking for changes...\n');
 
-    const coreChanged = coreBuildFilesChanged(cache);
-
-    if (coreChanged) {
-        console.log('\n⚠️  Core build files or templates changed');
-        console.log('   Full rebuild required\n');
+    if (coreBuildFilesChanged(cache)) {
+        console.log('\n⚠️  Core build files or templates changed - full rebuild required\n');
         return runFullBuild();
     }
 
@@ -278,8 +354,8 @@ function main() {
     if (changedTrips.length === 0) {
         console.log('✅ No changes detected - nothing to build!\n');
         console.log('💡 Tips:');
-        console.log('   • Use --force to rebuild everything');
-        console.log('   • Edit files in content/trips/ to trigger rebuild\n');
+        console.log('   • Edit files in content/trips/ to trigger rebuild');
+        console.log('   • Use --force to rebuild everything\n');
         return true;
     }
 
@@ -287,14 +363,19 @@ function main() {
     changedTrips.forEach(id => console.log(`   - ${id}`));
     console.log('');
 
-    // For now, do full build if any trip changed
-    // TODO: Implement selective rebuild
-    console.log('⚠️  Incremental trip rebuild not yet fully implemented');
-    console.log('   Running full build (this will be optimized in future)\n');
+    const success = await runIncrementalBuild(changedTrips);
 
-    return runFullBuild();
+    if (success) {
+        updateCacheForTrips(cache, changedTrips);
+        saveCache(cache);
+    }
+
+    return success;
 }
 
-// Run
-const success = main();
-process.exit(success ? 0 : 1);
+main().then(success => {
+    process.exit(success ? 0 : 1);
+}).catch(err => {
+    console.error('❌ Smart build failed:', err);
+    process.exit(1);
+});

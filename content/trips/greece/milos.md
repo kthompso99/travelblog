@@ -1,9 +1,25 @@
 
-### Milos
+### Milos is really amazing
 
 - Pollonia is nice, quaint, and pretty, while Adamantas (sometimes spelled Adamas) is the much busier ferry port. They’re maybe a 15-20 minute drive apart.
 - We stayed at Tania Milos in Pollonia and *loved* it. Super homey feeling (we were chatting often with Tania herself), great staff, but also unbelievable location, just stunning water views from at least some rooms, and from breakfast. 8 minute flat/easy walk from the Pollonia restaurant row.
   - We had the “Deluxe Room with Full Sunset Sea View” which yes is the most expensive room in that hotel, but Milos is generally less pricy (best room was less than $300 in our shoulder season) so we thought it was a great bargain, the balcony has perfect sunset views. 
+
+![Pollonia, Milos, from the walk towards Tania Milos](images/Milos-02.jpg)
+
+
+<img src="images/Milos-02.jpg" alt="drawing" style="max-width:500px; width:100%"/><br>
+
+
+<img src="images/Milos-03.jpg" alt="Description" align="left" width="150">And here is some text next to that photo. <br>
+<div style="clear:both"></div> 
+
+
+<img src="images/Milos-04.jpg" alt="Description" style="float: left; margin-right: 15px; width: 150px;">
+This text will wrap around the image. The inline CSS style ensures the image floats to the left, and the `margin-right` adds some space so the text doesn't stick to the image. This approach is more reliable in environments that support inline styles.<br>
+<div style="clear:both"></div> 
+
+
 - Food and drink
   - The locals (?) say Yialos is the best restaurant in the main waterfront row in Pollonia, we thought it was excellent. Some sites (TripAdvisor, others) list this as “Gialos’. 
   - There is an Asian (sushi) restaurant in Pollonia called Hanabi, I think the locals aren’t thrilled for whatever set of reasons, but we enjoyed it as a change from the Greek fish restaurants which all have sorta the same menu.
