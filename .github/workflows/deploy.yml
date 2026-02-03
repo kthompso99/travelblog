@@ -29,8 +29,13 @@ jobs:
         run: npm run validate
       
       - name: Build site
-        run: npm run build
-      
+        run: |
+          npm run build
+          mv index.html.new index.html
+
+      - name: Run navigation smoke-tests
+        run: npm test
+
       - name: Prepare deployment files
         run: |
           mkdir -p deploy
