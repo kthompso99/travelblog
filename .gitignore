@@ -5,6 +5,7 @@
 config.built.json
 /trips/
 .build-cache.json
+index.html.backup
 
 # Dependencies
 node_modules/
