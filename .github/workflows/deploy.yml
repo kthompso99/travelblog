@@ -40,6 +40,7 @@ jobs:
           [ -f sitemap.xml ] && cp sitemap.xml deploy/ || true
           [ -d images ] && cp -r images deploy/ || true
           [ -d trips ] && cp -r trips deploy/ || true
+          [ -d map ] && cp -r map deploy/ || true
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
