@@ -151,16 +151,17 @@ function validate() {
             if (!location.place) warning(`${locPrefix}: Missing "place" field for geocoding`);
             if (!location.duration) warning(`${locPrefix}: Missing "duration" field`);
 
-            // Check location markdown file
+            // Check location markdown file (path is relative to trip dir)
             if (!location.file) {
                 error(`${locPrefix}: Missing "file" field`);
             } else {
-                if (!fs.existsSync(location.file)) {
-                    error(`${locPrefix}: Content file not found: ${location.file}`);
+                const filePath = path.join(tripDir, location.file);
+                if (!fs.existsSync(filePath)) {
+                    error(`${locPrefix}: Content file not found: ${filePath}`);
                 } else {
-                    const stats = fs.statSync(location.file);
+                    const stats = fs.statSync(filePath);
                     if (stats.size === 0) {
-                        warning(`${locPrefix}: Content file is empty: ${location.file}`);
+                        warning(`${locPrefix}: Content file is empty: ${filePath}`);
                     } else {
                         log(`${locPrefix}: Content file OK (${stats.size} bytes)`);
                     }

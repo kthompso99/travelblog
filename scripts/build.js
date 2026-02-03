@@ -124,11 +124,12 @@ async function processContentItem(item, tripId, order) {
         order: order
     };
 
-    // Convert markdown to HTML
+    // Convert markdown to HTML (file path is relative to trip dir)
     if (item.file) {
+        const filePath = path.join(CONFIG.getTripDir(tripId), item.file);
         try {
-            console.log(`    📝 Converting markdown: ${item.file}`);
-            processed.contentHtml = await convertMarkdown(item.file);
+            console.log(`    📝 Converting markdown: ${filePath}`);
+            processed.contentHtml = await convertMarkdown(filePath);
             console.log(`    ✅ HTML generated (${processed.contentHtml.length} chars)`);
         } catch (e) {
             console.log(`    ⚠️  Markdown conversion failed: ${e.message}`);
@@ -140,6 +141,7 @@ async function processContentItem(item, tripId, order) {
     if (item.type === 'location') {
         processed.place = item.place;
         processed.duration = item.duration;
+        if (item.thumbnail) processed.thumbnail = item.thumbnail;
 
         // Geocode the place
         try {
@@ -214,7 +216,8 @@ async function processTrip(tripId) {
         .filter(item => item.type === 'location')
         .map(item => ({
             name: item.title,
-            coordinates: item.coordinates
+            coordinates: item.coordinates,
+            thumbnail: item.thumbnail || null
         }));
 
     // Resolve mapCenter to coordinates
