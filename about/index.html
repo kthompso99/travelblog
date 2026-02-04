@@ -73,7 +73,7 @@
 
         .nav-links > li > a:hover {
             background: rgba(255,255,255,0.1);
-            color: white;
+            color: #f59e0b;
         }
 
         /* ─── Dropdown (click-toggled top level, hover cascade) ─── */
@@ -219,45 +219,98 @@
         .destination-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
             margin-top: 2rem;
         }
 
         .destination-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
             text-decoration: none;
             color: inherit;
             display: block;
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .destination-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            border-color: #cbd5e1;
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
 
-        .destination-card img {
+        .destination-card-image-wrapper {
+            position: relative;
+            height: 16rem;
+            overflow: hidden;
+        }
+
+        .destination-card-image {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
-            display: block;
+            transition: transform 0.7s;
+        }
+
+        .destination-card:hover .destination-card-image {
+            transform: scale(1.1);
+        }
+
+        .destination-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+        }
+
+        .destination-card-hover-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(217,119,6,0.9) 0%, rgba(249,115,22,0.6) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .destination-card:hover .destination-card-hover-overlay {
+            opacity: 1;
         }
 
         .destination-card-content {
-            padding: 1.25rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            color: white;
+            z-index: 2;
         }
 
-        .destination-card h3 {
-            color: #0f172a;
-            font-size: 1.05rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            margin-bottom: 0;
+        .destination-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            transition: transform 0.3s;
+        }
+
+        .destination-card:hover .destination-card-title {
+            transform: translateY(-4px);
+        }
+
+        .destination-card-location {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .destination-card-body {
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .destination-card-badge {
+            font-size: 0.75rem;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
         }
 
         /* ─── Content Area (trip/location pages) ─── */
@@ -339,14 +392,14 @@
         }
 
         .markdown-content a {
-            color: #6366f1;
+            color: #f59e0b;
             text-decoration: none;
-            border-bottom: 1px solid #a5b4fc;
+            border-bottom: 1px solid #fcd34d;
             transition: border-color 0.2s;
         }
 
         .markdown-content a:hover {
-            border-color: #6366f1;
+            border-color: #f59e0b;
         }
 
         .markdown-content img {
@@ -460,17 +513,17 @@
             display: inline-block;
             padding: 0.4rem 0.85rem;
             background: white;
-            color: #6366f1;
+            color: #f59e0b;
             text-decoration: none;
             border-radius: 5px;
-            border: 1.5px solid #6366f1;
+            border: 1.5px solid #f59e0b;
             font-size: 0.8rem;
             font-weight: 600;
             transition: background 0.2s, color 0.2s;
         }
 
         .marker-popup-link:hover {
-            background: #6366f1;
+            background: #f59e0b;
             color: white;
         }
 
@@ -503,13 +556,13 @@
         }
 
         .trip-submenu-links a:hover {
-            color: #6366f1;
-            border-bottom-color: #6366f1;
+            color: #f59e0b;
+            border-bottom-color: #f59e0b;
         }
 
         .trip-submenu-links a.active {
-            color: #6366f1;
-            border-bottom-color: #6366f1;
+            color: #f59e0b;
+            border-bottom-color: #f59e0b;
             font-weight: 600;
         }
 
@@ -572,7 +625,7 @@
         .trip-toc li::before {
             content: counter(toc-counter);
             background: #f1f5f9;
-            color: #6366f1;
+            color: #f59e0b;
             font-size: 0.7rem;
             font-weight: 700;
             width: 1.6rem;
@@ -593,7 +646,7 @@
         }
 
         .trip-toc a:hover {
-            color: #6366f1;
+            color: #f59e0b;
         }
 
         /* ─── Location Navigation (prev/next) ─── */
@@ -626,9 +679,9 @@
         }
 
         .prev-link:hover, .next-link:hover {
-            border-color: #6366f1;
-            background: #eef2ff;
-            color: #6366f1;
+            border-color: #f59e0b;
+            background: #fffbeb;
+            color: #f59e0b;
         }
 
         .next-link {
@@ -645,31 +698,196 @@
             }
         }
 
+        /* ─── Trip Hero (full-bleed cover on trip intro pages) ─── */
+        .trip-hero {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .trip-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .trip-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(15,23,42,0.4) 0%, rgba(15,23,42,0.35) 50%, rgba(15,23,42,0.75) 100%);
+        }
+
+        .trip-hero-back {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: background 0.2s;
+        }
+
+        .trip-hero-back:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .trip-hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            color: white;
+        }
+
+        .trip-hero-content h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .trip-hero-meta {
+            font-size: 1rem;
+            opacity: 0.85;
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        /* ─── Trip About Card ─── */
+        .trip-about-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .trip-about-card h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+        }
+
         /* ─── Footer ─── */
         footer {
             background: #0f172a;
             color: rgba(255,255,255,0.5);
-            text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem 2rem;
             margin-top: 3rem;
-            font-size: 0.72rem;
-            line-height: 1.8;
         }
 
-        footer a {
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-about p {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            max-width: 280px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.82rem;
+            transition: color 0.2s;
+            border-bottom: none;
+        }
+
+        .footer-links a:hover {
+            color: #f59e0b;
+        }
+
+        .footer-license {
+            font-size: 0.78rem;
+            line-height: 1.7;
+        }
+
+        .footer-license a {
             color: rgba(255,255,255,0.6);
             text-decoration: none;
             border-bottom: 1px solid rgba(255,255,255,0.2);
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, color 0.2s;
         }
 
-        footer a:hover {
+        .footer-license a:hover {
             border-color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.8);
         }
 
-        footer img {
+        .footer-license img {
             vertical-align: middle;
             opacity: 0.6;
+            max-width: 1em;
+            max-height: 1em;
+            margin-left: 0.2em;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.72rem;
+        }
+
+        @media (max-width: 640px) {
+            .trip-hero {
+                height: 300px;
+            }
+            .trip-hero-content h1 {
+                font-size: 2rem;
+            }
+            .trip-hero-content {
+                padding: 1.5rem;
+            }
+            .trip-hero-back {
+                top: 1rem;
+                left: 1rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         /* ─── Content Item ─── */
@@ -753,6 +971,7 @@
         
     </header>
 
+    
     <main>
         
 <div id="content-view">
@@ -768,7 +987,29 @@
     </main>
 
     <footer>
-        <p><a href="http://twotravelnuts.com">Two Travel Nuts</a> © 2025 by <a href="https://creativecommons.org">Kevin Thompson</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <h3>Two Travel Nuts</h3>
+                    <p>Exploring the world, one destination at a time. Sharing stories, photos, and honest reflections from every journey.</p>
+                </div>
+                <div class="footer-col footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../map/">Map</a></li>
+                        <li><a href="../about/">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-license">
+                    <h3>License</h3>
+                    <p><a href="http://twotravelnuts.com">Two Travel Nuts</a> © 2025 by <a href="https://creativecommons.org">Kevin Thompson</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt=""><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt=""><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt=""><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt=""></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Two Travel Nuts. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <script>

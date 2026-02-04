@@ -1,22 +1,19 @@
 <div id="content-view">
-    <a href="{{BASE_PATH}}" class="back-button">← Back to Home</a>
-    <div id="content-area">
-        <h1>{{TRIP_TITLE}}</h1>
-        {{TRIP_METADATA}}
-
+    <div class="trip-about-card">
+        <h2>About This Trip</h2>
         <div class="markdown-content">
             {{INTRO_CONTENT}}
         </div>
+    </div>
 
-        <div id="map" class="trip-bottom-section">
-            <div class="trip-map-container">
-                <h2>Trip Map</h2>
-                {{TRIP_MAP}}
-            </div>
-            <div class="trip-toc-container">
-                <h2>Table of Contents</h2>
-                {{TRIP_TOC}}
-            </div>
+    <div id="map" class="trip-bottom-section">
+        <div class="trip-map-container">
+            <h2>Trip Map</h2>
+            {{TRIP_MAP}}
+        </div>
+        <div class="trip-toc-container">
+            <h2>Locations</h2>
+            {{TRIP_TOC}}
         </div>
     </div>
 </div>
