@@ -32,7 +32,7 @@
             color: white;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 2000;
             border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
@@ -98,8 +98,6 @@
             padding: 0.4rem;
             box-shadow: 0 12px 32px rgba(0,0,0,0.3);
             z-index: 1000;
-            max-height: calc(100vh - 4rem);
-            overflow-y: auto;
         }
 
         .dropdown.open .dropdown-content {
@@ -461,17 +459,19 @@
         .marker-popup-link {
             display: inline-block;
             padding: 0.4rem 0.85rem;
-            background: #6366f1;
-            color: white;
+            background: white;
+            color: #6366f1;
             text-decoration: none;
             border-radius: 5px;
+            border: 1.5px solid #6366f1;
             font-size: 0.8rem;
-            font-weight: 500;
-            transition: background 0.2s;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s;
         }
 
         .marker-popup-link:hover {
-            background: #4f46e5;
+            background: #6366f1;
+            color: white;
         }
 
         /* ─── Trip Submenu (location nav bar) ─── */
@@ -857,7 +857,7 @@
             "lat": 36.4071112,
             "lng": 25.4566637
           },
-          "thumbnail": "images/Milos-01.jpg"
+          "thumbnail": "images/Santorini-02.jpg"
         },
         {
           "name": "Paros",
@@ -865,7 +865,7 @@
             "lat": 37.1225059,
             "lng": 25.2323586
           },
-          "thumbnail": "images/Milos-01.jpg"
+          "thumbnail": "images/Paros-08.jpg"
         },
         {
           "name": "Athens",
@@ -873,7 +873,7 @@
             "lat": 37.9751863,
             "lng": 23.7321504
           },
-          "thumbnail": "images/Milos-01.jpg"
+          "thumbnail": "images/Athens-15.jpg"
         }
       ],
       "relatedTrips": []
@@ -983,11 +983,9 @@
             const marker = L.marker([dest.mapCenter.coordinates.lat, dest.mapCenter.coordinates.lng])
                 .addTo(map);
 
-            const thumbnailUrl = dest.thumbnail || `https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.title)}`;
-
             const popupContent = `
                 <div class="marker-popup">
-                    <img src="../${thumbnailUrl}" alt="${dest.title}" class="marker-popup-image" onerror="this.src='https://via.placeholder.com/200x120/667eea/ffffff?text=${encodeURIComponent(dest.title)}'">
+                    ${dest.thumbnail ? '<img src="../' + dest.thumbnail + '" alt="' + dest.title + '" class="marker-popup-image" onerror="this.remove()">' : ''}
                     <div class="marker-popup-content">
                         <div class="marker-popup-title">${dest.title}</div>
                         <a href="../trips/${dest.slug}/" class="marker-popup-link">Read More →</a>
@@ -1002,6 +1000,10 @@
 
             marker.on('mouseover', function(e) {
                 this.openPopup();
+            });
+
+            marker.on('mouseout', function(e) {
+                this.closePopup();
             });
 
             marker.on('click', () => {

@@ -19,15 +19,15 @@ The smart build system tracks modification times of all source files and only re
 ### What It Tracks
 
 1. **Core Build Files**
-   - `build.js` - Main build script
+   - `scripts/build.js` - Main build script
    - `lib/*.js` - All library files (SEO, HTML generation, sitemap)
    - `config/site.json` - Site configuration
-   - `config/index.json` - List of trips
+   - `content/index.json` - List of trips
    - `templates/*.html` - All HTML templates
 
 2. **Per-Trip Files**
-   - `config/trips/{tripId}.json` - Trip configuration
-   - `content/trips/{tripId}/` - All markdown files
+   - `content/trips/{tripId}/trip.json` - Trip configuration
+   - `content/trips/{tripId}/*.md` - All markdown files
 
 ### Build Logic
 
@@ -50,22 +50,11 @@ Check if core files changed
 ### ✅ Implemented
 - Change detection for all files
 - Skip builds when nothing changed
-- Force rebuild option
+- **Per-trip incremental rebuild** — only changed trips are geocoded and rendered
+- Shared pages (homepage, world map, sitemap) always regenerate
+- Force rebuild option (`--force`)
+- Per-trip rebuild from CLI (`npm run build:smart -- greece`)
 - Build cache tracking
-
-### ⚠️ Partially Implemented
-- Detects which trips changed
-- Currently does full rebuild when any trip changes
-- **Future**: Will rebuild only changed trips
-
-### 🔮 Future Optimization
-When a single trip changes:
-1. Rebuild only that trip's JSON file
-2. Rebuild only that trip's HTML file
-3. Regenerate homepage (quick)
-4. Regenerate sitemap (quick)
-
-**Time savings**: ~2 seconds per unchanged trip × 39 trips = ~78 seconds saved!
 
 ## Usage Examples
 
@@ -81,12 +70,16 @@ npm run build:smart
 # Output: ✅ No changes detected - nothing to build!
 
 # Edit Greece content
-nano content/trips/greece/greece.md
+nano content/trips/greece/milos.md
 
-# Build again
+# Build again — only greece is rebuilt
 npm run build:smart
 # Output: 📝 1 trip(s) changed: greece
-#         Running full build (for now)
+#         🏗️  Building trip: greece
+#         ✅ Rebuilding shared pages
+
+# Rebuild a specific trip regardless of cache
+npm run build:smart -- greece
 ```
 
 ### Force Rebuild
@@ -158,12 +151,10 @@ rm .build-cache.json
 | Scenario | Regular Build | Smart Build | Time Saved |
 |----------|---------------|-------------|------------|
 | No changes | ~12 seconds | ~0.1 seconds | **~12 seconds** |
-| 1 trip changed | ~12 seconds | ~12 seconds | 0 seconds* |
+| 1 trip changed | ~12 seconds | ~3 seconds | **~9 seconds** |
 | Template changed | ~12 seconds | ~12 seconds | 0 seconds |
 
-\* Currently does full rebuild when any trip changes
-
-### With 40 Trips (Future)
+### With 40 Trips (Projected)
 
 | Scenario | Regular Build | Smart Build | Time Saved |
 |----------|---------------|-------------|------------|
@@ -189,7 +180,7 @@ These changes force a complete rebuild:
 
 These detect changes to individual trips:
 
-- ✅ Trip config (`config/trips/greece.json`)
+- ✅ Trip config (`content/trips/greece/trip.json`)
 - ✅ Trip content (`content/trips/greece/*.md`)
 
 ### No Rebuild Needed
@@ -202,13 +193,22 @@ These don't trigger rebuilds:
 
 ## Development Workflow
 
+### Day-to-Day: `npm run dev`
+
+The fastest loop for content editing:
+
+```bash
+# Smart build + local server in one command
+npm run dev
+```
+
 ### Editing Content
 
 ```bash
 # 1. Make content changes
-nano content/trips/greece/greece.md
+nano content/trips/greece/milos.md
 
-# 2. Quick build (detects changes)
+# 2. Quick build (detects only greece changed)
 npm run build:smart
 
 # 3. Test locally
@@ -269,29 +269,25 @@ npm run build:smart
 - Skip builds when nothing changed
 - Track per-trip modifications
 
-### Phase 2: Incremental Trips (🚧 In Progress)
+### Phase 2: Incremental Trips (✅ Done)
 - Rebuild only changed trips
 - Regenerate homepage/sitemap
 - Skip unchanged trips entirely
+- Per-trip CLI: `npm run build:smart -- greece`
 
 ### Phase 3: Parallel Builds (🔮 Future)
 - Build multiple trips in parallel
 - Faster overall build times
 - Better CPU utilization
 
-### Phase 4: Watch Mode (🔮 Future)
-- Auto-rebuild on file save
-- Live reload in browser
-- Developer experience improvement
-
 ## Summary
 
-✅ **Smart build system saves time by skipping unnecessary work**
-✅ **Currently detects all changes correctly**
-⚠️ **Full incremental rebuild coming in future update**
-✅ **Safe to use - falls back to full build when needed**
+✅ **Smart build skips unchanged trips entirely**
+✅ **Per-trip incremental rebuild is live**
+✅ **Safe to use — falls back to full build when needed**
 
-**Recommendation**: Use `npm run build:smart` as your default build command!
+**Recommendation**: Use `npm run dev` for day-to-day work (smart build + serve).
+Use `npm run build:smart` when you just want to rebuild without starting a server.
 
 ---
 

@@ -114,6 +114,8 @@ When you want to reorganize files/directories:
 | `scripts/validate.js` | Validation | `INDEX_CONFIG`, `TRIPS_DIR`, helpers |
 | `scripts/add-trip.js` | Add new trip | `INDEX_CONFIG`, `TRIPS_DIR`, helpers |
 | `scripts/build-smart.js` | Incremental build | All path constants |
+| `scripts/deploy-check.js` | Pre-deploy checks | Path constants |
+| `scripts/test-nav.js` | Nav smoke-test (`npm test`) | Walks generated HTML; no config-paths dependency |
 
 ---
 
@@ -142,22 +144,36 @@ const tripConfig = CONFIG.getTripConfigPath('mytrip');
 ```
 travelblog/
 ├── lib/
-│   └── config-paths.js          ⭐ SINGLE SOURCE OF TRUTH
+│   ├── config-paths.js          ⭐ SINGLE SOURCE OF TRUTH
+│   ├── generate-html.js         Renders templates → static HTML pages
+│   ├── generate-sitemap.js      Builds sitemap.xml
+│   └── seo-metadata.js          Generates <meta> / Open Graph tags
+├── templates/
+│   ├── base.html                Shared <head>, nav, footer, CSS
+│   ├── home-page.html           Homepage
+│   ├── trip-intro-page.html     Trip intro with per-trip map
+│   ├── trip-location-page.html  Individual location page
+│   └── trip-page.html           Legacy trip template
 ├── scripts/
 │   ├── build.js                 (imports config-paths.js)
 │   ├── build-smart.js           (imports config-paths.js)
 │   ├── validate.js              (imports config-paths.js)
-│   └── add-trip.js              (imports config-paths.js)
+│   ├── add-trip.js              (imports config-paths.js)
+│   ├── deploy-check.js          (imports config-paths.js)
+│   ├── server.js                Local dev HTTP server
+│   └── test-nav.js              Navigation smoke-test
 ├── config/
 │   └── site.json                (site-level config)
 ├── content/
 │   ├── index.json               (list of trips)
 │   └── trips/
 │       └── {tripId}/
-│           ├── trip.json        (trip metadata)
+│           ├── trip.json        (trip metadata + content array)
 │           ├── main.md          (trip intro)
-│           └── {location}.md    (location pages)
-├── trips/                       (generated HTML)
+│           └── {location}.md    (location / article pages)
+├── trips/                       (generated HTML + per-trip images)
+├── map/                         (generated world-map page)
+├── about/                       (generated about page)
 └── package.json
 ```
 

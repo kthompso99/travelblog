@@ -1,706 +1,254 @@
-# Complete File Reference
+# File Reference
 
-A comprehensive guide to every file in the travel blog project.
-
-## 📄 File List
-
-### Core Files (Required)
-
-| File | Type | Purpose | Edit? | Deploy? |
-|------|------|---------|-------|---------|
-| `index.html` | Frontend | Main website | Rarely | ✅ Yes |
-| `config.json` | Source | Destination configuration | ✅ Yes | ❌ No |
-| `config.built.json` | Generated | Pre-processed data | ❌ No | ✅ Yes |
-| `build.js` | Build Tool | Main build script | Rarely | ❌ No |
-| `package.json` | Config | Node.js dependencies | Rarely | ❌ No |
-
-### Content Files (Edit These)
-
-| File | Purpose |
-|------|---------|
-| `content/*.md` | Travel blog posts in Markdown |
-| `images/*.jpg/png` | Optional thumbnail images |
-
-### Build Tools (Optional but Helpful)
-
-| File | Purpose | When to Use |
-|------|---------|-------------|
-| `validate.js` | Validate config.json | Before building |
-| `add-destination.js` | Add destinations interactively | When adding content |
-| `deploy-check.js` | Pre-deployment verification | Before deploying |
-
-### Documentation
-
-| File | Purpose |
-|------|---------|
-| `README.md` | Full documentation |
-| `QUICKSTART.md` | Fast reference guide |
-| `PROJECT.md` | Complete project overview |
-| `DEPLOYMENT.md` | Platform-specific deployment |
-| `FILES.md` | This file |
-
-### Configuration Files
-
-| File | Purpose |
-|------|---------|
-| `Makefile` | Convenience commands |
-| `.gitignore` | Git ignore rules |
-| `package-lock.json` | Locked dependencies (auto-generated) |
+A guide to every file and directory in the travel blog project, organized by role.
 
 ---
 
-## 📝 Detailed File Descriptions
+## Directory Layout
 
-### index.html
-**Purpose:** The main website that users see in their browser
-
-**Contains:**
-- HTML structure
-- CSS styling (embedded)
-- JavaScript application logic
-- Map initialization (Leaflet.js)
-- Markdown rendering (Marked.js)
-- Navigation system
-- Content loading logic
-
-**Key Features:**
-- Loads `config.built.json` for fast performance
-- Falls back to `config.json` + real-time processing if built file missing
-- Responsive design
-- Interactive world map
-- Cascading destination menus
-- Dynamic content rendering
-
-**When to Edit:**
-- Changing colors/styling
-- Modifying layout
-- Adding new pages
-- Customizing functionality
-
-**Lines of Code:** ~600
+```
+travelblog/
+│
+├── config/                     Source configuration
+│   └── site.json               Site title, description, base URL
+│
+├── content/                    Editable source content
+│   ├── index.json              Ordered list of trip IDs
+│   └── trips/
+│       └── {tripId}/
+│           ├── trip.json       Trip metadata + content array
+│           ├── main.md         Trip intro page (optional)
+│           ├── {location}.md   One file per content item
+│           └── images/         Trip-specific photos
+│
+├── images/                     Root-level thumbnails (world map popups)
+│
+├── templates/                  HTML page templates (shared styles + nav)
+│   ├── base.html               Shared <head>, nav, footer, CSS
+│   ├── home-page.html          Homepage template
+│   ├── trip-intro-page.html    Trip intro with per-trip map
+│   ├── trip-location-page.html Individual location page
+│   └── trip-page.html          Legacy trip template
+│
+├── lib/                        Node.js library modules
+│   ├── config-paths.js         ⭐ Single source of truth for all paths
+│   ├── generate-html.js        Renders templates → final HTML pages
+│   ├── generate-sitemap.js     Builds sitemap.xml from trip list
+│   └── seo-metadata.js         Generates <meta> / Open Graph tags
+│
+├── scripts/                    CLI build & utility scripts
+│   ├── build.js                Main build — geocodes, renders, outputs HTML
+│   ├── build-smart.js          Incremental build — skips unchanged trips
+│   ├── validate.js             Pre-build validation of trip configs
+│   ├── add-trip.js             Interactive CLI to scaffold a new trip
+│   ├── deploy-check.js         Pre-deployment verification
+│   ├── server.js               Local development HTTP server
+│   └── test-nav.js             Navigation smoke-test (runs as `npm test`)
+│
+├── .github/workflows/
+│   └── deploy.yml              GitHub Actions: build → test → deploy
+│
+├── archive/                    Legacy / obsolete files kept for reference
+│
+├── docs/                       Project documentation (this directory)
+│
+│   ── Generated output (created by build, not edited manually) ──
+├── index.html                  Homepage
+├── map/index.html              World-map page
+├── about/index.html            About page
+├── trips/
+│   ├── {tripId}.json           Built trip data (geocoded coordinates + HTML)
+│   └── {tripId}/
+│       ├── index.html          Trip intro page
+│       └── {location}.html     Location pages
+├── 404.html                    Custom error page
+├── sitemap.xml                 Search-engine sitemap
+├── config.built.json           Aggregated built data (all trips)
+│
+│   ── Project housekeeping ──
+├── package.json                npm scripts and dependencies
+├── package-lock.json           Locked dependency versions
+├── Makefile                    Convenience aliases for npm scripts
+├── .gitignore                  Excludes node_modules, cache, built files
+├── _redirects                  Netlify redirect rules
+├── robots.txt                  Search-engine crawl directives
+├── .nojekyll                   Disables Jekyll processing on GitHub Pages
+├── LICENSE                     Creative Commons CC BY-NC-ND 4.0
+├── README.md                   Project overview
+└── CLAUDE.md                   Claude Code working-memory notes
+```
 
 ---
 
-### config.json
-**Purpose:** Source configuration file that you edit
+## Source vs. Generated
 
-**Structure:**
+| Category | Edit? | Deployed? | Where |
+|----------|-------|-----------|-------|
+| Source config | Yes | No | `config/`, `content/` |
+| Source content | Yes | No | `content/trips/*/` |
+| Templates | Yes | No | `templates/` |
+| Library code | Yes | No | `lib/` |
+| Scripts | Yes | No | `scripts/` |
+| Generated HTML | No | Yes | `index.html`, `map/`, `about/`, `trips/` |
+| Generated data | No | Yes | `config.built.json`, `trips/*.json`, `sitemap.xml` |
+| Static assets | Yes | Yes | `images/`, `trips/*/images/` |
+
+---
+
+## Content Types
+
+Each trip's `content` array in `trip.json` holds items of one of two types.
+Both types are fully supported by the build pipeline.
+
+### `location`
+
+A geographically-pinned stop on the trip. Appears as a marker on the
+trip's interactive map and gets its own HTML page.
+
 ```json
 {
-  "site": {
-    "title": "Your blog name",
-    "description": "Your tagline"
+  "type": "location",
+  "title": "Milos",
+  "place": "Milos Greece",
+  "duration": "2 days",
+  "file": "milos.md",
+  "thumbnail": "images/Milos-01.jpg"
+}
+```
+
+| Field | Required | Notes |
+|-------|----------|-------|
+| `type` | Yes | Must be `"location"` |
+| `title` | Yes | Display name |
+| `place` | Yes | Geocoded via Nominatim (be specific) |
+| `duration` | Yes | Free-text string shown on the page |
+| `file` | Yes | Path relative to the trip directory |
+| `thumbnail` | No | Shown in map popup; omit to hide image |
+
+### `article`
+
+A non-geographic piece of content — e.g. a packing list or travel essay.
+No geocoding, no map marker, no `place` or `duration` fields.
+
+```json
+{
+  "type": "article",
+  "title": "Packing List",
+  "file": "packing.md"
+}
+```
+
+| Field | Required | Notes |
+|-------|----------|-------|
+| `type` | Yes | Must be `"article"` |
+| `title` | Yes | Display name |
+| `file` | Yes | Path relative to the trip directory |
+
+---
+
+## trip.json Schema
+
+```json
+{
+  "id": "greece",                   // Must match directory name
+  "title": "Athens and Greek Islands",
+  "slug": "greece",                 // URL segment: /trips/greece/
+  "published": true,                // false = excluded from build
+  "beginDate": "2025-04-01",
+  "endDate":   "2025-04-14",
+  "metadata": {
+    "year":      2025,
+    "continent": "Europe",          // One of 7 valid values (see validate.js)
+    "country":   "Greece",
+    "tripType":  ["adventure"],
+    "tags":      ["europe", "greece"]
   },
-  "destinations": [
-    {
-      "id": "unique-id",
-      "name": "Display Name",
-      "continent": "Continent Name",
-      "country": "Country",
-      "location": "Place name for geocoding",
-      "contentFile": "path/to/file.md",
-      "thumbnail": "path/to/image.jpg"
-    }
-  ]
+  "coverImage":  "images/greece.jpg",
+  "thumbnail":   "images/greece.jpg",
+  "mapCenter":   "Paros",           // Geocoded; centers the trip map
+  "content": [ ... ],               // Array of location / article items
+  "relatedTrips": []                // Future: cross-link trips
 }
 ```
 
-**Fields Explained:**
-- `id`: Unique identifier (lowercase-with-hyphens)
-- `name`: What visitors see
-- `continent`: Must match: Africa, Antarctica, Asia, Europe, North America, South America, Oceania
-- `country`: Optional but recommended
-- `location`: Gets geocoded to coordinates (e.g., "Eiffel Tower")
-- `coordinates`: Manual override `{"lat": 48.8584, "lng": 2.2945}`
-- `contentFile`: Path to markdown content
-- `thumbnail`: Optional image path
-
-**When to Edit:**
-- Adding new destinations
-- Updating destination info
-- Changing site title/description
-
-**Validated by:** `validate.js`
-**Processed by:** `build.js`
-**Not deployed** (source file only)
-
 ---
 
-### config.built.json
-**Purpose:** Generated file with pre-processed data for production
+## npm Scripts
 
-**Generated by:** `build.js`
+| Script | Command | What it does |
+|--------|---------|--------------|
+| `validate` | `npm run validate` | Check all trip configs for errors before building |
+| `build` | `npm run build` | Validate → full build (geocode + render all trips) |
+| `build:smart` | `npm run build:smart` | Incremental build — only rebuilds changed trips |
+| `dev` | `npm run dev` | Smart build then start local server |
+| `watch` | `npm run watch` | Rebuild on file changes (nodemon) |
+| `serve` | `npm run serve` | Start local server without building |
+| `add` | `npm run add` | Interactive CLI to scaffold a new trip |
+| `test` | `npm test` | Navigation smoke-test on all generated pages |
+| `deploy-check` | `npm run deploy-check` | Pre-deploy file & content verification |
 
-**Contains:**
-- All config.json data
-- Plus: Geocoded coordinates for each destination
-- Plus: Pre-rendered HTML from markdown files
-
-**Structure:**
-```json
-{
-  "site": { ... },
-  "destinations": [
-    {
-      "id": "paris",
-      "name": "Paris, France",
-      "coordinates": {
-        "lat": 48.8584,
-        "lng": 2.2945
-      },
-      "contentHtml": "<h1>Paris</h1><p>Content...</p>",
-      ...
-    }
-  ]
-}
-```
-
-**Why it exists:**
-- ⚡ Enables fast page loads
-- 🚫 No runtime API calls
-- 🚫 No runtime markdown conversion
-- ✅ Everything pre-processed
-
-**Never edit manually** - always regenerate with `npm run build`
-
-**Size:** Typically 50KB - 2MB depending on content
-
----
-
-### build.js
-**Purpose:** Main build script that processes everything offline
-
-**What it does:**
-1. Reads `config.json`
-2. For each destination:
-   - Geocodes location name → coordinates
-   - Reads markdown file
-   - Converts markdown → HTML
-3. Writes `config.built.json`
-
-**Key Features:**
-- Rate limiting (1 req/sec for geocoding)
-- Error handling
-- Progress output
-- Uses Nominatim API (OpenStreetMap)
-- Uses Marked.js for markdown
-
-**Usage:**
+Per-trip incremental build:
 ```bash
-node build.js
-# or
-npm run build
-```
-
-**Output Example:**
-```
-🚀 Starting build process...
-
-📍 Processing 5 destinations...
-
-[1/5] Processing Paris, France...
-  🗺️  Geocoding: Eiffel Tower
-  ✅ Coordinates: 48.8584, 2.2945
-  📝 Converting markdown: content/paris.md
-  ✅ HTML generated (2341 chars)
-
-[2/5] Processing Tokyo, Japan...
-  ...
-
-✅ Build complete! Output written to config.built.json
-
-📊 Summary:
-   - Geocoded: 5 locations
-   - Converted: 5 markdown files
-```
-
-**Dependencies:**
-- `marked` npm package
-
-**Lines of Code:** ~150
-
----
-
-### package.json
-**Purpose:** Node.js project configuration
-
-**Contains:**
-- Project metadata
-- Dependencies (`marked`)
-- Dev dependencies (`nodemon`)
-- NPM scripts
-
-**Scripts:**
-```json
-{
-  "validate": "node validate.js",
-  "build": "node validate.js && node build.js",
-  "watch": "nodemon --watch config.json --watch content/ --exec 'node validate.js && node build.js'",
-  "serve": "npx http-server -p 8000 -o",
-  "add": "node add-destination.js",
-  "deploy-check": "node deploy-check.js"
-}
-```
-
-**When to Edit:**
-- Adding npm dependencies
-- Changing project name/version
-- Adding new scripts
-
----
-
-### validate.js
-**Purpose:** Validates `config.json` before building
-
-**Checks:**
-- ✅ Valid JSON syntax
-- ✅ Required fields present
-- ✅ Valid continent names
-- ✅ Unique IDs
-- ✅ Content files exist
-- ✅ ID format (lowercase-with-hyphens)
-- ✅ Coordinate ranges (-90 to 90, -180 to 180)
-- ⚠️ Warnings for missing optional fields
-
-**Usage:**
-```bash
-node validate.js
-# or
-npm run validate
-```
-
-**Output Example:**
-```
-🔍 Validating configuration...
-
-ℹ️  Found 5 destination(s)
-ℹ️  Destination #1 (Paris, France): Content file OK (2341 bytes)
-ℹ️  Destination #2 (Tokyo, Japan): Content file OK (1876 bytes)
-⚠️  WARNING: Destination #3 (Rome, Italy): Thumbnail file not found: images/rome.jpg
-
-✅ Validation passed! Ready to build.
-```
-
-**Exit Codes:**
-- `0`: Success (or warnings only)
-- `1`: Errors found (blocks build)
-
-**Lines of Code:** ~180
-
----
-
-### add-destination.js
-**Purpose:** Interactive CLI tool for adding new destinations
-
-**Features:**
-- Step-by-step prompts
-- Auto-generates ID from name
-- Validates continent selection
-- Checks for duplicate IDs
-- Creates markdown template
-- Updates config.json
-
-**Usage:**
-```bash
-node add-destination.js
-# or
-npm run add
-```
-
-**Interactive Flow:**
-```
-🌍 Add New Destination
-
-Destination name (e.g., "Paris, France"): Rome, Italy
-ID (press enter for "rome-italy"): rome
-Country: Italy
-Select continent:
-  1. Africa
-  2. Antarctica
-  3. Asia
-  4. Europe
-  ...
-Continent (1-7): 4
-Famous landmark/location: Colosseum
-Content file (press enter for "content/rome.md"): 
-Thumbnail image path (optional): images/rome.jpg
-
-✅ Destination added to config.json!
-
-Create content file template? (y/n): y
-✅ Created content/rome.md
-
-📋 Next steps:
-  1. Edit the content file
-  2. Run "npm run build"
-  3. Refresh browser
-```
-
-**Template Created:**
-```markdown
-# Rome, Italy
-
-Welcome to Rome, Italy!
-
-## Overview
-...
-## Best Time to Visit
-...
-```
-
-**Lines of Code:** ~140
-
----
-
-### deploy-check.js
-**Purpose:** Pre-deployment verification checklist
-
-**Checks:**
-- ✅ `config.built.json` exists
-- ✅ Build is up-to-date
-- ✅ `index.html` exists
-- ✅ All destinations have HTML
-- ✅ All destinations have coordinates
-- ⚠️ Thumbnail images exist (warning)
-- ⚠️ File size reasonable (warning)
-
-**Usage:**
-```bash
-node deploy-check.js
-# or
-npm run deploy-check
-```
-
-**Output Example:**
-```
-🚀 Pre-Deployment Checklist
-
-✅ config.built.json exists
-✅ Build is up to date
-✅ index.html exists
-✅ All destinations have HTML content
-✅ All destinations have coordinates
-⚠️  All thumbnail images exist
-   2 thumbnail(s) not found: Sydney, Cairo
-✅ config.built.json size is reasonable
-
-📊 Summary:
-   ✅ Passed: 6
-   ⚠️  Warnings: 1
-
-⚠️  Deployment possible with warnings.
-
-📦 Files to deploy:
-   ✅ index.html
-   ✅ config.built.json
-   ✅ images/
-
-❌ Do NOT deploy:
-   ❌ config.json
-   ❌ content/
-   ❌ *.js
-   ❌ package.json, node_modules/
-```
-
-**Exit Codes:**
-- `0`: Ready to deploy
-- `1`: Errors found (don't deploy)
-
-**Lines of Code:** ~150
-
----
-
-### content/*.md
-**Purpose:** Markdown files containing blog post content
-
-**Location:** `content/` directory
-
-**Format:** Standard Markdown
-
-**Example Structure:**
-```markdown
-# Destination Name
-
-Introduction paragraph...
-
-## Section Heading
-
-Content with **bold** and *italic*.
-
-### Subsection
-
-- Bullet points
-- More bullets
-
-## Another Section
-
-Content continues...
-
----
-
-*Last updated: October 2025*
-```
-
-**Markdown Features Supported:**
-- Headers (# ## ###)
-- Bold, italic, strikethrough
-- Lists (ordered and unordered)
-- Links `[text](url)`
-- Images `![alt](path)`
-- Code blocks
-- Blockquotes
-- Horizontal rules
-
-**Best Practices:**
-- Use descriptive headers
-- Keep paragraphs short
-- Add practical information
-- Include "last updated" date
-- Optimize images before adding
-
-**Converted by:** `build.js` using Marked.js
-**Output:** HTML in `config.built.json`
-
----
-
-### images/
-**Purpose:** Optional directory for thumbnail images
-
-**Recommended:**
-- Format: JPG or PNG
-- Size: Max 1200px wide
-- File size: < 500KB each
-- Naming: `destination-id.jpg`
-
-**Referenced in:** `config.json` thumbnail field
-
-**Optimization:**
-```bash
-# Using ImageMagick
-convert input.jpg -resize 1200x -quality 80 output.jpg
-
-# Using online tools
-# TinyPNG, ImageOptim, etc.
-```
-
-**Not required** - placeholders shown if missing
-
----
-
-### Makefile
-**Purpose:** Convenience commands (optional)
-
-**Requires:** `make` command (pre-installed on Mac/Linux)
-
-**Commands:**
-```bash
-make help          # Show all commands
-make install       # npm install
-make validate      # Validate config
-make build         # Build site
-make watch         # Auto-rebuild
-make serve         # Start server
-make add           # Add destination
-make clean         # Remove built files
-make deploy        # Prepare deployment
-```
-
-**Benefits:**
-- Shorter commands
-- Easier to remember
-- Works across projects
-- No need to remember npm scripts
-
-**Optional:** You can use npm scripts instead
-
----
-
-### .gitignore
-**Purpose:** Tells Git which files not to track
-
-**Ignores:**
-- `node_modules/` - Dependencies
-- `config.built.json` - Generated file
-- `.DS_Store` - Mac OS files
-- `*.log` - Log files
-- IDE configs
-
-**Why ignore config.built.json:**
-- It's generated by build
-- Changes on every build
-- Would create merge conflicts
-- Should be built fresh for each deployment
-
-**Git workflow:**
-```bash
-# Track source files
-git add config.json content/ images/
-
-# Ignore built files (automatic)
-# config.built.json not added
-
-git commit -m "Add new destination"
-git push
+npm run build:smart -- greece      # rebuild only the greece trip
+npm run build:smart -- --force     # force full rebuild ignoring cache
 ```
 
 ---
 
-## 🔄 File Relationships
+## The Build Chain
 
-### The Build Chain
 ```
-config.json  ────┐
-                  ├──> build.js ──> config.built.json ──> index.html
-content/*.md ────┘
-```
-
-### Validation Flow
-```
-config.json ──> validate.js ──> ✅/❌
-                                 │
-                                 ↓
-                          (if valid)
-                                 │
-                                 ↓
-                             build.js
+config/site.json          ─┐
+content/index.json         ├─> scripts/build.js
+content/trips/*/trip.json  │       │
+content/trips/*/*.md  ─────┘       │
+                                   ▼
+                        trips/*.json          (per-trip built data)
+                        config.built.json     (aggregate)
+                        index.html            (homepage)
+                        map/index.html        (world map)
+                        about/index.html      (about page)
+                        trips/*/index.html    (trip intro pages)
+                        trips/*/{loc}.html    (location pages)
+                        sitemap.xml
 ```
 
-### Development Workflow
-```
-1. Edit: config.json, content/*.md
-2. Validate: validate.js
-3. Build: build.js
-4. Check: deploy-check.js
-5. Test: index.html (local server)
-6. Deploy: config.built.json + index.html
-```
+`build.js` orchestrates; `lib/generate-html.js` renders each page using the
+templates in `templates/`. All paths are resolved through `lib/config-paths.js`.
 
 ---
 
-## 📦 What to Deploy
+## What Gets Deployed
 
-### ✅ Deploy These
+Everything the site needs is generated into the project root. Deploy these:
+
 ```
-index.html          # Frontend application
-config.built.json   # Pre-processed data
-images/             # Thumbnails (if you have them)
+index.html
+map/
+about/
+trips/
+404.html
+sitemap.xml
+config.built.json
+images/
+_redirects
+robots.txt
+.nojekyll
 ```
 
-### ❌ Don't Deploy These
-```
-config.json         # Source file (not needed in production)
-content/            # Markdown sources (already in config.built.json)
-build.js            # Build script
-validate.js         # Validation script
-add-destination.js  # CLI tool
-deploy-check.js     # Deployment checker
-package.json        # Node config
-package-lock.json   # Lock file
-node_modules/       # Dependencies
-Makefile            # Build commands
-.gitignore          # Git config
-README.md           # Documentation
-*.md                # All documentation
-```
+Do **not** deploy: `config/`, `content/`, `lib/`, `scripts/`, `templates/`,
+`archive/`, `docs/`, `node_modules/`, `package.json`, `.build-cache.json`.
 
 ---
 
-## 🎯 Quick Reference
+## Troubleshooting
 
-### When You Want To...
-
-**Add a new destination:**
-```bash
-npm run add          # Interactive
-# or edit config.json manually
-npm run build
-```
-
-**Update existing content:**
-```bash
-# Edit content/destination.md
-npm run build
-```
-
-**Change site title:**
-```bash
-# Edit config.json → site.title
-npm run build
-```
-
-**Customize styling:**
-```bash
-# Edit index.html CSS section
-# No build needed (but test locally)
-```
-
-**Prepare for deployment:**
-```bash
-npm run validate
-npm run build
-npm run deploy-check
-```
-
-**Deploy to production:**
-```bash
-# Upload: index.html, config.built.json, images/
-# See DEPLOYMENT.md for platform-specific instructions
-```
-
----
-
-## 📊 File Size Reference
-
-Typical file sizes in a small blog (5-10 destinations):
-
-| File | Size |
-|------|------|
-| index.html | ~50KB |
-| config.json | ~2KB |
-| config.built.json | ~50-500KB |
-| content/destination.md | ~2-5KB each |
-| images/thumbnail.jpg | ~100-500KB each |
-| Total deployment | ~300KB - 3MB |
-
-**Performance Impact:**
-- Initial page load: config.built.json size
-- Subsequent navigation: Instant (already loaded)
-
----
-
-## 🔍 Troubleshooting by File
-
-**Problem: Site not loading**
-→ Check: `index.html` exists and is valid HTML
-
-**Problem: Destinations not showing**
-→ Check: `config.built.json` exists and has content
-
-**Problem: Map not displaying**
-→ Check: Coordinates in `config.built.json` are valid
-
-**Problem: Content not found**
-→ Check: `contentFile` paths in `config.json` are correct
-
-**Problem: Geocoding failed**
-→ Check: `location` field in `config.json` is specific enough
-
-**Problem: Build fails**
-→ Run: `npm run validate` to see what's wrong
-
-**Problem: Deployment checklist fails**
-→ Run: `npm run build` to regenerate built file
-
----
-
-## 📚 Further Reading
-
-- **For editing:** See config.json and content/*.md
-- **For building:** See build.js and package.json
-- **For deploying:** See DEPLOYMENT.md
-- **For understanding:** See PROJECT.md
-- **For quick start:** See QUICKSTART.md
-
----
-
-*This document covers all files in the project. Need more details? Check the specific documentation files listed above.*
+| Symptom | Check |
+|---------|-------|
+| Build fails | Run `npm run validate` — it reports the specific issue |
+| Geocoding fails | Make `place` more specific (e.g. add country) |
+| Trip missing from site | Confirm it's listed in `content/index.json` and `published: true` |
+| Location page blank | Check `file` path in `trip.json` matches an actual `.md` file |
+| Map marker missing | Geocoding may have failed — check build output for that location |
+| Nav test fails | Run `npm test`; each failure names the file and the broken assertion |
+| CI deploy broken | Check GitHub Actions log; `npm test` runs after build |

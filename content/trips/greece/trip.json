@@ -35,7 +35,7 @@
       "place": "Santorini Greece",
       "duration": "2 days",
       "file": "santorini.md",
-      "thumbnail": "images/Milos-01.jpg"
+      "thumbnail": "images/Santorini-02.jpg"
     },
     {
       "type": "location",
@@ -43,7 +43,7 @@
       "place": "Avant Mar Paros",
       "duration": "3 days",
       "file": "paros.md",
-      "thumbnail": "images/Milos-01.jpg"
+      "thumbnail": "images/Paros-08.jpg"
     },
     {
       "type": "location",
@@ -51,7 +51,7 @@
       "place": "Electra Metropolis Athens",
       "duration": "3 days",
       "file": "athens.md",
-      "thumbnail": "images/Milos-01.jpg"
+      "thumbnail": "images/Athens-15.jpg"
     }
   ],
   "relatedTrips": []
