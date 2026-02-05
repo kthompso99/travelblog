@@ -7,7 +7,7 @@ A modern, SEO-optimized travel blog with static site generation, interactive map
 ## ⚠️ For Developers & AI Assistants
 
 **BEFORE making code changes, READ:**
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Development guidelines (START HERE!)
+- **[CONTRIBUTING.md](docs/CONTRIBUTING.md)** - Development guidelines (START HERE!)
 - **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Configuration management (REQUIRED!)
 - **[lib/config-paths.js](lib/config-paths.js)** - Single source of truth for all paths
 
@@ -106,8 +106,6 @@ travelblog/
 │   ├── trip-intro-page.html      # Intro with map & TOC
 │   ├── trip-location-page.html   # Location with prev/next
 │   └── home-page.html
-├── build.js               # Main build script
-├── validate.js            # Configuration validator
 └── docs/                  # Documentation (see below)
 ```
 
@@ -117,16 +115,16 @@ All documentation is organized in the [`docs/`](docs/) directory:
 
 ### Getting Started
 - **[Quick Start](docs/reference/QUICKSTART.md)** - Get up and running
-- **[URL Reference](docs/reference/URL_REFERENCE.md)** - All correct URLs
+- **[File Reference](docs/reference/FILES.md)** - Every file and directory explained
 
 ### Deployment
-- **[Ready to Deploy](docs/deployment/READY_TO_DEPLOY.md)** - Deploy to GitHub Pages
+- **[Deployment Guide](docs/deployment/DEPLOYMENT.md)** - GitHub Pages, Netlify, Cloudflare, etc.
 - **[Custom Domain Setup](docs/deployment/CUSTOM_DOMAIN_DEPLOYMENT.md)** - Set up your domain
-- **[GitHub Pages Fix](docs/deployment/GITHUB_PAGES_FIX.md)** - Path configuration details
 
 ### Development
-- **[SSG Implementation](docs/implementation/SSG_IMPLEMENTATION.md)** - How SSG works
+- **[Architecture](docs/ARCHITECTURE.md)** - How config-paths.js keeps everything in sync
 - **[Testing Guide](docs/implementation/TESTING_GUIDE.md)** - Test before deploying
+- **[Smart Build](docs/implementation/SMART_BUILD.md)** - Incremental build system
 
 See **[docs/README.md](docs/README.md)** for complete documentation index.
 
@@ -190,14 +188,14 @@ Every trip requires:
          "title": "Rome",
          "place": "Rome, Italy",
          "duration": "3 days",
-         "file": "content/trips/newtrip/rome.md"
+         "file": "rome.md"
        },
        {
          "type": "location",
          "title": "Florence",
          "place": "Florence, Italy",
          "duration": "2 days",
-         "file": "content/trips/newtrip/florence.md"
+         "file": "florence.md"
        }
      ]
    }
@@ -296,7 +294,8 @@ See [Smart Build Documentation](docs/implementation/SMART_BUILD.md) for details.
 
 ## 📝 License
 
-MIT License - Feel free to use this for your own travel blog!
+Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0).
+See [LICENSE](LICENSE) for details.
 
 ## 🤝 Contributing
 

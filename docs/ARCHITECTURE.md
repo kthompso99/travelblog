@@ -229,7 +229,8 @@ TRIPS_DIR: 'data/journeys',  // ✅ One change here
 
 - [README.md](../README.md) - Main project documentation
 - [QUICKSTART.md](reference/QUICKSTART.md) - Getting started guide
-- [SSG_IMPLEMENTATION.md](implementation/SSG_IMPLEMENTATION.md) - Build system details
+- [Smart Build](implementation/SMART_BUILD.md) - Incremental build system
+- [Testing Guide](implementation/TESTING_GUIDE.md) - Pre-deploy test checklist
 
 ---
 

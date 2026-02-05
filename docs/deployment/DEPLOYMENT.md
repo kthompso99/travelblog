@@ -22,71 +22,31 @@ npm run serve
 
 ## 1. GitHub Pages (Free)
 
-### Option A: Manual Deployment
+Deployment is automated via `.github/workflows/deploy.yml`. Every push to `main`
+triggers the pipeline — no manual steps needed.
+
+### What the CI Pipeline Does
+
+1. `npm install` + `npm run validate`
+2. `npm run build` — full geocode + render
+3. Promote homepage: `mv index.html.new index.html`
+4. `npm test` — 140 navigation smoke-test assertions
+5. Copy output into a `deploy/` directory
+6. Upload via the GitHub Pages API (`actions/upload-pages-artifact` + `actions/deploy-pages`)
+
+**Access:** `https://kthompso99.github.io/travelblog/` (or custom domain when configured)
+
+### Manual Build + Push (if needed)
 
 ```bash
-# Create orphan gh-pages branch
-git checkout --orphan gh-pages
-
-# Remove all files from staging
-git rm -rf .
-
-# Copy production files
-cp index.html config.built.json .
-cp -r images . 2>/dev/null || true
-
-# Commit
-git add index.html config.built.json
-[ -d images ] && git add images/
-git commit -m "Deploy to GitHub Pages"
-
-# Push
-git push origin gh-pages --force
-
-# Switch back to main
-git checkout main
+npm run build
+mv index.html index.html.backup
+mv index.html.new index.html
+npm test                          # verify before pushing
+git add index.html about/ map/
+git commit -m "Rebuild site"
+git push origin main              # triggers CI deploy
 ```
-
-### Option B: GitHub Actions (Automated)
-
-Create `.github/workflows/deploy.yml`:
-
-```yaml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
-      
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Build
-        run: npm run build
-      
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          publish_branch: gh-pages
-          exclude_assets: '.github,node_modules,content,*.js,package*.json,README.md'
-```
-
-Then enable GitHub Pages in repository settings → Pages → Source: gh-pages branch
-
-**Access:** `https://yourusername.github.io/repo-name/`
 
 ---
 

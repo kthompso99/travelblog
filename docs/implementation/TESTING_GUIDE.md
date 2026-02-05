@@ -4,17 +4,14 @@
 
 Before deploying, test these items locally:
 
-### 1. Update Domain (Required)
+### 1. Verify Domain
+
+Confirm `config/site.json` has the correct domain (currently `https://twotravelnuts.com`).
+If it needs changing, update and rebuild:
 
 ```bash
-# Edit config/site.json
-# Change "domain": "https://example.com" to your actual domain
-nano config/site.json
-
-# Rebuild
+nano config/site.json   # update "domain"
 npm run build
-
-# Replace homepage
 mv index.html index.html.backup
 mv index.html.new index.html
 ```

@@ -5,9 +5,9 @@
 Before making any code changes, especially to build scripts:
 
 ### **Required Reading**
-1. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Configuration management (MUST READ!)
+1. **[ARCHITECTURE.md](ARCHITECTURE.md)** - Configuration management (MUST READ!)
 2. **[README.md](README.md)** - Project overview
-3. **[lib/config-paths.js](lib/config-paths.js)** - Single source of truth for paths
+3. **[lib/config-paths.js](../lib/config-paths.js)** - Single source of truth for paths
 
 ---
 
@@ -126,7 +126,10 @@ npm run validate
 # Full build
 npm run build
 
-# Smart build
+# Navigation smoke-test (140 assertions)
+npm test
+
+# Smart build (incremental)
 npm run build:smart
 
 # Serve locally and check
@@ -160,7 +163,7 @@ Only edit `lib/config-paths.js`. Never update paths in individual scripts.
 
 ## 📚 Architecture
 
-See **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** for:
+See **[ARCHITECTURE.md](ARCHITECTURE.md)** for:
 - Why we use centralized config
 - How the system works
 - Examples of safe refactoring

@@ -12,7 +12,8 @@
     "serve": "node scripts/server.js 8000",
     "add": "node scripts/add-trip.js",
     "test": "node scripts/test-nav.js",
-    "deploy-check": "node scripts/deploy-check.js"
+    "deploy-check": "node scripts/deploy-check.js",
+    "sync-docs": "node scripts/sync-docs.js"
   },
   "dependencies": {
     "marked": "^9.1.6"

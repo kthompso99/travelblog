@@ -174,7 +174,7 @@ These changes force a complete rebuild:
 - ✅ Any library file (`lib/*.js`)
 - ✅ Build script (`build.js`)
 - ✅ Site config (`config/site.json`)
-- ✅ Trip index (`config/index.json`)
+- ✅ Trip index (`content/index.json`)
 
 ### Trip-Specific Triggers
 

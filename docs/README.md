@@ -1,6 +1,6 @@
 # Documentation
 
-This directory contains all project documentation organized by topic.
+This directory contains all project documentation organised by topic.
 
 ## Quick Links
 
@@ -9,73 +9,67 @@ This directory contains all project documentation organized by topic.
 - [Quick Start Guide](reference/QUICKSTART.md) - Get up and running quickly
 
 ### 📦 Deployment
-- [Ready to Deploy](deployment/READY_TO_DEPLOY.md) - **START HERE** for deploying to GitHub Pages
+- [Deployment Guide](deployment/DEPLOYMENT.md) - GitHub Pages, Netlify, Cloudflare, and more
 - [Custom Domain Setup](deployment/CUSTOM_DOMAIN_DEPLOYMENT.md) - Set up twotravelnuts.com
-- [GitHub Pages Fix](deployment/GITHUB_PAGES_FIX.md) - How we fixed the path issues
-- [General Deployment](deployment/DEPLOYMENT.md) - Original deployment instructions
 
-### 🏗️ Implementation Details
-- [SSG Implementation](implementation/SSG_IMPLEMENTATION.md) - Complete SSG architecture guide
-- [Testing Guide](implementation/TESTING_GUIDE.md) - How to test your site
-- [Routing Test Instructions](implementation/ROUTING-TEST-INSTRUCTIONS.md) - Test routing behavior
+### 🏗️ Implementation
+- [Smart Build](implementation/SMART_BUILD.md) - Incremental build system
+- [Testing Guide](implementation/TESTING_GUIDE.md) - Pre-deploy checklist
 
-### 📋 Migration History
-- [SSG Migration Plan](migration/migration_plan_SSG.md) - Original SSG plan
-- [Lazy Loading Migration](migration/migration_plan_lazy_loading.md) - Performance optimization
-- [General Migration Plan](migration/migration_plan.md) - Overall migration strategy
-- [Migration Status](migration/MIGRATION_STATUS.md) - Current status
+### 🎨 Design
+- [Design System](Figma%20Design/FIGMA_SYSTEM_DESIGN.md) - Colour palette and component styles
+- [Visual Layout Reference](Figma%20Design/FIGMA_VISUAL_LAYOUT_REFERENCE.md) - Page layout descriptions
+- [Remaining Design Work](Figma%20Design/REMAINING.md) - Deferred features from Figma mockups
 
 ### 📚 Reference
-- [URL Reference](reference/URL_REFERENCE.md) - All correct URLs for your site
-- [Correct URLs](reference/CORRECT_URLS.md) - Quick URL guide
-- [File Structure](reference/FILES.md) - Project file organization
-- [Project Overview](reference/PROJECT.md) - Technical overview
+- [File Structure](reference/FILES.md) - Every file and directory explained
+- [Project Overview](reference/PROJECT.md) - Architecture, data flow, page types
+- [Creative Commons](reference/CREATIVE_COMMONS.md) - License details
 
 ## Directory Structure
 
 ```
 docs/
-├── README.md                    # This file
-├── deployment/                  # Deployment guides
-│   ├── READY_TO_DEPLOY.md      # Deploy to GitHub Pages
-│   ├── CUSTOM_DOMAIN_DEPLOYMENT.md
-│   ├── GITHUB_PAGES_FIX.md
-│   └── DEPLOYMENT.md
-├── implementation/              # Technical implementation
-│   ├── SSG_IMPLEMENTATION.md
-│   ├── TESTING_GUIDE.md
-│   └── ROUTING-TEST-INSTRUCTIONS.md
-├── migration/                   # Migration history & plans
-│   ├── migration_plan_SSG.md
-│   ├── migration_plan_lazy_loading.md
-│   ├── migration_plan.md
-│   └── MIGRATION_STATUS.md
-└── reference/                   # Quick reference guides
-    ├── URL_REFERENCE.md
-    ├── CORRECT_URLS.md
-    ├── FILES.md
-    ├── PROJECT.md
-    └── QUICKSTART.md
+├── README.md                         # This file
+├── ARCHITECTURE.md                   # Config management & config-paths.js
+├── CONTRIBUTING.md                   # Development guidelines
+├── deployment/
+│   ├── DEPLOYMENT.md                 # Multi-platform deployment guide
+│   └── CUSTOM_DOMAIN_DEPLOYMENT.md   # Custom domain options
+├── implementation/
+│   ├── SMART_BUILD.md                # Incremental build system
+│   └── TESTING_GUIDE.md              # Pre-deploy test checklist
+├── reference/
+│   ├── FILES.md                      # File & directory reference
+│   ├── PROJECT.md                    # Architecture overview
+│   ├── QUICKSTART.md                 # Getting started
+│   ├── CREATIVE_COMMONS.md           # License
+│   └── CreativeCommonsFooter.html    # Footer snippet
+└── Figma Design/                     # Design mockups & references
+    ├── FIGMA_SYSTEM_DESIGN.md
+    ├── FIGMA_VISUAL_LAYOUT_REFERENCE.md
+    ├── REMAINING.md
+    └── *.png                         # Mockup screenshots
 ```
 
 ## Most Useful Documents
 
 ### For Deployment
-1. **[deployment/READY_TO_DEPLOY.md](deployment/READY_TO_DEPLOY.md)** - Everything you need to deploy
-2. **[deployment/CUSTOM_DOMAIN_DEPLOYMENT.md](deployment/CUSTOM_DOMAIN_DEPLOYMENT.md)** - Set up your custom domain
+1. **[deployment/DEPLOYMENT.md](deployment/DEPLOYMENT.md)** - Multi-platform deployment guide
+2. **[deployment/CUSTOM_DOMAIN_DEPLOYMENT.md](deployment/CUSTOM_DOMAIN_DEPLOYMENT.md)** - Custom domain setup
 
 ### For Development
-1. **[implementation/SSG_IMPLEMENTATION.md](implementation/SSG_IMPLEMENTATION.md)** - How SSG works
-2. **[implementation/TESTING_GUIDE.md](implementation/TESTING_GUIDE.md)** - Test before deploying
+1. **[ARCHITECTURE.md](ARCHITECTURE.md)** - How config-paths.js keeps everything in sync
+2. **[implementation/SMART_BUILD.md](implementation/SMART_BUILD.md)** - Incremental build system
 
 ### For Reference
-1. **[reference/URL_REFERENCE.md](reference/URL_REFERENCE.md)** - All URLs you need
-2. **[reference/FILES.md](reference/FILES.md)** - Where everything is
+1. **[reference/FILES.md](reference/FILES.md)** - Where everything lives
+2. **[reference/PROJECT.md](reference/PROJECT.md)** - Technical overview and data flow
 
 ## Contributing
 
 When adding new documentation:
-- Place in appropriate subdirectory
+- Place in the appropriate subdirectory
 - Update this README with a link
 - Use clear, descriptive filenames
 - Include examples where helpful

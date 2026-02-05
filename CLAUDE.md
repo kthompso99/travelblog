@@ -1,13 +1,28 @@
 # CLAUDE.md
 
 ### How Kevin and Claude Work Together
-** Writing conventions for MD files
-Always use "Kevin" or "Claude" and avoid using pronouns
+- Writing conventions for MD files: always use "Kevin" or "Claude", avoid pronouns.
 
 ### Planning Protocol
-- ** Always plan before implementation**
-- Discuss overall strategy before writing code or making edits
-- Ask clarifying questions one at a time so Kevin can give complete answers
-- Get approval on the approach before implementation
-- Focus on understanding requirements and flow first
-- After completing each task, ask if Teresa has questions about what was just done
+- Always plan before implementation.
+- Discuss overall strategy before writing code or making edits.
+- Ask clarifying questions one at a time so Kevin can give complete answers.
+- Get approval on the approach before implementation.
+- Focus on understanding requirements and flow first.
+- After completing each task, ask if Kevin has questions about what was just done.
+
+---
+
+### Architecture Quick-Reference
+
+- **Generator:** `lib/generate-html.js` — single CommonJS file, renders all pages from templates.
+- **Path config:** `lib/config-paths.js` — single source of truth for every path. Never hardcode.
+- **Master template:** `templates/base.html` — all shared CSS, nav, footer.
+- **Trip intro template:** `templates/trip-intro-page.html` — hero injected via `{{PRE_MAIN}}` placeholder.
+- **Build:** `npm run build` (full) or `npm run build:smart` (incremental). Test: `npm test` (140 nav assertions).
+- **Homepage:** build writes `index.html.new`; must manually promote to `index.html` before committing.
+- **Colour scheme:** amber `#f59e0b` throughout — polyline, markers (SVG divIcon), button accents, nav hover.
+- **Maps:** Two Leaflet instances — global (map page) and per-trip (trip intro). Amber SVG divIcon markers. Popup hover-linger: 300 ms delay on mouseout, cancelled by mouseenter on popup. Nav z-index must stay ≥ 2000.
+- **Gitignore gotchas:** `/trips/` output is gitignored; only `index.html`, `about/`, `map/` outputs are tracked. `index.html.backup` and `.build-cache.json` also ignored. `docs/Figma Design/` has a space — quote in shell.
+- **CI:** `.github/workflows/deploy.yml` — build → promote homepage → `npm test` → copy to `deploy/` → Pages API. Note: `about/` and `robots.txt` are missing from the deploy copy step (pre-existing bug).
+- **Deferred work:** `docs/Figma Design/REMAINING.md` — homepage hero, search, filter pills, photo gallery, newsletter.
