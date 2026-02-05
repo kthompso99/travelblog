@@ -1256,7 +1256,7 @@
             var year      = card.dataset.year || '';
 
             var matchesSearch    = !query || title.includes(query) || country.includes(query) || continent.includes(query);
-            var matchesContinent = activeContinent === 'all' || continent === activeContinent;
+            var matchesContinent = activeContinent === 'all' || continent === activeContinent.toLowerCase();
             var matchesYear      = activeYear === 'all' || year === activeYear;
 
             var visible = matchesSearch && matchesContinent && matchesYear;
@@ -1267,26 +1267,26 @@
         document.getElementById('no-results').style.display = visibleCount === 0 ? 'block' : 'none';
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var searchInput = document.getElementById('trip-search');
-        if (searchInput) {
-            searchInput.addEventListener('input', applyFilters);
-        }
+    // No DOMContentLoaded needed — this script is after the cards in <body>,
+    // so the elements it references already exist.
+    var searchInput = document.getElementById('trip-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', applyFilters);
+    }
 
-        document.querySelectorAll('.filter-pill').forEach(function(pill) {
-            pill.addEventListener('click', function() {
-                // Deactivate all pills in this row, activate the clicked one
-                this.closest('.filter-pills').querySelectorAll('.filter-pill').forEach(function(p) {
-                    p.classList.remove('active');
-                });
-                this.classList.add('active');
-
-                // Update active filter state
-                if (this.dataset.filter === 'continent') activeContinent = this.dataset.value;
-                if (this.dataset.filter === 'year')      activeYear      = this.dataset.value;
-
-                applyFilters();
+    document.querySelectorAll('.filter-pill').forEach(function(pill) {
+        pill.addEventListener('click', function() {
+            // Deactivate all pills in this row, activate the clicked one
+            this.closest('.filter-pills').querySelectorAll('.filter-pill').forEach(function(p) {
+                p.classList.remove('active');
             });
+            this.classList.add('active');
+
+            // Update active filter state
+            if (this.dataset.filter === 'continent') activeContinent = this.dataset.value;
+            if (this.dataset.filter === 'year')      activeYear      = this.dataset.value;
+
+            applyFilters();
         });
     });
 })();
