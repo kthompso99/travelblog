@@ -31,34 +31,6 @@ would be new (`.btn-primary` per the Figma design guide).
 
 ---
 
-## Search Bar
-
-The Figma homepage shows a pill-shaped search input above the trip grid with
-a magnifying-glass icon. Typing filters the visible trip cards by title / tags.
-
-**What's needed:**
-- A search `<input>` in `home-page.html`, above `.destination-grid`.
-- Client-side JS: on `input` event, iterate `.destination-card` elements,
-  compare input value against title + country + tags, show/hide cards.
-- CSS: `.search-input` and `.search-icon` styles are in the Figma design guide
-  (`FIGMA_SYSTEM_DESIGN.md`). Focus ring is amber.
-
----
-
-## Filter Pills (Continent / Year)
-
-The Figma shows pill-shaped filter buttons ("All Years", continent options)
-alongside the search bar.
-
-**What's needed:**
-- Filter pill HTML in `home-page.html` next to the search input.
-- JS: on click, filter `.destination-card` elements by
-  `trip.metadata.continent` or `trip.beginDate` year. Active pill gets amber
-  background.
-- Can share the same filter loop as the search bar above.
-
----
-
 ## Photo Gallery (Masonry + Lightbox)
 
 The Figma shows a masonry photo gallery on trip pages with hover zoom,
@@ -78,6 +50,13 @@ caption slide-up, and a full-screen lightbox with prev/next navigation.
 - **JS:** Click a gallery item → open lightbox at that index. Prev/next cycle
   through the image array. Close on Esc or backdrop click.
 
+**Feasibility note:** Medium effort. The build-side image scanning and masonry
+CSS are straightforward. The lightbox is the heavy piece — using a CDN library
+like GLightbox (~25 KB, MIT) cuts it to near-zero custom JS. Only the greece
+trip has an `images/` directory currently (66 photos); the gallery should render
+conditionally so trips without images simply skip it. The build already copies
+`images/` to the output folder — no change needed there.
+
 ---
 
 ## Newsletter Signup
@@ -93,3 +72,9 @@ service (Mailchimp, ConvertKit, etc.). Decide whether to:
 If proceeding, the HTML/CSS is straightforward and the styles are in the Figma
 design guide. The form action URL would come from whichever email service is
 chosen.
+
+**Feasibility note:** The code side is trivial — an amber-styled form section
+with one `<input>` and a gradient button, pointed at a service-provided action
+URL. The real decision is picking the email service. Kevin noted that adding an
+email address is easy on the provider side, so once a service is chosen the
+integration is a single session's work.

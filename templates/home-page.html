@@ -4,10 +4,12 @@
         <p>{{SITE_DESCRIPTION}}</p>
     </div>
 
-    <h2 style="margin-bottom: 1rem;">Featured Trips</h2>
+    <h2 style="margin-bottom: 0.75rem;">Featured Trips</h2>
+    {{FILTER_BAR}}
     <div class="destination-grid" id="destination-grid">
         {{TRIP_GRID}}
     </div>
+    <p class="no-results" id="no-results">No trips match your search. Try broadening your filters.</p>
 </div>
 
 <script>
@@ -70,4 +72,57 @@
         // No click interception needed - let the browser follow href attributes naturally
         // This ensures correct relative path navigation
     });
+</script>
+
+<script>
+(function() {
+    var activeContinent = 'all';
+    var activeYear      = 'all';
+
+    function applyFilters() {
+        var query = document.getElementById('trip-search').value.toLowerCase();
+        var cards = document.querySelectorAll('.destination-card');
+        var visibleCount = 0;
+
+        cards.forEach(function(card) {
+            var title     = (card.dataset.title     || '').toLowerCase();
+            var country   = (card.dataset.country   || '').toLowerCase();
+            var continent = (card.dataset.continent || '').toLowerCase();
+            var year      = card.dataset.year || '';
+
+            var matchesSearch    = !query || title.includes(query) || country.includes(query) || continent.includes(query);
+            var matchesContinent = activeContinent === 'all' || continent === activeContinent;
+            var matchesYear      = activeYear === 'all' || year === activeYear;
+
+            var visible = matchesSearch && matchesContinent && matchesYear;
+            card.style.display = visible ? '' : 'none';
+            if (visible) visibleCount++;
+        });
+
+        document.getElementById('no-results').style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var searchInput = document.getElementById('trip-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', applyFilters);
+        }
+
+        document.querySelectorAll('.filter-pill').forEach(function(pill) {
+            pill.addEventListener('click', function() {
+                // Deactivate all pills in this row, activate the clicked one
+                this.closest('.filter-pills').querySelectorAll('.filter-pill').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                // Update active filter state
+                if (this.dataset.filter === 'continent') activeContinent = this.dataset.value;
+                if (this.dataset.filter === 'year')      activeYear      = this.dataset.value;
+
+                applyFilters();
+            });
+        });
+    });
+})();
 </script>

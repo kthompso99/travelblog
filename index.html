@@ -241,6 +241,90 @@
             margin: 0 auto;
         }
 
+        /* ─── Search & Filter Bar ─── */
+        .filter-bar {
+            margin-top: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .search-wrapper {
+            position: relative;
+            max-width: 420px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1rem;
+            height: 1rem;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.2rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            color: #1e293b;
+            background: white;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-input:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
+        }
+
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .filter-pill {
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            border: 1.5px solid #e2e8f0;
+            background: white;
+            color: #475569;
+            font-size: 0.82rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s, color 0.2s;
+        }
+
+        .filter-pill:hover {
+            border-color: #f59e0b;
+            color: #f59e0b;
+        }
+
+        .filter-pill.active {
+            background: #f59e0b;
+            border-color: #f59e0b;
+            color: white;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
         /* ─── Trip Grid & Cards ─── */
         .destination-grid {
             display: grid;
@@ -1010,12 +1094,32 @@
         <p>Exploring the world, one destination at a time</p>
     </div>
 
-    <h2 style="margin-bottom: 1rem;">Featured Trips</h2>
+    <h2 style="margin-bottom: 0.75rem;">Featured Trips</h2>
+    <div class="filter-bar">
+        <div class="search-wrapper">
+            <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l3.312 3.312a1 1 0 01-1.414 1.414l-3.312-3.312A6 6 0 012 8z" clip-rule="evenodd"></path>
+            </svg>
+            <input type="text" class="search-input" id="trip-search" placeholder="Search trips…" autocomplete="off">
+        </div>
+        <div class="filter-pills">
+            <button class="filter-pill active" data-filter="continent" data-value="all">All Continents</button>
+            <button class="filter-pill" data-filter="continent" data-value="Africa">Africa</button>
+            <button class="filter-pill" data-filter="continent" data-value="Europe">Europe</button>
+            <button class="filter-pill" data-filter="continent" data-value="North America">North America</button>
+            <button class="filter-pill" data-filter="continent" data-value="Oceania">Oceania</button>
+        </div>
+        <div class="filter-pills">
+            <button class="filter-pill active" data-filter="year" data-value="all">All Years</button>
+            <button class="filter-pill" data-filter="year" data-value="2025">2025</button>
+            <button class="filter-pill" data-filter="year" data-value="2024">2024</button>
+        </div>
+    </div>
     <div class="destination-grid" id="destination-grid">
         
-        <a href="./trips/southernafrica/" class="destination-card" data-trip-id="southernafrica">
+        <a href="./trips/southernafrica/" class="destination-card" data-trip-id="southernafrica" data-continent="Africa" data-country="South Africa" data-year="2024" data-title="Southern Africa">
             <div class="destination-card-image-wrapper">
-                <img src="./images/botswana.jpg" alt="Southern Africa" class="destination-card-image" onerror="this.remove()">
+                <img src="./images/botswana.jpg" alt="Southern Africa" class="destination-card-image" loading="lazy" onerror="this.remove()">
                 <div class="destination-card-overlay"></div>
                 <div class="destination-card-hover-overlay"></div>
                 <div class="destination-card-content">
@@ -1027,9 +1131,9 @@
                 <span class="destination-card-badge">📅 January 2024</span>
             </div>
         </a>
-        <a href="./trips/greece/" class="destination-card" data-trip-id="greece">
+        <a href="./trips/greece/" class="destination-card" data-trip-id="greece" data-continent="Europe" data-country="Greece" data-year="2025" data-title="Athens and Greek Islands">
             <div class="destination-card-image-wrapper">
-                <img src="./images/greece.jpg" alt="Athens and Greek Islands" class="destination-card-image" onerror="this.remove()">
+                <img src="./images/greece.jpg" alt="Athens and Greek Islands" class="destination-card-image" loading="lazy" onerror="this.remove()">
                 <div class="destination-card-overlay"></div>
                 <div class="destination-card-hover-overlay"></div>
                 <div class="destination-card-content">
@@ -1041,9 +1145,9 @@
                 <span class="destination-card-badge">📅 April 2025</span>
             </div>
         </a>
-        <a href="./trips/utah/" class="destination-card" data-trip-id="utah">
+        <a href="./trips/utah/" class="destination-card" data-trip-id="utah" data-continent="North America" data-country="USA" data-year="2024" data-title="Utah and the Grand Canyon">
             <div class="destination-card-image-wrapper">
-                <img src="./images/utah.jpg" alt="Utah and the Grand Canyon" class="destination-card-image" onerror="this.remove()">
+                <img src="./images/utah.jpg" alt="Utah and the Grand Canyon" class="destination-card-image" loading="lazy" onerror="this.remove()">
                 <div class="destination-card-overlay"></div>
                 <div class="destination-card-hover-overlay"></div>
                 <div class="destination-card-content">
@@ -1055,9 +1159,9 @@
                 <span class="destination-card-badge">📅 July 2024</span>
             </div>
         </a>
-        <a href="./trips/newzealand/" class="destination-card" data-trip-id="newzealand">
+        <a href="./trips/newzealand/" class="destination-card" data-trip-id="newzealand" data-continent="Oceania" data-country="New Zealand" data-year="2024" data-title="New Zealand">
             <div class="destination-card-image-wrapper">
-                <img src="./images/newzealand.jpg" alt="New Zealand" class="destination-card-image" onerror="this.remove()">
+                <img src="./images/newzealand.jpg" alt="New Zealand" class="destination-card-image" loading="lazy" onerror="this.remove()">
                 <div class="destination-card-overlay"></div>
                 <div class="destination-card-hover-overlay"></div>
                 <div class="destination-card-content">
@@ -1070,6 +1174,7 @@
             </div>
         </a>
     </div>
+    <p class="no-results" id="no-results">No trips match your search. Try broadening your filters.</p>
 </div>
 
 <script>
@@ -1132,6 +1237,59 @@
         // No click interception needed - let the browser follow href attributes naturally
         // This ensures correct relative path navigation
     });
+</script>
+
+<script>
+(function() {
+    var activeContinent = 'all';
+    var activeYear      = 'all';
+
+    function applyFilters() {
+        var query = document.getElementById('trip-search').value.toLowerCase();
+        var cards = document.querySelectorAll('.destination-card');
+        var visibleCount = 0;
+
+        cards.forEach(function(card) {
+            var title     = (card.dataset.title     || '').toLowerCase();
+            var country   = (card.dataset.country   || '').toLowerCase();
+            var continent = (card.dataset.continent || '').toLowerCase();
+            var year      = card.dataset.year || '';
+
+            var matchesSearch    = !query || title.includes(query) || country.includes(query) || continent.includes(query);
+            var matchesContinent = activeContinent === 'all' || continent === activeContinent;
+            var matchesYear      = activeYear === 'all' || year === activeYear;
+
+            var visible = matchesSearch && matchesContinent && matchesYear;
+            card.style.display = visible ? '' : 'none';
+            if (visible) visibleCount++;
+        });
+
+        document.getElementById('no-results').style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var searchInput = document.getElementById('trip-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', applyFilters);
+        }
+
+        document.querySelectorAll('.filter-pill').forEach(function(pill) {
+            pill.addEventListener('click', function() {
+                // Deactivate all pills in this row, activate the clicked one
+                this.closest('.filter-pills').querySelectorAll('.filter-pill').forEach(function(p) {
+                    p.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                // Update active filter state
+                if (this.dataset.filter === 'continent') activeContinent = this.dataset.value;
+                if (this.dataset.filter === 'year')      activeYear      = this.dataset.value;
+
+                applyFilters();
+            });
+        });
+    });
+})();
 </script>
 
     </main>

@@ -212,6 +212,90 @@
             margin: 0 auto;
         }
 
+        /* ─── Search & Filter Bar ─── */
+        .filter-bar {
+            margin-top: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .search-wrapper {
+            position: relative;
+            max-width: 420px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1rem;
+            height: 1rem;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.2rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            color: #1e293b;
+            background: white;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-input:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
+        }
+
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .filter-pill {
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            border: 1.5px solid #e2e8f0;
+            background: white;
+            color: #475569;
+            font-size: 0.82rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s, color 0.2s;
+        }
+
+        .filter-pill:hover {
+            border-color: #f59e0b;
+            color: #f59e0b;
+        }
+
+        .filter-pill.active {
+            background: #f59e0b;
+            border-color: #f59e0b;
+            color: white;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
         /* ─── Trip Grid & Cards ─── */
         .destination-grid {
             display: grid;
