@@ -480,7 +480,12 @@
             letter-spacing: -0.02em;
         }
 
-        /* ─── Leaflet Popup ─── */
+        /* ─── Leaflet Icons + Popup ─── */
+        .leaflet-div-icon {
+            background: none;
+            border: none;
+        }
+
         .leaflet-popup-content {
             margin: 0;
             padding: 0;
@@ -1182,6 +1187,14 @@
   ]
 };
     const APP_BASE = '/';
+    let hoverTimeout = null;
+    const amberIcon = L.divIcon({
+        className: '',
+        html: '<svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12c0 9 12 24 12 24s12-15 12-24C24 5.373 18.627 0 12 0z" fill="#f59e0b"/><circle cx="12" cy="12" r="5" fill="white"/></svg>',
+        iconSize: [24, 36],
+        iconAnchor: [12, 36],
+        popupAnchor: [0, -36]
+    });
 
     function initMap() {
         if (!map) {
@@ -1199,7 +1212,7 @@
         config.trips.forEach(dest => {
             if (!dest.mapCenter || !dest.mapCenter.coordinates) return;
 
-            const marker = L.marker([dest.mapCenter.coordinates.lat, dest.mapCenter.coordinates.lng])
+            const marker = L.marker([dest.mapCenter.coordinates.lat, dest.mapCenter.coordinates.lng], { icon: amberIcon })
                 .addTo(map);
 
             const popupContent = `
@@ -1217,12 +1230,23 @@
                 className: 'custom-popup'
             });
 
-            marker.on('mouseover', function(e) {
+            marker.on('mouseover', function() {
+                if (hoverTimeout) { clearTimeout(hoverTimeout); hoverTimeout = null; }
                 this.openPopup();
             });
 
-            marker.on('mouseout', function(e) {
-                this.closePopup();
+            marker.on('mouseout', function() {
+                hoverTimeout = setTimeout(() => this.closePopup(), 300);
+            });
+
+            marker.on('popupopen', function(e) {
+                var container = e.popup.getContainer();
+                container.addEventListener('mouseenter', function() {
+                    if (hoverTimeout) { clearTimeout(hoverTimeout); hoverTimeout = null; }
+                });
+                container.addEventListener('mouseleave', function() {
+                    hoverTimeout = setTimeout(() => marker.closePopup(), 300);
+                });
             });
 
             marker.on('click', () => {
