@@ -46,6 +46,8 @@ jobs:
           [ -d images ] && cp -r images deploy/ || true
           [ -d trips ] && cp -r trips deploy/ || true
           [ -d map ] && cp -r map deploy/ || true
+          [ -d about ] && cp -r about deploy/ || true
+          [ -f robots.txt ] && cp robots.txt deploy/ || true
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
