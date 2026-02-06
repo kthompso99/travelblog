@@ -6,6 +6,10 @@ config.built.json
 /trips/
 .build-cache.json
 index.html.backup
+index.html.new
+
+# API Keys
+config/google-maps.json
 
 # Dependencies
 node_modules/

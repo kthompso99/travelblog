@@ -7,8 +7,7 @@
     <title>Map | Two Travel Nuts</title>
     <meta name="description" content="Explore all our travel destinations on an interactive world map.">
     <link rel="canonical" href="https://twotravelnuts.com/map/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <!-- Google Maps API loaded per-page in map generation code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
     <style>
         /* ─── Reset & Base ─── */
@@ -564,15 +563,24 @@
             letter-spacing: -0.02em;
         }
 
-        /* ─── Leaflet Icons + Popup ─── */
-        .leaflet-div-icon {
-            background: none;
-            border: none;
-        }
-
+        /* ─── Map Popup Styling ─── */
         .leaflet-popup-content {
             margin: 0;
             padding: 0;
+        }
+
+        /* Google Maps InfoWindow overrides */
+        .gm-style-iw-c {
+            padding: 0 !important;
+            border-radius: 8px !important;
+        }
+
+        .gm-style-iw-d {
+            overflow: auto !important;
+        }
+
+        .gm-style .gm-style-iw-tc::after {
+            background: none !important;
         }
 
         .marker-popup {
@@ -1163,6 +1171,8 @@
     </div>
 </div>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhwkqvZm9TBWuYaZt26Hq0wVRaNb4eBOA"></script>
+
 <script>
     let map = null;
     let markers = [];
@@ -1393,35 +1403,84 @@
   ]
 };
     const APP_BASE = '/';
-    let hoverTimeout = null;
-    const amberIcon = L.divIcon({
-        className: '',
-        html: '<svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12c0 9 12 24 12 24s12-15 12-24C24 5.373 18.627 0 12 0z" fill="#f59e0b"/><circle cx="12" cy="12" r="5" fill="white"/></svg>',
-        iconSize: [24, 36],
-        iconAnchor: [12, 36],
-        popupAnchor: [0, -36]
-    });
 
     function initMap() {
-        if (!map) {
-            map = L.map('map').setView([20, 0], 2);
+        try {
+            console.log('Initializing Google Maps...');
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
-                maxZoom: 18
-            }).addTo(map);
+            if (!map) {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: 20, lng: 0 },
+                    zoom: 2,
+                    mapTypeId: 'roadmap',
+                    zoomControl: true,
+                    mapTypeControl: false,
+                    streetViewControl: false,
+                    fullscreenControl: true
+                });
+                console.log('Map instance created');
+            }
+        } catch (error) {
+            console.error('Error initializing map:', error);
+            const mapContainer = document.getElementById('map');
+            if (mapContainer) {
+                mapContainer.innerHTML = '<div style="padding: 2rem; text-align: center; color: #dc2626;"><h3>Map Error</h3><p>' + error.message + '</p><p style="font-size: 0.875rem; margin-top: 1rem;">Check browser console for details.</p></div>';
+            }
+            return;
         }
 
-        markers.forEach(marker => map.removeLayer(marker));
+        markers.forEach(marker => marker.setMap(null));
         markers = [];
+
+        // Amber teardrop icon (SVG data URI)
+        const markerIcon = {
+            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+                '<svg width="24" height="36" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">' +
+                '<path d="M12 0C5.373 0 0 5.373 0 12c0 9 12 24 12 24s12-15 12-24C24 5.373 18.627 0 12 0z" fill="#f59e0b"/>' +
+                '<circle cx="12" cy="12" r="5" fill="white"/>' +
+                '</svg>'
+            ),
+            scaledSize: new google.maps.Size(24, 36),
+            anchor: new google.maps.Point(12, 36)
+        };
+
+        // Create single shared InfoWindow for all markers
+        const infoWindow = new google.maps.InfoWindow({
+            pixelOffset: new google.maps.Size(0, -36)
+        });
+
+        let hoverTimeout = null;
+        let mouseOverInfoWindow = false;
+
+        // Listen for InfoWindow DOM ready to attach hover listeners
+        google.maps.event.addListener(infoWindow, 'domready', () => {
+            const iwOuter = document.querySelector('.gm-style-iw-c');
+            if (iwOuter) {
+                iwOuter.addEventListener('mouseenter', () => {
+                    mouseOverInfoWindow = true;
+                    if (hoverTimeout) clearTimeout(hoverTimeout);
+                });
+                iwOuter.addEventListener('mouseleave', () => {
+                    mouseOverInfoWindow = false;
+                    hoverTimeout = setTimeout(() => infoWindow.close(), 300);
+                });
+            }
+        });
 
         config.trips.forEach(dest => {
             if (!dest.mapCenter || !dest.mapCenter.coordinates) return;
 
-            const marker = L.marker([dest.mapCenter.coordinates.lat, dest.mapCenter.coordinates.lng], { icon: amberIcon })
-                .addTo(map);
+            const marker = new google.maps.Marker({
+                map: map,
+                position: {
+                    lat: dest.mapCenter.coordinates.lat,
+                    lng: dest.mapCenter.coordinates.lng
+                },
+                icon: markerIcon,
+                title: dest.title
+            });
 
-            const popupContent = `
+            const content = `
                 <div class="marker-popup">
                     ${dest.thumbnail ? '<img src="../' + dest.thumbnail + '" alt="' + dest.title + '" class="marker-popup-image" onerror="this.remove()">' : ''}
                     <div class="marker-popup-content">
@@ -1431,31 +1490,22 @@
                 </div>
             `;
 
-            marker.bindPopup(popupContent, {
-                maxWidth: 250,
-                className: 'custom-popup'
+            marker.addListener('mouseover', () => {
+                if (hoverTimeout) clearTimeout(hoverTimeout);
+                mouseOverInfoWindow = false;
+                infoWindow.setContent(content);
+                infoWindow.open(map, marker);
             });
 
-            marker.on('mouseover', function() {
-                if (hoverTimeout) { clearTimeout(hoverTimeout); hoverTimeout = null; }
-                this.openPopup();
+            marker.addListener('mouseout', () => {
+                hoverTimeout = setTimeout(() => {
+                    if (!mouseOverInfoWindow) {
+                        infoWindow.close();
+                    }
+                }, 300);
             });
 
-            marker.on('mouseout', function() {
-                hoverTimeout = setTimeout(() => this.closePopup(), 300);
-            });
-
-            marker.on('popupopen', function(e) {
-                var container = e.popup.getContainer();
-                container.addEventListener('mouseenter', function() {
-                    if (hoverTimeout) { clearTimeout(hoverTimeout); hoverTimeout = null; }
-                });
-                container.addEventListener('mouseleave', function() {
-                    hoverTimeout = setTimeout(() => marker.closePopup(), 300);
-                });
-            });
-
-            marker.on('click', () => {
+            marker.addListener('click', () => {
                 window.location.href = `../trips/${dest.slug}/`;
             });
 
@@ -1463,14 +1513,11 @@
         });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMap);
+    } else {
         initMap();
-        setTimeout(() => {
-            if (map) {
-                map.invalidateSize();
-            }
-        }, 100);
-    });
+    }
 </script>
     </main>
 
