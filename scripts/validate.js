@@ -139,31 +139,40 @@ function validate() {
         }
 
         if (tripConfig.content.length === 0) {
-            warning(`${prefix}: No locations defined in content array`);
+            warning(`${prefix}: No content items defined in content array`);
         }
 
-        // Validate each location
-        tripConfig.content.forEach((location, locIndex) => {
-            const locPrefix = `${prefix}, Location #${locIndex + 1} (${location.title || 'unnamed'})`;
+        // Validate each content item (article or location)
+        tripConfig.content.forEach((item, itemIndex) => {
+            const itemType = item.type || 'location';
+            const itemLabel = itemType === 'article' ? 'Article' : 'Location';
+            const itemPrefix = `${prefix}, ${itemLabel} #${itemIndex + 1} (${item.title || 'unnamed'})`;
 
-            if (!location.type) warning(`${locPrefix}: Missing "type" field`);
-            if (!location.title) error(`${locPrefix}: Missing "title" field`);
-            if (!location.place) warning(`${locPrefix}: Missing "place" field for geocoding`);
-            if (!location.duration) warning(`${locPrefix}: Missing "duration" field`);
+            // Common validations for both types
+            if (!item.type) warning(`${itemPrefix}: Missing "type" field`);
+            if (!item.title) error(`${itemPrefix}: Missing "title" field`);
+            if (!item.file) {
+                error(`${itemPrefix}: Missing "file" field`);
+            }
 
-            // Check location markdown file (path is relative to trip dir)
-            if (!location.file) {
-                error(`${locPrefix}: Missing "file" field`);
-            } else {
-                const filePath = path.join(tripDir, location.file);
+            // Type-specific validations
+            if (itemType === 'location') {
+                if (!item.place) warning(`${itemPrefix}: Missing "place" field for geocoding`);
+                if (!item.duration) warning(`${itemPrefix}: Missing "duration" field`);
+            }
+            // Articles have no type-specific required fields beyond title and file
+
+            // File existence check (common to both)
+            if (item.file) {
+                const filePath = path.join(tripDir, item.file);
                 if (!fs.existsSync(filePath)) {
-                    error(`${locPrefix}: Content file not found: ${filePath}`);
+                    error(`${itemPrefix}: Content file not found: ${filePath}`);
                 } else {
                     const stats = fs.statSync(filePath);
                     if (stats.size === 0) {
-                        warning(`${locPrefix}: Content file is empty: ${filePath}`);
+                        warning(`${itemPrefix}: Content file is empty: ${filePath}`);
                     } else {
-                        log(`${locPrefix}: Content file OK (${stats.size} bytes)`);
+                        log(`${itemPrefix}: Content file OK (${stats.size} bytes)`);
                     }
                 }
             }

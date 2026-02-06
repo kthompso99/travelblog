@@ -20,7 +20,7 @@ try {
 }
 
 // Load HTML generators (paths relative to project root since script runs from root)
-const { generateHomepage, generateTripPage, generateTripIntroPage, generateTripLocationPage, generateMapPage, generateAboutPage } = require('../lib/generate-html');
+const { generateHomepage, generateTripPage, generateTripIntroPage, generateTripLocationPage, generateTripArticlePage, generateMapPage, generateAboutPage } = require('../lib/generate-html');
 const { generateSitemap, generateRobotsTxt } = require('../lib/generate-sitemap');
 
 // Import centralized configuration paths
@@ -434,8 +434,9 @@ async function build() {
                 fs.mkdirSync(tripDir, { recursive: true });
             }
 
-            // Get locations for this trip
-            const locations = tripContentData.content.filter(item => item.type === 'location');
+            // Get all content items (articles and locations) and extract locations for map
+            const allContent = tripContentData.content;
+            const locations = allContent.filter(item => item.type === 'location');
 
             console.log(`   [${i + 1}/${processedTrips.length}] ${tripMetadata.title}`);
 
@@ -443,22 +444,32 @@ async function build() {
             tripMetadata.introHtml = tripContentData.introHtml;
 
             // Generate trip intro page (index.html)
-            const introHtml = generateTripIntroPage(tripMetadata, locations, output, domain);
+            const introHtml = generateTripIntroPage(tripMetadata, allContent, output, domain);
             const introHtmlPath = path.join(tripDir, 'index.html');
             fs.writeFileSync(introHtmlPath, introHtml, 'utf8');
             const introSize = fs.statSync(introHtmlPath).size;
             htmlSizeTotal += introSize;
             console.log(`      ✅ Intro page → ${introHtmlPath} (${(introSize / 1024).toFixed(1)}KB)`);
 
-            // Generate individual location pages
-            locations.forEach((location, locationIndex) => {
-                const locationSlug = location.title.toLowerCase().replace(/\s+/g, '-');
-                const locationHtml = generateTripLocationPage(tripMetadata, location, locations, locationIndex, output, domain);
-                const locationHtmlPath = path.join(tripDir, `${locationSlug}.html`);
-                fs.writeFileSync(locationHtmlPath, locationHtml, 'utf8');
-                const locationSize = fs.statSync(locationHtmlPath).size;
-                htmlSizeTotal += locationSize;
-                console.log(`      ✅ ${location.title} → ${locationHtmlPath} (${(locationSize / 1024).toFixed(1)}KB)`);
+            // Generate pages for all content items (articles and locations)
+            allContent.forEach((item, itemIndex) => {
+                const itemSlug = item.title.toLowerCase().replace(/\s+/g, '-');
+                const itemHtmlPath = path.join(tripDir, `${itemSlug}.html`);
+
+                let itemHtml;
+                if (item.type === 'location') {
+                    itemHtml = generateTripLocationPage(tripMetadata, item, allContent, itemIndex, output, domain);
+                } else if (item.type === 'article') {
+                    itemHtml = generateTripArticlePage(tripMetadata, item, allContent, itemIndex, output, domain);
+                } else {
+                    console.warn(`      ⚠️  Unknown content type "${item.type}" for ${item.title} - skipping`);
+                    return;
+                }
+
+                fs.writeFileSync(itemHtmlPath, itemHtml, 'utf8');
+                const itemSize = fs.statSync(itemHtmlPath).size;
+                htmlSizeTotal += itemSize;
+                console.log(`      ✅ ${item.title} → ${itemHtmlPath} (${(itemSize / 1024).toFixed(1)}KB)`);
             });
 
             // Copy trip images directory if it exists

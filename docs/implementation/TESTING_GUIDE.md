@@ -16,7 +16,33 @@ mv index.html index.html.backup
 mv index.html.new index.html
 ```
 
-### 2. Start Local Server
+### 2. Run Automated Tests
+
+The site includes a comprehensive automated test suite:
+
+```bash
+npm test
+```
+
+**What it tests:**
+
+- **Navigation smoke-test** (`scripts/test-nav.js`): 180 assertions
+  - Validates CSS structure for cascading dropdown menus
+  - Checks header z-index > 1000 (must beat Leaflet map controls)
+  - Ensures dropdown overflow settings don't clip submenus
+  - Verifies all HTML files have proper navigation structure
+  - Tests run against all generated pages (currently 18 files)
+
+- **Filter smoke-test** (`scripts/test-filter.js`): 28 assertions (headless DOM via jsdom)
+  - Validates homepage search bar filtering by title/country/continent
+  - Tests continent and year filter pills
+  - Verifies pills compose correctly (AND logic)
+  - Checks no-results message display
+  - Data-driven: derives expected counts from card data attributes (stays correct as trips are added)
+
+**All tests must pass before deploying.** The CI pipeline runs these automatically on every push to main.
+
+### 3. Start Local Server
 
 ```bash
 npm run serve
@@ -24,7 +50,7 @@ npm run serve
 
 Server runs on http://localhost:8000
 
-### 3. Test Static Pages
+### 4. Test Static Pages
 
 Open in browser and verify content loads:
 
@@ -36,7 +62,7 @@ Open in browser and verify content loads:
 - [ ] Map page: http://localhost:8000/map/
 - [ ] About page: http://localhost:8000/about/
 
-### 4. Verify SEO Metadata
+### 5. Verify SEO Metadata
 
 For each trip page, view page source (right-click → View Page Source):
 
@@ -57,7 +83,7 @@ For each trip page, view page source (right-click → View Page Source):
 <meta property="og:image" content="https://your-domain.com/images/greece.jpg">
 ```
 
-### 5. Test Navigation
+### 6. Test Navigation
 
 - [ ] Click trip cards on homepage → loads trip page
 - [ ] Click "Trips" menu → shows continent dropdown
@@ -66,13 +92,13 @@ For each trip page, view page source (right-click → View Page Source):
 - [ ] Click "About" → shows about page
 - [ ] Click "Back to Home" → returns to homepage
 
-### 6. Test Responsive Design
+### 7. Test Responsive Design
 
 - [ ] Resize browser window → layout adapts
 - [ ] Test on mobile device or mobile emulator
 - [ ] Navigation menu works on mobile
 
-### 7. Test with JavaScript Disabled
+### 8. Test with JavaScript Disabled
 
 1. Disable JavaScript in browser
 2. Visit homepage → should load normally
@@ -81,7 +107,7 @@ For each trip page, view page source (right-click → View Page Source):
 
 This tests progressive enhancement!
 
-### 8. Validate Generated Files
+### 9. Validate Generated Files
 
 Check that files were created:
 
@@ -99,7 +125,7 @@ cat robots.txt
 head -50 index.html
 ```
 
-### 9. Online SEO Validation (After Domain Update)
+### 10. Online SEO Validation (After Domain Update)
 
 Once you've updated the domain and deployed:
 
@@ -127,7 +153,7 @@ Once you've updated the domain and deployed:
 3. Should validate without errors
 4. Should list all 7 URLs (home, map, about, 4 trips)
 
-### 10. Performance Testing
+### 11. Performance Testing
 
 Check page load speed:
 
@@ -139,7 +165,7 @@ Check page load speed:
    - Largest Contentful Paint
    - Cumulative Layout Shift
 
-### 11. Social Media Preview Testing
+### 12. Social Media Preview Testing
 
 Share a trip URL on:
 
@@ -155,7 +181,7 @@ https://developers.facebook.com/tools/debug/
 **LinkedIn:**
 https://www.linkedin.com/post-inspector/
 
-### 12. Browser Testing
+### 13. Browser Testing
 
 Test in multiple browsers:
 

@@ -19,7 +19,8 @@
 - **Path config:** `lib/config-paths.js` — single source of truth for every path. Never hardcode.
 - **Master template:** `templates/base.html` — all shared CSS, nav, footer.
 - **Trip intro template:** `templates/trip-intro-page.html` — hero injected via `{{PRE_MAIN}}` placeholder.
-- **Build:** `npm run build` (full) or `npm run build:smart` (incremental). Test: `npm test` (140 nav + 28 filter assertions via jsdom).
+- **Content types:** Trips support two content types — `location` (has coordinates, appears on map) and `article` (text-only, like "Tips"). Both appear in submenu navigation and prev/next chains. Articles don't require `place` or `duration` fields.
+- **Build:** `npm run build` (full) or `npm run build:smart` (incremental). Test: `npm test` (180 nav + 28 filter assertions via jsdom).
 - **Homepage:** build writes `index.html.new`; must manually promote to `index.html` before committing.
 - **Colour scheme:** amber `#f59e0b` throughout — polyline, markers (SVG divIcon), button accents, nav hover.
 - **Maps:** Two Leaflet instances — global (map page) and per-trip (trip intro). Amber SVG divIcon markers. Popup hover-linger: 300 ms delay on mouseout, cancelled by mouseenter on popup. Nav z-index must stay ≥ 2000.

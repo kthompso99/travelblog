@@ -78,14 +78,27 @@ const server = http.createServer((req, res) => {
                 if (!indexErr && indexStats.isFile()) {
                     serveFile(res, indexPath);
                 } else {
-                    // No index.html in directory - serve root index.html for SPA routing
-                    serveFile(res, path.join(PUBLIC_DIR, 'index.html'));
+                    // No index.html in directory - serve 404
+                    res.writeHead(404, { 'Content-Type': 'text/html' });
+                    fs.readFile(path.join(PUBLIC_DIR, '404.html'), (err, data) => {
+                        if (err) {
+                            res.end('<h1>404 - Page Not Found</h1>');
+                        } else {
+                            res.end(data);
+                        }
+                    });
                 }
             });
         } else {
-            // Path doesn't exist - this is a client-side route
-            // Serve index.html and let the client-side router handle it
-            serveFile(res, path.join(PUBLIC_DIR, 'index.html'));
+            // Path doesn't exist - serve 404
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            fs.readFile(path.join(PUBLIC_DIR, '404.html'), (err, data) => {
+                if (err) {
+                    res.end('<h1>404 - Page Not Found</h1>');
+                } else {
+                    res.end(data);
+                }
+            });
         }
     });
 });
@@ -97,14 +110,14 @@ server.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}/`);
     console.log(`Server running at http://127.0.0.1:${PORT}/`);
     console.log('');
-    console.log('SPA Routing enabled - all routes serve index.html');
+    console.log('Static site serving with proper 404 handling');
     console.log('');
     console.log('Test URLs:');
     console.log(`  Home:      http://localhost:${PORT}/`);
-    console.log(`  Map:       http://localhost:${PORT}/map`);
-    console.log(`  About:     http://localhost:${PORT}/about`);
-    console.log(`  Greece:    http://localhost:${PORT}/trip/greece`);
-    console.log(`  S. Africa: http://localhost:${PORT}/trip/southernafrica`);
+    console.log(`  Map:       http://localhost:${PORT}/map/`);
+    console.log(`  About:     http://localhost:${PORT}/about/`);
+    console.log(`  Greece:    http://localhost:${PORT}/trips/greece/`);
+    console.log(`  S. Africa: http://localhost:${PORT}/trips/southernafrica/`);
     console.log('');
     console.log('Press Ctrl+C to stop');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');

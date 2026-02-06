@@ -22,6 +22,11 @@
   "mapCenter": "Paros",
   "content": [
     {
+      "type": "article",
+      "title": "Tips",
+      "file": "tips.md"
+    },
+     {
       "type": "location",
       "title": "Milos",
       "place": "Milos Greece",
@@ -37,6 +42,14 @@
       "file": "santorini.md",
       "thumbnail": "images/Santorini-02.jpg"
     },
+      {
+      "type": "location",
+      "title": "Naxos",
+      "place": "Naxos Greece",
+      "duration": "5 hours",
+      "file": "naxos.md",
+      "thumbnail": "images/Naxos-02.jpg"
+    },
     {
       "type": "location",
       "title": "Paros",
@@ -44,6 +57,22 @@
       "duration": "3 days",
       "file": "paros.md",
       "thumbnail": "images/Paros-08.jpg"
+    },
+      {
+      "type": "location",
+      "title": "Delos",
+      "place": "Delos Greece",
+      "duration": "2 hours",
+      "file": "delos.md",
+      "thumbnail": "images/Delos-03.jpg"
+    },
+      {
+      "type": "location",
+      "title": "Mykonos",
+      "place": "Mykonos Greece",
+      "duration": "2 hours",
+      "file": "mykonos.md",
+      "thumbnail": "images/Mykonos-01.jpg"
     },
     {
       "type": "location",

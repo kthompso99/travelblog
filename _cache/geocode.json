@@ -26,5 +26,17 @@
   "Santorini Greece": {
     "lat": 36.4071112,
     "lng": 25.4566637
+  },
+  "Naxos Greece": {
+    "lat": 37.0600105,
+    "lng": 25.4707567
+  },
+  "Delos Greece": {
+    "lat": 37.39089,
+    "lng": 25.2717388
+  },
+  "Mykonos Greece": {
+    "lat": 37.4513936,
+    "lng": 25.3923149
   }
 }
