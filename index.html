@@ -1117,7 +1117,7 @@
     </div>
     <div class="destination-grid" id="destination-grid">
         
-        <a href="./trips/southernafrica/" class="destination-card" data-trip-id="southernafrica" data-continent="Africa" data-country="South Africa" data-year="2025" data-title="Southern Africa">
+        <a href="./trips/southernafrica/" class="destination-card" data-trip-id="southernafrica" data-continent="Africa" data-country="South Africa" data-countries="South Africa, Botswana, Zimbabwe" data-year="2025" data-title="Southern Africa">
             <div class="destination-card-image-wrapper">
                 <img src="./images/botswana.jpg" alt="Southern Africa" class="destination-card-image" loading="lazy" onerror="this.remove()">
                 <div class="destination-card-overlay"></div>
@@ -1131,7 +1131,7 @@
                 <span class="destination-card-badge">📅 August 2025</span>
             </div>
         </a>
-        <a href="./trips/greece/" class="destination-card" data-trip-id="greece" data-continent="Europe" data-country="Greece" data-year="2025" data-title="Athens and Greek Islands">
+        <a href="./trips/greece/" class="destination-card" data-trip-id="greece" data-continent="Europe" data-country="Greece" data-countries="Greece" data-year="2025" data-title="Athens and Greek Islands">
             <div class="destination-card-image-wrapper">
                 <img src="./images/greece.jpg" alt="Athens and Greek Islands" class="destination-card-image" loading="lazy" onerror="this.remove()">
                 <div class="destination-card-overlay"></div>
@@ -1145,7 +1145,7 @@
                 <span class="destination-card-badge">📅 April 2025</span>
             </div>
         </a>
-        <a href="./trips/utah/" class="destination-card" data-trip-id="utah" data-continent="North America" data-country="USA" data-year="2024" data-title="Utah and the Grand Canyon">
+        <a href="./trips/utah/" class="destination-card" data-trip-id="utah" data-continent="North America" data-country="USA" data-countries="USA" data-year="2024" data-title="Utah and the Grand Canyon">
             <div class="destination-card-image-wrapper">
                 <img src="./images/utah.jpg" alt="Utah and the Grand Canyon" class="destination-card-image" loading="lazy" onerror="this.remove()">
                 <div class="destination-card-overlay"></div>
@@ -1159,7 +1159,7 @@
                 <span class="destination-card-badge">📅 October 2024</span>
             </div>
         </a>
-        <a href="./trips/newzealand/" class="destination-card" data-trip-id="newzealand" data-continent="Oceania" data-country="New Zealand" data-year="2025" data-title="New Zealand">
+        <a href="./trips/newzealand/" class="destination-card" data-trip-id="newzealand" data-continent="Oceania" data-country="New Zealand" data-countries="New Zealand" data-year="2025" data-title="New Zealand">
             <div class="destination-card-image-wrapper">
                 <img src="./images/newzealand.jpg" alt="New Zealand" class="destination-card-image" loading="lazy" onerror="this.remove()">
                 <div class="destination-card-overlay"></div>
@@ -1252,10 +1252,11 @@
         cards.forEach(function(card) {
             var title     = (card.dataset.title     || '').toLowerCase();
             var country   = (card.dataset.country   || '').toLowerCase();
+            var countries = (card.dataset.countries || '').toLowerCase();
             var continent = (card.dataset.continent || '').toLowerCase();
             var year      = card.dataset.year || '';
 
-            var matchesSearch    = !query || title.includes(query) || country.includes(query) || continent.includes(query);
+            var matchesSearch    = !query || title.includes(query) || country.includes(query) || countries.includes(query) || continent.includes(query);
             var matchesContinent = activeContinent === 'all' || continent === activeContinent.toLowerCase();
             var matchesYear      = activeYear === 'all' || year === activeYear;
 

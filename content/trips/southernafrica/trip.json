@@ -9,6 +9,7 @@
     "year": 2025,
     "continent": "Africa",
     "country": "South Africa",
+    "countries": ["South Africa", "Botswana", "Zimbabwe"],
     "tripType": [
       "adventure"
     ],

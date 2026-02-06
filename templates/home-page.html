@@ -87,10 +87,11 @@
         cards.forEach(function(card) {
             var title     = (card.dataset.title     || '').toLowerCase();
             var country   = (card.dataset.country   || '').toLowerCase();
+            var countries = (card.dataset.countries || '').toLowerCase();
             var continent = (card.dataset.continent || '').toLowerCase();
             var year      = card.dataset.year || '';
 
-            var matchesSearch    = !query || title.includes(query) || country.includes(query) || continent.includes(query);
+            var matchesSearch    = !query || title.includes(query) || country.includes(query) || countries.includes(query) || continent.includes(query);
             var matchesContinent = activeContinent === 'all' || continent === activeContinent.toLowerCase();
             var matchesYear      = activeYear === 'all' || year === activeYear;
 
