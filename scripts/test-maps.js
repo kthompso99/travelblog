@@ -206,7 +206,7 @@ async function testTripMap(browser) {
     });
 
     try {
-        await page.goto(`${BASE_URL}/trips/greece/index.html`, {
+        await page.goto(`${BASE_URL}/trips/greece/map.html`, {
             waitUntil: 'networkidle0',
             timeout: 30000
         });
@@ -220,7 +220,7 @@ async function testTripMap(browser) {
         await new Promise(resolve => setTimeout(resolve, 3000));
 
         const mapHasContent = await page.evaluate(() => {
-            const mapDiv = document.getElementById('trip-map');
+            const mapDiv = document.getElementById('trip-map-full');
             if (!mapDiv) return false;
 
             const hasGoogleContent = mapDiv.querySelector('.gm-style') !== null;
@@ -254,14 +254,69 @@ async function testTripMap(browser) {
             console.log(`  ✅ Found ${mapHasContent.markerCount} markers on trip map`);
         }
 
+        // Test hover card (InfoWindow) content
+        console.log('  🔍 Testing hover card content...');
+        const hoverTest = await page.evaluate(() => {
+            return new Promise((resolve) => {
+                // Find first marker button
+                const markerButton = document.querySelector('[role="button"][aria-label]');
+                if (!markerButton) {
+                    resolve({ found: false, error: 'No marker button found' });
+                    return;
+                }
+
+                // Trigger mouseover event
+                const mouseoverEvent = new MouseEvent('mouseover', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                });
+                markerButton.dispatchEvent(mouseoverEvent);
+
+                // Wait a bit for InfoWindow to appear
+                setTimeout(() => {
+                    // Check for InfoWindow content
+                    const infoWindow = document.querySelector('.gm-style-iw');
+                    if (!infoWindow) {
+                        resolve({ found: false, error: 'InfoWindow not found after hover' });
+                        return;
+                    }
+
+                    const content = infoWindow.textContent || '';
+                    const hasUndefined = content.toLowerCase().includes('undefined');
+                    const markerPopupTitle = infoWindow.querySelector('.marker-popup-title');
+                    const title = markerPopupTitle ? markerPopupTitle.textContent : '';
+
+                    resolve({
+                        found: true,
+                        hasUndefined,
+                        title,
+                        contentPreview: content.substring(0, 100)
+                    });
+                }, 500);
+            });
+        });
+
+        if (!hoverTest.found) {
+            console.error(`  ❌ Hover test failed: ${hoverTest.error}`);
+        } else if (hoverTest.hasUndefined) {
+            console.error(`  ❌ InfoWindow contains "undefined": ${hoverTest.contentPreview}`);
+            throw new Error('InfoWindow hover card shows "undefined"');
+        } else if (!hoverTest.title) {
+            console.error('  ❌ InfoWindow has no title');
+            throw new Error('InfoWindow missing location title');
+        } else {
+            console.log(`  ✅ Hover card shows location: "${hoverTest.title}"`);
+        }
+
         const errorInMap = await page.evaluate(() => {
-            const mapDiv = document.getElementById('trip-map');
+            const mapDiv = document.getElementById('trip-map-full');
             return mapDiv && mapDiv.textContent.includes('Map Error');
         });
 
         if (errorInMap) {
             const errorText = await page.evaluate(() => {
-                return document.getElementById('trip-map').textContent;
+                return document.getElementById('trip-map-full').textContent;
             });
             throw new Error(`Trip map shows error: ${errorText}`);
         }

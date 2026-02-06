@@ -20,7 +20,7 @@ try {
 }
 
 // Load HTML generators (paths relative to project root since script runs from root)
-const { generateHomepage, generateTripPage, generateTripIntroPage, generateTripLocationPage, generateTripArticlePage, generateMapPage, generateAboutPage } = require('../lib/generate-html');
+const { generateHomepage, generateTripPage, generateTripIntroPage, generateTripLocationPage, generateTripArticlePage, generateTripMapPage, generateMapPage, generateAboutPage } = require('../lib/generate-html');
 const { generateSitemap, generateRobotsTxt } = require('../lib/generate-sitemap');
 
 // Import centralized configuration paths
@@ -483,6 +483,14 @@ async function build() {
             const introSize = fs.statSync(introHtmlPath).size;
             htmlSizeTotal += introSize;
             console.log(`      ✅ Intro page → ${introHtmlPath} (${(introSize / 1024).toFixed(1)}KB)`);
+
+            // Generate trip map page (map.html)
+            const mapPageHtml = generateTripMapPage(tripMetadata, allContent, output, domain);
+            const mapPageHtmlPath = path.join(tripDir, 'map.html');
+            fs.writeFileSync(mapPageHtmlPath, mapPageHtml, 'utf8');
+            const mapPageSize = fs.statSync(mapPageHtmlPath).size;
+            htmlSizeTotal += mapPageSize;
+            console.log(`      ✅ Map page → ${mapPageHtmlPath} (${(mapPageSize / 1024).toFixed(1)}KB)`);
 
             // Generate pages for all content items (articles and locations)
             allContent.forEach((item, itemIndex) => {
