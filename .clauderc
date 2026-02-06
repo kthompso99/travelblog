@@ -1,5 +1,20 @@
 # Claude Code Project Configuration
 
+## 🔒 CRITICAL: Git Workflow Rules
+
+**NEVER commit or push without explicit user approval**
+
+- ✅ Fix bugs, add tests, run builds freely
+- ✅ Run `git status`, `git diff`, `git log` freely
+- ❌ NEVER run `git commit` without user saying "commit" or "ready to commit"
+- ❌ NEVER run `git push` without user saying "push" or "ready to push"
+- ✅ After completing work, ALWAYS ask: "Ready to commit and push these changes?"
+- ✅ Wait for explicit approval before staging, committing, or pushing
+
+**Why this matters:** Git operations are permanent and affect the repository history. Kevin must approve all commits and pushes to maintain control over what goes into version control.
+
+---
+
 ## 🚨 CRITICAL: Configuration Management Rules
 
 **BEFORE making ANY changes to file paths or directory structure:**
