@@ -157,6 +157,39 @@ async function processContentItem(item, tripId, order) {
         }
     }
 
+    // Check for gallery markdown file ({slug}-gallery.md)
+    if (item.type === 'location' || item.type === 'article') {
+        const slug = item.title.toLowerCase().replace(/\s+/g, '-');
+        const galleryPath = path.join(CONFIG.getTripDir(tripId), `${slug}-gallery.md`);
+
+        if (fs.existsSync(galleryPath)) {
+            console.log(`    📸 Found gallery: ${slug}-gallery.md`);
+            try {
+                const galleryMarkdown = fs.readFileSync(galleryPath, 'utf8');
+                // Parse markdown to extract images: ![caption](src)
+                const imageRegex = /!\[([^\]]*)\]\(([^\)]+)\)/g;
+                const gallery = [];
+                let match;
+
+                while ((match = imageRegex.exec(galleryMarkdown)) !== null) {
+                    gallery.push({
+                        caption: match[1],
+                        src: match[2]
+                    });
+                }
+
+                if (gallery.length > 0) {
+                    processed.gallery = gallery;
+                    console.log(`    ✅ Gallery parsed: ${gallery.length} images`);
+                } else {
+                    console.log(`    ⚠️  Gallery file is empty or malformed`);
+                }
+            } catch (e) {
+                console.log(`    ⚠️  Gallery parsing failed: ${e.message}`);
+            }
+        }
+    }
+
     return processed;
 }
 

@@ -33,29 +33,69 @@ would be new (`.btn-primary` per the Figma design guide).
 
 ## Photo Gallery (Masonry + Lightbox)
 
+**Status:** Implementation in progress (convention-based markdown approach)
+
 The Figma shows a masonry photo gallery on trip pages with hover zoom,
 caption slide-up, and a full-screen lightbox with prev/next navigation.
 
-**What's needed:**
-- **Build side:** `generate-html.js` (or `build.js`) scans
-  `content/trips/{tripId}/images/` and injects gallery HTML into trip intro
-  pages (or a dedicated gallery section). Each image becomes a `.gallery-item`.
-- **Layout:** CSS `column-count` masonry (1 / 2 / 3 columns at breakpoints).
-  All styles are in `FIGMA_SYSTEM_DESIGN.md` under "Photo Gallery".
-- **Hover:** Image scales to 110%, brightness drops, a centered zoom icon and
-  bottom caption slide up.
-- **Lightbox:** A `.lightbox` modal (fixed, z-index 9999) with the full image,
-  close button, prev/next chevrons, and a "3 / 24" counter badge. Keyboard nav
-  (← → Esc). All styles and SVG icons are in the Figma design guide.
-- **JS:** Click a gallery item → open lightbox at that index. Prev/next cycle
-  through the image array. Close on Esc or backdrop click.
+### Implementation Approach (Chosen: Option 4 - Convention-Based Markdown)
 
-**Feasibility note:** Medium effort. The build-side image scanning and masonry
-CSS are straightforward. The lightbox is the heavy piece — using a CDN library
-like GLightbox (~25 KB, MIT) cuts it to near-zero custom JS. Only the greece
-trip has an `images/` directory currently (66 photos); the gallery should render
-conditionally so trips without images simply skip it. The build already copies
-`images/` to the output folder — no change needed there.
+**Convention:** For each location, the generator auto-discovers optional gallery
+files using the pattern `{location-slug}-gallery.md`. If found, a masonry gallery
+is appended to that location's page. If not found, no gallery is rendered (no
+error).
+
+**Gallery File Format:**
+```markdown
+![Caption text for SEO and display](images/Photo-01.jpg)
+![Another photo caption](images/Photo-02.jpg)
+```
+
+The markdown `![alt](src)` syntax provides both alt text (for accessibility/SEO)
+and visible captions. The generator extracts these and builds the gallery HTML.
+
+**Examples:**
+- `athens.md` + `athens-gallery.md` → Athens page with gallery
+- `milos.md` (no gallery file) → Milos page without gallery
+- `paros.md` + `paros-gallery.md` → Paros page with gallery
+
+**Benefits:**
+- No trip.json bloat (galleries don't clutter config files)
+- Markdown-native caption authoring
+- Optional per-location (not all locations need galleries)
+- Alt text automatic (caption serves double duty)
+- Easy to manage (one file per gallery)
+
+### Implementation Checklist
+
+- [x] Decide on data format (markdown files)
+- [x] Update `scripts/build.js` to detect `{slug}-gallery.md` files during build
+- [x] Parse gallery markdown to extract images and captions
+- [x] Generate masonry gallery HTML in `lib/generate-html.js`
+- [x] Add masonry CSS layout (column-count: 1/2/3 at breakpoints)
+- [x] Add hover effects (scale 110%, brightness drop, magnifying glass icon, caption slide-up)
+- [x] Integrate GLightbox library (~25 KB, MIT) for lightbox functionality
+- [x] Add lightbox HTML/CSS (full-screen modal, prev/next, counter, keyboard nav)
+- [ ] Update validation to optionally check gallery image file existence
+- [x] Test with greece trip (Athens location with 4 photos)
+
+### Technical Notes
+
+- **Build:** Generator checks for `{location-slug}-gallery.md` during location
+  page generation. If present, parses markdown and appends gallery HTML.
+- **Layout:** CSS `column-count` masonry (1 / 2 / 3 columns at breakpoints).
+  All styles in `FIGMA_SYSTEM_DESIGN.md` under "Photo Gallery".
+- **Hover:** Image scales to 110%, brightness drops, centered zoom icon and
+  bottom caption slide up.
+- **Lightbox:** GLightbox library provides full-screen modal with prev/next
+  chevrons, "3 / 24" counter, and keyboard nav (← → Esc).
+- **Alt text:** Caption field from markdown serves as both `alt=""` attribute
+  and visible caption text (single source of truth).
+
+**Feasibility:** Medium effort. Markdown parsing and masonry CSS are
+straightforward. Using GLightbox library eliminates custom lightbox JS. The
+build already copies `images/` to output — no change needed. Greece trip has 66
+photos; gallery renders conditionally per location.
 
 ---
 

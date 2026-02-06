@@ -1015,6 +1015,99 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ─── Photo Gallery (Masonry Layout) ─── */
+        .gallery-masonry {
+            column-count: 1;
+            column-gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 640px) {
+            .gallery-masonry {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .gallery-masonry {
+                column-count: 3;
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: box-shadow 300ms;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: all 700ms;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.75);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 300ms;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-zoom-icon {
+            color: white;
+            opacity: 0.9;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transform: translateY(100%);
+            transition: transform 300ms;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* ─── Gallery Section Title ─── */
+        .gallery-section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -1110,6 +1203,21 @@
             }
         });
     </script>
+
+    <!-- GLightbox for photo gallery -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"></script>
+    <script>
+        if (typeof GLightbox !== 'undefined') {
+            const lightbox = GLightbox({
+                selector: '.gallery-item',
+                touchNavigation: true,
+                loop: true,
+                autoplayVideos: false
+            });
+        }
+    </script>
+
     
 </body>
 </html>
