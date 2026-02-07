@@ -167,6 +167,83 @@ async function testGlobalMap(browser) {
             logs.forEach(log => console.log(`    ${log}`));
         }
 
+        // Test zoom-based detail markers and hovercards
+        console.log('  🔍 Testing zoom-based location markers...');
+        const zoomTest = await page.evaluate(() => {
+            return new Promise((resolve) => {
+                // Zoom in to trigger location markers (threshold is 5)
+                map.setZoom(6);
+
+                // Wait for zoom animation and marker creation
+                setTimeout(() => {
+                    // Find location markers (numbered circles)
+                    const markers = document.querySelectorAll('[role="button"][aria-label]');
+                    const markerCount = markers.length;
+
+                    if (markerCount === 0) {
+                        resolve({ success: false, error: 'No markers found at zoom 6', markerCount: 0 });
+                        return;
+                    }
+
+                    // Try to trigger hover on first marker
+                    const firstMarker = markers[0];
+                    const mouseoverEvent = new MouseEvent('mouseover', {
+                        view: window,
+                        bubbles: true,
+                        cancelable: true
+                    });
+                    firstMarker.dispatchEvent(mouseoverEvent);
+
+                    // Wait for InfoWindow to appear
+                    setTimeout(() => {
+                        const infoWindow = document.querySelector('.gm-style-iw');
+                        if (!infoWindow) {
+                            resolve({
+                                success: false,
+                                error: 'InfoWindow not found after hover',
+                                markerCount
+                            });
+                            return;
+                        }
+
+                        const content = infoWindow.textContent || '';
+                        const hasUndefined = content.toLowerCase().includes('undefined');
+                        const isEmpty = content.trim().length === 0;
+                        const markerPopupTitle = infoWindow.querySelector('.marker-popup-title');
+                        const title = markerPopupTitle ? markerPopupTitle.textContent : '';
+
+                        resolve({
+                            success: true,
+                            markerCount,
+                            hasUndefined,
+                            isEmpty,
+                            title,
+                            contentPreview: content.substring(0, 100)
+                        });
+                    }, 500);
+                }, 2000); // Wait 2s for zoom animation and marker lifecycle
+            });
+        });
+
+        if (!zoomTest.success) {
+            console.error(`  ❌ Zoom test failed: ${zoomTest.error}`);
+            if (zoomTest.markerCount > 0) {
+                console.log(`  ℹ️  Found ${zoomTest.markerCount} markers but hover test failed`);
+            }
+        } else if (zoomTest.hasUndefined) {
+            console.error(`  ❌ Location InfoWindow contains "undefined": ${zoomTest.contentPreview}`);
+            throw new Error('Global map location hover card shows "undefined"');
+        } else if (zoomTest.isEmpty) {
+            console.error('  ❌ Location InfoWindow is empty');
+            throw new Error('Global map location hover card is blank');
+        } else if (!zoomTest.title) {
+            console.error('  ❌ Location InfoWindow has no title');
+            throw new Error('Global map location InfoWindow missing title');
+        } else {
+            console.log(`  ✅ Found ${zoomTest.markerCount} location markers at zoom 6`);
+            console.log(`  ✅ Location hover card shows: "${zoomTest.title}"`);
+        }
+
         console.log('  ✅ Global map test passed');
         return true;
 

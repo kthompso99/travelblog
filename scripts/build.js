@@ -250,6 +250,8 @@ async function processTrip(tripId) {
         .filter(item => item.type === 'location')
         .map(item => ({
             name: item.title,
+            slug: slugify(item.title),
+            duration: item.duration || null,
             coordinates: item.coordinates,
             thumbnail: item.thumbnail || null
         }));
