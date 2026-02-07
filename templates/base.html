@@ -186,7 +186,7 @@
         main {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2.5rem 2rem;
+            padding: 1rem 2rem 2.5rem;
         }
 
         /* ─── Hero ─── */
@@ -1105,6 +1105,14 @@
             transform: translateY(0);
         }
 
+        /* Show captions on touch devices */
+        @media (hover: none) {
+            .gallery-caption {
+                transform: translateY(0);
+                opacity: 0.9;
+            }
+        }
+
         /* ─── Gallery Section Title ─── */
         .gallery-section-title {
             font-size: 1.5rem;
@@ -1123,7 +1131,7 @@
         }
 
         .trip-map-fullwidth {
-            height: 600px;
+            height: 480px;
             border-radius: 10px;
             border: 1px solid #e2e8f0;
         }

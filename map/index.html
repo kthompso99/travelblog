@@ -189,7 +189,7 @@
         main {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2.5rem 2rem;
+            padding: 1rem 2rem 2.5rem;
         }
 
         /* ─── Hero ─── */
@@ -1108,6 +1108,14 @@
             transform: translateY(0);
         }
 
+        /* Show captions on touch devices */
+        @media (hover: none) {
+            .gallery-caption {
+                transform: translateY(0);
+                opacity: 0.9;
+            }
+        }
+
         /* ─── Gallery Section Title ─── */
         .gallery-section-title {
             font-size: 1.5rem;
@@ -1126,7 +1134,7 @@
         }
 
         .trip-map-fullwidth {
-            height: 600px;
+            height: 480px;
             border-radius: 10px;
             border: 1px solid #e2e8f0;
         }
@@ -1588,23 +1596,36 @@
                 </div>
             `;
 
+            let infoWindowOpen = false;
+
             marker.addListener('mouseover', () => {
                 if (hoverTimeout) clearTimeout(hoverTimeout);
                 mouseOverInfoWindow = false;
                 infoWindow.setContent(content);
                 infoWindow.open(map, marker);
+                infoWindowOpen = true;
             });
 
             marker.addListener('mouseout', () => {
                 hoverTimeout = setTimeout(() => {
                     if (!mouseOverInfoWindow) {
                         infoWindow.close();
+                        infoWindowOpen = false;
                     }
                 }, 300);
             });
 
             marker.addListener('click', () => {
-                window.location.href = `../trips/${dest.slug}/`;
+                // On mobile: first tap opens InfoWindow, second tap navigates
+                if (!infoWindowOpen) {
+                    if (hoverTimeout) clearTimeout(hoverTimeout);
+                    mouseOverInfoWindow = false;
+                    infoWindow.setContent(content);
+                    infoWindow.open(map, marker);
+                    infoWindowOpen = true;
+                } else {
+                    window.location.href = `../trips/${dest.slug}/`;
+                }
             });
 
             markers.push(marker);
