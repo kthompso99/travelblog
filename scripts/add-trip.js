@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
+const { slugify } = require('../lib/slug-utilities');
 
 // Import centralized configuration paths
 const CONFIG = require('../lib/config-paths');
@@ -24,13 +25,6 @@ function question(prompt) {
     return new Promise((resolve) => {
         rl.question(prompt, resolve);
     });
-}
-
-function slugify(text) {
-    return text
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
 }
 
 async function addTrip() {

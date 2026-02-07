@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const { slugify } = require('../lib/slug-utilities');
 
 // Load marked for markdown conversion
 let marked;
@@ -159,7 +160,7 @@ async function processContentItem(item, tripId, order) {
 
     // Check for gallery markdown file ({slug}-gallery.md)
     if (item.type === 'location' || item.type === 'article') {
-        const slug = item.title.toLowerCase().replace(/\s+/g, '-');
+        const slug = slugify(item.title);
         const galleryPath = path.join(CONFIG.getTripDir(tripId), `${slug}-gallery.md`);
 
         if (fs.existsSync(galleryPath)) {

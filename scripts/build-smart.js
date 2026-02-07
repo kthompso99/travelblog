@@ -13,6 +13,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const { slugify } = require('../lib/slug-utilities');
 
 const CONFIG = require('../lib/config-paths');
 const { generateHomepage, generateTripIntroPage, generateTripLocationPage, generateMapPage } = require('../lib/generate-html');
@@ -273,7 +274,7 @@ async function runIncrementalBuild(tripIds) {
 
         // Location pages
         locations.forEach((location, locationIndex) => {
-            const locationSlug = location.title.toLowerCase().replace(/\s+/g, '-');
+            const locationSlug = slugify(location.title);
             fs.writeFileSync(path.join(tripDir, `${locationSlug}.html`),
                 generateTripLocationPage(tripMetadata, location, locations, locationIndex, output, domain), 'utf8');
             console.log(`      ✅ ${location.title} → ${tripDir}/${locationSlug}.html`);
