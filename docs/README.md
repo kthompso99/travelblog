@@ -17,9 +17,9 @@ This directory contains all project documentation organised by topic.
 - [Testing Guide](implementation/TESTING_GUIDE.md) - Pre-deploy checklist
 
 ### 🎨 Design
-- [Design System](Figma%20Design/FIGMA_SYSTEM_DESIGN.md) - Colour palette and component styles
-- [Visual Layout Reference](Figma%20Design/FIGMA_VISUAL_LAYOUT_REFERENCE.md) - Page layout descriptions
-- [Remaining Design Work](Figma%20Design/REMAINING.md) - Deferred features from Figma mockups
+- [Design System](FigmaDesign/FIGMA_SYSTEM_DESIGN.md) - Colour palette and component styles
+- [Visual Layout Reference](FigmaDesign/FIGMA_VISUAL_LAYOUT_REFERENCE.md) - Page layout descriptions
+- [Remaining Design Work](FigmaDesign/REMAINING.md) - Deferred features from Figma mockups
 
 ### 📚 Reference
 - [File Structure](reference/FILES.md) - Every file and directory explained
@@ -45,7 +45,7 @@ docs/
 │   ├── QUICKSTART.md                 # Getting started
 │   ├── CREATIVE_COMMONS.md           # License
 │   └── CreativeCommonsFooter.html    # Footer snippet
-└── Figma Design/                     # Design mockups & references
+└── FigmaDesign/                      # Design mockups & references
     ├── FIGMA_SYSTEM_DESIGN.md
     ├── FIGMA_VISUAL_LAYOUT_REFERENCE.md
     ├── REMAINING.md
