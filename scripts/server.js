@@ -46,7 +46,25 @@ function serveFile(res, filePath) {
             return;
         }
 
-        res.writeHead(200, { 'Content-Type': getContentType(filePath) });
+        const headers = { 'Content-Type': getContentType(filePath) };
+
+        // Add cache headers for static assets (mimics GitHub Pages behavior)
+        // CRITICAL: Without proper caching, browsers re-validate resources on every navigation,
+        // causing visible "flash" when hero background images reload. These headers match
+        // GitHub Pages' aggressive caching strategy to ensure smooth page transitions.
+        const ext = path.extname(filePath).toLowerCase();
+        if (['.jpg', '.jpeg', '.png', '.gif', '.svg', '.ico', '.webp'].includes(ext)) {
+            // Images: cache for 1 year, immutable
+            headers['Cache-Control'] = 'public, max-age=31536000, immutable';
+        } else if (['.css', '.js'].includes(ext)) {
+            // CSS/JS: cache for 1 year
+            headers['Cache-Control'] = 'public, max-age=31536000';
+        } else if (ext === '.html') {
+            // HTML: no cache (always check for updates)
+            headers['Cache-Control'] = 'no-cache';
+        }
+
+        res.writeHead(200, headers);
         res.end(data);
     });
 }
