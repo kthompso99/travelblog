@@ -20,7 +20,7 @@ try {
 }
 
 // Load HTML generators (paths relative to project root since script runs from root)
-const { generateHomepage, generateTripPage, generateTripIntroPage, generateTripLocationPage, generateTripArticlePage, generateTripMapPage, generateMapPage, generateAboutPage } = require('../lib/generate-html');
+const { generateHomepage, generateTripIntroPage, generateTripLocationPage, generateTripArticlePage, generateTripMapPage, generateMapPage, generateAboutPage } = require('../lib/generate-html');
 const { generateSitemap, generateRobotsTxt } = require('../lib/generate-sitemap');
 
 // Import centralized configuration paths
