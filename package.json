@@ -7,8 +7,8 @@
     "validate": "node scripts/validate.js",
     "build": "node scripts/validate.js && node scripts/build.js",
     "build:smart": "node scripts/build-smart.js",
-    "dev": "node scripts/build-smart.js && node scripts/server.js 8000",
-    "watch": "nodemon --watch content/ --exec 'node scripts/build-smart.js'",
+    "dev": "node scripts/build-smart.js && concurrently \"npm run watch\" \"node scripts/server.js 8000\"",
+    "watch": "nodemon --watch content/ --ext md,json --exec 'node scripts/build-smart.js'",
     "serve": "node scripts/server.js 8000",
     "add": "node scripts/add-trip.js",
     "test": "node scripts/test-nav.js && node scripts/test-filter.js && node scripts/test-maps.js",
@@ -19,6 +19,7 @@
     "marked": "^9.1.6"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "jsdom": "^28.0.0",
     "nodemon": "^3.0.1",
     "puppeteer": "^24.37.2",
