@@ -103,6 +103,18 @@ function convertMarkdown(filePath) {
                     // Only add if img doesn't already have inline style
                     html = html.replace(/<img(?![^>]*style=)([^>]*)>/gi, '<img$1 style="max-width: 600px; width: 100%; height: auto;">');
 
+                    // Post-process: Convert paragraph-wrapped images to figure with figcaption
+                    // This makes the alt text visible as a caption below the image
+                    html = html.replace(/<p>(<img[^>]+>)<\/p>/gi, (match, imgTag) => {
+                        const altMatch = imgTag.match(/alt="([^"]*)"/);
+                        if (altMatch && altMatch[1]) {
+                            // Image has alt text - wrap in figure with figcaption
+                            return `<figure>${imgTag}<figcaption>${altMatch[1]}</figcaption></figure>`;
+                        }
+                        // No alt text - keep as paragraph
+                        return match;
+                    });
+
                     resolve(html);
                 } catch (e) {
                     reject(e);
