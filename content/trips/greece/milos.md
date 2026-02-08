@@ -1,7 +1,7 @@
 
 Milos is less on the top tier of visited Cycladian islands than Santorini, or Mykonos, or Paros, but we thoroughly enjoyed it.  It has fewer tourists and feels more “Greek” than some other islands we visited.
 
-There are two main towns in Milos that attract tourists.  Pollonia is nice, quaint, and pretty, while Adamantas (sometimes spelled Adamas) is the much busier ferry port. They’re maybe a 15-20 minute drive apart.
+There are two main towns in Milos that attract tourists.  Pollonia is nice, quaint, and pretty, while Adamantas (sometimes spelled Adamas) is the much busier ferry port. They are maybe a 15-20 minute drive apart.
 
 ## Where We Stayed
 

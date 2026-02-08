@@ -96,7 +96,13 @@ function convertMarkdown(filePath) {
                 reject(err);
             } else {
                 try {
-                    const html = marked.parse(data);
+                    let html = marked.parse(data);
+
+                    // Post-process: Add max-width to all images for responsive sizing
+                    // Limit to 600px but still responsive on smaller screens
+                    // Only add if img doesn't already have inline style
+                    html = html.replace(/<img(?![^>]*style=)([^>]*)>/gi, '<img$1 style="max-width: 600px; width: 100%; height: auto;">');
+
                     resolve(html);
                 } catch (e) {
                     reject(e);
