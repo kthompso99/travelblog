@@ -187,7 +187,7 @@
             content: '';
             position: absolute;
             top: 0;
-            right: -0.4rem;
+            left: -0.4rem;
             width: 0.4rem;
             height: 100%;
             background: transparent;
@@ -432,6 +432,15 @@
         }
 
         #content-area > h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Page title in content-view (for location/article pages without box wrapper) */
+        #content-view > h1 {
             font-size: 2rem;
             font-weight: 700;
             color: #0f172a;
@@ -1233,6 +1242,23 @@
             flex: 1;
         }
 
+        /* Highlighted state when corresponding marker is hovered */
+        .trip-map-locations-list a.highlighted {
+            background: #fef3c7;  /* Light amber background */
+            color: #92400e;  /* Dark amber text */
+            box-shadow: 0 0 0 2px #f59e0b;  /* Amber outline */
+        }
+
+        .trip-map-locations-list a.highlighted .location-number {
+            background: #d97706;  /* Darker amber background */
+            color: white;
+            transform: scale(1.1);  /* Slightly larger */
+        }
+
+        .trip-map-locations-list a.highlighted .location-name {
+            font-weight: 600;  /* Bolder text */
+        }
+
         /* Responsive: Stack on mobile */
         @media (max-width: 768px) {
             .trip-map-full-layout {
@@ -1253,7 +1279,7 @@
 <body>
     <header>
         <nav>
-            <div class="logo">🌍 Two Travel Nuts</div>
+            <a href="./" class="logo">🌍 Two Travel Nuts</a>
             <ul class="nav-links">
                 <li><a href="./">Home</a></li>
                 <li class="dropdown" id="trips-dropdown">
@@ -1377,7 +1403,7 @@
                 </div>
             </div>
             <div class="destination-card-body">
-                <span class="destination-card-badge">📅 October 2025</span>
+                <span class="destination-card-badge">📅 January 2025</span>
             </div>
         </a>
     </div>

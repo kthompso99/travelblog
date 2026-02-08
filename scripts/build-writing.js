@@ -81,6 +81,7 @@ if (contentSlug === 'main') {
     process.exit(0);
 }
 
+(async () => {
 try {
     // Load processed trip data from previous build
     const tripContentFile = path.join(CONFIG.TRIPS_OUTPUT_DIR, `${tripId}.json`);
@@ -132,7 +133,7 @@ try {
     // Re-convert the markdown for this specific file
     const markdownPath = path.join(CONFIG.TRIPS_DIR, tripId, `${contentSlug}.md`);
     if (fs.existsSync(markdownPath)) {
-        const freshHtml = convertMarkdown(markdownPath);
+        const freshHtml = await convertMarkdown(markdownPath);
         // Update both html and contentHtml fields for compatibility
         contentItem.html = freshHtml;
         contentItem.contentHtml = freshHtml;
@@ -196,3 +197,4 @@ try {
     console.error(`   Stack: ${error.stack}\n`);
     process.exit(1);
 }
+})();
