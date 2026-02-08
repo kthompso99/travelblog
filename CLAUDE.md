@@ -20,7 +20,7 @@
 - **Master template:** `templates/base.html` — all shared CSS, nav, footer.
 - **Trip intro template:** `templates/trip-intro-page.html` — hero injected via `{{PRE_MAIN}}` placeholder.
 - **Content types:** Trips support two content types — `location` (has coordinates, appears on map) and `article` (text-only, like "Tips"). Both appear in submenu navigation and prev/next chains. Articles don't require `place` or `duration` fields.
-- **Build:** `npm run build` (full) or `npm run build:smart` (incremental). Test: `npm test` (180 nav + 28 filter assertions via jsdom).
+- **Build:** `npm run build` (full) or `npm run build:smart` (incremental). **Dev modes:** `npm run dev` (safe incremental) or `npm run writing` (fast content-only). Test: `npm test` (250 total assertions).
 - **Homepage:** build writes `index.html.new`; must manually promote to `index.html` before committing.
 - **Colour scheme:** amber `#f59e0b` throughout — polyline, markers (SVG divIcon), button accents, nav hover.
 - **Maps:** Two Leaflet instances — global (map page) and per-trip (trip intro). Amber SVG divIcon markers. Popup hover-linger: 300 ms delay on mouseout, cancelled by mouseenter on popup. Nav z-index must stay ≥ 2000.
@@ -28,3 +28,59 @@
 - **CI:** `.github/workflows/deploy.yml` — build → promote homepage → `npm test` → copy to `deploy/` → Pages API. Deploy step copies: index.html, 404.html, config.built.json, sitemap.xml, images/, trips/, map/, about/, robots.txt.
 - **Scale target:** Kevin anticipates 30–50 trips long-term. Design decisions should hold at that count without re-architecting. Client-side filtering/searching of homepage cards is fine up to hundreds; image lazy-loading on the homepage becomes relevant around 30+ trips. Pagination is not needed at 50 but may be considered for UX.
 - **Deferred work:** `docs/Figma Design/REMAINING.md` — homepage hero, photo gallery, newsletter.
+
+---
+
+### Development Workflows
+
+Kevin has two development modes optimized for different editing scenarios:
+
+#### `npm run dev` — Safe Mode (Full Incremental Builds)
+**Use when:** Making structural changes, editing metadata, adding/removing locations, or when unsure about dependencies.
+
+**What happens:**
+- Detects which trips changed via `.build-cache.json`
+- Rebuilds entire trip (~2-5 seconds per trip)
+- Updates all dependencies: homepage, global map, sitemap, trip intro
+- Auto-promotes `index.html.new` → `index.html`
+- Server stays running, watcher automatically triggers on content changes
+
+**Workflow:**
+```bash
+npm run dev                          # Start dev server + watcher
+# Edit any content files
+# Save → auto-rebuild entire trip → refresh browser
+```
+
+#### `npm run writing` — Fast Mode (Content-Only Rebuilds)
+**Use when:** Focused writing sessions editing location/article markdown (e.g., spending 3 hours editing milos.md, santorini.md, etc.)
+
+**What happens:**
+- Auto-detects most recently modified .md file in `content/trips/`
+- Rebuilds **only** that specific HTML page (~4-6 milliseconds)
+- Skips all dependencies for speed (10-1000x faster)
+- Reuses processed trip data from previous full build
+
+**Trade-offs:**
+- ✅ **Updates:** The specific page you edited
+- ❌ **Stays stale:** Homepage, global map, trip intro, other location pages, sitemap
+
+**Workflow:**
+```bash
+npm run writing                      # Start fast content-only mode
+# Edit content/trips/greece/milos.md
+# Save → rebuild milos.html (~4-6ms) → refresh browser
+# Edit content/trips/greece/santorini.md
+# Save → rebuild santorini.html (~4-6ms) → refresh browser
+# Repeat for hours...
+```
+
+**Before committing after writing mode:**
+```bash
+Ctrl-C                               # Stop writing mode
+npm run build                        # Full build to sync all dependencies
+git add .
+git commit -m "Update Greece content"
+```
+
+**Critical rule:** Always run `npm run build` before committing after using writing mode. This ensures homepage, map, and all cross-page dependencies are synced.
