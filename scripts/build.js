@@ -115,6 +115,10 @@ function convertMarkdown(filePath) {
                         return match;
                     });
 
+                    // Post-process: Add target="_blank" to all external links
+                    // Opens links in new tab and adds security attributes
+                    html = html.replace(/<a(?![^>]*target=)([^>]*)>/gi, '<a$1 target="_blank" rel="noopener noreferrer">');
+
                     resolve(html);
                 } catch (e) {
                     reject(e);
