@@ -216,6 +216,20 @@ content/trips/*/*.md  ─────┘       │
 `build.js` orchestrates; `lib/generate-html.js` renders each page using the
 templates in `templates/`. All paths are resolved through `lib/config-paths.js`.
 
+### Markdown Post-Processing
+
+The `convertMarkdown()` function in `scripts/build.js` automatically enhances
+markdown content during the build:
+
+1. **Image sizing:** All `<img>` tags get `max-width: 600px; width: 100%; height: auto;`
+2. **Visible captions:** Images with alt text `![caption](img.jpg)` are wrapped in
+   `<figure><img><figcaption>caption</figcaption></figure>`
+3. **External links:** All `<a>` tags get `target="_blank" rel="noopener noreferrer"`
+4. **Gallery captions:** Gallery links get `data-description` attribute for GLightbox
+
+This means Kevin can write plain markdown without worrying about image sizing,
+visible captions, or link behavior—the build handles it automatically.
+
 ---
 
 ## What Gets Deployed

@@ -76,8 +76,9 @@ and visible captions. The generator extracts these and builds the gallery HTML.
 - [x] Add hover effects (scale 110%, brightness drop, magnifying glass icon, caption slide-up)
 - [x] Integrate GLightbox library (~25 KB, MIT) for lightbox functionality
 - [x] Add lightbox HTML/CSS (full-screen modal, prev/next, counter, keyboard nav)
+- [x] Add data-description attribute to gallery items for lightbox captions
 - [ ] Update validation to optionally check gallery image file existence
-- [x] Test with greece trip (Athens location with 4 photos)
+- [x] Test with greece trip (Athens location with 30 photos)
 
 ### Technical Notes
 
@@ -88,13 +89,15 @@ and visible captions. The generator extracts these and builds the gallery HTML.
 - **Hover:** Image scales to 110%, brightness drops, centered zoom icon and
   bottom caption slide up.
 - **Lightbox:** GLightbox library provides full-screen modal with prev/next
-  chevrons, "3 / 24" counter, and keyboard nav (← → Esc).
+  chevrons, "3 / 24" counter, and keyboard nav (← → Esc). Captions display in
+  lightbox via `data-description` attribute.
 - **Alt text:** Caption field from markdown serves as both `alt=""` attribute
-  and visible caption text (single source of truth).
+  and visible caption text (single source of truth). Also used for lightbox
+  captions via `data-description` attribute on gallery links.
 
 **Feasibility:** Medium effort. Markdown parsing and masonry CSS are
 straightforward. Using GLightbox library eliminates custom lightbox JS. The
-build already copies `images/` to output — no change needed. Greece trip has 66
+build already copies `images/` to output — no change needed. Greece trip has 70
 photos; gallery renders conditionally per location.
 
 ---
