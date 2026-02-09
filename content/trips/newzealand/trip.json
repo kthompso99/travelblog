@@ -2,7 +2,7 @@
   "id": "newzealand",
   "title": "New Zealand",
   "slug": "newzealand",
-  "published": true,
+  "published": false,
   "beginDate": "2025-01-07",
   "endDate": "2025-01-24",
   "metadata": {

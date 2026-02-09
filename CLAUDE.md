@@ -20,6 +20,7 @@
 - **Master template:** `templates/base.html` — all shared CSS, nav, footer.
 - **Trip intro template:** `templates/trip-intro-page.html` — hero injected via `{{PRE_MAIN}}` placeholder.
 - **Content types:** Trips support two content types — `location` (has coordinates, appears on map) and `article` (text-only, like "Tips"). Both appear in submenu navigation and prev/next chains. Articles don't require `place` or `duration` fields.
+- **Published trips:** Only trips with `published: true` in trip.json appear on production (GitHub Pages). All trips visible on localhost for debugging. Filtering happens in scripts/build.js using `NODE_ENV=production`.
 - **Build:** `npm run build` (full) or `npm run build:smart` (incremental). **Dev modes:** `npm run dev` (safe incremental) or `npm run writing` (fast content-only). Test: `npm test` (250 total assertions).
 - **Homepage:** build writes `index.html.new`; must manually promote to `index.html` before committing.
 - **Colour scheme:** amber `#f59e0b` throughout — polyline, markers (SVG divIcon), button accents, nav hover.

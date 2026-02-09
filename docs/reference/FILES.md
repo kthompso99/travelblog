@@ -230,6 +230,18 @@ markdown content during the build:
 This means Kevin can write plain markdown without worrying about image sizing,
 visible captions, or link behavior—the build handles it automatically.
 
+### Published Trip Filtering
+
+The build system filters trips based on the `published` field in trip.json:
+- **Localhost:** All trips built and visible (ignores published status)
+- **Production:** Only trips with `"published": true` are built
+- **Detection:** Production is identified by `NODE_ENV=production` environment variable
+- **Implementation:** `scripts/build.js` filters trips before any build operations
+
+This allows Kevin to keep incomplete trips in the repository for local testing while
+only showing complete trips on the public site. The GitHub Actions workflow sets
+`NODE_ENV=production` during deployment.
+
 ---
 
 ## What Gets Deployed

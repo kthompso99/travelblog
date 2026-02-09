@@ -331,6 +331,56 @@ async function processTrip(tripId) {
     };
 }
 
+/**
+ * Detect if we're running in production (GitHub Pages) or localhost
+ * Production is detected by NODE_ENV environment variable
+ * @returns {boolean} true if production, false if localhost
+ */
+function isProduction() {
+    return process.env.NODE_ENV === 'production';
+}
+
+/**
+ * Filter trips based on published status and environment
+ * - Localhost: Returns all trips (ignores published field)
+ * - Production: Returns only trips with published: true
+ * @param {Array} tripIds - Array of trip IDs from index.json
+ * @returns {Promise<Array>} Filtered array of trip IDs
+ */
+async function filterPublishedTrips(tripIds) {
+    const isProd = isProduction();
+
+    // Localhost: show all trips for debugging
+    if (!isProd) {
+        console.log('🏠 Localhost mode: Building all trips (ignoring published status)\n');
+        return tripIds;
+    }
+
+    // Production: filter based on published field
+    console.log('🌐 Production mode: Filtering trips by published status\n');
+
+    const publishedTrips = [];
+    for (const tripId of tripIds) {
+        const tripConfigPath = CONFIG.getTripConfigPath(tripId);
+        try {
+            const tripData = fs.readFileSync(tripConfigPath, 'utf8');
+            const tripConfig = JSON.parse(tripData);
+
+            if (tripConfig.published === true) {
+                publishedTrips.push(tripId);
+                console.log(`  ✅ ${tripId}: published`);
+            } else {
+                console.log(`  ⏭️  ${tripId}: unpublished (skipping)`);
+            }
+        } catch (e) {
+            console.warn(`  ⚠️  ${tripId}: Error reading trip config, skipping. ${e.message}`);
+        }
+    }
+
+    console.log(`\n📊 Building ${publishedTrips.length} of ${tripIds.length} trips\n`);
+    return publishedTrips;
+}
+
 // Main build function
 async function build() {
     console.log('🚀 Starting build process (Trips Architecture)...\n');
@@ -349,11 +399,17 @@ async function build() {
     let indexConfig;
     try {
         indexConfig = JSON.parse(fs.readFileSync(INDEX_CONFIG, 'utf8'));
-        console.log(`📋 Found ${indexConfig.trips.length} trips to process\n`);
+        console.log(`📋 Found ${indexConfig.trips.length} trips in index\n`);
     } catch (e) {
         console.error(`❌ Error reading ${INDEX_CONFIG}:`, e.message);
         process.exit(1);
     }
+
+    // Filter trips based on published status and environment
+    const tripsToProcess = await filterPublishedTrips(indexConfig.trips);
+
+    // Replace trips array with filtered list
+    indexConfig.trips = tripsToProcess;
 
     // Create trips output directory
     if (!fs.existsSync(TRIPS_OUTPUT_DIR)) {

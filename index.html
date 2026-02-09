@@ -1308,27 +1308,9 @@
                     <div class="dropdown-content" id="destinations-menu">
                         
                         <div class="continent-group">
-                            <div class="continent-title">Africa<span class="continent-arrow">›</span></div>
-                            <div class="continent-submenu">
-                                <a href="./trips/southernafrica/" class="continent-submenu-item">Southern Africa</a>
-                            </div>
-                        </div>
-                        <div class="continent-group">
                             <div class="continent-title">Europe<span class="continent-arrow">›</span></div>
                             <div class="continent-submenu">
                                 <a href="./trips/greece/" class="continent-submenu-item">Athens and Greek Islands</a>
-                            </div>
-                        </div>
-                        <div class="continent-group">
-                            <div class="continent-title">North America<span class="continent-arrow">›</span></div>
-                            <div class="continent-submenu">
-                                <a href="./trips/utah/" class="continent-submenu-item">Utah and the Grand Canyon</a>
-                            </div>
-                        </div>
-                        <div class="continent-group">
-                            <div class="continent-title">Oceania<span class="continent-arrow">›</span></div>
-                            <div class="continent-submenu">
-                                <a href="./trips/newzealand/" class="continent-submenu-item">New Zealand</a>
                             </div>
                         </div>
                     </div>
@@ -1356,35 +1338,9 @@
             </svg>
             <input type="text" class="search-input" id="trip-search" placeholder="Search trips…" autocomplete="off">
         </div>
-        <div class="filter-pills">
-            <button class="filter-pill active" data-filter="continent" data-value="all">All Continents</button>
-            <button class="filter-pill" data-filter="continent" data-value="Africa">Africa</button>
-            <button class="filter-pill" data-filter="continent" data-value="Europe">Europe</button>
-            <button class="filter-pill" data-filter="continent" data-value="North America">North America</button>
-            <button class="filter-pill" data-filter="continent" data-value="Oceania">Oceania</button>
-        </div>
-        <div class="filter-pills">
-            <button class="filter-pill active" data-filter="year" data-value="all">All Years</button>
-            <button class="filter-pill" data-filter="year" data-value="2025">2025</button>
-            <button class="filter-pill" data-filter="year" data-value="2024">2024</button>
-        </div>
     </div>
     <div class="destination-grid" id="destination-grid">
         
-        <a href="./trips/southernafrica/" class="destination-card" data-trip-id="southernafrica" data-continent="Africa" data-country="South Africa" data-countries="South Africa, Botswana, Zimbabwe" data-year="2025" data-title="Southern Africa">
-            <div class="destination-card-image-wrapper">
-                <img src="./images/botswana.jpg" alt="Southern Africa" class="destination-card-image" loading="lazy" onerror="this.remove()">
-                <div class="destination-card-overlay"></div>
-                <div class="destination-card-hover-overlay"></div>
-                <div class="destination-card-content">
-                    <h3 class="destination-card-title">Southern Africa</h3>
-                    <div class="destination-card-location">📍 South Africa</div>
-                </div>
-            </div>
-            <div class="destination-card-body">
-                <span class="destination-card-badge">📅 August 2025</span>
-            </div>
-        </a>
         <a href="./trips/greece/" class="destination-card" data-trip-id="greece" data-continent="Europe" data-country="Greece" data-countries="Greece" data-year="2025" data-title="Athens and Greek Islands">
             <div class="destination-card-image-wrapper">
                 <img src="./images/greece.jpg" alt="Athens and Greek Islands" class="destination-card-image" loading="lazy" onerror="this.remove()">
@@ -1397,34 +1353,6 @@
             </div>
             <div class="destination-card-body">
                 <span class="destination-card-badge">📅 April 2025</span>
-            </div>
-        </a>
-        <a href="./trips/utah/" class="destination-card" data-trip-id="utah" data-continent="North America" data-country="USA" data-countries="USA" data-year="2024" data-title="Utah and the Grand Canyon">
-            <div class="destination-card-image-wrapper">
-                <img src="./images/utah.jpg" alt="Utah and the Grand Canyon" class="destination-card-image" loading="lazy" onerror="this.remove()">
-                <div class="destination-card-overlay"></div>
-                <div class="destination-card-hover-overlay"></div>
-                <div class="destination-card-content">
-                    <h3 class="destination-card-title">Utah and the Grand Canyon</h3>
-                    <div class="destination-card-location">📍 USA</div>
-                </div>
-            </div>
-            <div class="destination-card-body">
-                <span class="destination-card-badge">📅 October 2024</span>
-            </div>
-        </a>
-        <a href="./trips/newzealand/" class="destination-card" data-trip-id="newzealand" data-continent="Oceania" data-country="New Zealand" data-countries="New Zealand" data-year="2025" data-title="New Zealand">
-            <div class="destination-card-image-wrapper">
-                <img src="./images/newzealand.jpg" alt="New Zealand" class="destination-card-image" loading="lazy" onerror="this.remove()">
-                <div class="destination-card-overlay"></div>
-                <div class="destination-card-hover-overlay"></div>
-                <div class="destination-card-content">
-                    <h3 class="destination-card-title">New Zealand</h3>
-                    <div class="destination-card-location">📍 New Zealand</div>
-                </div>
-            </div>
-            <div class="destination-card-body">
-                <span class="destination-card-badge">📅 January 2025</span>
             </div>
         </a>
     </div>
