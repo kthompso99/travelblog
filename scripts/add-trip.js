@@ -1,8 +1,58 @@
 #!/usr/bin/env node
 
 /**
- * Interactive CLI tool to add new trips
- * Run with: npm run add or node add-destination.js
+ * Interactive CLI tool to scaffold new trips
+ *
+ * Run with: npm run add
+ *
+ * WHAT THIS SCRIPT DOES:
+ *
+ * Example: Adding a trip to Spain with locations Sevilla, Granada, Cordoba
+ *
+ * 1. Creates directory: content/trips/spain/
+ *
+ * 2. Creates trip configuration: content/trips/spain/trip.json
+ *    - Contains trip metadata (title, dates, continent, country)
+ *    - Lists all content items (locations and articles)
+ *    - Each location has: type, title, place (for geocoding), duration, file
+ *
+ * 3. Creates intro file: content/trips/spain/main.md
+ *    - Template markdown for the trip overview page
+ *
+ * 4. Creates content files for each location/article:
+ *    - content/trips/spain/sevilla.md (template with sections)
+ *    - content/trips/spain/granada.md (template with sections)
+ *    - content/trips/spain/cordoba.md (template with sections)
+ *
+ * 5. Creates images directory: content/trips/spain/images/
+ *    - Ready for you to add trip photos
+ *
+ * 6. Updates content/index.json to include the new trip ID
+ *
+ * WHAT THIS SCRIPT DOES NOT DO:
+ *
+ * - Does NOT create the trip cover image (add images/spain.jpg manually to root images/)
+ * - Does NOT run the build (run 'npm run build' after adding content)
+ *
+ * CONTENT TYPES:
+ *
+ * - "location" = places with coordinates (geocoded, appears on map)
+ *   Requires: place (for geocoding), duration
+ *   Example: Sevilla, Granada, Cordoba
+ *
+ * - "article" = text-only content (no map marker)
+ *   Does NOT require: place or duration
+ *   Example: "Tips", "Planning Guide", "Packing List"
+ *
+ * AFTER RUNNING THIS SCRIPT:
+ *
+ * 1. Add trip cover image to root images/ directory: images/spain.jpg
+ * 2. Edit content/trips/spain/main.md with trip introduction
+ * 3. Edit location markdown files with your travel stories
+ * 4. Add trip photos to content/trips/spain/images/
+ * 5. Optionally add thumbnail field to locations in trip.json
+ * 6. Run 'npm run build' to generate HTML pages
+ * 7. Run 'npm run serve' to preview locally
  */
 
 const fs = require('fs');
@@ -145,10 +195,14 @@ async function addTrip() {
         relatedTrips: []
     };
 
-    // Create trip directory
+    // Create trip directory and images subdirectory
     try {
         fs.mkdirSync(tripDir, { recursive: true });
         console.log(`\n✅ Created directory: ${tripDir}`);
+
+        const imagesDir = path.join(tripDir, 'images');
+        fs.mkdirSync(imagesDir, { recursive: true });
+        console.log(`✅ Created directory: ${imagesDir}`);
     } catch (e) {
         console.error(`❌ Error creating directory: ${e.message}`);
         rl.close();
