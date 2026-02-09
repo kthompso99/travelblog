@@ -13,8 +13,7 @@ travelblog/
 │   └── site.json               Site title, description, base URL
 │
 ├── content/                    Editable source content
-│   ├── index.json              Ordered list of trip IDs
-│   └── trips/
+│   └── trips/                  Auto-discovered (sorted by date, newest first)
 │       └── {tripId}/
 │           ├── trip.json       Trip metadata + content array
 │           ├── main.md         Trip intro page (optional)
@@ -199,8 +198,7 @@ npm run build:smart -- --force     # force full rebuild ignoring cache
 
 ```
 config/site.json          ─┐
-content/index.json         ├─> scripts/build.js
-content/trips/*/trip.json  │       │
+content/trips/*/trip.json  ├─> scripts/build.js (auto-discovers trips)
 content/trips/*/*.md  ─────┘       │
                                    ▼
                         trips/*.json          (per-trip built data)
@@ -273,7 +271,7 @@ Do **not** deploy: `config/`, `content/`, `lib/`, `scripts/`, `templates/`,
 |---------|-------|
 | Build fails | Run `npm run validate` — it reports the specific issue |
 | Geocoding fails | Make `place` more specific (e.g. add country) |
-| Trip missing from site | Confirm it's listed in `content/index.json` and `published: true` |
+| Trip missing from site | Confirm trip directory exists in `content/trips/` and `published: true` |
 | Location page blank | Check `file` path in `trip.json` matches an actual `.md` file |
 | Map marker missing | Geocoding may have failed — check build output for that location |
 | Nav test fails | Run `npm test`; each failure names the file and the broken assertion |

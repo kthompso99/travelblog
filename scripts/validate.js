@@ -12,11 +12,45 @@ const path = require('path');
 // Import centralized configuration paths
 const CONFIG = require('../lib/config-paths');
 
-const { SITE_CONFIG, INDEX_CONFIG, TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
+const { SITE_CONFIG, TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
 
 let errors = [];
 let warnings = [];
 let info = [];
+
+/**
+ * Discover all trips by scanning the trips directory
+ * Returns trip IDs sorted in reverse chronological order (newest first)
+ * @returns {Array} Array of trip IDs sorted by beginDate (newest first)
+ */
+function discoverTrips() {
+    if (!fs.existsSync(TRIPS_DIR)) {
+        return [];
+    }
+
+    const entries = fs.readdirSync(TRIPS_DIR, { withFileTypes: true });
+    const tripDirs = entries.filter(entry => entry.isDirectory()).map(entry => entry.name);
+
+    const trips = [];
+    for (const tripId of tripDirs) {
+        const tripConfigPath = CONFIG.getTripConfigPath(tripId);
+        if (!fs.existsSync(tripConfigPath)) continue;
+
+        try {
+            const tripData = fs.readFileSync(tripConfigPath, 'utf8');
+            const tripConfig = JSON.parse(tripData);
+            trips.push({
+                id: tripId,
+                beginDate: tripConfig.beginDate || '1970-01-01'
+            });
+        } catch (e) {
+            // Skip trips with invalid config
+        }
+    }
+
+    trips.sort((a, b) => new Date(b.beginDate) - new Date(a.beginDate));
+    return trips.map(trip => trip.id);
+}
 
 function error(msg) {
     errors.push('❌ ERROR: ' + msg);
@@ -46,36 +80,17 @@ function validate() {
         }
     }
 
-    // Check index config
-    if (!fs.existsSync(INDEX_CONFIG)) {
-        error(`${INDEX_CONFIG} not found`);
-        printResults();
-        process.exit(1);
-    }
+    // Auto-discover trips from directories
+    const allTrips = discoverTrips();
 
-    let indexConfig;
-    try {
-        indexConfig = JSON.parse(fs.readFileSync(INDEX_CONFIG, 'utf8'));
-    } catch (e) {
-        error(`Invalid JSON in ${INDEX_CONFIG}: ${e.message}`);
-        printResults();
-        process.exit(1);
-    }
-
-    if (!indexConfig.trips || !Array.isArray(indexConfig.trips)) {
-        error('Missing or invalid "trips" array in content/index.json');
-        printResults();
-        process.exit(1);
-    }
-
-    if (indexConfig.trips.length === 0) {
-        warning('No trips defined in content/index.json');
+    if (allTrips.length === 0) {
+        warning('No trips found in content/trips/');
     } else {
-        log(`Found ${indexConfig.trips.length} trip(s)`);
+        log(`Found ${allTrips.length} trip(s)`);
     }
 
     // Validate each trip
-    indexConfig.trips.forEach((tripId, index) => {
+    allTrips.forEach((tripId, index) => {
         const tripDir = CONFIG.getTripDir(tripId);
         const tripConfigPath = CONFIG.getTripConfigPath(tripId);
         const mainMdPath = CONFIG.getTripMainPath(tripId);

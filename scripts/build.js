@@ -27,7 +27,7 @@ const { generateSitemap, generateRobotsTxt } = require('../lib/generate-sitemap'
 // Import centralized configuration paths
 const CONFIG = require('../lib/config-paths');
 
-const { SITE_CONFIG, INDEX_CONFIG, TRIPS_DIR, OUTPUT_FILE, TRIPS_OUTPUT_DIR, CACHE_DIR, GEOCODE_CACHE_FILE } = CONFIG;
+const { SITE_CONFIG, TRIPS_DIR, OUTPUT_FILE, TRIPS_OUTPUT_DIR, CACHE_DIR, GEOCODE_CACHE_FILE } = CONFIG;
 
 // Load geocode cache
 let geocodeCache = {};
@@ -332,6 +332,55 @@ async function processTrip(tripId) {
 }
 
 /**
+ * Discover all trips by scanning the trips directory
+ * Returns trip IDs sorted in reverse chronological order (newest first)
+ * @returns {Array} Array of trip IDs sorted by beginDate (newest first)
+ */
+function discoverTrips() {
+    const tripsDir = TRIPS_DIR;
+
+    if (!fs.existsSync(tripsDir)) {
+        console.warn(`⚠️  Trips directory not found: ${tripsDir}`);
+        return [];
+    }
+
+    // Read all subdirectories in trips/
+    const entries = fs.readdirSync(tripsDir, { withFileTypes: true });
+    const tripDirs = entries.filter(entry => entry.isDirectory()).map(entry => entry.name);
+
+    // Load each trip.json to get beginDate for sorting
+    const trips = [];
+    for (const tripId of tripDirs) {
+        const tripConfigPath = CONFIG.getTripConfigPath(tripId);
+
+        // Skip if trip.json doesn't exist
+        if (!fs.existsSync(tripConfigPath)) {
+            console.warn(`⚠️  Skipping ${tripId}: no trip.json found`);
+            continue;
+        }
+
+        try {
+            const tripData = fs.readFileSync(tripConfigPath, 'utf8');
+            const tripConfig = JSON.parse(tripData);
+
+            trips.push({
+                id: tripId,
+                beginDate: tripConfig.beginDate || '1970-01-01' // Default to old date if missing
+            });
+        } catch (e) {
+            console.warn(`⚠️  Skipping ${tripId}: error reading trip.json - ${e.message}`);
+        }
+    }
+
+    // Sort by beginDate in reverse chronological order (newest first)
+    trips.sort((a, b) => {
+        return new Date(b.beginDate) - new Date(a.beginDate);
+    });
+
+    return trips.map(trip => trip.id);
+}
+
+/**
  * Detect if we're running in production (GitHub Pages) or localhost
  * Production is detected by NODE_ENV environment variable
  * @returns {boolean} true if production, false if localhost
@@ -395,21 +444,17 @@ async function build() {
         process.exit(1);
     }
 
-    // Read index config (list of trips)
-    let indexConfig;
-    try {
-        indexConfig = JSON.parse(fs.readFileSync(INDEX_CONFIG, 'utf8'));
-        console.log(`📋 Found ${indexConfig.trips.length} trips in index\n`);
-    } catch (e) {
-        console.error(`❌ Error reading ${INDEX_CONFIG}:`, e.message);
-        process.exit(1);
-    }
+    // Auto-discover trips by scanning directories (sorted by date, newest first)
+    const discoveredTrips = discoverTrips();
+    console.log(`📋 Discovered ${discoveredTrips.length} trips (sorted by date, newest first)\n`);
 
     // Filter trips based on published status and environment
-    const tripsToProcess = await filterPublishedTrips(indexConfig.trips);
+    const tripsToProcess = await filterPublishedTrips(discoveredTrips);
 
-    // Replace trips array with filtered list
-    indexConfig.trips = tripsToProcess;
+    // Create index config with filtered trips
+    const indexConfig = {
+        trips: tripsToProcess
+    };
 
     // Create trips output directory
     if (!fs.existsSync(TRIPS_OUTPUT_DIR)) {

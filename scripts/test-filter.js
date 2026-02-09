@@ -97,8 +97,12 @@ function setSearch(query) {
 
 /** Reset all filters to their default (all + empty search) */
 function reset() {
-    clickPill('continent', 'all');
-    clickPill('year', 'all');
+    // Only click "all" pills if they exist (they're only rendered when 2+ options exist)
+    const continentAll = document.querySelector('.filter-pill[data-filter="continent"][data-value="all"]');
+    const yearAll = document.querySelector('.filter-pill[data-filter="year"][data-value="all"]');
+
+    if (continentAll) clickPill('continent', 'all');
+    if (yearAll) clickPill('year', 'all');
     setSearch('');
 }
 
@@ -118,7 +122,22 @@ const continentPills = [...document.querySelectorAll('.filter-pill[data-filter="
 const yearPills = [...document.querySelectorAll('.filter-pill[data-filter="year"]')]
     .filter(p => p.dataset.value !== 'all');
 
-assert('at least one continent pill rendered', continentPills.length > 0);
+// Extract unique continents and years from cards
+const uniqueContinents = new Set(allCards.map(c => c.dataset.continent));
+const uniqueYears = new Set(allCards.map(c => c.dataset.year));
+
+// Pills should only be rendered when 2+ options exist
+if (uniqueContinents.size > 1) {
+    assert('continent pills rendered when multiple continents exist', continentPills.length > 0);
+} else {
+    assert('no continent pills when only 1 continent exists', continentPills.length === 0);
+}
+
+if (uniqueYears.size > 1) {
+    assert('year pills rendered when multiple years exist', yearPills.length > 0);
+} else {
+    assert('no year pills when only 1 year exists', yearPills.length === 0);
+}
 
 // ── 1. initial state: all cards visible ──────────────────────────
 
@@ -168,7 +187,9 @@ yearPills.forEach(pill => {
 
 // ── 4. "All" pill restores full set ──────────────────────────────
 
-if (continentPills.length > 0) {
+// Only test if "all" pill exists (it's only rendered when 2+ continents exist)
+const continentAllPill = document.querySelector('.filter-pill[data-filter="continent"][data-value="all"]');
+if (continentPills.length > 0 && continentAllPill) {
     clickPill('continent', continentPills[0].dataset.value);   // narrow first
     clickPill('continent', 'all');                             // then reset
     assert('"All Continents" restores full set', visibleCards().length === allCards.length);

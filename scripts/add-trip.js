@@ -27,7 +27,8 @@
  * 5. Creates images directory: content/trips/spain/images/
  *    - Ready for you to add trip photos
  *
- * 6. Updates content/index.json to include the new trip ID
+ * NOTE: Trips are auto-discovered by scanning content/trips/ - no manual
+ * index.json needed. The build system automatically finds all trips.
  *
  * WHAT THIS SCRIPT DOES NOT DO:
  *
@@ -63,7 +64,7 @@ const { slugify } = require('../lib/slug-utilities');
 // Import centralized configuration paths
 const CONFIG = require('../lib/config-paths');
 
-const { INDEX_CONFIG, TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
+const { TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
 const CONTINENTS = VALID_CONTINENTS;
 
 const rl = readline.createInterface({
@@ -80,16 +81,6 @@ function question(prompt) {
 async function addTrip() {
     console.log('🌍 Add New Trip\n');
 
-    // Load existing index
-    let indexConfig;
-    try {
-        const data = fs.readFileSync(INDEX_CONFIG, 'utf8');
-        indexConfig = JSON.parse(data);
-    } catch (e) {
-        console.error(`❌ Error loading ${INDEX_CONFIG}:`, e.message);
-        process.exit(1);
-    }
-
     // Gather trip information
     const title = await question('Trip title (e.g., "Japan Adventure 2025"): ');
     if (!title) {
@@ -100,13 +91,6 @@ async function addTrip() {
 
     const id = await question(`Trip ID (press enter for "${slugify(title)}"): `) || slugify(title);
     const slug = id; // Use same value for slug
-
-    // Check for duplicate ID
-    if (indexConfig.trips.includes(id)) {
-        console.log(`❌ Trip with ID "${id}" already exists`);
-        rl.close();
-        return;
-    }
 
     // Check if trip directory already exists
     const tripDir = CONFIG.getTripDir(id);
@@ -320,17 +304,6 @@ Recommend restaurants and local cuisine...
         } catch (e) {
             console.error(`❌ Error creating ${itemSlug}.md: ${e.message}`);
         }
-    }
-
-    // Add to index.json
-    try {
-        indexConfig.trips.push(id);
-        fs.writeFileSync(INDEX_CONFIG, JSON.stringify(indexConfig, null, 2), 'utf8');
-        console.log(`✅ Added trip to ${INDEX_CONFIG}`);
-    } catch (e) {
-        console.error('❌ Error updating index:', e.message);
-        rl.close();
-        return;
     }
 
     console.log('\n📋 Next steps:');

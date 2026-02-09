@@ -23,12 +23,47 @@ const CACHE_FILE = CONFIG.BUILD_CACHE_FILE;
 
 const PATHS = {
     siteConfig: CONFIG.SITE_CONFIG,
-    indexConfig: CONFIG.INDEX_CONFIG,
     tripsDir: CONFIG.TRIPS_DIR,
     templatesDir: CONFIG.TEMPLATES_DIR,
     libDir: CONFIG.LIB_DIR,
     buildScript: CONFIG.BUILD_SCRIPT
 };
+
+/**
+ * Discover all trips by scanning the trips directory
+ * Returns trip IDs sorted in reverse chronological order (newest first)
+ * @returns {Array} Array of trip IDs sorted by beginDate (newest first)
+ */
+function discoverTrips() {
+    const tripsDir = PATHS.tripsDir;
+
+    if (!fs.existsSync(tripsDir)) {
+        return [];
+    }
+
+    const entries = fs.readdirSync(tripsDir, { withFileTypes: true });
+    const tripDirs = entries.filter(entry => entry.isDirectory()).map(entry => entry.name);
+
+    const trips = [];
+    for (const tripId of tripDirs) {
+        const tripConfigPath = CONFIG.getTripConfigPath(tripId);
+        if (!fs.existsSync(tripConfigPath)) continue;
+
+        try {
+            const tripData = fs.readFileSync(tripConfigPath, 'utf8');
+            const tripConfig = JSON.parse(tripData);
+            trips.push({
+                id: tripId,
+                beginDate: tripConfig.beginDate || '1970-01-01'
+            });
+        } catch (e) {
+            // Skip trips with invalid config
+        }
+    }
+
+    trips.sort((a, b) => new Date(b.beginDate) - new Date(a.beginDate));
+    return trips.map(trip => trip.id);
+}
 
 /**
  * Load or create cache
@@ -107,8 +142,7 @@ function getCoreFiles() {
         path.join(PATHS.libDir, 'generate-html.js'),
         path.join(PATHS.libDir, 'generate-sitemap.js'),
         path.join(PATHS.libDir, 'config-paths.js'),
-        PATHS.siteConfig,
-        PATHS.indexConfig
+        PATHS.siteConfig
     ];
     if (fs.existsSync(PATHS.templatesDir)) {
         files.push(...fs.readdirSync(PATHS.templatesDir)
@@ -134,8 +168,8 @@ function coreBuildFilesChanged(cache) {
 function getChangedTrips(cache) {
     const changed = [];
     try {
-        const indexConfig = JSON.parse(fs.readFileSync(PATHS.indexConfig, 'utf8'));
-        for (const tripId of indexConfig.trips) {
+        const allTrips = discoverTrips();
+        for (const tripId of allTrips) {
             const configModTime = getFileModTime(CONFIG.getTripConfigPath(tripId));
             const contentModTime = getDirModTime(path.join(PATHS.tripsDir, tripId));
             const cached = cache.trips[tripId] || {};
@@ -144,7 +178,7 @@ function getChangedTrips(cache) {
             }
         }
     } catch (e) {
-        console.error('Error reading trip configs:', e.message);
+        console.error('Error checking for changed trips:', e.message);
     }
     return changed;
 }
@@ -162,8 +196,8 @@ function updateCacheForTrips(cache, tripIds) {
 function updateFullCache(cache) {
     getCoreFiles().forEach(file => { cache.files[file] = getFileModTime(file); });
     try {
-        const indexConfig = JSON.parse(fs.readFileSync(PATHS.indexConfig, 'utf8'));
-        updateCacheForTrips(cache, indexConfig.trips);
+        const allTrips = discoverTrips();
+        updateCacheForTrips(cache, allTrips);
     } catch (e) { /* ignore */ }
     cache.lastFullBuild = Date.now();
 }
