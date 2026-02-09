@@ -82,37 +82,46 @@ async function addTrip() {
     const beginDate = await question('Start date (YYYY-MM-DD): ');
     const endDate = await question('End date (YYYY-MM-DD): ');
 
-    // Get locations
-    console.log('\n📍 Add locations to this trip (press enter with blank location to finish):');
-    const locations = [];
-    let locationNum = 1;
+    // Get content items (locations and articles)
+    console.log('\n📍 Add content to this trip (press enter with blank title to finish):');
+    console.log('Content can be locations (with coordinates) or articles (like "Tips" or "Planning")');
+    const content = [];
+    let itemNum = 1;
 
     while (true) {
-        const locationTitle = await question(`\nLocation ${locationNum} name (or press enter to finish): `);
-        if (!locationTitle) break;
+        const itemTitle = await question(`\nContent ${itemNum} title (or press enter to finish): `);
+        if (!itemTitle) break;
 
-        const place = await question(`  Place for geocoding (e.g., "Tokyo, Japan"): `);
-        const duration = await question(`  Duration (e.g., "3 days"): `);
+        const itemType = await question(`  Type (location/article, default: location): `) || 'location';
 
-        const locationSlug = slugify(locationTitle);
-        locations.push({
-            type: 'location',
-            title: locationTitle,
-            place: place || locationTitle,
-            duration: duration || '1 day',
-            file: `${CONFIG.getTripDir(id)}/${locationSlug}.md`
-        });
+        const itemSlug = slugify(itemTitle);
+        const contentItem = {
+            type: itemType,
+            title: itemTitle,
+            file: `${itemSlug}.md`
+        };
 
-        locationNum++;
+        if (itemType === 'location') {
+            const place = await question(`  Place for geocoding (e.g., "Tokyo, Japan"): `);
+            const duration = await question(`  Duration (e.g., "3 days"): `);
+            contentItem.place = place || itemTitle;
+            contentItem.duration = duration || '1 day';
+        }
+
+        content.push(contentItem);
+        itemNum++;
     }
 
-    if (locations.length === 0) {
-        console.log('❌ At least one location is required');
+    if (content.length === 0) {
+        console.log('❌ At least one content item is required');
         rl.close();
         return;
     }
 
-    const mapCenter = await question(`\nMap center location (press enter for "${locations[0].title}"): `) || locations[0].title;
+    // Find first location for map center default (skip articles)
+    const firstLocation = content.find(item => item.type === 'location');
+    const defaultMapCenter = firstLocation ? firstLocation.title : content[0].title;
+    const mapCenter = await question(`\nMap center location (press enter for "${defaultMapCenter}"): `) || defaultMapCenter;
 
     // Create trip config object
     const tripConfig = {
@@ -132,7 +141,7 @@ async function addTrip() {
         coverImage: `images/${id}.jpg`,
         thumbnail: `images/${id}.jpg`,
         mapCenter,
-        content: locations,
+        content: content,
         relatedTrips: []
     };
 
@@ -158,6 +167,7 @@ async function addTrip() {
     }
 
     // Create main.md (intro file)
+    const locationCount = content.filter(item => item.type === 'location').length;
     const mainTemplate = `# ${title}
 
 Welcome to our ${title}!
@@ -169,7 +179,7 @@ Add your trip introduction here. Describe what made this trip special, the overa
 ## Highlights
 
 - **Duration**: ${beginDate} to ${endDate}
-- **Locations Visited**: ${locations.length}
+- **Locations Visited**: ${locationCount}
 - **Best For**: Adventure seekers, culture enthusiasts
 
 ## Planning Your Trip
@@ -189,14 +199,36 @@ Add general planning information, tips, and recommendations here.
         console.error(`❌ Error creating main.md: ${e.message}`);
     }
 
-    // Create location markdown files
-    for (const location of locations) {
-        const locationSlug = slugify(location.title);
-        const locationTemplate = `# ${location.title}
+    // Create content markdown files
+    for (const item of content) {
+        const itemSlug = slugify(item.title);
+        let template;
+
+        if (item.type === 'article') {
+            // Template for articles (tips, planning, etc.)
+            template = `# ${item.title}
+
+Add your ${item.title.toLowerCase()} content here...
+
+## Section 1
+
+Content goes here...
+
+## Section 2
+
+More content...
+
+---
+
+*Last updated: ${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}*
+`;
+        } else {
+            // Template for locations
+            template = `# ${item.title}
 
 ## Overview
 
-Add your introduction to ${location.title} here...
+Add your introduction to ${item.title} here...
 
 ## What We Did
 
@@ -225,13 +257,14 @@ Recommend restaurants and local cuisine...
 
 *Last updated: ${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}*
 `;
+        }
 
         try {
-            const locationPath = path.join(tripDir, `${locationSlug}.md`);
-            fs.writeFileSync(locationPath, locationTemplate, 'utf8');
-            console.log(`✅ Created ${locationPath}`);
+            const filePath = path.join(tripDir, `${itemSlug}.md`);
+            fs.writeFileSync(filePath, template, 'utf8');
+            console.log(`✅ Created ${filePath}`);
         } catch (e) {
-            console.error(`❌ Error creating ${locationSlug}.md: ${e.message}`);
+            console.error(`❌ Error creating ${itemSlug}.md: ${e.message}`);
         }
     }
 
@@ -249,16 +282,17 @@ Recommend restaurants and local cuisine...
     console.log('\n📋 Next steps:');
     console.log(`  1. Add trip image to images/${id}.jpg`);
     console.log(`  2. Edit ${tripDir}/main.md with your trip introduction`);
-    console.log('  3. Edit location markdown files with your travel stories');
-    console.log('  4. Run "npm run build" to generate the trip pages');
-    console.log('  5. Run "npm run serve" to preview your site\n');
+    console.log('  3. Edit content markdown files with your travel stories');
+    console.log('  4. Optionally add thumbnail images for each location');
+    console.log('  5. Run "npm run build" to generate the trip pages');
+    console.log('  6. Run "npm run serve" to preview your site\n');
 
     console.log('📁 Created files:');
     console.log(`  - ${tripDir}/trip.json`);
     console.log(`  - ${tripDir}/main.md`);
-    locations.forEach(loc => {
-        const locationSlug = slugify(loc.title);
-        console.log(`  - ${tripDir}/${locationSlug}.md`);
+    content.forEach(item => {
+        const itemSlug = slugify(item.title);
+        console.log(`  - ${tripDir}/${itemSlug}.md`);
     });
 
     rl.close();
