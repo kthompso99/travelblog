@@ -16,8 +16,26 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://twotravelnuts.com/trips/southernafrica/</loc>
+    <lastmod>2025-08-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://twotravelnuts.com/trips/greece/</loc>
     <lastmod>2025-04-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://twotravelnuts.com/trips/utah/</loc>
+    <lastmod>2024-10-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://twotravelnuts.com/trips/newzealand/</loc>
+    <lastmod>2025-01-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>

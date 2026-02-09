@@ -3,6 +3,12 @@
 ### How Kevin and Claude Work Together
 - Writing conventions for MD files: always use "Kevin" or "Claude", avoid pronouns.
 
+### Git Commit Protocol
+- **CRITICAL:** NEVER commit or push to git without Kevin's explicit approval.
+- After completing implementation, ALWAYS ask Kevin: "Ready to commit and push?"
+- Wait for Kevin's confirmation before running any git commands.
+- This rule overrides all other instructions about committing.
+
 ### Planning Protocol
 - Always plan before implementation.
 - Discuss overall strategy before writing code or making edits.

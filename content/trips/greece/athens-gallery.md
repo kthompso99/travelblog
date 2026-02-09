@@ -18,9 +18,9 @@
 
 ![Benizelos House](images/Athens-10.jpg)
 
-![These are from an earlier temple built on the Acropolis; they are known collectively as the "Three-Bodied Daemon", and wikipedia thinks they are from 570BC, 140 years before the Parthenon that we know.  They are made of limestone, and evidently paint lasts longer on limestone than marble, hence some remaining color.](images/Athens-11.jpg)
+![These are from an earlier temple built on the Acropolis; Wikipedia thinks they are from 570BC, 140 years before the Parthenon that we know. Evidently paint lasts longer on limestone than marble](images/Athens-11.jpg)
 
-![The columns from the Acropolis are known as the **Caryatids**, or "Maidens of Karyes," which serve as structural supports on the south porch of the Erechtheion temple, built between 421 and 406 BCE. They are famously sculpted figures of draped women that replaced traditional pillars. The originals are in the museum, there are reproductions up on the hill](images/Athens-12.jpg)
+![The columns from the Acropolis are known as the **Caryatids**, which serve as structural supports on the south porch of the Erechtheion temple, built between 421 and 406 BCE. The originals are in the museum, there are reproductions on the hill](images/Athens-12.jpg)
 
 ![This is an artist's reproduction of the Parthenon's east pediment.  There are evidently sketches from the 17th century before much of the Parthenon was destroyed in a stupid military exchange, so that we have a good idea of what it should look like.  The far left of this group is one of the key pieces that made its way (ahem) to the British Museum.](images/Athens-13.jpg)
 
