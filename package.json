@@ -18,6 +18,8 @@
     "sync-docs": "node scripts/sync-docs.js"
   },
   "dependencies": {
+    "adm-zip": "^0.5.16",
+    "googleapis": "^171.4.0",
     "marked": "^9.1.6"
   },
   "devDependencies": {

@@ -38,5 +38,45 @@
   "Mykonos Greece": {
     "lat": 37.4513936,
     "lng": 25.3923149
+  },
+  "Cordoba, Spain": {
+    "lat": 37.8845813,
+    "lng": -4.7760138
+  },
+  "Granada, Spain": {
+    "lat": 37.1734995,
+    "lng": -3.5995337
+  },
+  "Malaga, Spain": {
+    "lat": 36.7213028,
+    "lng": -4.4216366
+  },
+  "Ronda, Spain": {
+    "lat": 36.7421339,
+    "lng": -5.1665916
+  },
+  "Seville, Spain": {
+    "lat": 37.3886303,
+    "lng": -5.9953403
+  },
+  "Madrid, Spain": {
+    "lat": 40.416782,
+    "lng": -3.703507
+  },
+  ", Spain": {
+    "lat": 39.3260685,
+    "lng": -4.8379791
+  },
+  "Antequera, Spain": {
+    "lat": 37.0183652,
+    "lng": -4.5596649
+  },
+  "Setenil de las Bodegas, Spain": {
+    "lat": 36.8621836,
+    "lng": -5.1787
+  },
+  "Zahara de la Sierra, Spain": {
+    "lat": 36.8405841,
+    "lng": -5.3905374
   }
 }

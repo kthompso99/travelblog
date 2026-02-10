@@ -30,3 +30,9 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
+![](images/ronda-04.jpg)
+
+![](images/setenil-01.jpg)
+
+![](images/setenil-02.jpg)
+
