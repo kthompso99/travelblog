@@ -22,7 +22,7 @@
 
 ![The columns from the Acropolis are known as the **Caryatids**, which serve as structural supports on the south porch of the Erechtheion temple, built between 421 and 406 BCE. The originals are in the museum, there are reproductions on the hill](images/Athens-12.jpg)
 
-![This is an artist's reproduction of the Parthenon's east pediment.  There are evidently sketches from the 17th century before much of the Parthenon was destroyed in a stupid military exchange, so that we have a good idea of what it should look like.  The far left of this group is one of the key pieces that made its way (ahem) to the British Museum.](images/Athens-13.jpg)
+![This is an artist's reproduction of the Parthenon's east pediment, based on 17th-century sketches.  The far left of this group is one of the key pieces that made its way (ahem) to the British Museum.](images/Athens-13.jpg)
 
 ![Reproductions of pieces from the Parthenon.  The originals of these are in London; the Athens museum makes it quite clear where they belong](images/Athens-14.jpg)
 
