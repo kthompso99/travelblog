@@ -149,10 +149,9 @@ No geocoding, no map marker, no `place` or `duration` fields.
 
 ```json
 {
-  "id": "greece",                   // Must match directory name
   "title": "Athens and Greek Islands",
-  "slug": "greece",                 // URL segment: /trips/greece/
   "published": true,                // false = excluded from build
+                                    // NOTE: slug inferred from directory name
   "beginDate": "2025-04-01",
   "endDate":   "2025-04-14",
   "metadata": {
