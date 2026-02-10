@@ -37,6 +37,13 @@
     },
     {
       "type": "location",
+      "title": "Antequera",
+      "file": "antequera.md",
+      "place": "Antequera, Spain",
+      "duration": "2 days"
+    },
+    {
+      "type": "location",
       "title": "Malaga",
       "file": "malaga.md",
       "place": "Malaga, Spain",
@@ -49,12 +56,33 @@
       "place": "Ronda, Spain",
       "duration": "1 day"
     },
+     {
+      "type": "location",
+      "title": "Setenil de las Bodegas",
+      "file": "setenil.md",
+      "place": "Setenil de las Bodegas, Spain",
+      "duration": "1 day"
+    },
+      {
+      "type": "location",
+      "title": "Zahara de la Sierra",
+      "file": "zahara.md",
+      "place": "Zahara de la Sierra, Spain",
+      "duration": "1 day"
+    },
     {
       "type": "location",
       "title": "Seville",
       "file": "seville.md",
       "place": "Seville, Spain",
       "duration": "4 days"
+    },
+    {
+      "type": "location",
+      "title": "Madrid",
+      "file": "madrid.md",
+      "place": "Madrid, Spain",
+      "duration": "3 days"
     }
   ],
   "relatedTrips": []
