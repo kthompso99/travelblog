@@ -30,3 +30,19 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
+![Malaga features a very busy shopping district, much of it with the usual generic high-end brands found on every shopping street in Europe, but ... the Iberian Ham makes it look a bit more distinct.](images/malaga-01.jpg)
+
+![On to Malaga on the Mediterranean coast. This picture from atop the main castle shows how densely-packed the homes for sun-seekers are ... and a bull ring.](images/malaga-02.jpg)
+
+![Another view from the mountain above Malaga.](images/malaga-03.jpg)
+
+![The Malaga Alcazaba (Palace/fortress) is lovely and has some well-preserved spots, though it suffers in comparison if one was in the Alhambra 2 days earlier.](images/malaga-04.jpg)
+
+![Wall decorations in the Malaga Alcazaba.](images/malaga-05.jpg)
+
+![Incredibly intricate archway in the Alcazaba.](images/malaga-06.jpg)
+
+![Lovely bike ride along the coast, mid-70s in late October.](images/malaga-07.jpg)
+
+![The Malaga Cathedral remains unfinished (one tower), but is still lovely.](images/malaga-08.jpg)
+

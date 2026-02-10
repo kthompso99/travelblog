@@ -30,3 +30,7 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
+![On the way out of Ronda we stopped at two more of the "White Villages", renowned for their whitewashed walls and remote locations. Grazalema was also a Moorish stronghold; it's now worth an hour or so visit to see its gorgeous mountain location.](images/zahara-01.jpg)
+
+![In nearby Zahara de la Sierra, we climbed Yet Another Moorish castle (13th century). Gorgeous views.](images/zahara-02.jpg)
+
