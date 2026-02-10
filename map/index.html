@@ -205,210 +205,138 @@
             padding: 1rem 2rem 2.5rem;
         }
 
-        /* ─── Hero ─── */
-        .hero {
-            text-align: center;
-            padding: 3.5rem 0 2rem;
+        /* ─── Footer ─── */
+        footer {
+            background: #0f172a;
+            color: rgba(255,255,255,0.5);
+            padding: 3rem 2rem 2rem;
+            margin-top: 3rem;
         }
 
-        .hero h1 {
-            font-size: 2.75rem;
-            font-weight: 700;
-            color: #0f172a;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            margin-bottom: 0.75rem;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #64748b;
-            max-width: 500px;
+        .footer-container {
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* ─── Search & Filter Bar ─── */
-        .filter-bar {
-            margin-top: 1.25rem;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-about p {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            max-width: 280px;
+        }
+
+        .footer-links ul {
+            list-style: none;
             display: flex;
             flex-direction: column;
             gap: 0.6rem;
         }
 
-        .search-wrapper {
-            position: relative;
-            max-width: 420px;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 0.85rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1rem;
-            height: 1rem;
-            color: #94a3b8;
-            pointer-events: none;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.6rem 1rem 0.6rem 2.2rem;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 9999px;
-            font-size: 0.9rem;
-            color: #1e293b;
-            background: white;
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .search-input::placeholder {
-            color: #94a3b8;
-        }
-
-        .search-input:focus {
-            border-color: #f59e0b;
-            box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
-        }
-
-        .filter-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .filter-pill {
-            padding: 0.35rem 0.85rem;
-            border-radius: 9999px;
-            border: 1.5px solid #e2e8f0;
-            background: white;
-            color: #475569;
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
             font-size: 0.82rem;
-            font-weight: 500;
-            font-family: inherit;
-            cursor: pointer;
-            transition: border-color 0.2s, background 0.2s, color 0.2s;
+            transition: color 0.2s;
+            border-bottom: none;
         }
 
-        .filter-pill:hover {
-            border-color: #f59e0b;
+        .footer-links a:hover {
             color: #f59e0b;
         }
 
-        .filter-pill.active {
-            background: #f59e0b;
-            border-color: #f59e0b;
-            color: white;
+        .footer-license {
+            font-size: 0.78rem;
+            line-height: 1.7;
         }
 
-        .no-results {
-            display: none;
-            text-align: center;
-            padding: 3rem 1rem;
-            color: #64748b;
-            font-size: 0.95rem;
-        }
-
-        /* ─── Trip Grid & Cards ─── */
-        .destination-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .destination-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        .footer-license a {
+            color: rgba(255,255,255,0.6);
             text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            transition: border-color 0.2s, color 0.2s;
         }
 
-        .destination-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        .footer-license a:hover {
+            border-color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.8);
         }
 
-        .destination-card-image-wrapper {
-            position: relative;
-            height: 16rem;
-            overflow: hidden;
+        .footer-license img {
+            vertical-align: middle;
+            opacity: 0.6;
+            max-width: 1em;
+            max-height: 1em;
+            margin-left: 0.2em;
         }
 
-        .destination-card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s;
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.72rem;
         }
 
-        .destination-card:hover .destination-card-image {
-            transform: scale(1.1);
+        @media (max-width: 640px) {
+            .trip-hero {
+                height: 300px;
+            }
+            .trip-hero-content h1 {
+                font-size: 2rem;
+            }
+            .trip-hero-content {
+                padding: 1.5rem;
+            }
+            .trip-hero-back {
+                top: 1rem;
+                left: 1rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
-        .destination-card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+        /* ─── Content Item ─── */
+        .content-item {
+            margin-bottom: 3rem;
         }
 
-        .destination-card-hover-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(217,119,6,0.9) 0%, rgba(249,115,22,0.6) 50%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
+        /* ─── Responsive ─── */
+        @media (max-width: 640px) {
+            nav {
+                padding: 0 1rem;
+            }
 
-        .destination-card:hover .destination-card-hover-overlay {
-            opacity: 1;
-        }
+            .nav-links {
+                gap: 0.1rem;
+            }
 
-        .destination-card-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            color: white;
-            z-index: 2;
-        }
+            .nav-links > li > a {
+                padding: 0.4rem 0.5rem;
+                font-size: 0.78rem;
+            }
 
-        .destination-card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-            transition: transform 0.3s;
+            main {
+                padding: 1.5rem 1rem;
+            }
         }
-
-        .destination-card:hover .destination-card-title {
-            transform: translateY(-4px);
-        }
-
-        .destination-card-location {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-
-        .destination-card-body {
-            padding: 1rem 1.5rem 1.5rem;
-        }
-
-        .destination-card-badge {
-            font-size: 0.75rem;
-            background: #fef3c7;
-            color: #92400e;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            display: inline-block;
-        }
-
+    </style>
+    <style>
         /* ─── Content Area (trip/location pages) ─── */
         #content-area {
             background: white;
@@ -929,149 +857,6 @@
             margin-bottom: 0.75rem;
         }
 
-        /* ─── Footer ─── */
-        footer {
-            background: #0f172a;
-            color: rgba(255,255,255,0.5);
-            padding: 3rem 2rem 2rem;
-            margin-top: 3rem;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-col h3 {
-            color: white;
-            font-size: 0.78rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 1rem;
-        }
-
-        .footer-about p {
-            font-size: 0.82rem;
-            line-height: 1.7;
-            max-width: 280px;
-        }
-
-        .footer-links ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.5);
-            text-decoration: none;
-            font-size: 0.82rem;
-            transition: color 0.2s;
-            border-bottom: none;
-        }
-
-        .footer-links a:hover {
-            color: #f59e0b;
-        }
-
-        .footer-license {
-            font-size: 0.78rem;
-            line-height: 1.7;
-        }
-
-        .footer-license a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            transition: border-color 0.2s, color 0.2s;
-        }
-
-        .footer-license a:hover {
-            border-color: rgba(255,255,255,0.6);
-            color: rgba(255,255,255,0.8);
-        }
-
-        .footer-license img {
-            vertical-align: middle;
-            opacity: 0.6;
-            max-width: 1em;
-            max-height: 1em;
-            margin-left: 0.2em;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: 2.5rem;
-            padding-top: 1.5rem;
-            text-align: center;
-            font-size: 0.72rem;
-        }
-
-        @media (max-width: 640px) {
-            .trip-hero {
-                height: 300px;
-            }
-            .trip-hero-content h1 {
-                font-size: 2rem;
-            }
-            .trip-hero-content {
-                padding: 1.5rem;
-            }
-            .trip-hero-back {
-                top: 1rem;
-                left: 1rem;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-
-        /* ─── Content Item ─── */
-        .content-item {
-            margin-bottom: 3rem;
-        }
-
-        /* ─── Responsive ─── */
-        @media (max-width: 640px) {
-            nav {
-                padding: 0 1rem;
-            }
-
-            .nav-links {
-                gap: 0.1rem;
-            }
-
-            .nav-links > li > a {
-                padding: 0.4rem 0.5rem;
-                font-size: 0.78rem;
-            }
-
-            main {
-                padding: 1.5rem 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            #content-area {
-                padding: 1.5rem;
-            }
-
-            .destination-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         /* ─── Photo Gallery (Masonry Layout) ─── */
         .gallery-masonry {
             column-count: 1;
@@ -1257,36 +1042,28 @@
 
         /* Highlighted state when corresponding marker is hovered */
         .trip-map-locations-list a.highlighted {
-            background: #fef3c7;  /* Light amber background */
-            color: #92400e;  /* Dark amber text */
-            box-shadow: 0 0 0 2px #f59e0b;  /* Amber outline */
+            background: #fef3c7;
+            color: #92400e;
+            box-shadow: 0 0 0 2px #f59e0b;
         }
 
         .trip-map-locations-list a.highlighted .location-number {
-            background: #d97706;  /* Darker amber background */
+            background: #d97706;
             color: white;
-            transform: scale(1.1);  /* Slightly larger */
+            transform: scale(1.1);
         }
 
         .trip-map-locations-list a.highlighted .location-name {
-            font-weight: 600;  /* Bolder text */
+            font-weight: 600;
         }
 
-        /* Responsive: Stack on mobile */
-        @media (max-width: 768px) {
-            .trip-map-full-layout {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .trip-map-fullwidth {
-                height: 400px;
-            }
-
-            .trip-map-sidebar {
-                max-height: none;
+        /* ─── Responsive (Content Pages) ─── */
+        @media (max-width: 640px) {
+            #content-area {
+                padding: 1.5rem;
             }
         }
+
     </style>
 </head>
 <body>
