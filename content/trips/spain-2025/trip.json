@@ -1,0 +1,61 @@
+{
+  "id": "spain-2025",
+  "title": "Southern Spain 2025",
+  "slug": "spain-2025",
+  "published": true,
+  "beginDate": "2025-10-22",
+  "endDate": "2025-11-07",
+  "metadata": {
+    "year": 2025,
+    "continent": "Europe",
+    "country": "Spain",
+    "tripType": [
+      "adventure"
+    ],
+    "tags": [
+      "europe",
+      "spain"
+    ]
+  },
+  "coverImage": "images/spain-2025.jpg",
+  "thumbnail": "images/spain-2025.jpg",
+  "mapCenter": "Estepa, Spain",
+  "content": [
+    {
+      "type": "location",
+      "title": "Cordoba",
+      "file": "cordoba.md",
+      "place": "Cordoba, Spain",
+      "duration": "2 days"
+    },
+    {
+      "type": "location",
+      "title": "Granada",
+      "file": "granada.md",
+      "place": "Granada, Spain",
+      "duration": "3 days"
+    },
+    {
+      "type": "location",
+      "title": "Malaga",
+      "file": "malaga.md",
+      "place": "Malaga, Spain",
+      "duration": "2 days"
+    },
+    {
+      "type": "location",
+      "title": "Ronda",
+      "file": "ronda.md",
+      "place": "Ronda, Spain",
+      "duration": "1 day"
+    },
+    {
+      "type": "location",
+      "title": "Seville",
+      "file": "seville.md",
+      "place": "Seville, Spain",
+      "duration": "4 days"
+    }
+  ],
+  "relatedTrips": []
+}

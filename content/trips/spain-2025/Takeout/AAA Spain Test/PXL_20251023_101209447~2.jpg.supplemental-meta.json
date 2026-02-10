@@ -1,0 +1,37 @@
+{
+  "title": "PXL_20251023_101209447~2.jpg",
+  "description": "We did a great Tuk Tuk tour of Madrid -- some of the highlights are spread out, so we highly recommend this as an introduction to the city.",
+  "imageViews": "1",
+  "creationTime": {
+    "timestamp": "1770682725",
+    "formatted": "Feb 10, 2026, 12:18:45 AM UTC"
+  },
+  "photoTakenTime": {
+    "timestamp": "1761214329",
+    "formatted": "Oct 23, 2025, 10:12:09 AM UTC"
+  },
+  "geoData": {
+    "latitude": 0.0,
+    "longitude": 0.0,
+    "altitude": 0.0,
+    "latitudeSpan": 0.0,
+    "longitudeSpan": 0.0
+  },
+  "people": [{
+    "name": "Kevin Thompson"
+  }, {
+    "name": "Tiffany Goodyear"
+  }],
+  "url": "https://photos.google.com/photo/AF1QipOPsOvdgcbvP7QMIR0OsxjEHXPxNV2UkISKfo9S",
+  "googlePhotosOrigin": {
+    "mobileUpload": {
+      "deviceFolder": {
+        "localFolderName": ""
+      },
+      "deviceType": "ANDROID_PHONE"
+    }
+  },
+  "appSource": {
+    "androidPackageName": "com.google.android.apps.photos"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "title": "PXL_20251023_085025388.jpg",
+  "description": "Catedral de Santa María la Real de la Almudena, Madrid.  Because more words in a name are better?",
+  "imageViews": "2",
+  "creationTime": {
+    "timestamp": "1770682725",
+    "formatted": "Feb 10, 2026, 12:18:45 AM UTC"
+  },
+  "photoTakenTime": {
+    "timestamp": "1761209425",
+    "formatted": "Oct 23, 2025, 8:50:25 AM UTC"
+  },
+  "geoData": {
+    "latitude": 40.416522199999996,
+    "longitude": -3.7130028000000004,
+    "altitude": 701.79,
+    "latitudeSpan": 0.0,
+    "longitudeSpan": 0.0
+  },
+  "geoDataExif": {
+    "latitude": 40.416522199999996,
+    "longitude": -3.7130028000000004,
+    "altitude": 701.79,
+    "latitudeSpan": 0.0,
+    "longitudeSpan": 0.0
+  },
+  "url": "https://photos.google.com/photo/AF1QipMLTY4e6VidJsEcs7RWGxIEfNWRMfl1eaumlq3M",
+  "googlePhotosOrigin": {
+    "mobileUpload": {
+      "deviceFolder": {
+        "localFolderName": ""
+      },
+      "deviceType": "ANDROID_PHONE"
+    }
+  },
+  "appSource": {
+    "androidPackageName": "com.google.android.GoogleCamera"
+  }
+}
