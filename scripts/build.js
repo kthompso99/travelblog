@@ -551,7 +551,13 @@ async function build() {
         fs.writeFileSync('index.html.new', homepageHtml, 'utf8');
         const homepageSize = fs.statSync('index.html.new').size;
         htmlSizeTotal += homepageSize;
-        console.log(`   ✅ Homepage generated (${(homepageSize / 1024).toFixed(1)}KB)`);
+
+        // Auto-promote homepage (backup old version first)
+        if (fs.existsSync('index.html')) {
+            fs.copyFileSync('index.html', 'index.html.backup');
+        }
+        fs.renameSync('index.html.new', 'index.html');
+        console.log(`   ✅ Homepage generated and promoted (${(homepageSize / 1024).toFixed(1)}KB)`);
 
         // Generate map page
         console.log(`   📄 Generating map page...`);
@@ -687,11 +693,6 @@ async function build() {
         console.log(`\n💾 Static HTML sizes:`);
         console.log(`   - Total HTML files: ${(htmlSizeTotal / 1024).toFixed(1)}KB`);
         console.log(`   - Average trip page: ${(htmlSizeTotal / (processedTrips.length + 3) / 1024).toFixed(1)}KB`);
-
-        console.log(`\n⚠️  IMPORTANT: New homepage saved as index.html.new`);
-        console.log(`   Review it, then rename to index.html when ready:`);
-        console.log(`   $ mv index.html index.html.backup`);
-        console.log(`   $ mv index.html.new index.html`);
 
         console.log(`\n🎯 Next steps:`);
         console.log(`   1. Review generated HTML files`);

@@ -31,11 +31,11 @@
 - **Content types:** Trips support two content types — `location` (has coordinates, appears on map) and `article` (text-only, like "Tips"). Both appear in submenu navigation and prev/next chains. Articles don't require `place` or `duration` fields.
 - **Published trips:** Only trips with `published: true` in trip.json appear on production (GitHub Pages). All trips visible on localhost for debugging. Filtering happens in scripts/build.js using `NODE_ENV=production`.
 - **Build:** `npm run build` (full) or `npm run build:smart` (incremental). **Dev modes:** `npm run dev` (safe incremental) or `npm run writing` (fast content-only). Test: `npm test` (250 total assertions).
-- **Homepage:** build writes `index.html.new`; must manually promote to `index.html` before committing.
+- **Homepage:** build auto-promotes `index.html.new` → `index.html` (old version backed up to `index.html.backup`).
 - **Colour scheme:** amber `#f59e0b` throughout — polyline, markers (SVG divIcon), button accents, nav hover.
 - **Maps:** Two Leaflet instances — global (map page) and per-trip (trip intro). Amber SVG divIcon markers. Popup hover-linger: 300 ms delay on mouseout, cancelled by mouseenter on popup. Nav z-index must stay ≥ 2000.
 - **Gitignore gotchas:** `/trips/` output is gitignored; only `index.html`, `about/`, `map/` outputs are tracked. `index.html.backup` and `.build-cache.json` also ignored. `docs/Figma Design/` has a space — quote in shell.
-- **CI:** `.github/workflows/deploy.yml` — build → promote homepage → `npm test` → copy to `deploy/` → Pages API. Deploy step copies: index.html, 404.html, config.built.json, sitemap.xml, images/, trips/, map/, about/, robots.txt.
+- **CI:** `.github/workflows/deploy.yml` — build (auto-promotes homepage) → `npm test` → copy to `deploy/` → Pages API. Deploy step copies: index.html, 404.html, config.built.json, sitemap.xml, images/, trips/, map/, about/, robots.txt.
 - **Scale target:** Kevin anticipates 30–50 trips long-term. Design decisions should hold at that count without re-architecting. Client-side filtering/searching of homepage cards is fine up to hundreds; image lazy-loading on the homepage becomes relevant around 30+ trips. Pagination is not needed at 50 but may be considered for UX.
 - **Deferred work:** `docs/Figma Design/REMAINING.md` — homepage hero, photo gallery, newsletter.
 

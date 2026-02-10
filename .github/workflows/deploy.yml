@@ -32,9 +32,7 @@ jobs:
         env:
           NODE_ENV: production
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
-        run: |
-          npm run build
-          mv index.html.new index.html
+        run: npm run build
 
       - name: Run tests
         run: npm test
