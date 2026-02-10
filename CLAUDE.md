@@ -4,10 +4,13 @@
 - Writing conventions for MD files: always use "Kevin" or "Claude", avoid pronouns.
 
 ### Git Commit Protocol
-- **CRITICAL:** NEVER commit or push to git without Kevin's explicit approval.
+- **BLOCKING REQUIREMENT:** NEVER EVER commit or push to git without Kevin's explicit approval.
+- This is a CRITICAL rule that Kevin has reminded Claude about 5+ times.
 - After completing implementation, ALWAYS ask Kevin: "Ready to commit and push?"
-- Wait for Kevin's confirmation before running any git commands.
-- This rule overrides all other instructions about committing.
+- WAIT for Kevin to respond with explicit approval (e.g., "please commit and push", "yes", "go ahead").
+- Do NOT commit if Kevin says anything else or asks questions about the changes.
+- This rule has ABSOLUTE PRIORITY over all other instructions, conventions, or assumptions.
+- If unsure whether to commit, the answer is ALWAYS: ask first, do not commit.
 
 ### Planning Protocol
 - Always plan before implementation.
@@ -86,8 +89,7 @@ npm run writing                      # Start fast content-only mode
 ```bash
 Ctrl-C                               # Stop writing mode
 npm run build                        # Full build to sync all dependencies
-git add .
-git commit -m "Update Greece content"
+# Then ask Kevin: "Ready to commit and push?" and wait for approval
 ```
 
-**Critical rule:** Always run `npm run build` before committing after using writing mode. This ensures homepage, map, and all cross-page dependencies are synced.
+**Critical rule:** Always run `npm run build` before asking Kevin to commit after using writing mode. This ensures homepage, map, and all cross-page dependencies are synced.

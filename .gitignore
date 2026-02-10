@@ -11,6 +11,9 @@ index.html.new
 # API Keys
 config/google-maps.json
 
+# Google Photos Takeout zips (too large for git)
+takeout/
+
 # Dependencies
 node_modules/
 

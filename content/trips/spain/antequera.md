@@ -30,9 +30,3 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
-![](images/antequera-01.jpg)
-
-![](images/antequera-02.jpg)
-
-![](images/antequera-03.jpg)
-
