@@ -53,7 +53,7 @@ function discoverTrips() {
             const tripData = fs.readFileSync(tripConfigPath, 'utf8');
             const tripConfig = JSON.parse(tripData);
             trips.push({
-                slug: tripConfig.slug,
+                slug: tripId,  // Infer slug from directory name
                 beginDate: tripConfig.beginDate || '1970-01-01'
             });
         } catch (e) {

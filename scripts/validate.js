@@ -40,7 +40,7 @@ function discoverTrips() {
             const tripData = fs.readFileSync(tripConfigPath, 'utf8');
             const tripConfig = JSON.parse(tripData);
             trips.push({
-                slug: tripConfig.slug,
+                slug: tripId,  // Infer slug from directory name
                 beginDate: tripConfig.beginDate || '1970-01-01'
             });
         } catch (e) {
@@ -119,8 +119,6 @@ function validate() {
         }
 
         // Validate trip fields
-        if (!tripConfig.slug) error(`${prefix}: Missing "slug" field`);
-        if (tripConfig.slug !== tripId) error(`${prefix}: Slug mismatch - folder is "${tripId}" but trip.json has "${tripConfig.slug}"`);
         if (!tripConfig.title) error(`${prefix}: Missing "title" field`);
         if (tripConfig.published === undefined) warning(`${prefix}: Missing "published" field`);
 

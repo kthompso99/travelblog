@@ -307,7 +307,7 @@ async function processTrip(tripId) {
 
     // Build final trip object
     return {
-        slug: tripConfig.slug,
+        slug: tripId,  // Infer slug from directory name
         title: tripConfig.title,
         published: tripConfig.published,
 
@@ -363,7 +363,7 @@ function discoverTrips() {
             const tripConfig = JSON.parse(tripData);
 
             trips.push({
-                slug: tripConfig.slug,
+                slug: tripId,  // Infer slug from directory name
                 beginDate: tripConfig.beginDate || '1970-01-01' // Default to old date if missing
             });
         } catch (e) {
