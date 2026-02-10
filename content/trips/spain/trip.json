@@ -47,6 +47,13 @@
       "place": "Malaga, Spain",
       "duration": "2 days"
     },
+      {
+      "type": "location",
+      "title": "White Villages(1)",
+      "file": "setenil.md",
+      "place": "Setenil de las Bodegas, Spain",
+      "duration": "1 day"
+    },
     {
       "type": "location",
       "title": "Ronda",
@@ -54,16 +61,9 @@
       "place": "Ronda, Spain",
       "duration": "1 day"
     },
-     {
-      "type": "location",
-      "title": "Setenil de las Bodegas",
-      "file": "setenil.md",
-      "place": "Setenil de las Bodegas, Spain",
-      "duration": "1 day"
-    },
       {
       "type": "location",
-      "title": "Zahara de la Sierra",
+      "title": "White Villages(2)",
       "file": "zahara.md",
       "place": "Zahara de la Sierra, Spain",
       "duration": "1 day"

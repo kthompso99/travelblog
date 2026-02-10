@@ -291,7 +291,7 @@ async function runIncrementalBuild(tripIds) {
     for (const tripId of tripIds) {
         if (!rebuiltTrips[tripId]) continue;
 
-        const tripMetadata = output.trips.find(t => t.id === tripId);
+        const tripMetadata = output.trips.find(t => t.slug === tripId);
         const tripContentData = JSON.parse(fs.readFileSync(
             path.join(CONFIG.TRIPS_OUTPUT_DIR, `${tripId}.json`), 'utf8'));
 
