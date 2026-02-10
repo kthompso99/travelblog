@@ -307,9 +307,8 @@ async function processTrip(tripId) {
 
     // Build final trip object
     return {
-        id: tripConfig.id,
-        title: tripConfig.title,
         slug: tripConfig.slug,
+        title: tripConfig.title,
         published: tripConfig.published,
 
         beginDate: tripConfig.beginDate,
@@ -364,7 +363,7 @@ function discoverTrips() {
             const tripConfig = JSON.parse(tripData);
 
             trips.push({
-                id: tripId,
+                slug: tripConfig.slug,
                 beginDate: tripConfig.beginDate || '1970-01-01' // Default to old date if missing
             });
         } catch (e) {
@@ -377,7 +376,7 @@ function discoverTrips() {
         return new Date(b.beginDate) - new Date(a.beginDate);
     });
 
-    return trips.map(trip => trip.id);
+    return trips.map(trip => trip.slug);
 }
 
 /**
@@ -471,7 +470,7 @@ async function build() {
             // Save full trip content to separate file
             const tripContentFile = path.join(TRIPS_OUTPUT_DIR, `${tripId}.json`);
             const tripContent = {
-                id: trip.id,
+                slug: trip.slug,
                 introHtml: trip.introHtml,
                 content: trip.content
             };
@@ -488,9 +487,8 @@ async function build() {
 
             // Create lightweight metadata version for index
             const tripMetadata = {
-                id: trip.id,
-                title: trip.title,
                 slug: trip.slug,
+                title: trip.title,
                 published: trip.published,
                 beginDate: trip.beginDate,
                 endDate: trip.endDate,
@@ -581,7 +579,7 @@ async function build() {
         console.log(`   📄 Generating trip pages...\n`);
         for (let i = 0; i < processedTrips.length; i++) {
             const tripMetadata = processedTrips[i];
-            const tripId = tripMetadata.id;
+            const tripId = tripMetadata.slug;
 
             // Load full trip content
             const tripContentPath = path.join(TRIPS_OUTPUT_DIR, `${tripId}.json`);

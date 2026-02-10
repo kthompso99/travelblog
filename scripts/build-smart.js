@@ -53,7 +53,7 @@ function discoverTrips() {
             const tripData = fs.readFileSync(tripConfigPath, 'utf8');
             const tripConfig = JSON.parse(tripData);
             trips.push({
-                id: tripId,
+                slug: tripConfig.slug,
                 beginDate: tripConfig.beginDate || '1970-01-01'
             });
         } catch (e) {
@@ -62,7 +62,7 @@ function discoverTrips() {
     }
 
     trips.sort((a, b) => new Date(b.beginDate) - new Date(a.beginDate));
-    return trips.map(trip => trip.id);
+    return trips.map(trip => trip.slug);
 }
 
 /**
@@ -246,7 +246,7 @@ async function runIncrementalBuild(tripIds) {
             // Write per-trip content JSON
             const tripContentFile = path.join(CONFIG.TRIPS_OUTPUT_DIR, `${tripId}.json`);
             fs.writeFileSync(tripContentFile, JSON.stringify({
-                id: trip.id,
+                slug: trip.slug,
                 introHtml: trip.introHtml,
                 content: trip.content
             }, null, 2), 'utf8');
@@ -270,7 +270,7 @@ async function runIncrementalBuild(tripIds) {
         if (!trip) continue;
 
         const tripMetadata = {
-            id: trip.id, title: trip.title, slug: trip.slug,
+            slug: trip.slug, title: trip.title,
             published: trip.published, beginDate: trip.beginDate,
             endDate: trip.endDate, duration: trip.duration,
             metadata: trip.metadata, coverImage: trip.coverImage,

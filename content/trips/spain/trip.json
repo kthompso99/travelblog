@@ -1,7 +1,6 @@
 {
-  "id": "spain-2025",
+  "slug": "spain",
   "title": "Southern Spain 2025",
-  "slug": "spain-2025",
   "published": true,
   "beginDate": "2025-10-22",
   "endDate": "2025-11-07",
@@ -17,8 +16,8 @@
       "spain"
     ]
   },
-  "coverImage": "images/spain-2025.jpg",
-  "thumbnail": "images/spain-2025.jpg",
+  "coverImage": "images/spain.jpg",
+  "thumbnail": "images/spain.jpg",
   "mapCenter": "Estepa, Spain",
   "content": [
     {

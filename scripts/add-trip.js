@@ -89,11 +89,10 @@ async function addTrip() {
         return;
     }
 
-    const id = await question(`Trip ID (press enter for "${slugify(title)}"): `) || slugify(title);
-    const slug = id; // Use same value for slug
+    const slug = await question(`Trip slug (press enter for "${slugify(title)}"): `) || slugify(title);
 
     // Check if trip directory already exists
-    const tripDir = CONFIG.getTripDir(id);
+    const tripDir = CONFIG.getTripDir(slug);
     if (fs.existsSync(tripDir)) {
         console.log(`❌ Directory "${tripDir}" already exists`);
         rl.close();
@@ -159,9 +158,8 @@ async function addTrip() {
 
     // Create trip config object
     const tripConfig = {
-        id,
-        title,
         slug,
+        title,
         published: true,
         beginDate,
         endDate,
@@ -172,8 +170,8 @@ async function addTrip() {
             tripType: ['adventure'],
             tags: [continent.toLowerCase(), country.toLowerCase()]
         },
-        coverImage: `images/${id}.jpg`,
-        thumbnail: `images/${id}.jpg`,
+        coverImage: `images/${slug}.jpg`,
+        thumbnail: `images/${slug}.jpg`,
         mapCenter,
         content: content,
         relatedTrips: []
@@ -195,7 +193,7 @@ async function addTrip() {
 
     // Save trip.json
     try {
-        const tripConfigPath = CONFIG.getTripConfigPath(id);
+        const tripConfigPath = CONFIG.getTripConfigPath(slug);
         fs.writeFileSync(tripConfigPath, JSON.stringify(tripConfig, null, 2), 'utf8');
         console.log(`✅ Created ${tripConfigPath}`);
     } catch (e) {
@@ -230,7 +228,7 @@ Add general planning information, tips, and recommendations here.
 `;
 
     try {
-        const mainPath = CONFIG.getTripMainPath(id);
+        const mainPath = CONFIG.getTripMainPath(slug);
         fs.writeFileSync(mainPath, mainTemplate, 'utf8');
         console.log(`✅ Created ${mainPath}`);
     } catch (e) {
@@ -307,7 +305,7 @@ Recommend restaurants and local cuisine...
     }
 
     console.log('\n📋 Next steps:');
-    console.log(`  1. Add trip image to images/${id}.jpg`);
+    console.log(`  1. Add trip image to images/${slug}.jpg`);
     console.log(`  2. Edit ${tripDir}/main.md with your trip introduction`);
     console.log('  3. Edit content markdown files with your travel stories');
     console.log('  4. Optionally add thumbnail images for each location');

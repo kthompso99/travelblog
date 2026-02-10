@@ -40,7 +40,7 @@ function discoverTrips() {
             const tripData = fs.readFileSync(tripConfigPath, 'utf8');
             const tripConfig = JSON.parse(tripData);
             trips.push({
-                id: tripId,
+                slug: tripConfig.slug,
                 beginDate: tripConfig.beginDate || '1970-01-01'
             });
         } catch (e) {
@@ -49,7 +49,7 @@ function discoverTrips() {
     }
 
     trips.sort((a, b) => new Date(b.beginDate) - new Date(a.beginDate));
-    return trips.map(trip => trip.id);
+    return trips.map(trip => trip.slug);
 }
 
 function error(msg) {
@@ -119,10 +119,9 @@ function validate() {
         }
 
         // Validate trip fields
-        if (!tripConfig.id) error(`${prefix}: Missing "id" field`);
-        if (tripConfig.id !== tripId) error(`${prefix}: ID mismatch - folder is "${tripId}" but trip.json has "${tripConfig.id}"`);
-        if (!tripConfig.title) error(`${prefix}: Missing "title" field`);
         if (!tripConfig.slug) error(`${prefix}: Missing "slug" field`);
+        if (tripConfig.slug !== tripId) error(`${prefix}: Slug mismatch - folder is "${tripId}" but trip.json has "${tripConfig.slug}"`);
+        if (!tripConfig.title) error(`${prefix}: Missing "title" field`);
         if (tripConfig.published === undefined) warning(`${prefix}: Missing "published" field`);
 
         // Validate metadata

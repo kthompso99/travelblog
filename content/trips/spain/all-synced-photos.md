@@ -1,25 +1,25 @@
-<!-- Photo ID: spain-2025-01.jpg -->
+<!-- Photo ID: spain-01.jpg -->
 ![](images/seville-01.jpg)
 
-<!-- Photo ID: spain-2025-02.jpg -->
+<!-- Photo ID: spain-02.jpg -->
 ![](images/madrid-01.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipP6LhS5MNLUYH__UGOasssEyTygpr1OU2uRjLcE -->
-![](images/spain-2025-03.jpg)
+![](images/spain-03.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipP5WTotKU5YpLhzvKewEDRg16-7mBqx0E8yoHTU -->
-![Mercado de San Miguel](images/spain-2025-04.jpg)
+![Mercado de San Miguel](images/spain-04.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipPmLA1DlGACO5DMn5LKM-mR7Z-byoOKKMt9OnZu -->
-![](images/spain-2025-05.jpg)
+![](images/spain-05.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipOOo4Fl8umefxHI1zXwfUvA4iVtBW9e3tth0LCW -->
-![Real Basicilica de San Francisco el Grande, Madrid.  We found this almost by accident, and it was one of our favorite churches in Spain.](images/spain-2025-06.jpg)
+![Real Basicilica de San Francisco el Grande, Madrid.  We found this almost by accident, and it was one of our favorite churches in Spain.](images/spain-06.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipM5x91_6lC0T-G9eTMsDZn-uVYi5UDvEYe3GRAL -->
-![We did a great Tuk Tuk tour of Madrid -- some of the highlights are spread out, so we highly recommend this as an introduction to the city.](images/spain-2025-07.jpg)
+![We did a great Tuk Tuk tour of Madrid -- some of the highlights are spread out, so we highly recommend this as an introduction to the city.](images/spain-07.jpg)
 
-<!-- Photo ID: spain-2025-08.jpg -->
+<!-- Photo ID: spain-08.jpg -->
 ![](images/madrid-06.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipOuZfZr1XEpm5zg68ji5c6Y9BiDVlwoJLlK_VM6 -->
@@ -43,7 +43,7 @@
 <!-- Photo ID: https://photos.google.com/photo/AF1QipN_RhXVsvV9p3VgukpBKX48f0KzAZu2RLBHyV9W -->
 ![A typical patio on Cordoba's Ruta de Patios.](images/madrid-01.jpg)
 
-<!-- Photo ID: spain-2025-16.jpg -->
+<!-- Photo ID: spain-16.jpg -->
 ![](images/madrid-02.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMTTsxuyJT0_cKbofaMPguMAzV_fAsfqNFnA6-c -->
@@ -69,13 +69,13 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipP9w3aKQkqsPifdDp9hB_QORyj22rieqsdfolL7 -->
 ![](images/cordoba-07.jpg)
 
-<!-- Photo ID: spain-2025-24.jpg -->
+<!-- Photo ID: spain-24.jpg -->
 ![](images/cordoba-08.jpg)
 
-<!-- Photo ID: spain-2025-25.jpg -->
+<!-- Photo ID: spain-25.jpg -->
 ![](images/cordoba-09.jpg)
 
-<!-- Photo ID: spain-2025-26.jpg -->
+<!-- Photo ID: spain-26.jpg -->
 ![](images/cordoba-10.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipPg8YPK59hpYjfIIHoPu3uHN7pDRU5kwaEFfq_z -->
@@ -84,10 +84,10 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipOUQP3Stst0mUPctRRZTH09uzXD6e2KTIlyXwGe -->
 ![Another view of the wall of our hotel room.](images/cordoba-12.jpg)
 
-<!-- Photo ID: spain-2025-29.jpg -->
+<!-- Photo ID: spain-29.jpg -->
 ![](images/cordoba-13.jpg)
 
-<!-- Photo ID: spain-2025-30.jpg -->
+<!-- Photo ID: spain-30.jpg -->
 ![](images/granada-01.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipP4Q_RgN9XJF1kBcD_UyibxEZv2HvQB4b1LHH66 -->
@@ -102,7 +102,7 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipNEVys8GsKb0Bobkyr9lK5zrYdhV_H9AOF-klGk -->
 ![One of innumerable ceilings in the Alhambra, just stunning and impossible to capture 'fully', but this one evoked stalactites.](images/granada-05.jpg)
 
-<!-- Photo ID: spain-2025-35.jpg -->
+<!-- Photo ID: spain-35.jpg -->
 ![](images/granada-06.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipP5yMC_X9h1XrP8HIiLYfPJDP4g05n3NF2Chz0O -->
@@ -114,34 +114,34 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipP74M2tIVzLAuj_vEAdakQ2ad1YjMlYJ353a5zm -->
 ![](images/granada-09.jpg)
 
-<!-- Photo ID: spain-2025-39.jpg -->
+<!-- Photo ID: spain-39.jpg -->
 ![](images/granada-10.jpg)
 
-<!-- Photo ID: spain-2025-40.jpg -->
+<!-- Photo ID: spain-40.jpg -->
 ![](images/granada-11.jpg)
 
-<!-- Photo ID: spain-2025-41.jpg -->
+<!-- Photo ID: spain-41.jpg -->
 ![](images/granada-12.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipPUCvTbiWQiTcdcCER_Pz9JsbuUorBNdiuFak8A -->
 ![Our hotel rooftop, looking back at the nearby Granada cathedral.](images/granada-13.jpg)
 
-<!-- Photo ID: spain-2025-43.jpg -->
+<!-- Photo ID: spain-43.jpg -->
 ![](images/granada-14.jpg)
 
-<!-- Photo ID: spain-2025-44.jpg -->
+<!-- Photo ID: spain-44.jpg -->
 ![](images/granada-15.jpg)
 
-<!-- Photo ID: spain-2025-45.jpg -->
+<!-- Photo ID: spain-45.jpg -->
 ![](images/antequera-01.jpg)
 
-<!-- Photo ID: spain-2025-46.jpg -->
+<!-- Photo ID: spain-46.jpg -->
 ![](images/antequera-02.jpg)
 
-<!-- Photo ID: spain-2025-47.jpg -->
+<!-- Photo ID: spain-47.jpg -->
 ![](images/antequera-03.jpg)
 
-<!-- Photo ID: spain-2025-48.jpg -->
+<!-- Photo ID: spain-48.jpg -->
 ![](images/malaga-01.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipNGlFe-4ED-JLdTW6QmweeDRxB_W8iJsu4887Eg -->
@@ -153,10 +153,10 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMNrPC6vtQvsUjcQ8BlEJQ5l8rkG1999avMj055 -->
 ![The Malaga Alcazaba (Palace/fortress) is lovely and has some well-preserved spots, though it suffers in comparison if one was in the Alhambra 2 days earlier.](images/malaga-04.jpg)
 
-<!-- Photo ID: spain-2025-52.jpg -->
+<!-- Photo ID: spain-52.jpg -->
 ![](images/malaga-05.jpg)
 
-<!-- Photo ID: spain-2025-53.jpg -->
+<!-- Photo ID: spain-53.jpg -->
 ![](images/malaga-06.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMKcRKCMtnW6dXd836_zpakD_PBzjj3ZNdlDZKS -->
@@ -174,10 +174,10 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipOOPVsjzb-F43O8LsE5LHljHMOnPLDqj3fmnZBf -->
 ![We made a friend in Setenil. I'm pretty sure it wasn't the first time she had had Iberian ham (yes not the healthiest, but she was darn cute).](images/ronda-03.jpg)
 
-<!-- Photo ID: spain-2025-59.jpg -->
+<!-- Photo ID: spain-59.jpg -->
 ![](images/ronda-04.jpg)
 
-<!-- Photo ID: spain-2025-60.jpg -->
+<!-- Photo ID: spain-60.jpg -->
 ![](images/ronda-05.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipP1jDTpXLfS1kIkfSVUjBzfeuAfsfZjd4qThvYE -->
@@ -186,22 +186,22 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMVCRZ8PyTuv00eS68zd3M3FZzP7SEIC4FeUY0o -->
 ![The Plaza de Toros, the Ronda bullring, was the first one constructed in Spain, in the late 18th century. There is only 1 'fight' there per year now, which we thankfully were not near.](images/ronda-07.jpg)
 
-<!-- Photo ID: spain-2025-63.jpg -->
+<!-- Photo ID: spain-63.jpg -->
 ![](images/ronda-08.jpg)
 
-<!-- Photo ID: spain-2025-64.jpg -->
+<!-- Photo ID: spain-64.jpg -->
 ![](images/setenil-01.jpg)
 
-<!-- Photo ID: spain-2025-65.jpg -->
+<!-- Photo ID: spain-65.jpg -->
 ![](images/setenil-02.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipP4TrbPT2Iza1ggk4eGi1pF7byI1A5Qa28zLLky -->
 ![These structures, billed as the world's largest wooden structure, were built in 2011. I love that the architect called them "Metropol Parasol" (umbrellas), but locals almost immediately started calling it Las Setas ("The Mushrooms"). I wonder if they'll be like the Eiffel Tower, which Parisians originally loathed but became one of the landmarks of Sevilla, this structure is on many postcards and the square seems filled with locals.](images/seville-02.jpg)
 
-<!-- Photo ID: spain-2025-67.jpg -->
+<!-- Photo ID: spain-67.jpg -->
 ![](images/seville-03.jpg)
 
-<!-- Photo ID: spain-2025-68.jpg -->
+<!-- Photo ID: spain-68.jpg -->
 ![](images/seville-04.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMIAaGkaVWAeRohzaTb6Hpbpq6ztlbsY7YeEyxo -->
@@ -213,53 +213,53 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMRntTerhVKouzASLoLubgR2UiIL0H3PBpH5T5M -->
 ![Sevilla is an amazing food destination. Bar El Comercio was opened in 1904 and makes fresh churros.](images/seville-07.jpg)
 
-<!-- Photo ID: spain-2025-72.jpg -->
+<!-- Photo ID: spain-72.jpg -->
 ![](images/seville-08.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipOM2DMVewVseYxRVqnU5Zq1A2ioIKjqSkgyygwQ -->
 ![Seville Cathedral interior](images/seville-09.jpg)
 
-<!-- Photo ID: spain-2025-74.jpg -->
+<!-- Photo ID: spain-74.jpg -->
 ![](images/seville-10.jpg)
 
-<!-- Photo ID: spain-2025-75.jpg -->
+<!-- Photo ID: spain-75.jpg -->
 ![](images/seville-11.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMmm4niv8-6T1t8bOUr1djnPVchBYua1Rz7eJ8N -->
 ![](images/seville-12.jpg)
 
-<!-- Photo ID: spain-2025-77.jpg -->
+<!-- Photo ID: spain-77.jpg -->
 ![](images/seville-13.jpg)
 
-<!-- Photo ID: spain-2025-78.jpg -->
+<!-- Photo ID: spain-78.jpg -->
 ![](images/seville-14.jpg)
 
-<!-- Photo ID: spain-2025-79.jpg -->
+<!-- Photo ID: spain-79.jpg -->
 ![](images/seville-15.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipPFYg6Q_Nnc3fQmT5JPGXEHhumdZKRpzSPzVTlO -->
 ![Evidently some materials, including columns like this, were repurposed from earlier Roman buildings.](images/seville-16.jpg)
 
-<!-- Photo ID: spain-2025-81.jpg -->
+<!-- Photo ID: spain-81.jpg -->
 ![](images/seville-17.jpg)
 
-<!-- Photo ID: spain-2025-82.jpg -->
+<!-- Photo ID: spain-82.jpg -->
 ![](images/seville-18.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipPUGHK4s2PO1V5NoI9H4P2P21QJeTsO_FQf1qd5 -->
 ![In the Alcazar gardens were quite a few peacocks -- not sure I've ever been quite this close to one (yes, that's my knee).](images/seville-19.jpg)
 
-<!-- Photo ID: spain-2025-84.jpg -->
+<!-- Photo ID: spain-84.jpg -->
 ![](images/madrid-11.jpg)
 
-<!-- Photo ID: spain-2025-85.jpg -->
+<!-- Photo ID: spain-85.jpg -->
 ![](images/madrid-12.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMJEiZAnY70ySELWDEBDQC1j5FvBtxXB9SNGzMc -->
 ![Tiffany said I should add this picture as evidence that *sometime* I dress up in Europe. The 1953 lobby of this Madrid hotel (at which both the Beatles and Cary Grant stayed) demanded a bit of effort. Spaniards look so much more put-together, always a scarf or some other adornment. We noticed immediately on landing back on Charlotte how much less stylish Americans are.](images/madrid-13.jpg)
 
-<!-- Photo ID: spain-2025-87.jpg -->
+<!-- Photo ID: spain-87.jpg -->
 ![](images/madrid-14.jpg)
 
-<!-- Photo ID: spain-2025-88.jpg -->
+<!-- Photo ID: spain-88.jpg -->
 ![](images/madrid-15.jpg)
