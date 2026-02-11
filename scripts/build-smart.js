@@ -278,7 +278,7 @@ async function runIncrementalBuild(tripIds) {
             locations: trip.locations, relatedTrips: trip.relatedTrips
         };
 
-        const idx = output.trips.findIndex(t => t.id === tripId);
+        const idx = output.trips.findIndex(t => t.slug === tripId);
         if (idx >= 0) { output.trips[idx] = tripMetadata; }
         else { output.trips.push(tripMetadata); }
     }
