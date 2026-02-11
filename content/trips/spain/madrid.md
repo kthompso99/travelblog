@@ -1,8 +1,5 @@
-# Madrid
 
-### Madrid
-
-We visited Madrid for roughly 36 hours each before and after our Andalucian loop, just because it’s where flights from the US arrive/depart (there was a handful of flights in and out of Sevilla, but they didn’t have good itineraries by our taste).  By design, we didn’t want to make Madrid the focus, we can return there on another trip and/or early November is the ideal weather time once you get further north in Spain.
+We visited Madrid for roughly 36 hours each before and after our Andalucian loop, just because it’s where flights from the US arrive/depart (there was a handful of flights in and out of Seville, but they didn’t have good itineraries by our taste).  By design, we didn’t want to make Madrid the focus, we can return there on another trip and/or early November is the ideal weather time once you get further north in Spain.
 
 For reasons I’m not clear on, Tuk Tuk tours are ubiquitous in Madrid – we highly recommend one, some of the major ‘sites’ of Madrid are fairly spread out, so in a 3-hour tour we got to see the Mercado de San Miguel, the modern cathedral, the palace, and various other ‘highlights’.  Just a very comfortable way to get around, you feel like you’re a bit more ‘in’ the city than hiding in an SUV, but you can get to different parts of town easily.
 

@@ -1,8 +1,7 @@
-# Cordoba
 
 ## Overview
 
-Cordoba was 100% the best surprise of the trip, and one of our favorite cities – we are so glad we spent two nights there and didn’t ‘just’ zoom in for 5 hours to see the Mezquita, as is commonly done. This is nothing against either Granada or Sevilla or any of the rest of the trip, but in terms of expectations vs joy, Cordoba was just a delight.  We think back and certainly the fact that it was our first (non-Madrid) Andalucia city may have been part of that – but it’s just such an approachable, compact tourist city.  And to top it off, the Mezquita was one of our favorite destinations in Europe.
+Cordoba was 100% the best surprise of the trip, and one of our favorite cities – we are so glad we spent two nights there and didn’t ‘just’ zoom in for 5 hours to see the Mezquita, as is commonly done. This is nothing against either Granada or Seville or any of the rest of the trip, but in terms of expectations vs joy, Cordoba was just a delight.  We think back and certainly the fact that it was our first (non-Madrid) Andalucia city may have been part of that – but it’s just such an approachable, compact tourist city.  And to top it off, the Mezquita was one of our favorite destinations in Europe.
 
 In general, Cordoba has a very compact ‘old’ city, which is extremely walkable but also extremely easy to get lost in – one of us (ahem) has a better sense of direction than the other, and I lost my sense of direction over and over – but in a delightful way, you can only go so far.  The street ‘plan’ is from the Moorish era, and there’s not a single 90 degree turn anywhere.  While it’s not 100% car-free, the few random taxi’s are going relatively slowly, so you can just wander, which we loved.
 

@@ -1,6 +1,4 @@
-# Granada
 
-### Granada
 
 After Cordoba, Granada feels like a much larger city.  We stayed at [Palacio Gran Via](https://www.barcelo.com/es-es/palacio-gran-via-a-royal-hideaway-hotel/), which is on a very sizable boulevard (Gran Via) that was a bit of a shock after the car-free quiet of the Cordoba old town.  That hotel did, however, have a lovely rooftop bar with views of the Alhambra, and the lobby is gorgeously redone, keeping remnants of its historical roots as a early-20th-century bank –  which means we would recommend the hotel overall.  
 

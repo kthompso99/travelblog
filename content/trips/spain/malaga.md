@@ -1,6 +1,4 @@
-# Malaga
 
-### Malaga
 
 Malaga is interesting in that it’s a combination of a cruise ship port (blech), a seaside destination, largely for Brits, but also has interesting historic sites.  We enjoyed it but I wouldn’t call it a highlight compared to the other areas we saw.  
 

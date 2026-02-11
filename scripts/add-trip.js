@@ -7,7 +7,7 @@
  *
  * WHAT THIS SCRIPT DOES:
  *
- * Example: Adding a trip to Spain with locations Sevilla, Granada, Cordoba
+ * Example: Adding a trip to Spain with locations Seville, Granada, Cordoba
  *
  * 1. Creates directory: content/trips/spain/
  *
@@ -20,7 +20,7 @@
  *    - Template markdown for the trip overview page
  *
  * 4. Creates content files for each location/article:
- *    - content/trips/spain/sevilla.md (template with sections)
+ *    - content/trips/spain/seville.md (template with sections)
  *    - content/trips/spain/granada.md (template with sections)
  *    - content/trips/spain/cordoba.md (template with sections)
  *
@@ -39,7 +39,7 @@
  *
  * - "location" = places with coordinates (geocoded, appears on map)
  *   Requires: place (for geocoding), duration
- *   Example: Sevilla, Granada, Cordoba
+ *   Example: Seville, Granada, Cordoba
  *
  * - "article" = text-only content (no map marker)
  *   Does NOT require: place or duration

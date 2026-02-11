@@ -58,8 +58,8 @@
     },
       {
       "type": "location",
-      "title": "White Villages(1)",
-      "file": "setenil.md",
+      "title": "White Villages",
+      "file": "whitevillages.md",
       "place": "Setenil de las Bodegas, Spain",
       "duration": "1 day",
       "thumbnail": "images/setenil-01.jpg"
@@ -71,14 +71,6 @@
       "place": "Ronda, Spain",
       "duration": "1 day",
       "thumbnail": "images/ronda-01.jpg"
-    },
-      {
-      "type": "location",
-      "title": "White Villages(2)",
-      "file": "zahara.md",
-      "place": "Zahara de la Sierra, Spain",
-      "duration": "1 day",
-      "thumbnail": "images/zahara-01.jpg"
     },
     {
       "type": "location",

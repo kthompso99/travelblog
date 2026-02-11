@@ -1,4 +1,3 @@
-# Antequera
 
 See above for how we chose [daytrip.com](http://daytrip.com) for various of our shuttles from point A to point B.  For our ‘daytrip’ from Granada to Malaga, we visited the areas in and around Antequera.  
 

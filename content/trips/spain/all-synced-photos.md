@@ -1,5 +1,5 @@
 <!-- Photo ID: https://photos.google.com/photo/AF1QipM0-ZJEbM_5z7R4Or9W8RSCbcOy8DtTqviHc5nl -->
-![The Sevilla Alcazar served as Dorne in the Game of Thrones. I couldn't figure out where to shoot the scene where Jamie first meets Prince Doran, and the balcony where Doran is murdered doesn't allow photographs, but this serves as a decent placeholder.](images/seville-01.jpg)
+![The Seville Alcazar served as Dorne in the Game of Thrones. I couldn't figure out where to shoot the scene where Jamie first meets Prince Doran, and the balcony where Doran is murdered doesn't allow photographs, but this serves as a decent placeholder.](images/seville-01.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipPVOjiWn1jKeSHxUoiYvRll77F8eho_sUNV4Ww1 -->
 ![Catedral de Santa María la Real de la Almudena, Madrid.  Because more words in a name are better?](images/madrid-01.jpg)
@@ -196,10 +196,10 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 ![In nearby Zahara de la Sierra, we climbed Yet Another Moorish castle (13th century). Gorgeous views.](images/zahara-02.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipP4TrbPT2Iza1ggk4eGi1pF7byI1A5Qa28zLLky -->
-![These structures, billed as the world's largest wooden structure, were built in 2011. I love that the architect called them "Metropol Parasol" (umbrellas), but locals almost immediately started calling it Las Setas ("The Mushrooms"). I wonder if they'll be like the Eiffel Tower, which Parisians originally loathed but became one of the landmarks of Sevilla, this structure is on many postcards and the square seems filled with locals.](images/seville-02.jpg)
+![These structures, billed as the world's largest wooden structure, were built in 2011. I love that the architect called them "Metropol Parasol" (umbrellas), but locals almost immediately started calling it Las Setas ("The Mushrooms"). I wonder if they'll be like the Eiffel Tower, which Parisians originally loathed but became one of the landmarks of Seville, this structure is on many postcards and the square seems filled with locals.](images/seville-02.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipNAm4yxQppiqsJZfQS-58bgNnhgVZNLb4NjK8FJ -->
-![The Sevilla Cathedral is the 3rd largest in Europe, and bills itself as the world's largest Gothic cathedral. It is gorgeous from the outside, though the inside is less overwhelming to our taste. The large bell tower is largely a 12th-Century minaret, with only the top 20% being later Christian additions. To walk to the top, there are ramps not stairs so the poor guy who had to do call to prayer 5x daily could ride up the 250+ feet via donkey.](images/seville-03.jpg)
+![The Seville Cathedral is the 3rd largest in Europe, and bills itself as the world's largest Gothic cathedral. It is gorgeous from the outside, though the inside is less overwhelming to our taste. The large bell tower is largely a 12th-Century minaret, with only the top 20% being later Christian additions. To walk to the top, there are ramps not stairs so the poor guy who had to do call to prayer 5x daily could ride up the 250+ feet via donkey.](images/seville-03.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipPidz7iOQY2hqT3_vvPFR34NDKJcKIBx_sIEwUD -->
 ![There a few places where one can see the pipes inside this Moorish wall that carried water to the palace.](images/seville-04.jpg)
@@ -211,7 +211,7 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 ![The churros are completely unlike what we get in California -- light/airy, and a great breakfast dipped in fresh chocolate.](images/seville-06.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMRntTerhVKouzASLoLubgR2UiIL0H3PBpH5T5M -->
-![Sevilla is an amazing food destination. Bar El Comercio was opened in 1904 and makes fresh churros.](images/seville-07.jpg)
+![Seville is an amazing food destination. Bar El Comercio was opened in 1904 and makes fresh churros.](images/seville-07.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMOeUHX_l5tdKk49z9RbmVXIMz7yXJPctiVTEcL -->
 ![Tiffany in a small Seville shop, that dates back to Moorish times, on a market lane filled with remnants of 1000 years ago.](images/seville-08.jpg)
@@ -223,7 +223,7 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 ![Christopher Columbus' tomb in the Seville Cathedral](images/seville-10.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipM4cw7C8tAm_8melPLh1Cky4tA6hOukoYc85TiG -->
-![A Moorish gate through which one can see parts of the Sevilla cathedral. Love the juxtaposition.](images/seville-11.jpg)
+![A Moorish gate through which one can see parts of the Seville cathedral. Love the juxtaposition.](images/seville-11.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipMmm4niv8-6T1t8bOUr1djnPVchBYua1Rz7eJ8N -->
 ![](images/seville-12.jpg)
@@ -232,7 +232,7 @@ We liked this angle because you see the two buildings 'together'.  Note how the 
 ![](images/seville-13.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipNpWl7BpaoQAHjS1fisaqYk3m5xpU3QtVzM3aDs -->
-![The unquestionable highlight of Sevilla is the Royal Alcázar (palace), built in stages like most palaces but the best-known part was built in the 1360s. Interestingly it was built *after* the Catholic reconquest, but designed largely in Mudéjar (Moorish) style - under the direction of Christian kings but far more Moorish-looking than otherwise. Parts are comparable to the Alhambra in Granada in beauty.](images/seville-14.jpg)
+![The unquestionable highlight of Seville is the Royal Alcázar (palace), built in stages like most palaces but the best-known part was built in the 1360s. Interestingly it was built *after* the Catholic reconquest, but designed largely in Mudéjar (Moorish) style - under the direction of Christian kings but far more Moorish-looking than otherwise. Parts are comparable to the Alhambra in Granada in beauty.](images/seville-14.jpg)
 
 <!-- Photo ID: https://photos.google.com/photo/AF1QipOYy-hWIFfdcUr02WxZej4XBLqSZS1W3QlLWL25 -->
 ![More of the Alcázar.](images/seville-15.jpg)

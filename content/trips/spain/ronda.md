@@ -1,8 +1,6 @@
-# Ronda
 
-### Ronda
 
-Ronda is the best-known southern hill town, and is a very common day trip destination because it can be done from Sevilla or Malaga.  Rick Steves recommended spending a night there, and we’re glad we did.  It’s an enchanting location, with a remarkable 18th-century stone bridge over a yawning gorge, which is beautifully well-lit.  Unlike many of the other small villages, there’s enough infrastructure there and things to see that a night seemed well worth it.
+Ronda is the best-known southern hill town, and is a very common day trip destination because it can be done from Seville or Malaga.  Rick Steves recommended spending a night there, and we’re glad we did.  It’s an enchanting location, with a remarkable 18th-century stone bridge over a yawning gorge, which is beautifully well-lit.  Unlike many of the other small villages, there’s enough infrastructure there and things to see that a night seemed well worth it.
 
 We saw a [Spanish Guitar show](https://www.rondaguitarmusic.com/) the evening we were there, and highly recommend it.  It was only 50-60 minutes, which is just fine (we went 7-8pm and still enjoyed dinner afterwards), and while clearly set up for tourists, we learned quite a bit about different styles of Spanish guitar music.
 
