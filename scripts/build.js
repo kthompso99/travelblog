@@ -181,8 +181,52 @@ async function processContentItem(item, tripId, order) {
         const filePath = path.join(CONFIG.getTripDir(tripId), item.file);
         try {
             console.log(`    📝 Converting markdown: ${filePath}`);
-            processed.contentHtml = await convertMarkdown(filePath);
+
+            // Read markdown content to check for gallery marker
+            let markdownContent = fs.readFileSync(filePath, 'utf8');
+            let galleryImages = null;
+            const galleryMarker = '*Add your photos here*';
+            const markerIndex = markdownContent.indexOf(galleryMarker);
+
+            if (markerIndex !== -1) {
+                console.log(`    📸 Gallery marker found in ${item.file}`);
+
+                // Split content at marker
+                const beforeMarker = markdownContent.substring(0, markerIndex);
+                const afterMarker = markdownContent.substring(markerIndex + galleryMarker.length);
+
+                // Extract images from content after marker
+                const imageRegex = /!\[([^\]]*)\]\(([^\)]+)\)/g;
+                galleryImages = [];
+                let match;
+
+                while ((match = imageRegex.exec(afterMarker)) !== null) {
+                    galleryImages.push({
+                        caption: match[1],
+                        src: match[2]
+                    });
+                }
+
+                // Only convert pre-marker content to HTML (strip gallery section)
+                markdownContent = beforeMarker.trim();
+
+                // Write to temp file for convertMarkdown
+                const tempPath = filePath + '.temp';
+                fs.writeFileSync(tempPath, markdownContent, 'utf8');
+                processed.contentHtml = await convertMarkdown(tempPath);
+                fs.unlinkSync(tempPath); // Clean up temp file
+            } else {
+                // No marker found, convert entire file as before
+                processed.contentHtml = await convertMarkdown(filePath);
+            }
+
             console.log(`    ✅ HTML generated (${processed.contentHtml.length} chars)`);
+
+            // Store gallery if images found
+            if (galleryImages && galleryImages.length > 0) {
+                processed.gallery = galleryImages;
+                console.log(`    ✅ Gallery parsed from main file: ${galleryImages.length} images`);
+            }
         } catch (e) {
             console.log(`    ⚠️  Markdown conversion failed: ${e.message}`);
             processed.contentHtml = `<p>Content not found</p>`;
@@ -209,38 +253,6 @@ async function processContentItem(item, tripId, order) {
         }
     }
 
-    // Check for gallery markdown file ({slug}-gallery.md)
-    if (item.type === 'location' || item.type === 'article') {
-        const slug = slugify(item.title);
-        const galleryPath = path.join(CONFIG.getTripDir(tripId), `${slug}-gallery.md`);
-
-        if (fs.existsSync(galleryPath)) {
-            console.log(`    📸 Found gallery: ${slug}-gallery.md`);
-            try {
-                const galleryMarkdown = fs.readFileSync(galleryPath, 'utf8');
-                // Parse markdown to extract images: ![caption](src)
-                const imageRegex = /!\[([^\]]*)\]\(([^\)]+)\)/g;
-                const gallery = [];
-                let match;
-
-                while ((match = imageRegex.exec(galleryMarkdown)) !== null) {
-                    gallery.push({
-                        caption: match[1],
-                        src: match[2]
-                    });
-                }
-
-                if (gallery.length > 0) {
-                    processed.gallery = gallery;
-                    console.log(`    ✅ Gallery parsed: ${gallery.length} images`);
-                } else {
-                    console.log(`    ⚠️  Gallery file is empty or malformed`);
-                }
-            } catch (e) {
-                console.log(`    ⚠️  Gallery parsing failed: ${e.message}`);
-            }
-        }
-    }
 
     return processed;
 }

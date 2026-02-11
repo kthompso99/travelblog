@@ -41,9 +41,29 @@ We found dining in Cordoba pleasant and easy.  We probably didn't need to make r
 
 ## Practical Tips
 
-The old town is close to the train station, but not close enough to be walking distance; getting a taxi was trivial.  It's a small enough town that Uber is not an option.  Once you're in the old town, everything is very walkable, it's probably 10-15 minutes from one "end" to the other.  
+The old town is close to the train station, but not close enough to be walking distance; getting a taxi was trivial.  It's a small enough town that Uber is not an option.  Once you're in the old town, everything is very walkable, it's probably 10-15 minutes from one "end" to the other.
 
+*Add your photos here*
 
+![Beautiful Cordoba was once a Roman city -- this bridge, carrying vehicles until the 1990s, dates from Roman times. Under the Moors, Cordoba was the largest city in Europe in the 9th and 10th Century. Capital of the emirate of Al-Andalus from 756 until its reconquest by the Spanish in 1236, Cordoba grabbed our heart.](images/cordoba-02.jpg)
 
+![The outside of Cordoba's Mezquita; some of the doors are semi-restored, but this is largely intact from the 9th century.](images/cordoba-01.jpg)
 
+![One of our favorite small squares, right near our Cordoba hotel.  Note the medieval wall in the background, the same segment that our hotel was built 'into'.](images/cordoba-05.jpg)
+
+![The bell tower next to the Cordoba cathedral.  Like many Andalusian bell towers, this was built on top of an existing Muslim minaret after the reconquest.](images/cordoba-06.jpg)
+
+![The 16th-century Cathedral was built right in the middle of the mosque, thankfully leaving much of the mosque as it was originally. Some criticize the "transition" from one building to the other, but honestly it feels as though it could have been worse, you can see both the mosque arches and bits of the Cathedral in this angle. If you ignore the weird religious overtones, the overall building oddly "worked" for us. We liked this angle because you see the two buildings 'together'.  Note how the Mezquita is (for both religious aesthetic reasons, and logistics reasons of what was possible in the 9th century) quite dark, while the cathedral emphasizes light.](images/cordoba-08.jpg)
+
+![This is the ancient Mihrab (prayer niche) of the Mezquita.  We remain surprised that it was never destroyed in subsequent Christian reworkings.  It's sadly under scaffolding as of late 2025, but we're glad they're working on it.](images/cordoba-09.jpg)
+
+![The 18th-century choir, built from Caribbean wood, contrasts gorgeously with the roof.](images/cordoba-10.jpg)
+
+![](images/cordoba-11.jpg)
+
+![These inscriptions are left behind from original Moorish artisans.  It's fun to look at various columns to find them (not all have them, we're not sure why).](images/cordoba-12.jpg)
+
+![Middle aged man at the Mezquita.](images/cordoba-13.jpg)
+
+![From the Roman bridge, looking back at the combined Mezquita (the broad wall) and the Cathedral emerging from it.](images/cordoba-14.jpg)
 

@@ -33,5 +33,14 @@ We really enjoyed our meal at [Tercer Acto](https://www.grupoterceracto.com/) [T
 
 The downtown area is walking only.  Getting to our hotel wasn't difficult, but was less than pleasant in a horrendous rain storm.
 
+*Add your photos here*
 
+![Malaga features a very busy shopping district, much of it with the usual generic high-end brands found on every shopping street in Europe, but ... the Iberian Ham makes it look a bit more distinct.](images/malaga-01.jpg)
 
+![Another view from the mountain above Malaga.](images/malaga-03.jpg)
+
+![Wall decorations in the Malaga Alcazaba.](images/malaga-05.jpg)
+
+![Incredibly intricate archway in the Alcazaba.](images/malaga-06.jpg)
+
+![The Malaga Cathedral remains unfinished (one tower), but is still lovely.](images/malaga-08.jpg)

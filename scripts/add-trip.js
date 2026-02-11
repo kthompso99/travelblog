@@ -286,8 +286,6 @@ Recommend restaurants and local cuisine...
 - What to bring
 - Best time to visit
 
-## Photo Gallery
-
 *Add your photos here*
 
 ---

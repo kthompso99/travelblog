@@ -41,4 +41,24 @@ Granada is also unique in its Tapas culture.  Many cities in Spain, of course, h
 
 After Cordoba, Granada feels like a much larger city.  It's by no means unmanageable, but it's quite a bit larger than Cordoba, and also has a lot more 'traffic' around areas that are touristy compared to Seville, which has a compact walkable quarter that is almost traffic-free.  Please note that the Alhambra is up a quite steep hill from where most of the tourists stay.
 
-Booking a tour at the Alhambra is a *must* -- some tours book up months in advance, especially at peak times.  We had considered doing a night tour (when the lighting is different) and they were booked 8 weeks in advance -- and this was early November.  
+Booking a tour at the Alhambra is a *must* -- some tours book up months in advance, especially at peak times.  We had considered doing a night tour (when the lighting is different) and they were booked 8 weeks in advance -- and this was early November.
+
+*Add your photos here*
+
+![Couldn't get the light quite right for the Court of the Lions.](images/granada-03.jpg)
+
+![It's hard to get just the right angle of the Court of the Lions.](images/granada-04.jpg)
+
+![One of innumerable ceilings in the Alhambra, just stunning and impossible to capture 'fully', but this one evoked stalactites.](images/granada-05.jpg)
+
+![](images/granada-06.jpg)
+
+![The Generalife is near (~10 minute walk) away from the main Alhambra, and is beautiful in its own right.](images/granada-08.jpg)
+
+![View of the Alhambra from the Generalife](images/granada-09.jpg)
+
+![The Museo Cuevas does an excellent job explaining the role of music in the life of the Gypsies](images/granada-11.jpg)
+
+![One of innumerable displays of tasty roasted nuts.](images/granada-14.jpg)
+
+![Shopping in Granada](images/granada-15.jpg)
