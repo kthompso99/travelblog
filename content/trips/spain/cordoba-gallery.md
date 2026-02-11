@@ -1,13 +1,13 @@
 
 ![Beautiful Cordoba was once a Roman city -- this bridge, carrying vehicles until the 1990s, dates from Roman times. Under the Moors, Cordoba was the largest city in Europe in the 9th and 10th Century. Capital of the emirate of Al-Andalus from 756 until its reconquest by the Spanish in 1236, Cordoba grabbed our heart.](images/cordoba-02.jpg)
 
-
+![The outside of Cordoba's Mezquita; some of the doors are semi-restored, but this is largely intact from the 9th century.](images/cordoba-01.jpg)
 
 ![One of our favorite small squares, right near our Cordoba hotel.  Note the medieval wall in the background, the same segment that our hotel was built 'into'.](images/cordoba-05.jpg)
 
 ![The bell tower next to the Cordoba cathedral.  Like many Andalusian bell towers, this was built on top of an existing Muslim minaret after the reconquest.](images/cordoba-06.jpg)
 
-![The uncontroversial highlight of Cordoba is the Mezquita (Mosque), built in 785 and then converted into a Cathedral after the reconquest. Various sources indicate it was either the largest or second-largest mosque in the world in the 10th Century. The beautiful arches, over 800 in all, recede endlessly into the distance, creating a beautiful visual.  The archways are original; the hanging lanterns are Christian-added.](images/cordoba-07.jpg)
+
 
 ![The 16th-century Cathedral was built right in the middle of the mosque, thankfully leaving much of the mosque as it was originally. Some criticize the "transition" from one building to the other, but honestly it feels as though it could have been worse, you can see both the mosque arches and bits of the Cathedral in this angle. If you ignore the weird religious overtones, the overall building oddly "worked" for us. We liked this angle because you see the two buildings 'together'.  Note how the Mezquita is (for both religious aesthetic reasons, and logistics reasons of what was possible in the 9th century) quite dark, while the cathedral emphasizes light.](images/cordoba-08.jpg)
 

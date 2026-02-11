@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const { imageSize } = require('image-size');
 const { slugify } = require('../lib/slug-utilities');
 
 // Load marked for markdown conversion
@@ -98,10 +99,38 @@ function convertMarkdown(filePath) {
                 try {
                     let html = marked.parse(data);
 
-                    // Post-process: Add max-width to all images for responsive sizing
-                    // Limit to 600px but still responsive on smaller screens
+                    // Post-process: Add orientation-aware max-width to all images
+                    // Portrait (vertical) images: 375px max-width
+                    // Landscape (horizontal) images: 600px max-width
                     // Only add if img doesn't already have inline style
-                    html = html.replace(/<img(?![^>]*style=)([^>]*)>/gi, '<img$1 style="max-width: 600px; width: 100%; height: auto;">');
+                    const markdownDir = path.dirname(filePath);
+                    html = html.replace(/<img(?![^>]*style=)([^>]*)>/gi, (match, attrs) => {
+                        // Extract src attribute
+                        const srcMatch = attrs.match(/src="([^"]*)"/);
+                        if (!srcMatch) return match; // No src, return unchanged
+
+                        const imgSrc = srcMatch[1];
+                        const imgPath = path.join(markdownDir, imgSrc);
+
+                        let maxWidth = 600; // Default to landscape
+
+                        // Try to get image dimensions to determine orientation
+                        try {
+                            if (fs.existsSync(imgPath)) {
+                                const buffer = fs.readFileSync(imgPath);
+                                const dimensions = imageSize(buffer);
+                                // Portrait: height > width
+                                if (dimensions.height > dimensions.width) {
+                                    maxWidth = 375;
+                                }
+                            }
+                        } catch (err) {
+                            // If we can't read dimensions, default to landscape (600px)
+                            // This handles cases where images don't exist yet or are external
+                        }
+
+                        return `<img${attrs} style="max-width: ${maxWidth}px; width: 100%; height: auto;">`;
+                    });
 
                     // Post-process: Convert paragraph-wrapped images to figure with figcaption
                     // This makes the alt text visible as a caption below the image

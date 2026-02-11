@@ -20,6 +20,7 @@
   "dependencies": {
     "adm-zip": "^0.5.16",
     "googleapis": "^171.4.0",
+    "image-size": "^2.0.2",
     "marked": "^9.1.6"
   },
   "devDependencies": {
