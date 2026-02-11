@@ -148,6 +148,21 @@ function convertMarkdown(filePath) {
                     // Opens links in new tab and adds security attributes
                     html = html.replace(/<a(?![^>]*target=)([^>]*)>/gi, '<a$1 target="_blank" rel="noopener noreferrer">');
 
+                    // Post-process: Convert <img> tags with video extensions to <video> tags
+                    // Supports .mp4, .mov, .webm file extensions
+                    html = html.replace(/<figure>(<img[^>]+src="([^"]+\.(mp4|mov|webm))"[^>]*>)<figcaption>([^<]+)<\/figcaption><\/figure>/gi, (match, imgTag, src, ext, caption) => {
+                        // Video with caption (was wrapped in figure)
+                        return `<figure><video controls style="max-width: 600px; width: 100%; height: auto;"><source src="${src}" type="video/${ext === 'mov' ? 'quicktime' : ext}">Your browser does not support the video tag.</video><figcaption>${caption}</figcaption></figure>`;
+                    });
+                    html = html.replace(/<p>(<img[^>]+src="([^"]+\.(mp4|mov|webm))"[^>]*>)<\/p>/gi, (match, imgTag, src, ext) => {
+                        // Video without caption (was in paragraph)
+                        return `<p><video controls style="max-width: 600px; width: 100%; height: auto;"><source src="${src}" type="video/${ext === 'mov' ? 'quicktime' : ext}">Your browser does not support the video tag.</video></p>`;
+                    });
+                    html = html.replace(/<img([^>]+)src="([^"]+\.(mp4|mov|webm))"([^>]*)>/gi, (match, before, src, ext, after) => {
+                        // Catch any remaining video img tags (not wrapped in p or figure)
+                        return `<video controls style="max-width: 600px; width: 100%; height: auto;"><source src="${src}" type="video/${ext === 'mov' ? 'quicktime' : ext}">Your browser does not support the video tag.</video>`;
+                    });
+
                     resolve(html);
                 } catch (e) {
                     reject(e);
