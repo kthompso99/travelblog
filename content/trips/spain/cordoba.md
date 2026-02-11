@@ -17,6 +17,8 @@ We started our time in Cordoba with a Rick Steves-recommended 2-hour bike ride a
 
 We also enjoyed and highly recommend the 8pm-nightly horse show at the Royal Stables of Cordoba.  There is reputedly a ‘better’ horse show in nearby Jerez, but we didn’t make it to Jerez, and the Cordoba show was delightful.  The show is only 70 minutes or so (including intermission), very pleasant.  We bought the premium pass which cost only an extra \~€8\. I originally bought via a 3rd-party because Google’s search results pushed me there (shame on me), but the 3rd-party site didn’t give me the option to select seats or get premium; if you buy your tickets directly [here](https://cordobaecuestre.com/), you can select premium seats (but those are limited, and disappear weeks in advance, so it’s worth planning). More importantly than the ‘better seats’ is that the premium experience allows you to visit the stables earlier in the day and watch them training. It’s only a 5-minute walk from the Mezquita, and was worth a diversion earlier that day.
 
+![Gorgeous Andalusian horse practicing its steps](images/cordoba-18.jpg)
+
 Cordoba’s Ruta de Patios allows one to see privately-maintained patios that are filled with gorgeous flower arrangements.  In November only a handful were open, but each was unique and quite pretty – evidently these are a point of pride for homeowners, and the competition is fierce for the annual spring competition.  We saw it as part of our bike tour, it varies depending on the time of year (avoid the actual festival, which attracts hundreds of thousands from what we’ve read), but it’s well worth visiting.   
 
 ![A typical patio on Cordoba's Ruta de Patios.](images/cordoba-03.jpg)
@@ -43,42 +45,4 @@ Recommend restaurants and local cuisine...
 - Getting around
 - What to bring
 - Best time to visit
-
-## Photo Gallery
-
-*Add your photos here*
-
----
-
-*Last updated: February 2026*
-
-
-
-![Beautiful Cordoba was once a Roman city -- this bridge, carrying vehicles until the 1990s, dates from Roman times. Under the Moors, Cordoba was the largest city in Europe in the 9th and 10th Century. Capital of the emirate of Al-Andalus from 756 until its reconquest by the Spanish in 1236, Cordoba grabbed our heart.](images/cordoba-02.jpg)
-
-
-
-
-
-![One of our favorite small squares, right near our Cordoba hotel.  Note the medieval wall in the background, the same segment that our hotel was built 'into'.](images/cordoba-05.jpg)
-
-![The bell tower next to the Cordoba cathedral.  Like many Andalusian bell towers, this was built on top of an existing Muslim minaret after the reconquest.](images/cordoba-06.jpg)
-
-![The uncontroversial highlight of Cordoba is the Mezquita (Mosque), built in 785 and then converted into a Cathedral after the reconquest. Various sources indicate it was either the largest or second-largest mosque in the world in the 10th Century. The beautiful arches, over 800 in all, recede endlessly into the distance, creating a beautiful visual.  The archways are original; the hanging lanterns are Christian-added.](images/cordoba-07.jpg)
-
-![The 16th-century Cathedral was built right in the middle of the mosque, thankfully leaving much of the mosque as it was originally. Some criticize the "transition" from one building to the other, but honestly it feels as though it could have been worse, you can see both the mosque arches and bits of the Cathedral in this angle. If you ignore the weird religious overtones, the overall building oddly "worked" for us. We liked this angle because you see the two buildings 'together'.  Note how the Mezquita is (for both religious aesthetic reasons, and logistics reasons of what was possible in the 9th century) quite dark, while the cathedral emphasizes light.](images/cordoba-08.jpg)
-
-![This is the ancient Mihrab (prayer niche) of the Mezquita.  We remain surprised that it was never destroyed in subsequent Christian reworkings.  It's sadly under scaffolding as of late 2025, but we're glad they're working on it.](images/cordoba-09.jpg)
-
-![The 18th-century choir, built from Caribbean wood, contrasts gorgeously with the roof.](images/cordoba-10.jpg)
-
-![](images/cordoba-11.jpg)
-
-![These inscriptions are left behind from original Moorish artisans.  It's fun to look at various columns to find them (not all have them, we're not sure why).](images/cordoba-12.jpg)
-
-![Middle aged man at the Mezquita.](images/cordoba-13.jpg)
-
-![From the Roman bridge, looking back at the combined Mezquita (the broad wall) and the Cathedral emerging from it.](images/cordoba-14.jpg)
-
-
 
