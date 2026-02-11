@@ -624,7 +624,7 @@ async function build() {
 
             // Generate pages for all content items (articles and locations)
             allContent.forEach((item, itemIndex) => {
-                const itemSlug = item.title.toLowerCase().replace(/\s+/g, '-');
+                const itemSlug = slugify(item.title);
                 const itemHtmlPath = path.join(tripDir, `${itemSlug}.html`);
 
                 let itemHtml;

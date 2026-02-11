@@ -140,6 +140,7 @@ async function addTrip() {
             const duration = await question(`  Duration (e.g., "3 days"): `);
             contentItem.place = place || itemTitle;
             contentItem.duration = duration || '1 day';
+            contentItem.thumbnail = `images/${itemSlug}-01.jpg`;
         }
 
         content.push(contentItem);

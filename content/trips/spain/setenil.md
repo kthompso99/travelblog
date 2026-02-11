@@ -1,5 +1,13 @@
 # Setenil de las Bodegas
 
+
+
+### Malaga=\>Ronda
+
+Again, see above where we discuss how [daytrip](http://daytrip.com) allowed us to efficiently see some amazing spots along the way between towns. Between Malaga and Ronda is the wonderful little town of   
+Setenil de las Bodegas.  It’s an ancient town, surrounded by cliffs in such a way that parts of the town is built in to the hillside.  An entire block of houses is sheltered under an enormous boulder, another level of houses is built on top of a different insanely-large rock formation.  It’s very instagram-worthy, but overall I think you can see the town in 90 or 120 minutes easily.  This was one time that daytrip was particularly helpful, because our driver could drop us off right at the entrance to the tourist area and pick us up 2 hours later – but parking was a good 15 minute walk away.
+
+
 ## Overview
 
 Add your introduction to Setenil de las Bodegas here...

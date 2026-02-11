@@ -1,5 +1,12 @@
 # Antequera
 
+See above for how we chose [daytrip.com](http://daytrip.com) for various of our shuttles from point A to point B.  For our ‘daytrip’ from Granada to Malaga, we visited the areas in and around Antequera.  
+
+The best part of Antequera is the ancient Dolmens just outside, a set of 3 separate UNESCO World Heritage sites.  The oldest is from before Stonehenge, and features the largest single rock placed in Europe, or something like that.  Two of them are right next to one another, and the third is a 10-minute drive away, and each is worth visiting – we really found this extremely worth it.
+
+The small town of Antequera was also interesting, though probably would not have been a first choice on its own without the dolmens.  It’s a small/quaint town with over 30 churches, all with opulent interiors.  The true highlight was the citadel at the top of town, with Roman foundations (and a nearby Roman bath), and Moorish as well as post-reconquest Spanish influences.  Definitely worth 45 or 60 minutes.  There were great views on top as well.
+
+
 ## Overview
 
 Add your introduction to Antequera here...

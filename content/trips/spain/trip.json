@@ -15,72 +15,86 @@
       "spain"
     ]
   },
-  "coverImage": "images/spain.jpg",
-  "thumbnail": "images/spain.jpg",
+  "coverImage": "images/seville-14.jpg",
+  "thumbnail": "images/seville-14.jpg",
   "mapCenter": "Estepa, Spain",
   "content": [
+    {
+      "type": "article",
+      "title": "Tips",
+      "file": "tips.md"
+    },
     {
       "type": "location",
       "title": "Cordoba",
       "file": "cordoba.md",
       "place": "Cordoba, Spain",
-      "duration": "2 days"
+      "duration": "2 days",
+      "thumbnail": "images/cordoba-12.jpg"
     },
     {
       "type": "location",
       "title": "Granada",
       "file": "granada.md",
       "place": "Granada, Spain",
-      "duration": "3 days"
+      "duration": "3 days",
+      "thumbnail": "images/granada-02.jpg"
     },
     {
       "type": "location",
       "title": "Antequera",
       "file": "antequera.md",
       "place": "Antequera, Spain",
-      "duration": "2 days"
+      "duration": "2 days",
+      "thumbnail": "images/antequera-01.jpg"
     },
     {
       "type": "location",
       "title": "Malaga",
       "file": "malaga.md",
       "place": "Malaga, Spain",
-      "duration": "2 days"
+      "duration": "2 days",
+      "thumbnail": "images/malaga-08.jpg"
     },
       {
       "type": "location",
       "title": "White Villages(1)",
       "file": "setenil.md",
       "place": "Setenil de las Bodegas, Spain",
-      "duration": "1 day"
+      "duration": "1 day",
+      "thumbnail": "images/setenil-01.jpg"
     },
     {
       "type": "location",
       "title": "Ronda",
       "file": "ronda.md",
       "place": "Ronda, Spain",
-      "duration": "1 day"
+      "duration": "1 day",
+      "thumbnail": "images/ronda-01.jpg"
     },
       {
       "type": "location",
       "title": "White Villages(2)",
       "file": "zahara.md",
       "place": "Zahara de la Sierra, Spain",
-      "duration": "1 day"
+      "duration": "1 day",
+      "thumbnail": "images/zahara-01.jpg"
     },
     {
       "type": "location",
       "title": "Seville",
       "file": "seville.md",
       "place": "Seville, Spain",
-      "duration": "4 days"
+      "duration": "4 days",
+      "thumbnail": "images/seville-18.jpg"
     },
     {
       "type": "location",
       "title": "Madrid",
       "file": "madrid.md",
       "place": "Madrid, Spain",
-      "duration": "3 days"
+      "duration": "3 days",
+      "thumbnail": "images/madrid-09.jpg"
     }
   ],
   "relatedTrips": []
