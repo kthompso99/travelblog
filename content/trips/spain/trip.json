@@ -1,5 +1,5 @@
 {
-  "title": "Southern Spain 2025",
+  "title": "Southern Spain",
   "published": false,
   "beginDate": "2025-10-22",
   "endDate": "2025-11-07",
@@ -59,7 +59,7 @@
       {
       "type": "location",
       "title": "White Villages",
-      "file": "whitevillages.md",
+      "file": "white-villages.md",
       "place": "Setenil de las Bodegas, Spain",
       "duration": "1 day",
       "thumbnail": "images/setenil-01.jpg"
