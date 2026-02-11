@@ -1,9 +1,9 @@
 
 ## Overview
 
-Cordoba was 100% the best surprise of the trip, and one of our favorite cities – we are so glad we spent two nights there and didn’t ‘just’ zoom in for 5 hours to see the Mezquita, as is commonly done. This is nothing against either Granada or Seville or any of the rest of the trip, but in terms of expectations vs joy, Cordoba was just a delight.  We think back and certainly the fact that it was our first (non-Madrid) Andalucia city may have been part of that – but it’s just such an approachable, compact tourist city.  And to top it off, the Mezquita was one of our favorite destinations in Europe.
+Cordoba was 100% the best surprise of the trip, and one of our favorite cities.  It's often in the standard Andalucia loops as a 5-hour day trip from Granada or Seville.  We are so glad we spent two nights there and didn’t ‘just’ zoom in to see the Mezquita, as is commonly done. This is nothing against either Granada or Seville or any of the rest of the trip, but in terms of expectations vs joy, Cordoba was just a delight.  We think back and certainly the fact that it was our first (non-Madrid) Andalucia city may have been part of that – but it’s just such an approachable, compact tourist city.  And to top it off, the Mezquita was one of our favorite destinations in Europe.
 
-In general, Cordoba has a very compact ‘old’ city, which is extremely walkable but also extremely easy to get lost in – one of us (ahem) has a better sense of direction than the other, and I lost my sense of direction over and over – but in a delightful way, you can only go so far.  The street ‘plan’ is from the Moorish era, and there’s not a single 90 degree turn anywhere.  While it’s not 100% car-free, the few random taxi’s are going relatively slowly, so you can just wander, which we loved.
+In general, Cordoba has a very compact ‘old’ city, which is extremely walkable but also extremely easy to get lost in – one of us (ahem) has a better sense of direction than the other, and I lost my sense of direction over and over – but in a delightful way, you can only go so far.  The street ‘plan’ is from the Moorish era, and there’s not a single 90 degree turn anywhere.  While it’s not 100% car-free, the few random taxi’s are going pretty slowly, so you can just wander, which we loved.
 
 ## What We Did
 
@@ -12,6 +12,8 @@ The main attraction of Cordoba, the Mezquita, is one of the most remarkable buil
 ![The outside of Cordoba's Mezquita; some of the doors are semi-restored, but this is largely intact from the 9th century.](images/cordoba-01.jpg)
 
 We started our time in Cordoba with a Rick Steves-recommended 2-hour bike ride around town with [Ontdek Cordoba](https://ontdekcordoba.com/en/).  We highly recommend this; it starts a 15-20 minute walk from the center of town, but it was well worth it.  The guide Francisco is part Dutch but speaks excellent English.  He has lived in Cordoba for over a decade (I think part of his family was from Cordoba), and has visited Cordoba since being a child, so can tell stories of what the town was like 30 years ago (there were trucks/traffic going over the old Roman bridge as recently as the 1990s), and is just generally delightful company.  Cordoba is a very ‘flat’/bikeable town, with relatively little traffic, so it’s a great way to learn the overall layout of the town, but also get to some nice viewpoints of the Mezquita from a distance.  Note also that many visitors to Cordoba are daytrippers from elsewhere – so like many European tourist cities, the town is crowded from say 10am to 4pm, but in the evening the old town really starts to feel like more locals than tourists, to our delight.
+
+![Two tourists on their Cordoba bike tour.](images/cordoba-04.jpg)
 
 We also enjoyed and highly recommend the 8pm-nightly horse show at the Royal Stables of Cordoba.  There is reputedly a ‘better’ horse show in nearby Jerez, but we didn’t make it to Jerez, and the Cordoba show was delightful.  The show is only 70 minutes or so (including intermission), very pleasant.  We bought the premium pass which cost only an extra \~€8\. I originally bought via a 3rd-party because Google’s search results pushed me there (shame on me), but the 3rd-party site didn’t give me the option to select seats or get premium; if you buy your tickets directly [here](https://cordobaecuestre.com/), you can select premium seats (but those are limited, and disappear weeks in advance, so it’s worth planning). More importantly than the ‘better seats’ is that the premium experience allows you to visit the stables earlier in the day and watch them training. It’s only a 5-minute walk from the Mezquita, and was worth a diversion earlier that day.
 
@@ -56,7 +58,7 @@ Recommend restaurants and local cuisine...
 
 
 
-![Two tourists on their Cordoba bike tour.](images/cordoba-04.jpg)
+
 
 ![One of our favorite small squares, right near our Cordoba hotel.  Note the medieval wall in the background, the same segment that our hotel was built 'into'.](images/cordoba-05.jpg)
 

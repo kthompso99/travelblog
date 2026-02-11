@@ -117,7 +117,7 @@ try {
 
     // Load trip metadata from config.built.json
     const builtConfig = JSON.parse(fs.readFileSync(CONFIG.OUTPUT_FILE, 'utf8'));
-    const tripMetadata = builtConfig.trips.find(t => t.id === tripId);
+    const tripMetadata = builtConfig.trips.find(t => t.slug === tripId);
 
     if (!tripMetadata) {
         console.log(`   ⏭️  Skipped: ${tripId} metadata not found - run full build first\n`);
