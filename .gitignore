@@ -14,6 +14,9 @@ config/google-maps.json
 # Google Photos Takeout zips (too large for git)
 takeout/
 
+# Image optimization backups
+**/.originals/
+
 # Dependencies
 node_modules/
 

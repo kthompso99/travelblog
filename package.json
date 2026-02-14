@@ -15,7 +15,10 @@
     "add": "node scripts/add-trip.js",
     "test": "node scripts/test-nav.js && node scripts/test-filter.js && node scripts/test-css-injection.js && node scripts/test-maps.js",
     "deploy-check": "node scripts/deploy-check.js",
-    "sync-docs": "node scripts/sync-docs.js"
+    "sync-docs": "node scripts/sync-docs.js",
+    "optimize:images": "node scripts/optimize-images.js",
+    "optimize:images:dry-run": "node scripts/optimize-images.js --dry-run",
+    "optimize:images:force": "node scripts/optimize-images.js --force"
   },
   "dependencies": {
     "adm-zip": "^0.5.16",
