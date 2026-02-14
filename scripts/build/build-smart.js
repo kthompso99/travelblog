@@ -13,11 +13,11 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const { slugify } = require('../lib/slug-utilities');
+const { slugify } = require('../../lib/slug-utilities');
 
-const CONFIG = require('../lib/config-paths');
-const { generateHomepage, generateTripIntroPage, generateTripLocationPage, generateMapPage } = require('../lib/generate-html');
-const { generateSitemap } = require('../lib/generate-sitemap');
+const CONFIG = require('../../lib/config-paths');
+const { generateHomepage, generateTripIntroPage, generateTripLocationPage, generateMapPage } = require('../../lib/generate-html');
+const { generateSitemap } = require('../../lib/generate-sitemap');
 
 const CACHE_FILE = CONFIG.BUILD_CACHE_FILE;
 

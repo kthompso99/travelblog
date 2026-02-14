@@ -10,7 +10,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const { imageSize } = require('image-size');
-const { slugify } = require('../lib/slug-utilities');
+const { slugify } = require('../../lib/slug-utilities');
 
 // Load marked for markdown conversion
 let marked;
@@ -22,11 +22,11 @@ try {
 }
 
 // Load HTML generators (paths relative to project root since script runs from root)
-const { generateHomepage, generateTripIntroPage, generateTripLocationPage, generateTripArticlePage, generateTripMapPage, generateMapPage, generateAboutPage } = require('../lib/generate-html');
-const { generateSitemap, generateRobotsTxt } = require('../lib/generate-sitemap');
+const { generateHomepage, generateTripIntroPage, generateTripLocationPage, generateTripArticlePage, generateTripMapPage, generateMapPage, generateAboutPage } = require('../../lib/generate-html');
+const { generateSitemap, generateRobotsTxt } = require('../../lib/generate-sitemap');
 
 // Import centralized configuration paths
-const CONFIG = require('../lib/config-paths');
+const CONFIG = require('../../lib/config-paths');
 
 const { SITE_CONFIG, TRIPS_DIR, OUTPUT_FILE, TRIPS_OUTPUT_DIR, CACHE_DIR, GEOCODE_CACHE_FILE } = CONFIG;
 

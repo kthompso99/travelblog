@@ -86,6 +86,6 @@ Single source of truth for all caption contexts.
 
 ## Files Modified
 
-- `scripts/build.js` - Gallery file detection
+- `scripts/build/build.js` - Gallery file detection
 - `lib/generate-html.js` - Gallery HTML generation
 - `templates/base.html` - Masonry CSS and GLightbox integration

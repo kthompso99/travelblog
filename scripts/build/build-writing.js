@@ -14,9 +14,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const { generateTripLocationPage, generateTripArticlePage } = require('../lib/generate-html');
+const { generateTripLocationPage, generateTripArticlePage } = require('../../lib/generate-html');
 const { convertMarkdown } = require('./build');
-const CONFIG = require('../lib/config-paths');
+const CONFIG = require('../../lib/config-paths');
 
 // Get changed file from command line argument or detect most recently modified file
 let changedFile = process.argv[2];
@@ -99,7 +99,7 @@ try {
         if (item.slug === contentSlug) return true;
 
         // Otherwise derive slug from title (this is what the build system does)
-        const { slugify } = require('../lib/slug-utilities');
+        const { slugify } = require('../../lib/slug-utilities');
         const derivedSlug = slugify(item.title);
         return derivedSlug === contentSlug;
     });
@@ -111,7 +111,7 @@ try {
 
     // Ensure contentItem has slug field
     if (!contentItem.slug) {
-        const { slugify } = require('../lib/slug-utilities');
+        const { slugify } = require('../../lib/slug-utilities');
         contentItem.slug = slugify(contentItem.title);
     }
 

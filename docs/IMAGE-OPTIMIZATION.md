@@ -138,12 +138,12 @@ This is a **warning only** (won't block deployment) but reminds you to optimize 
 
 1. **Sync photos** from Google Takeout:
    ```bash
-   node scripts/sync-takeout-photos.js spain-2025 ~/Downloads/takeout-*.zip
+   node scripts/tools/sync-takeout-photos.js spain-2025 ~/Downloads/takeout-*.zip
    ```
 
 2. **Assign photos** to locations:
    ```bash
-   node scripts/assign-photos.js spain-2025
+   node scripts/tools/assign-photos.js spain-2025
    ```
 
 3. **Optimize images** before committing:
@@ -219,7 +219,7 @@ ls -lh content/trips/spain/images/.originals/cordoba-01.jpg
 
 ### Want to change optimization settings
 
-Edit `scripts/optimize-images.js`:
+Edit `scripts/tools/optimize-images.js`:
 ```javascript
 const MAX_WIDTH = 1800;          // Change width
 const JPEG_QUALITY = 85;         // Change quality (50-100)

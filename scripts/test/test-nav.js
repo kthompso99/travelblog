@@ -87,7 +87,7 @@ function getCssValue(ruleBody, prop) {
 }
 
 // ── test runner ──────────────────────────────────────────────────
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '../..');
 const htmlFiles = findHtmlFiles(ROOT);
 
 let passed = 0;

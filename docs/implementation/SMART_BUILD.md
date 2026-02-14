@@ -19,7 +19,7 @@ The smart build system tracks modification times of all source files and only re
 ### What It Tracks
 
 1. **Core Build Files**
-   - `scripts/build.js` - Main build script
+   - `scripts/build/build.js` - Main build script
    - `lib/*.js` - All library files (SEO, HTML generation, sitemap)
    - `config/site.json` - Site configuration
    - `content/index.json` - List of trips

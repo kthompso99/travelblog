@@ -19,7 +19,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const CONFIG = require('../lib/config-paths');
+const CONFIG = require('../../lib/config-paths');
 
 // Configuration
 const MAX_WIDTH = 1800;          // Max width in pixels (for 600px CSS @ 3x retina)

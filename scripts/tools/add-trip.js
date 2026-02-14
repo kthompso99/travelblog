@@ -59,10 +59,10 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
-const { slugify } = require('../lib/slug-utilities');
+const { slugify } = require('../../lib/slug-utilities');
 
 // Import centralized configuration paths
-const CONFIG = require('../lib/config-paths');
+const CONFIG = require('../../lib/config-paths');
 
 const { TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
 const CONTINENTS = VALID_CONTINENTS;

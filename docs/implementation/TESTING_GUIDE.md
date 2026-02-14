@@ -26,14 +26,14 @@ npm test
 
 **What it tests:**
 
-- **Navigation smoke-test** (`scripts/test-nav.js`): 180 assertions
+- **Navigation smoke-test** (`scripts/test/test-nav.js`): 180 assertions
   - Validates CSS structure for cascading dropdown menus
   - Checks header z-index > 1000 (must beat Leaflet map controls)
   - Ensures dropdown overflow settings don't clip submenus
   - Verifies all HTML files have proper navigation structure
   - Tests run against all generated pages (currently 18 files)
 
-- **Filter smoke-test** (`scripts/test-filter.js`): 28 assertions (headless DOM via jsdom)
+- **Filter smoke-test** (`scripts/test/test-filter.js`): 28 assertions (headless DOM via jsdom)
   - Validates homepage search bar filtering by title/country/continent
   - Tests continent and year filter pills
   - Verifies pills compose correctly (AND logic)

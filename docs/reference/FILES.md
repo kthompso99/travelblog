@@ -197,7 +197,7 @@ npm run build:smart -- --force     # force full rebuild ignoring cache
 
 ```
 config/site.json          ─┐
-content/trips/*/trip.json  ├─> scripts/build.js (auto-discovers trips)
+content/trips/*/trip.json  ├─> scripts/build/build.js (auto-discovers trips)
 content/trips/*/*.md  ─────┘       │
                                    ▼
                         trips/*.json          (per-trip built data)
@@ -215,7 +215,7 @@ templates in `templates/`. All paths are resolved through `lib/config-paths.js`.
 
 ### Markdown Post-Processing
 
-The `convertMarkdown()` function in `scripts/build.js` automatically enhances
+The `convertMarkdown()` function in `scripts/build/build.js` automatically enhances
 markdown content during the build:
 
 1. **Image sizing:** All `<img>` tags get `max-width: 600px; width: 100%; height: auto;`
@@ -233,7 +233,7 @@ The build system filters trips based on the `published` field in trip.json:
 - **Localhost:** All trips built and visible (ignores published status)
 - **Production:** Only trips with `"published": true` are built
 - **Detection:** Production is identified by `NODE_ENV=production` environment variable
-- **Implementation:** `scripts/build.js` filters trips before any build operations
+- **Implementation:** `scripts/build/build.js` filters trips before any build operations
 
 This allows Kevin to keep incomplete trips in the repository for local testing while
 only showing complete trips on the public site. The GitHub Actions workflow sets

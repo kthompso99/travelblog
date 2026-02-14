@@ -12,7 +12,7 @@ page from templates. The result is a fully static site — no server-side runtim
 Source                          Build                        Output
 ──────                          ─────                        ──────
 config/site.json          ─┐
-content/index.json         ├─> scripts/build.js  ────>  index.html
+content/index.json         ├─> scripts/build/build.js  ────>  index.html
 content/trips/*/trip.json  │     + lib/*.js               map/index.html
 content/trips/*/*.md  ─────┘     + templates/*.html       about/index.html
                                                           trips/*/index.html
@@ -26,7 +26,7 @@ content/trips/*/*.md  ─────┘     + templates/*.html       about/inde
   placeholders, and writes final HTML.
 - **`templates/base.html`** holds all shared CSS, the nav bar, and the footer.
   Every page inherits from it.
-- **`scripts/build.js`** orchestrates the full pipeline: validate → geocode → render → sitemap.
+- **`scripts/build/build.js`** orchestrates the full pipeline: validate → geocode → render → sitemap.
 
 ## Content Model
 

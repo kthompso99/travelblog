@@ -104,10 +104,10 @@ const tripPath = CONFIG.getTripConfigPath('mytrip');
 
 All of these import from `lib/config-paths.js`:
 
-- `scripts/build.js` - Main build
-- `scripts/build-smart.js` - Incremental build
+- `scripts/build/build.js` - Main build
+- `scripts/build/build-smart.js` - Incremental build
 - `scripts/validate.js` - Configuration validation
-- `scripts/add-trip.js` - Add new trip CLI
+- `scripts/tools/add-trip.js` - Add new trip CLI
 
 **If you modify any of these, ensure they still use CONFIG imports!**
 

@@ -7,10 +7,10 @@ All file paths and directory structures are defined in **`lib/config-paths.js`**
 ### Why This Matters
 
 Before centralization, path information was scattered across multiple files:
-- `scripts/build.js` had hardcoded `'content/trips'`
+- `scripts/build/build.js` had hardcoded `'content/trips'`
 - `scripts/validate.js` had hardcoded `'trip.json'` and `'main.md'`
-- `scripts/add-trip.js` had hardcoded paths
-- `scripts/build-smart.js` had its own path constants
+- `scripts/tools/add-trip.js` had hardcoded paths
+- `scripts/build/build-smart.js` had its own path constants
 
 **Problem**: When we moved from `config/trips/` to `content/trips/`, several scripts fell out of sync.
 
@@ -73,10 +73,10 @@ const tripConfigPath = CONFIG.getTripConfigPath('greece');
    ```
 
 2. **All scripts automatically use the new structure!**
-   - `scripts/build.js` ✅
+   - `scripts/build/build.js` ✅
    - `scripts/validate.js` ✅
-   - `scripts/add-trip.js` ✅
-   - `scripts/build-smart.js` ✅
+   - `scripts/tools/add-trip.js` ✅
+   - `scripts/build/build-smart.js` ✅
 
 3. **Test to verify**:
    ```bash
@@ -110,12 +110,12 @@ When you want to reorganize files/directories:
 
 | Script | Purpose | Uses |
 |--------|---------|------|
-| `scripts/build.js` | Main build | `SITE_CONFIG`, `INDEX_CONFIG`, helpers |
+| `scripts/build/build.js` | Main build | `SITE_CONFIG`, `INDEX_CONFIG`, helpers |
 | `scripts/validate.js` | Validation | `INDEX_CONFIG`, `TRIPS_DIR`, helpers |
-| `scripts/add-trip.js` | Add new trip | `INDEX_CONFIG`, `TRIPS_DIR`, helpers |
-| `scripts/build-smart.js` | Incremental build | All path constants |
+| `scripts/tools/add-trip.js` | Add new trip | `INDEX_CONFIG`, `TRIPS_DIR`, helpers |
+| `scripts/build/build-smart.js` | Incremental build | All path constants |
 | `scripts/deploy-check.js` | Pre-deploy checks | Path constants |
-| `scripts/test-nav.js` | Nav smoke-test (`npm test`) | Walks generated HTML; no config-paths dependency |
+| `scripts/test/test-nav.js` | Nav smoke-test (`npm test`) | Walks generated HTML; no config-paths dependency |
 
 ---
 
