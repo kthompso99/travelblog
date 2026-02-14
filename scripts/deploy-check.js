@@ -139,6 +139,47 @@ check('config.built.json size is reasonable', () => {
     };
 }, false);
 
+// Check 8: Images are optimized (warning only)
+check('All images are optimized', () => {
+    const CONFIG = require('../lib/config-paths');
+    const tripsDir = CONFIG.TRIPS_DIR;
+
+    if (!fs.existsSync(tripsDir)) {
+        return { pass: true };
+    }
+
+    const unoptimized = [];
+    const tripDirs = fs.readdirSync(tripsDir)
+        .map(name => path.join(tripsDir, name))
+        .filter(dir => fs.statSync(dir).isDirectory());
+
+    for (const tripDir of tripDirs) {
+        const imagesDir = path.join(tripDir, 'images');
+        const originalsDir = path.join(imagesDir, '.originals');
+
+        if (!fs.existsSync(imagesDir)) continue;
+
+        const images = fs.readdirSync(imagesDir)
+            .filter(file => /\.(jpe?g|png)$/i.test(file));
+
+        for (const image of images) {
+            const backupExists = fs.existsSync(path.join(originalsDir, image));
+            if (!backupExists) {
+                unoptimized.push(path.relative(process.cwd(), path.join(imagesDir, image)));
+            }
+        }
+    }
+
+    if (unoptimized.length === 0) {
+        return { pass: true };
+    }
+
+    return {
+        pass: false,
+        message: `${unoptimized.length} unoptimized image(s) found. Run: npm run optimize:images`
+    };
+}, false);
+
 // Summary
 console.log('\n📊 Summary:');
 console.log(`   ✅ Passed: ${passed}`);

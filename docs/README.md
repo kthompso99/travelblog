@@ -15,6 +15,7 @@ This directory contains all project documentation organised by topic.
 ### 🏗️ Implementation
 - [Smart Build](implementation/SMART_BUILD.md) - Incremental build system
 - [Testing Guide](implementation/TESTING_GUIDE.md) - Pre-deploy checklist
+- [Image Optimization](IMAGE-OPTIMIZATION.md) - Automated image optimization for web delivery
 
 ### 🎨 Design
 - [Design System](FigmaDesign/FIGMA_SYSTEM_DESIGN.md) - Colour palette and component styles
@@ -33,6 +34,7 @@ docs/
 ├── README.md                         # This file
 ├── ARCHITECTURE.md                   # Config management & config-paths.js
 ├── CONTRIBUTING.md                   # Development guidelines
+├── IMAGE-OPTIMIZATION.md             # Automated image optimization
 ├── deployment/
 │   ├── DEPLOYMENT.md                 # Multi-platform deployment guide
 │   └── CUSTOM_DOMAIN_DEPLOYMENT.md   # Custom domain options
@@ -61,6 +63,7 @@ docs/
 ### For Development
 1. **[ARCHITECTURE.md](ARCHITECTURE.md)** - How config-paths.js keeps everything in sync
 2. **[implementation/SMART_BUILD.md](implementation/SMART_BUILD.md)** - Incremental build system
+3. **[IMAGE-OPTIMIZATION.md](IMAGE-OPTIMIZATION.md)** - Automated image optimization (90-95% size reduction)
 
 ### For Reference
 1. **[reference/FILES.md](reference/FILES.md)** - Where everything lives

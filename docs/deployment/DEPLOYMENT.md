@@ -13,6 +13,8 @@ npm run build
 
 # 3. Run deployment checks
 npm run deploy-check
+# Checks: config.built.json exists, HTML content, coordinates, thumbnails,
+# file sizes, and warns about unoptimized images
 
 # 4. Test locally one more time
 npm run serve

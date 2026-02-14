@@ -89,6 +89,49 @@ cp content/trips/spain/images/.originals/* content/trips/spain/images/
 
 ---
 
+## Automated Integration
+
+### Pre-commit Hook (Automatic)
+
+A git pre-commit hook automatically optimizes images before each commit:
+
+**How it works:**
+- Detects if any `.jpg`, `.jpeg`, or `.png` files in `content/trips/*/images/` are being committed
+- If yes, runs `npm run optimize:images` automatically
+- Re-stages any modified images
+- Continues with commit
+
+**What you'll see:**
+```bash
+git commit -m "Add photos"
+🖼️  Detected staged images, running optimization...
+📦 Re-staging optimized images...
+✅ Images optimized and re-staged
+[main abc1234] Add photos
+```
+
+**Benefits:**
+- ✅ Never accidentally commit unoptimized images
+- ✅ No manual steps to remember
+- ✅ Fast when images already optimized (skips them)
+
+**Hook location:** `.git/hooks/pre-commit`
+
+### Deploy Check (Warning)
+
+The deployment check (`npm run deploy-check`) warns about unoptimized images:
+
+```bash
+npm run deploy-check
+...
+⚠️  All images are optimized
+   12 unoptimized image(s) found. Run: npm run optimize:images
+```
+
+This is a **warning only** (won't block deployment) but reminds you to optimize before deploying.
+
+---
+
 ## Integration with Photo Workflow
 
 ### Recommended workflow for new trips
