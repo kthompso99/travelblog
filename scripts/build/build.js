@@ -631,7 +631,7 @@ async function build() {
         if (!fs.existsSync('about')) {
             fs.mkdirSync('about', { recursive: true });
         }
-        const aboutHtml = generateAboutPage(output, domain);
+        const aboutHtml = await generateAboutPage(output, domain, convertMarkdown);
         fs.writeFileSync('about/index.html', aboutHtml, 'utf8');
         const aboutSize = fs.statSync('about/index.html').size;
         htmlSizeTotal += aboutSize;
