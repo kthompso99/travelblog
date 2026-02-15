@@ -1,12 +1,15 @@
 # macOS
 .DS_Store
 
-# Build output
+# Build output (generated files, not source code)
 config.built.json
 /trips/
-.build-cache.json
+/about/
+/map/
+index.html
 index.html.backup
 index.html.new
+.build-cache.json
 
 # API Keys
 config/google-maps.json
