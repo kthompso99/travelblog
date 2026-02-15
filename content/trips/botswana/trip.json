@@ -1,8 +1,8 @@
 {
-  "title": "Southern Africa",
-  "published": false,
+  "title": "Southern Africa 2025",
+  "published": true,
   "beginDate": "2025-08-01",
-  "endDate": "2025-08-14",
+  "endDate": "2025-08-15",
   "metadata": {
     "year": 2025,
     "continent": "Africa",
@@ -13,19 +13,52 @@
     ],
     "tags": [
       "africa",
-      "south-africa"
+      "south africa"
     ]
   },
-  "coverImage": "images/botswana.jpg",
-  "thumbnail": "images/botswana.jpg",
-  "mapCenter": "Okavango Delta",
+  "coverImage": "images/southern-africa-2025.jpg",
+  "thumbnail": "images/southern-africa-2025.jpg",
+  "mapCenter": "Cape Town",
   "content": [
     {
       "type": "location",
-      "title": "Southern Africa",
-      "place": "Okavango Delta",
-      "duration": "14 days",
-      "file": "botswana.md"
+      "title": "Cape Town",
+      "file": "cape-town.md",
+      "place": "Cape Town, South Africa",
+      "duration": "3",
+      "thumbnail": "images/cape-town-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Victoria Falls",
+      "file": "victoria-falls.md",
+      "place": "Victoria Falls, Zimbabwe",
+      "duration": "3",
+      "thumbnail": "images/victoria-falls-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Sable Alley",
+      "file": "sable-alley.md",
+      "place": "Sable Alley, Botswana",
+      "duration": "3",
+      "thumbnail": "images/sable-alley-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "North Island",
+      "file": "north-island.md",
+      "place": "North Island, Botswana",
+      "duration": "4 days",
+      "thumbnail": "images/north-island-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Cape Winelands",
+      "file": "cape-winelands.md",
+      "place": "Franschhoek, South Africa",
+      "duration": "4 days",
+      "thumbnail": "images/cape-winelands-01.jpg"
     }
   ],
   "relatedTrips": []

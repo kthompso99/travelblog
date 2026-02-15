@@ -78,5 +78,25 @@
   "Zahara de la Sierra, Spain": {
     "lat": 36.8405841,
     "lng": -5.3905374
+  },
+  "Cape Town, South Africa": {
+    "lat": -33.9288301,
+    "lng": 18.4172197
+  },
+  "Victoria Falls, Zimbabwe": {
+    "lat": -17.922895,
+    "lng": 25.8476849
+  },
+  "Sable Alley, Botswana": {
+    "lat": -19.1273473,
+    "lng": 23.6616635
+  },
+  "North Island, Botswana": {
+    "lat": -20.8824694,
+    "lng": 25.8147308
+  },
+  "Franschhoek, South Africa": {
+    "lat": -33.909167,
+    "lng": 19.119444
   }
 }
