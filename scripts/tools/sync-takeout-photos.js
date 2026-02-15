@@ -16,11 +16,11 @@
  * 4. Trip locations must have GPS coordinates in trip.json
  *
  * USAGE:
- *   node lib/sync-takeout-photos.js <path-to-zip> <trip-id>
+ *   node scripts/tools/sync-takeout-photos.js <path-to-zip> <trip-id>
  *
  * EXAMPLES:
- *   node lib/sync-takeout-photos.js takeout/spain-photos.zip spain
- *   node lib/sync-takeout-photos.js ~/Downloads/takeout-20250210.zip greece
+ *   node scripts/tools/sync-takeout-photos.js takeout/spain-photos.zip spain
+ *   node scripts/tools/sync-takeout-photos.js ~/Downloads/takeout-20250210.zip greece
  *
  * WHAT HAPPENS:
  * 1. Opens the Takeout zip and finds all photos in the album
@@ -40,7 +40,9 @@
 const fs = require('fs').promises;
 const path = require('path');
 const AdmZip = require('adm-zip');
-const CONFIG = require('./config-paths');
+const readline = require('readline');
+const { spawn } = require('child_process');
+const CONFIG = require('../../lib/config-paths');
 
 /**
  * Generate all possible metadata file paths for a photo
@@ -290,17 +292,65 @@ async function syncTakeoutPhotos(zipPath, tripId) {
   console.log(`   Markdown: ${markdownPath}`);
 }
 
+// Helper function to prompt user for yes/no
+function askQuestion(query) {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  return new Promise(resolve => {
+    rl.question(query, (answer) => {
+      rl.close();
+      resolve(answer.toLowerCase().trim());
+    });
+  });
+}
+
+// Helper function to run image optimization
+function optimizeImages(tripId) {
+  return new Promise((resolve, reject) => {
+    console.log(`\n🖼️  Running image optimization for ${tripId}...`);
+
+    const optimize = spawn('npm', ['run', 'optimize:images', '--', tripId], {
+      stdio: 'inherit',
+      shell: true
+    });
+
+    optimize.on('close', (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`Image optimization failed with code ${code}`));
+      }
+    });
+  });
+}
+
 // CLI entry point
 const zipPath = process.argv[2];
 const tripId = process.argv[3];
 
 if (!zipPath || !tripId) {
-  console.error('Usage: node lib/sync-takeout-photos.js <zip-path> <trip-id>');
-  console.error('Example: node lib/sync-takeout-photos.js ~/Downloads/takeout.zip spain-2025');
+  console.error('Usage: node scripts/tools/sync-takeout-photos.js <zip-path> <trip-id>');
+  console.error('Example: node scripts/tools/sync-takeout-photos.js ~/Downloads/takeout.zip spain-2025');
   process.exit(1);
 }
 
-syncTakeoutPhotos(zipPath, tripId).catch(err => {
-  console.error(`\n❌ Error: ${err.message}`);
-  process.exit(1);
-});
+syncTakeoutPhotos(zipPath, tripId)
+  .then(async () => {
+    // Offer to optimize images
+    console.log(`\n💡 Tip: Images should be optimized before committing.`);
+    const answer = await askQuestion('Optimize images now? (y/n): ');
+
+    if (answer === 'y' || answer === 'yes') {
+      await optimizeImages(tripId);
+      console.log(`\n✅ Done! Images extracted and optimized.`);
+    } else {
+      console.log(`\n✅ Done! Remember to run: npm run optimize:images -- ${tripId}`);
+    }
+  })
+  .catch(err => {
+    console.error(`\n❌ Error: ${err.message}`);
+    process.exit(1);
+  });

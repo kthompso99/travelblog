@@ -9,7 +9,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const readline = require('readline');
 const { execSync } = require('child_process');
-const CONFIG = require('./config-paths');
+const CONFIG = require('../../lib/config-paths');
 
 /**
  * Parse trip structure from trip.json
@@ -428,8 +428,8 @@ async function runInteractiveAssignment(tripId) {
 const tripId = process.argv[2];
 
 if (!tripId) {
-  console.error('Usage: node lib/assign-photos.js <trip-id>');
-  console.error('Example: node lib/assign-photos.js spain-2025');
+  console.error('Usage: node scripts/tools/assign-photos.js <trip-id>');
+  console.error('Example: node scripts/tools/assign-photos.js spain-2025');
   process.exit(1);
 }
 
