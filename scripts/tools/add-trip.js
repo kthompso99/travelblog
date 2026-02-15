@@ -260,10 +260,8 @@ More content...
 *Last updated: ${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}*
 `;
         } else {
-            // Template for locations
-            template = `# ${item.title}
-
-## Overview
+            // Template for locations (title added by page template, don't duplicate in markdown)
+            template = `## Overview
 
 Add your introduction to ${item.title} here...
 
