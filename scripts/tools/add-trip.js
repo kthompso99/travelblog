@@ -161,7 +161,7 @@ async function addTrip() {
     // Create trip config object
     const tripConfig = {
         title,
-        published: true,
+        published: false,
         beginDate,
         endDate,
         metadata: {

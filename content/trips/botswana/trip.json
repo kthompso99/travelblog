@@ -1,6 +1,6 @@
 {
   "title": "Southern Africa 2025",
-  "published": true,
+  "published": false,
   "beginDate": "2025-08-01",
   "endDate": "2025-08-15",
   "metadata": {
@@ -16,9 +16,9 @@
       "south africa"
     ]
   },
-  "coverImage": "images/southern-africa-2025.jpg",
-  "thumbnail": "images/southern-africa-2025.jpg",
-  "mapCenter": "Cape Town",
+  "coverImage": "botswana.jpg",
+  "thumbnail": "botswana.jpg",
+  "mapCenter": "Okavango Delta, Botswana",
   "content": [
     {
       "type": "location",
