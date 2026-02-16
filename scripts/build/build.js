@@ -42,6 +42,18 @@ const CONFIG = require('../../lib/config-paths');
 
 const { SITE_CONFIG, TRIPS_DIR, OUTPUT_FILE, TRIPS_OUTPUT_DIR, CACHE_DIR, GEOCODE_CACHE_FILE } = CONFIG;
 
+// Load Google Maps API key
+let googleMapsApiKey = null;
+const googleMapsConfigPath = 'config/google-maps.json';
+if (fs.existsSync(googleMapsConfigPath)) {
+    try {
+        const googleMapsConfig = JSON.parse(fs.readFileSync(googleMapsConfigPath, 'utf8'));
+        googleMapsApiKey = googleMapsConfig.apiKey;
+    } catch (e) {
+        console.error('⚠️  Could not load Google Maps API key from config/google-maps.json');
+    }
+}
+
 // Load geocode cache
 let geocodeCache = {};
 if (fs.existsSync(GEOCODE_CACHE_FILE)) {
@@ -61,37 +73,41 @@ function saveGeocodeCache() {
     fs.writeFileSync(GEOCODE_CACHE_FILE, JSON.stringify(geocodeCache, null, 2), 'utf8');
 }
 
-// Geocode a location using Nominatim (with caching)
+// Geocode a location using Google Maps Geocoding API (with caching)
 function geocodeLocation(locationName) {
     // Check cache first
     if (geocodeCache[locationName]) {
         console.log(`    💾 Using cached coordinates for: ${locationName}`);
         return Promise.resolve(geocodeCache[locationName]);
     }
-    return new Promise((resolve, reject) => {
-        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationName)}&limit=1`;
 
-        https.get(url, {
-            headers: {
-                'User-Agent': 'TravelBlogBuilder/2.0'
-            }
-        }, (res) => {
+    if (!googleMapsApiKey) {
+        return Promise.reject(new Error('Google Maps API key not configured'));
+    }
+
+    return new Promise((resolve, reject) => {
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(locationName)}&key=${googleMapsApiKey}`;
+
+        https.get(url, (res) => {
             let data = '';
             res.on('data', (chunk) => data += chunk);
             res.on('end', () => {
                 try {
                     const json = JSON.parse(data);
-                    if (json && json.length > 0) {
+                    if (json.status === 'OK' && json.results && json.results.length > 0) {
+                        const location = json.results[0].geometry.location;
                         const coords = {
-                            lat: parseFloat(json[0].lat),
-                            lng: parseFloat(json[0].lon)
+                            lat: location.lat,
+                            lng: location.lng
                         };
                         // Cache the result
                         geocodeCache[locationName] = coords;
                         saveGeocodeCache();
                         resolve(coords);
-                    } else {
+                    } else if (json.status === 'ZERO_RESULTS') {
                         reject(new Error('No results found'));
+                    } else {
+                        reject(new Error(`Geocoding failed: ${json.status}`));
                     }
                 } catch (e) {
                     reject(e);
