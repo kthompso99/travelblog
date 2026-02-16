@@ -1,25 +1,12 @@
 ## Overview
 
-Add your introduction to North Island here...
+After 3 nights at Sable Alley, we took a short (20 minute?) charter plane to our second Okavango reserve.  Our second lodge, [North Island Okavango](https://naturalselection.travel/camps/north-island-okavango-delta/) – is priced at a more luxury price point, and you could feel the difference.  But again, this isn’t a diss on Sable Alley; rather just that North Island was incredibly over-the-top amazing.  The service was just that much better; it was more intimate (7 tents vs 12 at Sable Alley), and honestly the food was better.   
 
-## What We Did
+![Our North Island room](images/north-island-05.jpg)
 
-Describe your activities and experiences...
+![Our North Island bed](images/north-island-06.jpg)
 
-## Where We Stayed
-
-Share accommodation recommendations...
-
-## Food & Dining
-
-Recommend restaurants and local cuisine...
-
-## Practical Tips
-
-- Getting there
-- Getting around
-- What to bring
-- Best time to visit
+![North Island back porch](images/north-island-07.jpg)
 
 *Add your photos here*
 
@@ -32,15 +19,7 @@ Recommend restaurants and local cuisine...
 
 ![This elephant greeted us on our first transfer from the airstrip to North Island (note 11:15am).](images/north-island-03.jpg)
 
-![The telltable secretions on the cheek of this male elephant indicate he's in must (e.g., ready for mating). Our driver turned a corner to see a male in must one evening, and he went into reverse *fast* -- he said males in must are just plain unpredictable, not in a good way. 
-
-Insert joke about men in bars here.](images/north-island-04.jpg)
-
-![Our North Island room](images/north-island-05.jpg)
-
-![Our North Island bed](images/north-island-06.jpg)
-
-![North Island back porch](images/north-island-07.jpg)
+![The telltable secretions on the cheek of this male elephant indicate he's in must (e.g., ready for mating). Our driver turned a corner to see a male in must one evening, and he went into reverse *fast* -- he said males in must are just plain unpredictable, not in a good way. Insert joke about men in bars here.](images/north-island-04.jpg)
 
 ![This isn't a great photo of a hippo, but it's notable in that I took it from the North Island lunch spot.](images/north-island-08.jpg)
 
@@ -50,7 +29,7 @@ Insert joke about men in bars here.](images/north-island-04.jpg)
 
 ![The Topi is less common in at least the parts of the Okavango we saw, but were a lovely kind of antelope](images/north-island-11.jpg)
 
-![North Island had a *lot* more wildebeest, for whatever reason.](images/north-island-12.jpg)
+![North Island had a *lot* more wildebeest, for whatever reason, than Sable Alley.](images/north-island-12.jpg)
 
 ![First glimpe of what turned out to be a long (nearly an hour, including sundowner cocktails) time hanging with the giraffes.](images/north-island-13.jpg)
 

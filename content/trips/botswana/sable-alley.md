@@ -1,25 +1,8 @@
 ## Overview
 
-Add your introduction to Sable Alley here...
+Sable Alley was/is the more ‘affordable’ of our 2 camps.   It was/is hardly roughing it – see our bedroom.  Note that the outside is all canvas, but there are wooden structures inside framing a perfectly modern-feeling bathroom with sinks, flush toilets, and a full shower (as well as an outdoor shower – showering in the open staring at hippos is definitely memorable, hopefully not for the hippos).    
 
-## What We Did
-
-Describe your activities and experiences...
-
-## Where We Stayed
-
-Share accommodation recommendations...
-
-## Food & Dining
-
-Recommend restaurants and local cuisine...
-
-## Practical Tips
-
-- Getting there
-- Getting around
-- What to bring
-- Best time to visit
+![Sable Alley bed](images/sable-alley-02.jpg)
 
 *Add your photos here*
 
@@ -27,8 +10,6 @@ Recommend restaurants and local cuisine...
 
 *Last updated: February 2026*
 ![We were driven from Victoria falls to Kasane in Botswana, and pleasantly surprised how modern the airport was.](images/sable-alley-01.jpg)
-
-![Sable Alley bed](images/sable-alley-02.jpg)
 
 ![Front porch at Sable Alley, facing the hippo pool (the lodge is sorta to the left out of the frame).](images/sable-alley-03.jpg)
 

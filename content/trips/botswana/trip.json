@@ -20,6 +20,11 @@
   "thumbnail": "images/botswana.jpg",
   "mapCenter": "Maun, Botswana",
   "content": [
+      {
+      "type": "article",
+      "title": "Basics",
+      "file": "basics.md"
+    },
     {
       "type": "location",
       "title": "Cape Town",
@@ -53,7 +58,7 @@
       "type": "location",
       "title": "North Island",
       "file": "north-island.md",
-      "place": "North Island, Botswana",
+      "place": "North Island Okavango, Botswana",
       "duration": "4 days",
       "thumbnail": "images/north-island-01.jpg"
     },
@@ -64,6 +69,11 @@
       "place": "Franschhoek, South Africa",
       "duration": "4 days",
       "thumbnail": "images/cape-winelands-01.jpg"
+    },
+  {
+      "type": "article",
+      "title": "South Africa",
+      "file": "southafrica.md"
     }
   ],
   "relatedTrips": []
