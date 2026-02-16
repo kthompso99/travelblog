@@ -283,7 +283,17 @@ async function processTrip(tripId) {
         return null;
     }
 
-    const tripConfig = JSON.parse(fs.readFileSync(tripConfigPath, 'utf8'));
+    // Parse trip.json with clear error handling
+    let tripConfig;
+    try {
+        tripConfig = JSON.parse(fs.readFileSync(tripConfigPath, 'utf8'));
+    } catch (error) {
+        console.error(`\n❌❌❌ FATAL ERROR ❌❌❌`);
+        console.error(`Invalid JSON in: ${tripConfigPath}`);
+        console.error(`Error: ${error.message}`);
+        console.error(`\nPlease fix the JSON syntax error and try again.\n`);
+        process.exit(1);
+    }
 
     // Validate main.md exists
     const mainMdPath = CONFIG.getTripMainPath(tripId);

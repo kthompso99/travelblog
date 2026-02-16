@@ -98,5 +98,13 @@
   "Franschhoek, South Africa": {
     "lat": -33.909167,
     "lng": 19.119444
+  },
+  "Estepa, Spain": {
+    "lat": 37.29204,
+    "lng": -4.8781876
+  },
+  "Maun, Botswana": {
+    "lat": -19.9860951,
+    "lng": 23.4224352
   }
 }

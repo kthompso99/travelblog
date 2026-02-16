@@ -16,9 +16,9 @@
       "south africa"
     ]
   },
-  "coverImage": "botswana.jpg",
-  "thumbnail": "botswana.jpg",
-  "mapCenter": "Okavango Delta, Botswana",
+  "coverImage": "images/botswana.jpg",
+  "thumbnail": "images/botswana.jpg",
+  "mapCenter": "Maun, Botswana",
   "content": [
     {
       "type": "location",
@@ -35,6 +35,11 @@
       "place": "Victoria Falls, Zimbabwe",
       "duration": "3",
       "thumbnail": "images/victoria-falls-01.jpg"
+    },
+    {
+      "type": "article",
+      "title": "Okavango",
+      "file": "okavango.md"
     },
     {
       "type": "location",

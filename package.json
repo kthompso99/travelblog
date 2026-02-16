@@ -9,7 +9,7 @@
     "build:smart": "node scripts/build/build-smart.js",
     "dev": "node scripts/build/build-smart.js && concurrently \"npm run watch\" \"node scripts/server.js 8000\"",
     "writing": "node scripts/build/build-smart.js && concurrently \"npm run watch:writing\" \"node scripts/server.js 8000\"",
-    "watch": "nodemon --watch content/ --ext md,json --exec 'node scripts/build/build-smart.js'",
+    "watch": "nodemon --watch content/ --ext md,json --delay 1000ms --exec 'node scripts/build/build-smart.js'",
     "watch:writing": "nodemon --watch content/trips/ --ext md --exec 'node scripts/build/build-writing.js'",
     "serve": "node scripts/server.js 8000",
     "add": "node scripts/tools/add-trip.js",
