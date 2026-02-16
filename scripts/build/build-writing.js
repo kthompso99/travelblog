@@ -17,6 +17,7 @@ const path = require('path');
 const { generateTripLocationPage, generateTripArticlePage } = require('../../lib/generate-html');
 const { convertMarkdown } = require('./build');
 const CONFIG = require('../../lib/config-paths');
+const { processMarkdownWithGallery } = require('../../lib/build-utilities');
 
 // Get changed file from command line argument or detect most recently modified file
 let changedFile = process.argv[2];
@@ -133,33 +134,11 @@ try {
     // Re-convert the markdown for this specific file
     const markdownPath = path.join(CONFIG.TRIPS_DIR, tripId, `${contentSlug}.md`);
     if (fs.existsSync(markdownPath)) {
-        // Read markdown content to check for gallery marker
-        let markdownContent = fs.readFileSync(markdownPath, 'utf8');
-        let galleryImages = null;
-        const galleryMarker = '*Add your photos here*';
-        const markerIndex = markdownContent.indexOf(galleryMarker);
+        // Use shared gallery marker detection function
+        const { markdownContent, galleryImages } = processMarkdownWithGallery(markdownPath, `${contentSlug}.md`);
 
-        if (markerIndex !== -1) {
-            // Split content at marker
-            const beforeMarker = markdownContent.substring(0, markerIndex);
-            const afterMarker = markdownContent.substring(markerIndex + galleryMarker.length);
-
-            // Extract images from content after marker
-            const imageRegex = /!\[([^\]]*)\]\(([^\)]+)\)/g;
-            galleryImages = [];
-            let match;
-
-            while ((match = imageRegex.exec(afterMarker)) !== null) {
-                galleryImages.push({
-                    caption: match[1],
-                    src: match[2]
-                });
-            }
-
-            // Only convert pre-marker content to HTML (strip gallery section)
-            markdownContent = beforeMarker.trim();
-
-            // Write to temp file for convertMarkdown
+        if (galleryImages && galleryImages.length > 0) {
+            // Write processed content (without gallery) to temp file for conversion
             const tempPath = markdownPath + '.temp';
             fs.writeFileSync(tempPath, markdownContent, 'utf8');
             const freshHtml = await convertMarkdown(tempPath);
@@ -168,16 +147,12 @@ try {
             // Update both html and contentHtml fields for compatibility
             contentItem.html = freshHtml;
             contentItem.contentHtml = freshHtml;
+            contentItem.gallery = galleryImages;
         } else {
             // No marker found, convert entire file as before
             const freshHtml = await convertMarkdown(markdownPath);
             contentItem.html = freshHtml;
             contentItem.contentHtml = freshHtml;
-        }
-
-        // Store gallery if images found
-        if (galleryImages && galleryImages.length > 0) {
-            contentItem.gallery = galleryImages;
         }
     } else {
         console.log(`   ⏭️  Skipped: ${markdownPath} not found\n`);

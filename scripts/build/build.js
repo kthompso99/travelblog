@@ -25,6 +25,17 @@ try {
 const { generateHomepage, generateMapPage, generateAboutPage } = require('../../lib/generate-html');
 const { generateSitemap, generateRobotsTxt } = require('../../lib/generate-sitemap');
 const { generateTripFiles } = require('../../lib/generate-trip-files');
+const {
+    discoverTrips: discoverTripsShared,
+    processMarkdownWithGallery,
+    writeTripContentJson,
+    extractTripMetadata,
+    writeConfigBuilt,
+    generateAndPromoteHomepage,
+    generateMapPageToFile,
+    generateSitemapToFile,
+    generateTripHtmlPages
+} = require('../../lib/build-utilities');
 
 // Import centralized configuration paths
 const CONFIG = require('../../lib/config-paths');
@@ -198,35 +209,11 @@ async function processContentItem(item, tripId, order) {
         try {
             console.log(`    📝 Converting markdown: ${filePath}`);
 
-            // Read markdown content to check for gallery marker
-            let markdownContent = fs.readFileSync(filePath, 'utf8');
-            let galleryImages = null;
-            const galleryMarker = '*Add your photos here*';
-            const markerIndex = markdownContent.indexOf(galleryMarker);
+            // Use shared gallery marker detection function
+            const { markdownContent, galleryImages } = processMarkdownWithGallery(filePath, item.file);
 
-            if (markerIndex !== -1) {
-                console.log(`    📸 Gallery marker found in ${item.file}`);
-
-                // Split content at marker
-                const beforeMarker = markdownContent.substring(0, markerIndex);
-                const afterMarker = markdownContent.substring(markerIndex + galleryMarker.length);
-
-                // Extract images from content after marker
-                const imageRegex = /!\[([^\]]*)\]\(([^\)]+)\)/g;
-                galleryImages = [];
-                let match;
-
-                while ((match = imageRegex.exec(afterMarker)) !== null) {
-                    galleryImages.push({
-                        caption: match[1],
-                        src: match[2]
-                    });
-                }
-
-                // Only convert pre-marker content to HTML (strip gallery section)
-                markdownContent = beforeMarker.trim();
-
-                // Write to temp file for convertMarkdown
+            if (galleryImages && galleryImages.length > 0) {
+                // Write processed content (without gallery) to temp file for conversion
                 const tempPath = filePath + '.temp';
                 fs.writeFileSync(tempPath, markdownContent, 'utf8');
                 processed.contentHtml = await convertMarkdown(tempPath);
@@ -410,55 +397,6 @@ async function processTrip(tripId) {
 }
 
 /**
- * Discover all trips by scanning the trips directory
- * Returns trip IDs sorted in reverse chronological order (newest first)
- * @returns {Array} Array of trip IDs sorted by beginDate (newest first)
- */
-function discoverTrips() {
-    const tripsDir = TRIPS_DIR;
-
-    if (!fs.existsSync(tripsDir)) {
-        console.warn(`⚠️  Trips directory not found: ${tripsDir}`);
-        return [];
-    }
-
-    // Read all subdirectories in trips/
-    const entries = fs.readdirSync(tripsDir, { withFileTypes: true });
-    const tripDirs = entries.filter(entry => entry.isDirectory()).map(entry => entry.name);
-
-    // Load each trip.json to get beginDate for sorting
-    const trips = [];
-    for (const tripId of tripDirs) {
-        const tripConfigPath = CONFIG.getTripConfigPath(tripId);
-
-        // Skip if trip.json doesn't exist
-        if (!fs.existsSync(tripConfigPath)) {
-            console.warn(`⚠️  Skipping ${tripId}: no trip.json found`);
-            continue;
-        }
-
-        try {
-            const tripData = fs.readFileSync(tripConfigPath, 'utf8');
-            const tripConfig = JSON.parse(tripData);
-
-            trips.push({
-                slug: tripId,  // Infer slug from directory name
-                beginDate: tripConfig.beginDate || '1970-01-01' // Default to old date if missing
-            });
-        } catch (e) {
-            console.warn(`⚠️  Skipping ${tripId}: error reading trip.json - ${e.message}`);
-        }
-    }
-
-    // Sort by beginDate in reverse chronological order (newest first)
-    trips.sort((a, b) => {
-        return new Date(b.beginDate) - new Date(a.beginDate);
-    });
-
-    return trips.map(trip => trip.slug);
-}
-
-/**
  * Detect if we're running in production (GitHub Pages) or localhost
  * Production is detected by NODE_ENV environment variable
  * @returns {boolean} true if production, false if localhost
@@ -527,7 +465,7 @@ async function build(specificTripId = null) {
     }
 
     // Auto-discover trips by scanning directories (sorted by date, newest first)
-    const discoveredTrips = discoverTrips();
+    const discoveredTrips = discoverTripsShared(TRIPS_DIR, (tripId) => CONFIG.getTripConfigPath(tripId));
 
     // If specific trip requested, filter to just that trip
     let tripsToDiscover = discoveredTrips;
@@ -563,41 +501,13 @@ async function build(specificTripId = null) {
     for (const tripId of indexConfig.trips) {
         const trip = await processTrip(tripId);
         if (trip) {
-            // Save full trip content to separate file
-            const tripContentFile = path.join(TRIPS_OUTPUT_DIR, `${tripId}.json`);
-            const tripContent = {
-                slug: trip.slug,
-                introHtml: trip.introHtml,
-                content: trip.content
-            };
-
-            fs.writeFileSync(
-                tripContentFile,
-                JSON.stringify(tripContent, null, 2),
-                'utf8'
-            );
-
-            const fileSize = fs.statSync(tripContentFile).size;
+            // Save full trip content to separate file using shared function
+            const fileSize = writeTripContentJson(trip, tripId, TRIPS_OUTPUT_DIR);
             totalContentSize += fileSize;
-            console.log(`  💾 Saved ${tripContentFile} (${(fileSize / 1024).toFixed(1)}KB)`);
+            console.log(`  💾 Saved trips/${tripId}.json (${(fileSize / 1024).toFixed(1)}KB)`);
 
-            // Create lightweight metadata version for index
-            const tripMetadata = {
-                slug: trip.slug,
-                title: trip.title,
-                published: trip.published,
-                beginDate: trip.beginDate,
-                endDate: trip.endDate,
-                duration: trip.duration,
-                metadata: trip.metadata,
-                coverImage: trip.coverImage,
-                thumbnail: trip.thumbnail,
-                mapCenter: trip.mapCenter,
-                locations: trip.locations,
-                relatedTrips: trip.relatedTrips
-                // NO content array here - that's in the separate file!
-            };
-
+            // Create lightweight metadata version for index using shared function
+            const tripMetadata = extractTripMetadata(trip);
             processedTrips.push(tripMetadata);
         }
     }
@@ -608,15 +518,9 @@ async function build(specificTripId = null) {
         trips: processedTrips
     };
 
-    // Write built config
+    // Write built config using shared function
     try {
-        fs.writeFileSync(
-            OUTPUT_FILE,
-            JSON.stringify(output, null, 2),
-            'utf8'
-        );
-
-        const indexSize = fs.statSync(OUTPUT_FILE).size;
+        const indexSize = writeConfigBuilt(output, OUTPUT_FILE);
 
         console.log(`\n✅ JSON build complete!`);
         console.log(`\n📊 Summary:`);
@@ -641,28 +545,15 @@ async function build(specificTripId = null) {
     let htmlSizeTotal = 0;
 
     try {
-        // Generate homepage
+        // Generate homepage using shared function
         console.log(`   📄 Generating homepage...`);
-        const homepageHtml = generateHomepage(output, domain);
-        fs.writeFileSync('index.html.new', homepageHtml, 'utf8');
-        const homepageSize = fs.statSync('index.html.new').size;
+        const homepageSize = generateAndPromoteHomepage(output, domain, generateHomepage);
         htmlSizeTotal += homepageSize;
-
-        // Auto-promote homepage (backup old version first)
-        if (fs.existsSync('index.html')) {
-            fs.copyFileSync('index.html', 'index.html.backup');
-        }
-        fs.renameSync('index.html.new', 'index.html');
         console.log(`   ✅ Homepage generated and promoted (${(homepageSize / 1024).toFixed(1)}KB)`);
 
-        // Generate map page
+        // Generate map page using shared function
         console.log(`   📄 Generating map page...`);
-        if (!fs.existsSync('map')) {
-            fs.mkdirSync('map', { recursive: true });
-        }
-        const mapHtml = generateMapPage(output, domain);
-        fs.writeFileSync('map/index.html', mapHtml, 'utf8');
-        const mapSize = fs.statSync('map/index.html').size;
+        const mapSize = generateMapPageToFile(output, domain, generateMapPage);
         htmlSizeTotal += mapSize;
         console.log(`   ✅ Map page generated (${(mapSize / 1024).toFixed(1)}KB)`);
 
@@ -677,48 +568,28 @@ async function build(specificTripId = null) {
         htmlSizeTotal += aboutSize;
         console.log(`   ✅ About page generated (${(aboutSize / 1024).toFixed(1)}KB)`);
 
-        // Generate trip pages
+        // Generate trip pages using shared function
         console.log(`   📄 Generating trip pages...\n`);
+        const tripIds = processedTrips.map(t => t.slug);
         for (let i = 0; i < processedTrips.length; i++) {
-            const tripMetadata = processedTrips[i];
-            const tripId = tripMetadata.slug;
+            console.log(`   [${i + 1}/${processedTrips.length}] ${processedTrips[i].title}`);
 
-            // Load full trip content
-            const tripContentPath = path.join(TRIPS_OUTPUT_DIR, `${tripId}.json`);
-            const tripContentData = JSON.parse(fs.readFileSync(tripContentPath, 'utf8'));
-
-            // Create trip directory
-            const tripDir = path.join('trips', tripMetadata.slug);
-            if (!fs.existsSync(tripDir)) {
-                fs.mkdirSync(tripDir, { recursive: true });
-            }
-
-            console.log(`   [${i + 1}/${processedTrips.length}] ${tripMetadata.title}`);
-
-            // Reconstruct tripData structure for generateTripFiles
-            const tripData = {
-                slug: tripId,
-                introHtml: tripContentData.introHtml,
-                content: tripContentData.content,
-            };
-
-            // Generate all trip files using shared function
-            const result = generateTripFiles(tripData, output, domain, '      ');
-
-            // Calculate total HTML size for build stats
-            if (result.introPath) htmlSizeTotal += fs.statSync(result.introPath).size;
-            if (result.mapPath) htmlSizeTotal += fs.statSync(result.mapPath).size;
-            result.locationPaths.forEach(p => htmlSizeTotal += fs.statSync(p).size);
-            result.articlePaths.forEach(p => htmlSizeTotal += fs.statSync(p).size);
-
+            // Generate this trip's HTML files
+            const result = generateTripHtmlPages(
+                [tripIds[i]],
+                output,
+                domain,
+                TRIPS_OUTPUT_DIR,
+                generateTripFiles,
+                '      '
+            );
+            htmlSizeTotal += result.totalSize;
             console.log('');
         }
 
-        // Generate sitemap.xml
+        // Generate sitemap.xml using shared function
         console.log(`\n   📄 Generating sitemap.xml...`);
-        const sitemapXml = generateSitemap(processedTrips, domain);
-        fs.writeFileSync('sitemap.xml', sitemapXml, 'utf8');
-        const sitemapSize = fs.statSync('sitemap.xml').size;
+        const sitemapSize = generateSitemapToFile(processedTrips, domain, generateSitemap);
         console.log(`   ✅ Sitemap generated (${(sitemapSize / 1024).toFixed(1)}KB)`);
 
         // Generate robots.txt

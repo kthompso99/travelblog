@@ -20,6 +20,16 @@ const CONFIG = require('../../lib/config-paths');
 const { generateHomepage, generateMapPage } = require('../../lib/generate-html');
 const { generateTripFiles } = require('../../lib/generate-trip-files');
 const { generateSitemap } = require('../../lib/generate-sitemap');
+const {
+    discoverTrips,
+    writeTripContentJson,
+    extractTripMetadata,
+    writeConfigBuilt,
+    generateAndPromoteHomepage,
+    generateMapPageToFile,
+    generateSitemapToFile,
+    generateTripHtmlPages
+} = require('../../lib/build-utilities');
 
 const CACHE_FILE = CONFIG.BUILD_CACHE_FILE;
 
@@ -31,41 +41,7 @@ const PATHS = {
     buildScript: CONFIG.BUILD_SCRIPT
 };
 
-/**
- * Discover all trips by scanning the trips directory
- * Returns trip IDs sorted in reverse chronological order (newest first)
- * @returns {Array} Array of trip IDs sorted by beginDate (newest first)
- */
-function discoverTrips() {
-    const tripsDir = PATHS.tripsDir;
-
-    if (!fs.existsSync(tripsDir)) {
-        return [];
-    }
-
-    const entries = fs.readdirSync(tripsDir, { withFileTypes: true });
-    const tripDirs = entries.filter(entry => entry.isDirectory()).map(entry => entry.name);
-
-    const trips = [];
-    for (const tripId of tripDirs) {
-        const tripConfigPath = CONFIG.getTripConfigPath(tripId);
-        if (!fs.existsSync(tripConfigPath)) continue;
-
-        try {
-            const tripData = fs.readFileSync(tripConfigPath, 'utf8');
-            const tripConfig = JSON.parse(tripData);
-            trips.push({
-                slug: tripId,  // Infer slug from directory name
-                beginDate: tripConfig.beginDate || '1970-01-01'
-            });
-        } catch (e) {
-            // Skip trips with invalid config
-        }
-    }
-
-    trips.sort((a, b) => new Date(b.beginDate) - new Date(a.beginDate));
-    return trips.map(trip => trip.slug);
-}
+// Note: discoverTrips is now imported from lib/build-utilities.js
 
 /**
  * Load or create cache
@@ -170,7 +146,7 @@ function coreBuildFilesChanged(cache) {
 function getChangedTrips(cache) {
     const changed = [];
     try {
-        const allTrips = discoverTrips();
+        const allTrips = discoverTrips(PATHS.tripsDir, (tripId) => CONFIG.getTripConfigPath(tripId));
         for (const tripId of allTrips) {
             const configModTime = getFileModTime(CONFIG.getTripConfigPath(tripId));
             const contentModTime = getDirModTime(path.join(PATHS.tripsDir, tripId));
@@ -198,7 +174,7 @@ function updateCacheForTrips(cache, tripIds) {
 function updateFullCache(cache) {
     getCoreFiles().forEach(file => { cache.files[file] = getFileModTime(file); });
     try {
-        const allTrips = discoverTrips();
+        const allTrips = discoverTrips(PATHS.tripsDir, (tripId) => CONFIG.getTripConfigPath(tripId));
         updateCacheForTrips(cache, allTrips);
     } catch (e) { /* ignore */ }
     cache.lastFullBuild = Date.now();
@@ -245,14 +221,9 @@ async function runIncrementalBuild(tripIds) {
         if (trip) {
             rebuiltTrips[tripId] = trip;
 
-            // Write per-trip content JSON
-            const tripContentFile = path.join(CONFIG.TRIPS_OUTPUT_DIR, `${tripId}.json`);
-            fs.writeFileSync(tripContentFile, JSON.stringify({
-                slug: trip.slug,
-                introHtml: trip.introHtml,
-                content: trip.content
-            }, null, 2), 'utf8');
-            console.log(`  💾 Saved ${tripContentFile}`);
+            // Write per-trip content JSON using shared function
+            writeTripContentJson(trip, tripId, CONFIG.TRIPS_OUTPUT_DIR);
+            console.log(`  💾 Saved trips/${tripId}.json`);
         }
     }
 
@@ -271,58 +242,33 @@ async function runIncrementalBuild(tripIds) {
         const trip = rebuiltTrips[tripId];
         if (!trip) continue;
 
-        const tripMetadata = {
-            slug: trip.slug, title: trip.title,
-            published: trip.published, beginDate: trip.beginDate,
-            endDate: trip.endDate, duration: trip.duration,
-            metadata: trip.metadata, coverImage: trip.coverImage,
-            thumbnail: trip.thumbnail, mapCenter: trip.mapCenter,
-            locations: trip.locations, relatedTrips: trip.relatedTrips
-        };
+        // Extract trip metadata using shared function
+        const tripMetadata = extractTripMetadata(trip);
 
         const idx = output.trips.findIndex(t => t.slug === tripId);
         if (idx >= 0) { output.trips[idx] = tripMetadata; }
         else { output.trips.push(tripMetadata); }
     }
 
-    fs.writeFileSync(CONFIG.OUTPUT_FILE, JSON.stringify(output, null, 2), 'utf8');
+    // Write config.built.json using shared function
+    writeConfigBuilt(output, CONFIG.OUTPUT_FILE);
     console.log(`  💾 Updated ${CONFIG.OUTPUT_FILE}\n`);
 
-    // Generate HTML for only the changed trips
+    // Generate HTML for only the changed trips using shared function
     console.log('🏗️  Generating HTML for changed trips...\n');
-    for (const tripId of tripIds) {
-        if (!rebuiltTrips[tripId]) continue;
-
-        const tripContentData = JSON.parse(fs.readFileSync(
-            path.join(CONFIG.TRIPS_OUTPUT_DIR, `${tripId}.json`), 'utf8'));
-
-        // Reconstruct tripData structure for generateTripFiles
-        const tripData = {
-            slug: tripId,
-            introHtml: tripContentData.introHtml,
-            content: tripContentData.content,
-            // Other fields will be found in output.trips by generateTripFiles
-        };
-
-        // Generate all trip files using shared function
-        generateTripFiles(tripData, output, domain, '      ');
-        console.log('');
-    }
+    const changedTripIds = tripIds.filter(id => rebuiltTrips[id]);
+    generateTripHtmlPages(changedTripIds, output, domain, CONFIG.TRIPS_OUTPUT_DIR, generateTripFiles, '      ');
 
     // Regenerate shared pages — these reference all trips so must always run
     console.log('🏗️  Regenerating shared pages...\n');
 
-    fs.writeFileSync('index.html.new', generateHomepage(output, domain), 'utf8');
-    // Auto-promote in incremental mode (you're actively iterating)
-    if (fs.existsSync('index.html')) fs.copyFileSync('index.html', 'index.html.backup');
-    fs.renameSync('index.html.new', 'index.html');
+    generateAndPromoteHomepage(output, domain, generateHomepage);
     console.log('   ✅ Homepage updated');
 
-    if (!fs.existsSync('map')) fs.mkdirSync('map', { recursive: true });
-    fs.writeFileSync('map/index.html', generateMapPage(output, domain), 'utf8');
+    generateMapPageToFile(output, domain, generateMapPage);
     console.log('   ✅ Map page updated');
 
-    fs.writeFileSync('sitemap.xml', generateSitemap(output.trips, domain), 'utf8');
+    generateSitemapToFile(output.trips, domain, generateSitemap);
     console.log('   ✅ Sitemap updated');
 
     console.log('\n✅ Incremental build complete!\n');
