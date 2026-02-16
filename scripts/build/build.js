@@ -216,6 +216,7 @@ async function processContentItem(item, tripId, tripTitle, order, warnings = [])
     const processed = {
         type: item.type,
         title: item.title,
+        file: item.file,  // Include filename for stable slug generation
         order: order
     };
 
