@@ -196,7 +196,7 @@ function calculateDuration(beginDate, endDate) {
 }
 
 // Process a single content item (location or article)
-async function processContentItem(item, tripId, order) {
+async function processContentItem(item, tripId, tripTitle, order, warnings = []) {
     const processed = {
         type: item.type,
         title: item.title,
@@ -233,6 +233,12 @@ async function processContentItem(item, tripId, order) {
         } catch (e) {
             console.log(`    ⚠️  Markdown conversion failed: ${e.message}`);
             processed.contentHtml = `<p>Content not found</p>`;
+            warnings.push({
+                trip: tripTitle,
+                location: item.title,
+                type: 'Markdown Conversion',
+                message: e.message
+            });
         }
     }
 
@@ -253,6 +259,12 @@ async function processContentItem(item, tripId, order) {
         } catch (e) {
             console.log(`    ⚠️  Geocoding failed: ${e.message}`);
             processed.coordinates = { lat: 0, lng: 0 };
+            warnings.push({
+                trip: tripTitle,
+                location: item.title,
+                type: 'Geocoding',
+                message: e.message
+            });
         }
     }
 
@@ -261,7 +273,7 @@ async function processContentItem(item, tripId, order) {
 }
 
 // Process a single trip
-async function processTrip(tripId) {
+async function processTrip(tripId, warnings = []) {
     console.log(`\n📍 Processing trip: ${tripId}`);
 
     const tripConfigPath = CONFIG.getTripConfigPath(tripId);
@@ -316,7 +328,7 @@ async function processTrip(tripId) {
         const order = i + 1; // 1-based ordering
 
         console.log(`  [${i + 1}/${tripConfig.content.length}] ${item.type}: ${item.title}`);
-        const processed = await processContentItem(item, tripId, order);
+        const processed = await processContentItem(item, tripId, tripConfig.title, order, warnings);
         processedContent.push(processed);
         console.log('');
     }
@@ -497,9 +509,10 @@ async function build(specificTripId = null) {
     // Process each trip
     const processedTrips = [];
     let totalContentSize = 0;
+    const buildWarnings = []; // Collect warnings during build
 
     for (const tripId of indexConfig.trips) {
-        const trip = await processTrip(tripId);
+        const trip = await processTrip(tripId, buildWarnings);
         if (trip) {
             // Save full trip content to separate file using shared function
             const fileSize = writeTripContentJson(trip, tripId, TRIPS_OUTPUT_DIR);
@@ -610,6 +623,16 @@ async function build(specificTripId = null) {
         console.log(`   3. Test locally with: npm run serve`);
         console.log(`   4. Validate SEO with online tools`);
         console.log(`   5. Deploy your site!`);
+
+        // Print warning summary if there were any issues
+        if (buildWarnings.length > 0) {
+            console.log(`\n⚠️  Build completed with ${buildWarnings.length} warning(s):\n`);
+            buildWarnings.forEach((warning, index) => {
+                console.log(`   ${index + 1}. Trip: ${warning.trip}`);
+                console.log(`      Location: ${warning.location}`);
+                console.log(`      Issue: ${warning.type} - ${warning.message}\n`);
+            });
+        }
     } catch (e) {
         console.error('❌ Error generating HTML:', e.message);
         console.error(e.stack);

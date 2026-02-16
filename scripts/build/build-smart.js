@@ -216,8 +216,9 @@ async function runIncrementalBuild(tripIds) {
 
     // Process only the changed trips
     const rebuiltTrips = {};
+    const buildWarnings = []; // Collect warnings during build
     for (const tripId of tripIds) {
-        const trip = await buildModule.processTrip(tripId);
+        const trip = await buildModule.processTrip(tripId, buildWarnings);
         if (trip) {
             rebuiltTrips[tripId] = trip;
 
@@ -272,6 +273,17 @@ async function runIncrementalBuild(tripIds) {
     console.log('   ✅ Sitemap updated');
 
     console.log('\n✅ Incremental build complete!\n');
+
+    // Print warning summary if there were any issues
+    if (buildWarnings.length > 0) {
+        console.log(`⚠️  Build completed with ${buildWarnings.length} warning(s):\n`);
+        buildWarnings.forEach((warning, index) => {
+            console.log(`   ${index + 1}. Trip: ${warning.trip}`);
+            console.log(`      Location: ${warning.location}`);
+            console.log(`      Issue: ${warning.type} - ${warning.message}\n`);
+        });
+    }
+
     return true;
 }
 
