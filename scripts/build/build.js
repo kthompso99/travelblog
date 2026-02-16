@@ -343,18 +343,30 @@ async function processTrip(tripId) {
         );
 
         if (centerLocation) {
+            // Reuse coordinates from existing location
             mapCenter = {
                 name: tripConfig.mapCenter,
                 coordinates: centerLocation.coordinates
             };
-        } else if (locations.length > 0) {
-            // Fallback to first location
-            mapCenter = {
-                name: locations[0].name,
-                coordinates: locations[0].coordinates
-            };
+        } else {
+            // Geocode the mapCenter string (allows any place, not just trip locations)
+            const geocoded = await geocodeLocation(tripConfig.mapCenter);
+            if (geocoded) {
+                mapCenter = {
+                    name: tripConfig.mapCenter,
+                    coordinates: geocoded
+                };
+            } else if (locations.length > 0) {
+                // Fallback to first location only if geocoding fails
+                console.warn(`   ⚠️  Could not geocode mapCenter "${tripConfig.mapCenter}", using first location`);
+                mapCenter = {
+                    name: locations[0].name,
+                    coordinates: locations[0].coordinates
+                };
+            }
         }
     } else if (locations.length > 0) {
+        // No mapCenter specified, use first location
         mapCenter = {
             name: locations[0].name,
             coordinates: locations[0].coordinates
