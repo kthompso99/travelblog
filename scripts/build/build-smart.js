@@ -16,7 +16,7 @@ const { execSync } = require('child_process');
 const { slugify } = require('../../lib/slug-utilities');
 
 const CONFIG = require('../../lib/config-paths');
-const { generateHomepage, generateTripIntroPage, generateTripLocationPage, generateMapPage } = require('../../lib/generate-html');
+const { generateHomepage, generateTripIntroPage, generateTripLocationPage, generateTripArticlePage, generateTripMapPage, generateMapPage } = require('../../lib/generate-html');
 const { generateSitemap } = require('../../lib/generate-sitemap');
 
 const CACHE_FILE = CONFIG.BUILD_CACHE_FILE;
@@ -298,20 +298,35 @@ async function runIncrementalBuild(tripIds) {
         const tripDir = path.join('trips', tripMetadata.slug);
         if (!fs.existsSync(tripDir)) fs.mkdirSync(tripDir, { recursive: true });
 
-        const locations = tripContentData.content.filter(item => item.type === 'location');
+        const allContent = tripContentData.content;
+        const locations = allContent.filter(item => item.type === 'location');
+        const articles = allContent.filter(item => item.type === 'article');
         tripMetadata.introHtml = tripContentData.introHtml;
 
         // Intro page
         fs.writeFileSync(path.join(tripDir, 'index.html'),
-            generateTripIntroPage(tripMetadata, locations, output, domain), 'utf8');
+            generateTripIntroPage(tripMetadata, allContent, output, domain), 'utf8');
         console.log(`      ✅ Intro page → ${tripDir}/index.html`);
+
+        // Map page
+        fs.writeFileSync(path.join(tripDir, 'map.html'),
+            generateTripMapPage(tripMetadata, allContent, output, domain), 'utf8');
+        console.log(`      ✅ Map page → ${tripDir}/map.html`);
 
         // Location pages
         locations.forEach((location, locationIndex) => {
             const locationSlug = slugify(location.title);
             fs.writeFileSync(path.join(tripDir, `${locationSlug}.html`),
-                generateTripLocationPage(tripMetadata, location, locations, locationIndex, output, domain), 'utf8');
+                generateTripLocationPage(tripMetadata, location, allContent, locationIndex, output, domain), 'utf8');
             console.log(`      ✅ ${location.title} → ${tripDir}/${locationSlug}.html`);
+        });
+
+        // Article pages
+        articles.forEach((article, articleIndex) => {
+            const articleSlug = slugify(article.title);
+            fs.writeFileSync(path.join(tripDir, `${articleSlug}.html`),
+                generateTripArticlePage(tripMetadata, article, allContent, articleIndex, output, domain), 'utf8');
+            console.log(`      ✅ ${article.title} (article) → ${tripDir}/${articleSlug}.html`);
         });
 
         // Copy images
