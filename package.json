@@ -7,7 +7,6 @@
     "validate": "node scripts/validate.js",
     "build": "node scripts/validate.js && node scripts/build/build.js",
     "build:smart": "node scripts/build/build-smart.js",
-    "build:trip": "node scripts/build/build-trip.js",
     "dev": "node scripts/build/build-smart.js && concurrently \"npm run watch\" \"node scripts/server.js 8000\"",
     "writing": "node scripts/build/build-smart.js && concurrently \"npm run watch:writing\" \"node scripts/server.js 8000\"",
     "watch": "nodemon --watch content/ --ext md,json --delay 1000ms --exec 'node scripts/build/build-smart.js'",

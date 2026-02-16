@@ -2,21 +2,23 @@
 
 /**
  * Smart Incremental Build Script
- * Detects what changed and rebuilds only what's needed
+ * Detects what changed and rebuilds only what's needed (uses cache)
  *
  * Usage:
- *   npm run build:smart              # Build only what changed
- *   npm run build:smart -- --force   # Force full rebuild
- *   npm run build:smart -- greece    # Build only Greece
+ *   npm run build:smart              # Build only changed trips (auto-detect)
+ *   npm run build:smart greece       # Build only Greece (uses cache)
+ *   npm run build:smart --force      # Force rebuild all (ignores cache)
+ *
+ * For full rebuild without cache, use: npm run build [tripId]
  */
 
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const { slugify } = require('../../lib/slug-utilities');
 
 const CONFIG = require('../../lib/config-paths');
-const { generateHomepage, generateTripIntroPage, generateTripLocationPage, generateTripArticlePage, generateTripMapPage, generateMapPage } = require('../../lib/generate-html');
+const { generateHomepage, generateMapPage } = require('../../lib/generate-html');
+const { generateTripFiles } = require('../../lib/generate-trip-files');
 const { generateSitemap } = require('../../lib/generate-sitemap');
 
 const CACHE_FILE = CONFIG.BUILD_CACHE_FILE;
@@ -291,56 +293,19 @@ async function runIncrementalBuild(tripIds) {
     for (const tripId of tripIds) {
         if (!rebuiltTrips[tripId]) continue;
 
-        const tripMetadata = output.trips.find(t => t.slug === tripId);
         const tripContentData = JSON.parse(fs.readFileSync(
             path.join(CONFIG.TRIPS_OUTPUT_DIR, `${tripId}.json`), 'utf8'));
 
-        const tripDir = path.join('trips', tripMetadata.slug);
-        if (!fs.existsSync(tripDir)) fs.mkdirSync(tripDir, { recursive: true });
+        // Reconstruct tripData structure for generateTripFiles
+        const tripData = {
+            slug: tripId,
+            introHtml: tripContentData.introHtml,
+            content: tripContentData.content,
+            // Other fields will be found in output.trips by generateTripFiles
+        };
 
-        const allContent = tripContentData.content;
-        const locations = allContent.filter(item => item.type === 'location');
-        const articles = allContent.filter(item => item.type === 'article');
-        tripMetadata.introHtml = tripContentData.introHtml;
-
-        // Intro page
-        fs.writeFileSync(path.join(tripDir, 'index.html'),
-            generateTripIntroPage(tripMetadata, allContent, output, domain), 'utf8');
-        console.log(`      ✅ Intro page → ${tripDir}/index.html`);
-
-        // Map page
-        fs.writeFileSync(path.join(tripDir, 'map.html'),
-            generateTripMapPage(tripMetadata, allContent, output, domain), 'utf8');
-        console.log(`      ✅ Map page → ${tripDir}/map.html`);
-
-        // Location pages
-        locations.forEach((location, locationIndex) => {
-            const locationSlug = slugify(location.title);
-            fs.writeFileSync(path.join(tripDir, `${locationSlug}.html`),
-                generateTripLocationPage(tripMetadata, location, allContent, locationIndex, output, domain), 'utf8');
-            console.log(`      ✅ ${location.title} → ${tripDir}/${locationSlug}.html`);
-        });
-
-        // Article pages
-        articles.forEach((article, articleIndex) => {
-            const articleSlug = slugify(article.title);
-            fs.writeFileSync(path.join(tripDir, `${articleSlug}.html`),
-                generateTripArticlePage(tripMetadata, article, allContent, articleIndex, output, domain), 'utf8');
-            console.log(`      ✅ ${article.title} (article) → ${tripDir}/${articleSlug}.html`);
-        });
-
-        // Copy images
-        const imgSrc = path.join(CONFIG.TRIPS_DIR, tripId, 'images');
-        const imgDst = path.join(tripDir, 'images');
-        if (fs.existsSync(imgSrc)) {
-            if (!fs.existsSync(imgDst)) fs.mkdirSync(imgDst, { recursive: true });
-            let count = 0;
-            for (const file of fs.readdirSync(imgSrc)) {
-                const src = path.join(imgSrc, file);
-                if (fs.statSync(src).isFile()) { fs.copyFileSync(src, path.join(imgDst, file)); count++; }
-            }
-            if (count > 0) console.log(`      📷 Copied ${count} image(s)`);
-        }
+        // Generate all trip files using shared function
+        generateTripFiles(tripData, output, domain, '      ');
         console.log('');
     }
 
