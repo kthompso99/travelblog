@@ -428,8 +428,8 @@ async function runInteractiveAssignment(tripId) {
 const tripId = process.argv[2];
 
 if (!tripId) {
-  console.error('Usage: node scripts/tools/assign-photos.js <trip-id>');
-  console.error('Example: node scripts/tools/assign-photos.js spain-2025');
+  console.error('Usage: npm run assign-photos <trip-id>');
+  console.error('Example: npm run assign-photos spain-2025');
   process.exit(1);
 }
 

@@ -13,6 +13,8 @@
     "watch:writing": "nodemon --watch content/trips/ --ext md --exec 'node scripts/build/build-writing.js'",
     "serve": "node scripts/server.js 8000",
     "add": "node scripts/tools/add-trip.js",
+    "sync-photos": "node scripts/tools/sync-takeout-photos.js",
+    "assign-photos": "node scripts/tools/assign-photos.js",
     "test": "node scripts/test/test-nav.js && node scripts/test/test-filter.js && node scripts/test/test-css-injection.js && node scripts/test/test-maps.js",
     "deploy-check": "node scripts/deploy-check.js",
     "sync-docs": "node scripts/sync-docs.js",

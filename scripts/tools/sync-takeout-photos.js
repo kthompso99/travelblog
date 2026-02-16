@@ -16,11 +16,11 @@
  * 4. Trip locations must have GPS coordinates in trip.json
  *
  * USAGE:
- *   node scripts/tools/sync-takeout-photos.js <path-to-zip> <trip-id>
+ *   npm run sync-photos <path-to-zip> <trip-id>
  *
  * EXAMPLES:
- *   node scripts/tools/sync-takeout-photos.js takeout/spain-photos.zip spain
- *   node scripts/tools/sync-takeout-photos.js ~/Downloads/takeout-20250210.zip greece
+ *   npm run sync-photos takeout/spain-photos.zip spain
+ *   npm run sync-photos ~/Downloads/takeout-20250210.zip greece
  *
  * WHAT HAPPENS:
  * 1. Opens the Takeout zip and finds all photos in the album
@@ -332,8 +332,8 @@ const zipPath = process.argv[2];
 const tripId = process.argv[3];
 
 if (!zipPath || !tripId) {
-  console.error('Usage: node scripts/tools/sync-takeout-photos.js <zip-path> <trip-id>');
-  console.error('Example: node scripts/tools/sync-takeout-photos.js ~/Downloads/takeout.zip spain-2025');
+  console.error('Usage: npm run sync-photos <zip-path> <trip-id>');
+  console.error('Example: npm run sync-photos ~/Downloads/takeout.zip spain-2025');
   process.exit(1);
 }
 

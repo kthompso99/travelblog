@@ -26,3 +26,25 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
+![Kanonkop is an 80-year-old winery that is considered the main innovator of Pinotage, a unique grape to South Africa.](images/cape-winelands-01.jpg)
+
+![](images/cape-winelands-02.jpg)
+
+![From Rainbow's End](images/cape-winelands-03.jpg)
+
+![Biltong is pretty close to jerkey.  "Wors" is local sausage... I ate some Springbok and Ostrich at restaurants, didn't try any of the Wors.](images/cape-winelands-04.jpg)
+
+![](images/cape-winelands-05.jpg)
+
+![Right whale breaching](images/cape-winelands-06.jpg)
+
+![Southern Right Whale and calf (near Hermanus, about an hour east of Cape Town)](images/cape-winelands-07.jpg)
+
+![](images/cape-winelands-08.jpg)
+
+![Art work in Franschhoek.  He's everywhere.](images/cape-winelands-09.jpg)
+
+![](images/cape-winelands-10.jpg)
+
+![](images/cape-winelands-11.jpg)
+
