@@ -45,15 +45,17 @@ const { loadCache, createEmptyCache, updateFullCache, saveCache } = require('../
 
 const { SITE_CONFIG, TRIPS_DIR, OUTPUT_FILE, TRIPS_OUTPUT_DIR, CACHE_DIR, GEOCODE_CACHE_FILE } = CONFIG;
 
-// Load Google Maps API key
-let googleMapsApiKey = null;
-const googleMapsConfigPath = 'config/google-maps.json';
-if (fs.existsSync(googleMapsConfigPath)) {
-    try {
-        const googleMapsConfig = JSON.parse(fs.readFileSync(googleMapsConfigPath, 'utf8'));
-        googleMapsApiKey = googleMapsConfig.apiKey;
-    } catch (e) {
-        console.error('⚠️  Could not load Google Maps API key from config/google-maps.json');
+// Load Google Maps API key (env var for CI/production, config file for local dev)
+let googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY || null;
+if (!googleMapsApiKey) {
+    const googleMapsConfigPath = 'config/google-maps.json';
+    if (fs.existsSync(googleMapsConfigPath)) {
+        try {
+            const googleMapsConfig = JSON.parse(fs.readFileSync(googleMapsConfigPath, 'utf8'));
+            googleMapsApiKey = googleMapsConfig.apiKey;
+        } catch (e) {
+            console.error('⚠️  Could not load Google Maps API key from config/google-maps.json');
+        }
     }
 }
 
