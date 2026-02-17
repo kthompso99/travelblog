@@ -117,9 +117,36 @@ travelblog/
 
 ---
 
+## trip.json Schema
+
+```json
+{
+  "title": "Athens and Greek Islands",
+  "published": true,                // false = excluded from build
+                                    // NOTE: slug inferred from directory name
+  "beginDate": "2025-04-01",
+  "endDate":   "2025-04-14",
+  "metadata": {
+    "year":      2025,
+    "continent": "Europe",          // One of 7 valid values (see validate.js)
+    "country":   "Greece",          // Primary country (display)
+    "countries": ["Greece"],        // All countries visited; use multiple for multi-country trips
+    "tripType":  ["adventure"],
+    "tags":      ["europe", "greece"]
+  },
+  "coverImage":  "images/greece.jpg",
+  "thumbnail":   "images/greece.jpg",
+  "mapCenter":   "Paros",           // Geocoded; centers the trip map
+  "content": [ ... ],               // Array of location / article items (see Content Types below)
+  "relatedTrips": []                // Future: cross-link trips
+}
+```
+
+---
+
 ## Content Types
 
-Each trip's `content` array in `trip.json` holds items of one of two types.
+Each trip's `content` array holds items of one of two types.
 Both types are fully supported by the build pipeline.
 
 ### `location`
@@ -142,7 +169,7 @@ trip's interactive map and gets its own HTML page.
 |-------|----------|-------|
 | `type` | Yes | Must be `"location"` |
 | `title` | Yes | Display name |
-| `place` | Yes | Geocoded via Nominatim (be specific) |
+| `place` | Yes | Geocoded via Google Maps API (be specific) |
 | `duration` | Yes | Free-text string shown on the page |
 | `file` | Yes | Path relative to the trip directory |
 | `thumbnail` | No | Shown in map popup; omit to hide image |
@@ -165,32 +192,6 @@ No geocoding, no map marker, no `place` or `duration` fields.
 | `type` | Yes | Must be `"article"` |
 | `title` | Yes | Display name |
 | `file` | Yes | Path relative to the trip directory |
-
----
-
-## trip.json Schema
-
-```json
-{
-  "title": "Athens and Greek Islands",
-  "published": true,                // false = excluded from build
-                                    // NOTE: slug inferred from directory name
-  "beginDate": "2025-04-01",
-  "endDate":   "2025-04-14",
-  "metadata": {
-    "year":      2025,
-    "continent": "Europe",          // One of 7 valid values (see validate.js)
-    "country":   "Greece",
-    "tripType":  ["adventure"],
-    "tags":      ["europe", "greece"]
-  },
-  "coverImage":  "images/greece.jpg",
-  "thumbnail":   "images/greece.jpg",
-  "mapCenter":   "Paros",           // Geocoded; centers the trip map
-  "content": [ ... ],               // Array of location / article items
-  "relatedTrips": []                // Future: cross-link trips
-}
-```
 
 ---
 
