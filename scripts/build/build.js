@@ -551,24 +551,35 @@ async function build(specificTripId = null) {
         trips: processedTrips
     };
 
-    // Write built config using shared function
-    try {
-        const indexSize = writeConfigBuilt(output, OUTPUT_FILE);
-
-        console.log(`\n✅ JSON build complete!`);
+    // For single-trip builds, skip global file generation (homepage, map, config.built.json)
+    // Only generate the specific trip's HTML pages
+    if (specificTripId) {
+        console.log(`\n✅ Trip build complete!`);
         console.log(`\n📊 Summary:`);
-        console.log(`   - Trips processed: ${processedTrips.length}`);
+        console.log(`   - Trip processed: ${specificTripId}`);
         console.log(`   - Total locations: ${processedTrips.reduce((sum, t) => sum + t.locations.length, 0)}`);
-        console.log(`\n💾 File sizes:`);
-        console.log(`   - Index (${OUTPUT_FILE}): ${(indexSize / 1024).toFixed(1)}KB`);
-        console.log(`   - Trip content files: ${(totalContentSize / 1024).toFixed(1)}KB`);
-        console.log(`   - Total: ${((indexSize + totalContentSize) / 1024).toFixed(1)}KB`);
-        console.log(`\n⚡ Performance:`);
-        console.log(`   - Initial load: ${(indexSize / 1024).toFixed(1)}KB (index only)`);
-        console.log(`   - Per trip load: ~${(totalContentSize / processedTrips.length / 1024).toFixed(1)}KB average`);
-    } catch (e) {
-        console.error('❌ Error writing output file:', e.message);
-        process.exit(1);
+        console.log(`\n⚠️  Note: Skipping global files (homepage, map, config.built.json)`);
+        console.log(`   Run 'npm run build' without trip ID to regenerate global files\n`);
+    } else {
+        // Write built config using shared function (full build only)
+        try {
+            const indexSize = writeConfigBuilt(output, OUTPUT_FILE);
+
+            console.log(`\n✅ JSON build complete!`);
+            console.log(`\n📊 Summary:`);
+            console.log(`   - Trips processed: ${processedTrips.length}`);
+            console.log(`   - Total locations: ${processedTrips.reduce((sum, t) => sum + t.locations.length, 0)}`);
+            console.log(`\n💾 File sizes:`);
+            console.log(`   - Index (${OUTPUT_FILE}): ${(indexSize / 1024).toFixed(1)}KB`);
+            console.log(`   - Trip content files: ${(totalContentSize / 1024).toFixed(1)}KB`);
+            console.log(`   - Total: ${((indexSize + totalContentSize) / 1024).toFixed(1)}KB`);
+            console.log(`\n⚡ Performance:`);
+            console.log(`   - Initial load: ${(indexSize / 1024).toFixed(1)}KB (index only)`);
+            console.log(`   - Per trip load: ~${(totalContentSize / processedTrips.length / 1024).toFixed(1)}KB average`);
+        } catch (e) {
+            console.error('❌ Error writing output file:', e.message);
+            process.exit(1);
+        }
     }
 
     // Generate static HTML pages (SSG)
@@ -578,30 +589,33 @@ async function build(specificTripId = null) {
     let htmlSizeTotal = 0;
 
     try {
-        // Generate homepage using shared function
-        console.log(`   📄 Generating homepage...`);
-        const homepageSize = generateAndPromoteHomepage(output, domain, generateHomepage);
-        htmlSizeTotal += homepageSize;
-        console.log(`   ✅ Homepage generated and promoted (${(homepageSize / 1024).toFixed(1)}KB)`);
+        if (!specificTripId) {
+            // Full build: generate all global pages
+            // Generate homepage using shared function
+            console.log(`   📄 Generating homepage...`);
+            const homepageSize = generateAndPromoteHomepage(output, domain, generateHomepage);
+            htmlSizeTotal += homepageSize;
+            console.log(`   ✅ Homepage generated and promoted (${(homepageSize / 1024).toFixed(1)}KB)`);
 
-        // Generate map page using shared function
-        console.log(`   📄 Generating map page...`);
-        const mapSize = generateMapPageToFile(output, domain, generateMapPage);
-        htmlSizeTotal += mapSize;
-        console.log(`   ✅ Map page generated (${(mapSize / 1024).toFixed(1)}KB)`);
+            // Generate map page using shared function
+            console.log(`   📄 Generating map page...`);
+            const mapSize = generateMapPageToFile(output, domain, generateMapPage);
+            htmlSizeTotal += mapSize;
+            console.log(`   ✅ Map page generated (${(mapSize / 1024).toFixed(1)}KB)`);
 
-        // Generate about page
-        console.log(`   📄 Generating about page...`);
-        if (!fs.existsSync('about')) {
-            fs.mkdirSync('about', { recursive: true });
+            // Generate about page
+            console.log(`   📄 Generating about page...`);
+            if (!fs.existsSync('about')) {
+                fs.mkdirSync('about', { recursive: true });
+            }
+            const aboutHtml = await generateAboutPage(output, domain, convertMarkdown);
+            fs.writeFileSync('about/index.html', aboutHtml, 'utf8');
+            const aboutSize = fs.statSync('about/index.html').size;
+            htmlSizeTotal += aboutSize;
+            console.log(`   ✅ About page generated (${(aboutSize / 1024).toFixed(1)}KB)`);
         }
-        const aboutHtml = await generateAboutPage(output, domain, convertMarkdown);
-        fs.writeFileSync('about/index.html', aboutHtml, 'utf8');
-        const aboutSize = fs.statSync('about/index.html').size;
-        htmlSizeTotal += aboutSize;
-        console.log(`   ✅ About page generated (${(aboutSize / 1024).toFixed(1)}KB)`);
 
-        // Generate trip pages using shared function
+        // Generate trip pages (all trips for full build, single trip for partial build)
         console.log(`   📄 Generating trip pages...\n`);
         const tripIds = processedTrips.map(t => t.slug);
         for (let i = 0; i < processedTrips.length; i++) {
@@ -620,17 +634,20 @@ async function build(specificTripId = null) {
             console.log('');
         }
 
-        // Generate sitemap.xml using shared function
-        console.log(`\n   📄 Generating sitemap.xml...`);
-        const sitemapSize = generateSitemapToFile(processedTrips, domain, generateSitemap);
-        console.log(`   ✅ Sitemap generated (${(sitemapSize / 1024).toFixed(1)}KB)`);
+        if (!specificTripId) {
+            // Full build only: generate sitemap and robots.txt
+            // Generate sitemap.xml using shared function
+            console.log(`\n   📄 Generating sitemap.xml...`);
+            const sitemapSize = generateSitemapToFile(processedTrips, domain, generateSitemap);
+            console.log(`   ✅ Sitemap generated (${(sitemapSize / 1024).toFixed(1)}KB)`);
 
-        // Generate robots.txt
-        console.log(`   📄 Generating robots.txt...`);
-        const robotsTxt = generateRobotsTxt(domain);
-        fs.writeFileSync('robots.txt', robotsTxt, 'utf8');
-        const robotsSize = fs.statSync('robots.txt').size;
-        console.log(`   ✅ Robots.txt generated (${(robotsSize / 1024).toFixed(0)} bytes)`);
+            // Generate robots.txt
+            console.log(`   📄 Generating robots.txt...`);
+            const robotsTxt = generateRobotsTxt(domain);
+            fs.writeFileSync('robots.txt', robotsTxt, 'utf8');
+            const robotsSize = fs.statSync('robots.txt').size;
+            console.log(`   ✅ Robots.txt generated (${(robotsSize / 1024).toFixed(0)} bytes)`);
+        }
 
         console.log(`\n✅ SSG complete!`);
         console.log(`\n💾 Static HTML sizes:`);
