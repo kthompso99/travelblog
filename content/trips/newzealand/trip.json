@@ -1,10 +1,10 @@
 {
-  "title": "New Zealand",
+  "title": "New Zealand 2025",
   "published": false,
-  "beginDate": "2025-01-07",
-  "endDate": "2025-01-24",
+  "beginDate": "2025-01-01",
+  "endDate": "2025-01-30",
   "metadata": {
-    "year": 2025,
+    "year": 2024,
     "continent": "Oceania",
     "country": "New Zealand",
     "tripType": [
@@ -12,19 +12,115 @@
     ],
     "tags": [
       "oceania",
-      "new-zealand"
+      "new zealand"
     ]
   },
   "coverImage": "images/newzealand.jpg",
   "thumbnail": "images/newzealand.jpg",
-  "mapCenter": "Wellington, New Zealand",
+  "mapCenter": "Queenstown, New Zealand",
   "content": [
     {
+      "type": "article",
+      "title": "Planning & Tips",
+      "file": "planning-tips.md"
+    },
+    {
+      "type": "article",
+      "title": "Tolkien",
+      "file": "tolkien.md"
+    },
+    {
+      "type": "article",
+      "title": "Wine",
+      "file": "wine.md"
+    },
+    {
       "type": "location",
-      "title": "New Zealand",
+      "title": "Christchurch",
+      "file": "christchurch.md",
+      "place": "Christchurch, NZ",
+      "duration": "3 days",
+      "thumbnail": "images/christchurch-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Glacier Country",
+      "file": "glacier-country.md",
+      "place": "Franz Josef, NZ",
+      "duration": "3 days",
+      "thumbnail": "images/glacier-country-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Wanaka",
+      "file": "wanaka.md",
+      "place": "Wanaka, NZ",
+      "duration": "3 hours",
+      "thumbnail": "images/wanaka-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Queenstown",
+      "file": "queenstown.md",
+      "place": "Queenstown, NZ",
+      "duration": "3 days",
+      "thumbnail": "images/queenstown-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Kaikoura",
+      "file": "kaikoura.md",
+      "place": "Kaikoura, NZ",
+      "duration": "3 days",
+      "thumbnail": "images/kaikoura-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Nelson",
+      "file": "nelson.md",
+      "place": "Nelson, NZ",
+      "duration": "3 days",
+      "thumbnail": "images/nelson-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Wellington",
+      "file": "wellington.md",
       "place": "Wellington, New Zealand",
-      "duration": "14 days",
-      "file": "newzealand.md"
+      "duration": "3 days",
+      "thumbnail": "images/wellington-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Rotorua",
+      "file": "rotorua.md",
+      "place": "Rotorua, New Zealand",
+      "duration": "3 days",
+      "thumbnail": "images/rotorua-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Hobbiton",
+      "file": "hobbiton.md",
+      "place": "hobbiton, New Zealand",
+      "duration": "3 hours",
+      "thumbnail": "images/hobbiton-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Auckland",
+      "file": "auckland.md",
+      "place": "Auckland, New Zealand",
+      "duration": "3 days",
+      "thumbnail": "images/auckland-01.jpg"
+    },
+    {
+      "type": "location",
+      "title": "Cook Islands",
+      "file": "cook-islands.md",
+      "place": "Rarotanga, New Zealand",
+      "duration": "3 days",
+      "thumbnail": "images/cook-islands-01.jpg"
     }
   ],
   "relatedTrips": []
