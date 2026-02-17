@@ -91,7 +91,6 @@ travelblog/
 │   ── Project housekeeping ──
 ├── package.json                npm scripts and dependencies
 ├── package-lock.json           Locked dependency versions
-├── Makefile                    Convenience aliases for npm scripts
 ├── .gitignore                  Excludes node_modules, cache, built files
 ├── _redirects                  Netlify redirect rules
 ├── .nojekyll                   Disables Jekyll processing on GitHub Pages
