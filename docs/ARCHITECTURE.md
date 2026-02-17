@@ -25,7 +25,6 @@ Before centralization, path information was scattered across multiple files:
 module.exports = {
     // Site configuration
     SITE_CONFIG: 'config/site.json',
-    INDEX_CONFIG: 'content/index.json',
     TRIPS_DIR: 'content/trips',
 
     // Trip file names
@@ -36,10 +35,17 @@ module.exports = {
     OUTPUT_FILE: 'config.built.json',
     TRIPS_OUTPUT_DIR: 'trips',
 
+    // Cache (entire _cache/ dir is gitignored)
+    CACHE_DIR: '_cache',
+    GEOCODE_CACHE_FILE: '_cache/geocode.json',
+    BUILD_CACHE_FILE: '_cache/build-cache.json',
+
     // Helpers
     getTripDir(tripId) { ... },
     getTripConfigPath(tripId) { ... },
-    getTripMainPath(tripId) { ... }
+    getTripMainPath(tripId) { ... },
+    getTripImagesDir(tripId) { ... },
+    getSyncedPhotosPath(tripId) { ... }
 };
 ```
 
@@ -53,7 +59,7 @@ module.exports = {
 const CONFIG = require('../lib/config-paths');
 
 // Use the constants
-const { SITE_CONFIG, INDEX_CONFIG, TRIPS_DIR } = CONFIG;
+const { SITE_CONFIG, TRIPS_DIR } = CONFIG;
 
 // Use the helpers
 const tripConfigPath = CONFIG.getTripConfigPath('greece');
@@ -110,12 +116,14 @@ When you want to reorganize files/directories:
 
 | Script | Purpose | Uses |
 |--------|---------|------|
-| `scripts/build/build.js` | Main build | `SITE_CONFIG`, `INDEX_CONFIG`, helpers |
-| `scripts/validate.js` | Validation | `INDEX_CONFIG`, `TRIPS_DIR`, helpers |
-| `scripts/tools/add-trip.js` | Add new trip | `INDEX_CONFIG`, `TRIPS_DIR`, helpers |
+| `scripts/build/build.js` | Main build | `SITE_CONFIG`, `TRIPS_DIR`, `CACHE_DIR`, helpers |
 | `scripts/build/build-smart.js` | Incremental build | All path constants |
+| `scripts/build/build-writing.js` | Fast content-only rebuild | `TRIPS_DIR`, helpers |
+| `scripts/validate.js` | Validation | `TRIPS_DIR`, helpers |
+| `scripts/tools/add-trip.js` | Add new trip | `TRIPS_DIR`, helpers |
 | `scripts/deploy-check.js` | Pre-deploy checks | Path constants |
-| `scripts/test/test-nav.js` | Nav smoke-test (`npm test`) | Walks generated HTML; no config-paths dependency |
+| `lib/build-cache.js` | Shared cache management | `BUILD_CACHE_FILE`, `CACHE_DIR` |
+| `lib/build-utilities.js` | Shared build functions | `TRIPS_DIR`, helpers |
 
 ---
 
@@ -145,35 +153,58 @@ const tripConfig = CONFIG.getTripConfigPath('mytrip');
 travelblog/
 ├── lib/
 │   ├── config-paths.js          ⭐ SINGLE SOURCE OF TRUTH
+│   ├── build-cache.js           Shared cache management (read/write _cache/)
+│   ├── build-utilities.js       Shared build functions (discover, process, generate)
 │   ├── generate-html.js         Renders templates → static HTML pages
 │   ├── generate-sitemap.js      Builds sitemap.xml
-│   └── seo-metadata.js          Generates <meta> / Open Graph tags
+│   ├── generate-trip-files.js   Generates per-trip HTML files
+│   ├── seo-metadata.js          Generates <meta> / Open Graph tags
+│   ├── css-utilities.js         CSS helpers
+│   ├── image-utilities.js       Image dimension helpers
+│   ├── slug-utilities.js        URL slug generation
+│   └── template-utilities.js   Template rendering helpers
 ├── templates/
 │   ├── base.html                Shared <head>, nav, footer, CSS
 │   ├── home-page.html           Homepage
 │   ├── trip-intro-page.html     Trip intro with per-trip map
-│   ├── trip-location-page.html  Individual location page
-│   └── trip-page.html           Legacy trip template
+│   └── trip-location-page.html  Individual location/article page
 ├── scripts/
-│   ├── build.js                 (imports config-paths.js)
-│   ├── build-smart.js           (imports config-paths.js)
-│   ├── validate.js              (imports config-paths.js)
-│   ├── add-trip.js              (imports config-paths.js)
-│   ├── deploy-check.js          (imports config-paths.js)
-│   ├── server.js                Local dev HTTP server
-│   └── test-nav.js              Navigation smoke-test
+│   ├── build/
+│   │   ├── build.js             Full build (imports config-paths.js)
+│   │   ├── build-smart.js       Incremental build (imports config-paths.js)
+│   │   └── build-writing.js     Fast content-only rebuild
+│   ├── test/
+│   │   ├── test-nav.js          Navigation smoke-tests
+│   │   ├── test-filter.js       Homepage filter smoke-tests
+│   │   ├── test-maps.js         Map page smoke-tests
+│   │   ├── test-css-injection.js CSS injection tests
+│   │   └── test-caption-detection.js Photo caption detection tests
+│   ├── tools/
+│   │   ├── add-trip.js          Interactive new-trip scaffolder
+│   │   ├── assign-photos.js     Insert photos into markdown
+│   │   ├── sync-takeout-photos.js Extract photos from Google Takeout
+│   │   ├── analyze-takeout-geo.js Analyze GPS data in Takeout
+│   │   └── optimize-images.js   ImageMagick image optimization
+│   ├── validate.js              Trip config validation
+│   ├── deploy-check.js          Pre-deploy file verification
+│   ├── sync-docs.js             Check docs for drift against code
+│   ├── test-geocode.js          Quick geocoding test utility
+│   └── server.js                Local dev HTTP server
 ├── config/
-│   └── site.json                (site-level config)
+│   └── site.json                Site-level config (title, domain, etc.)
 ├── content/
-│   ├── index.json               (list of trips)
 │   └── trips/
 │       └── {tripId}/
-│           ├── trip.json        (trip metadata + content array)
-│           ├── main.md          (trip intro)
-│           └── {location}.md    (location / article pages)
-├── trips/                       (generated HTML + per-trip images)
-├── map/                         (generated world-map page)
-├── about/                       (generated about page)
+│           ├── trip.json        Trip metadata + content array
+│           ├── main.md          Trip intro page
+│           ├── {location}.md    Location or article pages
+│           └── images/          Trip photos
+├── _cache/                      Build caches (gitignored)
+│   ├── build-cache.json         File mod-time tracking for smart builds
+│   └── geocode.json             Cached GPS coordinates from Google Maps
+├── trips/                       Generated HTML + JSON (gitignored)
+├── map/                         Generated world-map page (gitignored)
+├── about/                       Generated about page (gitignored)
 └── package.json
 ```
 
