@@ -9,9 +9,11 @@ config.built.json
 index.html
 index.html.backup
 index.html.new
-.build-cache.json
 sitemap.xml
 robots.txt
+
+# Cache files
+_cache/
 
 # API Keys
 config/google-maps.json
