@@ -30,9 +30,8 @@ triggers the pipeline — no manual steps needed.
 ### What the CI Pipeline Does
 
 1. `npm install` + `npm run validate`
-2. `npm run build` — full geocode + render
-3. Promote homepage: `mv index.html.new index.html`
-4. `npm test` — 140 navigation smoke-test assertions
+2. `npm run build` — full geocode + render (auto-promotes `index.html.new` → `index.html`)
+3. `npm test` — navigation, filter, and map smoke tests
 5. Copy output into a `deploy/` directory
 6. Upload via the GitHub Pages API (`actions/upload-pages-artifact` + `actions/deploy-pages`)
 

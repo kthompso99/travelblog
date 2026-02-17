@@ -34,7 +34,7 @@ The smart build system tracks modification times of all source files and only re
 ```
 Run smart build
     ↓
-Load .build-cache.json
+Load _cache/build-cache.json
     ↓
 Check if core files changed
     ├─ YES → Full rebuild (templates/libs changed)
@@ -51,7 +51,7 @@ Check if core files changed
 - Change detection for all files
 - Skip builds when nothing changed
 - **Per-trip incremental rebuild** — only changed trips are geocoded and rendered
-- Shared pages (homepage, world map, sitemap) always regenerate
+- Shared pages (homepage, world map, sitemap) regenerate on full builds; skipped when building a single trip (`npm run build greece`)
 - Force rebuild option (`--force`)
 - Per-trip rebuild from CLI (`npm run build:smart -- greece`)
 - Build cache tracking
@@ -103,11 +103,12 @@ npm run build:smart -- --force
 
 ## Build Cache
 
-The build system uses `.build-cache.json` to track file modification times.
+The build system uses `_cache/build-cache.json` to track file modification times.
+Both `npm run build` (full) and `npm run build:smart` (incremental) update this cache.
 
 ### Cache File Location
 ```
-.build-cache.json  # In project root
+_cache/build-cache.json  # In _cache/ directory (gitignored)
 ```
 
 ### Cache Format
@@ -133,15 +134,15 @@ The build system uses `.build-cache.json` to track file modification times.
 
 ### Cache Management
 
-**Auto-created**: First time you run `npm run build:smart`
+**Auto-created**: First time you run `npm run build` or `npm run build:smart`
 
-**Auto-updated**: After every build
+**Auto-updated**: After every build (both full and incremental)
 
-**Ignored by git**: Listed in `.gitignore`
+**Ignored by git**: Entire `_cache/` directory is in `.gitignore`
 
 **Clear cache**:
 ```bash
-rm .build-cache.json
+rm _cache/build-cache.json
 ```
 
 ## Performance
@@ -243,7 +244,7 @@ git commit -m "Update site styles"
 
 **Solution**: Delete cache and rebuild
 ```bash
-rm .build-cache.json
+rm _cache/build-cache.json
 npm run build:smart
 ```
 
@@ -251,7 +252,7 @@ npm run build:smart
 
 **Check**:
 1. Are you editing template files? (Forces full rebuild)
-2. Check `.build-cache.json` exists and is valid JSON
+2. Check `_cache/build-cache.json` exists and is valid JSON
 3. Try force rebuild: `npm run build:smart -- --force`
 
 ### Changes not detected

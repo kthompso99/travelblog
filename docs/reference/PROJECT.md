@@ -97,7 +97,7 @@ All CSS lives in `templates/base.html`.
 | `npm run watch` | Auto-rebuild on content changes (nodemon) |
 | `npm run validate` | Check trip configs for errors |
 | `npm run add` | Interactive CLI to scaffold a new trip |
-| `npm test` | Navigation smoke-test (140 assertions) |
+| `npm test` | Navigation, filter, and map smoke tests |
 | `npm run deploy-check` | Pre-deploy file verification |
 | `npm run sync-docs` | Compare docs against code, report drift |
 
@@ -105,8 +105,8 @@ All CSS lives in `templates/base.html`.
 
 CI runs on every push to `main` via `.github/workflows/deploy.yml`:
 
-1. `npm run build` + promote `index.html.new`
-2. `npm test` — 140 navigation assertions
+1. `npm run build` — auto-promotes `index.html.new` → `index.html`
+2. `npm test` — navigation, filter, and map smoke tests
 3. Copy output files into `deploy/`
 4. Upload via GitHub Pages API
 

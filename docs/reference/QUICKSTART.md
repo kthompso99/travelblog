@@ -52,26 +52,16 @@ Prompts for trip name, locations, and scaffolds all files.
 | `npm run watch` | Auto-rebuild on file changes |
 | `npm run serve` | Local server only (no build) |
 | `npm run add` | Scaffold a new trip interactively |
-| `npm test` | Navigation smoke-test (140 assertions) |
+| `npm test` | Navigation, filter, and map smoke tests |
 | `npm run deploy-check` | Pre-deploy verification |
 | `npm run sync-docs` | Check docs for drift against code |
-
-## Promoting the Homepage
-
-The build deliberately writes `index.html.new` instead of overwriting `index.html`.
-After reviewing the output:
-
-```bash
-mv index.html index.html.backup
-mv index.html.new index.html
-```
-
-`index.html.backup` is gitignored so it will not be committed.
 
 ## What Gets Committed vs. Generated
 
 **Commit (source):** `config/`, `content/`, `templates/`, `lib/`, `scripts/`, `images/`, `docs/`
 
-**Commit (generated output):** `index.html`, `about/`, `map/`, `404.html`, `sitemap.xml`, `robots.txt`
+**Commit (static assets):** `404.html`, `images/`
 
-**Do not commit:** `/trips/` (gitignored), `node_modules/`, `.build-cache.json`, `config.built.json`, `index.html.backup`
+**Do not commit (gitignored):** `index.html`, `about/`, `map/`, `/trips/`, `sitemap.xml`, `robots.txt`, `config.built.json`, `_cache/`, `node_modules/`, `index.html.backup`
+
+All generated HTML and data files are built fresh by CI at deploy time — they don't need to be tracked in git.

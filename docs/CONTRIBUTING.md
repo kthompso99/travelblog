@@ -126,7 +126,7 @@ npm run validate
 # Full build
 npm run build
 
-# Navigation smoke-test (140 assertions)
+# Navigation, filter, and map smoke tests
 npm test
 
 # Smart build (incremental)
