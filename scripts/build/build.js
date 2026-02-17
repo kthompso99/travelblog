@@ -40,6 +40,9 @@ const {
 // Import centralized configuration paths
 const CONFIG = require('../../lib/config-paths');
 
+// Import cache management
+const { loadCache, createEmptyCache, updateFullCache, saveCache } = require('../../lib/build-cache');
+
 const { SITE_CONFIG, TRIPS_DIR, OUTPUT_FILE, TRIPS_OUTPUT_DIR, CACHE_DIR, GEOCODE_CACHE_FILE } = CONFIG;
 
 // Load Google Maps API key
@@ -650,6 +653,13 @@ async function build(specificTripId = null) {
                 console.log(`      Issue: ${warning.type} - ${warning.message}\n`);
             });
         }
+
+        // Update build cache so smart build knows what's been built
+        console.log(`\n💾 Updating build cache...`);
+        const buildCache = createEmptyCache();
+        updateFullCache(buildCache);
+        saveCache(buildCache);
+        console.log(`   ✅ Cache updated`);
     } catch (e) {
         console.error('❌ Error generating HTML:', e.message);
         console.error(e.stack);

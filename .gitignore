@@ -10,6 +10,8 @@ index.html
 index.html.backup
 index.html.new
 .build-cache.json
+sitemap.xml
+robots.txt
 
 # API Keys
 config/google-maps.json

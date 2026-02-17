@@ -116,6 +116,9 @@ async function addTrip() {
     const beginDate = await question('Start date (YYYY-MM-DD): ');
     const endDate = await question('End date (YYYY-MM-DD): ');
 
+    // Get map center before adding locations
+    const mapCenter = await question(`\nMap center location (press enter for "${country}"): `) || country;
+
     // Get content items (locations and articles)
     console.log('\n📍 Add content to this trip (press enter with blank title to finish):');
     console.log('Content can be locations (with coordinates) or articles (like "Tips" or "Planning")');
@@ -126,7 +129,9 @@ async function addTrip() {
         const itemTitle = await question(`\nContent ${itemNum} title (or press enter to finish): `);
         if (!itemTitle) break;
 
-        const itemType = await question(`  Type (location/article, default: location): `) || 'location';
+        let itemType = await question(`  Type (location/article/a, default: location): `) || 'location';
+        // Accept "a" as shorthand for "article"
+        if (itemType === 'a') itemType = 'article';
 
         const itemSlug = slugify(itemTitle);
         const contentItem = {
@@ -136,9 +141,10 @@ async function addTrip() {
         };
 
         if (itemType === 'location') {
-            const place = await question(`  Place for geocoding (e.g., "Tokyo, Japan"): `);
+            const defaultPlace = `${itemTitle}, ${country}`;
+            const place = await question(`  Place for geocoding (press enter for "${defaultPlace}"): `) || defaultPlace;
             const duration = await question(`  Duration (e.g., "3 days"): `);
-            contentItem.place = place || itemTitle;
+            contentItem.place = place;
             contentItem.duration = duration || '1 day';
             contentItem.thumbnail = `images/${itemSlug}-01.jpg`;
         }
@@ -152,11 +158,6 @@ async function addTrip() {
         rl.close();
         return;
     }
-
-    // Find first location for map center default (skip articles)
-    const firstLocation = content.find(item => item.type === 'location');
-    const defaultMapCenter = firstLocation ? firstLocation.title : content[0].title;
-    const mapCenter = await question(`\nMap center location (press enter for "${defaultMapCenter}"): `) || defaultMapCenter;
 
     // Create trip config object
     const tripConfig = {
@@ -242,10 +243,8 @@ Add general planning information, tips, and recommendations here.
         let template;
 
         if (item.type === 'article') {
-            // Template for articles (tips, planning, etc.)
-            template = `# ${item.title}
-
-Add your ${item.title.toLowerCase()} content here...
+            // Template for articles (title added by page template, don't duplicate in markdown)
+            template = `Add your ${item.title.toLowerCase()} content here...
 
 ## Section 1
 

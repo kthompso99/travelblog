@@ -1,6 +1,0 @@
-# Robots.txt for https://twotravelnuts.com
-User-agent: *
-Disallow: /
-
-# Sitemap
-Sitemap: https://twotravelnuts.com/sitemap.xml

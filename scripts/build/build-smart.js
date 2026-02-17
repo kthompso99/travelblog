@@ -13,7 +13,6 @@
  */
 
 const fs = require('fs');
-const path = require('path');
 const { execSync } = require('child_process');
 
 const CONFIG = require('../../lib/config-paths');
@@ -21,7 +20,6 @@ const { generateHomepage, generateMapPage } = require('../../lib/generate-html')
 const { generateTripFiles } = require('../../lib/generate-trip-files');
 const { generateSitemap } = require('../../lib/generate-sitemap');
 const {
-    discoverTrips,
     writeTripContentJson,
     extractTripMetadata,
     writeConfigBuilt,
@@ -31,7 +29,16 @@ const {
     generateTripHtmlPages
 } = require('../../lib/build-utilities');
 
-const CACHE_FILE = CONFIG.BUILD_CACHE_FILE;
+// Import shared cache management
+const {
+    loadCache,
+    createEmptyCache,
+    saveCache,
+    coreBuildFilesChanged,
+    getChangedTrips,
+    updateCacheForTrips,
+    updateFullCache
+} = require('../../lib/build-cache');
 
 const PATHS = {
     siteConfig: CONFIG.SITE_CONFIG,
@@ -42,143 +49,7 @@ const PATHS = {
 };
 
 // Note: discoverTrips is now imported from lib/build-utilities.js
-
-/**
- * Load or create cache
- */
-function loadCache() {
-    if (fs.existsSync(CACHE_FILE)) {
-        try {
-            return JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'));
-        } catch (e) {
-            return createEmptyCache();
-        }
-    }
-    return createEmptyCache();
-}
-
-function createEmptyCache() {
-    return {
-        version: '1.0',
-        lastFullBuild: null,
-        files: {},
-        trips: {}
-    };
-}
-
-/**
- * Save cache
- */
-function saveCache(cache) {
-    cache.lastUpdate = new Date().toISOString();
-    fs.writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2), 'utf8');
-}
-
-/**
- * Get file modification time
- */
-function getFileModTime(filePath) {
-    try {
-        return fs.statSync(filePath).mtime.getTime();
-    } catch (e) {
-        return 0;
-    }
-}
-
-/**
- * Get modification time for entire directory recursively
- */
-function getDirModTime(dirPath) {
-    let maxTime = 0;
-
-    try {
-        const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-
-        for (const entry of entries) {
-            const fullPath = path.join(dirPath, entry.name);
-
-            if (entry.isDirectory()) {
-                maxTime = Math.max(maxTime, getDirModTime(fullPath));
-            } else {
-                maxTime = Math.max(maxTime, getFileModTime(fullPath));
-            }
-        }
-    } catch (e) {
-        // Directory doesn't exist
-    }
-
-    return maxTime;
-}
-
-/**
- * Check if core build files changed (forces full rebuild)
- */
-function getCoreFiles() {
-    const files = [
-        PATHS.buildScript,
-        path.join(PATHS.libDir, 'seo-metadata.js'),
-        path.join(PATHS.libDir, 'generate-html.js'),
-        path.join(PATHS.libDir, 'generate-sitemap.js'),
-        path.join(PATHS.libDir, 'config-paths.js'),
-        PATHS.siteConfig
-    ];
-    if (fs.existsSync(PATHS.templatesDir)) {
-        files.push(...fs.readdirSync(PATHS.templatesDir)
-            .filter(f => f.endsWith('.html'))
-            .map(f => path.join(PATHS.templatesDir, f)));
-    }
-    return files;
-}
-
-function coreBuildFilesChanged(cache) {
-    for (const file of getCoreFiles()) {
-        if (getFileModTime(file) > (cache.files[file] || 0)) {
-            console.log(`   📝 Changed: ${file}`);
-            return true;
-        }
-    }
-    return false;
-}
-
-/**
- * Get list of trips that changed
- */
-function getChangedTrips(cache) {
-    const changed = [];
-    try {
-        const allTrips = discoverTrips(PATHS.tripsDir, (tripId) => CONFIG.getTripConfigPath(tripId));
-        for (const tripId of allTrips) {
-            const configModTime = getFileModTime(CONFIG.getTripConfigPath(tripId));
-            const contentModTime = getDirModTime(path.join(PATHS.tripsDir, tripId));
-            const cached = cache.trips[tripId] || {};
-            if (configModTime > (cached.configModTime || 0) || contentModTime > (cached.contentModTime || 0)) {
-                changed.push(tripId);
-            }
-        }
-    } catch (e) {
-        console.error('Error checking for changed trips:', e.message);
-    }
-    return changed;
-}
-
-function updateCacheForTrips(cache, tripIds) {
-    for (const tripId of tripIds) {
-        cache.trips[tripId] = {
-            configModTime: getFileModTime(CONFIG.getTripConfigPath(tripId)),
-            contentModTime: getDirModTime(path.join(PATHS.tripsDir, tripId)),
-            lastBuilt: Date.now()
-        };
-    }
-}
-
-function updateFullCache(cache) {
-    getCoreFiles().forEach(file => { cache.files[file] = getFileModTime(file); });
-    try {
-        const allTrips = discoverTrips(PATHS.tripsDir, (tripId) => CONFIG.getTripConfigPath(tripId));
-        updateCacheForTrips(cache, allTrips);
-    } catch (e) { /* ignore */ }
-    cache.lastFullBuild = Date.now();
-}
+// Note: All cache functions are now imported from lib/build-cache.js
 
 function runFullBuild() {
     console.log('🔄 Running full build...\n');
