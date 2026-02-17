@@ -149,64 +149,7 @@ const tripConfig = CONFIG.getTripConfigPath('mytrip');
 
 ## 🏗️ Current Directory Structure
 
-```
-travelblog/
-├── lib/
-│   ├── config-paths.js          ⭐ SINGLE SOURCE OF TRUTH
-│   ├── build-cache.js           Shared cache management (read/write _cache/)
-│   ├── build-utilities.js       Shared build functions (discover, process, generate)
-│   ├── generate-html.js         Renders templates → static HTML pages
-│   ├── generate-sitemap.js      Builds sitemap.xml
-│   ├── generate-trip-files.js   Generates per-trip HTML files
-│   ├── seo-metadata.js          Generates <meta> / Open Graph tags
-│   ├── css-utilities.js         CSS helpers
-│   ├── image-utilities.js       Image dimension helpers
-│   ├── slug-utilities.js        URL slug generation
-│   └── template-utilities.js   Template rendering helpers
-├── templates/
-│   ├── base.html                Shared <head>, nav, footer, CSS
-│   ├── home-page.html           Homepage
-│   ├── trip-intro-page.html     Trip intro with per-trip map
-│   └── trip-location-page.html  Individual location/article page
-├── scripts/
-│   ├── build/
-│   │   ├── build.js             Full build (imports config-paths.js)
-│   │   ├── build-smart.js       Incremental build (imports config-paths.js)
-│   │   └── build-writing.js     Fast content-only rebuild
-│   ├── test/
-│   │   ├── test-nav.js          Navigation smoke-tests
-│   │   ├── test-filter.js       Homepage filter smoke-tests
-│   │   ├── test-maps.js         Map page smoke-tests
-│   │   ├── test-css-injection.js CSS injection tests
-│   │   └── test-caption-detection.js Photo caption detection tests
-│   ├── tools/
-│   │   ├── add-trip.js          Interactive new-trip scaffolder
-│   │   ├── assign-photos.js     Insert photos into markdown
-│   │   ├── sync-takeout-photos.js Extract photos from Google Takeout
-│   │   ├── analyze-takeout-geo.js Analyze GPS data in Takeout
-│   │   └── optimize-images.js   ImageMagick image optimization
-│   ├── validate.js              Trip config validation
-│   ├── deploy-check.js          Pre-deploy file verification
-│   ├── sync-docs.js             Check docs for drift against code
-│   ├── test-geocode.js          Quick geocoding test utility
-│   └── server.js                Local dev HTTP server
-├── config/
-│   └── site.json                Site-level config (title, domain, etc.)
-├── content/
-│   └── trips/
-│       └── {tripId}/
-│           ├── trip.json        Trip metadata + content array
-│           ├── main.md          Trip intro page
-│           ├── {location}.md    Location or article pages
-│           └── images/          Trip photos
-├── _cache/                      Build caches (gitignored)
-│   ├── build-cache.json         File mod-time tracking for smart builds
-│   └── geocode.json             Cached GPS coordinates from Google Maps
-├── trips/                       Generated HTML + JSON (gitignored)
-├── map/                         Generated world-map page (gitignored)
-├── about/                       Generated about page (gitignored)
-└── package.json
-```
+See **[docs/reference/FILES.md](reference/FILES.md)** for the canonical directory tree. That file is the single source of truth for file/directory layout.
 
 ---
 

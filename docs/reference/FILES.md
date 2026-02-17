@@ -26,23 +26,43 @@ travelblog/
 │   ├── base.html               Shared <head>, nav, footer, CSS
 │   ├── home-page.html          Homepage template
 │   ├── trip-intro-page.html    Trip intro with per-trip map
-│   ├── trip-location-page.html Individual location page
-│   └── trip-page.html          Legacy trip template
+│   └── trip-location-page.html Individual location/article page
 │
 ├── lib/                        Node.js library modules
 │   ├── config-paths.js         ⭐ Single source of truth for all paths
+│   ├── build-cache.js          Shared cache management (read/write _cache/)
+│   ├── build-utilities.js      Shared build functions (discover, process, generate)
 │   ├── generate-html.js        Renders templates → final HTML pages
 │   ├── generate-sitemap.js     Builds sitemap.xml from trip list
-│   └── seo-metadata.js         Generates <meta> / Open Graph tags
+│   ├── generate-trip-files.js  Generates per-trip HTML files
+│   ├── seo-metadata.js         Generates <meta> / Open Graph tags
+│   ├── css-utilities.js        CSS helpers
+│   ├── image-utilities.js      Image dimension helpers
+│   ├── slug-utilities.js       URL slug generation
+│   └── template-utilities.js  Template rendering helpers
 │
 ├── scripts/                    CLI build & utility scripts
-│   ├── build.js                Main build — geocodes, renders, outputs HTML
-│   ├── build-smart.js          Incremental build — skips unchanged trips
+│   ├── build/
+│   │   ├── build.js            Full build — geocodes, renders, outputs HTML
+│   │   ├── build-smart.js      Incremental build — skips unchanged trips
+│   │   └── build-writing.js    Fast content-only rebuild (no geocoding)
+│   ├── test/
+│   │   ├── test-nav.js         Navigation smoke-tests
+│   │   ├── test-filter.js      Homepage filter smoke-tests
+│   │   ├── test-maps.js        Map page smoke-tests
+│   │   ├── test-css-injection.js CSS injection tests
+│   │   └── test-caption-detection.js Photo caption detection tests
+│   ├── tools/
+│   │   ├── add-trip.js         Interactive CLI to scaffold a new trip
+│   │   ├── assign-photos.js    Insert photos into markdown
+│   │   ├── sync-takeout-photos.js Extract photos from Google Takeout
+│   │   ├── analyze-takeout-geo.js Analyze GPS data in Takeout
+│   │   └── optimize-images.js  ImageMagick image optimization
 │   ├── validate.js             Pre-build validation of trip configs
-│   ├── add-trip.js             Interactive CLI to scaffold a new trip
 │   ├── deploy-check.js         Pre-deployment verification
-│   ├── server.js               Local development HTTP server
-│   └── test-nav.js             Navigation smoke-test (runs as `npm test`)
+│   ├── sync-docs.js            Check docs for drift against code
+│   ├── test-geocode.js         Quick geocoding test utility
+│   └── server.js               Local development HTTP server
 │
 ├── .github/workflows/
 │   └── deploy.yml              GitHub Actions: build → test → deploy
