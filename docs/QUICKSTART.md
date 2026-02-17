@@ -5,8 +5,6 @@
 ```bash
 npm install
 npm run build
-mv index.html index.html.backup   # promote the new homepage
-mv index.html.new index.html
 npm run serve                      # open http://localhost:8000
 ```
 
@@ -36,25 +34,11 @@ Prompts for trip name, locations, and scaffolds all files.
 1. Create `content/trips/{id}/trip.json` — see [FILES.md](FILES.md) for the schema.
 2. Create `content/trips/{id}/main.md` — trip intro.
 3. Create `content/trips/{id}/{location}.md` — one file per stop.
-4. Add the trip ID to `content/index.json`.
-5. `npm run build`
+4. `npm run build`
 
 ## All Commands
 
-| Command | What it does |
-|---------|--------------|
-| `npm run validate` | Check trip configs for errors |
-| `npm run build` | Full build (validate → geocode → render) |
-| `npm run build:smart` | Incremental build — only changed trips |
-| `npm run build:smart -- greece` | Rebuild a single trip |
-| `npm run build:smart -- --force` | Force full rebuild, ignore cache |
-| `npm run dev` | Smart build + local server |
-| `npm run watch` | Auto-rebuild on file changes |
-| `npm run serve` | Local server only (no build) |
-| `npm run add` | Scaffold a new trip interactively |
-| `npm test` | Navigation, filter, and map smoke tests |
-| `npm run deploy-check` | Pre-deploy verification |
-| `npm run sync-docs` | Check docs for drift against code |
+See the [npm Scripts](FILES.md#npm-scripts) section of the file reference for the complete command list.
 
 ## What Gets Committed vs. Generated
 

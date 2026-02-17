@@ -22,7 +22,7 @@ The smart build system tracks modification times of all source files and only re
    - `scripts/build/build.js` - Main build script
    - `lib/*.js` - All library files (SEO, HTML generation, sitemap)
    - `config/site.json` - Site configuration
-   - `content/index.json` - List of trips
+   - `content/trips/` - Auto-discovered trip directories
    - `templates/*.html` - All HTML templates
 
 2. **Per-Trip Files**
@@ -175,7 +175,7 @@ These changes force a complete rebuild:
 - ✅ Any library file (`lib/*.js`)
 - ✅ Build script (`build.js`)
 - ✅ Site config (`config/site.json`)
-- ✅ Trip index (`content/index.json`)
+- ✅ Trip directories (`content/trips/`)
 
 ### Trip-Specific Triggers
 
@@ -293,5 +293,5 @@ Use `npm run build:smart` when you just want to rebuild without starting a serve
 ---
 
 **See also**:
-- [Main Build Documentation](../reference/FILES.md)
+- [Main Build Documentation](../FILES.md)
 - [Testing Guide](TESTING_GUIDE.md)

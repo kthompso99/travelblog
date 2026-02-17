@@ -1,35 +1,10 @@
 # Contributing to Two Travel Nuts
 
-## 🚨 CRITICAL: Read This First!
+## Configuration Management: Single Source of Truth
 
-Before making any code changes, especially to build scripts:
+All file paths and directory structures are defined in **`lib/config-paths.js`**. This ensures all scripts stay in sync when structural changes are made.
 
-### **Required Reading**
-1. **[ARCHITECTURE.md](ARCHITECTURE.md)** - Configuration management (MUST READ!)
-2. **[README.md](README.md)** - Project overview
-3. **[lib/config-paths.js](../lib/config-paths.js)** - Single source of truth for paths
-
----
-
-## 📁 Configuration Management Rules
-
-### ✅ The Golden Rule: Single Source of Truth
-
-**ALL file paths and directory structures are defined in ONE place:**
-
-```
-lib/config-paths.js
-```
-
-### ❌ Never Do This:
-
-```javascript
-// ❌ WRONG - Hardcoded path
-const tripConfig = 'content/trips/greece/trip.json';
-const mainMd = 'content/trips/greece/main.md';
-```
-
-### ✅ Always Do This:
+### ✅ Always Do This
 
 ```javascript
 // ✅ CORRECT - Import from config-paths.js
@@ -38,164 +13,100 @@ const tripConfig = CONFIG.getTripConfigPath('greece');
 const mainMd = CONFIG.getTripMainPath('greece');
 ```
 
+### ❌ Never Do This
+
+```javascript
+// ❌ WRONG - Hardcoded path
+const tripConfig = 'content/trips/greece/trip.json';
+```
+
+### `lib/config-paths.js` Constants
+
+```javascript
+module.exports = {
+    SITE_CONFIG: 'config/site.json',
+    TRIPS_DIR: 'content/trips',
+    TRIP_CONFIG_FILE: 'trip.json',
+    TRIP_MAIN_FILE: 'main.md',
+    OUTPUT_FILE: 'config.built.json',
+    TRIPS_OUTPUT_DIR: 'trips',
+    CACHE_DIR: '_cache',
+    GEOCODE_CACHE_FILE: '_cache/geocode.json',
+    BUILD_CACHE_FILE: '_cache/build-cache.json',
+    getTripDir(tripId) { ... },
+    getTripConfigPath(tripId) { ... },
+    getTripMainPath(tripId) { ... },
+    getTripImagesDir(tripId) { ... },
+    getSyncedPhotosPath(tripId) { ... }
+};
+```
+
+### Scripts That Import config-paths.js
+
+| Script | Purpose | Uses |
+|--------|---------|------|
+| `scripts/build/build.js` | Main build | `SITE_CONFIG`, `TRIPS_DIR`, `CACHE_DIR`, helpers |
+| `scripts/build/build-smart.js` | Incremental build | All path constants |
+| `scripts/build/build-writing.js` | Fast content-only rebuild | `TRIPS_DIR`, helpers |
+| `scripts/validate.js` | Validation | `TRIPS_DIR`, helpers |
+| `scripts/tools/add-trip.js` | Add new trip | `TRIPS_DIR`, helpers |
+| `scripts/deploy-check.js` | Pre-deploy checks | Path constants |
+| `lib/build-cache.js` | Shared cache management | `BUILD_CACHE_FILE`, `CACHE_DIR` |
+| `lib/build-utilities.js` | Shared build functions | `TRIPS_DIR`, helpers |
+
 ---
 
-## 🔧 Making Structure Changes
+## Making Structure Changes
 
-### Step-by-Step Process
+When reorganizing files or directories:
 
-When you want to change directory structure or file names:
-
-1. **Edit `lib/config-paths.js`** (and ONLY this file)
-   ```javascript
-   // Example: Renaming trip.json to metadata.json
-   TRIP_CONFIG_FILE: 'metadata.json',
-   ```
-
-2. **Test everything:**
-   ```bash
-   npm run validate
-   npm run build
-   npm run build:smart
-   ```
-
-3. **If tests pass:** All scripts are automatically in sync! ✅
-
-4. **Update README.md** if the change is user-facing
-
-5. **Commit with descriptive message**
-
-### Complete Checklist
-
-- [ ] Read `docs/ARCHITECTURE.md` if this is your first time
-- [ ] Edit ONLY `lib/config-paths.js` for path changes
-- [ ] Run `npm run validate`
-- [ ] Run `npm run build`
-- [ ] Run `npm run build:smart`
-- [ ] Update `README.md` if needed
-- [ ] Commit changes
+1. **Edit `lib/config-paths.js`** — and only this file
+2. Run `npm run validate`
+3. Run `npm run build`
+4. Run `npm run build:smart`
+5. Update `docs/FILES.md` if the structure changed significantly
+6. Commit with a descriptive message
 
 ---
 
-## 🆕 Adding New Scripts
-
-When creating a new build/utility script:
+## Adding New Scripts
 
 ```javascript
 #!/usr/bin/env node
 
 const fs = require('fs');
-// ✅ ALWAYS import from config-paths.js
 const CONFIG = require('../lib/config-paths');
 
-// Use CONFIG constants
-const { SITE_CONFIG, INDEX_CONFIG, TRIPS_DIR } = CONFIG;
+// ✅ Use CONFIG constants
+const tripDir = CONFIG.getTripDir('mytrip');
+const tripConfig = CONFIG.getTripConfigPath('mytrip');
 
-// Use helper functions
-const tripPath = CONFIG.getTripConfigPath('mytrip');
-
-// ❌ NEVER hardcode paths
-// const tripPath = 'content/trips/mytrip/trip.json'; // WRONG!
+// ❌ DON'T hardcode paths
+// const tripConfig = 'content/trips/mytrip/trip.json'; // WRONG!
 ```
 
 ---
 
-## 📝 Scripts That Use config-paths.js
-
-All of these import from `lib/config-paths.js`:
-
-- `scripts/build/build.js` - Main build
-- `scripts/build/build-smart.js` - Incremental build
-- `scripts/validate.js` - Configuration validation
-- `scripts/tools/add-trip.js` - Add new trip CLI
-
-**If you modify any of these, ensure they still use CONFIG imports!**
-
----
-
-## 🧪 Testing
-
-### Before Committing
-
-Run the full test suite:
+## Testing Before Committing
 
 ```bash
-# Validate configuration
-npm run validate
-
-# Full build
-npm run build
-
-# Navigation, filter, and map smoke tests
-npm test
-
-# Smart build (incremental)
-npm run build:smart
-
-# Serve locally and check
-npm run serve
+npm run validate    # check trip configs
+npm run build       # full build
+npm test            # navigation, filter, and map smoke tests
+npm run build:smart # incremental build
+npm run serve       # serve locally and check
 ```
 
 ---
 
-## 🐛 Common Mistakes
+## Common Mistakes
 
-### 1. Hardcoding Paths
-```javascript
-// ❌ WRONG
-const trips = 'content/trips';
-const tripConfig = `${trips}/${id}/trip.json`;
-```
+**Hardcoding paths** — always use `CONFIG.getTripConfigPath(id)` instead of constructing paths manually.
 
-```javascript
-// ✅ CORRECT
-const CONFIG = require('../lib/config-paths');
-const tripConfig = CONFIG.getTripConfigPath(id);
-```
+**Not testing after changes** — always run `npm run validate && npm run build` after any path or structure changes.
 
-### 2. Not Testing After Changes
-Always run `npm run validate && npm run build` after path changes!
-
-### 3. Updating Paths in Multiple Places
-Only edit `lib/config-paths.js`. Never update paths in individual scripts.
+**Updating paths in multiple places** — only edit `lib/config-paths.js`. Never update path constants in individual scripts.
 
 ---
 
-## 📚 Architecture
-
-See **[ARCHITECTURE.md](ARCHITECTURE.md)** for:
-- Why we use centralized config
-- How the system works
-- Examples of safe refactoring
-- Detailed explanation of helpers
-
----
-
-## 💡 Why This Matters
-
-**The Problem We Solved:**
-
-Before centralization, when we moved from `config/trips/` to `content/trips/`:
-- ❌ `build.js` had hardcoded paths
-- ❌ `validate.js` had different paths
-- ❌ Scripts fell out of sync
-- ❌ Build broke
-
-**The Solution:**
-
-- ✅ Single source of truth: `lib/config-paths.js`
-- ✅ All scripts import from one place
-- ✅ Change paths in ONE file, all scripts adapt
-- ✅ Never falls out of sync
-
----
-
-## 🤝 Questions?
-
-- Check `docs/ARCHITECTURE.md` first
-- Check `lib/config-paths.js` for current path definitions
-- Open an issue on GitHub
-
----
-
-**Thank you for contributing and following these guidelines!** 🎉
+See **[FILES.md](FILES.md)** for the complete file reference and directory structure.

@@ -7,8 +7,7 @@ A modern, SEO-optimized travel blog with static site generation, interactive map
 ## ⚠️ For Developers & AI Assistants
 
 **BEFORE making code changes, READ:**
-- **[CONTRIBUTING.md](docs/CONTRIBUTING.md)** - Development guidelines (START HERE!)
-- **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Configuration management (REQUIRED!)
+- **[CONTRIBUTING.md](docs/CONTRIBUTING.md)** - Development guidelines and path management rules
 - **[lib/config-paths.js](lib/config-paths.js)** - Single source of truth for all paths
 
 **Key Rule:** Never hardcode paths. Always use `lib/config-paths.js`.
@@ -114,15 +113,15 @@ travelblog/
 All documentation is organized in the [`docs/`](docs/) directory:
 
 ### Getting Started
-- **[Quick Start](docs/reference/QUICKSTART.md)** - Get up and running
-- **[File Reference](docs/reference/FILES.md)** - Every file and directory explained
+- **[Quick Start](docs/QUICKSTART.md)** - Get up and running
+- **[File Reference](docs/FILES.md)** - Every file and directory explained
 
 ### Deployment
 - **[Deployment Guide](docs/deployment/DEPLOYMENT.md)** - GitHub Pages, Netlify, Cloudflare, etc.
 - **[Custom Domain Setup](docs/deployment/CUSTOM_DOMAIN_DEPLOYMENT.md)** - Set up your domain
 
 ### Development
-- **[Architecture](docs/ARCHITECTURE.md)** - How config-paths.js keeps everything in sync
+- **[Contributing](docs/CONTRIBUTING.md)** - How config-paths.js keeps everything in sync
 - **[Testing Guide](docs/implementation/TESTING_GUIDE.md)** - Test before deploying
 - **[Smart Build](docs/implementation/SMART_BUILD.md)** - Incremental build system
 
@@ -201,14 +200,7 @@ Every trip requires:
    }
    ```
 
-3. **Add to index** in `content/index.json`:
-   ```json
-   {
-     "trips": ["greece", "utah", "newtrip"]
-   }
-   ```
-
-4. **Create intro content** in `content/trips/newtrip/main.md`:
+3. **Create intro content** in `content/trips/newtrip/main.md`:
    ```markdown
    # Italy Adventure 2025
 

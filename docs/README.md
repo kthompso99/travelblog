@@ -6,7 +6,7 @@ This directory contains all project documentation organised by topic.
 
 ### 🚀 Getting Started
 - [README](../README.md) - Main project overview (in root)
-- [Quick Start Guide](reference/QUICKSTART.md) - Get up and running quickly
+- [Quick Start Guide](QUICKSTART.md) - Get up and running quickly
 
 ### 📦 Deployment
 - [Deployment Guide](deployment/DEPLOYMENT.md) - GitHub Pages, Netlify, Cloudflare, and more
@@ -15,7 +15,7 @@ This directory contains all project documentation organised by topic.
 ### 🏗️ Implementation
 - [Smart Build](implementation/SMART_BUILD.md) - Incremental build system
 - [Testing Guide](implementation/TESTING_GUIDE.md) - Pre-deploy checklist
-- [Image Optimization](IMAGE-OPTIMIZATION.md) - Automated image optimization for web delivery
+- [Image Optimization](implementation/IMAGE-OPTIMIZATION.md) - Automated image optimization for web delivery
 
 ### 🎨 Design
 - [Design System](FigmaDesign/FIGMA_SYSTEM_DESIGN.md) - Colour palette and component styles
@@ -23,8 +23,9 @@ This directory contains all project documentation organised by topic.
 - [Remaining Design Work](FigmaDesign/REMAINING.md) - Deferred features from Figma mockups
 
 ### 📚 Reference
-- [File Structure](reference/FILES.md) - Every file and directory explained
-- [Project Overview](reference/PROJECT.md) - Architecture, data flow, page types
+- [File Structure](FILES.md) - **Primary reference**: every file, directory, npm script, page type, and build chain
+- [Quick Start](QUICKSTART.md) - Setup and daily workflows
+- [Contributing](CONTRIBUTING.md) - Path management rules and contributor guidelines
 - [Creative Commons](reference/CREATIVE_COMMONS.md) - License details
 
 ## Directory Structure
@@ -32,19 +33,17 @@ This directory contains all project documentation organised by topic.
 ```
 docs/
 ├── README.md                         # This file
-├── ARCHITECTURE.md                   # Config management & config-paths.js
-├── CONTRIBUTING.md                   # Development guidelines
-├── IMAGE-OPTIMIZATION.md             # Automated image optimization
+├── FILES.md                          # ⭐ Primary reference (file structure, scripts, build chain)
+├── QUICKSTART.md                     # Getting started
+├── CONTRIBUTING.md                   # Contributor guidelines & path management
 ├── deployment/
 │   ├── DEPLOYMENT.md                 # Multi-platform deployment guide
 │   └── CUSTOM_DOMAIN_DEPLOYMENT.md   # Custom domain options
 ├── implementation/
+│   ├── IMAGE-OPTIMIZATION.md         # Automated image optimization
 │   ├── SMART_BUILD.md                # Incremental build system
 │   └── TESTING_GUIDE.md              # Pre-deploy test checklist
 ├── reference/
-│   ├── FILES.md                      # File & directory reference
-│   ├── PROJECT.md                    # Architecture overview
-│   ├── QUICKSTART.md                 # Getting started
 │   ├── CREATIVE_COMMONS.md           # License
 │   └── CreativeCommonsFooter.html    # Footer snippet
 └── FigmaDesign/                      # Design mockups & references
@@ -56,18 +55,17 @@ docs/
 
 ## Most Useful Documents
 
+### For Reference
+1. **[FILES.md](FILES.md)** - Where everything lives; npm scripts; page types; build chain
+
 ### For Deployment
 1. **[deployment/DEPLOYMENT.md](deployment/DEPLOYMENT.md)** - Multi-platform deployment guide
 2. **[deployment/CUSTOM_DOMAIN_DEPLOYMENT.md](deployment/CUSTOM_DOMAIN_DEPLOYMENT.md)** - Custom domain setup
 
 ### For Development
-1. **[ARCHITECTURE.md](ARCHITECTURE.md)** - How config-paths.js keeps everything in sync
+1. **[CONTRIBUTING.md](CONTRIBUTING.md)** - Path management rules; how to add scripts
 2. **[implementation/SMART_BUILD.md](implementation/SMART_BUILD.md)** - Incremental build system
-3. **[IMAGE-OPTIMIZATION.md](IMAGE-OPTIMIZATION.md)** - Automated image optimization (90-95% size reduction)
-
-### For Reference
-1. **[reference/FILES.md](reference/FILES.md)** - Where everything lives
-2. **[reference/PROJECT.md](reference/PROJECT.md)** - Technical overview and data flow
+3. **[implementation/IMAGE-OPTIMIZATION.md](implementation/IMAGE-OPTIMIZATION.md)** - Automated image optimization (90-95% size reduction)
 
 ## Contributing
 

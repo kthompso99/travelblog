@@ -20,7 +20,7 @@ travelblog/
 │           ├── {location}.md   One file per content item
 │           └── images/         Trip-specific photos
 │
-├── images/                     Root-level thumbnails (world map popups)
+├── images/                     Site-wide static images (og-image, about page, etc.)
 │
 ├── templates/                  HTML page templates (shared styles + nav)
 │   ├── base.html               Shared <head>, nav, footer, CSS
@@ -32,12 +32,12 @@ travelblog/
 │   ├── config-paths.js         ⭐ Single source of truth for all paths
 │   ├── build-cache.js          Shared cache management (read/write _cache/)
 │   ├── build-utilities.js      Shared build functions (discover, process, generate)
+│   ├── css-utilities.js        CSS helpers
 │   ├── generate-html.js        Renders templates → final HTML pages
 │   ├── generate-sitemap.js     Builds sitemap.xml from trip list
 │   ├── generate-trip-files.js  Generates per-trip HTML files
-│   ├── seo-metadata.js         Generates <meta> / Open Graph tags
-│   ├── css-utilities.js        CSS helpers
 │   ├── image-utilities.js      Image dimension helpers
+│   ├── seo-metadata.js         Generates <meta> / Open Graph tags
 │   ├── slug-utilities.js       URL slug generation
 │   └── template-utilities.js  Template rendering helpers
 │
@@ -95,7 +95,7 @@ travelblog/
 ├── .gitignore                  Excludes node_modules, cache, built files
 ├── _redirects                  Netlify redirect rules
 ├── .nojekyll                   Disables Jekyll processing on GitHub Pages
-├── LICENSE                     Creative Commons CC BY-NC-ND 4.0
+├── LICENSE                     MIT License
 ├── README.md                   Project overview
 └── CLAUDE.md                   Claude Code working-memory notes
 ```
@@ -235,6 +235,18 @@ content/trips/*/*.md  ─────┘       │
 
 `build.js` orchestrates; `lib/generate-html.js` renders each page using the
 templates in `templates/`. All paths are resolved through `lib/config-paths.js`.
+
+### Page Types
+
+| Page | Template | URL |
+|------|----------|-----|
+| Homepage | `home-page.html` | `/` |
+| World map | (inline in generate-html.js) | `/map/` |
+| About | (inline) | `/about/` |
+| Trip intro | `trip-intro-page.html` | `/trips/{slug}/` |
+| Location | `trip-location-page.html` | `/trips/{slug}/{loc}.html` |
+
+Trip intro pages feature a full-bleed hero (cover image + title overlay) injected via the `{{PRE_MAIN}}` placeholder in `base.html`.
 
 ### Markdown Post-Processing
 
