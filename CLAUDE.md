@@ -30,11 +30,11 @@
 - **Trip intro template:** `templates/trip-intro-page.html` — hero injected via `{{PRE_MAIN}}` placeholder.
 - **Content types:** Trips support two content types — `location` (has coordinates, appears on map) and `article` (text-only, like "Tips"). Both appear in submenu navigation and prev/next chains. Articles don't require `place` or `duration` fields.
 - **Published trips:** Only trips with `published: true` in trip.json appear on production (GitHub Pages). All trips visible on localhost for debugging. Filtering happens in scripts/build.js using `NODE_ENV=production`.
-- **Build:** `npm run build` (full) or `npm run build:smart` (incremental). **Dev modes:** `npm run dev` (safe incremental) or `npm run writing` (fast content-only). Test: `npm test` (250 total assertions).
+- **Build:** `npm run build` (full) or `npm run build:smart` (incremental). **Dev modes:** `npm run dev` (safe incremental) or `npm run writing` (fast content-only). Test: `npm test` (navigation, filter, and map smoke tests).
 - **Homepage:** build auto-promotes `index.html.new` → `index.html` (old version backed up to `index.html.backup`).
 - **Colour scheme:** amber `#f59e0b` throughout — polyline, markers (SVG divIcon), button accents, nav hover.
-- **Maps:** Two Leaflet instances — global (map page) and per-trip (trip intro). Amber SVG divIcon markers. Popup hover-linger: 300 ms delay on mouseout, cancelled by mouseenter on popup. Nav z-index must stay ≥ 2000.
-- **Gitignore gotchas:** `/trips/` output is gitignored; only `index.html`, `about/`, `map/` outputs are tracked. `index.html.backup` and `.build-cache.json` also ignored. `docs/Figma Design/` has a space — quote in shell.
+- **Maps:** Two Google Maps instances — global (map page) and per-trip (trip intro). Amber SVG divIcon markers. Popup hover-linger: 300 ms delay on mouseout, cancelled by mouseenter on popup. Nav z-index must stay ≥ 2000.
+- **Gitignore gotchas:** `/trips/` output is gitignored; only `index.html`, `about/`, `map/` outputs are tracked. `index.html.backup` and `_cache/` also ignored. `docs/Figma Design/` has a space — quote in shell.
 - **CI:** `.github/workflows/deploy.yml` — build (auto-promotes homepage) → `npm test` → copy to `deploy/` → Pages API. Deploy step copies: index.html, 404.html, config.built.json, sitemap.xml, images/, trips/, map/, about/, robots.txt.
 - **Scale target:** Kevin anticipates 30–50 trips long-term. Design decisions should hold at that count without re-architecting. Client-side filtering/searching of homepage cards is fine up to hundreds; image lazy-loading on the homepage becomes relevant around 30+ trips. Pagination is not needed at 50 but may be considered for UX.
 - **Deferred work:** `docs/Figma Design/REMAINING.md` — homepage hero, photo gallery, newsletter.
@@ -49,7 +49,7 @@ Kevin has two development modes optimized for different editing scenarios:
 **Use when:** Making structural changes, editing metadata, adding/removing locations, or when unsure about dependencies.
 
 **What happens:**
-- Detects which trips changed via `.build-cache.json`
+- Detects which trips changed via `_cache/build-cache.json`
 - Rebuilds entire trip (~2-5 seconds per trip)
 - Updates all dependencies: homepage, global map, sitemap, trip intro
 - Auto-promotes `index.html.new` → `index.html`
@@ -85,11 +85,11 @@ npm run writing                      # Start fast content-only mode
 # Repeat for hours...
 ```
 
-**Before committing after writing mode:**
+**Before testing locally after writing mode:**
 ```bash
 Ctrl-C                               # Stop writing mode
-npm run build                        # Full build to sync all dependencies
-# Then ask Kevin: "Ready to commit and push?" and wait for approval
+npm run build                        # Full build to sync homepage, map, and all dependencies
+npm run serve                        # Now safe to verify the full site locally
 ```
 
-**Critical rule:** Always run `npm run build` before asking Kevin to commit after using writing mode. This ensures homepage, map, and all cross-page dependencies are synced.
+**Note:** Running `npm run build` before committing is not required — CI runs a full fresh build on every push, so the deployed site is always correct regardless of local state.
