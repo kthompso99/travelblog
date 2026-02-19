@@ -17,6 +17,8 @@ const { generateHomepage, generateMapPage, generateAboutPage } = require('../../
 const { generateSitemap, generateRobotsTxt } = require('../../lib/generate-sitemap');
 const { generateTripFiles } = require('../../lib/generate-trip-files');
 const {
+    ensureDir,
+    loadTripConfig,
     discoverAllTrips,
     processMarkdownWithGallery,
     writeTripContentJson,
@@ -52,80 +54,81 @@ function calculateDuration(beginDate, endDate) {
     return `${days} days`;
 }
 
+// Convert a content item's markdown to HTML, handling gallery markers
+async function convertContentMarkdown(processed, item, tripId, tripTitle, warnings) {
+    if (!item.file) return;
+
+    const filePath = path.join(CONFIG.getTripDir(tripId), item.file);
+    try {
+        console.log(`    📝 Converting markdown: ${filePath}`);
+
+        const { markdownContent, galleryImages } = processMarkdownWithGallery(filePath, item.file);
+
+        if (galleryImages && galleryImages.length > 0) {
+            const tempPath = filePath + '.temp';
+            fs.writeFileSync(tempPath, markdownContent, 'utf8');
+            processed.contentHtml = await convertMarkdown(tempPath);
+            fs.unlinkSync(tempPath);
+        } else {
+            processed.contentHtml = await convertMarkdown(filePath);
+        }
+
+        console.log(`    ✅ HTML generated (${processed.contentHtml.length} chars)`);
+
+        if (galleryImages && galleryImages.length > 0) {
+            processed.gallery = galleryImages;
+            console.log(`    ✅ Gallery parsed from main file: ${galleryImages.length} images`);
+        }
+    } catch (e) {
+        console.log(`    ⚠️  Markdown conversion failed: ${e.message}`);
+        processed.contentHtml = `<p>Content not found</p>`;
+        warnings.push({
+            trip: tripTitle,
+            location: item.title,
+            type: 'Markdown Conversion',
+            message: e.message
+        });
+    }
+}
+
+// Geocode a location content item and attach coordinates
+async function geocodeContentLocation(processed, item, tripTitle, warnings) {
+    processed.place = item.place;
+    processed.duration = item.duration;
+    if (item.thumbnail) processed.thumbnail = item.thumbnail;
+
+    try {
+        console.log(`    🗺️  Geocoding: ${item.place}`);
+        processed.coordinates = await geocodeLocation(item.place);
+        console.log(`    ✅ Coordinates: ${processed.coordinates.lat}, ${processed.coordinates.lng}`);
+
+        await new Promise(resolve => setTimeout(resolve, GEOCODING_RATE_LIMIT_MS));
+    } catch (e) {
+        console.log(`    ⚠️  Geocoding failed: ${e.message}`);
+        processed.coordinates = { lat: 0, lng: 0 };
+        warnings.push({
+            trip: tripTitle,
+            location: item.title,
+            type: 'Geocoding',
+            message: e.message
+        });
+    }
+}
+
 // Process a single content item (location or article)
 async function processContentItem(item, tripId, tripTitle, order, warnings = []) {
     const processed = {
         type: item.type,
         title: item.title,
-        file: item.file,  // Include filename for stable slug generation
+        file: item.file,
         order: order
     };
 
-    // Convert markdown to HTML (file path is relative to trip dir)
-    if (item.file) {
-        const filePath = path.join(CONFIG.getTripDir(tripId), item.file);
-        try {
-            console.log(`    📝 Converting markdown: ${filePath}`);
+    await convertContentMarkdown(processed, item, tripId, tripTitle, warnings);
 
-            // Use shared gallery marker detection function
-            const { markdownContent, galleryImages } = processMarkdownWithGallery(filePath, item.file);
-
-            if (galleryImages && galleryImages.length > 0) {
-                // Write processed content (without gallery) to temp file for conversion
-                const tempPath = filePath + '.temp';
-                fs.writeFileSync(tempPath, markdownContent, 'utf8');
-                processed.contentHtml = await convertMarkdown(tempPath);
-                fs.unlinkSync(tempPath); // Clean up temp file
-            } else {
-                // No marker found, convert entire file as before
-                processed.contentHtml = await convertMarkdown(filePath);
-            }
-
-            console.log(`    ✅ HTML generated (${processed.contentHtml.length} chars)`);
-
-            // Store gallery if images found
-            if (galleryImages && galleryImages.length > 0) {
-                processed.gallery = galleryImages;
-                console.log(`    ✅ Gallery parsed from main file: ${galleryImages.length} images`);
-            }
-        } catch (e) {
-            console.log(`    ⚠️  Markdown conversion failed: ${e.message}`);
-            processed.contentHtml = `<p>Content not found</p>`;
-            warnings.push({
-                trip: tripTitle,
-                location: item.title,
-                type: 'Markdown Conversion',
-                message: e.message
-            });
-        }
-    }
-
-    // If it's a location, geocode it
     if (item.type === 'location') {
-        processed.place = item.place;
-        processed.duration = item.duration;
-        if (item.thumbnail) processed.thumbnail = item.thumbnail;
-
-        // Geocode the place
-        try {
-            console.log(`    🗺️  Geocoding: ${item.place}`);
-            processed.coordinates = await geocodeLocation(item.place);
-            console.log(`    ✅ Coordinates: ${processed.coordinates.lat}, ${processed.coordinates.lng}`);
-
-            // Respect rate limits (1 request per second)
-            await new Promise(resolve => setTimeout(resolve, GEOCODING_RATE_LIMIT_MS));
-        } catch (e) {
-            console.log(`    ⚠️  Geocoding failed: ${e.message}`);
-            processed.coordinates = { lat: 0, lng: 0 };
-            warnings.push({
-                trip: tripTitle,
-                location: item.title,
-                type: 'Geocoding',
-                message: e.message
-            });
-        }
+        await geocodeContentLocation(processed, item, tripTitle, warnings);
     }
-
 
     return processed;
 }
@@ -175,10 +178,8 @@ async function resolveMapCenter(tripConfig, processedContent, locations) {
         : null;
 }
 
-// Process a single trip
-async function processTrip(tripId, warnings = []) {
-    console.log(`\n📍 Processing trip: ${tripId}`);
-
+// Load and parse trip.json, exiting on fatal errors
+function loadTripConfigForBuild(tripId) {
     const tripConfigPath = CONFIG.getTripConfigPath(tripId);
 
     if (!fs.existsSync(tripConfigPath)) {
@@ -186,17 +187,38 @@ async function processTrip(tripId, warnings = []) {
         return null;
     }
 
-    // Parse trip.json with clear error handling
-    let tripConfig;
     try {
-        tripConfig = JSON.parse(fs.readFileSync(tripConfigPath, 'utf8'));
-    } catch (error) {
+        return loadTripConfig(tripId);
+    } catch (err) {
         console.error(`\n❌❌❌ FATAL ERROR ❌❌❌`);
         console.error(`Invalid JSON in: ${tripConfigPath}`);
-        console.error(`Error: ${error.message}`);
+        console.error(`Error: ${err.message}`);
         console.error(`\nPlease fix the JSON syntax error and try again.\n`);
         process.exit(1);
     }
+}
+
+// Convert main.md intro content to HTML
+async function convertIntroMarkdown(mainMdPath) {
+    if (!fs.existsSync(mainMdPath)) return null;
+
+    try {
+        console.log(`  📝 Converting intro markdown: ${mainMdPath}`);
+        const introHtml = await convertMarkdown(mainMdPath);
+        console.log(`  ✅ Intro HTML generated (${introHtml.length} chars)\n`);
+        return introHtml;
+    } catch (e) {
+        console.log(`  ⚠️  Intro markdown conversion failed: ${e.message}\n`);
+        return `<p>Trip introduction not available</p>`;
+    }
+}
+
+// Process a single trip
+async function processTrip(tripId, warnings = []) {
+    console.log(`\n📍 Processing trip: ${tripId}`);
+
+    const tripConfig = loadTripConfigForBuild(tripId);
+    if (!tripConfig) return null;
 
     // Validate main.md exists
     const mainMdPath = CONFIG.getTripMainPath(tripId);
@@ -205,22 +227,10 @@ async function processTrip(tripId, warnings = []) {
         console.log(`     Every trip should have a main.md file for the intro page.\n`);
     }
 
-    // Calculate duration
     const duration = calculateDuration(tripConfig.beginDate, tripConfig.endDate);
     console.log(`  ⏱️  Duration: ${duration}`);
 
-    // Process main.md (intro content)
-    let introHtml = null;
-    if (fs.existsSync(mainMdPath)) {
-        try {
-            console.log(`  📝 Converting intro markdown: ${mainMdPath}`);
-            introHtml = await convertMarkdown(mainMdPath);
-            console.log(`  ✅ Intro HTML generated (${introHtml.length} chars)\n`);
-        } catch (e) {
-            console.log(`  ⚠️  Intro markdown conversion failed: ${e.message}\n`);
-            introHtml = `<p>Trip introduction not available</p>`;
-        }
-    }
+    const introHtml = await convertIntroMarkdown(mainMdPath);
 
     // Process content items in order
     const processedContent = [];
@@ -228,41 +238,29 @@ async function processTrip(tripId, warnings = []) {
 
     for (let i = 0; i < tripConfig.content.length; i++) {
         const item = tripConfig.content[i];
-        const order = i + 1; // 1-based ordering
-
         console.log(`  [${i + 1}/${tripConfig.content.length}] ${item.type}: ${item.title}`);
-        const processed = await processContentItem(item, tripId, tripConfig.title, order, warnings);
+        const processed = await processContentItem(item, tripId, tripConfig.title, i + 1, warnings);
         processedContent.push(processed);
         console.log('');
     }
 
-    // Extract locations for mapping
     const locations = extractLocations(processedContent);
-
-    // Resolve mapCenter to coordinates
     const mapCenter = await resolveMapCenter(tripConfig, processedContent, locations);
 
-    // Build final trip object
     return {
-        slug: tripId,  // Infer slug from directory name
+        slug: tripId,
         title: tripConfig.title,
         published: tripConfig.published,
-
         beginDate: tripConfig.beginDate,
         endDate: tripConfig.endDate,
         duration: duration,
-
         metadata: tripConfig.metadata,
-
         coverImage: tripConfig.coverImage,
         thumbnail: tripConfig.thumbnail,
-
         mapCenter: mapCenter,
-
         introHtml: introHtml,
         content: processedContent,
         locations: locations,
-
         relatedTrips: tripConfig.relatedTrips || []
     };
 }
@@ -297,10 +295,8 @@ async function filterPublishedTrips(tripIds) {
 
     const publishedTrips = [];
     for (const tripId of tripIds) {
-        const tripConfigPath = CONFIG.getTripConfigPath(tripId);
         try {
-            const tripData = fs.readFileSync(tripConfigPath, 'utf8');
-            const tripConfig = JSON.parse(tripData);
+            const tripConfig = loadTripConfig(tripId);
 
             if (tripConfig.published === true) {
                 publishedTrips.push(tripId);
@@ -361,9 +357,7 @@ async function build(specificTripId = null) {
     };
 
     // Create trips output directory
-    if (!fs.existsSync(TRIPS_OUTPUT_DIR)) {
-        fs.mkdirSync(TRIPS_OUTPUT_DIR, { recursive: true });
-    }
+    ensureDir(TRIPS_OUTPUT_DIR);
 
     // Process each trip
     const processedTrips = [];
@@ -444,9 +438,7 @@ async function build(specificTripId = null) {
 
             // Generate about page
             console.log(`   📄 Generating about page...`);
-            if (!fs.existsSync('about')) {
-                fs.mkdirSync('about', { recursive: true });
-            }
+            ensureDir('about');
             const aboutHtml = await generateAboutPage(output, domain, convertMarkdown);
             fs.writeFileSync('about/index.html', aboutHtml, 'utf8');
             const aboutSize = fs.statSync('about/index.html').size;

@@ -17,7 +17,8 @@ const path = require('path');
 const { generateTripLocationPage, generateTripArticlePage } = require('../../lib/generate-html');
 const { convertMarkdown } = require('../../lib/markdown-converter');
 const CONFIG = require('../../lib/config-paths');
-const { processMarkdownWithGallery } = require('../../lib/build-utilities');
+const { ensureDir, processMarkdownWithGallery } = require('../../lib/build-utilities');
+const { slugify } = require('../../lib/slug-utilities');
 
 const NODEMON_TRIGGER_WINDOW_MS = 5000; // nodemon fires within ~5s of a file save
 
@@ -83,9 +84,11 @@ if (contentSlug === 'main') {
     process.exit(0);
 }
 
-(async () => {
-try {
-    // Load processed trip data from previous build
+/**
+ * Load trip data and metadata from previous full build output.
+ * Returns null and exits the process if data is missing.
+ */
+function loadTripData(tripId) {
     const tripContentFile = path.join(CONFIG.TRIPS_OUTPUT_DIR, `${tripId}.json`);
     if (!fs.existsSync(tripContentFile)) {
         console.log(`   ⏭️  Skipped: ${tripId}.json not found - run full build first\n`);
@@ -94,30 +97,6 @@ try {
 
     const tripContentData = JSON.parse(fs.readFileSync(tripContentFile, 'utf8'));
 
-    // Find the content item by matching the markdown file name
-    // Content items might not have slug field, so we'll add it
-    const contentItem = tripContentData.content.find(item => {
-        // Try to match by existing slug first
-        if (item.slug === contentSlug) return true;
-
-        // Otherwise derive slug from title (this is what the build system does)
-        const { slugify } = require('../../lib/slug-utilities');
-        const derivedSlug = slugify(item.title);
-        return derivedSlug === contentSlug;
-    });
-
-    if (!contentItem) {
-        console.log(`   ⏭️  Skipped: ${contentSlug} not found in ${tripId}.json\n`);
-        process.exit(0);
-    }
-
-    // Ensure contentItem has slug field
-    if (!contentItem.slug) {
-        const { slugify } = require('../../lib/slug-utilities');
-        contentItem.slug = slugify(contentItem.title);
-    }
-
-    // Load trip metadata from config.built.json
     const builtConfig = JSON.parse(fs.readFileSync(CONFIG.OUTPUT_FILE, 'utf8'));
     const tripMetadata = builtConfig.trips.find(t => t.slug === tripId);
 
@@ -126,53 +105,76 @@ try {
         process.exit(0);
     }
 
-    // Prepare config object with trips list (needed by generate functions)
     const fullConfig = {
         site: builtConfig.site,
         trips: builtConfig.trips
     };
 
-    // Re-convert the markdown for this specific file
+    return { tripContentData, tripMetadata, fullConfig };
+}
+
+/**
+ * Find the content item matching the given slug and ensure it has a slug field.
+ * Exits the process if the item is not found.
+ */
+function findAndPrepareContentItem(tripContentData, contentSlug) {
+    const contentItem = tripContentData.content.find(item => {
+        if (item.slug === contentSlug) return true;
+        return slugify(item.title) === contentSlug;
+    });
+
+    if (!contentItem) {
+        console.log(`   ⏭️  Skipped: ${contentSlug} not found in ${tripId}.json\n`);
+        process.exit(0);
+    }
+
+    if (!contentItem.slug) {
+        contentItem.slug = slugify(contentItem.title);
+    }
+
+    return contentItem;
+}
+
+/**
+ * Re-convert the markdown file for a content item, handling gallery markers.
+ * Exits the process if the markdown file is not found.
+ */
+async function reconvertMarkdown(contentItem, tripId, contentSlug) {
     const markdownPath = path.join(CONFIG.TRIPS_DIR, tripId, `${contentSlug}.md`);
-    if (fs.existsSync(markdownPath)) {
-        // Use shared gallery marker detection function
-        const { markdownContent, galleryImages } = processMarkdownWithGallery(markdownPath, `${contentSlug}.md`);
-
-        if (galleryImages && galleryImages.length > 0) {
-            // Write processed content (without gallery) to temp file for conversion
-            const tempPath = markdownPath + '.temp';
-            fs.writeFileSync(tempPath, markdownContent, 'utf8');
-            const freshHtml = await convertMarkdown(tempPath);
-            fs.unlinkSync(tempPath); // Clean up temp file
-
-            // Update both html and contentHtml fields for compatibility
-            contentItem.html = freshHtml;
-            contentItem.contentHtml = freshHtml;
-            contentItem.gallery = galleryImages;
-        } else {
-            // No marker found, convert entire file as before
-            const freshHtml = await convertMarkdown(markdownPath);
-            contentItem.html = freshHtml;
-            contentItem.contentHtml = freshHtml;
-        }
-    } else {
+    if (!fs.existsSync(markdownPath)) {
         console.log(`   ⏭️  Skipped: ${markdownPath} not found\n`);
         process.exit(0);
     }
 
-    // Ensure contentItem has html field (fallback to contentHtml)
+    const { markdownContent, galleryImages } = processMarkdownWithGallery(markdownPath, `${contentSlug}.md`);
+
+    if (galleryImages && galleryImages.length > 0) {
+        const tempPath = markdownPath + '.temp';
+        fs.writeFileSync(tempPath, markdownContent, 'utf8');
+        const freshHtml = await convertMarkdown(tempPath);
+        fs.unlinkSync(tempPath);
+
+        contentItem.html = freshHtml;
+        contentItem.contentHtml = freshHtml;
+        contentItem.gallery = galleryImages;
+    } else {
+        const freshHtml = await convertMarkdown(markdownPath);
+        contentItem.html = freshHtml;
+        contentItem.contentHtml = freshHtml;
+    }
+
     if (!contentItem.html && contentItem.contentHtml) {
         contentItem.html = contentItem.contentHtml;
     }
+}
 
-    // Ensure output directory exists
-    const outputDir = path.join(CONFIG.TRIPS_OUTPUT_DIR, tripId);
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, { recursive: true });
-    }
-
-    // Generate only this page based on type
-    const outputPath = path.join(outputDir, `${contentSlug}.html`);
+/**
+ * Generate the HTML page for a content item and write it to disk.
+ * Exits the process if the content type is unknown.
+ */
+function generateAndWritePage(contentItem, tripMetadata, tripContentData, fullConfig, tripId, contentSlug) {
+    ensureDir(path.join(CONFIG.TRIPS_OUTPUT_DIR, tripId));
+    const outputPath = path.join(CONFIG.TRIPS_OUTPUT_DIR, tripId, `${contentSlug}.html`);
     let html;
 
     if (contentItem.type === 'location') {
@@ -203,8 +205,15 @@ try {
         process.exit(0);
     }
 
-    // Write the file
     fs.writeFileSync(outputPath, html);
+}
+
+(async () => {
+try {
+    const { tripContentData, tripMetadata, fullConfig } = loadTripData(tripId);
+    const contentItem = findAndPrepareContentItem(tripContentData, contentSlug);
+    await reconvertMarkdown(contentItem, tripId, contentSlug);
+    generateAndWritePage(contentItem, tripMetadata, tripContentData, fullConfig, tripId, contentSlug);
 
     const elapsed = Date.now() - startTime;
     console.log(`   ✅ Generated trips/${tripId}/${contentSlug}.html (${elapsed}ms)`);
