@@ -11,7 +11,7 @@ const path = require('path');
 
 // Import centralized configuration paths
 const CONFIG = require('../lib/config-paths');
-const { discoverTrips: discoverTripsLib } = require('../lib/build-utilities');
+const { discoverAllTrips } = require('../lib/build-utilities');
 
 const { SITE_CONFIG, TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
 
@@ -48,7 +48,7 @@ function validate() {
     }
 
     // Auto-discover trips from directories
-    const allTrips = discoverTripsLib(TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
+    const allTrips = discoverAllTrips(TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
 
     if (allTrips.length === 0) {
         warning('No trips found in content/trips/');

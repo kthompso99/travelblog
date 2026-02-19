@@ -17,7 +17,7 @@ const { generateHomepage, generateMapPage, generateAboutPage } = require('../../
 const { generateSitemap, generateRobotsTxt } = require('../../lib/generate-sitemap');
 const { generateTripFiles } = require('../../lib/generate-trip-files');
 const {
-    discoverTrips: discoverTripsShared,
+    discoverAllTrips,
     processMarkdownWithGallery,
     writeTripContentJson,
     extractTripMetadata,
@@ -33,6 +33,8 @@ const CONFIG = require('../../lib/config-paths');
 
 // Import cache management
 const { loadCache, createEmptyCache, updateFullCache, saveCache } = require('../../lib/build-cache');
+
+const GEOCODING_RATE_LIMIT_MS = 1000; // 1 request per second
 
 const { SITE_CONFIG, TRIPS_DIR, OUTPUT_FILE, TRIPS_OUTPUT_DIR } = CONFIG;
 
@@ -111,7 +113,7 @@ async function processContentItem(item, tripId, tripTitle, order, warnings = [])
             console.log(`    ✅ Coordinates: ${processed.coordinates.lat}, ${processed.coordinates.lng}`);
 
             // Respect rate limits (1 request per second)
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, GEOCODING_RATE_LIMIT_MS));
         } catch (e) {
             console.log(`    ⚠️  Geocoding failed: ${e.message}`);
             processed.coordinates = { lat: 0, lng: 0 };
@@ -334,7 +336,7 @@ async function build(specificTripId = null) {
     }
 
     // Auto-discover trips by scanning directories (sorted by date, newest first)
-    const discoveredTrips = discoverTripsShared(TRIPS_DIR, (tripId) => CONFIG.getTripConfigPath(tripId));
+    const discoveredTrips = discoverAllTrips(TRIPS_DIR, (tripId) => CONFIG.getTripConfigPath(tripId));
 
     // If specific trip requested, filter to just that trip
     let tripsToDiscover = discoveredTrips;

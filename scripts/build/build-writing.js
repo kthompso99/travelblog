@@ -26,22 +26,21 @@ let changedFile = process.argv[2];
 
 if (!changedFile) {
     // When run by nodemon without explicit file argument, find most recently changed .md file
-    const glob = require('node:fs');
     const recentFiles = [];
     const tripsDir = path.join(CONFIG.TRIPS_DIR);
 
     // Scan all trip directories for .md files
-    if (glob.existsSync(tripsDir)) {
-        const trips = glob.readdirSync(tripsDir);
+    if (fs.existsSync(tripsDir)) {
+        const trips = fs.readdirSync(tripsDir);
         for (const tripId of trips) {
             const tripDir = path.join(tripsDir, tripId);
-            if (!glob.statSync(tripDir).isDirectory()) continue;
+            if (!fs.statSync(tripDir).isDirectory()) continue;
 
-            const files = glob.readdirSync(tripDir);
+            const files = fs.readdirSync(tripDir);
             for (const file of files) {
                 if (file.endsWith('.md') && file !== 'main.md') {
                     const filePath = path.join(tripDir, file);
-                    const stats = glob.statSync(filePath);
+                    const stats = fs.statSync(filePath);
                     recentFiles.push({ path: filePath, mtime: stats.mtimeMs });
                 }
             }
