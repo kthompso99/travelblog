@@ -39,52 +39,15 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const AdmZip = require('adm-zip');
 const readline = require('readline');
 const { spawn } = require('child_process');
 const CONFIG = require('../../lib/config-paths');
-
-/**
- * Generate all possible metadata file paths for a photo
- * For edited photos, also checks the original file's metadata
- * @param {string} photoPath - Path to photo file
- * @returns {Array<string>} Array of possible metadata paths
- */
-function getPossibleMetadataPaths(photoPath) {
-  const metadataSuffixes = [
-    'supplemental-metadata.json',
-    'supplemental-metada.json',
-    'supplemental-meta.json',
-    'supplemental-met.json',
-    'supplemental-m.json',
-    'supplemen.json',  // Even more truncated
-    'json'
-  ];
-
-  const paths = [];
-
-  // First, try metadata for the photo itself
-  for (const suffix of metadataSuffixes) {
-    paths.push(`${photoPath}.${suffix}`);
-  }
-
-  // If this is an edited photo, also try the original's metadata
-  if (photoPath.includes('-edited.')) {
-    const originalPath = photoPath.replace('-edited.', '.');
-    for (const suffix of metadataSuffixes) {
-      paths.push(`${originalPath}.${suffix}`);
-    }
-  }
-
-  // For original_*_P.jpg or original_*_P(1).jpg files, try stripping the P suffix
-  // Example: original_5d0ee73e-..._P.jpg -> original_5d0ee73e-..._.json
-  if (photoPath.includes('original_') && photoPath.match(/_P(\(\d+\))?\.(jpg|jpeg|png)$/i)) {
-    const basePath = photoPath.replace(/_P(\(\d+\))?\.(jpg|jpeg|png)$/i, '_');
-    paths.push(`${basePath}.json`);
-  }
-
-  return paths;
-}
+const {
+  getPossibleMetadataPaths,
+  catalogZipContents,
+  detectAlbumFolder,
+  filterAlbumPhotos
+} = require('../../lib/takeout-utilities');
 
 /**
  * Read photo caption and ID from zip metadata files
@@ -146,95 +109,6 @@ async function validateSyncInputs(zipPath, tripId) {
     console.error(`   Run: npm run add`);
     process.exit(1);
   }
-}
-
-/**
- * Open a zip file and catalog photos and metadata entries
- * @returns {{ zip: AdmZip, photos: Object, metadata: Object }}
- */
-function catalogZipContents(zipPath) {
-  console.log('📦 Opening Takeout ZIP...');
-  const zip = new AdmZip(zipPath);
-  const zipEntries = zip.getEntries();
-
-  const photos = {};
-  const metadata = {};
-
-  zipEntries.forEach(entry => {
-    if (entry.isDirectory) return;
-
-    const ext = path.extname(entry.entryName).toLowerCase();
-    if (ext === '.json') {
-      metadata[entry.entryName] = entry;
-    } else if (['.jpg', '.jpeg', '.png', '.heic'].includes(ext)) {
-      photos[entry.entryName] = entry;
-    }
-  });
-
-  console.log(`🔍 Found ${Object.keys(photos).length} photos and ${Object.keys(metadata).length} JSON files.`);
-
-  if (Object.keys(photos).length === 0) {
-    console.error('❌ No photos found in zip');
-    process.exit(1);
-  }
-
-  return { zip, photos, metadata };
-}
-
-/**
- * Detect the album folder inside a Takeout zip
- * @returns {string} Album folder path
- */
-function detectAlbumFolder(photos) {
-  const albumFolders = new Set();
-  Object.keys(photos).forEach(photoPath => {
-    const dir = path.dirname(photoPath);
-    if (dir !== '.' && dir !== 'Takeout') {
-      albumFolders.add(dir);
-    }
-  });
-
-  if (albumFolders.size === 0) {
-    console.error('❌ No album folders found in zip');
-    process.exit(1);
-  }
-
-  if (albumFolders.size > 1) {
-    console.warn(`⚠️  Multiple album folders found: ${Array.from(albumFolders).join(', ')}`);
-    console.warn('   Using first folder. To sync multiple albums, run script separately for each zip.');
-  }
-
-  const albumFolder = Array.from(albumFolders)[0];
-  console.log(`📂 Album folder: ${albumFolder}`);
-  return albumFolder;
-}
-
-/**
- * Filter photos to an album folder and prefer edited versions over originals
- * @returns {Array<string>} Filtered and sorted photo paths
- */
-function filterAlbumPhotos(photos, albumFolder) {
-  let albumPhotos = Object.keys(photos)
-    .filter(p => p.startsWith(albumFolder))
-    .sort();
-
-  // Prefer -edited versions: if both photo.jpg and photo-edited.jpg exist, keep only -edited
-  const editedPhotos = new Set(
-    albumPhotos
-      .filter(p => p.includes('-edited.'))
-      .map(p => p.replace('-edited.', '.'))
-  );
-
-  albumPhotos = albumPhotos.filter(p => {
-    if (editedPhotos.has(p) && !p.includes('-edited.')) {
-      console.log(`⏭️  Skipping ${path.basename(p)} (edited version exists)`);
-      return false;
-    }
-    return true;
-  });
-
-  console.log(`📸 Processing ${albumPhotos.length} photos from album...`);
-  return albumPhotos;
 }
 
 /**

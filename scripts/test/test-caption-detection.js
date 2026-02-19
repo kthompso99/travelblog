@@ -5,108 +5,19 @@
  * Does NOT modify any files - only outputs diagnostic information
  */
 
-const fs = require('fs').promises;
 const path = require('path');
-const AdmZip = require('adm-zip');
+const {
+  getPossibleMetadataPaths,
+  catalogZipContents,
+  detectAlbumFolder,
+  filterAlbumPhotos
+} = require('../../lib/takeout-utilities');
 
 /**
- * Generate all possible metadata file paths for a photo
- * For edited photos, also checks the original file's metadata
+ * Check each photo for caption metadata and categorize results
+ * @returns {{ noCaptionPhotos: Array, withCaptionPhotos: Array, metadataStats: Object }}
  */
-function getPossibleMetadataPaths(photoPath) {
-  const metadataSuffixes = [
-    'supplemental-metadata.json',
-    'supplemental-metada.json',
-    'supplemental-meta.json',
-    'supplemental-met.json',
-    'supplemental-m.json',
-    'supplemen.json',  // Even more truncated
-    'json'
-  ];
-
-  const paths = [];
-
-  // First, try metadata for the photo itself
-  for (const suffix of metadataSuffixes) {
-    paths.push(`${photoPath}.${suffix}`);
-  }
-
-  // If this is an edited photo, also try the original's metadata
-  if (photoPath.includes('-edited.')) {
-    const originalPath = photoPath.replace('-edited.', '.');
-    for (const suffix of metadataSuffixes) {
-      paths.push(`${originalPath}.${suffix}`);
-    }
-  }
-
-  // For original_*_P.jpg or original_*_P(1).jpg files, try stripping the P suffix
-  // Example: original_5d0ee73e-..._P.jpg -> original_5d0ee73e-..._.json
-  if (photoPath.includes('original_') && photoPath.match(/_P(\(\d+\))?\.(jpg|jpeg|png)$/i)) {
-    const basePath = photoPath.replace(/_P(\(\d+\))?\.(jpg|jpeg|png)$/i, '_');
-    paths.push(`${basePath}.json`);
-  }
-
-  return paths;
-}
-
-async function analyzeCaptions(zipPath) {
-  // 1. Open and parse zip
-  console.log('📦 Opening Takeout ZIP...');
-  const zip = new AdmZip(zipPath);
-  const zipEntries = zip.getEntries();
-
-  const photos = {};    // { entryName: zipEntry }
-  const metadata = {};  // { entryName: zipEntry }
-
-  // Catalog everything in the zip
-  zipEntries.forEach(entry => {
-    if (entry.isDirectory) return;
-
-    const ext = path.extname(entry.entryName).toLowerCase();
-    if (ext === '.json') {
-      metadata[entry.entryName] = entry;
-    } else if (['.jpg', '.jpeg', '.png', '.heic'].includes(ext)) {
-      photos[entry.entryName] = entry;
-    }
-  });
-
-  console.log(`🔍 Found ${Object.keys(photos).length} photos and ${Object.keys(metadata).length} JSON files.\n`);
-
-  // 2. Auto-detect album folder
-  const albumFolders = new Set();
-  Object.keys(photos).forEach(photoPath => {
-    const dir = path.dirname(photoPath);
-    if (dir !== '.' && dir !== 'Takeout') {
-      albumFolders.add(dir);
-    }
-  });
-
-  const albumFolder = Array.from(albumFolders)[0];
-  console.log(`📂 Album folder: ${albumFolder}\n`);
-
-  // Filter photos to only this album folder
-  let albumPhotos = Object.keys(photos)
-    .filter(p => p.startsWith(albumFolder))
-    .sort();
-
-  // Prefer -edited versions
-  const editedPhotos = new Set(
-    albumPhotos
-      .filter(p => p.includes('-edited.'))
-      .map(p => p.replace('-edited.', '.'))
-  );
-
-  albumPhotos = albumPhotos.filter(p => {
-    if (editedPhotos.has(p) && !p.includes('-edited.')) {
-      return false;
-    }
-    return true;
-  });
-
-  console.log(`📸 Processing ${albumPhotos.length} photos from album...\n`);
-  console.log('=' .repeat(80));
-
-  // 3. Check each photo for caption
+function checkPhotoCaptions(albumPhotos, metadata, zip) {
   const noCaptionPhotos = [];
   const withCaptionPhotos = [];
   const metadataStats = {};
@@ -114,8 +25,6 @@ async function analyzeCaptions(zipPath) {
   for (let i = 0; i < albumPhotos.length; i++) {
     const photoPath = albumPhotos[i];
     const photoName = path.basename(photoPath);
-
-    // Try to find metadata (also checks original for edited photos)
     const possibleJsonPaths = getPossibleMetadataPaths(photoPath);
 
     let caption = '';
@@ -137,27 +46,24 @@ async function analyzeCaptions(zipPath) {
       }
     }
 
-    // Track metadata type stats
     metadataStats[metadataType] = (metadataStats[metadataType] || 0) + 1;
 
     if (!caption) {
-      noCaptionPhotos.push({
-        index: i + 1,
-        original: photoName,
-        metadataFound,
-        metadataType
-      });
+      noCaptionPhotos.push({ index: i + 1, original: photoName, metadataFound, metadataType });
     } else {
-      withCaptionPhotos.push({
-        index: i + 1,
-        original: photoName,
-        caption,
-        metadataType
-      });
+      withCaptionPhotos.push({ index: i + 1, original: photoName, caption, metadataType });
     }
   }
 
-  // 4. Output results
+  return { noCaptionPhotos, withCaptionPhotos, metadataStats };
+}
+
+/**
+ * Print a formatted caption analysis report
+ */
+function printCaptionReport(albumPhotos, metadata, results) {
+  const { noCaptionPhotos, withCaptionPhotos, metadataStats } = results;
+
   console.log('\n📊 METADATA TYPE STATISTICS:');
   console.log('=' .repeat(80));
   Object.entries(metadataStats)
@@ -189,6 +95,17 @@ async function analyzeCaptions(zipPath) {
   console.log(`  With captions:      ${withCaptionPhotos.length}`);
   console.log(`  Without captions:   ${noCaptionPhotos.length}`);
   console.log(`  Metadata files:     ${Object.keys(metadata).length}`);
+}
+
+async function analyzeCaptions(zipPath) {
+  const { zip, photos, metadata } = catalogZipContents(zipPath);
+  const albumFolder = detectAlbumFolder(photos);
+  const albumPhotos = filterAlbumPhotos(photos, albumFolder);
+
+  console.log('\n' + '=' .repeat(80));
+
+  const results = checkPhotoCaptions(albumPhotos, metadata, zip);
+  printCaptionReport(albumPhotos, metadata, results);
 }
 
 // CLI entry point
