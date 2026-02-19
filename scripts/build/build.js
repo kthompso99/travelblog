@@ -396,6 +396,61 @@ function printJsonSummary(processedTrips, indexSize, totalContentSize) {
     console.log(`   - Per trip load: ~${(totalContentSize / processedTrips.length / 1024).toFixed(1)}KB average`);
 }
 
+// Write config.built.json and print summary (full builds only)
+function writeBuildOutput(output, processedTrips, totalContentSize) {
+    try {
+        const indexSize = writeConfigBuilt(output, OUTPUT_FILE);
+        printJsonSummary(processedTrips, indexSize, totalContentSize);
+    } catch (e) {
+        console.error('❌ Error writing output file:', e.message);
+        process.exit(1);
+    }
+}
+
+// Generate all static HTML pages (global + trip) and update build cache
+async function generateStaticHtml(output, domain, processedTrips, specificTripId, buildWarnings) {
+    console.log(`\n🏗️  Generating static HTML pages...\n`);
+
+    let htmlSizeTotal = 0;
+
+    if (!specificTripId) {
+        htmlSizeTotal += await generateGlobalPages(output, domain);
+    }
+
+    // Generate trip pages
+    console.log(`   📄 Generating trip pages...\n`);
+    const tripIds = processedTrips.map(t => t.slug);
+    for (let i = 0; i < processedTrips.length; i++) {
+        console.log(`   [${i + 1}/${processedTrips.length}] ${processedTrips[i].title}`);
+        const result = generateTripHtmlPages(
+            [tripIds[i]], output, domain, TRIPS_OUTPUT_DIR, generateTripFiles, '      '
+        );
+        htmlSizeTotal += result.totalSize;
+        console.log('');
+    }
+
+    console.log(`\n✅ SSG complete!`);
+    console.log(`\n💾 Static HTML sizes:`);
+    console.log(`   - Total HTML files: ${(htmlSizeTotal / 1024).toFixed(1)}KB`);
+    console.log(`   - Average trip page: ${(htmlSizeTotal / (processedTrips.length + 3) / 1024).toFixed(1)}KB`);
+
+    console.log(`\n🎯 Next steps:`);
+    console.log(`   1. Review generated HTML files`);
+    console.log(`   2. Update domain in config/site.json`);
+    console.log(`   3. Test locally with: npm run serve`);
+    console.log(`   4. Validate SEO with online tools`);
+    console.log(`   5. Deploy your site!`);
+
+    printBuildWarnings(buildWarnings);
+
+    // Update build cache so smart build knows what's been built
+    console.log(`\n💾 Updating build cache...`);
+    const buildCache = createEmptyCache();
+    updateFullCache(buildCache);
+    saveCache(buildCache);
+    console.log(`   ✅ Cache updated`);
+}
+
 // Main build function
 async function build(specificTripId = null) {
     if (specificTripId) {
@@ -433,7 +488,7 @@ async function build(specificTripId = null) {
 
     const output = { site: siteConfig, trips: processedTrips };
 
-    // For single-trip builds, skip global file generation
+    // Write config.built.json (skip for single-trip builds)
     if (specificTripId) {
         console.log(`\n✅ Trip build complete!`);
         console.log(`\n📊 Summary:`);
@@ -442,58 +497,13 @@ async function build(specificTripId = null) {
         console.log(`\n⚠️  Note: Skipping global files (homepage, map, config.built.json)`);
         console.log(`   Run 'npm run build' without trip ID to regenerate global files\n`);
     } else {
-        try {
-            const indexSize = writeConfigBuilt(output, OUTPUT_FILE);
-            printJsonSummary(processedTrips, indexSize, totalContentSize);
-        } catch (e) {
-            console.error('❌ Error writing output file:', e.message);
-            process.exit(1);
-        }
+        writeBuildOutput(output, processedTrips, totalContentSize);
     }
 
     // Generate static HTML pages (SSG)
-    console.log(`\n🏗️  Generating static HTML pages...\n`);
     const domain = siteConfig.domain || 'https://example.com';
-
     try {
-        let htmlSizeTotal = 0;
-
-        if (!specificTripId) {
-            htmlSizeTotal += await generateGlobalPages(output, domain);
-        }
-
-        // Generate trip pages
-        console.log(`   📄 Generating trip pages...\n`);
-        const tripIds = processedTrips.map(t => t.slug);
-        for (let i = 0; i < processedTrips.length; i++) {
-            console.log(`   [${i + 1}/${processedTrips.length}] ${processedTrips[i].title}`);
-            const result = generateTripHtmlPages(
-                [tripIds[i]], output, domain, TRIPS_OUTPUT_DIR, generateTripFiles, '      '
-            );
-            htmlSizeTotal += result.totalSize;
-            console.log('');
-        }
-
-        console.log(`\n✅ SSG complete!`);
-        console.log(`\n💾 Static HTML sizes:`);
-        console.log(`   - Total HTML files: ${(htmlSizeTotal / 1024).toFixed(1)}KB`);
-        console.log(`   - Average trip page: ${(htmlSizeTotal / (processedTrips.length + 3) / 1024).toFixed(1)}KB`);
-
-        console.log(`\n🎯 Next steps:`);
-        console.log(`   1. Review generated HTML files`);
-        console.log(`   2. Update domain in config/site.json`);
-        console.log(`   3. Test locally with: npm run serve`);
-        console.log(`   4. Validate SEO with online tools`);
-        console.log(`   5. Deploy your site!`);
-
-        printBuildWarnings(buildWarnings);
-
-        // Update build cache so smart build knows what's been built
-        console.log(`\n💾 Updating build cache...`);
-        const buildCache = createEmptyCache();
-        updateFullCache(buildCache);
-        saveCache(buildCache);
-        console.log(`   ✅ Cache updated`);
+        await generateStaticHtml(output, domain, processedTrips, specificTripId, buildWarnings);
     } catch (e) {
         console.error('❌ Error generating HTML:', e.message);
         console.error(e.stack);

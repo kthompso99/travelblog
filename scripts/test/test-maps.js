@@ -12,6 +12,14 @@ const handler = require('serve-handler');
 const PORT = 8001; // Use different port than dev server
 const BASE_URL = `http://localhost:${PORT}`;
 
+// Test timing constants
+const PAGE_LOAD_TIMEOUT = 30000;
+const MAPS_API_TIMEOUT = 10000;
+const MAP_INIT_DELAY = 3000;
+const ZOOM_ANIMATION_DELAY = 2000;
+const HOVER_DELAY = 500;
+const PREVIEW_LENGTH = 200;
+
 // Create a simple HTTP server for testing
 let server;
 
@@ -73,110 +81,144 @@ function setupPageListeners(page) {
     return { errors, logs, failedUrls };
 }
 
+/**
+ * Navigate to a map page, wait for Google Maps API to load, and wait for initialization.
+ * Returns without error on success; throws on timeout.
+ */
+async function navigateAndWaitForMaps(page, url) {
+    await page.goto(url, {
+        waitUntil: 'networkidle0',
+        timeout: PAGE_LOAD_TIMEOUT
+    });
+
+    await page.waitForFunction(() => {
+        return typeof google !== 'undefined' && google.maps;
+    }, { timeout: MAPS_API_TIMEOUT });
+
+    console.log('  ✅ Google Maps API loaded');
+
+    await new Promise(resolve => setTimeout(resolve, MAP_INIT_DELAY));
+}
+
+/**
+ * Validate that a map div has rendered Google Maps content.
+ * @param {Object} page - Puppeteer page
+ * @param {string} mapDivId - ID of the map container div
+ * @returns {Object} Map content info including markerCount
+ */
+async function validateMapContent(page, mapDivId) {
+    const previewLen = PREVIEW_LENGTH;
+    const mapHasContent = await page.evaluate((divId, previewLength) => {
+        const mapDiv = document.getElementById(divId);
+        if (!mapDiv) return { exists: false };
+
+        const hasGoogleContent = mapDiv.querySelector('.gm-style') !== null;
+        const hasChildren = mapDiv.children.length > 0;
+        const markers = document.querySelectorAll('[role="button"][aria-label]');
+
+        return {
+            exists: true,
+            hasChildren,
+            hasGoogleContent,
+            markerCount: markers.length,
+            innerHTML: mapDiv.innerHTML.substring(0, previewLength)
+        };
+    }, mapDivId, previewLen);
+
+    if (!mapHasContent.exists) {
+        throw new Error(`${mapDivId} div not found`);
+    }
+
+    if (!mapHasContent.hasGoogleContent) {
+        console.error(`  ❌ ${mapDivId} div has no Google Maps content`);
+        console.error('  Map innerHTML preview:', mapHasContent.innerHTML);
+        throw new Error(`Map did not render - no Google Maps content in ${mapDivId}`);
+    }
+
+    console.log(`  ✅ ${mapDivId} div has Google Maps content`);
+    return mapHasContent;
+}
+
+/**
+ * Check if a map div contains an error message.
+ */
+async function checkMapError(page, mapDivId) {
+    const errorInMap = await page.evaluate((divId) => {
+        const mapDiv = document.getElementById(divId);
+        return mapDiv && mapDiv.textContent.includes('Map Error');
+    }, mapDivId);
+
+    if (errorInMap) {
+        const errorText = await page.evaluate((divId) => {
+            return document.getElementById(divId).textContent;
+        }, mapDivId);
+        throw new Error(`Map shows error: ${errorText}`);
+    }
+}
+
+/**
+ * Log console messages and JavaScript errors from the page.
+ */
+function logTestDiagnostics(errors, logs, failedUrls) {
+    if (failedUrls && failedUrls.length > 0) {
+        console.error('  Failed requests:');
+        failedUrls.forEach(url => console.error(`    - ${url}`));
+    }
+    if (errors.length > 0) {
+        console.error('  ⚠️  JavaScript errors detected:');
+        errors.forEach(err => console.error(`    - ${err}`));
+    }
+    if (logs.length > 0) {
+        console.log('  📋 All console logs:');
+        logs.forEach(log => console.log(`    ${log}`));
+    }
+}
+
+/**
+ * Log detailed diagnostics when Google Maps API fails to load (global map only).
+ */
+async function logMapsApiDiagnostics(page) {
+    const googleStatus = await page.evaluate(() => {
+        if (typeof google === 'undefined') return 'google is undefined';
+        if (!google.maps) return `google exists but maps is ${typeof google.maps}`;
+        return 'google.maps exists';
+    });
+    console.error(`  ⚠️  Timeout waiting for Google Maps. Status: ${googleStatus}`);
+
+    const scriptInfo = await page.evaluate(() => {
+        const scripts = Array.from(document.querySelectorAll('script[src*="maps.googleapis.com"]'));
+        if (scripts.length === 0) return 'No Google Maps script tag found';
+        return `Found ${scripts.length} script(s): ${scripts.map(s => s.src).join(', ')}`;
+    });
+    console.error(`  ⚠️  Script tags: ${scriptInfo}`);
+
+    const bodyText = await page.evaluate(() => document.body.innerText);
+    if (bodyText.toLowerCase().includes('error') || bodyText.toLowerCase().includes('invalid')) {
+        console.error(`  ⚠️  Page contains error text: ${bodyText.substring(0, 500)}`);
+    }
+}
+
 async function testGlobalMap(browser) {
     console.log('\n📍 Testing Global Map Page...');
     const page = await browser.newPage();
     const { errors, logs, failedUrls } = setupPageListeners(page);
 
     try {
-        // Navigate to map page
-        await page.goto(`${BASE_URL}/map/index.html`, {
-            waitUntil: 'networkidle0',
-            timeout: 30000
-        });
-
-        // Wait for Google Maps API to load
+        // Navigate and wait for Maps API (with detailed diagnostics on failure)
         try {
-            await page.waitForFunction(() => {
-                return typeof google !== 'undefined' && google.maps;
-            }, { timeout: 10000 });
+            await navigateAndWaitForMaps(page, `${BASE_URL}/map/index.html`);
         } catch (timeoutError) {
-            // Check what's actually on the page
-            const googleStatus = await page.evaluate(() => {
-                if (typeof google === 'undefined') return 'google is undefined';
-                if (!google.maps) return `google exists but maps is ${typeof google.maps}`;
-                return 'google.maps exists';
-            });
-            console.error(`  ⚠️  Timeout waiting for Google Maps. Status: ${googleStatus}`);
-
-            // Check if script tag exists
-            const scriptInfo = await page.evaluate(() => {
-                const scripts = Array.from(document.querySelectorAll('script[src*="maps.googleapis.com"]'));
-                if (scripts.length === 0) return 'No Google Maps script tag found';
-                return `Found ${scripts.length} script(s): ${scripts.map(s => s.src).join(', ')}`;
-            });
-            console.error(`  ⚠️  Script tags: ${scriptInfo}`);
-
-            // Check for error messages in page
-            const bodyText = await page.evaluate(() => document.body.innerText);
-            if (bodyText.toLowerCase().includes('error') || bodyText.toLowerCase().includes('invalid')) {
-                console.error(`  ⚠️  Page contains error text: ${bodyText.substring(0, 500)}`);
-            }
+            await logMapsApiDiagnostics(page);
             throw timeoutError;
         }
 
-        console.log('  ✅ Google Maps API loaded');
-
-        // Wait for map initialization
-        await new Promise(resolve => setTimeout(resolve, 3000));
-
-        // Check if map div exists and has content
-        const mapHasContent = await page.evaluate(() => {
-            const mapDiv = document.getElementById('map');
-            if (!mapDiv) return false;
-
-            // Check if map has been initialized (Google adds classes and children)
-            const hasGoogleContent = mapDiv.querySelector('.gm-style') !== null;
-            const hasChildren = mapDiv.children.length > 0;
-
-            return {
-                exists: true,
-                hasChildren,
-                hasGoogleContent,
-                innerHTML: mapDiv.innerHTML.substring(0, 200) // First 200 chars for debugging
-            };
-        });
-
-        if (!mapHasContent.exists) {
-            throw new Error('Map div not found');
-        }
-
-        if (!mapHasContent.hasGoogleContent) {
-            console.error('  ❌ Map div has no Google Maps content');
-            console.error('  Map innerHTML preview:', mapHasContent.innerHTML);
-            throw new Error('Map did not render - no Google Maps content found');
-        }
-
-        console.log('  ✅ Map div has Google Maps content');
-
-        // Check for error messages in map div
-        const errorInMap = await page.evaluate(() => {
-            const mapDiv = document.getElementById('map');
-            return mapDiv && mapDiv.textContent.includes('Map Error');
-        });
-
-        if (errorInMap) {
-            const errorText = await page.evaluate(() => {
-                return document.getElementById('map').textContent;
-            });
-            throw new Error(`Map shows error: ${errorText}`);
-        }
-
-        // Check for JavaScript errors
-        if (errors.length > 0) {
-            console.error('  ⚠️  JavaScript errors detected:');
-            errors.forEach(err => console.error(`    - ${err}`));
-        }
-
-        // Log ALL console messages for debugging
-        if (logs.length > 0) {
-            console.log('  📋 All console logs:');
-            logs.forEach(log => console.log(`    ${log}`));
-        }
+        // Validate map rendered
+        await validateMapContent(page, 'map');
+        await checkMapError(page, 'map');
 
         // Test zoom-based detail markers and hovercards
         console.log('  🔍 Testing zoom-based location markers...');
-        const zoomTest = await page.evaluate(() => {
+        const zoomTest = await page.evaluate((hoverDelay, zoomDelay) => {
             return new Promise((resolve) => {
                 // Zoom in to trigger location markers (threshold is 5)
                 map.setZoom(6);
@@ -227,10 +269,10 @@ async function testGlobalMap(browser) {
                             title,
                             contentPreview: content.substring(0, 100)
                         });
-                    }, 500);
-                }, 2000); // Wait 2s for zoom animation and marker lifecycle
+                    }, hoverDelay);
+                }, zoomDelay);
             });
-        });
+        }, HOVER_DELAY, ZOOM_ANIMATION_DELAY);
 
         if (!zoomTest.success) {
             console.error(`  ❌ Zoom test failed: ${zoomTest.error}`);
@@ -251,19 +293,14 @@ async function testGlobalMap(browser) {
             console.log(`  ✅ Location hover card shows: "${zoomTest.title}"`);
         }
 
+        logTestDiagnostics(errors, logs);
+
         console.log('  ✅ Global map test passed');
         return true;
 
     } catch (error) {
         console.error('  ❌ Global map test failed:', error.message);
-        if (failedUrls.length > 0) {
-            console.error('  Failed requests:');
-            failedUrls.forEach(url => console.error(`    - ${url}`));
-        }
-        if (errors.length > 0) {
-            console.error('  JavaScript errors:');
-            errors.forEach(err => console.error(`    - ${err}`));
-        }
+        logTestDiagnostics(errors, [], failedUrls);
         return false;
     } finally {
         await page.close();
@@ -276,57 +313,18 @@ async function testTripMap(browser) {
     const { errors, logs } = setupPageListeners(page);
 
     try {
-        await page.goto(`${BASE_URL}/trips/greece/map.html`, {
-            waitUntil: 'networkidle0',
-            timeout: 30000
-        });
+        await navigateAndWaitForMaps(page, `${BASE_URL}/trips/greece/map.html`);
 
-        await page.waitForFunction(() => {
-            return typeof google !== 'undefined' && google.maps;
-        }, { timeout: 10000 });
+        // Validate map rendered
+        const mapInfo = await validateMapContent(page, 'trip-map-full');
 
-        console.log('  ✅ Google Maps API loaded');
-
-        await new Promise(resolve => setTimeout(resolve, 3000));
-
-        const mapHasContent = await page.evaluate(() => {
-            const mapDiv = document.getElementById('trip-map-full');
-            if (!mapDiv) return false;
-
-            const hasGoogleContent = mapDiv.querySelector('.gm-style') !== null;
-            const hasChildren = mapDiv.children.length > 0;
-
-            // Check for numbered markers
-            const markers = document.querySelectorAll('[role="button"][aria-label]');
-
-            return {
-                exists: true,
-                hasChildren,
-                hasGoogleContent,
-                markerCount: markers.length,
-                innerHTML: mapDiv.innerHTML.substring(0, 200)
-            };
-        });
-
-        if (!mapHasContent.exists) {
-            throw new Error('Trip map div not found');
-        }
-
-        if (!mapHasContent.hasGoogleContent) {
-            console.error('  ❌ Trip map div has no Google Maps content');
-            console.error('  Map innerHTML preview:', mapHasContent.innerHTML);
-            throw new Error('Trip map did not render');
-        }
-
-        console.log('  ✅ Trip map div has Google Maps content');
-
-        if (mapHasContent.markerCount > 0) {
-            console.log(`  ✅ Found ${mapHasContent.markerCount} markers on trip map`);
+        if (mapInfo.markerCount > 0) {
+            console.log(`  ✅ Found ${mapInfo.markerCount} markers on trip map`);
         }
 
         // Test hover card (InfoWindow) content
         console.log('  🔍 Testing hover card content...');
-        const hoverTest = await page.evaluate(() => {
+        const hoverTest = await page.evaluate((hoverDelay) => {
             return new Promise((resolve) => {
                 // Find first marker button
                 const markerButton = document.querySelector('[role="button"][aria-label]');
@@ -363,9 +361,9 @@ async function testTripMap(browser) {
                         title,
                         contentPreview: content.substring(0, 100)
                     });
-                }, 500);
+                }, hoverDelay);
             });
-        });
+        }, HOVER_DELAY);
 
         if (!hoverTest.found) {
             console.error(`  ❌ Hover test failed: ${hoverTest.error}`);
@@ -379,38 +377,15 @@ async function testTripMap(browser) {
             console.log(`  ✅ Hover card shows location: "${hoverTest.title}"`);
         }
 
-        const errorInMap = await page.evaluate(() => {
-            const mapDiv = document.getElementById('trip-map-full');
-            return mapDiv && mapDiv.textContent.includes('Map Error');
-        });
-
-        if (errorInMap) {
-            const errorText = await page.evaluate(() => {
-                return document.getElementById('trip-map-full').textContent;
-            });
-            throw new Error(`Trip map shows error: ${errorText}`);
-        }
-
-        if (errors.length > 0) {
-            console.error('  ⚠️  JavaScript errors detected:');
-            errors.forEach(err => console.error(`    - ${err}`));
-        }
-
-        // Log ALL console messages for debugging
-        if (logs.length > 0) {
-            console.log('  📋 All console logs:');
-            logs.forEach(log => console.log(`    ${log}`));
-        }
+        await checkMapError(page, 'trip-map-full');
+        logTestDiagnostics(errors, logs);
 
         console.log('  ✅ Per-trip map test passed');
         return true;
 
     } catch (error) {
         console.error('  ❌ Per-trip map test failed:', error.message);
-        if (errors.length > 0) {
-            console.error('  JavaScript errors:');
-            errors.forEach(err => console.error(`    - ${err}`));
-        }
+        logTestDiagnostics(errors, []);
         return false;
     } finally {
         await page.close();

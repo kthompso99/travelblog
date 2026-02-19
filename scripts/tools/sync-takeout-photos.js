@@ -87,12 +87,48 @@ function getPossibleMetadataPaths(photoPath) {
 }
 
 /**
- * Main sync function
- * @param {string} zipPath - Path to Takeout zip file
- * @param {string} tripId - Trip identifier
+ * Read photo caption and ID from zip metadata files
+ * @param {string} photoPath - Path within the zip
+ * @param {Object} metadata - Map of metadata entry names to zip entries
+ * @param {AdmZip} zip - The zip file
+ * @param {string} fallbackFilename - Filename to use as fallback ID
+ * @returns {{ caption: string, photoId: string }}
  */
-async function syncTakeoutPhotos(zipPath, tripId) {
-  // 1. Validate zip file exists
+function readPhotoCaption(photoPath, metadata, zip, fallbackFilename) {
+  const possibleJsonPaths = getPossibleMetadataPaths(photoPath);
+  let caption = '';
+  let photoId = fallbackFilename;
+
+  for (const jsonPath of possibleJsonPaths) {
+    if (metadata[jsonPath]) {
+      try {
+        const jsonContent = JSON.parse(zip.readAsText(metadata[jsonPath]));
+        caption = jsonContent.description || '';
+        photoId = jsonContent.url || fallbackFilename;
+      } catch (e) {
+        // Ignore metadata parse errors
+      }
+      break;
+    }
+  }
+
+  return { caption, photoId };
+}
+
+/**
+ * Build a markdown entry for a single photo
+ */
+function buildMarkdownEntry(caption, filename, photoId) {
+  return [
+    `<!-- Photo ID: ${photoId} -->`,
+    caption ? `![${caption}](images/${filename})` : `![](images/${filename})`
+  ].join('\n');
+}
+
+/**
+ * Validate that the zip file and trip exist
+ */
+async function validateSyncInputs(zipPath, tripId) {
   try {
     await fs.access(zipPath);
   } catch (err) {
@@ -100,7 +136,6 @@ async function syncTakeoutPhotos(zipPath, tripId) {
     process.exit(1);
   }
 
-  // 2. Validate trip exists
   const tripConfigPath = CONFIG.getTripConfigPath(tripId);
   try {
     await fs.access(tripConfigPath);
@@ -111,16 +146,20 @@ async function syncTakeoutPhotos(zipPath, tripId) {
     console.error(`   Run: npm run add`);
     process.exit(1);
   }
+}
 
-  // 3. Open and parse zip
+/**
+ * Open a zip file and catalog photos and metadata entries
+ * @returns {{ zip: AdmZip, photos: Object, metadata: Object }}
+ */
+function catalogZipContents(zipPath) {
   console.log('📦 Opening Takeout ZIP...');
   const zip = new AdmZip(zipPath);
   const zipEntries = zip.getEntries();
 
-  const photos = {};    // { entryName: zipEntry }
-  const metadata = {};  // { entryName: zipEntry }
+  const photos = {};
+  const metadata = {};
 
-  // Catalog everything in the zip
   zipEntries.forEach(entry => {
     if (entry.isDirectory) return;
 
@@ -139,8 +178,14 @@ async function syncTakeoutPhotos(zipPath, tripId) {
     process.exit(1);
   }
 
-  // 4. Auto-detect album folder
-  // Takeout structure: Takeout/Google Photos/{Album Name}/{photos + json}
+  return { zip, photos, metadata };
+}
+
+/**
+ * Detect the album folder inside a Takeout zip
+ * @returns {string} Album folder path
+ */
+function detectAlbumFolder(photos) {
   const albumFolders = new Set();
   Object.keys(photos).forEach(photoPath => {
     const dir = path.dirname(photoPath);
@@ -161,11 +206,17 @@ async function syncTakeoutPhotos(zipPath, tripId) {
 
   const albumFolder = Array.from(albumFolders)[0];
   console.log(`📂 Album folder: ${albumFolder}`);
+  return albumFolder;
+}
 
-  // Filter photos to only this album folder
+/**
+ * Filter photos to an album folder and prefer edited versions over originals
+ * @returns {Array<string>} Filtered and sorted photo paths
+ */
+function filterAlbumPhotos(photos, albumFolder) {
   let albumPhotos = Object.keys(photos)
     .filter(p => p.startsWith(albumFolder))
-    .sort(); // Maintain Takeout order
+    .sort();
 
   // Prefer -edited versions: if both photo.jpg and photo-edited.jpg exist, keep only -edited
   const editedPhotos = new Set(
@@ -175,7 +226,6 @@ async function syncTakeoutPhotos(zipPath, tripId) {
   );
 
   albumPhotos = albumPhotos.filter(p => {
-    // If this is an original and an edited version exists, skip it
     if (editedPhotos.has(p) && !p.includes('-edited.')) {
       console.log(`⏭️  Skipping ${path.basename(p)} (edited version exists)`);
       return false;
@@ -184,9 +234,14 @@ async function syncTakeoutPhotos(zipPath, tripId) {
   });
 
   console.log(`📸 Processing ${albumPhotos.length} photos from album...`);
+  return albumPhotos;
+}
 
-  // 5. Extract photos with sequential naming
-  const imagesDir = CONFIG.getTripImagesDir(tripId);
+/**
+ * Extract photos from zip to disk with sequential naming, collecting markdown entries
+ * @returns {{ markdownLines: Array<string>, successCount: number, photosWithoutCaption: number }}
+ */
+async function extractPhotosWithMarkdown(albumPhotos, photos, metadata, zip, imagesDir, tripId) {
   await fs.mkdir(imagesDir, { recursive: true });
 
   const markdownLines = [];
@@ -198,7 +253,7 @@ async function syncTakeoutPhotos(zipPath, tripId) {
     const photoEntry = photos[photoPath];
 
     // Sequential filename: spain-2025-01.jpg, spain-2025-02.jpg, ...
-    const ext = path.extname(photoPath).toLowerCase().substring(1); // Remove leading dot
+    const ext = path.extname(photoPath).toLowerCase().substring(1);
     const filename = `${tripId}-${String(i + 1).padStart(2, '0')}.${ext}`;
     const outputPath = path.join(imagesDir, filename);
 
@@ -207,79 +262,48 @@ async function syncTakeoutPhotos(zipPath, tripId) {
       await fs.access(outputPath);
       console.log(`⏭️  Skipping ${filename} (already exists)`);
 
-      // Still need to add to markdown if it doesn't exist yet
-      // This handles re-runs where images exist but markdown doesn't
-      // For edited photos, this will also check the original's metadata
-      const possibleJsonPaths = getPossibleMetadataPaths(photoPath);
-
-      let caption = '';
-      let photoId = filename;
-
-      for (const jsonPath of possibleJsonPaths) {
-        if (metadata[jsonPath]) {
-          try {
-            const jsonContent = JSON.parse(zip.readAsText(metadata[jsonPath]));
-            caption = jsonContent.description || '';
-            photoId = jsonContent.url || filename;
-          } catch (e) {
-            // Ignore metadata errors for skipped files
-          }
-          break;
-        }
-      }
-
-      const entry = [
-        `<!-- Photo ID: ${photoId} -->`,
-        caption ? `![${caption}](images/${filename})` : `![](images/${filename})`
-      ].join('\n');
-
+      const { caption, photoId } = readPhotoCaption(photoPath, metadata, zip, filename);
       if (!caption) photosWithoutCaption++;
-      markdownLines.push(entry);
+      markdownLines.push(buildMarkdownEntry(caption, filename, photoId));
       continue;
     } catch {
       // File doesn't exist, proceed with extraction
     }
 
-    // Find caption from metadata
-    // For edited photos, this will also check the original's metadata
-    const possibleJsonPaths = getPossibleMetadataPaths(photoPath);
-
-    let caption = '';
-    let photoId = filename; // Fallback ID
-
-    for (const jsonPath of possibleJsonPaths) {
-      if (metadata[jsonPath]) {
-        try {
-          const jsonContent = JSON.parse(zip.readAsText(metadata[jsonPath]));
-          caption = jsonContent.description || '';
-          photoId = jsonContent.url || filename; // Use Google Photos URL as ID if available
-        } catch (e) {
-          console.warn(`⚠️  Error reading metadata for ${filename}: ${e.message}`);
-        }
-        break;
-      }
-    }
+    const { caption, photoId } = readPhotoCaption(photoPath, metadata, zip, filename);
 
     // Extract photo
     const buffer = zip.readFile(photoEntry);
     await fs.writeFile(outputPath, buffer);
 
-    // Build markdown entry (compatible with future assign-photos.js format)
-    const entry = [
-      `<!-- Photo ID: ${photoId} -->`,
-      caption ? `![${caption}](images/${filename})` : `![](images/${filename})`
-    ].join('\n');
-
     if (!caption) photosWithoutCaption++;
-    markdownLines.push(entry);
+    markdownLines.push(buildMarkdownEntry(caption, filename, photoId));
     successCount++;
 
     process.stdout.write(`\r📥 Extracted ${successCount}/${albumPhotos.length} photos`);
   }
 
   console.log(`\n✅ Extracted ${successCount} new photos to ${imagesDir}`);
+  return { markdownLines, successCount, photosWithoutCaption };
+}
 
-  // 6. Generate all-synced-photos.md
+/**
+ * Main sync function
+ * @param {string} zipPath - Path to Takeout zip file
+ * @param {string} tripId - Trip identifier
+ */
+async function syncTakeoutPhotos(zipPath, tripId) {
+  await validateSyncInputs(zipPath, tripId);
+
+  const { zip, photos, metadata } = catalogZipContents(zipPath);
+  const albumFolder = detectAlbumFolder(photos);
+  const albumPhotos = filterAlbumPhotos(photos, albumFolder);
+
+  const imagesDir = CONFIG.getTripImagesDir(tripId);
+  const { markdownLines, successCount, photosWithoutCaption } =
+    await extractPhotosWithMarkdown(albumPhotos, photos, metadata, zip, imagesDir, tripId);
+
+  // Write all-synced-photos.md
   const markdownPath = CONFIG.getSyncedPhotosPath(tripId);
   const markdownContent = markdownLines.join('\n\n');
   await fs.writeFile(markdownPath, markdownContent);
