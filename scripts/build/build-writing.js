@@ -191,7 +191,7 @@ function generateAndWritePage(contentItem, tripMetadata, tripContentData, fullCo
         allContent,
         contentIndex,
         fullConfig,
-        fullConfig.site.url
+        fullConfig.site.domain
     );
 
     fs.writeFileSync(outputPath, html);
