@@ -6,22 +6,29 @@ The photo gallery feature provides a masonry-style photo grid with hover effects
 
 ## Implementation Approach
 
-**Convention-based markdown:** For each location, the generator auto-discovers optional gallery files using the pattern `{location-slug}-gallery.md`. If found, a masonry gallery is appended to that location's page. If not found, no gallery is rendered (no error).
+**Marker-based markdown:** Kevin adds a special marker line (`*Add your photos here*`) inside a location's existing `.md` file to indicate where the gallery section begins. Any `![caption](src)` images placed after the marker are extracted as gallery photos. The marker and the images after it are stripped from the prose before rendering — they appear as a masonry gallery appended to the bottom of the page, not inline with the text.
+
+If no marker is found, the file renders normally with no gallery (no error).
 
 ## Gallery File Format
 
+Add the marker and images at the end of any location markdown file:
+
 ```markdown
+Regular prose content goes here...
+
+*Add your photos here*
 ![Caption text for SEO and display](images/Photo-01.jpg)
 ![Another photo caption](images/Photo-02.jpg)
 ```
 
-The markdown `![alt](src)` syntax provides both alt text (for accessibility/SEO) and visible captions. The generator extracts these and builds the gallery HTML.
+The markdown `![alt](src)` syntax provides both alt text (for accessibility/SEO) and visible captions. The build extracts these and builds the gallery HTML.
 
 ## Examples
 
-- `athens.md` + `athens-gallery.md` → Athens page with gallery
-- `milos.md` (no gallery file) → Milos page without gallery
-- `paros.md` + `paros-gallery.md` → Paros page with gallery
+- `athens.md` contains marker + photos → Athens page renders prose + gallery
+- `milos.md` (no marker) → Milos page renders prose only, no gallery
+- `paros.md` contains marker + photos → Paros page renders prose + gallery
 
 ## Benefits
 
@@ -29,13 +36,13 @@ The markdown `![alt](src)` syntax provides both alt text (for accessibility/SEO)
 - Markdown-native caption authoring
 - Optional per-location (not all locations need galleries)
 - Alt text automatic (caption serves double duty)
-- Easy to manage (one file per gallery)
+- Single file per location (no separate gallery file to manage)
 
 ## Technical Details
 
 ### Build Process
 
-Generator checks for `{location-slug}-gallery.md` during location page generation. If present, parses markdown and appends gallery HTML.
+`lib/build-utilities.js` exports `processMarkdownWithGallery()`, which reads the location `.md` file, searches for the `GALLERY_MARKER` constant (`*Add your photos here*` from `lib/constants.js`), and splits the file at that point. Everything before the marker is converted to prose HTML; images found after the marker are returned as a `galleryImages` array. `scripts/build/build.js` and `scripts/build/build-writing.js` both call `convertMarkdownWithGallery()` (which wraps `processMarkdownWithGallery`) to get the `{ html, galleryImages }` result. If `galleryImages` is non-empty, `buildPhotoGallery()` in `lib/generate-trip-pages.js` renders the masonry gallery HTML and appends it to the page.
 
 ### Layout
 
@@ -64,7 +71,7 @@ Single source of truth for all caption contexts.
 
 ## Implementation Status
 
-- ✅ Markdown-based data format
+- ✅ Markdown-based data format (marker in main file)
 - ✅ Build script detection and parsing
 - ✅ Masonry CSS layout with responsive breakpoints
 - ✅ Hover effects (scale, brightness, zoom icon, caption slide)
@@ -75,17 +82,19 @@ Single source of truth for all caption contexts.
 
 ## Usage
 
-1. Create a gallery markdown file: `content/trips/greece/athens-gallery.md`
-2. Add images with captions:
+1. Open any location markdown file, e.g. `content/trips/greece/athens.md`
+2. At the end of the file, add the marker followed by images:
    ```markdown
+   *Add your photos here*
    ![The Parthenon at sunset](images/athens-01.jpg)
    ![Street food in Plaka](images/athens-02.jpg)
    ```
-3. Build the site - gallery automatically appends to athens.html
-4. No configuration needed in trip.json
+3. Build the site — the gallery automatically appends to `athens.html`
+4. No configuration needed in `trip.json`
 
-## Files Modified
+## Key Files
 
-- `scripts/build/build.js` - Gallery file detection
-- `lib/generate-trip-pages.js` - Gallery HTML generation (`buildPhotoGallery`)
-- `templates/base.html` - Masonry CSS and GLightbox integration
+- `lib/constants.js` — `GALLERY_MARKER` constant (`*Add your photos here*`)
+- `lib/build-utilities.js` — `processMarkdownWithGallery()` detects marker and extracts images
+- `lib/generate-trip-pages.js` — `buildPhotoGallery()` renders masonry gallery HTML
+- `templates/base.html` — Masonry CSS and GLightbox integration
