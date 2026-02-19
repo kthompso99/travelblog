@@ -41,7 +41,7 @@ function findHtmlFiles(dir) {
  */
 function extractCssRule(html, selector) {
     const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const re = new RegExp(escaped + '\\s*\\{([^}]+)\\}');
+    const re = new RegExp(escaped + '\\s*\\{([^}]+)\\}', 's');
     const m = html.match(re);
     return m ? m[1] : null;
 }
