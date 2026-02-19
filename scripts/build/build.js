@@ -27,7 +27,8 @@ const {
     generateAndPromoteHomepage,
     generateMapPageToFile,
     generateSitemapToFile,
-    generateTripHtmlPages
+    generateTripHtmlPages,
+    printBuildWarnings
 } = require('../../lib/build-utilities');
 
 // Import centralized configuration paths
@@ -313,6 +314,88 @@ async function filterPublishedTrips(tripIds) {
     return publishedTrips;
 }
 
+// Load and validate site configuration
+function loadSiteConfig() {
+    try {
+        const siteConfig = JSON.parse(fs.readFileSync(SITE_CONFIG, 'utf8'));
+        console.log(`✅ Loaded site config: ${siteConfig.title}\n`);
+        return siteConfig;
+    } catch (e) {
+        console.error(`❌ Error reading ${SITE_CONFIG}:`, e.message);
+        process.exit(1);
+    }
+}
+
+// Process all trips: geocode, convert markdown, write JSON files
+async function processAllTrips(tripsToProcess, warnings) {
+    const processedTrips = [];
+    let totalContentSize = 0;
+
+    for (const tripId of tripsToProcess) {
+        const trip = await processTrip(tripId, warnings);
+        if (trip) {
+            const fileSize = writeTripContentJson(trip, tripId, TRIPS_OUTPUT_DIR);
+            totalContentSize += fileSize;
+            console.log(`  💾 Saved trips/${tripId}.json (${(fileSize / 1024).toFixed(1)}KB)`);
+
+            const tripMetadata = extractTripMetadata(trip);
+            processedTrips.push(tripMetadata);
+        }
+    }
+
+    return { processedTrips, totalContentSize };
+}
+
+// Generate global pages: homepage, map, about, sitemap, robots.txt
+async function generateGlobalPages(output, domain) {
+    let htmlSize = 0;
+
+    console.log(`   📄 Generating homepage...`);
+    const homepageSize = generateAndPromoteHomepage(output, domain, generateHomepage);
+    htmlSize += homepageSize;
+    console.log(`   ✅ Homepage generated and promoted (${(homepageSize / 1024).toFixed(1)}KB)`);
+
+    console.log(`   📄 Generating map page...`);
+    const mapSize = generateMapPageToFile(output, domain, generateMapPage);
+    htmlSize += mapSize;
+    console.log(`   ✅ Map page generated (${(mapSize / 1024).toFixed(1)}KB)`);
+
+    console.log(`   📄 Generating about page...`);
+    ensureDir('about');
+    const aboutHtml = await generateAboutPage(output, domain, convertMarkdown);
+    fs.writeFileSync('about/index.html', aboutHtml, 'utf8');
+    const aboutSize = fs.statSync('about/index.html').size;
+    htmlSize += aboutSize;
+    console.log(`   ✅ About page generated (${(aboutSize / 1024).toFixed(1)}KB)`);
+
+    console.log(`\n   📄 Generating sitemap.xml...`);
+    const sitemapSize = generateSitemapToFile(output.trips, domain, generateSitemap);
+    console.log(`   ✅ Sitemap generated (${(sitemapSize / 1024).toFixed(1)}KB)`);
+
+    console.log(`   📄 Generating robots.txt...`);
+    const robotsTxt = generateRobotsTxt(domain);
+    fs.writeFileSync('robots.txt', robotsTxt, 'utf8');
+    const robotsSize = fs.statSync('robots.txt').size;
+    console.log(`   ✅ Robots.txt generated (${(robotsSize / 1024).toFixed(0)} bytes)`);
+
+    return htmlSize;
+}
+
+// Print JSON build summary stats
+function printJsonSummary(processedTrips, indexSize, totalContentSize) {
+    console.log(`\n✅ JSON build complete!`);
+    console.log(`\n📊 Summary:`);
+    console.log(`   - Trips processed: ${processedTrips.length}`);
+    console.log(`   - Total locations: ${processedTrips.reduce((sum, t) => sum + t.locations.length, 0)}`);
+    console.log(`\n💾 File sizes:`);
+    console.log(`   - Index (${OUTPUT_FILE}): ${(indexSize / 1024).toFixed(1)}KB`);
+    console.log(`   - Trip content files: ${(totalContentSize / 1024).toFixed(1)}KB`);
+    console.log(`   - Total: ${((indexSize + totalContentSize) / 1024).toFixed(1)}KB`);
+    console.log(`\n⚡ Performance:`);
+    console.log(`   - Initial load: ${(indexSize / 1024).toFixed(1)}KB (index only)`);
+    console.log(`   - Per trip load: ~${(totalContentSize / processedTrips.length / 1024).toFixed(1)}KB average`);
+}
+
 // Main build function
 async function build(specificTripId = null) {
     if (specificTripId) {
@@ -321,15 +404,7 @@ async function build(specificTripId = null) {
         console.log('🚀 Starting full build process (Trips Architecture)...\n');
     }
 
-    // Read site config
-    let siteConfig;
-    try {
-        siteConfig = JSON.parse(fs.readFileSync(SITE_CONFIG, 'utf8'));
-        console.log(`✅ Loaded site config: ${siteConfig.title}\n`);
-    } catch (e) {
-        console.error(`❌ Error reading ${SITE_CONFIG}:`, e.message);
-        process.exit(1);
-    }
+    const siteConfig = loadSiteConfig();
 
     // Auto-discover trips by scanning directories (sorted by date, newest first)
     const discoveredTrips = discoverAllTrips(TRIPS_DIR, (tripId) => CONFIG.getTripConfigPath(tripId));
@@ -351,41 +426,14 @@ async function build(specificTripId = null) {
     // Filter trips based on published status and environment
     const tripsToProcess = await filterPublishedTrips(tripsToDiscover);
 
-    // Create index config with filtered trips
-    const indexConfig = {
-        trips: tripsToProcess
-    };
-
-    // Create trips output directory
+    // Create trips output directory and process all trips
     ensureDir(TRIPS_OUTPUT_DIR);
+    const buildWarnings = [];
+    const { processedTrips, totalContentSize } = await processAllTrips(tripsToProcess, buildWarnings);
 
-    // Process each trip
-    const processedTrips = [];
-    let totalContentSize = 0;
-    const buildWarnings = []; // Collect warnings during build
+    const output = { site: siteConfig, trips: processedTrips };
 
-    for (const tripId of indexConfig.trips) {
-        const trip = await processTrip(tripId, buildWarnings);
-        if (trip) {
-            // Save full trip content to separate file using shared function
-            const fileSize = writeTripContentJson(trip, tripId, TRIPS_OUTPUT_DIR);
-            totalContentSize += fileSize;
-            console.log(`  💾 Saved trips/${tripId}.json (${(fileSize / 1024).toFixed(1)}KB)`);
-
-            // Create lightweight metadata version for index using shared function
-            const tripMetadata = extractTripMetadata(trip);
-            processedTrips.push(tripMetadata);
-        }
-    }
-
-    // Build lightweight index file
-    const output = {
-        site: siteConfig,
-        trips: processedTrips
-    };
-
-    // For single-trip builds, skip global file generation (homepage, map, config.built.json)
-    // Only generate the specific trip's HTML pages
+    // For single-trip builds, skip global file generation
     if (specificTripId) {
         console.log(`\n✅ Trip build complete!`);
         console.log(`\n📊 Summary:`);
@@ -394,21 +442,9 @@ async function build(specificTripId = null) {
         console.log(`\n⚠️  Note: Skipping global files (homepage, map, config.built.json)`);
         console.log(`   Run 'npm run build' without trip ID to regenerate global files\n`);
     } else {
-        // Write built config using shared function (full build only)
         try {
             const indexSize = writeConfigBuilt(output, OUTPUT_FILE);
-
-            console.log(`\n✅ JSON build complete!`);
-            console.log(`\n📊 Summary:`);
-            console.log(`   - Trips processed: ${processedTrips.length}`);
-            console.log(`   - Total locations: ${processedTrips.reduce((sum, t) => sum + t.locations.length, 0)}`);
-            console.log(`\n💾 File sizes:`);
-            console.log(`   - Index (${OUTPUT_FILE}): ${(indexSize / 1024).toFixed(1)}KB`);
-            console.log(`   - Trip content files: ${(totalContentSize / 1024).toFixed(1)}KB`);
-            console.log(`   - Total: ${((indexSize + totalContentSize) / 1024).toFixed(1)}KB`);
-            console.log(`\n⚡ Performance:`);
-            console.log(`   - Initial load: ${(indexSize / 1024).toFixed(1)}KB (index only)`);
-            console.log(`   - Per trip load: ~${(totalContentSize / processedTrips.length / 1024).toFixed(1)}KB average`);
+            printJsonSummary(processedTrips, indexSize, totalContentSize);
         } catch (e) {
             console.error('❌ Error writing output file:', e.message);
             process.exit(1);
@@ -417,67 +453,25 @@ async function build(specificTripId = null) {
 
     // Generate static HTML pages (SSG)
     console.log(`\n🏗️  Generating static HTML pages...\n`);
-
     const domain = siteConfig.domain || 'https://example.com';
-    let htmlSizeTotal = 0;
 
     try {
+        let htmlSizeTotal = 0;
+
         if (!specificTripId) {
-            // Full build: generate all global pages
-            // Generate homepage using shared function
-            console.log(`   📄 Generating homepage...`);
-            const homepageSize = generateAndPromoteHomepage(output, domain, generateHomepage);
-            htmlSizeTotal += homepageSize;
-            console.log(`   ✅ Homepage generated and promoted (${(homepageSize / 1024).toFixed(1)}KB)`);
-
-            // Generate map page using shared function
-            console.log(`   📄 Generating map page...`);
-            const mapSize = generateMapPageToFile(output, domain, generateMapPage);
-            htmlSizeTotal += mapSize;
-            console.log(`   ✅ Map page generated (${(mapSize / 1024).toFixed(1)}KB)`);
-
-            // Generate about page
-            console.log(`   📄 Generating about page...`);
-            ensureDir('about');
-            const aboutHtml = await generateAboutPage(output, domain, convertMarkdown);
-            fs.writeFileSync('about/index.html', aboutHtml, 'utf8');
-            const aboutSize = fs.statSync('about/index.html').size;
-            htmlSizeTotal += aboutSize;
-            console.log(`   ✅ About page generated (${(aboutSize / 1024).toFixed(1)}KB)`);
+            htmlSizeTotal += await generateGlobalPages(output, domain);
         }
 
-        // Generate trip pages (all trips for full build, single trip for partial build)
+        // Generate trip pages
         console.log(`   📄 Generating trip pages...\n`);
         const tripIds = processedTrips.map(t => t.slug);
         for (let i = 0; i < processedTrips.length; i++) {
             console.log(`   [${i + 1}/${processedTrips.length}] ${processedTrips[i].title}`);
-
-            // Generate this trip's HTML files
             const result = generateTripHtmlPages(
-                [tripIds[i]],
-                output,
-                domain,
-                TRIPS_OUTPUT_DIR,
-                generateTripFiles,
-                '      '
+                [tripIds[i]], output, domain, TRIPS_OUTPUT_DIR, generateTripFiles, '      '
             );
             htmlSizeTotal += result.totalSize;
             console.log('');
-        }
-
-        if (!specificTripId) {
-            // Full build only: generate sitemap and robots.txt
-            // Generate sitemap.xml using shared function
-            console.log(`\n   📄 Generating sitemap.xml...`);
-            const sitemapSize = generateSitemapToFile(processedTrips, domain, generateSitemap);
-            console.log(`   ✅ Sitemap generated (${(sitemapSize / 1024).toFixed(1)}KB)`);
-
-            // Generate robots.txt
-            console.log(`   📄 Generating robots.txt...`);
-            const robotsTxt = generateRobotsTxt(domain);
-            fs.writeFileSync('robots.txt', robotsTxt, 'utf8');
-            const robotsSize = fs.statSync('robots.txt').size;
-            console.log(`   ✅ Robots.txt generated (${(robotsSize / 1024).toFixed(0)} bytes)`);
         }
 
         console.log(`\n✅ SSG complete!`);
@@ -492,15 +486,7 @@ async function build(specificTripId = null) {
         console.log(`   4. Validate SEO with online tools`);
         console.log(`   5. Deploy your site!`);
 
-        // Print warning summary if there were any issues
-        if (buildWarnings.length > 0) {
-            console.log(`\n⚠️  Build completed with ${buildWarnings.length} warning(s):\n`);
-            buildWarnings.forEach((warning, index) => {
-                console.log(`   ${index + 1}. Trip: ${warning.trip}`);
-                console.log(`      Location: ${warning.location}`);
-                console.log(`      Issue: ${warning.type} - ${warning.message}\n`);
-            });
-        }
+        printBuildWarnings(buildWarnings);
 
         // Update build cache so smart build knows what's been built
         console.log(`\n💾 Updating build cache...`);

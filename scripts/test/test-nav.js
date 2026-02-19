@@ -40,23 +40,15 @@
 
 const fs   = require('fs');
 const path = require('path');
-const { findHtmlFiles, extractCssRule, hasCssProperty, getCssValue } = require('./test-helpers');
+const { findHtmlFiles, extractCssRule, hasCssProperty, getCssValue, createTestRunner } = require('./test-helpers');
 
 // ── test runner ──────────────────────────────────────────────────
 const ROOT = path.join(__dirname, '../..');
 const htmlFiles = findHtmlFiles(ROOT);
-
-let passed = 0;
-let failed = 0;
-const failures = [];
+const { assert: _assert, report } = createTestRunner('🧭 Navigation smoke-test');
 
 function assert(file, description, condition) {
-    if (condition) {
-        passed++;
-    } else {
-        failed++;
-        failures.push(`  ❌ ${path.relative(ROOT, file)}: ${description}`);
-    }
+    _assert(`${path.relative(ROOT, file)}: ${description}`, condition);
 }
 
 if (htmlFiles.length === 0) {
@@ -129,17 +121,4 @@ htmlFiles.forEach(file => {
 });
 
 // ── report ───────────────────────────────────────────────────────
-console.log('\n🧭 Navigation smoke-test');
-console.log('━'.repeat(50));
-console.log(`   Files checked : ${htmlFiles.length}`);
-console.log(`   Assertions    : ${passed + failed}  (${passed} passed, ${failed} failed)`);
-
-if (failures.length > 0) {
-    console.log('\n🚨 FAILURES:\n');
-    failures.forEach(f => console.log(f));
-    console.log('');
-    process.exit(1);
-} else {
-    console.log('\n✅ All navigation checks passed.\n');
-    process.exit(0);
-}
+process.exit(report());

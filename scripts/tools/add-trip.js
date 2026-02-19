@@ -60,6 +60,7 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const { slugify } = require('../../lib/slug-utilities');
+const { ensureDir } = require('../../lib/build-utilities');
 
 // Import centralized configuration paths
 const CONFIG = require('../../lib/config-paths');
@@ -181,11 +182,11 @@ async function addTrip() {
 
     // Create trip directory and images subdirectory
     try {
-        fs.mkdirSync(tripDir, { recursive: true });
+        ensureDir(tripDir);
         console.log(`\n✅ Created directory: ${tripDir}`);
 
         const imagesDir = path.join(tripDir, 'images');
-        fs.mkdirSync(imagesDir, { recursive: true });
+        ensureDir(imagesDir);
         console.log(`✅ Created directory: ${imagesDir}`);
     } catch (e) {
         console.error(`❌ Error creating directory: ${e.message}`);

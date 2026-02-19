@@ -44,14 +44,13 @@ function stopServer() {
     });
 }
 
-async function testGlobalMap(browser) {
-    console.log('\n📍 Testing Global Map Page...');
-    const page = await browser.newPage();
+// Attach console/error/response listeners to a Puppeteer page.
+// Returns arrays that accumulate messages as the page runs.
+function setupPageListeners(page) {
     const errors = [];
     const logs = [];
     const failedUrls = [];
 
-    // Capture console logs and errors
     page.on('console', msg => {
         const text = msg.text();
         const type = msg.type();
@@ -70,6 +69,14 @@ async function testGlobalMap(browser) {
             failedUrls.push(`${response.status()} ${response.url()}`);
         }
     });
+
+    return { errors, logs, failedUrls };
+}
+
+async function testGlobalMap(browser) {
+    console.log('\n📍 Testing Global Map Page...');
+    const page = await browser.newPage();
+    const { errors, logs, failedUrls } = setupPageListeners(page);
 
     try {
         // Navigate to map page
@@ -266,21 +273,7 @@ async function testGlobalMap(browser) {
 async function testTripMap(browser) {
     console.log('\n📍 Testing Per-Trip Map Page (Greece)...');
     const page = await browser.newPage();
-    const errors = [];
-    const logs = [];
-
-    page.on('console', msg => {
-        const text = msg.text();
-        const type = msg.type();
-        logs.push(`[${type}] ${text}`);
-        if (type === 'error' || type === 'warning') {
-            errors.push(text);
-        }
-    });
-
-    page.on('pageerror', error => {
-        errors.push(`Page error: ${error.message}`);
-    });
+    const { errors, logs } = setupPageListeners(page);
 
     try {
         await page.goto(`${BASE_URL}/trips/greece/map.html`, {

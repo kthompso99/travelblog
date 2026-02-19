@@ -59,4 +59,44 @@ function getCssValue(ruleBody, prop) {
     return m ? m[1].trim() : null;
 }
 
-module.exports = { findHtmlFiles, extractCssRule, hasCssProperty, getCssValue };
+/**
+ * Create a test runner with assert/report for a named test suite.
+ * Replaces duplicated boilerplate across test files.
+ *
+ * @param {string} suiteName - Display name for the suite (e.g., '🧭 Navigation smoke-test')
+ * @returns {{ assert: function, report: function, getStats: function }}
+ */
+function createTestRunner(suiteName) {
+    let passed = 0;
+    let failed = 0;
+    const failures = [];
+
+    function assert(description, condition) {
+        if (condition) {
+            passed++;
+        } else {
+            failed++;
+            failures.push(`  ❌ ${description}`);
+        }
+    }
+
+    function report() {
+        console.log(`\n${suiteName}`);
+        console.log('━'.repeat(50));
+        console.log(`   Assertions : ${passed + failed}  (${passed} passed, ${failed} failed)`);
+
+        if (failures.length > 0) {
+            console.log('\n🚨 FAILURES:\n');
+            failures.forEach(f => console.log(f));
+            console.log('');
+        } else {
+            console.log(`\n✅ All checks passed.\n`);
+        }
+
+        return failed > 0 ? 1 : 0;
+    }
+
+    return { assert, report, getStats: () => ({ passed, failed, failures }) };
+}
+
+module.exports = { findHtmlFiles, extractCssRule, hasCssProperty, getCssValue, createTestRunner };

@@ -11,7 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
-const { discoverTrips, processMarkdownWithGallery } = require('../../lib/build-utilities');
+const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery } = require('../../lib/build-utilities');
 
 // Analysis libraries
 const rs = require('text-readability').default;
@@ -266,7 +266,7 @@ console.log = function (...args) {
 function main() {
     const filterTrip = process.argv[2] || null;
 
-    const tripIds = discoverTrips(CONFIG.TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
+    const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
 
     if (tripIds.length === 0) {
         origLog('No trips found.');
@@ -278,8 +278,7 @@ function main() {
     for (const tripId of tripIds) {
         if (filterTrip && tripId !== filterTrip) continue;
 
-        const configPath = CONFIG.getTripConfigPath(tripId);
-        const tripConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        const tripConfig = loadTripConfig(tripId);
         const tripDir = CONFIG.getTripDir(tripId);
 
         const contentItems = tripConfig.content || [];

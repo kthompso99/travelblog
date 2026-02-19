@@ -26,7 +26,8 @@ const {
     generateAndPromoteHomepage,
     generateMapPageToFile,
     generateSitemapToFile,
-    generateTripHtmlPages
+    generateTripHtmlPages,
+    printBuildWarnings
 } = require('../../lib/build-utilities');
 
 // Import shared cache management
@@ -48,9 +49,6 @@ const PATHS = {
     buildScript: CONFIG.BUILD_SCRIPT
 };
 
-// Note: discoverTrips is now imported from lib/build-utilities.js
-// Note: All cache functions are now imported from lib/build-cache.js
-
 function runFullBuild() {
     console.log('🔄 Running full build...\n');
     try {
@@ -68,30 +66,22 @@ function runFullBuild() {
 
 // ─── Incremental build ───────────────────────────────────────────────────────
 
-async function runIncrementalBuild(tripIds) {
-    console.log(`\n🔄 Incremental build for: ${tripIds.join(', ')}\n`);
-
-    // Load build.js as a module to reuse processTrip (geocode cache loads automatically on require)
-    const buildModule = require('./build');
-
-    const siteConfig = JSON.parse(fs.readFileSync(PATHS.siteConfig, 'utf8'));
-    const domain = siteConfig.domain || 'https://example.com';
-
-    // Process only the changed trips
+// Process changed trips and write per-trip JSON files
+async function processChangedTrips(tripIds, buildModule, warnings) {
     const rebuiltTrips = {};
-    const buildWarnings = []; // Collect warnings during build
     for (const tripId of tripIds) {
-        const trip = await buildModule.processTrip(tripId, buildWarnings);
+        const trip = await buildModule.processTrip(tripId, warnings);
         if (trip) {
             rebuiltTrips[tripId] = trip;
-
-            // Write per-trip content JSON using shared function
             writeTripContentJson(trip, tripId, CONFIG.TRIPS_OUTPUT_DIR);
             console.log(`  💾 Saved trips/${tripId}.json`);
         }
     }
+    return rebuiltTrips;
+}
 
-    // Load existing config.built.json and merge in updated trip metadata
+// Load config.built.json and merge updated trip metadata into it
+function mergeIntoBuiltConfig(tripIds, rebuiltTrips, siteConfig) {
     let output;
     if (fs.existsSync(CONFIG.OUTPUT_FILE)) {
         output = JSON.parse(fs.readFileSync(CONFIG.OUTPUT_FILE, 'utf8'));
@@ -103,24 +93,19 @@ async function runIncrementalBuild(tripIds) {
         const trip = rebuiltTrips[tripId];
         if (!trip) continue;
 
-        // Extract trip metadata using shared function
         const tripMetadata = extractTripMetadata(trip);
-
         const idx = output.trips.findIndex(t => t.slug === tripId);
         if (idx >= 0) { output.trips[idx] = tripMetadata; }
         else { output.trips.push(tripMetadata); }
     }
 
-    // Write config.built.json using shared function
     writeConfigBuilt(output, CONFIG.OUTPUT_FILE);
     console.log(`  💾 Updated ${CONFIG.OUTPUT_FILE}\n`);
+    return output;
+}
 
-    // Generate HTML for only the changed trips using shared function
-    console.log('🏗️  Generating HTML for changed trips...\n');
-    const changedTripIds = tripIds.filter(id => rebuiltTrips[id]);
-    generateTripHtmlPages(changedTripIds, output, domain, CONFIG.TRIPS_OUTPUT_DIR, generateTripFiles, '      ');
-
-    // Regenerate shared pages — these reference all trips so must always run
+// Regenerate shared pages (homepage, map, sitemap)
+function regenerateSharedPages(output, domain) {
     console.log('🏗️  Regenerating shared pages...\n');
 
     generateAndPromoteHomepage(output, domain, generateHomepage);
@@ -131,18 +116,28 @@ async function runIncrementalBuild(tripIds) {
 
     generateSitemapToFile(output.trips, domain, generateSitemap);
     console.log('   ✅ Sitemap updated');
+}
+
+async function runIncrementalBuild(tripIds) {
+    console.log(`\n🔄 Incremental build for: ${tripIds.join(', ')}\n`);
+
+    const buildModule = require('./build');
+    const siteConfig = JSON.parse(fs.readFileSync(PATHS.siteConfig, 'utf8'));
+    const domain = siteConfig.domain || 'https://example.com';
+
+    const buildWarnings = [];
+    const rebuiltTrips = await processChangedTrips(tripIds, buildModule, buildWarnings);
+    const output = mergeIntoBuiltConfig(tripIds, rebuiltTrips, siteConfig);
+
+    // Generate HTML for only the changed trips
+    console.log('🏗️  Generating HTML for changed trips...\n');
+    const changedTripIds = tripIds.filter(id => rebuiltTrips[id]);
+    generateTripHtmlPages(changedTripIds, output, domain, CONFIG.TRIPS_OUTPUT_DIR, generateTripFiles, '      ');
+
+    regenerateSharedPages(output, domain);
 
     console.log('\n✅ Incremental build complete!\n');
-
-    // Print warning summary if there were any issues
-    if (buildWarnings.length > 0) {
-        console.log(`⚠️  Build completed with ${buildWarnings.length} warning(s):\n`);
-        buildWarnings.forEach((warning, index) => {
-            console.log(`   ${index + 1}. Trip: ${warning.trip}`);
-            console.log(`      Location: ${warning.location}`);
-            console.log(`      Issue: ${warning.type} - ${warning.message}\n`);
-        });
-    }
+    printBuildWarnings(buildWarnings);
 
     return true;
 }

@@ -35,6 +35,7 @@
 const { JSDOM } = require('jsdom');
 const fs   = require('fs');
 const path = require('path');
+const { createTestRunner } = require('./test-helpers');
 
 const ROOT      = path.join(__dirname, '../..');
 const indexPath = path.join(ROOT, 'index.html');
@@ -58,18 +59,7 @@ const { document, Event } = dom.window;
 
 // ── helpers ───────────────────────────────────────────────────────
 
-let passed = 0;
-let failed = 0;
-const failures = [];
-
-function assert(label, condition) {
-    if (condition) {
-        passed++;
-    } else {
-        failed++;
-        failures.push(`  ❌ ${label}`);
-    }
-}
+const { assert, report } = createTestRunner('🔍 Filter smoke-test (headless DOM)');
 
 /** All card elements */
 const allCards = [...document.querySelectorAll('.destination-card')];
@@ -270,16 +260,4 @@ assert('after reset → no-results hidden',     !noResultsVisible());
 
 // ── report ────────────────────────────────────────────────────────
 
-console.log('\n🔍 Filter smoke-test (headless DOM)');
-console.log('━'.repeat(50));
-console.log(`   Assertions : ${passed + failed}  (${passed} passed, ${failed} failed)`);
-
-if (failures.length > 0) {
-    console.log('\n🚨 FAILURES:\n');
-    failures.forEach(f => console.log(f));
-    console.log('');
-    process.exit(1);
-} else {
-    console.log('\n✅ All filter checks passed.\n');
-    process.exit(0);
-}
+process.exit(report());

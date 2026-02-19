@@ -31,21 +31,11 @@ const path = require('path');
 const os   = require('os');
 
 const { convertMarkdown } = require('../../lib/markdown-converter');
+const { createTestRunner } = require('./test-helpers');
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
-let passed = 0;
-let failed = 0;
-
-function assert(condition, label) {
-    if (condition) {
-        console.log(`  ✅ ${label}`);
-        passed++;
-    } else {
-        console.log(`  ❌ FAIL: ${label}`);
-        failed++;
-    }
-}
+const { assert, report } = createTestRunner('📋 markdown-converter');
 
 /** Write a markdown file into dir and return its full path. */
 function writeMd(dir, name, content) {
@@ -101,8 +91,8 @@ async function run() {
         {
             const f = writeMd(dir, 'links.md', '[Visit site](https://example.com)\n');
             const html = await convertMarkdown(f);
-            assert(html.includes('target="_blank"'),              'adds target="_blank"');
-            assert(html.includes('rel="noopener noreferrer"'),    'adds rel="noopener noreferrer"');
+            assert('adds target="_blank"',              html.includes('target="_blank"'));
+            assert('adds rel="noopener noreferrer"',    html.includes('rel="noopener noreferrer"'));
         }
 
         {
@@ -111,7 +101,7 @@ async function run() {
                 '<a href="https://example.com" target="_blank">text</a>\n');
             const html = await convertMarkdown(f);
             const count = (html.match(/target=/g) || []).length;
-            assert(count === 1, 'does not duplicate target= on links that already have it');
+            assert('does not duplicate target= on links that already have it', count === 1);
         }
 
         // ── Image captions ───────────────────────────────────────────────────
@@ -120,15 +110,15 @@ async function run() {
         {
             const f = writeMd(dir, 'caption.md', '![Sunset over the sea](missing.jpg)\n');
             const html = await convertMarkdown(f);
-            assert(html.includes('<figure>'),                                    'image with alt text gets <figure>');
-            assert(html.includes('<figcaption>Sunset over the sea</figcaption>'), 'alt text becomes figcaption text');
+            assert('image with alt text gets <figure>',                                    html.includes('<figure>'));
+            assert('alt text becomes figcaption text', html.includes('<figcaption>Sunset over the sea</figcaption>'));
         }
 
         {
             const f = writeMd(dir, 'no-caption.md', '![](missing.jpg)\n');
             const html = await convertMarkdown(f);
-            assert(!html.includes('<figure>'), 'image without alt text is not wrapped in <figure>');
-            assert(html.includes('<p>'),        'image without alt text stays in <p>');
+            assert('image without alt text is not wrapped in <figure>', !html.includes('<figure>'));
+            assert('image without alt text stays in <p>',        html.includes('<p>'));
         }
 
         // ── Image sizing ─────────────────────────────────────────────────────
@@ -137,19 +127,19 @@ async function run() {
         {
             const f = writeMd(dir, 'landscape.md', '![photo](landscape.png)\n');
             const html = await convertMarkdown(f);
-            assert(html.includes('max-width: 600px'), 'landscape image (w > h) gets max-width: 600px');
+            assert('landscape image (w > h) gets max-width: 600px', html.includes('max-width: 600px'));
         }
 
         {
             const f = writeMd(dir, 'portrait.md', '![photo](portrait.png)\n');
             const html = await convertMarkdown(f);
-            assert(html.includes('max-width: 375px'), 'portrait image (h > w) gets max-width: 375px');
+            assert('portrait image (h > w) gets max-width: 375px', html.includes('max-width: 375px'));
         }
 
         {
             const f = writeMd(dir, 'missing-img.md', '![photo](does-not-exist.jpg)\n');
             const html = await convertMarkdown(f);
-            assert(html.includes('max-width: 600px'), 'missing image file defaults to 600px');
+            assert('missing image file defaults to 600px', html.includes('max-width: 600px'));
         }
 
         {
@@ -157,7 +147,7 @@ async function run() {
             const f = writeMd(dir, 'styled-img.md',
                 '<img src="landscape.png" style="border: 1px solid red">\n');
             const html = await convertMarkdown(f);
-            assert(!html.includes('max-width'), 'img with existing style= is not resized');
+            assert('img with existing style= is not resized', !html.includes('max-width'));
         }
 
         // ── Video conversion ─────────────────────────────────────────────────
@@ -166,28 +156,28 @@ async function run() {
         {
             const f = writeMd(dir, 'video-mp4.md', '![A timelapse](clip.mp4)\n');
             const html = await convertMarkdown(f);
-            assert(html.includes('<video'),                              'mp4 with caption becomes <video>');
-            assert(html.includes('type="video/mp4"'),                   'mp4 gets correct MIME type');
-            assert(html.includes('<figcaption>A timelapse</figcaption>'), 'mp4 caption is preserved');
+            assert('mp4 with caption becomes <video>',  html.includes('<video'));
+            assert('mp4 gets correct MIME type',         html.includes('type="video/mp4"'));
+            assert('mp4 caption is preserved',           html.includes('<figcaption>A timelapse</figcaption>'));
         }
 
         {
             const f = writeMd(dir, 'video-mov.md', '![A timelapse](clip.mov)\n');
             const html = await convertMarkdown(f);
-            assert(html.includes('type="video/quicktime"'), '.mov gets video/quicktime MIME type');
+            assert('.mov gets video/quicktime MIME type', html.includes('type="video/quicktime"'));
         }
 
         {
             const f = writeMd(dir, 'video-webm.md', '![A timelapse](clip.webm)\n');
             const html = await convertMarkdown(f);
-            assert(html.includes('type="video/webm"'), '.webm gets correct MIME type');
+            assert('.webm gets correct MIME type', html.includes('type="video/webm"'));
         }
 
         {
             const f = writeMd(dir, 'video-no-caption.md', '![](clip.mp4)\n');
             const html = await convertMarkdown(f);
-            assert(html.includes('<video'),       'mp4 without alt text still becomes <video>');
-            assert(!html.includes('<figcaption>'), 'mp4 without alt text has no figcaption');
+            assert('mp4 without alt text still becomes <video>', html.includes('<video'));
+            assert('mp4 without alt text has no figcaption',     !html.includes('<figcaption>'));
         }
 
     } finally {
@@ -195,9 +185,7 @@ async function run() {
     }
 
     // ── Summary ──────────────────────────────────────────────────────────────
-    const total = passed + failed;
-    console.log(`\n📋 markdown-converter: ${total} tests — ${passed} passed, ${failed} failed`);
-    if (failed > 0) process.exit(1);
+    process.exit(report());
 }
 
 run().catch(err => {
