@@ -14,7 +14,7 @@ Share accommodation recommendations...
 
 ## Food & Dining
 
-Recommend restaurants and local cuisine...
+There are several nice restaurants in Mapua.
 
 ## Practical Tips
 

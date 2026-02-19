@@ -1,8 +1,8 @@
 ## Overview
 
-Kaikour bills itself as “the Serengeti of the Pacific”, and it’s easy to find photos online that make it look like everywhere you look there’s sea life in astonishing abundance.  That wasn’t our experience … but it was still a really exciting stop.
+Kaikoura bills itself as “the Serengeti of the Pacific”, and it’s easy to find photos online that make it look like everywhere you look in the water there’s sea life in astonishing abundance.  That wasn’t our experience … but it was still a really exciting stop.
 
-In January, Point Keane just past the town of Kaikoura had a 20? Minute walk to just incredibly cute southern Fur Seal babies.  Total cuteness overdose.
+In January, Point Keane just past the town of Kaikoura had a 15-20 minute walk to just incredibly cute southern Fur Seal babies.  Total cuteness overdose.
 
 We did Whale Watch Kaikoura.  We saw fewer animals overall than I’d envisioned, but we did see several Sperm Whales diving, which made the whole experience special.
 
