@@ -1,0 +1,7 @@
+{
+  "siteId": "twotravelnuts",
+  "hosts": {
+    "development": "http://localhost:8080",
+    "production": "https://comments.twotravelnuts.com"
+  }
+}
