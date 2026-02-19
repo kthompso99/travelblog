@@ -20,7 +20,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const CONFIG = require('../../lib/config-paths');
-const { discoverAllTrips } = require('../../lib/build-utilities');
+const { discoverAllTrips, ensureDir } = require('../../lib/build-utilities');
 
 // Configuration
 const MAX_WIDTH = 1800;          // Max width in pixels (for 600px CSS @ 3x retina)
@@ -143,9 +143,7 @@ function optimizeImage(imagePath, backupDir) {
 
   try {
     // Create backup directory if it doesn't exist
-    if (!fs.existsSync(backupDir)) {
-      fs.mkdirSync(backupDir, { recursive: true });
-    }
+    ensureDir(backupDir);
 
     // Backup original (only if not already backed up)
     if (!fs.existsSync(backupPath)) {

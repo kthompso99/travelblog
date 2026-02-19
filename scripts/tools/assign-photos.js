@@ -7,9 +7,10 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const readline = require('readline');
 const { execSync } = require('child_process');
 const CONFIG = require('../../lib/config-paths');
+const { GALLERY_MARKER } = require('../../lib/constants');
+const { prompt } = require('../../lib/prompt-utilities');
 
 /**
  * Parse trip structure from trip.json
@@ -194,7 +195,7 @@ async function appendPhotoToLocationFile(tripId, locationFile, photo, newFilenam
 
   // Read file to check for gallery marker
   const fileContent = await fs.readFile(locationPath, 'utf8');
-  const galleryMarker = '*Add your photos here*';
+  const galleryMarker = GALLERY_MARKER;
 
   // If marker doesn't exist, add it first
   if (!fileContent.includes(galleryMarker)) {
@@ -264,23 +265,6 @@ async function initializeLocationPhotoCounts(locations, tripId) {
       throw err;
     }
   }
-}
-
-/**
- * Interactive prompt helper
- */
-function prompt(question) {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  return new Promise(resolve => {
-    rl.question(question, answer => {
-      rl.close();
-      resolve(answer.trim());
-    });
-  });
 }
 
 /**

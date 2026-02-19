@@ -21,7 +21,7 @@ const {
     loadJsonFile,
     loadTripConfig,
     discoverAllTrips,
-    processMarkdownWithGallery,
+    convertMarkdownWithGallery,
     writeTripContentJson,
     extractTripMetadata,
     writeConfigBuilt,
@@ -64,16 +64,8 @@ async function convertContentMarkdown(processed, item, tripId, tripTitle, warnin
     try {
         console.log(`    📝 Converting markdown: ${filePath}`);
 
-        const { markdownContent, galleryImages } = processMarkdownWithGallery(filePath, item.file);
-
-        if (galleryImages && galleryImages.length > 0) {
-            const tempPath = filePath + '.temp';
-            fs.writeFileSync(tempPath, markdownContent, 'utf8');
-            processed.contentHtml = await convertMarkdown(tempPath);
-            fs.unlinkSync(tempPath);
-        } else {
-            processed.contentHtml = await convertMarkdown(filePath);
-        }
+        const { html, galleryImages } = await convertMarkdownWithGallery(filePath, item.file);
+        processed.contentHtml = html;
 
         console.log(`    ✅ HTML generated (${processed.contentHtml.length} chars)`);
 

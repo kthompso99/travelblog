@@ -39,9 +39,9 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const readline = require('readline');
 const { spawn } = require('child_process');
 const CONFIG = require('../../lib/config-paths');
+const { prompt } = require('../../lib/prompt-utilities');
 const {
   getPossibleMetadataPaths,
   catalogZipContents,
@@ -190,21 +190,6 @@ async function syncTakeoutPhotos(zipPath, tripId) {
   console.log(`   Markdown: ${markdownPath}`);
 }
 
-// Helper function to prompt user for yes/no
-function askQuestion(query) {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  return new Promise(resolve => {
-    rl.question(query, (answer) => {
-      rl.close();
-      resolve(answer.toLowerCase().trim());
-    });
-  });
-}
-
 // Helper function to run image optimization
 function optimizeImages(tripId) {
   return new Promise((resolve, reject) => {
@@ -239,7 +224,7 @@ syncTakeoutPhotos(zipPath, tripId)
   .then(async () => {
     // Offer to optimize images
     console.log(`\n💡 Tip: Images should be optimized before committing.`);
-    const answer = await askQuestion('Optimize images now? (y/n): ');
+    const answer = (await prompt('Optimize images now? (y/n): ')).toLowerCase();
 
     if (answer === 'y' || answer === 'yes') {
       await optimizeImages(tripId);

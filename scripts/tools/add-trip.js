@@ -58,9 +58,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
 const { slugify } = require('../../lib/slug-utilities');
 const { ensureDir } = require('../../lib/build-utilities');
+const { createPromptSession } = require('../../lib/prompt-utilities');
 
 // Import centralized configuration paths
 const CONFIG = require('../../lib/config-paths');
@@ -269,8 +269,7 @@ function printSummary(tripId, tripDir, content) {
 async function addTrip() {
     console.log('🌍 Add New Trip\n');
 
-    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-    const ask = (prompt) => new Promise(resolve => rl.question(prompt, resolve));
+    const { ask, close } = createPromptSession();
 
     try {
         const metadata = await gatherTripMetadata(ask);
@@ -281,7 +280,7 @@ async function addTrip() {
     } catch (e) {
         console.log(`❌ ${e.message}`);
     } finally {
-        rl.close();
+        close();
     }
 }
 

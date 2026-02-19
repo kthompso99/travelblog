@@ -15,9 +15,8 @@
 const fs = require('fs');
 const path = require('path');
 const { generateTripContentPage } = require('../../lib/generate-html');
-const { convertMarkdown } = require('../../lib/markdown-converter');
 const CONFIG = require('../../lib/config-paths');
-const { ensureDir, loadJsonFile, processMarkdownWithGallery, discoverAllTrips } = require('../../lib/build-utilities');
+const { ensureDir, loadJsonFile, convertMarkdownWithGallery, discoverAllTrips } = require('../../lib/build-utilities');
 const { slugify } = require('../../lib/slug-utilities');
 
 const NODEMON_TRIGGER_WINDOW_MS = 5000; // nodemon fires within ~5s of a file save
@@ -141,25 +140,12 @@ async function reconvertMarkdown(contentItem, tripId, contentSlug) {
         process.exit(0);
     }
 
-    const { markdownContent, galleryImages } = processMarkdownWithGallery(markdownPath, `${contentSlug}.md`);
+    const { html, galleryImages } = await convertMarkdownWithGallery(markdownPath, `${contentSlug}.md`);
+    contentItem.html = html;
+    contentItem.contentHtml = html;
 
     if (galleryImages && galleryImages.length > 0) {
-        const tempPath = markdownPath + '.temp';
-        fs.writeFileSync(tempPath, markdownContent, 'utf8');
-        const freshHtml = await convertMarkdown(tempPath);
-        fs.unlinkSync(tempPath);
-
-        contentItem.html = freshHtml;
-        contentItem.contentHtml = freshHtml;
         contentItem.gallery = galleryImages;
-    } else {
-        const freshHtml = await convertMarkdown(markdownPath);
-        contentItem.html = freshHtml;
-        contentItem.contentHtml = freshHtml;
-    }
-
-    if (!contentItem.html && contentItem.contentHtml) {
-        contentItem.html = contentItem.contentHtml;
     }
 }
 
