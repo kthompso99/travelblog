@@ -33,6 +33,49 @@ async function parseTripStructure(tripId) {
 }
 
 /**
+ * Read a possibly multiline image markdown entry starting after a Photo ID comment.
+ * Accumulates lines until the closing ](images/...) is found.
+ *
+ * @returns {{ markdown: string, linesConsumed: number }}
+ */
+function readMultilineImageMarkdown(lines, startIndex) {
+  let markdown = '';
+  let offset = 1;
+
+  while (startIndex + offset < lines.length) {
+    const currentLine = lines[startIndex + offset];
+    markdown += (markdown ? '\n' : '') + currentLine;
+
+    if (currentLine.includes('](images/')) {
+      break;
+    }
+    offset++;
+  }
+
+  return { markdown, linesConsumed: offset };
+}
+
+/**
+ * Extract the sequence number from a trip photo filename (e.g., "spain-08.jpg" → 8).
+ * Returns null if the filename doesn't match the expected pattern.
+ */
+function extractPhotoNumber(filename, tripId) {
+  const match = filename.match(new RegExp(`${tripId}-(\\d+)\\.`));
+  return match ? parseInt(match[1]) : null;
+}
+
+/**
+ * Find unassigned photos whose sequence numbers fall within [startNum, endNum].
+ */
+function findPhotosInRange(photos, startNum, endNum, tripId) {
+  return photos.filter(p => {
+    if (p.assigned) return false;
+    const num = extractPhotoNumber(p.currentFilename, tripId);
+    return num !== null && num >= startNum && num <= endNum;
+  });
+}
+
+/**
  * Parse all-synced-photos.md to extract photo list
  */
 async function parseSyncedPhotos(tripId) {
@@ -41,65 +84,38 @@ async function parseSyncedPhotos(tripId) {
 
   const photos = [];
   const lines = content.split('\n');
+  const unassignedPattern = new RegExp(`^${tripId}-\\d+\\.(jpg|jpeg|png|heic)$`, 'i');
 
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
+    const idMatch = lines[i].match(/<!-- Photo ID: (.+?) -->/);
+    if (!idMatch) continue;
 
-    // Match: <!-- Photo ID: ... -->
-    const idMatch = line.match(/<!-- Photo ID: (.+?) -->/);
-    if (idMatch) {
-      const photoId = idMatch[1];
+    const photoId = idMatch[1];
+    const { markdown } = readMultilineImageMarkdown(lines, i);
+    const imgMatch = markdown.match(/!\[([\s\S]*?)\]\(images\/(.+?)\)/);
+    if (!imgMatch) continue;
 
-      // Next line(s) contain image markdown - may span multiple lines for long captions
-      let imgMarkdown = '';
-      let lineOffset = 1;
+    const currentFilename = imgMatch[2];
 
-      // Keep reading lines until we find the complete image markdown with closing )
-      while (i + lineOffset < lines.length) {
-        const currentLine = lines[i + lineOffset];
-        imgMarkdown += (imgMarkdown ? '\n' : '') + currentLine;
+    // Skip photos that have already been assigned (renamed from tripId-XX.jpg pattern)
+    if (!unassignedPattern.test(currentFilename)) continue;
 
-        // Check if we've found the complete markdown with closing parenthesis
-        if (currentLine.includes('](images/')) {
-          break;
-        }
+    const currentPath = path.join(CONFIG.getTripImagesDir(tripId), currentFilename);
 
-        lineOffset++;
-      }
-
-      // Parse the complete (possibly multiline) markdown using [\s\S] to match newlines
-      const imgMatch = imgMarkdown.match(/!\[([\s\S]*?)\]\(images\/(.+?)\)/);
-
-      if (imgMatch) {
-        const currentFilename = imgMatch[2];
-
-        // Skip photos that have already been assigned (renamed from tripId-XX.jpg pattern)
-        const unassignedPattern = new RegExp(`^${tripId}-\\d+\\.(jpg|jpeg|png|heic)$`, 'i');
-        if (!unassignedPattern.test(currentFilename)) {
-          // Already assigned (e.g., cordoba-01.jpg, seville-02.jpg)
-          continue;
-        }
-
-        const currentPath = path.join(CONFIG.getTripImagesDir(tripId), currentFilename);
-
-        // Verify file still exists
-        try {
-          await fs.access(currentPath);
-
-          photos.push({
-            photoId,
-            caption: imgMatch[1] || '',
-            currentFilename,
-            currentPath,
-            assigned: false,
-            newFilename: null,
-            newPath: null
-          });
-        } catch {
-          // File doesn't exist (deleted or moved manually), skip
-          continue;
-        }
-      }
+    // Verify file still exists
+    try {
+      await fs.access(currentPath);
+      photos.push({
+        photoId,
+        caption: imgMatch[1] || '',
+        currentFilename,
+        currentPath,
+        assigned: false,
+        newFilename: null,
+        newPath: null
+      });
+    } catch {
+      // File doesn't exist (deleted or moved manually), skip
     }
   }
 
@@ -110,9 +126,8 @@ async function parseSyncedPhotos(tripId) {
  * Display photo thumbnail (iTerm2)
  */
 function showThumbnail(photo, index, total, tripId) {
-  // Extract photo number from filename (e.g., "spain-2025-08.jpg" -> 8)
-  const photoNumMatch = photo.currentFilename.match(new RegExp(`${tripId}-(\\d+)\\.`));
-  const photoNum = photoNumMatch ? `#${photoNumMatch[1]}` : '';
+  const num = extractPhotoNumber(photo.currentFilename, tripId);
+  const photoNum = num !== null ? `#${num}` : '';
 
   console.log(`\n[Unassigned ${index}/${total}] ${photo.currentFilename} ${photoNum}`);
 
@@ -269,13 +284,66 @@ function prompt(question) {
 }
 
 /**
+ * Handle range assignment mode — prompt for range, find matching photos, assign batch.
+ * Returns true if assignment proceeded, false if user input was invalid.
+ */
+async function handleRangeAssignment(photo, photos, locations, menu, tripId) {
+  const currentPhotoNum = extractPhotoNumber(photo.currentFilename, tripId);
+
+  if (currentPhotoNum === null) {
+    console.log('❌ Cannot determine photo number from filename');
+    return false;
+  }
+
+  const rangeInput = await prompt(
+    `\nCurrent photo: ${photo.currentFilename} (photo #${currentPhotoNum})\n` +
+    `Enter range by photo number (e.g., "${currentPhotoNum}-${currentPhotoNum + 4}"): `
+  );
+  const rangeMatch = rangeInput.match(/^(\d+)-(\d+)$/);
+
+  if (!rangeMatch) {
+    console.log('❌ Invalid range format. Use format like "8-12"');
+    return false;
+  }
+
+  const startNum = parseInt(rangeMatch[1]);
+  const endNum = parseInt(rangeMatch[2]);
+
+  if (startNum > endNum) {
+    console.log('❌ Invalid range. Start must be less than or equal to end.');
+    return false;
+  }
+
+  const photosToAssign = findPhotosInRange(photos, startNum, endNum, tripId);
+
+  if (photosToAssign.length === 0) {
+    console.log('❌ No unassigned photos found in that range');
+    return false;
+  }
+
+  const locationIdx = parseInt(await prompt(`Assign ${photosToAssign.length} photos to: ${menu}\n> `)) - 1;
+
+  if (locationIdx < 0 || locationIdx >= locations.length) {
+    console.log('❌ Invalid location');
+    return false;
+  }
+
+  const targetLocation = locations[locationIdx];
+  console.log(`\nAssigning ${photosToAssign.length} photos to ${targetLocation.id}...`);
+  for (const p of photosToAssign) {
+    await assignPhotoToLocation(p, targetLocation, tripId);
+  }
+  console.log(`✅ Assigned ${photosToAssign.length} photos to ${targetLocation.id}`);
+  return true;
+}
+
+/**
  * Main interactive assignment loop
  */
 async function runInteractiveAssignment(tripId) {
-  const { trip, locations } = await parseTripStructure(tripId);
+  const { locations } = await parseTripStructure(tripId);
   const photos = await parseSyncedPhotos(tripId);
 
-  // Initialize photo counts from existing files to prevent overwriting
   await initializeLocationPhotoCounts(locations, tripId);
 
   console.log(`📁 Trip: ${tripId} (${CONFIG.getTripDir(tripId)})`);
@@ -287,135 +355,49 @@ async function runInteractiveAssignment(tripId) {
     return;
   }
 
+  const menu = locations
+    .map((loc, idx) => `\x1b[1m\x1b[31m(${idx + 1})\x1b[0m ${loc.id}`)
+    .join('  ');
+
   let photoIndex = 0;
 
   while (photoIndex < photos.length) {
     const photo = photos[photoIndex];
 
-    // Skip if already assigned (shouldn't happen, but safety check)
-    if (photo.assigned) {
-      photoIndex++;
-      continue;
-    }
+    if (photo.assigned) { photoIndex++; continue; }
 
-    // Show thumbnail
     showThumbnail(photo, photoIndex + 1, photos.length, tripId);
-
-    // Build location menu with color-coded numbers
-    const menu = locations
-      .map((loc, idx) => `\x1b[1m\x1b[31m(${idx + 1})\x1b[0m ${loc.id}`)
-      .join('  ');
 
     const answer = await prompt(
       `\nAssign to:\n  ${menu}\n  (s) skip  (r) range  (q) quit\n> `
     );
 
-    // Handle quit
-    if (answer === 'q') {
-      console.log('\n👋 Exiting. Progress saved.');
-      break;
-    }
+    if (answer === 'q') { console.log('\n👋 Exiting. Progress saved.'); break; }
+    if (answer === 's') { console.log('⏭️  Skipped'); photoIndex++; continue; }
 
-    // Handle skip
-    if (answer === 's') {
-      console.log('⏭️  Skipped');
-      photoIndex++;
-      continue;
-    }
-
-    // Handle range mode
     if (answer === 'r') {
-      // Extract current photo number from filename (e.g., "spain-2025-08.jpg" -> 8)
-      const currentFilename = photo.currentFilename;
-      const currentPhotoNumMatch = currentFilename.match(new RegExp(`${tripId}-(\\d+)\\.`));
-      const currentPhotoNum = currentPhotoNumMatch ? parseInt(currentPhotoNumMatch[1]) : null;
-
-      if (!currentPhotoNum) {
-        console.log('❌ Cannot determine photo number from filename');
-        continue;
-      }
-
-      const rangeInput = await prompt(`\nCurrent photo: ${currentFilename} (photo #${currentPhotoNum})\nEnter range by photo number (e.g., "${currentPhotoNum}-${currentPhotoNum + 4}"): `);
-      const rangeMatch = rangeInput.match(/^(\d+)-(\d+)$/);
-
-      if (!rangeMatch) {
-        console.log('❌ Invalid range format. Use format like "8-12"');
-        continue;
-      }
-
-      const startPhotoNum = parseInt(rangeMatch[1]);
-      const endPhotoNum = parseInt(rangeMatch[2]);
-
-      if (startPhotoNum > endPhotoNum) {
-        console.log('❌ Invalid range. Start must be less than or equal to end.');
-        continue;
-      }
-
-      // Find photos by their sequence numbers
-      const photosToAssign = [];
-      for (const p of photos) {
-        if (p.assigned) continue;
-
-        const photoNumMatch = p.currentFilename.match(new RegExp(`${tripId}-(\\d+)\\.`));
-        if (photoNumMatch) {
-          const photoNum = parseInt(photoNumMatch[1]);
-          if (photoNum >= startPhotoNum && photoNum <= endPhotoNum) {
-            photosToAssign.push(p);
-          }
-        }
-      }
-
-      if (photosToAssign.length === 0) {
-        console.log('❌ No unassigned photos found in that range');
-        continue;
-      }
-
-      const count = photosToAssign.length;
-      const locationIdx = parseInt(await prompt(`Assign ${count} photos to: ${menu}\n> `)) - 1;
-
-      if (locationIdx < 0 || locationIdx >= locations.length) {
-        console.log('❌ Invalid location');
-        continue;
-      }
-
-      const targetLocation = locations[locationIdx];
-
-      // Assign batch
-      console.log(`\nAssigning ${count} photos to ${targetLocation.id}...`);
-      for (const p of photosToAssign) {
-        await assignPhotoToLocation(p, targetLocation, tripId);
-      }
-
-      console.log(`✅ Assigned ${count} photos to ${targetLocation.id}`);
-
-      // Continue from current position
+      await handleRangeAssignment(photo, photos, locations, menu, tripId);
       photoIndex++;
       continue;
     }
 
-    // Handle single photo assignment
+    // Single photo assignment
     const locationIdx = parseInt(answer) - 1;
-
     if (locationIdx < 0 || locationIdx >= locations.length) {
       console.log('❌ Invalid choice');
       continue;
     }
 
-    const targetLocation = locations[locationIdx];
-    await assignPhotoToLocation(photo, targetLocation, tripId);
-
+    await assignPhotoToLocation(photo, locations[locationIdx], tripId);
     photoIndex++;
   }
 
-  // Update all-synced-photos.md with new filenames
   const assignedPhotos = photos.filter(p => p.assigned);
   if (assignedPhotos.length > 0) {
     await updateSyncedPhotosMarkdown(tripId, photos);
   }
 
   console.log('\n✨ Assignment complete!\n');
-
-  // Summary
   console.log('📊 Summary:');
   locations.forEach(loc => {
     if (loc.photoCount > 0) {
