@@ -11,46 +11,13 @@ const path = require('path');
 
 // Import centralized configuration paths
 const CONFIG = require('../lib/config-paths');
+const { discoverTrips: discoverTripsLib } = require('../lib/build-utilities');
 
 const { SITE_CONFIG, TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
 
 let errors = [];
 let warnings = [];
 let info = [];
-
-/**
- * Discover all trips by scanning the trips directory
- * Returns trip IDs sorted in reverse chronological order (newest first)
- * @returns {Array} Array of trip IDs sorted by beginDate (newest first)
- */
-function discoverTrips() {
-    if (!fs.existsSync(TRIPS_DIR)) {
-        return [];
-    }
-
-    const entries = fs.readdirSync(TRIPS_DIR, { withFileTypes: true });
-    const tripDirs = entries.filter(entry => entry.isDirectory()).map(entry => entry.name);
-
-    const trips = [];
-    for (const tripId of tripDirs) {
-        const tripConfigPath = CONFIG.getTripConfigPath(tripId);
-        if (!fs.existsSync(tripConfigPath)) continue;
-
-        try {
-            const tripData = fs.readFileSync(tripConfigPath, 'utf8');
-            const tripConfig = JSON.parse(tripData);
-            trips.push({
-                slug: tripId,  // Infer slug from directory name
-                beginDate: tripConfig.beginDate || '1970-01-01'
-            });
-        } catch (e) {
-            // Skip trips with invalid config
-        }
-    }
-
-    trips.sort((a, b) => new Date(b.beginDate) - new Date(a.beginDate));
-    return trips.map(trip => trip.slug);
-}
 
 function error(msg) {
     errors.push('❌ ERROR: ' + msg);
@@ -81,7 +48,7 @@ function validate() {
     }
 
     // Auto-discover trips from directories
-    const allTrips = discoverTrips();
+    const allTrips = discoverTripsLib(TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
 
     if (allTrips.length === 0) {
         warning('No trips found in content/trips/');

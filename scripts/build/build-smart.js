@@ -71,16 +71,8 @@ function runFullBuild() {
 async function runIncrementalBuild(tripIds) {
     console.log(`\n🔄 Incremental build for: ${tripIds.join(', ')}\n`);
 
-    // Load build.js as a module to reuse processTrip and geocode functions
+    // Load build.js as a module to reuse processTrip (geocode cache loads automatically on require)
     const buildModule = require('./build');
-
-    // Load geocode cache into the build module
-    if (fs.existsSync(CONFIG.GEOCODE_CACHE_FILE)) {
-        try {
-            buildModule.setGeocodeCache(JSON.parse(fs.readFileSync(CONFIG.GEOCODE_CACHE_FILE, 'utf8')));
-            console.log(`✅ Loaded geocode cache with ${Object.keys(buildModule.getGeocodeCache()).length} entries\n`);
-        } catch (e) { /* start fresh */ }
-    }
 
     const siteConfig = JSON.parse(fs.readFileSync(PATHS.siteConfig, 'utf8'));
     const domain = siteConfig.domain || 'https://example.com';
@@ -98,9 +90,6 @@ async function runIncrementalBuild(tripIds) {
             console.log(`  💾 Saved trips/${tripId}.json`);
         }
     }
-
-    // Persist geocode cache (may have new entries)
-    buildModule.saveGeocodeCache();
 
     // Load existing config.built.json and merge in updated trip metadata
     let output;

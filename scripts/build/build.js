@@ -8,18 +8,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
-const { imageSize } = require('image-size');
 const { slugify } = require('../../lib/slug-utilities');
-
-// Load marked for markdown conversion
-let marked;
-try {
-    marked = require('marked');
-} catch (e) {
-    console.error('Error: marked is not installed. Run: npm install marked');
-    process.exit(1);
-}
+const { geocodeLocation, loadGeocodeCache } = require('../../lib/geocode');
+const { convertMarkdown } = require('../../lib/markdown-converter');
 
 // Load HTML generators (paths relative to project root since script runs from root)
 const { generateHomepage, generateMapPage, generateAboutPage } = require('../../lib/generate-html');
@@ -43,167 +34,10 @@ const CONFIG = require('../../lib/config-paths');
 // Import cache management
 const { loadCache, createEmptyCache, updateFullCache, saveCache } = require('../../lib/build-cache');
 
-const { SITE_CONFIG, TRIPS_DIR, OUTPUT_FILE, TRIPS_OUTPUT_DIR, CACHE_DIR, GEOCODE_CACHE_FILE } = CONFIG;
+const { SITE_CONFIG, TRIPS_DIR, OUTPUT_FILE, TRIPS_OUTPUT_DIR } = CONFIG;
 
-// Load Google Maps API key (env var for CI/production, config file for local dev)
-let googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY || null;
-if (!googleMapsApiKey) {
-    const googleMapsConfigPath = 'config/google-maps.json';
-    if (fs.existsSync(googleMapsConfigPath)) {
-        try {
-            const googleMapsConfig = JSON.parse(fs.readFileSync(googleMapsConfigPath, 'utf8'));
-            googleMapsApiKey = googleMapsConfig.apiKey;
-        } catch (e) {
-            console.error('⚠️  Could not load Google Maps API key from config/google-maps.json');
-        }
-    }
-}
-
-// Load geocode cache
-let geocodeCache = {};
-if (fs.existsSync(GEOCODE_CACHE_FILE)) {
-    try {
-        geocodeCache = JSON.parse(fs.readFileSync(GEOCODE_CACHE_FILE, 'utf8'));
-        console.log(`✅ Loaded geocode cache with ${Object.keys(geocodeCache).length} entries\n`);
-    } catch (e) {
-        console.log('⚠️  Could not load geocode cache, starting fresh\n');
-    }
-}
-
-// Save geocode cache
-function saveGeocodeCache() {
-    if (!fs.existsSync(CACHE_DIR)) {
-        fs.mkdirSync(CACHE_DIR, { recursive: true });
-    }
-    fs.writeFileSync(GEOCODE_CACHE_FILE, JSON.stringify(geocodeCache, null, 2), 'utf8');
-}
-
-// Geocode a location using Google Maps Geocoding API (with caching)
-function geocodeLocation(locationName) {
-    // Check cache first
-    if (geocodeCache[locationName]) {
-        console.log(`    💾 Using cached coordinates for: ${locationName}`);
-        return Promise.resolve(geocodeCache[locationName]);
-    }
-
-    if (!googleMapsApiKey) {
-        return Promise.reject(new Error('Google Maps API key not configured'));
-    }
-
-    return new Promise((resolve, reject) => {
-        const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(locationName)}&key=${googleMapsApiKey}`;
-
-        https.get(url, (res) => {
-            let data = '';
-            res.on('data', (chunk) => data += chunk);
-            res.on('end', () => {
-                try {
-                    const json = JSON.parse(data);
-                    if (json.status === 'OK' && json.results && json.results.length > 0) {
-                        const location = json.results[0].geometry.location;
-                        const coords = {
-                            lat: location.lat,
-                            lng: location.lng
-                        };
-                        // Cache the result
-                        geocodeCache[locationName] = coords;
-                        saveGeocodeCache();
-                        resolve(coords);
-                    } else if (json.status === 'ZERO_RESULTS') {
-                        reject(new Error('No results found'));
-                    } else {
-                        reject(new Error(`Geocoding failed: ${json.status}`));
-                    }
-                } catch (e) {
-                    reject(e);
-                }
-            });
-        }).on('error', reject);
-    });
-}
-
-// Read and convert markdown file to HTML
-function convertMarkdown(filePath) {
-    return new Promise((resolve, reject) => {
-        fs.readFile(filePath, 'utf8', (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                try {
-                    let html = marked.parse(data);
-
-                    // Post-process: Add orientation-aware max-width to all images
-                    // Portrait (vertical) images: 375px max-width
-                    // Landscape (horizontal) images: 600px max-width
-                    // Only add if img doesn't already have inline style
-                    const markdownDir = path.dirname(filePath);
-                    html = html.replace(/<img(?![^>]*style=)([^>]*)>/gi, (match, attrs) => {
-                        // Extract src attribute
-                        const srcMatch = attrs.match(/src="([^"]*)"/);
-                        if (!srcMatch) return match; // No src, return unchanged
-
-                        const imgSrc = srcMatch[1];
-                        const imgPath = path.join(markdownDir, imgSrc);
-
-                        let maxWidth = 600; // Default to landscape
-
-                        // Try to get image dimensions to determine orientation
-                        try {
-                            if (fs.existsSync(imgPath)) {
-                                const buffer = fs.readFileSync(imgPath);
-                                const dimensions = imageSize(buffer);
-                                // Portrait: height > width
-                                if (dimensions.height > dimensions.width) {
-                                    maxWidth = 375;
-                                }
-                            }
-                        } catch (err) {
-                            // If we can't read dimensions, default to landscape (600px)
-                            // This handles cases where images don't exist yet or are external
-                        }
-
-                        return `<img${attrs} style="max-width: ${maxWidth}px; width: 100%; height: auto;">`;
-                    });
-
-                    // Post-process: Convert paragraph-wrapped images to figure with figcaption
-                    // This makes the alt text visible as a caption below the image
-                    html = html.replace(/<p>(<img[^>]+>)<\/p>/gi, (match, imgTag) => {
-                        const altMatch = imgTag.match(/alt="([^"]*)"/);
-                        if (altMatch && altMatch[1]) {
-                            // Image has alt text - wrap in figure with figcaption
-                            return `<figure>${imgTag}<figcaption>${altMatch[1]}</figcaption></figure>`;
-                        }
-                        // No alt text - keep as paragraph
-                        return match;
-                    });
-
-                    // Post-process: Add target="_blank" to all external links
-                    // Opens links in new tab and adds security attributes
-                    html = html.replace(/<a(?![^>]*target=)([^>]*)>/gi, '<a$1 target="_blank" rel="noopener noreferrer">');
-
-                    // Post-process: Convert <img> tags with video extensions to <video> tags
-                    // Supports .mp4, .mov, .webm file extensions
-                    html = html.replace(/<figure>(<img[^>]+src="([^"]+\.(mp4|mov|webm))"[^>]*>)<figcaption>([^<]+)<\/figcaption><\/figure>/gi, (match, imgTag, src, ext, caption) => {
-                        // Video with caption (was wrapped in figure)
-                        return `<figure><video controls style="max-width: 600px; width: 100%; height: auto;"><source src="${src}" type="video/${ext === 'mov' ? 'quicktime' : ext}">Your browser does not support the video tag.</video><figcaption>${caption}</figcaption></figure>`;
-                    });
-                    html = html.replace(/<p>(<img[^>]+src="([^"]+\.(mp4|mov|webm))"[^>]*>)<\/p>/gi, (match, imgTag, src, ext) => {
-                        // Video without caption (was in paragraph)
-                        return `<p><video controls style="max-width: 600px; width: 100%; height: auto;"><source src="${src}" type="video/${ext === 'mov' ? 'quicktime' : ext}">Your browser does not support the video tag.</video></p>`;
-                    });
-                    html = html.replace(/<img([^>]+)src="([^"]+\.(mp4|mov|webm))"([^>]*)>/gi, (match, before, src, ext, after) => {
-                        // Catch any remaining video img tags (not wrapped in p or figure)
-                        return `<video controls style="max-width: 600px; width: 100%; height: auto;"><source src="${src}" type="video/${ext === 'mov' ? 'quicktime' : ext}">Your browser does not support the video tag.</video>`;
-                    });
-
-                    resolve(html);
-                } catch (e) {
-                    reject(e);
-                }
-            }
-        });
-    });
-}
+// Load geocode cache from disk
+loadGeocodeCache();
 
 // Calculate duration between two dates
 function calculateDuration(beginDate, endDate) {
@@ -686,15 +520,8 @@ async function build(specificTripId = null) {
     }
 }
 
-// Export reusable functions for incremental builds
-module.exports = {
-    processTrip,
-    convertMarkdown,
-    geocodeLocation,
-    saveGeocodeCache,
-    getGeocodeCache: () => geocodeCache,
-    setGeocodeCache: (cache) => { geocodeCache = cache; }
-};
+// Export processTrip for use by incremental build scripts
+module.exports = { processTrip };
 
 // Only run full build when executed directly (not when required by build-smart)
 if (require.main === module) {

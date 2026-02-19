@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 const { generateTripLocationPage, generateTripArticlePage } = require('../../lib/generate-html');
-const { convertMarkdown } = require('./build');
+const { convertMarkdown } = require('../../lib/markdown-converter');
 const CONFIG = require('../../lib/config-paths');
 const { processMarkdownWithGallery } = require('../../lib/build-utilities');
 
