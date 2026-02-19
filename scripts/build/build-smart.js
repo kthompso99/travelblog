@@ -41,14 +41,6 @@ const {
     updateFullCache
 } = require('../../lib/build-cache');
 
-const PATHS = {
-    siteConfig: CONFIG.SITE_CONFIG,
-    tripsDir: CONFIG.TRIPS_DIR,
-    templatesDir: CONFIG.TEMPLATES_DIR,
-    libDir: CONFIG.LIB_DIR,
-    buildScript: CONFIG.BUILD_SCRIPT
-};
-
 function runFullBuild() {
     console.log('🔄 Running full build...\n');
     try {
@@ -122,7 +114,7 @@ async function runIncrementalBuild(tripIds) {
     console.log(`\n🔄 Incremental build for: ${tripIds.join(', ')}\n`);
 
     const buildModule = require('./build');
-    const siteConfig = JSON.parse(fs.readFileSync(PATHS.siteConfig, 'utf8'));
+    const siteConfig = JSON.parse(fs.readFileSync(CONFIG.SITE_CONFIG, 'utf8'));
     const domain = siteConfig.domain || 'https://example.com';
 
     const buildWarnings = [];

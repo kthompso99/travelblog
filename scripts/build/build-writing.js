@@ -14,7 +14,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { generateTripLocationPage, generateTripArticlePage } = require('../../lib/generate-html');
+const { generateTripContentPage } = require('../../lib/generate-html');
 const { convertMarkdown } = require('../../lib/markdown-converter');
 const CONFIG = require('../../lib/config-paths');
 const { ensureDir, processMarkdownWithGallery } = require('../../lib/build-utilities');
@@ -177,33 +177,22 @@ function generateAndWritePage(contentItem, tripMetadata, tripContentData, fullCo
     const outputPath = path.join(CONFIG.TRIPS_OUTPUT_DIR, tripId, `${contentSlug}.html`);
     let html;
 
-    if (contentItem.type === 'location') {
-        const allLocations = tripContentData.content.filter(c => c.type === 'location');
-        const locationIndex = allLocations.findIndex(loc => loc.slug === contentSlug);
-
-        html = generateTripLocationPage(
-            tripMetadata,
-            contentItem,
-            allLocations,
-            locationIndex,
-            fullConfig,
-            fullConfig.site.url
-        );
-    } else if (contentItem.type === 'article') {
-        const articleIndex = tripContentData.content.findIndex(item => item.slug === contentSlug);
-
-        html = generateTripArticlePage(
-            tripMetadata,
-            contentItem,
-            tripContentData.content,
-            articleIndex,
-            fullConfig,
-            fullConfig.site.url
-        );
-    } else {
+    if (contentItem.type !== 'location' && contentItem.type !== 'article') {
         console.log(`   ⏭️  Skipped: unknown content type "${contentItem.type}"\n`);
         process.exit(0);
     }
+
+    const allContent = tripContentData.content;
+    const contentIndex = allContent.findIndex(item => item.slug === contentSlug);
+
+    html = generateTripContentPage(
+        tripMetadata,
+        contentItem,
+        allContent,
+        contentIndex,
+        fullConfig,
+        fullConfig.site.url
+    );
 
     fs.writeFileSync(outputPath, html);
 }
