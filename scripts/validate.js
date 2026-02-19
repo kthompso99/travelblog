@@ -11,7 +11,7 @@ const path = require('path');
 
 // Import centralized configuration paths
 const CONFIG = require('../lib/config-paths');
-const { loadTripConfig, discoverAllTrips } = require('../lib/build-utilities');
+const { loadJsonFile, loadTripConfig, discoverAllTrips } = require('../lib/build-utilities');
 
 const { SITE_CONFIG, TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
 
@@ -38,7 +38,7 @@ function validateSiteConfig() {
     }
 
     try {
-        const siteConfig = JSON.parse(fs.readFileSync(SITE_CONFIG, 'utf8'));
+        const siteConfig = loadJsonFile(SITE_CONFIG);
         if (!siteConfig.title) warning('Missing site.title in config/site.json');
         if (!siteConfig.description) warning('Missing site.description in config/site.json');
     } catch (e) {

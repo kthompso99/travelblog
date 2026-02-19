@@ -10,29 +10,20 @@
 
 const fs   = require('fs');
 const path = require('path');
+const { walkDir } = require('../../lib/build-utilities');
+
+const SKIP_DIRS = new Set(['node_modules', '.git', 'content', 'config', 'templates', 'lib', 'scripts', 'archive', 'docs']);
+const SKIP_FILES = new Set(['404.html', 'index.html.backup', 'main.html']);
 
 /**
  * Recursively find all generated HTML files under dir.
  * Skips source/tooling directories and a few known non-page files.
  */
 function findHtmlFiles(dir) {
-    const results = [];
-    const SKIP_DIRS = new Set(['node_modules', '.git', 'content', 'config', 'templates', 'lib', 'scripts', 'archive', 'docs']);
-    (function walk(d) {
-        for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
-            const full = path.join(d, entry.name);
-            if (entry.isDirectory()) {
-                if (SKIP_DIRS.has(entry.name)) continue;
-                walk(full);
-            } else if (entry.name.endsWith('.html')) {
-                if (entry.name === '404.html')           continue;
-                if (entry.name === 'index.html.backup')  continue;
-                if (entry.name === 'main.html')          continue;
-                results.push(full);
-            }
-        }
-    })(dir);
-    return results;
+    return walkDir(dir, {
+        skipDirs: SKIP_DIRS,
+        fileFilter: name => name.endsWith('.html') && !SKIP_FILES.has(name)
+    });
 }
 
 /**

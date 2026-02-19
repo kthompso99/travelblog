@@ -16,25 +16,11 @@
 
 const fs   = require('fs');
 const path = require('path');
+const { loadJsonFile, walkDir } = require('../lib/build-utilities');
 
 const ROOT = path.resolve(__dirname, '..');
 
 // ── helpers ──────────────────────────────────────────────────────────
-
-function walkMd(dir) {
-    let results = [];
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-    for (const entry of entries) {
-        const full = path.join(dir, entry.name);
-        if (entry.isDirectory()) {
-            if (entry.name === 'node_modules' || entry.name === '.git') continue;
-            results = results.concat(walkMd(full));
-        } else if (entry.name.endsWith('.md')) {
-            results.push(full);
-        }
-    }
-    return results;
-}
 
 function rel(p) {
     return path.relative(ROOT, p);
@@ -42,13 +28,14 @@ function rel(p) {
 
 // ── package.json scripts ─────────────────────────────────────────────
 
-const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+const pkg = loadJsonFile(path.join(ROOT, 'package.json'));
 const validScripts = new Set(Object.keys(pkg.scripts || {}));
 
 // ── collect .md files ────────────────────────────────────────────────
 
+const SKIP_DIRS = new Set(['node_modules', '.git']);
 const mdFiles = [
-    ...walkMd(path.join(ROOT, 'docs')),
+    ...walkDir(path.join(ROOT, 'docs'), { skipDirs: SKIP_DIRS, fileFilter: name => name.endsWith('.md') }),
     path.join(ROOT, 'README.md'),
     path.join(ROOT, 'CLAUDE.md')
 ];

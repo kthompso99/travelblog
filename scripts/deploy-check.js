@@ -9,7 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../lib/config-paths');
-const { discoverAllTrips } = require('../lib/build-utilities');
+const { discoverAllTrips, loadJsonFile } = require('../lib/build-utilities');
 
 const checks = [];
 let passed = 0;
@@ -77,7 +77,7 @@ check('All trips have built content', () => {
         return { pass: false };
     }
 
-    const config = JSON.parse(fs.readFileSync('config.built.json', 'utf8'));
+    const config = loadJsonFile('config.built.json');
     const missing = config.trips
         .filter(t => !fs.existsSync(path.join('trips', `${t.slug}.json`)))
         .map(t => t.title);
@@ -97,7 +97,7 @@ check('All locations have coordinates', () => {
         return { pass: false };
     }
 
-    const config = JSON.parse(fs.readFileSync('config.built.json', 'utf8'));
+    const config = loadJsonFile('config.built.json');
     const missing = [];
     for (const trip of config.trips) {
         for (const loc of trip.locations || []) {
@@ -122,7 +122,7 @@ check('All thumbnail images exist', () => {
         return { pass: false };
     }
 
-    const config = JSON.parse(fs.readFileSync('config.built.json', 'utf8'));
+    const config = loadJsonFile('config.built.json');
     const missing = config.trips
         .filter(t => t.thumbnail && !fs.existsSync(t.thumbnail))
         .map(t => t.title);

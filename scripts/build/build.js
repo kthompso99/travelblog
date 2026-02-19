@@ -18,6 +18,7 @@ const { generateSitemap, generateRobotsTxt } = require('../../lib/generate-sitem
 const { generateTripFiles } = require('../../lib/generate-trip-files');
 const {
     ensureDir,
+    loadJsonFile,
     loadTripConfig,
     discoverAllTrips,
     processMarkdownWithGallery,
@@ -317,7 +318,7 @@ async function filterPublishedTrips(tripIds) {
 // Load and validate site configuration
 function loadSiteConfig() {
     try {
-        const siteConfig = JSON.parse(fs.readFileSync(SITE_CONFIG, 'utf8'));
+        const siteConfig = loadJsonFile(SITE_CONFIG);
         console.log(`✅ Loaded site config: ${siteConfig.title}\n`);
         return siteConfig;
     } catch (e) {

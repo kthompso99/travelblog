@@ -65,73 +65,43 @@ const { ensureDir } = require('../../lib/build-utilities');
 // Import centralized configuration paths
 const CONFIG = require('../../lib/config-paths');
 
-const { TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
+const { VALID_CONTINENTS } = CONFIG;
 const CONTINENTS = VALID_CONTINENTS;
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+async function gatherTripMetadata(ask) {
+    const title = await ask('Trip title (e.g., "Japan Adventure 2025"): ');
+    if (!title) throw new Error('Title is required');
 
-function question(prompt) {
-    return new Promise((resolve) => {
-        rl.question(prompt, resolve);
-    });
-}
-
-async function addTrip() {
-    console.log('🌍 Add New Trip\n');
-
-    // Gather trip information
-    const title = await question('Trip title (e.g., "Japan Adventure 2025"): ');
-    if (!title) {
-        console.log('❌ Title is required');
-        rl.close();
-        return;
-    }
-
-    // Infer trip ID from slugified title (slug will be derived from directory name)
     const tripId = slugify(title);
-
-    // Check if trip directory already exists
     const tripDir = CONFIG.getTripDir(tripId);
-    if (fs.existsSync(tripDir)) {
-        console.log(`❌ Directory "${tripDir}" already exists`);
-        rl.close();
-        return;
-    }
+    if (fs.existsSync(tripDir)) throw new Error(`Directory "${tripDir}" already exists`);
 
-    const country = await question('Country: ');
+    const country = await ask('Country: ');
 
     console.log('\nSelect continent:');
     CONTINENTS.forEach((c, i) => console.log(`  ${i + 1}. ${c}`));
-    const continentIdx = await question('Continent (1-7): ');
+    const continentIdx = await ask('Continent (1-7): ');
     const continent = CONTINENTS[parseInt(continentIdx) - 1];
+    if (!continent) throw new Error('Invalid continent selection');
 
-    if (!continent) {
-        console.log('❌ Invalid continent selection');
-        rl.close();
-        return;
-    }
+    const beginDate = await ask('Start date (YYYY-MM-DD): ');
+    const endDate = await ask('End date (YYYY-MM-DD): ');
+    const mapCenter = await ask(`\nMap center location (press enter for "${country}"): `) || country;
 
-    const beginDate = await question('Start date (YYYY-MM-DD): ');
-    const endDate = await question('End date (YYYY-MM-DD): ');
+    return { title, tripId, tripDir, country, continent, beginDate, endDate, mapCenter };
+}
 
-    // Get map center before adding locations
-    const mapCenter = await question(`\nMap center location (press enter for "${country}"): `) || country;
-
-    // Get content items (locations and articles)
+async function gatherContentItems(ask, country) {
     console.log('\n📍 Add content to this trip (press enter with blank title to finish):');
     console.log('Content can be locations (with coordinates) or articles (like "Tips" or "Planning")');
     const content = [];
     let itemNum = 1;
 
     while (true) {
-        const itemTitle = await question(`\nContent ${itemNum} title (or press enter to finish): `);
+        const itemTitle = await ask(`\nContent ${itemNum} title (or press enter to finish): `);
         if (!itemTitle) break;
 
-        let itemType = await question(`  Type (location/article/a, default: location): `) || 'location';
-        // Accept "a" as shorthand for "article"
+        let itemType = await ask(`  Type (location/article/a, default: location): `) || 'location';
         if (itemType === 'a') itemType = 'article';
 
         const itemSlug = slugify(itemTitle);
@@ -143,8 +113,8 @@ async function addTrip() {
 
         if (itemType === 'location') {
             const defaultPlace = `${itemTitle}, ${country}`;
-            const place = await question(`  Place for geocoding (press enter for "${defaultPlace}"): `) || defaultPlace;
-            const duration = await question(`  Duration (e.g., "3 days"): `);
+            const place = await ask(`  Place for geocoding (press enter for "${defaultPlace}"): `) || defaultPlace;
+            const duration = await ask(`  Duration (e.g., "3 days"): `);
             contentItem.place = place;
             contentItem.duration = duration || '1 day';
             contentItem.thumbnail = `images/${itemSlug}-01.jpg`;
@@ -154,62 +124,48 @@ async function addTrip() {
         itemNum++;
     }
 
-    if (content.length === 0) {
-        console.log('❌ At least one content item is required');
-        rl.close();
-        return;
-    }
+    if (content.length === 0) throw new Error('At least one content item is required');
+    return content;
+}
 
-    // Create trip config object
-    const tripConfig = {
-        title,
+function buildTripConfig(metadata, content) {
+    return {
+        title: metadata.title,
         published: false,
-        beginDate,
-        endDate,
+        beginDate: metadata.beginDate,
+        endDate: metadata.endDate,
         metadata: {
-            year: new Date(beginDate).getFullYear(),
-            continent,
-            country,
+            year: new Date(metadata.beginDate).getFullYear(),
+            continent: metadata.continent,
+            country: metadata.country,
             tripType: ['adventure'],
-            tags: [continent.toLowerCase(), country.toLowerCase()]
+            tags: [metadata.continent.toLowerCase(), metadata.country.toLowerCase()]
         },
-        coverImage: `images/${tripId}.jpg`,
-        thumbnail: `images/${tripId}.jpg`,
-        mapCenter,
+        coverImage: `images/${metadata.tripId}.jpg`,
+        thumbnail: `images/${metadata.tripId}.jpg`,
+        mapCenter: metadata.mapCenter,
         content: content,
         relatedTrips: []
     };
+}
 
-    // Create trip directory and images subdirectory
-    try {
-        ensureDir(tripDir);
-        console.log(`\n✅ Created directory: ${tripDir}`);
+function createTripFiles(tripDir, tripConfig, content, metadata) {
+    ensureDir(tripDir);
+    console.log(`\n✅ Created directory: ${tripDir}`);
 
-        const imagesDir = path.join(tripDir, 'images');
-        ensureDir(imagesDir);
-        console.log(`✅ Created directory: ${imagesDir}`);
-    } catch (e) {
-        console.error(`❌ Error creating directory: ${e.message}`);
-        rl.close();
-        return;
-    }
+    ensureDir(path.join(tripDir, 'images'));
+    console.log(`✅ Created directory: ${path.join(tripDir, 'images')}`);
 
     // Save trip.json
-    try {
-        const tripConfigPath = CONFIG.getTripConfigPath(tripId);
-        fs.writeFileSync(tripConfigPath, JSON.stringify(tripConfig, null, 2), 'utf8');
-        console.log(`✅ Created ${tripConfigPath}`);
-    } catch (e) {
-        console.error('❌ Error saving trip config:', e.message);
-        rl.close();
-        return;
-    }
+    const tripConfigPath = CONFIG.getTripConfigPath(metadata.tripId);
+    fs.writeFileSync(tripConfigPath, JSON.stringify(tripConfig, null, 2), 'utf8');
+    console.log(`✅ Created ${tripConfigPath}`);
 
-    // Create main.md (intro file)
+    // Create main.md
     const locationCount = content.filter(item => item.type === 'location').length;
-    const mainTemplate = `# ${title}
+    const mainTemplate = `# ${metadata.title}
 
-Welcome to our ${title}!
+Welcome to our ${metadata.title}!
 
 ## Trip Overview
 
@@ -217,7 +173,7 @@ Add your trip introduction here. Describe what made this trip special, the overa
 
 ## Highlights
 
-- **Duration**: ${beginDate} to ${endDate}
+- **Duration**: ${metadata.beginDate} to ${metadata.endDate}
 - **Locations Visited**: ${locationCount}
 - **Best For**: Adventure seekers, culture enthusiasts
 
@@ -230,21 +186,17 @@ Add general planning information, tips, and recommendations here.
 *Explore each location below to learn more about our journey.*
 `;
 
-    try {
-        const mainPath = CONFIG.getTripMainPath(tripId);
-        fs.writeFileSync(mainPath, mainTemplate, 'utf8');
-        console.log(`✅ Created ${mainPath}`);
-    } catch (e) {
-        console.error(`❌ Error creating main.md: ${e.message}`);
-    }
+    const mainPath = CONFIG.getTripMainPath(metadata.tripId);
+    fs.writeFileSync(mainPath, mainTemplate, 'utf8');
+    console.log(`✅ Created ${mainPath}`);
 
     // Create content markdown files
+    const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
     for (const item of content) {
         const itemSlug = slugify(item.title);
         let template;
 
         if (item.type === 'article') {
-            // Template for articles (title added by page template, don't duplicate in markdown)
             template = `Add your ${item.title.toLowerCase()} content here...
 
 ## Section 1
@@ -257,10 +209,9 @@ More content...
 
 ---
 
-*Last updated: ${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}*
+*Last updated: ${dateStr}*
 `;
         } else {
-            // Template for locations (title added by page template, don't duplicate in markdown)
             template = `## Overview
 
 Add your introduction to ${item.title} here...
@@ -288,19 +239,17 @@ Recommend restaurants and local cuisine...
 
 ---
 
-*Last updated: ${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}*
+*Last updated: ${dateStr}*
 `;
         }
 
-        try {
-            const filePath = path.join(tripDir, `${itemSlug}.md`);
-            fs.writeFileSync(filePath, template, 'utf8');
-            console.log(`✅ Created ${filePath}`);
-        } catch (e) {
-            console.error(`❌ Error creating ${itemSlug}.md: ${e.message}`);
-        }
+        const filePath = path.join(tripDir, `${itemSlug}.md`);
+        fs.writeFileSync(filePath, template, 'utf8');
+        console.log(`✅ Created ${filePath}`);
     }
+}
 
+function printSummary(tripId, tripDir, content) {
     console.log('\n📋 Next steps:');
     console.log(`  1. Add trip image to images/${tripId}.jpg`);
     console.log(`  2. Edit ${tripDir}/main.md with your trip introduction`);
@@ -313,15 +262,30 @@ Recommend restaurants and local cuisine...
     console.log(`  - ${tripDir}/trip.json`);
     console.log(`  - ${tripDir}/main.md`);
     content.forEach(item => {
-        const itemSlug = slugify(item.title);
-        console.log(`  - ${tripDir}/${itemSlug}.md`);
+        console.log(`  - ${tripDir}/${slugify(item.title)}.md`);
     });
+}
 
-    rl.close();
+async function addTrip() {
+    console.log('🌍 Add New Trip\n');
+
+    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+    const ask = (prompt) => new Promise(resolve => rl.question(prompt, resolve));
+
+    try {
+        const metadata = await gatherTripMetadata(ask);
+        const content = await gatherContentItems(ask, metadata.country);
+        const tripConfig = buildTripConfig(metadata, content);
+        createTripFiles(metadata.tripDir, tripConfig, content, metadata);
+        printSummary(metadata.tripId, metadata.tripDir, content);
+    } catch (e) {
+        console.log(`❌ ${e.message}`);
+    } finally {
+        rl.close();
+    }
 }
 
 addTrip().catch(err => {
     console.error('❌ Error:', err);
-    rl.close();
     process.exit(1);
 });

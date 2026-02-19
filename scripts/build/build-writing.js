@@ -17,7 +17,7 @@ const path = require('path');
 const { generateTripContentPage } = require('../../lib/generate-html');
 const { convertMarkdown } = require('../../lib/markdown-converter');
 const CONFIG = require('../../lib/config-paths');
-const { ensureDir, processMarkdownWithGallery, discoverAllTrips } = require('../../lib/build-utilities');
+const { ensureDir, loadJsonFile, processMarkdownWithGallery, discoverAllTrips } = require('../../lib/build-utilities');
 const { slugify } = require('../../lib/slug-utilities');
 
 const NODEMON_TRIGGER_WINDOW_MS = 5000; // nodemon fires within ~5s of a file save
@@ -90,9 +90,9 @@ function loadTripData(tripId) {
         process.exit(0);
     }
 
-    const tripContentData = JSON.parse(fs.readFileSync(tripContentFile, 'utf8'));
+    const tripContentData = loadJsonFile(tripContentFile);
 
-    const builtConfig = JSON.parse(fs.readFileSync(CONFIG.OUTPUT_FILE, 'utf8'));
+    const builtConfig = loadJsonFile(CONFIG.OUTPUT_FILE);
     const tripMetadata = builtConfig.trips.find(t => t.slug === tripId);
 
     if (!tripMetadata) {

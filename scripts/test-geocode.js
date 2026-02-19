@@ -8,14 +8,14 @@
 
 const https = require('https');
 const fs = require('fs');
+const { loadJsonFile } = require('../lib/build-utilities');
 
 // Load Google Maps API key
 let googleMapsApiKey = null;
 const googleMapsConfigPath = 'config/google-maps.json';
 if (fs.existsSync(googleMapsConfigPath)) {
     try {
-        const googleMapsConfig = JSON.parse(fs.readFileSync(googleMapsConfigPath, 'utf8'));
-        googleMapsApiKey = googleMapsConfig.apiKey;
+        googleMapsApiKey = loadJsonFile(googleMapsConfigPath).apiKey;
     } catch (e) {
         console.error('❌ Error: Could not load Google Maps API key from config/google-maps.json');
         process.exit(1);

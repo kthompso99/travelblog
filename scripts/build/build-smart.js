@@ -20,6 +20,7 @@ const { generateHomepage, generateMapPage } = require('../../lib/generate-html')
 const { generateTripFiles } = require('../../lib/generate-trip-files');
 const { generateSitemap } = require('../../lib/generate-sitemap');
 const {
+    loadJsonFile,
     writeTripContentJson,
     extractTripMetadata,
     writeConfigBuilt,
@@ -76,7 +77,7 @@ async function processChangedTrips(tripIds, buildModule, warnings) {
 function mergeIntoBuiltConfig(tripIds, rebuiltTrips, siteConfig) {
     let output;
     if (fs.existsSync(CONFIG.OUTPUT_FILE)) {
-        output = JSON.parse(fs.readFileSync(CONFIG.OUTPUT_FILE, 'utf8'));
+        output = loadJsonFile(CONFIG.OUTPUT_FILE);
     } else {
         output = { site: siteConfig, trips: [] };
     }
@@ -114,7 +115,7 @@ async function runIncrementalBuild(tripIds) {
     console.log(`\n🔄 Incremental build for: ${tripIds.join(', ')}\n`);
 
     const buildModule = require('./build');
-    const siteConfig = JSON.parse(fs.readFileSync(CONFIG.SITE_CONFIG, 'utf8'));
+    const siteConfig = loadJsonFile(CONFIG.SITE_CONFIG);
     const domain = siteConfig.domain || 'https://example.com';
 
     const buildWarnings = [];
