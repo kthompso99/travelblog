@@ -8,7 +8,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { slugify } = require('../../lib/slug-utilities');
+const { getContentItemSlug } = require('../../lib/slug-utilities');
 const { geocodeLocation, loadGeocodeCache } = require('../../lib/geocode');
 const { convertMarkdown } = require('../../lib/markdown-converter');
 
@@ -128,6 +128,51 @@ async function processContentItem(item, tripId, tripTitle, order, warnings = [])
     return processed;
 }
 
+// Extract location objects from processed content items
+function extractLocations(processedContent) {
+    return processedContent
+        .filter(item => item.type === 'location')
+        .map(item => ({
+            name: item.title,
+            slug: getContentItemSlug(item),
+            duration: item.duration || null,
+            coordinates: item.coordinates,
+            thumbnail: item.thumbnail || null
+        }));
+}
+
+// Resolve mapCenter config string to { name, coordinates }
+async function resolveMapCenter(tripConfig, processedContent, locations) {
+    if (tripConfig.mapCenter) {
+        const centerLocation = processedContent.find(item =>
+            item.type === 'location' &&
+            (item.title === tripConfig.mapCenter || item.place.includes(tripConfig.mapCenter))
+        );
+
+        if (centerLocation) {
+            return { name: tripConfig.mapCenter, coordinates: centerLocation.coordinates };
+        }
+
+        // Geocode the mapCenter string (allows any place, not just trip locations)
+        const geocoded = await geocodeLocation(tripConfig.mapCenter);
+        if (geocoded) {
+            return { name: tripConfig.mapCenter, coordinates: geocoded };
+        }
+
+        if (locations.length > 0) {
+            console.warn(`   ⚠️  Could not geocode mapCenter "${tripConfig.mapCenter}", using first location`);
+            return { name: locations[0].name, coordinates: locations[0].coordinates };
+        }
+
+        return null;
+    }
+
+    // No mapCenter specified — use first location
+    return locations.length > 0
+        ? { name: locations[0].name, coordinates: locations[0].coordinates }
+        : null;
+}
+
 // Process a single trip
 async function processTrip(tripId, warnings = []) {
     console.log(`\n📍 Processing trip: ${tripId}`);
@@ -190,54 +235,10 @@ async function processTrip(tripId, warnings = []) {
     }
 
     // Extract locations for mapping
-    const locations = processedContent
-        .filter(item => item.type === 'location')
-        .map(item => ({
-            name: item.title,
-            slug: slugify(item.title),
-            duration: item.duration || null,
-            coordinates: item.coordinates,
-            thumbnail: item.thumbnail || null
-        }));
+    const locations = extractLocations(processedContent);
 
     // Resolve mapCenter to coordinates
-    let mapCenter = null;
-    if (tripConfig.mapCenter) {
-        const centerLocation = processedContent.find(item =>
-            item.type === 'location' &&
-            (item.title === tripConfig.mapCenter || item.place.includes(tripConfig.mapCenter))
-        );
-
-        if (centerLocation) {
-            // Reuse coordinates from existing location
-            mapCenter = {
-                name: tripConfig.mapCenter,
-                coordinates: centerLocation.coordinates
-            };
-        } else {
-            // Geocode the mapCenter string (allows any place, not just trip locations)
-            const geocoded = await geocodeLocation(tripConfig.mapCenter);
-            if (geocoded) {
-                mapCenter = {
-                    name: tripConfig.mapCenter,
-                    coordinates: geocoded
-                };
-            } else if (locations.length > 0) {
-                // Fallback to first location only if geocoding fails
-                console.warn(`   ⚠️  Could not geocode mapCenter "${tripConfig.mapCenter}", using first location`);
-                mapCenter = {
-                    name: locations[0].name,
-                    coordinates: locations[0].coordinates
-                };
-            }
-        }
-    } else if (locations.length > 0) {
-        // No mapCenter specified, use first location
-        mapCenter = {
-            name: locations[0].name,
-            coordinates: locations[0].coordinates
-        };
-    }
+    const mapCenter = await resolveMapCenter(tripConfig, processedContent, locations);
 
     // Build final trip object
     return {
