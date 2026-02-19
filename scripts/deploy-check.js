@@ -8,6 +8,8 @@
 
 const fs = require('fs');
 const path = require('path');
+const CONFIG = require('../lib/config-paths');
+const { discoverAllTrips } = require('../lib/build-utilities');
 
 const checks = [];
 let passed = 0;
@@ -46,14 +48,19 @@ check('Build is up to date', () => {
     if (!fs.existsSync('config.built.json')) {
         return { pass: false };
     }
-    
+
+    const siteConfigPath = CONFIG.SITE_CONFIG;
+    if (!fs.existsSync(siteConfigPath)) {
+        return { pass: false, message: `${siteConfigPath} not found` };
+    }
+
     const builtTime = fs.statSync('config.built.json').mtime;
-    const configTime = fs.statSync('config.json').mtime;
-    
+    const configTime = fs.statSync(siteConfigPath).mtime;
+
     if (builtTime > configTime) {
         return { pass: true };
     }
-    return { pass: false, message: 'config.json modified after last build. Run "npm run build"' };
+    return { pass: false, message: 'Site config modified after last build. Run "npm run build"' };
 });
 
 // Check 3: index.html exists
@@ -64,40 +71,48 @@ check('index.html exists', () => {
     return { pass: false, message: 'index.html not found' };
 });
 
-// Check 4: All destinations have content
-check('All destinations have HTML content', () => {
+// Check 4: All trips have content JSON
+check('All trips have built content', () => {
     if (!fs.existsSync('config.built.json')) {
         return { pass: false };
     }
-    
+
     const config = JSON.parse(fs.readFileSync('config.built.json', 'utf8'));
-    const missing = config.destinations.filter(d => !d.contentHtml);
-    
+    const missing = config.trips
+        .filter(t => !fs.existsSync(path.join('trips', `${t.slug}.json`)))
+        .map(t => t.title);
+
     if (missing.length === 0) {
         return { pass: true };
     }
-    return { 
-        pass: false, 
-        message: `${missing.length} destination(s) missing HTML: ${missing.map(d => d.name).join(', ')}` 
+    return {
+        pass: false,
+        message: `${missing.length} trip(s) missing content JSON: ${missing.join(', ')}`
     };
 });
 
-// Check 5: All destinations have coordinates
-check('All destinations have coordinates', () => {
+// Check 5: All locations have coordinates
+check('All locations have coordinates', () => {
     if (!fs.existsSync('config.built.json')) {
         return { pass: false };
     }
-    
+
     const config = JSON.parse(fs.readFileSync('config.built.json', 'utf8'));
-    const missing = config.destinations.filter(d => !d.coordinates || 
-        (d.coordinates.lat === 0 && d.coordinates.lng === 0));
-    
+    const missing = [];
+    for (const trip of config.trips) {
+        for (const loc of trip.locations || []) {
+            if (!loc.coordinates || (loc.coordinates.lat === 0 && loc.coordinates.lng === 0)) {
+                missing.push(`${trip.title} → ${loc.name}`);
+            }
+        }
+    }
+
     if (missing.length === 0) {
         return { pass: true };
     }
-    return { 
-        pass: false, 
-        message: `${missing.length} destination(s) missing coordinates: ${missing.map(d => d.name).join(', ')}` 
+    return {
+        pass: false,
+        message: `${missing.length} location(s) missing coordinates: ${missing.join(', ')}`
     };
 });
 
@@ -106,18 +121,18 @@ check('All thumbnail images exist', () => {
     if (!fs.existsSync('config.built.json')) {
         return { pass: false };
     }
-    
+
     const config = JSON.parse(fs.readFileSync('config.built.json', 'utf8'));
-    const missing = config.destinations
-        .filter(d => d.thumbnail && !fs.existsSync(d.thumbnail))
-        .map(d => d.name);
-    
+    const missing = config.trips
+        .filter(t => t.thumbnail && !fs.existsSync(t.thumbnail))
+        .map(t => t.title);
+
     if (missing.length === 0) {
         return { pass: true };
     }
-    return { 
-        pass: false, 
-        message: `${missing.length} thumbnail(s) not found: ${missing.join(', ')}` 
+    return {
+        pass: false,
+        message: `${missing.length} thumbnail(s) not found: ${missing.join(', ')}`
     };
 }, false);
 
@@ -126,35 +141,26 @@ check('config.built.json size is reasonable', () => {
     if (!fs.existsSync('config.built.json')) {
         return { pass: false };
     }
-    
+
     const stats = fs.statSync('config.built.json');
     const sizeMB = stats.size / (1024 * 1024);
-    
+
     if (sizeMB < 5) {
         return { pass: true };
     }
-    return { 
-        pass: false, 
-        message: `File size is ${sizeMB.toFixed(2)}MB (should be under 5MB). Consider optimizing content.` 
+    return {
+        pass: false,
+        message: `File size is ${sizeMB.toFixed(2)}MB (should be under 5MB). Consider optimizing content.`
     };
 }, false);
 
 // Check 8: Images are optimized (warning only)
 check('All images are optimized', () => {
-    const CONFIG = require('../lib/config-paths');
-    const tripsDir = CONFIG.TRIPS_DIR;
-
-    if (!fs.existsSync(tripsDir)) {
-        return { pass: true };
-    }
-
+    const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, id => CONFIG.getTripConfigPath(id));
     const unoptimized = [];
-    const tripDirs = fs.readdirSync(tripsDir)
-        .map(name => path.join(tripsDir, name))
-        .filter(dir => fs.statSync(dir).isDirectory());
 
-    for (const tripDir of tripDirs) {
-        const imagesDir = path.join(tripDir, 'images');
+    for (const tripId of tripIds) {
+        const imagesDir = path.join(CONFIG.TRIPS_DIR, tripId, 'images');
         const originalsDir = path.join(imagesDir, '.originals');
 
         if (!fs.existsSync(imagesDir)) continue;
@@ -198,25 +204,5 @@ if (warnings > 0) {
 if (failed === 0 && warnings === 0) {
     console.log('\n✅ All checks passed! Ready to deploy.\n');
 }
-
-// Show deployment instructions
-console.log('📦 Files to deploy:');
-console.log('   ✅ index.html');
-console.log('   ✅ config.built.json');
-if (fs.existsSync('images') && fs.readdirSync('images').length > 0) {
-    console.log('   ✅ images/');
-}
-
-console.log('\n❌ Do NOT deploy:');
-console.log('   ❌ config.json (source file)');
-console.log('   ❌ content/ (already converted)');
-console.log('   ❌ *.js (build scripts)');
-console.log('   ❌ package.json, node_modules/');
-
-console.log('\n🎯 Deployment platforms:');
-console.log('   • GitHub Pages: Push to gh-pages branch');
-console.log('   • Netlify: Drag & drop the files above');
-console.log('   • Vercel: Deploy from git repository');
-console.log('   • Any static hosting: Upload via FTP/SFTP\n');
 
 process.exit(failed > 0 ? 1 : 0);

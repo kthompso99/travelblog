@@ -20,6 +20,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const CONFIG = require('../../lib/config-paths');
+const { discoverAllTrips } = require('../../lib/build-utilities');
 
 // Configuration
 const MAX_WIDTH = 1800;          // Max width in pixels (for 600px CSS @ 3x retina)
@@ -82,10 +83,8 @@ function formatBytes(bytes) {
  * Get all trip directories
  */
 function getTripDirs() {
-  const tripsDir = CONFIG.TRIPS_DIR;
-
   if (specificTrip) {
-    const tripDir = path.join(tripsDir, specificTrip);
+    const tripDir = path.join(CONFIG.TRIPS_DIR, specificTrip);
     if (!fs.existsSync(tripDir)) {
       console.error(`❌ Trip directory not found: ${tripDir}`);
       process.exit(1);
@@ -93,9 +92,8 @@ function getTripDirs() {
     return [tripDir];
   }
 
-  return fs.readdirSync(tripsDir)
-    .map(name => path.join(tripsDir, name))
-    .filter(dir => fs.statSync(dir).isDirectory());
+  const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, id => CONFIG.getTripConfigPath(id));
+  return tripIds.map(id => path.join(CONFIG.TRIPS_DIR, id));
 }
 
 /**

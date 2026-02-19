@@ -11,6 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
+const { MARKDOWN_IMAGE_REGEX } = require('../../lib/constants');
 const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery } = require('../../lib/build-utilities');
 
 // Analysis libraries
@@ -60,8 +61,7 @@ function analyzeMarkdownFile(filePath, itemFile) {
     const { markdownContent, galleryImages } = processMarkdownWithGallery(filePath, itemFile);
 
     // Count inline images (in pre-marker content)
-    const inlineImageRegex = /!\[([^\]]*)\]\([^\)]+\)/g;
-    const inlineMatches = [...markdownContent.matchAll(inlineImageRegex)];
+    const inlineMatches = [...markdownContent.matchAll(MARKDOWN_IMAGE_REGEX)];
     const inlineImages = inlineMatches.length;
 
     // Caption words — inline captions + gallery captions

@@ -17,7 +17,7 @@ const path = require('path');
 const { generateTripContentPage } = require('../../lib/generate-html');
 const { convertMarkdown } = require('../../lib/markdown-converter');
 const CONFIG = require('../../lib/config-paths');
-const { ensureDir, processMarkdownWithGallery } = require('../../lib/build-utilities');
+const { ensureDir, processMarkdownWithGallery, discoverAllTrips } = require('../../lib/build-utilities');
 const { slugify } = require('../../lib/slug-utilities');
 
 const NODEMON_TRIGGER_WINDOW_MS = 5000; // nodemon fires within ~5s of a file save
@@ -28,22 +28,17 @@ let changedFile = process.argv[2];
 if (!changedFile) {
     // When run by nodemon without explicit file argument, find most recently changed .md file
     const recentFiles = [];
-    const tripsDir = path.join(CONFIG.TRIPS_DIR);
 
     // Scan all trip directories for .md files
-    if (fs.existsSync(tripsDir)) {
-        const trips = fs.readdirSync(tripsDir);
-        for (const tripId of trips) {
-            const tripDir = path.join(tripsDir, tripId);
-            if (!fs.statSync(tripDir).isDirectory()) continue;
-
-            const files = fs.readdirSync(tripDir);
-            for (const file of files) {
-                if (file.endsWith('.md') && file !== 'main.md') {
-                    const filePath = path.join(tripDir, file);
-                    const stats = fs.statSync(filePath);
-                    recentFiles.push({ path: filePath, mtime: stats.mtimeMs });
-                }
+    const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, id => CONFIG.getTripConfigPath(id));
+    for (const tripId of tripIds) {
+        const tripDir = path.join(CONFIG.TRIPS_DIR, tripId);
+        const files = fs.readdirSync(tripDir);
+        for (const file of files) {
+            if (file.endsWith('.md') && file !== 'main.md') {
+                const filePath = path.join(tripDir, file);
+                const stats = fs.statSync(filePath);
+                recentFiles.push({ path: filePath, mtime: stats.mtimeMs });
             }
         }
     }
