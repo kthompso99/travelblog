@@ -25,21 +25,35 @@ travelblog/
 ├── templates/                  HTML page templates (shared styles + nav)
 │   ├── base.html               Shared <head>, nav, footer, CSS
 │   ├── home-page.html          Homepage template
-│   ├── trip-intro-page.html    Trip intro with per-trip map
-│   └── trip-location-page.html Individual location/article page
+│   ├── map-global-script.html  Global map JavaScript (inlined at build time)
+│   ├── map-trip-script.html    Per-trip map JavaScript (inlined at build time)
+│   ├── trip-intro-page.html    Trip intro page (hero image + intro content)
+│   ├── trip-location-page.html Individual location/article page
+│   └── trip-map-page.html      Per-trip interactive map page
 │
 ├── lib/                        Node.js library modules
 │   ├── config-paths.js         ⭐ Single source of truth for all paths
 │   ├── build-cache.js          Shared cache management (read/write _cache/)
-│   ├── build-utilities.js      Shared build functions (discover, process, generate)
-│   ├── css-utilities.js        CSS helpers
-│   ├── generate-html.js        Renders templates → final HTML pages
+│   ├── build-utilities.js      Shared build functions (discover, process, write)
+│   ├── constants.js            Shared constants (gallery marker, image regex)
+│   ├── css-content-pages.js    CSS for content pages
+│   ├── css-homepage.js         CSS for homepage
+│   ├── css-utilities.js        CSS router (getPageCSS)
+│   ├── generate-global-pages.js Global map + about page generators
+│   ├── generate-homepage.js    Homepage generator (trip grid, filter bar)
+│   ├── generate-html-helpers.js Shared helpers (renderPage, readTemplate, buildTripsMenu)
 │   ├── generate-sitemap.js     Builds sitemap.xml from trip list
-│   ├── generate-trip-files.js  Generates per-trip HTML files
-│   ├── image-utilities.js      Image dimension helpers
+│   ├── generate-trip-files.js  Per-trip HTML generation orchestrator
+│   ├── generate-trip-pages.js  Trip intro, content, and map page generators
+│   ├── geocode.js              Google Maps geocoding with file-backed cache
+│   ├── image-utilities.js      Image path and dimension helpers
+│   ├── maps-config.js          Google Maps API key resolver
+│   ├── markdown-converter.js   Markdown → HTML with post-processing pipeline
+│   ├── prompt-utilities.js     AI prompt helpers (add-trip CLI)
 │   ├── seo-metadata.js         Generates <meta> / Open Graph tags
 │   ├── slug-utilities.js       URL slug generation
-│   └── template-utilities.js  Template rendering helpers
+│   ├── takeout-utilities.js    Google Takeout zip parsing utilities
+│   └── template-utilities.js  assembleTemplate + fillTemplate helpers
 │
 ├── scripts/                    CLI build & utility scripts
 │   ├── build/
@@ -47,14 +61,18 @@ travelblog/
 │   │   ├── build-smart.js      Incremental build — skips unchanged trips
 │   │   └── build-writing.js    Fast content-only rebuild (no geocoding)
 │   ├── test/
-│   │   ├── test-nav.js         Navigation smoke-tests
-│   │   ├── test-filter.js      Homepage filter smoke-tests
-│   │   ├── test-maps.js        Map page smoke-tests
-│   │   ├── test-css-injection.js CSS injection tests
-│   │   └── test-caption-detection.js Photo caption detection tests
+│   │   ├── test-helpers.js     Shared test runner utilities
+│   │   ├── test-nav.js         Navigation smoke-tests (Puppeteer)
+│   │   ├── test-filter.js      Homepage filter smoke-tests (Puppeteer)
+│   │   ├── test-maps.js        Map page smoke-tests (Puppeteer)
+│   │   ├── test-css-injection.js CSS injection tests (Puppeteer)
+│   │   ├── test-caption-detection.js Photo caption detection tests
+│   │   ├── test-lib-utilities.js Unit tests for build-utilities
+│   │   └── test-markdown-converter.js Unit tests for markdown-converter
 │   ├── tools/
 │   │   ├── add-trip.js         Interactive CLI to scaffold a new trip
 │   │   ├── assign-photos.js    Insert photos into markdown
+│   │   ├── content-report.js   Content quality report (readability, write-good)
 │   │   ├── sync-takeout-photos.js Extract photos from Google Takeout
 │   │   ├── analyze-takeout-geo.js Analyze GPS data in Takeout
 │   │   └── optimize-images.js  ImageMagick image optimization
@@ -199,12 +217,22 @@ No geocoding, no map marker, no `place` or `duration` fields.
 | `validate` | `npm run validate` | Check all trip configs for errors before building |
 | `build` | `npm run build` | Validate → full build (geocode + render all trips) |
 | `build:smart` | `npm run build:smart` | Incremental build — only rebuilds changed trips |
-| `dev` | `npm run dev` | Smart build then start local server |
-| `watch` | `npm run watch` | Rebuild on file changes (nodemon) |
+| `dev` | `npm run dev` | Smart build → start server + full incremental watcher |
+| `writing` | `npm run writing` | Smart build → start server + fast content-only watcher |
+| `watch` | `npm run watch` | Full incremental watcher (nodemon, .md and .json) |
+| `watch:writing` | `npm run watch:writing` | Fast content-only watcher (nodemon, .md only) |
 | `serve` | `npm run serve` | Start local server without building |
 | `add` | `npm run add` | Interactive CLI to scaffold a new trip |
-| `test` | `npm test` | Navigation smoke-test on all generated pages |
+| `sync-photos` | `npm run sync-photos` | Extract and match photos from Google Takeout zip |
+| `assign-photos` | `npm run assign-photos` | Interactive tool to insert photos into markdown |
+| `report` | `npm run report` | Content quality report (readability + write-good) |
+| `sync-docs` | `npm run sync-docs` | Check docs for broken links and stale file references |
+| `test` | `npm test` | Full test suite: unit tests + Puppeteer smoke tests |
+| `testGeo` | `npm run testGeo` | Quick geocoding test utility |
 | `deploy-check` | `npm run deploy-check` | Pre-deploy file & content verification |
+| `optimize:images` | `npm run optimize:images` | Compress trip images with ImageMagick |
+| `optimize:images:dry-run` | `npm run optimize:images:dry-run` | Preview image optimization without writing files |
+| `optimize:images:force` | `npm run optimize:images:force` | Force re-optimize all images (ignore already-optimized) |
 
 Per-trip incremental build:
 ```bash
@@ -231,24 +259,27 @@ content/trips/*/*.md  ─────┘       │
                         sitemap.xml
 ```
 
-`build.js` orchestrates; `lib/generate-html.js` renders each page using the
-templates in `templates/`. All paths are resolved through `lib/config-paths.js`.
+`build.js` orchestrates; `lib/generate-homepage.js`, `lib/generate-trip-pages.js`,
+and `lib/generate-global-pages.js` render each page using the templates in
+`templates/`, with shared helpers in `lib/generate-html-helpers.js`.
+All paths are resolved through `lib/config-paths.js`.
 
 ### Page Types
 
 | Page | Template | URL |
 |------|----------|-----|
 | Homepage | `home-page.html` | `/` |
-| World map | (inline in generate-html.js) | `/map/` |
-| About | (inline) | `/about/` |
+| World map | `map-global-script.html` (inlined) | `/map/` |
+| About | (markdown → HTML, no separate template) | `/about/` |
 | Trip intro | `trip-intro-page.html` | `/trips/{slug}/` |
+| Trip map | `trip-map-page.html` | `/trips/{slug}/map.html` |
 | Location | `trip-location-page.html` | `/trips/{slug}/{loc}.html` |
 
 Trip intro pages feature a full-bleed hero (cover image + title overlay) injected via the `{{PRE_MAIN}}` placeholder in `base.html`.
 
 ### Markdown Post-Processing
 
-The `convertMarkdown()` function in `scripts/build/build.js` automatically enhances
+The `convertMarkdown()` function in `lib/markdown-converter.js` automatically enhances
 markdown content during the build:
 
 1. **Image sizing:** All `<img>` tags get `max-width: 600px; width: 100%; height: auto;`

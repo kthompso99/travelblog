@@ -87,5 +87,5 @@ Single source of truth for all caption contexts.
 ## Files Modified
 
 - `scripts/build/build.js` - Gallery file detection
-- `lib/generate-html.js` - Gallery HTML generation
+- `lib/generate-trip-pages.js` - Gallery HTML generation (`buildPhotoGallery`)
 - `templates/base.html` - Masonry CSS and GLightbox integration
