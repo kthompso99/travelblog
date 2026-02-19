@@ -125,7 +125,6 @@ async function reconvertMarkdown(contentItem, tripId, contentSlug) {
     }
 
     const { html, galleryImages } = await convertMarkdownWithGallery(markdownPath, `${contentSlug}.md`);
-    contentItem.html = html;
     contentItem.contentHtml = html;
 
     if (galleryImages && galleryImages.length > 0) {
