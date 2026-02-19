@@ -16,7 +16,7 @@ const fs = require('fs');
 const path = require('path');
 const { generateTripContentPage } = require('../../lib/generate-trip-pages');
 const CONFIG = require('../../lib/config-paths');
-const { ensureDir, loadJsonFile, convertMarkdownWithGallery, discoverAllTrips } = require('../../lib/build-utilities');
+const { ensureDir, convertMarkdownWithGallery, discoverAllTrips, loadBuiltTripData } = require('../../lib/build-utilities');
 const { slugify } = require('../../lib/slug-utilities');
 
 const NODEMON_TRIGGER_WINDOW_MS = 5000; // nodemon fires within ~5s of a file save
@@ -80,31 +80,15 @@ if (contentSlug === 'main') {
 
 /**
  * Load trip data and metadata from previous full build output.
- * Returns null and exits the process if data is missing.
+ * Exits the process if data is missing (requires a full build first).
  */
 function loadTripData(tripId) {
-    const tripContentFile = path.join(CONFIG.TRIPS_OUTPUT_DIR, `${tripId}.json`);
-    if (!fs.existsSync(tripContentFile)) {
-        console.log(`   ⏭️  Skipped: ${tripId}.json not found - run full build first\n`);
+    const data = loadBuiltTripData(tripId);
+    if (!data) {
+        console.log(`   ⏭️  Skipped: ${tripId} build data not found - run full build first\n`);
         process.exit(0);
     }
-
-    const tripContentData = loadJsonFile(tripContentFile);
-
-    const builtConfig = loadJsonFile(CONFIG.OUTPUT_FILE);
-    const tripMetadata = builtConfig.trips.find(t => t.slug === tripId);
-
-    if (!tripMetadata) {
-        console.log(`   ⏭️  Skipped: ${tripId} metadata not found - run full build first\n`);
-        process.exit(0);
-    }
-
-    const fullConfig = {
-        site: builtConfig.site,
-        trips: builtConfig.trips
-    };
-
-    return { tripContentData, tripMetadata, fullConfig };
+    return data;
 }
 
 /**

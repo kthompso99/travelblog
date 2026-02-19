@@ -445,6 +445,24 @@ async function generateStaticHtml(output, domain, processedTrips, specificTripId
     console.log(`   ✅ Cache updated`);
 }
 
+// Discover trips and filter to just the requested one (or all)
+async function discoverAndFilterTrips(specificTripId) {
+    const discoveredTrips = discoverAllTrips(TRIPS_DIR, (tripId) => CONFIG.getTripConfigPath(tripId));
+
+    if (specificTripId) {
+        if (!discoveredTrips.includes(specificTripId)) {
+            console.error(`❌ Trip "${specificTripId}" not found`);
+            console.error(`   Available trips: ${discoveredTrips.join(', ')}`);
+            process.exit(1);
+        }
+        console.log(`📋 Building single trip: ${specificTripId}\n`);
+        return filterPublishedTrips([specificTripId]);
+    }
+
+    console.log(`📋 Discovered ${discoveredTrips.length} trips (sorted by date, newest first)\n`);
+    return filterPublishedTrips(discoveredTrips);
+}
+
 // Main build function
 async function build(specificTripId = null) {
     if (specificTripId) {
@@ -454,28 +472,8 @@ async function build(specificTripId = null) {
     }
 
     const siteConfig = loadSiteConfig();
+    const tripsToProcess = await discoverAndFilterTrips(specificTripId);
 
-    // Auto-discover trips by scanning directories (sorted by date, newest first)
-    const discoveredTrips = discoverAllTrips(TRIPS_DIR, (tripId) => CONFIG.getTripConfigPath(tripId));
-
-    // If specific trip requested, filter to just that trip
-    let tripsToDiscover = discoveredTrips;
-    if (specificTripId) {
-        if (!discoveredTrips.includes(specificTripId)) {
-            console.error(`❌ Trip "${specificTripId}" not found`);
-            console.error(`   Available trips: ${discoveredTrips.join(', ')}`);
-            process.exit(1);
-        }
-        tripsToDiscover = [specificTripId];
-        console.log(`📋 Building single trip: ${specificTripId}\n`);
-    } else {
-        console.log(`📋 Discovered ${discoveredTrips.length} trips (sorted by date, newest first)\n`);
-    }
-
-    // Filter trips based on published status and environment
-    const tripsToProcess = await filterPublishedTrips(tripsToDiscover);
-
-    // Create trips output directory and process all trips
     ensureDir(TRIPS_OUTPUT_DIR);
     const buildWarnings = [];
     const { processedTrips, totalContentSize } = await processAllTrips(tripsToProcess, buildWarnings);
