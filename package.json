@@ -17,6 +17,7 @@
     "assign-photos": "node scripts/tools/assign-photos.js",
     "test": "node scripts/test/test-nav.js && node scripts/test/test-filter.js && node scripts/test/test-css-injection.js && node scripts/test/test-maps.js",
     "testGeo": "node scripts/test-geocode.js",
+    "report": "node scripts/tools/content-report.js",
     "deploy-check": "node scripts/deploy-check.js",
     "sync-docs": "node scripts/sync-docs.js",
     "optimize:images": "node scripts/tools/optimize-images.js",
@@ -34,7 +35,10 @@
     "jsdom": "^28.0.0",
     "nodemon": "^3.0.1",
     "puppeteer": "^24.37.2",
-    "serve-handler": "^6.1.6"
+    "sentiment": "^5.0.2",
+    "serve-handler": "^6.1.6",
+    "text-readability": "^1.1.1",
+    "write-good": "^1.0.8"
   },
   "keywords": [
     "travel",
