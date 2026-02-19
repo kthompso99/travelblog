@@ -1,0 +1,203 @@
+<script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API_KEY}}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const locations = {{LOCATIONS_JSON}};
+        let map;
+
+        try {
+            console.log('Initializing trip map...');
+
+            // Calculate center
+            const lats = locations.map(l => l.coordinates.lat);
+            const lngs = locations.map(l => l.coordinates.lng);
+            const centerLat = (Math.min(...lats) + Math.max(...lats)) / 2;
+            const centerLng = (Math.min(...lngs) + Math.max(...lngs)) / 2;
+
+            map = new google.maps.Map(document.getElementById('trip-map-full'), {
+                center: { lat: centerLat, lng: centerLng },
+                zoom: 8,
+                mapTypeId: 'roadmap',
+                zoomControl: true,
+                mapTypeControl: true,
+                streetViewControl: false,
+                fullscreenControl: true
+            });
+            console.log('Trip map instance created');
+        } catch (error) {
+            console.error('Error initializing trip map:', error);
+            const mapContainer = document.getElementById('trip-map-full');
+            if (mapContainer) {
+                mapContainer.innerHTML = '<div style="padding: 2rem; text-align: center; color: #dc2626;"><h3>Map Error</h3><p>' + error.message + '</p></div>';
+            }
+            return;
+        }
+
+        const bounds = new google.maps.LatLngBounds();
+        let hoverTimeout = null;
+
+        try {
+            // Helper to create numbered marker icon
+            function createNumberedIcon(number, highlighted) {
+                const bgColor = highlighted ? '#d97706' : '#f59e0b';  // Darker amber when highlighted
+                const outerRadius = highlighted ? 18 : 16;  // Larger when highlighted
+                const svg = '<svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">' +
+                    '<circle cx="19" cy="19" r="' + outerRadius + '" fill="' + bgColor + '"/>' +
+                    '<circle cx="19" cy="19" r="13" fill="white" stroke="' + bgColor + '" stroke-width="3"/>' +
+                    '<text x="19" y="19" text-anchor="middle" dy=".35em" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="' + bgColor + '">' + number + '</text>' +
+                    '</svg>';
+                return {
+                    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+                    scaledSize: new google.maps.Size(38, 38),
+                    anchor: new google.maps.Point(19, 19)
+                };
+            }
+
+            // Create single shared InfoWindow
+            const infoWindow = new google.maps.InfoWindow({
+                pixelOffset: new google.maps.Size(0, -32)
+            });
+
+            let mouseOverInfoWindow = false;
+
+            google.maps.event.addListener(infoWindow, 'domready', () => {
+                const iwOuter = document.querySelector('.gm-style-iw-c');
+                if (iwOuter) {
+                    iwOuter.addEventListener('mouseenter', () => {
+                        mouseOverInfoWindow = true;
+                        if (hoverTimeout) clearTimeout(hoverTimeout);
+                    });
+                    iwOuter.addEventListener('mouseleave', () => {
+                        mouseOverInfoWindow = false;
+                        hoverTimeout = setTimeout(() => infoWindow.close(), 300);
+                    });
+                }
+            });
+
+            // Create numbered markers
+            const markers = [];  // Store markers for cross-reference with sidebar
+
+            locations.forEach((loc, idx) => {
+                const position = { lat: loc.coordinates.lat, lng: loc.coordinates.lng };
+                bounds.extend(position);
+
+                const marker = new google.maps.Marker({
+                    map: map,
+                    position: position,
+                    icon: createNumberedIcon(idx + 1, false),
+                    title: loc.title
+                });
+
+                // Store location index on marker for identification
+                marker.locationIndex = idx + 1;
+                markers.push(marker);
+
+                const thumbHtml = loc.thumbnail
+                    ? '<img src="' + loc.thumbnail + '" alt="' + loc.title + '" class="marker-popup-image" onerror="this.remove()">'
+                    : '';
+
+                const titleWithDuration = loc.duration
+                    ? loc.title + ' (' + loc.duration + ')'
+                    : loc.title;
+
+                const content = '<div class="marker-popup">' +
+                        thumbHtml +
+                        '<div class="marker-popup-content">' +
+                            '<div class="marker-popup-title">' + titleWithDuration + '</div>' +
+                            '<a href="./' + loc.slug + '.html" class="marker-popup-link">Read More \u2192</a>' +
+                        '</div>' +
+                    '</div>';
+
+                let infoWindowOpen = false;
+
+                marker.addListener('mouseover', () => {
+                    if (hoverTimeout) clearTimeout(hoverTimeout);
+                    mouseOverInfoWindow = false;
+                    infoWindow.setContent(content);
+                    infoWindow.open(map, marker);
+                    infoWindowOpen = true;
+
+                    // Highlight corresponding sidebar item
+                    const sidebarItem = document.querySelector('[data-location-index="' + marker.locationIndex + '"]');
+                    if (sidebarItem) {
+                        sidebarItem.classList.add('highlighted');
+                    }
+                });
+
+                marker.addListener('mouseout', () => {
+                    hoverTimeout = setTimeout(() => {
+                        if (!mouseOverInfoWindow) {
+                            infoWindow.close();
+                            infoWindowOpen = false;
+                        }
+                    }, 300);
+
+                    // Remove highlight from sidebar item
+                    const sidebarItem = document.querySelector('[data-location-index="' + marker.locationIndex + '"]');
+                    if (sidebarItem) {
+                        sidebarItem.classList.remove('highlighted');
+                    }
+                });
+
+                marker.addListener('click', () => {
+                    // On mobile: first tap opens InfoWindow, second tap navigates
+                    if (!infoWindowOpen) {
+                        if (hoverTimeout) clearTimeout(hoverTimeout);
+                        mouseOverInfoWindow = false;
+                        infoWindow.setContent(content);
+                        infoWindow.open(map, marker);
+                        infoWindowOpen = true;
+                    } else {
+                        window.location.href = './' + loc.slug + '.html';
+                    }
+                });
+            });
+
+            // Add sidebar hover listeners to highlight corresponding markers
+            document.querySelectorAll('.location-list-item').forEach(function(item) {
+                const locationIndex = parseInt(item.getAttribute('data-location-index'));
+                const correspondingMarker = markers.find(function(m) { return m.locationIndex === locationIndex; });
+
+                if (correspondingMarker) {
+                    item.addEventListener('mouseenter', function() {
+                        // Highlight marker icon
+                        correspondingMarker.setIcon(createNumberedIcon(locationIndex, true));
+                    });
+
+                    item.addEventListener('mouseleave', function() {
+                        // Restore normal marker icon
+                        correspondingMarker.setIcon(createNumberedIcon(locationIndex, false));
+                    });
+                }
+            });
+
+            // Add polyline connecting locations
+            const routeCoords = locations.map(loc => ({
+                lat: loc.coordinates.lat,
+                lng: loc.coordinates.lng
+            }));
+
+            const routeLine = new google.maps.Polyline({
+                path: routeCoords,
+                geodesic: true,
+                strokeColor: '#f59e0b',
+                strokeOpacity: 0.8,
+                strokeWeight: 4,
+                icons: [{
+                    icon: {
+                        path: 'M 0,-1 0,1',
+                        strokeOpacity: 1,
+                        scale: 4
+                    },
+                    offset: '0',
+                    repeat: '20px'
+                }]
+            });
+            routeLine.setMap(map);
+
+            // Fit map to show all markers
+            map.fitBounds(bounds, { padding: 50 });
+        } catch (error) {
+            console.error('Error in trip map markers/polyline:', error);
+        }
+    });
+</script>
