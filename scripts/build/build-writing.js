@@ -14,7 +14,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { generateTripContentPage } = require('../../lib/generate-html');
+const { generateTripContentPage } = require('../../lib/generate-trip-pages');
 const CONFIG = require('../../lib/config-paths');
 const { ensureDir, loadJsonFile, convertMarkdownWithGallery, discoverAllTrips } = require('../../lib/build-utilities');
 const { slugify } = require('../../lib/slug-utilities');

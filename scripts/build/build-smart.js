@@ -16,7 +16,8 @@ const fs = require('fs');
 const { execSync } = require('child_process');
 
 const CONFIG = require('../../lib/config-paths');
-const { generateHomepage, generateMapPage } = require('../../lib/generate-html');
+const { generateHomepage } = require('../../lib/generate-homepage');
+const { generateMapPage } = require('../../lib/generate-global-pages');
 const { generateTripFiles } = require('../../lib/generate-trip-files');
 const { generateSitemap } = require('../../lib/generate-sitemap');
 const {

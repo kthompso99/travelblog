@@ -13,7 +13,8 @@ const { geocodeLocation, loadGeocodeCache } = require('../../lib/geocode');
 const { convertMarkdown } = require('../../lib/markdown-converter');
 
 // Load HTML generators (paths relative to project root since script runs from root)
-const { generateHomepage, generateMapPage, generateAboutPage } = require('../../lib/generate-html');
+const { generateHomepage } = require('../../lib/generate-homepage');
+const { generateMapPage, generateAboutPage } = require('../../lib/generate-global-pages');
 const { generateSitemap, generateRobotsTxt } = require('../../lib/generate-sitemap');
 const { generateTripFiles } = require('../../lib/generate-trip-files');
 const {
