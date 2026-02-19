@@ -40,51 +40,7 @@
 
 const fs   = require('fs');
 const path = require('path');
-
-// ── helpers ──────────────────────────────────────────────────────
-function findHtmlFiles(dir) {
-    const results = [];
-    // Directories that contain source/reference files, not generated site pages
-    const SKIP_DIRS = new Set(['node_modules', '.git', 'content', 'config', 'templates', 'lib', 'scripts', 'archive', 'docs']);
-    (function walk(d) {
-        for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
-            const full = path.join(d, entry.name);
-            if (entry.isDirectory()) {
-                if (SKIP_DIRS.has(entry.name)) continue;
-                walk(full);
-            } else if (entry.name.endsWith('.html')) {
-                // Skip non-template pages: 404, backups, and legacy main.html trip stubs
-                if (entry.name === '404.html')            continue;
-                if (entry.name === 'index.html.backup')   continue;
-                if (entry.name === 'main.html')           continue;
-                results.push(full);
-            }
-        }
-    })(dir);
-    return results;
-}
-
-// Extract a single CSS rule body for a given selector (first match)
-function extractCssRule(html, selector) {
-    // Escape special regex chars in selector
-    const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const re = new RegExp(escaped + '\\s*\\{([^}]+)\\}');
-    const m = html.match(re);
-    return m ? m[1] : null;
-}
-
-function hasCssProperty(ruleBody, prop) {
-    if (!ruleBody) return false;
-    const re = new RegExp(prop + '\\s*:');
-    return re.test(ruleBody);
-}
-
-function getCssValue(ruleBody, prop) {
-    if (!ruleBody) return null;
-    const re = new RegExp(prop + '\\s*:\\s*([^;\\n]+)');
-    const m = ruleBody.match(re);
-    return m ? m[1].trim() : null;
-}
+const { findHtmlFiles, extractCssRule, hasCssProperty, getCssValue } = require('./test-helpers');
 
 // ── test runner ──────────────────────────────────────────────────
 const ROOT = path.join(__dirname, '../..');

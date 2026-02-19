@@ -74,6 +74,8 @@
             pixelOffset: new google.maps.Size(0, -32)
         });
 
+        const HOVER_LINGER_MS = 300;
+
         let tripHoverTimeout = null;
         let locationHoverTimeout = null;
         let mouseOverTripInfoWindow = false;
@@ -89,7 +91,7 @@
                 });
                 iwOuter.addEventListener('mouseleave', () => {
                     mouseOverTripInfoWindow = false;
-                    tripHoverTimeout = setTimeout(() => tripInfoWindow.close(), 300);
+                    tripHoverTimeout = setTimeout(() => tripInfoWindow.close(), HOVER_LINGER_MS);
                 });
             }
         });
@@ -104,7 +106,7 @@
                 });
                 iwOuter.addEventListener('mouseleave', () => {
                     mouseOverLocationInfoWindow = false;
-                    locationHoverTimeout = setTimeout(() => locationInfoWindow.close(), 300);
+                    locationHoverTimeout = setTimeout(() => locationInfoWindow.close(), HOVER_LINGER_MS);
                 });
             }
         });
@@ -159,7 +161,7 @@
                         tripInfoWindow.close();
                         tripInfoWindowOpen = false;
                     }
-                }, 300);
+                }, HOVER_LINGER_MS);
             });
 
             markerSet.tripMarker.addListener('click', () => {
@@ -226,7 +228,7 @@
                                 locationInfoWindow.close();
                                 locationInfoWindowOpen = false;
                             }
-                        }, 300);
+                        }, HOVER_LINGER_MS);
                     });
 
                     // Click navigates to location page

@@ -19,6 +19,8 @@ const { convertMarkdown } = require('../../lib/markdown-converter');
 const CONFIG = require('../../lib/config-paths');
 const { processMarkdownWithGallery } = require('../../lib/build-utilities');
 
+const NODEMON_TRIGGER_WINDOW_MS = 5000; // nodemon fires within ~5s of a file save
+
 // Get changed file from command line argument or detect most recently modified file
 let changedFile = process.argv[2];
 
@@ -47,7 +49,7 @@ if (!changedFile) {
     }
 
     // Find most recently modified file in last 5 seconds (nodemon trigger window)
-    const fiveSecondsAgo = Date.now() - 5000;
+    const fiveSecondsAgo = Date.now() - NODEMON_TRIGGER_WINDOW_MS;
     const recentlyModified = recentFiles
         .filter(f => f.mtime > fiveSecondsAgo)
         .sort((a, b) => b.mtime - a.mtime);

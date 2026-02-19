@@ -33,6 +33,8 @@
         }
 
         const bounds = new google.maps.LatLngBounds();
+        const HOVER_LINGER_MS = 300;
+
         let hoverTimeout = null;
 
         try {
@@ -68,7 +70,7 @@
                     });
                     iwOuter.addEventListener('mouseleave', () => {
                         mouseOverInfoWindow = false;
-                        hoverTimeout = setTimeout(() => infoWindow.close(), 300);
+                        hoverTimeout = setTimeout(() => infoWindow.close(), HOVER_LINGER_MS);
                     });
                 }
             });
@@ -129,7 +131,7 @@
                             infoWindow.close();
                             infoWindowOpen = false;
                         }
-                    }, 300);
+                    }, HOVER_LINGER_MS);
 
                     // Remove highlight from sidebar item
                     const sidebarItem = document.querySelector('[data-location-index="' + marker.locationIndex + '"]');
