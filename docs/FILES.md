@@ -70,7 +70,9 @@ travelblog/
 │   │   ├── test-maps.js        Map page smoke-tests (Puppeteer)
 │   │   ├── test-css-injection.js CSS injection tests (Puppeteer)
 │   │   ├── test-caption-detection.js Photo caption detection tests
-│   │   ├── test-lib-utilities.js Unit tests for build-utilities
+│   │   ├── test-lib-utilities.js Unit tests for lib utilities (slug, template, etc.)
+│   │   ├── test-geocode-utilities.js Unit tests for geocode cache logic
+│   │   ├── test-build-cache.js Build cache validation and file existence tests
 │   │   └── test-markdown-converter.js Unit tests for markdown-converter
 │   ├── tools/
 │   │   ├── add-trip.js         Interactive CLI to scaffold a new trip
