@@ -1,7 +1,7 @@
 {
   "siteId": "twotravelnuts",
   "hosts": {
-    "development": "http://localhost:8080",
+    "development": "http://localhost:8000/remark42",
     "production": "https://comments.twotravelnuts.com"
   }
 }

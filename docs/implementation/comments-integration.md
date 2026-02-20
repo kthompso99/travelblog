@@ -14,13 +14,13 @@ Environment-aware configuration file following the `google-maps.json` pattern:
 {
   "siteId": "twotravelnuts",
   "hosts": {
-    "development": "http://localhost:8080",
+    "development": "http://localhost:8000/remark42",
     "production": "https://comments.twotravelnuts.com"
   }
 }
 ```
 
-- **Development**: Points to local Docker instance at `localhost:8080`
+- **Development**: Proxied through the dev server (see [Reverse Proxy](#reverse-proxy-development) below)
 - **Production**: Points to production Remark42 deployment
 - **Site ID**: Unique identifier for the blog instance
 
@@ -42,14 +42,16 @@ Generates unique, stable page IDs in format `{tripSlug}/{pageType}/{itemSlug}`:
 - **Article page**: `spain/article/tips`
 
 #### `buildCommentsSection(pageId)`
-Creates comment section HTML:
+Creates comment section HTML with Figma-designed layout:
 ```html
 <div class="comments-section">
-    <div class="comments-header">
-        <h2>Comments</h2>
-        <p class="comments-subtitle">Share your thoughts and experiences</p>
+    <div class="comments-container">
+        <div class="comments-header">
+            <h2>Share Your Thoughts</h2>
+            <p class="comments-subtitle">We'd love to hear about your experience!</p>
+        </div>
+        <div id="remark42" data-remark42-page-id="{pageId}"></div>
     </div>
-    <div id="remark42" data-remark42-page-id="{pageId}"></div>
 </div>
 ```
 
@@ -152,29 +154,70 @@ const commentPageId = buildCommentPageId(tripMetadata.slug, 'map');
 const commentsHtml = buildCommentsSection(commentPageId);
 ```
 
+## Reverse Proxy (Development)
+
+### Why the Proxy Exists
+
+The dev server (`scripts/server.js`) includes a reverse proxy that forwards `/remark42/*` requests to the Remark42 Docker container on `localhost:8080`. This exists because **Chrome 145+ blocks third-party cookies in cross-origin iframe contexts**.
+
+Remark42 uses an iframe to render comments. Without the proxy:
+- Page loads from `localhost:8000`
+- Remark42 iframe loads from `localhost:8080` (different origin)
+- Anonymous login succeeds (200), setting a JWT cookie via `Set-Cookie` header
+- Chrome blocks the cookie because it's a third-party cookie in a cross-origin iframe
+- Subsequent API requests (post comment, get user) fail with 401 because the JWT is missing
+
+The Remark42 server sets cookies without `SameSite=None; Secure` attributes, which Chrome 145+ requires for cross-origin cookies. Since Remark42's cookie behavior can't be configured, the proxy eliminates the cross-origin issue entirely.
+
+### How It Works
+
+```
+Browser (localhost:8000)
+  ├── Page HTML served by dev server
+  └── Remark42 iframe loads from localhost:8000/remark42/web/iframe.html
+        ├── Same origin as parent page → first-party cookies work
+        └── Dev server proxies /remark42/* → localhost:8080/*
+```
+
+The proxy in `scripts/server.js`:
+1. Intercepts requests starting with `/remark42`
+2. Strips the `/remark42` prefix
+3. Forwards to `http://localhost:8080` (Docker container)
+4. Pipes the response back, including `Set-Cookie` headers
+
+### Important: Use `localhost`, Not `127.0.0.1`
+
+The proxy only works when browsing via `http://localhost:8000`. If the page is accessed via `http://127.0.0.1:8000`, the Remark42 iframe (from `localhost:8000`) is still cross-origin, and cookies are blocked.
+
+### Production
+
+Production does not need a proxy. The production Remark42 instance runs on a dedicated subdomain (`comments.twotravelnuts.com`) with proper TLS and cookie configuration.
+
 ## Styling (`lib/css-content-pages.js`)
 
-Custom CSS matches design specifications with amber accent colors:
+Custom CSS follows the Figma design spec with amber accent colors:
 
 ### Comment Section Container
-- Top margin: 4rem
-- Top border: 2px solid #e2e8f0
-- Top padding: 3rem
+- Gradient background (fafafa → white)
+- Top padding: 5rem, bottom padding: 1rem
+- Centered `.comments-container` with max-width 800px
 
 ### Comment Header
-- Title: 1.75rem, bold, dark slate (#0f172a)
-- Subtitle: 0.95rem, muted (#64748b)
+- Title: 2.25rem, bold, dark (#111827)
+- Subtitle: 1rem, muted (#6b7280)
 
 ### Remark42 Widget Overrides
-- **Form fields**: Rounded corners (8px), border color #e2e8f0
-- **Focus states**: Amber border (#f59e0b) with subtle shadow
-- **Submit button**: Amber background (#f59e0b), darker on hover (#d97706)
-- **Comment cards**: Left border (3px), amber highlight on hover
+- **Form container**: Light background (#f8fafc), rounded border, 2rem padding
+- **Textarea**: Styled with rounded corners, white background (note: `input` elements are intentionally NOT styled to avoid breaking Remark42's internal form layout for checkboxes, hidden fields, etc.)
+- **Focus states**: Amber border (#d97706) with subtle shadow
+- **Submit button**: Amber background (#d97706), darker on hover (#b45309), lift effect
+- **Comment cards**: Amber left border (4px #d97706), gradient hover effect
 - **Typography**: Matches site fonts (Inter, system-ui)
 
 ### Responsive Design
-- Mobile: Reduced spacing (3rem → 2rem)
-- Header font size scales down on small screens
+- Mobile (≤768px): Reduced padding (3.75rem), smaller heading (1.75rem)
+- Comment form padding reduces to 1.5rem
+- Hover margin shift disabled on mobile
 
 ## Page ID Stability
 
@@ -213,9 +256,10 @@ Example: The file `content/trips/spain/cordoba.md` always generates page ID `spa
 1. Start local Remark42: Docker instance on `localhost:8080`
 2. Build site: `npm run build`
 3. Serve locally: `npm run serve`
-4. Visit pages: Check intro, locations, articles, map pages
-5. Post comment: Verify unique streams per page
-6. Check styling: Amber accents, proper spacing, mobile responsive
+4. **Open `http://localhost:8000`** (not `127.0.0.1` — see [Reverse Proxy](#reverse-proxy-development))
+5. Visit pages: Check intro, locations, articles, map pages
+6. Post comment: Verify unique streams per page
+7. Check styling: Amber accents, proper spacing, mobile responsive
 
 ## Design Decisions
 

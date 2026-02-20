@@ -69,7 +69,43 @@ function serveFile(res, filePath) {
     });
 }
 
+// Remark42 reverse proxy — serves Remark42 from same origin to avoid
+// third-party cookie blocking in Chrome 145+
+const REMARK42_BACKEND = 'http://localhost:8080';
+
+function proxyToRemark42(req, res) {
+    // Strip /remark42 prefix, keep the rest (including query string)
+    const targetPath = req.url.replace(/^\/remark42/, '') || '/';
+    const targetUrl = new URL(targetPath, REMARK42_BACKEND);
+
+    const options = {
+        hostname: targetUrl.hostname,
+        port: targetUrl.port,
+        path: targetPath,
+        method: req.method,
+        headers: { ...req.headers, host: targetUrl.host }
+    };
+
+    const proxyReq = http.request(options, (proxyRes) => {
+        res.writeHead(proxyRes.statusCode, proxyRes.headers);
+        proxyRes.pipe(res, { end: true });
+    });
+
+    proxyReq.on('error', (err) => {
+        console.error(`Remark42 proxy error: ${err.message}`);
+        res.writeHead(502, { 'Content-Type': 'text/plain' });
+        res.end('Remark42 proxy error — is the Docker container running?');
+    });
+
+    req.pipe(proxyReq, { end: true });
+}
+
 const server = http.createServer((req, res) => {
+    // Proxy Remark42 requests before anything else
+    if (req.url.startsWith('/remark42')) {
+        return proxyToRemark42(req, res);
+    }
+
     // Parse the URL
     let urlPath = req.url.split('?')[0]; // Remove query string
 
