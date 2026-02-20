@@ -10,7 +10,9 @@ A guide to every file and directory in the travel blog project, organized by rol
 travelblog/
 │
 ├── config/                     Source configuration
-│   └── site.json               Site title, description, base URL
+│   ├── site.json               Site title, description, base URL
+│   ├── google-maps.json        Google Maps API key (local dev only, gitignored)
+│   └── remark42.json           Remark42 commenting system config (dev/prod hosts)
 │
 ├── content/                    Editable source content
 │   └── trips/                  Auto-discovered (sorted by date, newest first)
@@ -50,10 +52,11 @@ travelblog/
 │   ├── maps-config.js          Google Maps API key resolver
 │   ├── markdown-converter.js   Markdown → HTML with post-processing pipeline
 │   ├── prompt-utilities.js     AI prompt helpers (add-trip CLI)
+│   ├── remark42-config.js      Remark42 config loader + comment page ID generation
 │   ├── seo-metadata.js         Generates <meta> / Open Graph tags
 │   ├── slug-utilities.js       URL slug generation
 │   ├── takeout-utilities.js    Google Takeout zip parsing utilities
-│   └── template-utilities.js  assembleTemplate + fillTemplate helpers
+│   └── template-utilities.js   assembleTemplate + fillTemplate helpers
 │
 ├── scripts/                    CLI build & utility scripts
 │   ├── build/

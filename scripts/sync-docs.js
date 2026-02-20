@@ -83,7 +83,10 @@ for (const mdFile of mdFiles) {
 
         // 3. Backtick file-path references  ──  `some/path/file.ext`
         //    Only flags paths that look like real repo paths, not examples or URLs.
-        for (const m of line.matchAll(/`([^`]+)`/g)) {
+        //    Skip docs/implementation/* files - they contain example code and architecture docs.
+        const isImplementationDoc = mdFile.includes('/docs/implementation/');
+        if (!isImplementationDoc) {
+            for (const m of line.matchAll(/`([^`]+)`/g)) {
             const ref = m[1];
             const clean = ref.replace(/^['"]|['"]$/g, '');   // strip surrounding quotes
             if (!clean.includes('/'))  continue;     // skip single tokens
@@ -113,6 +116,7 @@ for (const mdFile of mdFiles) {
                     file: rel(mdFile), line: lineNum, kind: 'path',
                     message: `Path not found: ${ref}`
                 });
+            }
             }
         }
     });

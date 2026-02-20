@@ -26,8 +26,8 @@
 
 - **Generators (split by concern):** `lib/generate-homepage.js` (homepage), `lib/generate-trip-pages.js` (trip intro/content/map), `lib/generate-global-pages.js` (global map + about), `lib/generate-html-helpers.js` (shared: renderPage, readTemplate, buildTripsMenu).
 - **Path config:** `lib/config-paths.js` — single source of truth for every path. Never hardcode.
-- **Master template:** `templates/base.html` — all shared CSS, nav, footer.
-- **Trip intro template:** `templates/trip-intro-page.html` — hero injected via `{{PRE_MAIN}}` placeholder.
+- **Master template:** `templates/base.html` — all shared CSS, nav, footer. Trip hero (`{{PRE_MAIN}}`) is injected here and appears on all trip pages (intro, content, map).
+- **Trip intro template:** `templates/trip-intro-page.html` — minimal template with intro content, comments, and prev/next nav.
 - **Content types:** Trips support two content types — `location` (has coordinates, appears on map) and `article` (text-only, like "Tips"). Both appear in submenu navigation and prev/next chains. Articles don't require `place` or `duration` fields.
 - **Published trips:** Only trips with `published: true` in trip.json appear on production (GitHub Pages). All trips visible on localhost for debugging. Filtering happens in scripts/build.js using `NODE_ENV=production`.
 - **Build:** `npm run build` (full) or `npm run build:smart` (incremental). **Dev modes:** `npm run dev` (safe incremental) or `npm run writing` (fast content-only). Test: `npm test` (navigation, filter, and map smoke tests).
