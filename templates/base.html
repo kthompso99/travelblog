@@ -395,6 +395,51 @@
         });
     </script>
 
+    <!-- Trip submenu destination dropdown -->
+    <script>
+        (function() {
+            // Find all trip submenu dropdowns on the page
+            var dropdowns = document.querySelectorAll('.trip-submenu-dropdown-btn');
+
+            dropdowns.forEach(function(btn) {
+                // Toggle dropdown on button click
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+                    btn.setAttribute('aria-expanded', !isExpanded);
+                });
+
+                // Keyboard support: Enter and Space to toggle
+                btn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+                        btn.setAttribute('aria-expanded', !isExpanded);
+                    }
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                dropdowns.forEach(function(btn) {
+                    if (!btn.parentElement.contains(e.target)) {
+                        btn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+
+            // Close dropdown on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    dropdowns.forEach(function(btn) {
+                        btn.setAttribute('aria-expanded', 'false');
+                    });
+                }
+            });
+        })();
+    </script>
+
     <!-- GLightbox for photo gallery -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css">
     <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"></script>

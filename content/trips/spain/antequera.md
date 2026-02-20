@@ -9,7 +9,6 @@ See the tips section for how we chose [daytrip.com](http://daytrip.com) for vari
 
 The best part of Antequera is the ancient Dolmens just outside, a set of 3 separate UNESCO World Heritage sites.  The oldest is from before Stonehenge, and features the largest single rock placed in Europe, or something like that.  Two of them are right next to one another, and the third is a 10-minute drive away, and each is worth visiting – we really found this extremely worth it.
 
-*Last updated: February 2026*
 ![Near the ancient town of Antequera are 3 ancient burial sites. This Dolmen of Menga is believed to be from circa 3700 BC, older than either the Great Pyramids or Stonehenge. The largest stone (not pictured, but on the main roof) is estimated to weigh 200 tons.](images/antequera-01.jpg)
 
 ![Tholos de El Romeral is from 1800 BC, so 2000 years "newer" than the previous Dolmen. It shows sophisticated building techniques -- there is no mortar, but the massive stone visible at top wedges all these rocks into place.](images/antequera-02.jpg)
@@ -20,7 +19,7 @@ The small town of Antequera was also interesting, though probably would not have
 
 ## Food & Dining
 
-We were in town only briefly, but had a lovely lunch at [Loulo Bistro](https://loulubistro.com/) right on the Plaza de San Sebastián, a lovely square.  It was a great spot to watch locals do their own thing, and is right across from one of the main churches in town.  The menu is simple but excellent.
+We were in town only briefly, but had an excellent lunch at [Loulo Bistro](https://loulubistro.com/) right on the Plaza de San Sebastián, a lovely square.  It was a great spot to watch locals do their own thing, and is right across from one of the main churches in town.  The menu is simple but excellent.
 
 ## Practical Tips
 
