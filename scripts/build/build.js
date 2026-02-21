@@ -92,6 +92,8 @@ async function geocodeContentLocation(processed, item, tripTitle, warnings) {
     processed.place = item.place;
     processed.duration = item.duration;
     if (item.thumbnail) processed.thumbnail = item.thumbnail;
+    if (item.travelMode) processed.travelMode = item.travelMode;
+    if (item.travelDuration) processed.travelDuration = item.travelDuration;
 
     try {
         console.log(`    🗺️  Geocoding: ${item.place}`);

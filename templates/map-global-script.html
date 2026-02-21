@@ -18,7 +18,8 @@
                     zoomControl: true,
                     mapTypeControl: false,
                     streetViewControl: false,
-                    fullscreenControl: true
+                    fullscreenControl: true,
+                    styles: {{MAP_STYLES}}
                 });
                 console.log('Map instance created');
             }
@@ -253,7 +254,7 @@
                 markerSet.polyline = new google.maps.Polyline({
                     path: pathCoordinates,
                     geodesic: true,
-                    strokeColor: '#f59e0b',
+                    strokeColor: '#e8a317',
                     strokeOpacity: 0.8,
                     strokeWeight: 4,
                     map: null,  // Initially not visible

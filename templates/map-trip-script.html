@@ -20,7 +20,8 @@
                 zoomControl: true,
                 mapTypeControl: true,
                 streetViewControl: false,
-                fullscreenControl: true
+                fullscreenControl: true,
+                styles: {{MAP_STYLES}}
             });
             console.log('Trip map instance created');
         } catch (error) {
@@ -40,23 +41,34 @@
         try {
             // Helper to create numbered marker icon
             function createNumberedIcon(number, highlighted) {
-                const bgColor = highlighted ? '#d97706' : '#f59e0b';  // Darker amber when highlighted
-                const outerRadius = highlighted ? 18 : 16;  // Larger when highlighted
-                const svg = '<svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">' +
-                    '<circle cx="19" cy="19" r="' + outerRadius + '" fill="' + bgColor + '"/>' +
-                    '<circle cx="19" cy="19" r="13" fill="white" stroke="' + bgColor + '" stroke-width="3"/>' +
-                    '<text x="19" y="19" text-anchor="middle" dy=".35em" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="' + bgColor + '">' + number + '</text>' +
-                    '</svg>';
+                const outerRadius = highlighted ? 20 : 18;
+                const shadow = highlighted
+                    ? '<circle cx="21" cy="23" r="' + outerRadius + '" fill="rgba(0,0,0,0.18)"/>'
+                    : '<circle cx="21" cy="23" r="' + outerRadius + '" fill="rgba(0,0,0,0.12)"/>';
+                var inner;
+                if (highlighted) {
+                    // Solid amber circle with white number (matches sidebar highlight)
+                    inner = '<circle cx="21" cy="21" r="' + outerRadius + '" fill="#d97706" stroke="white" stroke-width="3"/>' +
+                        '<text x="21" y="21" text-anchor="middle" dy=".35em" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="white">' + number + '</text>';
+                } else {
+                    // White circle with amber ring and amber number
+                    inner = '<circle cx="21" cy="21" r="' + outerRadius + '" fill="#f59e0b"/>' +
+                        '<circle cx="21" cy="21" r="' + (outerRadius - 3) + '" fill="white" stroke="#f59e0b" stroke-width="3"/>' +
+                        '<text x="21" y="21" text-anchor="middle" dy=".35em" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#f59e0b">' + number + '</text>';
+                }
+                const svg = '<svg width="44" height="46" viewBox="0 0 44 46" xmlns="http://www.w3.org/2000/svg">' +
+                    shadow + inner + '</svg>';
                 return {
                     url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
-                    scaledSize: new google.maps.Size(38, 38),
-                    anchor: new google.maps.Point(19, 19)
+                    scaledSize: new google.maps.Size(44, 46),
+                    anchor: new google.maps.Point(21, 21)
                 };
             }
 
             // Create single shared InfoWindow
             const infoWindow = new google.maps.InfoWindow({
-                pixelOffset: new google.maps.Size(0, -32)
+                pixelOffset: new google.maps.Size(0, -32),
+                disableAutoPan: true
             });
 
             let mouseOverInfoWindow = false;
@@ -86,7 +98,8 @@
                     map: map,
                     position: position,
                     icon: createNumberedIcon(idx + 1, false),
-                    title: loc.title
+                    title: loc.title,
+                    cursor: 'pointer'
                 });
 
                 // Store location index on marker for identification
@@ -118,10 +131,14 @@
                     infoWindow.open(map, marker);
                     infoWindowOpen = true;
 
-                    // Highlight corresponding sidebar item
+                    // Highlight marker itself
+                    marker.setIcon(createNumberedIcon(idx + 1, true));
+
+                    // Highlight corresponding sidebar item and scroll it into view
                     const sidebarItem = document.querySelector('[data-location-index="' + marker.locationIndex + '"]');
                     if (sidebarItem) {
                         sidebarItem.classList.add('highlighted');
+                        sidebarItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }
                 });
 
@@ -132,6 +149,9 @@
                             infoWindowOpen = false;
                         }
                     }, HOVER_LINGER_MS);
+
+                    // Restore marker icon
+                    marker.setIcon(createNumberedIcon(idx + 1, false));
 
                     // Remove highlight from sidebar item
                     const sidebarItem = document.querySelector('[data-location-index="' + marker.locationIndex + '"]');
@@ -172,32 +192,235 @@
                 }
             });
 
-            // Add polyline connecting locations
-            const routeCoords = locations.map(loc => ({
-                lat: loc.coordinates.lat,
-                lng: loc.coordinates.lng
-            }));
+            // Add per-segment polylines connecting locations
+            var routeSegments = [];
+            for (var s = 0; s < locations.length - 1; s++) {
+                var segPath = [
+                    { lat: locations[s].coordinates.lat, lng: locations[s].coordinates.lng },
+                    { lat: locations[s + 1].coordinates.lat, lng: locations[s + 1].coordinates.lng }
+                ];
+                var seg = new google.maps.Polyline({
+                    path: segPath,
+                    geodesic: true,
+                    strokeColor: '#e8a317',
+                    strokeOpacity: 0.85,
+                    strokeWeight: 5,
+                    icons: [{
+                        icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 4 },
+                        offset: '0',
+                        repeat: '20px'
+                    }]
+                });
+                seg.setMap(map);
+                routeSegments.push(seg);
+            }
 
-            const routeLine = new google.maps.Polyline({
-                path: routeCoords,
-                geodesic: true,
-                strokeColor: '#f59e0b',
-                strokeOpacity: 0.8,
-                strokeWeight: 4,
-                icons: [{
-                    icon: {
-                        path: 'M 0,-1 0,1',
-                        strokeOpacity: 1,
-                        scale: 4
-                    },
-                    offset: '0',
-                    repeat: '20px'
-                }]
-            });
-            routeLine.setMap(map);
+            function setSegmentStyle(seg, color, opacity, weight) {
+                seg.setOptions({ strokeColor: color, strokeOpacity: opacity, strokeWeight: weight });
+            }
+
+            function resetAllSegments() {
+                routeSegments.forEach(function(seg) {
+                    setSegmentStyle(seg, '#e8a317', 0.85, 5);
+                });
+            }
+
+            function updateSegmentsForStep(stepIdx) {
+                routeSegments.forEach(function(seg, i) {
+                    if (i < stepIdx) {
+                        // Traveled: bold amber
+                        setSegmentStyle(seg, '#e8a317', 0.85, 5);
+                    } else {
+                        // Future: muted gray
+                        setSegmentStyle(seg, '#94a3b8', 0.6, 3);
+                    }
+                });
+            }
 
             // Fit map to show all markers
             map.fitBounds(bounds, { padding: 50 });
+
+            // ─── "Follow the Journey" auto-play ───
+            var playBtn = document.getElementById('play-trip-btn');
+            var stopBtn = document.getElementById('stop-trip-btn');
+            var tourControls = playBtn ? playBtn.closest('.tour-controls') : null;
+            var playTimer = null;
+            var playIndex = 0;
+            var playState = 'stopped'; // 'stopped' | 'playing' | 'paused'
+            var STEP_DURATION_MS = 3500;
+            var savedBounds = null;
+
+            function clearAllHighlights() {
+                markers.forEach(function(m, i) {
+                    m.setIcon(createNumberedIcon(i + 1, false));
+                });
+                document.querySelectorAll('.location-list-item').forEach(function(el) {
+                    el.classList.remove('highlighted', 'traveled', 'future');
+                });
+                document.querySelectorAll('.travel-segment').forEach(function(el) {
+                    el.classList.remove('future-segment');
+                });
+                // Clear timeline-fade classes from all li elements
+                document.querySelectorAll('.trip-map-locations-list li').forEach(function(el) {
+                    el.classList.remove('step-future');
+                });
+                infoWindow.close();
+            }
+
+            function updateSidebarForStep(stepIdx) {
+                var allItems = document.querySelectorAll('.location-list-item');
+                var allSegments = document.querySelectorAll('.travel-segment');
+
+                allItems.forEach(function(el) {
+                    var idx = parseInt(el.getAttribute('data-location-index')) - 1;
+                    var li = el.closest('li');
+                    el.classList.remove('highlighted', 'traveled', 'future');
+                    li.classList.remove('step-future');
+                    if (idx < stepIdx) {
+                        el.classList.add('traveled');
+                    } else if (idx === stepIdx) {
+                        el.classList.add('highlighted');
+                    } else {
+                        el.classList.add('future');
+                        li.classList.add('step-future');
+                    }
+                });
+
+                // Travel segments sit before their destination stop.
+                // Segment at DOM index i connects stop i to stop i+1.
+                allSegments.forEach(function(el, i) {
+                    el.classList.remove('future-segment');
+                    if (i >= stepIdx) {
+                        el.classList.add('future-segment');
+                    }
+                });
+            }
+
+            function showStep(stepIdx) {
+                clearAllHighlights();
+                var loc = locations[stepIdx];
+                var marker = markers[stepIdx];
+
+                // Highlight marker
+                marker.setIcon(createNumberedIcon(stepIdx + 1, true));
+
+                // Pan map to location, then nudge viewport up so InfoWindow above marker is visible
+                map.panTo(marker.getPosition());
+                map.panBy(0, -100);
+
+                // Highlight traveled segments on map, mute future ones
+                updateSegmentsForStep(stepIdx);
+
+                // Update sidebar: traveled / current / future
+                updateSidebarForStep(stepIdx);
+
+                // Open info window
+                var thumbHtml = loc.thumbnail
+                    ? '<img src="' + loc.thumbnail + '" alt="' + loc.title + '" class="marker-popup-image" onerror="this.remove()">'
+                    : '';
+                var titleWithDuration = loc.duration
+                    ? loc.title + ' (' + loc.duration + ')'
+                    : loc.title;
+                var content = '<div class="marker-popup">' +
+                    thumbHtml +
+                    '<div class="marker-popup-content">' +
+                        '<div class="marker-popup-title">' + titleWithDuration + '</div>' +
+                        '<a href="./' + loc.slug + '.html" class="marker-popup-link">Read More \u2192</a>' +
+                    '</div>' +
+                '</div>';
+                infoWindow.setContent(content);
+                infoWindow.open(map, marker);
+
+                // Scroll next item into view so user can see what's coming
+                var nextItem = document.querySelector('[data-location-index="' + (stepIdx + 2) + '"]');
+                if (nextItem) {
+                    nextItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    // Last stop — scroll current into view
+                    var currentItem = document.querySelector('[data-location-index="' + (stepIdx + 1) + '"]');
+                    if (currentItem) currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }
+
+            function advanceStep() {
+                playIndex++;
+                if (playIndex >= locations.length) {
+                    stopPlayback();
+                    return;
+                }
+                showStep(playIndex);
+            }
+
+            function setBtnLabel(icon, text) {
+                playBtn.innerHTML = '<span class="btn-icon">' + icon + '</span> ' + text;
+            }
+
+            function startPlayback() {
+                if (playState === 'playing') return;
+                playState = 'playing';
+                playIndex = 0;
+                savedBounds = map.getBounds();
+                setBtnLabel('\u23F8', 'Pause Tour');
+                playBtn.className = 'play-trip-btn playing';
+                if (tourControls) tourControls.classList.add('active');
+                // Scroll sidebar to top before starting
+                var sidebar = document.querySelector('.trip-map-sidebar');
+                if (sidebar) sidebar.scrollTop = 0;
+                showStep(0);
+                playTimer = setInterval(advanceStep, STEP_DURATION_MS);
+            }
+
+            function pausePlayback() {
+                if (playState !== 'playing') return;
+                playState = 'paused';
+                if (playTimer) { clearInterval(playTimer); playTimer = null; }
+                setBtnLabel('\u25B6', 'Resume Tour');
+                playBtn.className = 'play-trip-btn paused';
+            }
+
+            function resumePlayback() {
+                if (playState !== 'paused') return;
+                playState = 'playing';
+                setBtnLabel('\u23F8', 'Pause Tour');
+                playBtn.className = 'play-trip-btn playing';
+                playTimer = setInterval(advanceStep, STEP_DURATION_MS);
+            }
+
+            function stopPlayback() {
+                playState = 'stopped';
+                if (playTimer) { clearInterval(playTimer); playTimer = null; }
+                setBtnLabel('\u25B6', 'Follow the Journey');
+                playBtn.className = 'play-trip-btn';
+                if (tourControls) tourControls.classList.remove('active');
+                clearAllHighlights();
+                resetAllSegments();
+                // Restore original view
+                if (savedBounds) {
+                    map.fitBounds(savedBounds);
+                    savedBounds = null;
+                }
+            }
+
+            if (playBtn) {
+                playBtn.addEventListener('click', function() {
+                    if (playState === 'playing') {
+                        pausePlayback();
+                    } else if (playState === 'paused') {
+                        resumePlayback();
+                    } else {
+                        startPlayback();
+                    }
+                });
+            }
+
+            if (stopBtn) {
+                stopBtn.addEventListener('click', function() {
+                    if (playState !== 'stopped') {
+                        stopPlayback();
+                    }
+                });
+            }
+
         } catch (error) {
             console.error('Error in trip map markers/polyline:', error);
         }

@@ -58,3 +58,27 @@ with one `<input>` and a gradient button, pointed at a service-provided action
 URL. The real decision is picking the email service. Kevin noted that adding an
 email address is easy on the provider side, so once a service is chosen the
 integration is a single session's work.
+
+---
+
+## Map Sidebar: Expandable Micro-Summaries Per Stop
+
+Figma suggested adding a 1-sentence highlight per location in the trip map
+sidebar — a standout memory, quote, or rating that appears below the duration.
+
+**Example:**
+```
+Granada
+3 days
+"Alhambra at dusk alone was worth the flight."
+```
+
+**What's needed:**
+- A new optional `highlight` field in trip.json location entries.
+- Build pipeline to pass it through (`scripts/build/build.js` field copy).
+- Sidebar rendering in `lib/generate-trip-pages.js` (`buildMapSidebar`).
+- CSS for the highlight text (small italic, muted color, maybe expandable).
+
+**Why deferred:** This is editorial content — Kevin would write each highlight
+by hand during a writing pass. No point building the UI until there's content
+to show.

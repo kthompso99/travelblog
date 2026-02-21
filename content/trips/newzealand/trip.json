@@ -48,7 +48,9 @@
       "file": "glacier-country.md",
       "place": "Franz Josef, NZ",
       "duration": "3 days",
-      "thumbnail": "images/glacier-country-01.jpg"
+      "thumbnail": "images/glacier-country-01.jpg",
+      "travelMode": "drive",
+      "travelDuration": "5 hours"
     },
     {
       "type": "location",
@@ -56,7 +58,9 @@
       "file": "wanaka.md",
       "place": "Wanaka, NZ",
       "duration": "3 hours",
-      "thumbnail": "images/wanaka-01.jpg"
+      "thumbnail": "images/wanaka-01.jpg",
+      "travelMode": "drive",
+      "travelDuration": "1.5 hours"
     },
     {
       "type": "location",
@@ -64,7 +68,9 @@
       "file": "queenstown.md",
       "place": "Queenstown, NZ",
       "duration": "3 days",
-      "thumbnail": "images/queenstown-01.jpg"
+      "thumbnail": "images/queenstown-01.jpg",
+      "travelMode": "drive",
+      "travelDuration": "1 hour"
     },
     {
       "type": "location",
@@ -72,7 +78,9 @@
       "file": "kaikoura.md",
       "place": "Kaikoura, NZ",
       "duration": "3 days",
-      "thumbnail": "images/kaikoura-01.jpg"
+      "thumbnail": "images/kaikoura-01.jpg",
+      "travelMode": "drive",
+      "travelDuration": "4.5 hours"
     },
     {
       "type": "location",
@@ -80,7 +88,9 @@
       "file": "nelson.md",
       "place": "Nelson, NZ",
       "duration": "3 days",
-      "thumbnail": "images/nelson-01.jpg"
+      "thumbnail": "images/nelson-01.jpg",
+      "travelMode": "drive",
+      "travelDuration": "3 hours"
     },
     {
       "type": "location",
@@ -88,7 +98,9 @@
       "file": "wellington.md",
       "place": "Wellington, New Zealand",
       "duration": "3 days",
-      "thumbnail": "images/wellington-01.jpg"
+      "thumbnail": "images/wellington-01.jpg",
+      "travelMode": "ferry",
+      "travelDuration": "3.5 hours"
     },
     {
       "type": "location",
@@ -96,7 +108,9 @@
       "file": "rotorua.md",
       "place": "Rotorua, New Zealand",
       "duration": "3 days",
-      "thumbnail": "images/rotorua-01.jpg"
+      "thumbnail": "images/rotorua-01.jpg",
+      "travelMode": "drive",
+      "travelDuration": "4.5 hours"
     },
     {
       "type": "location",
@@ -104,7 +118,9 @@
       "file": "hobbiton.md",
       "place": "hobbiton, New Zealand",
       "duration": "3 hours",
-      "thumbnail": "images/hobbiton-01.jpg"
+      "thumbnail": "images/hobbiton-01.jpg",
+      "travelMode": "drive",
+      "travelDuration": "1 hour"
     },
     {
       "type": "location",
@@ -112,7 +128,9 @@
       "file": "auckland.md",
       "place": "Auckland, New Zealand",
       "duration": "3 days",
-      "thumbnail": "images/auckland-01.jpg"
+      "thumbnail": "images/auckland-01.jpg",
+      "travelMode": "drive",
+      "travelDuration": "2.5 hours"
     },
     {
       "type": "location",
@@ -120,7 +138,9 @@
       "file": "cook-islands.md",
       "place": "Rarotanga, New Zealand",
       "duration": "3 days",
-      "thumbnail": "images/cook-islands-01.jpg"
+      "thumbnail": "images/cook-islands-01.jpg",
+      "travelMode": "fly",
+      "travelDuration": "3.5 hours"
     }
   ],
   "relatedTrips": []

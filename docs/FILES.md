@@ -180,7 +180,9 @@ trip's interactive map and gets its own HTML page.
   "place": "Milos Greece",
   "duration": "2 days",
   "file": "milos.md",
-  "thumbnail": "images/Milos-01.jpg"
+  "thumbnail": "images/Milos-01.jpg",
+  "travelMode": "ferry",
+  "travelDuration": "3 hours"
 }
 ```
 
@@ -192,6 +194,8 @@ trip's interactive map and gets its own HTML page.
 | `duration` | Yes | Free-text string shown on the page |
 | `file` | Yes | Path relative to the trip directory |
 | `thumbnail` | No | Shown in map popup; omit to hide image |
+| `travelMode` | No | How you arrived: `"train"`, `"drive"`, `"ferry"`, or `"fly"`. Omit for the first stop. |
+| `travelDuration` | No | Free-text travel time (e.g. `"1.5 hours"`). Shown between stops on the route page sidebar. |
 
 ### `article`
 

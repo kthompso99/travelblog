@@ -38,15 +38,19 @@
       "place": "Santorini Greece",
       "duration": "2 days",
       "file": "santorini.md",
-      "thumbnail": "images/Santorini-02.jpg"
+      "thumbnail": "images/Santorini-02.jpg",
+      "travelMode": "ferry",
+      "travelDuration": "3 hours"
     },
-      {
+    {
       "type": "location",
       "title": "Naxos",
       "place": "Naxos Greece",
       "duration": "5 hours",
       "file": "naxos.md",
-      "thumbnail": "images/Naxos-02.jpg"
+      "thumbnail": "images/Naxos-02.jpg",
+      "travelMode": "ferry",
+      "travelDuration": "1.5 hours"
     },
     {
       "type": "location",
@@ -54,23 +58,29 @@
       "place": "Avant Mar Paros",
       "duration": "3 days",
       "file": "paros.md",
-      "thumbnail": "images/Paros-08.jpg"
+      "thumbnail": "images/Paros-08.jpg",
+      "travelMode": "ferry",
+      "travelDuration": "45 min"
     },
-      {
+    {
       "type": "location",
       "title": "Delos",
       "place": "Delos Greece",
       "duration": "2 hours",
       "file": "delos.md",
-      "thumbnail": "images/Delos-03.jpg"
+      "thumbnail": "images/Delos-03.jpg",
+      "travelMode": "ferry",
+      "travelDuration": "30 min"
     },
-      {
+    {
       "type": "location",
       "title": "Mykonos",
       "place": "Mykonos Greece",
       "duration": "2 hours",
       "file": "mykonos.md",
-      "thumbnail": "images/Mykonos-01.jpg"
+      "thumbnail": "images/Mykonos-01.jpg",
+      "travelMode": "ferry",
+      "travelDuration": "30 min"
     },
     {
       "type": "location",
@@ -78,7 +88,9 @@
       "place": "Electra Metropolis Athens",
       "duration": "3 days",
       "file": "athens.md",
-      "thumbnail": "images/Athens-15.jpg"
+      "thumbnail": "images/Athens-15.jpg",
+      "travelMode": "ferry",
+      "travelDuration": "3 hours"
     }
   ],
   "relatedTrips": []

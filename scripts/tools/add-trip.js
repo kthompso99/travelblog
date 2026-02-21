@@ -118,6 +118,17 @@ async function gatherContentItems(ask, country) {
             contentItem.place = place;
             contentItem.duration = duration || '1 day';
             contentItem.thumbnail = `images/${itemSlug}-01.jpg`;
+
+            // Travel info (how you arrived from the previous stop)
+            const prevLocations = content.filter(c => c.type === 'location');
+            if (prevLocations.length > 0) {
+                const mode = await ask(`  Travel mode from previous stop (drive/train/ferry/fly, or enter to skip): `);
+                if (mode && ['drive', 'train', 'ferry', 'fly'].includes(mode)) {
+                    contentItem.travelMode = mode;
+                    const travelTime = await ask(`  Travel duration (e.g., "2 hours"): `);
+                    if (travelTime) contentItem.travelDuration = travelTime;
+                }
+            }
         }
 
         content.push(contentItem);
