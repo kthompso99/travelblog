@@ -4,20 +4,23 @@
  */
 
 const fs = require('fs');
+const path = require('path');
 const { extractCssRule, createTestRunner } = require('./test-helpers');
 
+const ROOT_DIR = path.join(__dirname, '../..');
 const { assert, report } = createTestRunner('🎨 CSS Injection smoke-test');
 
 /**
  * Assert that a CSS selector exists in the HTML file
  */
 function assertCSSExists(filePath, selector, description) {
-    if (!fs.existsSync(filePath)) {
+    const fullPath = path.join(ROOT_DIR, filePath);
+    if (!fs.existsSync(fullPath)) {
         assert(`${description} - File not found: ${filePath}`, false);
         return false;
     }
 
-    const content = fs.readFileSync(filePath, 'utf8');
+    const content = fs.readFileSync(fullPath, 'utf8');
     const rule = extractCssRule(content, selector);
     assert(description, rule !== null);
     return rule !== null;
@@ -27,12 +30,13 @@ function assertCSSExists(filePath, selector, description) {
  * Assert that a CSS selector does NOT exist in the HTML file
  */
 function assertCSSNotExists(filePath, selector, description) {
-    if (!fs.existsSync(filePath)) {
+    const fullPath = path.join(ROOT_DIR, filePath);
+    if (!fs.existsSync(fullPath)) {
         assert(`${description} - File not found: ${filePath}`, false);
         return false;
     }
 
-    const content = fs.readFileSync(filePath, 'utf8');
+    const content = fs.readFileSync(fullPath, 'utf8');
     const rule = extractCssRule(content, selector);
     assert(description, rule === null);
     return rule === null;
@@ -58,7 +62,7 @@ assertCSSNotExists('about/index.html', '.destination-grid', 'About page does NOT
 
 // Test Trip Intro Page (if Spain trip exists)
 const spainIntroPath = 'trips/spain/index.html';
-if (fs.existsSync(spainIntroPath)) {
+if (fs.existsSync(path.join(ROOT_DIR, spainIntroPath))) {
     assertCSSExists(spainIntroPath, '.trip-hero', 'Trip intro has hero CSS');
     assertCSSExists(spainIntroPath, '.trip-bottom-section', 'Trip intro has bottom section CSS');
     assertCSSExists(spainIntroPath, '.markdown-content', 'Trip intro has markdown CSS');
@@ -67,7 +71,7 @@ if (fs.existsSync(spainIntroPath)) {
 
 // Test Trip Location Page (if Spain/Cordoba exists)
 const cordobaPath = 'trips/spain/cordoba.html';
-if (fs.existsSync(cordobaPath)) {
+if (fs.existsSync(path.join(ROOT_DIR, cordobaPath))) {
     assertCSSExists(cordobaPath, '.markdown-content', 'Location page has markdown CSS');
     assertCSSExists(cordobaPath, '.trip-submenu', 'Location page has trip submenu CSS');
     assertCSSExists(cordobaPath, '.location-navigation', 'Location page has prev/next navigation CSS');
@@ -77,7 +81,7 @@ if (fs.existsSync(cordobaPath)) {
 
 // Test Trip Map Page (if Spain map exists)
 const spainMapPath = 'trips/spain/map.html';
-if (fs.existsSync(spainMapPath)) {
+if (fs.existsSync(path.join(ROOT_DIR, spainMapPath))) {
     assertCSSExists(spainMapPath, '#map-container', 'Trip map has map container CSS');
     assertCSSExists(spainMapPath, '.trip-map-full-layout', 'Trip map has full layout CSS');
     assertCSSExists(spainMapPath, '.trip-map-sidebar', 'Trip map has sidebar CSS');

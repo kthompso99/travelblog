@@ -149,21 +149,9 @@ function buildTripConfig(metadata, content) {
     };
 }
 
-function createTripFiles(tripDir, tripConfig, content, metadata) {
-    ensureDir(tripDir);
-    console.log(`\n✅ Created directory: ${tripDir}`);
-
-    ensureDir(path.join(tripDir, 'images'));
-    console.log(`✅ Created directory: ${path.join(tripDir, 'images')}`);
-
-    // Save trip.json
-    const tripConfigPath = CONFIG.getTripConfigPath(metadata.tripId);
-    fs.writeFileSync(tripConfigPath, JSON.stringify(tripConfig, null, 2), 'utf8');
-    console.log(`✅ Created ${tripConfigPath}`);
-
-    // Create main.md
+function buildIntroMarkdown(metadata, content) {
     const locationCount = content.filter(item => item.type === 'location').length;
-    const mainTemplate = `# ${metadata.title}
+    return `# ${metadata.title}
 
 Welcome to our ${metadata.title}!
 
@@ -185,19 +173,13 @@ Add general planning information, tips, and recommendations here.
 
 *Explore each location below to learn more about our journey.*
 `;
+}
 
-    const mainPath = CONFIG.getTripMainPath(metadata.tripId);
-    fs.writeFileSync(mainPath, mainTemplate, 'utf8');
-    console.log(`✅ Created ${mainPath}`);
-
-    // Create content markdown files
+function buildContentMarkdown(item) {
     const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-    for (const item of content) {
-        const itemSlug = slugify(item.title);
-        let template;
 
-        if (item.type === 'article') {
-            template = `Add your ${item.title.toLowerCase()} content here...
+    if (item.type === 'article') {
+        return `Add your ${item.title.toLowerCase()} content here...
 
 ## Section 1
 
@@ -211,8 +193,9 @@ More content...
 
 *Last updated: ${dateStr}*
 `;
-        } else {
-            template = `## Overview
+    }
+
+    return `## Overview
 
 Add your introduction to ${item.title} here...
 
@@ -241,10 +224,26 @@ Recommend restaurants and local cuisine...
 
 *Last updated: ${dateStr}*
 `;
-        }
+}
 
-        const filePath = path.join(tripDir, `${itemSlug}.md`);
-        fs.writeFileSync(filePath, template, 'utf8');
+function createTripFiles(tripDir, tripConfig, content, metadata) {
+    ensureDir(tripDir);
+    console.log(`\n✅ Created directory: ${tripDir}`);
+
+    ensureDir(path.join(tripDir, 'images'));
+    console.log(`✅ Created directory: ${path.join(tripDir, 'images')}`);
+
+    const tripConfigPath = CONFIG.getTripConfigPath(metadata.tripId);
+    fs.writeFileSync(tripConfigPath, JSON.stringify(tripConfig, null, 2), 'utf8');
+    console.log(`✅ Created ${tripConfigPath}`);
+
+    const mainPath = CONFIG.getTripMainPath(metadata.tripId);
+    fs.writeFileSync(mainPath, buildIntroMarkdown(metadata, content), 'utf8');
+    console.log(`✅ Created ${mainPath}`);
+
+    for (const item of content) {
+        const filePath = path.join(tripDir, `${slugify(item.title)}.md`);
+        fs.writeFileSync(filePath, buildContentMarkdown(item), 'utf8');
         console.log(`✅ Created ${filePath}`);
     }
 }

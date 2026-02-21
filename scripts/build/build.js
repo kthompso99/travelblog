@@ -38,7 +38,7 @@ const {
 const CONFIG = require('../../lib/config-paths');
 
 // Import cache management
-const { loadCache, createEmptyCache, updateFullCache, saveCache } = require('../../lib/build-cache');
+const { createEmptyCache, updateFullCache, saveCache } = require('../../lib/build-cache');
 
 const GEOCODING_RATE_LIMIT_MS = 1000; // 1 request per second
 

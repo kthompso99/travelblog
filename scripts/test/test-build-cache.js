@@ -162,7 +162,7 @@ const buildCacheCode = fs.readFileSync(buildCachePath, 'utf8');
 
 // Check for common non-existent files that might be referenced
 const suspiciousReferences = [
-    'generate-html.js',  // The bug we just fixed!
+    'generate-html.js',  // Deleted in tech debt cleanup (commit 2b0f54e)
     'build-html.js',
     'html-generator.js'
 ];
