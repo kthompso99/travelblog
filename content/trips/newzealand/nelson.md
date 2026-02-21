@@ -28,3 +28,15 @@ There are several nice restaurants in Mapua.
 ---
 
 *Last updated: February 2026*
+![The ringmaker of The One Ring is not Sauron, rather he's a jeweler a few blocks from the water in Nelson.  The display is not worth a major trip, but it was a 10-minute detour from our already-planned route so pretty entertaining.](images/nelson-01.jpg)
+
+![Tokangawhā or Split Apple Rock at Abel Tasman National Park.  The tour guides feel the need to invent all sorts of fables for this ... natural rock splitting just doesn't cut it evidently.](images/nelson-02.jpg)
+
+![Distance view of Split Apple Rock](images/nelson-03.jpg)
+
+![Nice multi-hour catamaran ride to Abel Tasman](images/nelson-04.jpg)
+
+![Abel Tasman boat day trips stop at Anchorage Bay.  From there it was a lovely 20-minute walk to Te Pukatea bay, which we had mostly to ourselves.](images/nelson-05.jpg)
+
+![Opposite angle of Te Pukatea bay.](images/nelson-06.jpg)
+

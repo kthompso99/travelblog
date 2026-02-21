@@ -30,3 +30,51 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
+![We arrived first in Rarotanga, even though our first stop was Aitutaki](images/cook-islands-01.jpg)
+
+![View of Rarotanga from above](images/cook-islands-02.jpg)
+
+![The much-smaller airport serving Aitutaki (population <2000).](images/cook-islands-03.jpg)
+
+![Clever welcome concept for a small hotel.](images/cook-islands-04.jpg)
+
+![The canonical "welcome to paradise" sunset.](images/cook-islands-05.jpg)
+
+![Sunset from Aitutaki](images/cook-islands-06.jpg)
+
+![It's really difficult to pick out just one (or 3, or 5) pictures of the incredible Aitutaki lagoon.](images/cook-islands-07.jpg)
+
+![Some young 'un got creative with our lagoon photo.](images/cook-islands-08.jpg)
+
+![Our small island paradise.](images/cook-islands-09.jpg)
+
+![Somewhere near here was the Windows NT background picture from the early '90s.](images/cook-islands-10.jpg)
+
+![Our trusty transportation for the day.](images/cook-islands-11.jpg)
+
+![More islands.](images/cook-islands-12.jpg)
+
+![The water of the Aitutaki lagoon was just glorious.](images/cook-islands-13.jpg)
+
+![These little crabs were everywhere near the lagoon.](images/cook-islands-14.jpg)
+
+![Aitutaki is fairly flat, but the Piraki lookout provided a lovely view of the lagoon.](images/cook-islands-15.jpg)
+
+![There are relatively few spots right on the lagoon to hang out, but the Blue Lagoon was a delight.](images/cook-islands-16.jpg)
+
+![Another killer sunset from Aitutaki](images/cook-islands-17.jpg)
+
+![These geckos were omnipresent by our hotel restaurant.](images/cook-islands-18.jpg)
+
+![View of the Aitutaki lagoon from our flight out.  The Blue Lagoon from a few photos previously is just to the (front) right of this photo.](images/cook-islands-19.jpg)
+
+![Our last view of beautiful Aitutaki.](images/cook-islands-20.jpg)
+
+![We have a tradition of mailing postcards from around the world to a friend's 8-year-old son.  This "mail box" in Rarotonga was memorable.](images/cook-islands-21.jpg)
+
+![The Antipodes restaurant, Rarotanga.](images/cook-islands-22.jpg)
+
+![Beautiful Rarotanga coast.](images/cook-islands-23.jpg)
+
+![The creatively named "Black Rock, Rarotanga.](images/cook-islands-24.jpg)
+

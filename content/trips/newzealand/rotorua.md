@@ -33,3 +33,15 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
+![Inferno Crater Lake has an (invisible) geyser below it.](images/rotorua-01.jpg)
+
+![A visit to Waimangu Volcanic Park can include a boat cruise of Lake Rotomahana, which takes you to wonderful geologic features.](images/rotorua-02.jpg)
+
+![There is a beautiful hot springs at Te Puia.](images/rotorua-03.jpg)
+
+![To the right you can see Maori youths enjoying the natural hot tub.](images/rotorua-04.jpg)
+
+![At Te Puia cultural center, they had a wonderful Maori cultural performance.](images/rotorua-05.jpg)
+
+![At Te Puia cultural center, they had a wonderful Maori cultural performance.](images/rotorua-06.jpg)
+

@@ -32,3 +32,11 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
+![Looking back towards Auckland from Waiheke Island](images/auckland-01.jpg)
+
+![Lovely artwork at a Waiheke winery](images/auckland-02.jpg)
+
+![Passage Rock was one of several lovely wineries on Waiheke Island.](images/auckland-03.jpg)
+
+![KZ1, also known as "The Big Boat" or "New Zealand," was a 40-meter (135 ft) carbon-fibre monohull built to challenge for the 1988 America’s Cup.  There's a lot of lawsuits and complexities involved if you want to Google it, and this boat eventually lost, but is considered historic for its pushing the boundaries of monohull ship architecture.](images/auckland-04.jpg)
+

@@ -35,3 +35,33 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
+![Our guide caught this shot of the two of us pedaling our kayak.](images/kaikoura-01.jpg)
+
+![Up close with a fur seal](images/kaikoura-02.jpg)
+
+![Fur seal again](images/kaikoura-03.jpg)
+
+![](images/kaikoura-04.jpg)
+
+![](images/kaikoura-05.jpg)
+
+![](images/kaikoura-06.jpg)
+
+![](images/kaikoura-07.jpg)
+
+![](images/kaikoura-08.jpg)
+
+![A seal checking us out as we focus on the whales.](images/kaikoura-09.jpg)
+
+![Another Sperm Whale salute.](images/kaikoura-10.jpg)
+
+![We took a private tour with Seal Kayak Kaikoura -- we highly recommend them for their pedal-powered kayaks, leaving hands free (and dry!) for photography.](images/kaikoura-11.jpg)
+
+![](images/kaikoura-12.jpg)
+
+![View of the mountains from Hapuku Tree Lodge](images/kaikoura-13.jpg)
+
+![We took a lovely trip with Whale Watch Kaikoura.  The main animals visible this time of year are bachelor male Sperm Whales, who dive with a tell-tale wave of their flukes](images/kaikoura-14.jpg)
+
+![We took a lovely trip with Whale Watch Kaikoura.  The main animals visible this time of year are bachelor male Sperm Whales, who dive with a tell-tale wave of their flukes](images/kaikoura-15.jpg)
+

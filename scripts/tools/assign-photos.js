@@ -19,15 +19,14 @@ async function parseTripStructure(tripId) {
   const tripJson = await fs.readFile(CONFIG.getTripConfigPath(tripId), 'utf8');
   const trip = JSON.parse(tripJson);
 
-  // Extract location names from trip.json
+  // Extract content items (locations + articles) from trip.json
   const locations = trip.content
-    .filter(item => item.type === 'location')
-    .map(loc => ({
-      id: path.basename(loc.file, '.md'),  // 'cordoba' from 'cordoba.md'
-      title: loc.title,                     // 'Cordoba'
-      duration: loc.duration,               // '2 days'
-      file: loc.file,                       // 'cordoba.md'
-      photoCount: 0                         // Track assignments
+    .map(item => ({
+      id: path.basename(item.file, '.md'),  // 'cordoba' from 'cordoba.md'
+      title: item.title,                     // 'Cordoba'
+      duration: item.duration,               // '2 days' (locations only)
+      file: item.file,                       // 'cordoba.md'
+      photoCount: 0                          // Track assignments
     }));
 
   return { trip, locations };
@@ -332,7 +331,7 @@ async function runInteractiveAssignment(tripId) {
 
   console.log(`📁 Trip: ${tripId} (${CONFIG.getTripDir(tripId)})`);
   console.log(`📝 Found ${photos.length} unassigned photos in all-synced-photos.md`);
-  console.log(`📂 Found ${locations.length} locations: ${locations.map(l => l.id).join(', ')}\n`);
+  console.log(`📂 Found ${locations.length} content items: ${locations.map(l => l.id).join(', ')}\n`);
 
   if (photos.length === 0) {
     console.log('✅ All photos already assigned!');

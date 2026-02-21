@@ -41,3 +41,33 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
+![Boarding our train ride from Churchill to Greymouth](images/glacier-country-01.jpg)
+
+![The views out the window of the train are attractive but not spectacular -- the train route of course picks one of the lowest sections of the southern Alps.](images/glacier-country-02.jpg)
+
+![The train stops for 5-10 minutes heading across the south island.](images/glacier-country-03.jpg)
+
+![The west coast of the South Island is wild and barely-developed. The beaches are covered with dead branches; one coastal town (Hokitika) has turned this into their tourist photo spot.](images/glacier-country-04.jpg)
+
+![This is from our hotel in Franz Josef, showing the high peaks of glacier country](images/glacier-country-05.jpg)
+
+![Kiwi are unfortunately very commonly in road accidents.  The critically endangered Okarito kiwi is on the west coast of the South Island, so this is particularly emphasized there.](images/glacier-country-06.jpg)
+
+![On the path to beautiful Lake Matheson](images/glacier-country-07.jpg)
+
+![Lake Matheson is a small glacial lake that reflects gorgeously](images/glacier-country-08.jpg)
+
+![Lake Matheson](images/glacier-country-09.jpg)
+
+![](images/glacier-country-10.jpg)
+
+![Another view of Fox Glacier](images/glacier-country-11.jpg)
+
+![Close-up of Fox Glacier](images/glacier-country-12.jpg)
+
+![Franz Josef glacier, like Fox, has retreated significantly, so that from its parking lot it just peaks out from around the corner](images/glacier-country-13.jpg)
+
+![Slightly closer view of Franz Josef glacier](images/glacier-country-14.jpg)
+
+![This view of Franz Josef Glacier is a ~10 minute walk from the parking lot -- it overlooked the actual glacier just a few decades ago, as you can see from the glacial remainders.](images/glacier-country-15.jpg)
+

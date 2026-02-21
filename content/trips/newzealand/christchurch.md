@@ -40,3 +40,17 @@ Recommend restaurants and local cuisine...
 ---
 
 *Last updated: February 2026*
+![The Great Hall of the University of Canterbury in Christchurch](images/christchurch-01.jpg)
+
+![The Christchurch Botanical Gardens made for a lovely walk on the first day after a long trans-Pacific flight.](images/christchurch-02.jpg)
+
+![Christchurch has become well known for its street art](images/christchurch-03.jpg)
+
+![More street art.](images/christchurch-04.jpg)
+
+![Beautiful art work at Manu restaurant, Christchurch.  The chin tattoo, known as a moko kauae, is a sacred marking, far from just decorative.](images/christchurch-05.jpg)
+
+![Beautiful bird painted on building wall](images/christchurch-06.jpg)
+
+![This sculpture, titled Chapman's Homer, was created in 2011 by Michael Parekōwhai, a Maori sculptor.  This sculpture was placed outdoors after the local art gallery was shut due to earthquake damage, was a public favorite and became a symbol of hope after the devastating earthquakes.](images/christchurch-07.jpg)
+
