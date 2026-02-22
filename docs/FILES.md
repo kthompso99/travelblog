@@ -159,6 +159,7 @@ travelblog/
   "coverImage":  "images/greece.jpg",
   "thumbnail":   "images/greece.jpg",
   "mapCenter":   "Paros",           // Geocoded; centers the trip map
+  "mapNarrative": "Thirteen days island-hopping...",  // Optional: intro text above trip map
   "content": [ ... ],               // Array of location / article items (see Content Types below)
   "relatedTrips": []                // Future: cross-link trips
 }

@@ -261,6 +261,7 @@ async function processTrip(tripId, warnings = []) {
         coverImage: tripConfig.coverImage,
         thumbnail: tripConfig.thumbnail,
         mapCenter: mapCenter,
+        mapNarrative: tripConfig.mapNarrative || '',
         introHtml: introHtml,
         content: processedContent,
         locations: locations,

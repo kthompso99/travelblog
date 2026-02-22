@@ -17,6 +17,10 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/images/favicon-512.png">
+    <!-- Google Fonts: Cormorant Garamond (wordmark) + Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Google Maps API loaded per-page in map generation code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
     <style>
@@ -55,16 +59,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
-            height: 3.5rem;
+            padding: 1.25rem 2rem;
         }
 
         .logo {
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            color: white;
             text-decoration: none;
+            color: white;
+        }
+
+        .wordmark {
+            line-height: 1;
+        }
+
+        .wordmark-top {
+            font-family: "Inter", sans-serif;
+            font-size: 0.6875rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .wordmark-bottom {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .nav-links {
@@ -342,7 +360,7 @@
 <body>
     <header>
         <nav>
-            <a href="{{BASE_PATH}}" class="logo">🌍 {{SITE_TITLE}}</a>
+            <a href="{{BASE_PATH}}" class="logo"><div class="wordmark"><div class="wordmark-top">TWO</div><div class="wordmark-bottom">Travel Nuts</div></div></a>
             <ul class="nav-links">
                 <li><a href="{{BASE_PATH}}">Home</a></li>
                 <li class="dropdown" id="trips-dropdown">

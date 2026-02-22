@@ -157,6 +157,7 @@ function buildTripConfig(metadata, content) {
         coverImage: `images/${metadata.tripId}.jpg`,
         thumbnail: `images/${metadata.tripId}.jpg`,
         mapCenter: metadata.mapCenter,
+        mapNarrative: '',
         content: content,
         relatedTrips: []
     };
