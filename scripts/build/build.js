@@ -9,7 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const { getContentItemSlug } = require('../../lib/slug-utilities');
-const { geocodeLocation, loadGeocodeCache } = require('../../lib/geocode');
+const { geocodeLocation, loadGeocodeCache, isCachedGeocode } = require('../../lib/geocode');
 const { convertMarkdown } = require('../../lib/markdown-converter');
 
 // Load HTML generators (paths relative to project root since script runs from root)
@@ -97,10 +97,14 @@ async function geocodeContentLocation(processed, item, tripTitle, warnings) {
 
     try {
         console.log(`    🗺️  Geocoding: ${item.place}`);
+        const wasCached = isCachedGeocode(item.place);
         processed.coordinates = await geocodeLocation(item.place);
         console.log(`    ✅ Coordinates: ${processed.coordinates.lat}, ${processed.coordinates.lng}`);
 
-        await new Promise(resolve => setTimeout(resolve, GEOCODING_RATE_LIMIT_MS));
+        // Only rate-limit when we actually hit the API (not cached)
+        if (!wasCached) {
+            await new Promise(resolve => setTimeout(resolve, GEOCODING_RATE_LIMIT_MS));
+        }
     } catch (e) {
         console.log(`    ⚠️  Geocoding failed: ${e.message}`);
         processed.coordinates = { lat: 0, lng: 0 };
