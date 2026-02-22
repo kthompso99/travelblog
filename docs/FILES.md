@@ -10,7 +10,7 @@ A guide to every file and directory in the travel blog project, organized by rol
 travelblog/
 │
 ├── config/                     Source configuration
-│   ├── site.json               Site title, description, base URL
+│   ├── site.json               Site title, description, heroImages, base URL
 │   ├── google-maps.json        Google Maps API key (local dev only, gitignored)
 │   └── remark42.json           Remark42 commenting system config (dev/prod hosts)
 │
@@ -81,7 +81,8 @@ travelblog/
 │   │   ├── content-report.js   Content quality report (readability, write-good)
 │   │   ├── sync-takeout-photos.js Extract photos from Google Takeout
 │   │   ├── analyze-takeout-geo.js Analyze GPS data in Takeout
-│   │   └── optimize-images.js  ImageMagick image optimization
+│   │   ├── optimize-images.js  ImageMagick image optimization
+│   │   └── hero-search.js     Find hero image candidates from trip photos
 │   ├── validate.js             Pre-build validation of trip configs
 │   ├── deploy-check.js         Pre-deployment verification
 │   ├── sync-docs.js            Check docs for drift against code
@@ -142,6 +143,7 @@ travelblog/
 ```json
 {
   "title": "Athens and Greek Islands",
+  "subtitle": "Island-hopping by ferry, ancient ruins, and Cycladic sunsets",
   "published": true,                // false = excluded from build
                                     // NOTE: slug inferred from directory name
   "beginDate": "2025-04-01",
@@ -242,6 +244,7 @@ No geocoding, no map marker, no `place` or `duration` fields.
 | `optimize:images` | `npm run optimize:images` | Compress trip images with ImageMagick |
 | `optimize:images:dry-run` | `npm run optimize:images:dry-run` | Preview image optimization without writing files |
 | `optimize:images:force` | `npm run optimize:images:force` | Force re-optimize all images (ignore already-optimized) |
+| `hero-search` | `npm run hero-search -- <trip-id>` | Find landscape hero image candidates from a trip's photos |
 
 Per-trip incremental build:
 ```bash

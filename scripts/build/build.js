@@ -252,6 +252,7 @@ async function processTrip(tripId, warnings = []) {
     return {
         slug: tripId,
         title: tripConfig.title,
+        subtitle: tripConfig.subtitle || '',
         published: tripConfig.published,
         beginDate: tripConfig.beginDate,
         endDate: tripConfig.endDate,

@@ -92,7 +92,7 @@ const homepageCSS = getPageCSS('homepage');
 const contentCSS = getPageCSS('trip-location');
 
 assert('getPageCSS: homepage returns style tag', homepageCSS.includes('<style>'));
-assert('getPageCSS: homepage contains hero CSS', homepageCSS.includes('.hero'));
+assert('getPageCSS: homepage contains hero CSS', homepageCSS.includes('.home-hero'));
 assert('getPageCSS: trip-location returns style tag', contentCSS.includes('<style>'));
 assert('getPageCSS: trip-location contains markdown CSS', contentCSS.includes('.markdown-content'));
 assert('getPageCSS: homepage and content CSS are different', homepageCSS !== contentCSS);

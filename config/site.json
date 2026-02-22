@@ -1,5 +1,11 @@
 {
   "title": "Two Travel Nuts",
   "description": "Exploring the world, one destination at a time",
+  "intro": "We're Kevin and Tiffany \u2014 lifelong travelers who believe great journeys combine comfort, culture, hiking, and history. This site documents where we've gone \u2014 and what we honestly thought.",
+  "heroImages": [
+    "trips/spain/images/ronda-01.jpg",
+    "trips/newzealand/images/glacier-country-09.jpg",
+    "trips/newzealand/images/kaikoura-01.jpg"
+  ],
   "domain": "https://twotravelnuts.com"
 }

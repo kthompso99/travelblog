@@ -22,7 +22,8 @@
     "sync-docs": "node scripts/sync-docs.js",
     "optimize:images": "node scripts/tools/optimize-images.js",
     "optimize:images:dry-run": "node scripts/tools/optimize-images.js --dry-run",
-    "optimize:images:force": "node scripts/tools/optimize-images.js --force"
+    "optimize:images:force": "node scripts/tools/optimize-images.js --force",
+    "hero-search": "node scripts/tools/hero-search.js"
   },
   "dependencies": {
     "adm-zip": "^0.5.16",

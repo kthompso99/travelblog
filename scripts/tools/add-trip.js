@@ -87,8 +87,9 @@ async function gatherTripMetadata(ask) {
     const beginDate = await ask('Start date (YYYY-MM-DD): ');
     const endDate = await ask('End date (YYYY-MM-DD): ');
     const mapCenter = await ask(`\nMap center location (press enter for "${country}"): `) || country;
+    const subtitle = await ask('Card subtitle (1-line teaser for homepage, or press enter to skip): ') || '';
 
-    return { title, tripId, tripDir, country, continent, beginDate, endDate, mapCenter };
+    return { title, tripId, tripDir, country, continent, beginDate, endDate, mapCenter, subtitle };
 }
 
 async function gatherContentItems(ask, country) {
@@ -142,6 +143,7 @@ async function gatherContentItems(ask, country) {
 function buildTripConfig(metadata, content) {
     return {
         title: metadata.title,
+        subtitle: metadata.subtitle,
         published: false,
         beginDate: metadata.beginDate,
         endDate: metadata.endDate,
