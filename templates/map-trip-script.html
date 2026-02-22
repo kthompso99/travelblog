@@ -313,7 +313,20 @@
             }
 
             function showStep(stepIdx) {
-                clearAllHighlights();
+                // Reset marker icons and sidebar classes (but don't close InfoWindow)
+                markers.forEach(function(m, i) {
+                    m.setIcon(createNumberedIcon(i + 1, false));
+                });
+                document.querySelectorAll('.location-list-item').forEach(function(el) {
+                    el.classList.remove('highlighted', 'traveled', 'future');
+                });
+                document.querySelectorAll('.travel-segment').forEach(function(el) {
+                    el.classList.remove('future-segment');
+                });
+                document.querySelectorAll('.trip-map-locations-list li').forEach(function(el) {
+                    el.classList.remove('step-future');
+                });
+
                 var loc = locations[stepIdx];
                 var marker = markers[stepIdx];
 
@@ -330,9 +343,19 @@
                 // Update sidebar: traveled / current / future
                 updateSidebarForStep(stepIdx);
 
-                // Open info window
-                infoWindow.setContent(buildPopupHtml(loc, stepIdx + 1));
-                infoWindow.open(map, marker);
+                // Fade out old card, then swap content and fade in new card
+                var popupHtml = buildPopupHtml(loc, stepIdx + 1).replace('map-popup-card', 'map-popup-card popup-fade-in');
+                var oldCard = document.querySelector('.map-popup-card');
+                if (oldCard && stepIdx > 0) {
+                    oldCard.classList.add('popup-fade-out');
+                    setTimeout(function() {
+                        infoWindow.setContent(popupHtml);
+                        infoWindow.open(map, marker);
+                    }, 250);
+                } else {
+                    infoWindow.setContent(popupHtml);
+                    infoWindow.open(map, marker);
+                }
 
                 // Scroll next item into view so user can see what's coming
                 var nextItem = document.querySelector('[data-location-index="' + (stepIdx + 2) + '"]');
