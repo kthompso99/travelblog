@@ -46,7 +46,8 @@ travelblog/
 │   ├── generate-html-helpers.js Shared helpers (renderPage, readTemplate, buildTripsMenu)
 │   ├── generate-sitemap.js     Builds sitemap.xml from trip list
 │   ├── generate-trip-files.js  Per-trip HTML generation orchestrator
-│   ├── generate-trip-pages.js  Trip intro, content, and map page generators
+│   ├── generate-trip-map-page.js Trip map page generator (sidebar, navigation)
+│   ├── generate-trip-pages.js  Trip intro and content page generators
 │   ├── geocode.js              Google Maps geocoding with file-backed cache
 │   ├── image-utilities.js      Image path and dimension helpers
 │   ├── maps-config.js          Google Maps API key resolver

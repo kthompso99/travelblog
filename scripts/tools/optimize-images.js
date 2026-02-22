@@ -20,7 +20,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const CONFIG = require('../../lib/config-paths');
-const { discoverAllTrips, ensureDir } = require('../../lib/build-utilities');
+const { discoverAllTrips, ensureDir, getFileSize } = require('../../lib/build-utilities');
 
 // Configuration
 const MAX_WIDTH = 1800;          // Max width in pixels (for 600px CSS @ 3x retina)
@@ -54,17 +54,6 @@ function checkImageMagick() {
   } catch (e) {
     console.error('❌ ImageMagick not found. Install with: brew install imagemagick');
     process.exit(1);
-  }
-}
-
-/**
- * Get file size in bytes
- */
-function getFileSize(filePath) {
-  try {
-    return fs.statSync(filePath).size;
-  } catch (e) {
-    return 0;
   }
 }
 

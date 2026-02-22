@@ -59,7 +59,7 @@
 const fs = require('fs');
 const path = require('path');
 const { slugify } = require('../../lib/slug-utilities');
-const { ensureDir } = require('../../lib/build-utilities');
+const { ensureDir, writeJsonFile } = require('../../lib/build-utilities');
 const { createPromptSession } = require('../../lib/prompt-utilities');
 
 // Import centralized configuration paths
@@ -245,7 +245,7 @@ function createTripFiles(tripDir, tripConfig, content, metadata) {
     console.log(`✅ Created directory: ${path.join(tripDir, 'images')}`);
 
     const tripConfigPath = CONFIG.getTripConfigPath(metadata.tripId);
-    fs.writeFileSync(tripConfigPath, JSON.stringify(tripConfig, null, 2), 'utf8');
+    writeJsonFile(tripConfigPath, tripConfig);
     console.log(`✅ Created ${tripConfigPath}`);
 
     const mainPath = CONFIG.getTripMainPath(metadata.tripId);
