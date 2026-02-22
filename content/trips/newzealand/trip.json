@@ -40,7 +40,7 @@
       "file": "christchurch.md",
       "place": "Christchurch, NZ",
       "duration": "3 days",
-      "thumbnail": "images/christchurch-01.jpg"
+      "thumbnail": "images/christchurch-07.jpg"
     },
     {
       "type": "location",
@@ -48,7 +48,7 @@
       "file": "glacier-country.md",
       "place": "Franz Josef, NZ",
       "duration": "3 days",
-      "thumbnail": "images/glacier-country-01.jpg",
+      "thumbnail": "images/glacier-country-09.jpg",
       "travelMode": "drive",
       "travelDuration": "5 hours"
     },
@@ -58,7 +58,7 @@
       "file": "wanaka.md",
       "place": "Wanaka, NZ",
       "duration": "3 hours",
-      "thumbnail": "images/wanaka-01.jpg",
+      "thumbnail": "images/wanaka-05.jpg",
       "travelMode": "drive",
       "travelDuration": "1.5 hours"
     },
@@ -88,7 +88,7 @@
       "file": "nelson.md",
       "place": "Nelson, NZ",
       "duration": "3 days",
-      "thumbnail": "images/nelson-01.jpg",
+      "thumbnail": "images/nelson-02.jpg",
       "travelMode": "drive",
       "travelDuration": "3 hours"
     },
@@ -98,7 +98,7 @@
       "file": "wellington.md",
       "place": "Wellington, New Zealand",
       "duration": "3 days",
-      "thumbnail": "images/wellington-01.jpg",
+      "thumbnail": "images/wellington-04.jpg",
       "travelMode": "ferry",
       "travelDuration": "3.5 hours"
     },
@@ -118,7 +118,7 @@
       "file": "hobbiton.md",
       "place": "hobbiton, New Zealand",
       "duration": "3 hours",
-      "thumbnail": "images/hobbiton-01.jpg",
+      "thumbnail": "images/hobbiton-05.jpg",
       "travelMode": "drive",
       "travelDuration": "1 hour"
     },
@@ -128,7 +128,7 @@
       "file": "auckland.md",
       "place": "Auckland, New Zealand",
       "duration": "3 days",
-      "thumbnail": "images/auckland-01.jpg",
+      "thumbnail": "images/auckland-04.jpg",
       "travelMode": "drive",
       "travelDuration": "2.5 hours"
     },
@@ -136,9 +136,9 @@
       "type": "location",
       "title": "Cook Islands",
       "file": "cook-islands.md",
-      "place": "Rarotanga, New Zealand",
+      "place": "Rarotanga, Cook Islands",
       "duration": "3 days",
-      "thumbnail": "images/cook-islands-01.jpg",
+      "thumbnail": "images/cook-islands-12.jpg",
       "travelMode": "fly",
       "travelDuration": "3.5 hours"
     }

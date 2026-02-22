@@ -84,8 +84,38 @@
                         mouseOverInfoWindow = false;
                         hoverTimeout = setTimeout(() => infoWindow.close(), HOVER_LINGER_MS);
                     });
+                    // Wire custom close button
+                    var closeBtn = iwOuter.querySelector('.popup-close-btn');
+                    if (closeBtn) {
+                        closeBtn.onclick = function() { infoWindow.close(); };
+                    }
                 }
             });
+
+            // Build popup HTML for a location card
+            function buildPopupHtml(loc, stopNumber) {
+                var imageHtml = '';
+                if (loc.thumbnail) {
+                    imageHtml = '<div class="popup-image-wrapper">' +
+                        '<img src="' + loc.thumbnail + '" alt="' + loc.title + '" onerror="this.parentNode.remove()">' +
+                        '<div class="popup-stop-badge">Stop ' + stopNumber + '</div>' +
+                    '</div>';
+                }
+                var metaHtml = '';
+                if (loc.duration) {
+                    metaHtml = '<div class="popup-meta"><span class="popup-duration">\uD83D\uDD50 ' + loc.duration + '</span></div>';
+                }
+                var arrowSvg = '<svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 0L6.59 1.41 12.17 7H0v2h12.17l-5.58 5.59L8 16l8-8z" fill="currentColor"/></svg>';
+                return '<div class="map-popup-card">' +
+                    '<button class="popup-close-btn" type="button">\u00D7</button>' +
+                    imageHtml +
+                    '<div class="popup-content">' +
+                        '<h3 class="popup-title">' + loc.title + '</h3>' +
+                        metaHtml +
+                        '<a href="./' + loc.slug + '.html" class="popup-link">View Details ' + arrowSvg + '</a>' +
+                    '</div>' +
+                '</div>';
+            }
 
             // Create numbered markers
             const markers = [];  // Store markers for cross-reference with sidebar
@@ -106,21 +136,7 @@
                 marker.locationIndex = idx + 1;
                 markers.push(marker);
 
-                const thumbHtml = loc.thumbnail
-                    ? '<img src="' + loc.thumbnail + '" alt="' + loc.title + '" class="marker-popup-image" onerror="this.remove()">'
-                    : '';
-
-                const titleWithDuration = loc.duration
-                    ? loc.title + ' (' + loc.duration + ')'
-                    : loc.title;
-
-                const content = '<div class="marker-popup">' +
-                        thumbHtml +
-                        '<div class="marker-popup-content">' +
-                            '<div class="marker-popup-title">' + titleWithDuration + '</div>' +
-                            '<a href="./' + loc.slug + '.html" class="marker-popup-link">Read More \u2192</a>' +
-                        '</div>' +
-                    '</div>';
+                const content = buildPopupHtml(loc, idx + 1);
 
                 let infoWindowOpen = false;
 
@@ -315,20 +331,7 @@
                 updateSidebarForStep(stepIdx);
 
                 // Open info window
-                var thumbHtml = loc.thumbnail
-                    ? '<img src="' + loc.thumbnail + '" alt="' + loc.title + '" class="marker-popup-image" onerror="this.remove()">'
-                    : '';
-                var titleWithDuration = loc.duration
-                    ? loc.title + ' (' + loc.duration + ')'
-                    : loc.title;
-                var content = '<div class="marker-popup">' +
-                    thumbHtml +
-                    '<div class="marker-popup-content">' +
-                        '<div class="marker-popup-title">' + titleWithDuration + '</div>' +
-                        '<a href="./' + loc.slug + '.html" class="marker-popup-link">Read More \u2192</a>' +
-                    '</div>' +
-                '</div>';
-                infoWindow.setContent(content);
+                infoWindow.setContent(buildPopupHtml(loc, stepIdx + 1));
                 infoWindow.open(map, marker);
 
                 // Scroll next item into view so user can see what's coming

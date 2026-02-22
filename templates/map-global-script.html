@@ -94,6 +94,8 @@
                     mouseOverTripInfoWindow = false;
                     tripHoverTimeout = setTimeout(() => tripInfoWindow.close(), HOVER_LINGER_MS);
                 });
+                var closeBtn = iwOuter.querySelector('.popup-close-btn');
+                if (closeBtn) closeBtn.onclick = function() { tripInfoWindow.close(); };
             }
         });
 
@@ -109,6 +111,8 @@
                     mouseOverLocationInfoWindow = false;
                     locationHoverTimeout = setTimeout(() => locationInfoWindow.close(), HOVER_LINGER_MS);
                 });
+                var closeBtn = iwOuter.querySelector('.popup-close-btn');
+                if (closeBtn) closeBtn.onclick = function() { locationInfoWindow.close(); };
             }
         });
 
@@ -136,15 +140,18 @@
                 title: dest.title
             });
 
-            const tripContent = `
-                <div class="marker-popup">
-                    ${dest.thumbnail ? '<img src="' + dest.thumbnail + '" alt="' + dest.title + '" class="marker-popup-image" onerror="this.remove()">' : ''}
-                    <div class="marker-popup-content">
-                        <div class="marker-popup-title">${dest.title}</div>
-                        <a href="../trips/${dest.slug}/" class="marker-popup-link">Read More →</a>
-                    </div>
-                </div>
-            `;
+            const arrowSvg = '<svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 0L6.59 1.41 12.17 7H0v2h12.17l-5.58 5.59L8 16l8-8z" fill="currentColor"/></svg>';
+            const tripImageHtml = dest.thumbnail
+                ? '<div class="popup-image-wrapper"><img src="' + dest.thumbnail + '" alt="' + dest.title + '" onerror="this.parentNode.remove()"></div>'
+                : '';
+            const tripContent = '<div class="map-popup-card">' +
+                '<button class="popup-close-btn" type="button">\u00D7</button>' +
+                tripImageHtml +
+                '<div class="popup-content">' +
+                    '<h3 class="popup-title">' + dest.title + '</h3>' +
+                    '<a href="../trips/' + dest.slug + '/" class="popup-link">View Trip ' + arrowSvg + '</a>' +
+                '</div>' +
+            '</div>';
 
             let tripInfoWindowOpen = false;
 
@@ -197,20 +204,27 @@
 
                     markerSet.locationMarkers.push(locationMarker);
 
-                    // Build InfoWindow content to match trip map structure exactly
-                    const thumbHtml = loc.thumbnail
-                        ? '<img src="' + loc.thumbnail + '" alt="' + loc.name + '" class="marker-popup-image" onerror="this.remove()">'
-                        : '';
-                    const titleWithDuration = loc.duration
-                        ? loc.name + ' (' + loc.duration + ')'
-                        : loc.name;
-                    const locationContent = '<div class="marker-popup">' +
-                        thumbHtml +
-                        '<div class="marker-popup-content">' +
-                            '<div class="marker-popup-title">' + titleWithDuration + '</div>' +
-                            '<a href="../trips/' + dest.slug + '/' + loc.slug + '.html" class="marker-popup-link">Read More \u2192</a>' +
-                        '</div>' +
+                    // Build InfoWindow content matching trip map popup card style
+                    var locImageHtml = '';
+                    if (loc.thumbnail) {
+                        locImageHtml = '<div class="popup-image-wrapper">' +
+                            '<img src="' + loc.thumbnail + '" alt="' + loc.name + '" onerror="this.parentNode.remove()">' +
+                            '<div class="popup-stop-badge">Stop ' + (locIdx + 1) + '</div>' +
                         '</div>';
+                    }
+                    var locMetaHtml = '';
+                    if (loc.duration) {
+                        locMetaHtml = '<div class="popup-meta"><span class="popup-duration">\uD83D\uDD50 ' + loc.duration + '</span></div>';
+                    }
+                    const locationContent = '<div class="map-popup-card">' +
+                        '<button class="popup-close-btn" type="button">\u00D7</button>' +
+                        locImageHtml +
+                        '<div class="popup-content">' +
+                            '<h3 class="popup-title">' + loc.name + '</h3>' +
+                            locMetaHtml +
+                            '<a href="../trips/' + dest.slug + '/' + loc.slug + '.html" class="popup-link">View Details ' + arrowSvg + '</a>' +
+                        '</div>' +
+                    '</div>';
 
                     let locationInfoWindowOpen = false;
 
