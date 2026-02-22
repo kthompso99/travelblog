@@ -69,13 +69,21 @@ function visibleCards() {
     return allCards.filter(c => c.style.display !== 'none');
 }
 
-/** Click a filter pill by its data-value */
+/** Click a continent filter pill by its data-value */
 function clickPill(filterType, value) {
     const pill = document.querySelector(
         `.filter-pill[data-filter="${filterType}"][data-value="${value}"]`
     );
     if (!pill) throw new Error(`No pill found: filter=${filterType} value=${value}`);
     pill.dispatchEvent(new Event('click', { bubbles: true }));
+}
+
+/** Select a year from the year dropdown */
+function selectYear(value) {
+    const dropdown = document.getElementById('year-filter');
+    if (!dropdown) throw new Error('No year dropdown found');
+    dropdown.value = value;
+    dropdown.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
 /** Set the search input and fire the input event */
@@ -87,12 +95,14 @@ function setSearch(query) {
 
 /** Reset all filters to their default (all + empty search) */
 function reset() {
-    // Only click "all" pills if they exist (they're only rendered when 2+ options exist)
+    // Only click "all" pill if it exists (rendered when 2+ continents exist)
     const continentAll = document.querySelector('.filter-pill[data-filter="continent"][data-value="all"]');
-    const yearAll = document.querySelector('.filter-pill[data-filter="year"][data-value="all"]');
-
     if (continentAll) clickPill('continent', 'all');
-    if (yearAll) clickPill('year', 'all');
+
+    // Reset year dropdown if it exists
+    const yearDropdown = document.getElementById('year-filter');
+    if (yearDropdown) selectYear('all');
+
     setSearch('');
 }
 
@@ -109,24 +119,27 @@ assert('no-results element exists',  !!document.getElementById('no-results'));
 
 const continentPills = [...document.querySelectorAll('.filter-pill[data-filter="continent"]')]
     .filter(p => p.dataset.value !== 'all');
-const yearPills = [...document.querySelectorAll('.filter-pill[data-filter="year"]')]
-    .filter(p => p.dataset.value !== 'all');
+const yearDropdown = document.getElementById('year-filter');
+const yearOptions = yearDropdown
+    ? [...yearDropdown.querySelectorAll('option')].filter(o => o.value !== 'all')
+    : [];
 
 // Extract unique continents and years from cards
 const uniqueContinents = new Set(allCards.map(c => c.dataset.continent));
 const uniqueYears = new Set(allCards.map(c => c.dataset.year));
 
-// Pills should only be rendered when 2+ options exist
+// Continent pills should only be rendered when 2+ options exist
 if (uniqueContinents.size > 1) {
     assert('continent pills rendered when multiple continents exist', continentPills.length > 0);
 } else {
     assert('no continent pills when only 1 continent exists', continentPills.length === 0);
 }
 
+// Year dropdown should only be rendered when 2+ options exist
 if (uniqueYears.size > 1) {
-    assert('year pills rendered when multiple years exist', yearPills.length > 0);
+    assert('year dropdown rendered when multiple years exist', !!yearDropdown);
 } else {
-    assert('no year pills when only 1 year exists', yearPills.length === 0);
+    assert('no year dropdown when only 1 year exists', !yearDropdown);
 }
 
 // ── 1. initial state: all cards visible ──────────────────────────
@@ -155,20 +168,20 @@ continentPills.forEach(pill => {
     reset();
 });
 
-// ── 3. each year pill shows only matching cards ──────────────────
+// ── 3. each year option shows only matching cards ────────────────
 
-yearPills.forEach(pill => {
-    const value    = pill.dataset.value;                          // e.g. "2024"
+yearOptions.forEach(option => {
+    const value    = option.value;                                // e.g. "2024"
     const expected = allCards.filter(c => c.dataset.year === value).length;
 
-    clickPill('year', value);
+    selectYear(value);
 
     assert(
-        `year pill "${value}" shows ${expected} card(s) (got ${visibleCards().length})`,
+        `year "${value}" shows ${expected} card(s) (got ${visibleCards().length})`,
         visibleCards().length === expected
     );
     assert(
-        `year pill "${value}" — all visible cards match`,
+        `year "${value}" — all visible cards match`,
         visibleCards().every(c => c.dataset.year === value)
     );
 

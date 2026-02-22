@@ -110,20 +110,25 @@
         searchInput.addEventListener('input', applyFilters);
     }
 
+    // Continent pill click handler
     document.querySelectorAll('.filter-pill').forEach(function(pill) {
         pill.addEventListener('click', function() {
-            // Deactivate all pills in this row, activate the clicked one
             this.closest('.filter-pills').querySelectorAll('.filter-pill').forEach(function(p) {
                 p.classList.remove('active');
             });
             this.classList.add('active');
-
-            // Update active filter state
-            if (this.dataset.filter === 'continent') activeContinent = this.dataset.value;
-            if (this.dataset.filter === 'year')      activeYear      = this.dataset.value;
-
+            activeContinent = this.dataset.value;
             applyFilters();
         });
     });
+
+    // Year dropdown handler
+    var yearDropdown = document.getElementById('year-filter');
+    if (yearDropdown) {
+        yearDropdown.addEventListener('change', function() {
+            activeYear = this.value;
+            applyFilters();
+        });
+    }
 })();
 </script>

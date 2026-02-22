@@ -435,13 +435,6 @@ async function generateStaticHtml(output, domain, processedTrips, specificTripId
     console.log(`   - Total HTML files: ${(htmlSizeTotal / 1024).toFixed(1)}KB`);
     console.log(`   - Average trip page: ${(htmlSizeTotal / (processedTrips.length + 3) / 1024).toFixed(1)}KB`);
 
-    console.log(`\n🎯 Next steps:`);
-    console.log(`   1. Review generated HTML files`);
-    console.log(`   2. Update domain in config/site.json`);
-    console.log(`   3. Test locally with: npm run serve`);
-    console.log(`   4. Validate SEO with online tools`);
-    console.log(`   5. Deploy your site!`);
-
     printBuildWarnings(buildWarnings);
 
     // Update build cache so smart build knows what's been built
