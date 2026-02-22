@@ -51,7 +51,7 @@ assertCSSNotExists('index.html', '.trip-submenu', 'Homepage does NOT have trip s
 // Test Global Map Page
 assertCSSExists('map/index.html', '#map-container', 'Global map has map container CSS');
 assertCSSExists('map/index.html', '#map', 'Global map has map element CSS');
-assertCSSExists('map/index.html', '.marker-popup', 'Global map has marker popup CSS');
+assertCSSExists('map/index.html', '.map-popup-card', 'Global map has marker popup CSS');
 assertCSSNotExists('map/index.html', '.filter-bar', 'Global map does NOT have filter bar CSS');
 assertCSSNotExists('map/index.html', '.destination-grid', 'Global map does NOT have trip grid CSS');
 

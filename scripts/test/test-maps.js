@@ -258,8 +258,8 @@ async function testGlobalMap(browser) {
                         const content = infoWindow.textContent || '';
                         const hasUndefined = content.toLowerCase().includes('undefined');
                         const isEmpty = content.trim().length === 0;
-                        const markerPopupTitle = infoWindow.querySelector('.marker-popup-title');
-                        const title = markerPopupTitle ? markerPopupTitle.textContent : '';
+                        const popupTitle = infoWindow.querySelector('.popup-title');
+                        const title = popupTitle ? popupTitle.textContent : '';
 
                         resolve({
                             success: true,
@@ -352,8 +352,8 @@ async function testTripMap(browser) {
 
                     const content = infoWindow.textContent || '';
                     const hasUndefined = content.toLowerCase().includes('undefined');
-                    const markerPopupTitle = infoWindow.querySelector('.marker-popup-title');
-                    const title = markerPopupTitle ? markerPopupTitle.textContent : '';
+                    const popupTitle = infoWindow.querySelector('.popup-title');
+                    const title = popupTitle ? popupTitle.textContent : '';
 
                     resolve({
                         found: true,

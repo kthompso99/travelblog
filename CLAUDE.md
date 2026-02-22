@@ -94,12 +94,13 @@ npm run serve                        # Now safe to verify the full site locally
 
 **Note:** Running `npm run build` before committing is not required — CI runs a full fresh build on every push, so the deployed site is always correct regardless of local state.
 
-#### Build pipeline verification
-After any change to build scripts, `lib/` modules, or import/export structure, verify all four modes before committing:
+#### Pre-commit verification
+After any change to build scripts, `lib/` modules, templates, CSS, or import/export structure, verify all build modes and run tests before committing:
 ```bash
 npm run validate
 npm run build
 node scripts/build/build-smart.js
 node scripts/build/build-writing.js content/trips/<trip>/<slug>.md
+npm test
 ```
 The `dev` and `writing` npm scripts launch `concurrently` (server + watcher); test the underlying scripts directly to avoid that.
