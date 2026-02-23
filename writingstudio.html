@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TTN Writing Studio</title>
+
+  <!-- CodeMirror 5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/markdown/markdown.min.js"></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      display: flex;
+    }
+
+    #editor {
+      flex: 3;
+      height: 100vh;
+    }
+
+    .CodeMirror {
+      height: 100% !important;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    #sidebar {
+      flex: 1;
+      padding: 20px;
+      background: #f9fafb;
+      border-left: 1px solid #ddd;
+      overflow-y: auto;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* Sentence-level */
+    .ttn-red {
+      background: rgba(255, 0, 0, 0.15);
+    }
+
+    .ttn-yellow {
+      background: rgba(255, 165, 0, 0.18);
+    }
+
+    /* Word-level */
+    .ttn-underline {
+      text-decoration: underline dotted orange;
+      text-decoration-thickness: 2px;
+    }
+
+    #fileLabel {
+      font-size: 13px;
+      color: #555;
+      word-break: break-all;
+    }
+
+    #saveStatus {
+      display: inline-block;
+      font-size: 12px;
+      margin-left: 6px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      transition: opacity 0.5s;
+    }
+
+    #saveStatus.saved {
+      color: #16a34a;
+      background: #dcfce7;
+    }
+
+    #saveStatus.edited {
+      color: #b45309;
+      background: #fef3c7;
+    }
+
+    #fileRow {
+      margin-bottom: 15px;
+    }
+
+    #customTooltip {
+      position: fixed;
+      padding: 6px 10px;
+      background: #333;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 13px;
+      pointer-events: none;
+      z-index: 9999;
+      display: none;
+      max-width: 350px;
+      white-space: pre-line;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="editor"></div>
+
+<div id="sidebar">
+  <h2>TTN Writing Studio</h2>
+
+  <button onclick="openFile()">Open Markdown</button>
+  <button onclick="saveFile()">Save (&#8984;S)</button>
+
+  <div id="fileRow">
+    <span id="fileLabel">No file loaded</span>
+    <span id="saveStatus"></span>
+  </div>
+
+  <hr>
+
+  <div id="stats"></div>
+
+  <hr>
+
+  <div>
+    <strong>Rules</strong><br>
+    <span style="display:inline-block;width:10px;height:10px;background:rgba(255,0,0,0.3);border-radius:2px"></span> &gt; 30 words<br>
+    <span style="display:inline-block;width:10px;height:10px;background:rgba(255,165,0,0.35);border-radius:2px"></span> 25&ndash;30 words<br>
+    <span style="display:inline-block;width:10px;height:10px;background:rgba(255,165,0,0.35);border-radius:2px"></span> Weak starters<br>
+    <span style="display:inline-block;width:10px;height:10px;background:rgba(255,165,0,0.35);border-radius:2px"></span> Passive voice<br>
+    <span style="text-decoration:underline dotted orange;text-decoration-thickness:2px">underline</span> Hedge / vague words
+  </div>
+</div>
+
+<script>
+
+let fileHandle = null;
+let isClean = true;
+let fadeTimer = null;
+const markTooltips = new WeakMap();
+
+/* ── Constants ─────────────────────────────────────────── */
+
+const HEDGE_WORDS = [
+  "kind of", "sort of", "somewhat", "fairly", "quite",
+  "maybe", "perhaps", "pretty"
+];
+
+const VAGUE_WORDS = [
+  "interesting", "nice", "great", "enjoyable", "beautiful",
+  "lovely", "amazing", "wonderful", "fantastic", "incredible", "stunning"
+];
+
+const WEAK_STARTERS = [
+  /^There\s+(is|are|was|were)\b/i,
+  /^It\s+(is|was)\b/i,
+  /^We\s+were\s+able\s+to\b/i,
+  /^We\s+really\s+(enjoyed|liked)\b/i,
+];
+
+const IRREGULAR_PARTICIPLES = [
+  "awoken","beaten","become","begun","bent","bitten","bled","blown","born",
+  "bought","bound","broken","brought","built","burnt","caught","chosen",
+  "clung","come","cost","crept","cut","dealt","done","drawn","driven",
+  "drunk","eaten","fallen","fed","felt","fit","fled","flung","flown",
+  "forbidden","forgotten","forgiven","found","frozen","given","gone","got",
+  "gotten","grown","heard","held","hidden","hit","hung","hurt","kept",
+  "knelt","knit","known","laid","lain","led","left","lent","let","lit",
+  "lost","made","meant","met","mistaken","overcome","paid","proven","put",
+  "read","rid","ridden","risen","run","said","sat","seen","sent","set",
+  "sewn","shaken","shed","shone","shot","shown","shrunk","shut","slain",
+  "slept","slid","slung","slit","sold","sought","sown","spent",
+  "spoken","spread","sprung","stolen","stood","struck","strung","striven",
+  "stuck","stung","stunk","sung","sunk","swollen","sworn","swept","swum",
+  "swung","taken","taught","thought","thrown","told","torn","trodden",
+  "understood","upheld","upset","woken","won","worn","wound","woven",
+  "wrung","written"
+];
+
+const PASSIVE_REGEX = new RegExp(
+  '\\b(was|were|is|are|has been|had been|have been)\\s+(\\w+ed|' +
+  IRREGULAR_PARTICIPLES.join('|') + ')\\b', 'i'
+);
+
+/* ── Editor Setup ──────────────────────────────────────── */
+
+const editor = CodeMirror(document.getElementById("editor"), {
+  mode: "markdown",
+  lineNumbers: false,
+  lineWrapping: true,
+  value: "",
+  extraKeys: {
+    "Cmd-S": function() { saveFile(); },
+    "Ctrl-S": function() { saveFile(); },
+  }
+});
+
+/* ── Markdown Processing ───────────────────────────────── */
+
+/**
+ * Returns true for lines that should NOT be linted:
+ * headings, images, horizontal rules, blank lines, italic-only placeholders.
+ */
+function isNonProse(line) {
+  const t = line.trim();
+  if (!t) return true;
+  if (/^#{1,6}\s/.test(t)) return true;
+  if (/^!\[/.test(t)) return true;
+  if (/^---+$/.test(t)) return true;
+  if (/^\*[^*]+\*$/.test(t)) return true;
+  return false;
+}
+
+/**
+ * Replace markdown syntax with same-length spaces so that character
+ * positions in the result map 1:1 back to the original line.
+ */
+function neutralizeMarkdown(line) {
+  return line
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, m => ' '.repeat(m.length))
+    .replace(/\[([^\]]*)\]\([^)]+\)/g, (m, text) => text + ' '.repeat(m.length - text.length))
+    .replace(/(\*{1,3}|_{1,3})/g, m => ' '.repeat(m.length))
+    .replace(/<[^>]+>/g, m => ' '.repeat(m.length))
+    .replace(/^>\s?/, m => ' '.repeat(m.length))
+    .replace(/\\([.~€$!?*_#|>])/g, ' $1');
+}
+
+/**
+ * Strip markdown for analysis (word counting, pattern matching).
+ * Does NOT preserve positions.
+ */
+function stripForAnalysis(text) {
+  return text
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, '')
+    .replace(/\[([^\]]*)\]\([^)]+\)/g, '$1')
+    .replace(/(\*{1,3}|_{1,3})/g, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/^>\s?/gm, '')
+    .replace(/\\([.~€$!?*_#|>])/g, '$1')
+    .trim();
+}
+
+/* ── Sentence Splitting ────────────────────────────────── */
+
+/**
+ * Replace periods in abbreviations/decimals/initials with a Unicode
+ * dot leader so the sentence splitter doesn't break on them.
+ * Preserves string length (each . → \u2024).
+ */
+function protectAbbreviations(text) {
+  const P = '\u2024';
+  return text
+    .replace(/\b(Mr|Mrs|Ms|Dr|St|vs|etc|approx|Jr|Sr|Inc|e\.g|i\.e)\./gi,
+      m => m.slice(0, -1) + P)
+    .replace(/(\d)\./g, '$1' + P)
+    .replace(/\b([A-Z])\.([A-Z])\./g, '$1' + P + '$2' + P)
+    .replace(/\b([A-Z])\.\s([A-Z])\./g, '$1' + P + ' $2' + P);
+}
+
+/**
+ * Split a neutralized line into sentences, returning {start, end} positions
+ * that correspond to the original line (since neutralization preserves length).
+ */
+function splitSentencesWithPositions(neutralLine) {
+  if (!neutralLine.trim()) return [];
+
+  const prepared = protectAbbreviations(neutralLine);
+  const results = [];
+
+  // Find sentence-ending punctuation followed by whitespace or end-of-string
+  const boundaryRegex = /[.!?]+(?=\s|$)/g;
+  const boundaries = [];
+  let m;
+  while ((m = boundaryRegex.exec(prepared)) !== null) {
+    boundaries.push(m.index + m[0].length);
+  }
+
+  // No sentence boundaries → treat whole line as one sentence
+  if (boundaries.length === 0) {
+    const trimmed = neutralLine.trim();
+    if (trimmed.length > 2) {
+      const firstChar = neutralLine.search(/\S/);
+      return [{ start: Math.max(0, firstChar), end: neutralLine.length }];
+    }
+    return [];
+  }
+
+  let sentStart = 0;
+  for (const bEnd of boundaries) {
+    // Skip leading whitespace for this sentence
+    const wsMatch = neutralLine.substring(sentStart).match(/^\s+/);
+    const actualStart = sentStart + (wsMatch ? wsMatch[0].length : 0);
+
+    if (bEnd > actualStart) {
+      results.push({ start: actualStart, end: bEnd });
+    }
+
+    // Next sentence starts after any whitespace past this boundary
+    const trailing = neutralLine.substring(bEnd).match(/^\s+/);
+    sentStart = bEnd + (trailing ? trailing[0].length : 0);
+  }
+
+  // Remaining text after the last sentence boundary
+  if (sentStart < neutralLine.length) {
+    const remaining = neutralLine.substring(sentStart).trim();
+    if (remaining.length > 2) {
+      const wsMatch = neutralLine.substring(sentStart).match(/^\s+/);
+      const actualStart = sentStart + (wsMatch ? wsMatch[0].length : 0);
+      results.push({ start: actualStart, end: neutralLine.length });
+    }
+  }
+
+  return results;
+}
+
+/* ── Rule Checks ───────────────────────────────────────── */
+
+/**
+ * Run all sentence-level checks on clean (stripped) text.
+ * Returns an array of {severity, reason} objects.
+ */
+function checkSentence(cleanText) {
+  const issues = [];
+  const words = cleanText.split(/\s+/).filter(Boolean);
+  const wordCount = words.length;
+  const commaCount = (cleanText.match(/,/g) || []).length;
+
+  // Length
+  if (wordCount > 30) {
+    let reason = 'Long sentence (' + wordCount + ' words)';
+    if (commaCount >= 2) reason += ', ' + commaCount + ' commas';
+    issues.push({ severity: 'red', reason: reason });
+  } else if (wordCount > 25) {
+    let reason = 'Long sentence (' + wordCount + ' words)';
+    if (commaCount >= 2) reason += ', ' + commaCount + ' commas';
+    issues.push({ severity: 'yellow', reason: reason });
+  }
+
+  // Weak starters
+  for (const pattern of WEAK_STARTERS) {
+    if (pattern.test(cleanText)) {
+      issues.push({ severity: 'yellow', reason: 'Weak sentence starter' });
+      break;
+    }
+  }
+
+  // Passive voice
+  const passiveMatch = PASSIVE_REGEX.exec(cleanText);
+  if (passiveMatch) {
+    issues.push({ severity: 'yellow', reason: 'Passive voice: "' + passiveMatch[0] + '"' });
+  }
+
+  return issues;
+}
+
+/* ── Word-Level Highlighting ───────────────────────────── */
+
+function highlightWordsInRange(lineNum, rangeStart, originalSlice) {
+  const allWords = [
+    ...HEDGE_WORDS.map(w => ({ word: w, label: 'Hedge word' })),
+    ...VAGUE_WORDS.map(w => ({ word: w, label: 'Vague word' })),
+  ];
+
+  for (const { word, label } of allWords) {
+    const regex = new RegExp('\\b' + word.replace(/\s+/g, '\\s+') + '\\b', 'gi');
+    let match;
+    while ((match = regex.exec(originalSlice)) !== null) {
+      const wMark = editor.markText(
+        { line: lineNum, ch: rangeStart + match.index },
+        { line: lineNum, ch: rangeStart + match.index + match[0].length },
+        { className: 'ttn-underline' }
+      );
+      markTooltips.set(wMark, label);
+    }
+  }
+}
+
+/* ── Lint Engine ───────────────────────────────────────── */
+
+function clearMarks() {
+  editor.getAllMarks().forEach(m => m.clear());
+}
+
+function lintText() {
+  clearMarks();
+
+  const lineCount = editor.lineCount();
+  let proseWords = 0;
+  let proseSentences = 0;
+
+  for (let lineNum = 0; lineNum < lineCount; lineNum++) {
+    const originalLine = editor.getLine(lineNum);
+    if (isNonProse(originalLine)) continue;
+
+    const neutral = neutralizeMarkdown(originalLine);
+    const sentences = splitSentencesWithPositions(neutral);
+
+    for (const { start, end } of sentences) {
+      const originalSlice = originalLine.substring(start, end);
+      const clean = stripForAnalysis(originalSlice);
+      if (clean.length < 5) continue;
+
+      const wordCount = clean.split(/\s+/).filter(Boolean).length;
+      proseWords += wordCount;
+      proseSentences++;
+
+      // Sentence-level checks
+      const issues = checkSentence(clean);
+      if (issues.length > 0) {
+        const hasRed = issues.some(iss => iss.severity === 'red');
+        const cls = hasRed ? 'ttn-red' : 'ttn-yellow';
+        const tooltip = issues.map(iss => iss.reason).join('\n');
+
+        const mark = editor.markText(
+          { line: lineNum, ch: start },
+          { line: lineNum, ch: end },
+          { className: cls }
+        );
+        markTooltips.set(mark, tooltip);
+      }
+
+      // Word-level checks
+      highlightWordsInRange(lineNum, start, originalSlice);
+    }
+  }
+
+  updateStats(proseWords, proseSentences);
+}
+
+/* ── Stats ─────────────────────────────────────────────── */
+
+function updateStats(wordCount, sentenceCount) {
+  const avg = sentenceCount ? (wordCount / sentenceCount).toFixed(1) : 0;
+  document.getElementById("stats").innerHTML =
+    '<strong>Words:</strong> ' + wordCount + '<br>' +
+    '<strong>Sentences:</strong> ' + sentenceCount + '<br>' +
+    '<strong>Avg length:</strong> ' + avg + ' words';
+}
+
+/* ── Save Indicator ────────────────────────────────────── */
+
+function showSaveStatus(state) {
+  const el = document.getElementById('saveStatus');
+  clearTimeout(fadeTimer);
+  el.style.opacity = '1';
+
+  if (state === 'saved') {
+    el.className = 'saved';
+    el.textContent = 'Saved';
+    fadeTimer = setTimeout(function() { el.style.opacity = '0'; }, 2000);
+  } else if (state === 'edited') {
+    el.className = 'edited';
+    el.textContent = 'Edited';
+  }
+}
+
+/* ── Custom Tooltip ─────────────────────────────────────── */
+
+const tooltipEl = document.createElement('div');
+tooltipEl.id = 'customTooltip';
+document.body.appendChild(tooltipEl);
+
+let tooltipTimer = null;
+
+editor.getWrapperElement().addEventListener('mousemove', function(e) {
+  clearTimeout(tooltipTimer);
+
+  const pos = editor.coordsChar({ left: e.clientX, top: e.clientY }, 'window');
+  const marks = editor.findMarksAt(pos);
+  const tips = marks.map(function(m) { return markTooltips.get(m); }).filter(Boolean);
+
+  if (tips.length > 0) {
+    tooltipTimer = setTimeout(function() {
+      tooltipEl.textContent = tips.join('\n');
+      tooltipEl.style.left = (e.clientX + 12) + 'px';
+      tooltipEl.style.top = (e.clientY + 16) + 'px';
+      tooltipEl.style.display = 'block';
+    }, 80);
+  } else {
+    tooltipEl.style.display = 'none';
+  }
+});
+
+editor.getWrapperElement().addEventListener('mouseleave', function() {
+  clearTimeout(tooltipTimer);
+  tooltipEl.style.display = 'none';
+});
+
+/* ── File I/O ──────────────────────────────────────────── */
+
+editor.on("change", function() {
+  lintText();
+  if (fileHandle && isClean) {
+    isClean = false;
+    showSaveStatus('edited');
+  }
+});
+
+async function openFile() {
+  try {
+    const pickerOpts = {
+      types: [{ description: "Markdown", accept: { "text/markdown": [".md"] } }],
+    };
+    // Start in the same directory as the last-opened file
+    if (fileHandle) pickerOpts.startIn = fileHandle;
+    [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+  } catch (e) { return; }
+
+  // Request read-write permission upfront so saves don't prompt
+  if ((await fileHandle.queryPermission({ mode: 'readwrite' })) !== 'granted') {
+    await fileHandle.requestPermission({ mode: 'readwrite' });
+  }
+
+  const file = await fileHandle.getFile();
+  const text = await file.text();
+
+  editor.setValue(text);
+  document.getElementById("fileLabel").textContent = file.name;
+  isClean = true;
+  showSaveStatus('saved');
+  lintText();
+}
+
+async function saveFile() {
+  if (!fileHandle) return;
+
+  const writable = await fileHandle.createWritable();
+  await writable.write(editor.getValue());
+  await writable.close();
+
+  isClean = true;
+  showSaveStatus('saved');
+}
+
+</script>
+
+</body>
+</html>
