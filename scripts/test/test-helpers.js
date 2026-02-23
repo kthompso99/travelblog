@@ -13,7 +13,7 @@ const path = require('path');
 const { walkDir } = require('../../lib/build-utilities');
 
 const SKIP_DIRS = new Set(['node_modules', '.git', 'content', 'config', 'templates', 'lib', 'scripts', 'docs']);
-const SKIP_FILES = new Set(['404.html', 'index.html.backup', 'main.html']);
+const SKIP_FILES = new Set(['404.html', 'index.html.backup', 'main.html', 'writingstudio.html']);
 
 /**
  * Recursively find all generated HTML files under dir.

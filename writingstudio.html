@@ -49,11 +49,19 @@
 
     /* Sentence-level */
     .ttn-red {
-      background: rgba(255, 0, 0, 0.15);
+      background: rgba(220, 38, 38, 0.15);
     }
 
-    .ttn-yellow {
-      background: rgba(255, 165, 0, 0.18);
+    .ttn-orange {
+      background: rgba(234, 138, 0, 0.18);
+    }
+
+    .ttn-purple {
+      background: rgba(147, 51, 234, 0.14);
+    }
+
+    .ttn-blue {
+      background: rgba(37, 99, 235, 0.13);
     }
 
     /* Word-level */
@@ -131,10 +139,10 @@
 
   <div>
     <strong>Rules</strong><br>
-    <span style="display:inline-block;width:10px;height:10px;background:rgba(255,0,0,0.3);border-radius:2px"></span> &gt; 30 words<br>
-    <span style="display:inline-block;width:10px;height:10px;background:rgba(255,165,0,0.35);border-radius:2px"></span> 25&ndash;30 words<br>
-    <span style="display:inline-block;width:10px;height:10px;background:rgba(255,165,0,0.35);border-radius:2px"></span> Weak starters<br>
-    <span style="display:inline-block;width:10px;height:10px;background:rgba(255,165,0,0.35);border-radius:2px"></span> Passive voice<br>
+    <span style="display:inline-block;width:10px;height:10px;background:rgba(220,38,38,0.3);border-radius:2px"></span> &gt; 30 words<br>
+    <span style="display:inline-block;width:10px;height:10px;background:rgba(234,138,0,0.35);border-radius:2px"></span> 25&ndash;30 words<br>
+    <span style="display:inline-block;width:10px;height:10px;background:rgba(37,99,235,0.25);border-radius:2px"></span> Weak starters<br>
+    <span style="display:inline-block;width:10px;height:10px;background:rgba(147,51,234,0.28);border-radius:2px"></span> Passive voice<br>
     <span style="text-decoration:underline dotted orange;text-decoration-thickness:2px">underline</span> Hedge / vague words
   </div>
 </div>
@@ -340,13 +348,13 @@ function checkSentence(cleanText) {
   } else if (wordCount > 25) {
     let reason = 'Long sentence (' + wordCount + ' words)';
     if (commaCount >= 2) reason += ', ' + commaCount + ' commas';
-    issues.push({ severity: 'yellow', reason: reason });
+    issues.push({ severity: 'orange', reason: reason });
   }
 
   // Weak starters
   for (const pattern of WEAK_STARTERS) {
     if (pattern.test(cleanText)) {
-      issues.push({ severity: 'yellow', reason: 'Weak sentence starter' });
+      issues.push({ severity: 'blue', reason: 'Weak sentence starter' });
       break;
     }
   }
@@ -354,7 +362,7 @@ function checkSentence(cleanText) {
   // Passive voice
   const passiveMatch = PASSIVE_REGEX.exec(cleanText);
   if (passiveMatch) {
-    issues.push({ severity: 'yellow', reason: 'Passive voice: "' + passiveMatch[0] + '"' });
+    issues.push({ severity: 'purple', reason: 'Passive voice: "' + passiveMatch[0] + '"' });
   }
 
   return issues;
@@ -414,8 +422,9 @@ function lintText() {
       // Sentence-level checks
       const issues = checkSentence(clean);
       if (issues.length > 0) {
-        const hasRed = issues.some(iss => iss.severity === 'red');
-        const cls = hasRed ? 'ttn-red' : 'ttn-yellow';
+        const PRIORITY = { red: 4, orange: 3, purple: 2, blue: 1 };
+        const top = issues.reduce((a, b) => (PRIORITY[b.severity] > PRIORITY[a.severity]) ? b : a);
+        const cls = 'ttn-' + top.severity;
         const tooltip = issues.map(iss => iss.reason).join('\n');
 
         const mark = editor.markText(
