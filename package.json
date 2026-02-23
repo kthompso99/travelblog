@@ -13,6 +13,7 @@
     "watch:writing": "nodemon --watch content/trips/ --ext md --exec 'node scripts/build/build-writing.js'",
     "serve": "node scripts/server.js 8000",
     "add": "node scripts/tools/add-trip.js",
+    "audit": "node scripts/tools/content-audit.js",
     "sync-photos": "node scripts/tools/sync-takeout-photos.js",
     "assign-photos": "node scripts/tools/assign-photos.js",
     "test": "node scripts/test/test-lib-utilities.js && node scripts/test/test-geocode-utilities.js && node scripts/test/test-build-cache.js && node scripts/test/test-markdown-converter.js && node scripts/test/test-nav.js && node scripts/test/test-filter.js && node scripts/test/test-css-injection.js && node scripts/test/test-maps.js",

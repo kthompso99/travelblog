@@ -41,6 +41,22 @@
 
 ---
 
+### Content Audit Workflow
+
+The blog uses a two-layer content audit system. The mechanical layer runs via `npm run audit`; the AI editorial layer is Claude itself.
+
+**When Kevin asks to "audit" content** (e.g., "audit spain/cordoba", "review the writing in malaga.md"):
+
+1. Read the target `.md` file(s) in `content/trips/`.
+2. Read `docs/Content/EditorialStandards.md` for the evaluation criteria.
+3. Run `npm run audit -- <trip>/<file>` to get mechanical results.
+4. Evaluate the 6 page-level dimensions from EditorialStandards.md, scoring each 1–5: **Narrative Clarity**, **Voice & Perspective**, **Reflective Depth**, **Visual Rhythm**, **Practical Value**, **Energy Curve**.
+5. List the top ~10 editorial issues that go beyond mechanical detection — with quoted text. Focus on judgment calls: prose quality, narrative structure, tone, pacing, what's working and what isn't.
+6. Note 2–3 strengths worth preserving.
+7. Never rewrite Kevin's prose — only flag and explain.
+
+---
+
 ### Development Workflows
 
 Kevin has two development modes optimized for different editing scenarios:
