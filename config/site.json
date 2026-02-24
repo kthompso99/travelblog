@@ -1,7 +1,8 @@
 {
   "title": "Two Travel Nuts",
   "description": "Exploring well, not just often",
-  "intro": "We're Kevin and Tiffany \u2014 lifelong travelers who believe great journeys combine comfort, culture, adventure, and history. This site documents where we've gone \u2014 and what we honestly thought.",
+  "intro": "We're Kevin and Tiffany \u2014 lifelong travelers who believe great journeys combine comfort, culture, adventure, and history. This site documents where we've gone \u2014 and what we honestly thought about it.",
+  "introPhoto": "images/montenegro-sunset.jpg",
   "heroImages": [
     "trips/spain/images/ronda-01.jpg",
     "trips/newzealand/images/glacier-country-09.jpg",
