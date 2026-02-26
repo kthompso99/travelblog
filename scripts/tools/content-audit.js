@@ -371,8 +371,14 @@ function sortIssues(issues) {
     });
 }
 
-function formatLine(lineNum) {
-    return `L${String(lineNum).padEnd(4)}`;
+function formatLine(lineNum, contentLines) {
+    if (!contentLines) return `L${String(lineNum).padEnd(4)}`;
+    const rawLine = (contentLines[lineNum - 1] || '').trim();
+    if (!rawLine) return `L${lineNum}`;
+    const stripped = stripInlineMarkdown(rawLine).replace(/\s+/g, ' ').trim();
+    if (!stripped) return `L${lineNum}`;
+    const preview = stripped.length > 40 ? stripped.substring(0, 37) + '...' : stripped;
+    return `L${lineNum} (starts with "${preview}")`;
 }
 
 // ---------------------------------------------------------------------------
@@ -385,6 +391,7 @@ function auditFile(filePath) {
     // Split at gallery marker — only audit pre-gallery content
     const markerIndex = raw.indexOf(GALLERY_MARKER);
     const content = markerIndex !== -1 ? raw.substring(0, markerIndex).trim() : raw;
+    const contentLines = content.split('\n');
 
     const blocks = parseBlocks(content);
     const textBlocks = blocks.filter(b => b.type === 'text');
@@ -395,7 +402,7 @@ function auditFile(filePath) {
     }, 0);
 
     if (totalWords < 100) {
-        return { totalWords, issues: [{ severity: 'note', tag: 'SHORT', line: 1, text: `File has only ${totalWords} words`, detail: 'too short for meaningful audit' }] };
+        return { totalWords, contentLines, issues: [{ severity: 'note', tag: 'SHORT', line: 1, text: `File has only ${totalWords} words`, detail: 'too short for meaningful audit' }] };
     }
 
     const issues = [];
@@ -448,14 +455,14 @@ function auditFile(filePath) {
     issues.push(...checkFirstSentence(blocks));
     issues.push(...checkVoiceProxy(blocks, totalWords));
 
-    return { totalWords, issues: sortIssues(issues) };
+    return { totalWords, contentLines, issues: sortIssues(issues) };
 }
 
 // ---------------------------------------------------------------------------
 // Output formatting
 // ---------------------------------------------------------------------------
 
-function printFileReport(label, title, totalWords, issues, showAll) {
+function printFileReport(label, title, totalWords, issues, showAll, contentLines) {
     const cap = showAll ? Infinity : ISSUES_CAP;
 
     console.log(`\n${label}${title ? ' — ' + title : ''} (${totalWords.toLocaleString()} words)`);
@@ -472,7 +479,7 @@ function printFileReport(label, title, totalWords, issues, showAll) {
         for (const issue of grouped[sev]) {
             if (shown >= cap) break;
             const tag = issue.tag.padEnd(8);
-            const line = formatLine(issue.line);
+            const line = formatLine(issue.line, contentLines);
             console.log(`    ${tag} ${line} ${issue.text}  (${issue.detail})`);
             shown++;
         }
@@ -555,8 +562,8 @@ function main() {
 
         for (const entry of filesToAudit) {
             const label = `${tripId}/${entry.name}.md`;
-            const { totalWords, issues } = auditFile(entry.filePath);
-            printFileReport(label, entry.title, totalWords, issues, showAll);
+            const { totalWords, issues, contentLines } = auditFile(entry.filePath);
+            printFileReport(label, entry.title, totalWords, issues, showAll, contentLines);
             summaries.push({ label, issues });
         }
     }

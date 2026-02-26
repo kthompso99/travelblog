@@ -64,6 +64,12 @@
       background: rgba(37, 99, 235, 0.13);
     }
 
+    /* Paragraph-level (via addLineClass) */
+    .ttn-dense-line {
+      background: rgba(20, 184, 166, 0.10) !important;
+      border-left: 3px solid rgba(20, 184, 166, 0.5);
+    }
+
     /* Word-level */
     .ttn-underline {
       text-decoration: underline dotted orange;
@@ -143,6 +149,7 @@
     <span style="display:inline-block;width:10px;height:10px;background:rgba(234,138,0,0.35);border-radius:2px"></span> 25&ndash;30 words<br>
     <span style="display:inline-block;width:10px;height:10px;background:rgba(37,99,235,0.25);border-radius:2px"></span> Weak starters<br>
     <span style="display:inline-block;width:10px;height:10px;background:rgba(147,51,234,0.28);border-radius:2px"></span> Passive voice<br>
+    <span style="display:inline-block;width:10px;height:10px;background:rgba(20,184,166,0.2);border-left:3px solid rgba(20,184,166,0.5);border-radius:2px"></span> Dense paragraph (6+ sentences)<br>
     <span style="text-decoration:underline dotted orange;text-decoration-thickness:2px">underline</span> Hedge / vague words
   </div>
 </div>
@@ -394,6 +401,9 @@ function highlightWordsInRange(lineNum, rangeStart, originalSlice) {
 
 function clearMarks() {
   editor.getAllMarks().forEach(m => m.clear());
+  for (let i = 0; i < editor.lineCount(); i++) {
+    editor.removeLineClass(i, 'background', 'ttn-dense-line');
+  }
 }
 
 function lintText() {
@@ -409,6 +419,7 @@ function lintText() {
 
     const neutral = neutralizeMarkdown(originalLine);
     const sentences = splitSentencesWithPositions(neutral);
+    let lineSentenceCount = 0;
 
     for (const { start, end } of sentences) {
       const originalSlice = originalLine.substring(start, end);
@@ -418,6 +429,7 @@ function lintText() {
       const wordCount = clean.split(/\s+/).filter(Boolean).length;
       proseWords += wordCount;
       proseSentences++;
+      lineSentenceCount++;
 
       // Sentence-level checks
       const issues = checkSentence(clean);
@@ -437,6 +449,17 @@ function lintText() {
 
       // Word-level checks
       highlightWordsInRange(lineNum, start, originalSlice);
+    }
+
+    // Dense paragraph check
+    if (lineSentenceCount >= 6) {
+      editor.addLineClass(lineNum, 'background', 'ttn-dense-line');
+      const denseMark = editor.markText(
+        { line: lineNum, ch: 0 },
+        { line: lineNum, ch: originalLine.length },
+        { className: 'ttn-dense-mark' }
+      );
+      markTooltips.set(denseMark, 'Dense paragraph (' + lineSentenceCount + ' sentences — target 2-4)');
     }
   }
 

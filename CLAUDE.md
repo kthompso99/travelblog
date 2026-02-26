@@ -47,7 +47,7 @@ The blog uses a two-layer content audit system. The mechanical layer runs via `n
 
 **When Kevin asks to "audit" content** (e.g., "audit spain/cordoba", "review the writing in malaga.md"):
 
-1. Read the target `.md` file(s) in `content/trips/`.
+1. Read the target `.md` file(s) in `content/trips/`. Everything after `*Add your photos here*` is the photo gallery — exclude it from all evaluation (word count, page-level scores, editorial issues). The mechanical audit already does this automatically.
 2. Read `docs/Content/EditorialStandards.md` for the evaluation criteria.
 3. Run `npm run audit -- <trip>/<file>` to get mechanical results.
 4. Evaluate the 6 page-level dimensions from EditorialStandards.md, scoring each 1–5: **Narrative Clarity**, **Voice & Perspective**, **Reflective Depth**, **Visual Rhythm**, **Practical Value**, **Energy Curve**.

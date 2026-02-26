@@ -1,6 +1,6 @@
 ### Where we Stayed
 
-At a friend’s recommendation, we stayed at the Electra Metropolis, and found it excellent in every way. We spent extra for the “Acropolis Suite”, which was expensive, but the corner room had just incredible views of the full Acropolis. If you choose not to blow $ on that … the rooftop restaurant which serves breakfast, dinner, and late night drinks has all that same view for every customer without the upgraded room. There are a number of other hotels in that district with the same ‘deal’ of a rooftop restaurant – we have no idea if this one is the best but we were pretty happy with it.
+At a friend’s recommendation, we stayed at the Electra Metropolis, and found it excellent in every way. We spent extra for the “Acropolis Suite”, which was expensive, but the corner room had just incredible views of the full Acropolis. If you choose not to blow $ on that … the rooftop restaurant which serves breakfast, dinner, and late night drinks has all that same view for every customer without the upgraded room. A number of other hotels in that district feature roughly the same rooftop restaurant.  We have no idea if this one is the best but we were pretty happy with it.
 
 ##  Getting Around in Athens
 
@@ -8,9 +8,11 @@ We had pretty mixed experiences with our 2 taxi rides – be prepared for tough 
 
 ## Things to See in Athens
 
-National Archaeology museum – we spent about 2 hours there, maybe 2 ½. See this [museum map](https://www.namuseum.gr/wp-content/uploads/2022/03/nam-brochure-ΕΝ-low.pdf) online. The rooms are chronological (e.g., room 1 has the oldest piece, room 35 the newest). Pacing-wise, the first 10-15 rooms are the highlight in our humble opinion, don’t pace evenly, spend a ton of time in the first few rooms, especially the Mycenaean room (#4) which is right in your face as you enter – incredible artifacts, just that room would make that museum a must-see. 
+National Archaeology museum – we spent about 2 hours there, maybe 2 ½. See this [museum map](https://www.namuseum.gr/wp-content/uploads/2022/03/nam-brochure-ΕΝ-low.pdf) online. The rooms are chronological (e.g., room 1 has the oldest piece, room 35 the newest). Pacing-wise, the first 10-15 rooms are the highlight in our humble opinion.  
 
-If you’re a technology nerd (yes, that’s your humble author), the [Antikythera mechanism](https://en.wikipedia.org/wiki/Antikythera_mechanism) (arguably the world’s oldest computer) is near the end (room 35?), it’s well-explained. 
+> Don’t pace yourself evenly at this museum.  Instead, spend a ton of time in the first few rooms, especially the Mycenaean room (#4) which is right in your face as you enter.  The Mycenaean collection has incredible artifacts, just that room alone would make that museum a must-see. 
+
+If you’re a technology nerd (yes, that’s your humble author), the [Antikythera mechanism](https://en.wikipedia.org/wiki/Antikythera_mechanism) is near the end (room 35?).  This is arguably the world’s oldest computer, it’s well-explained. 
 
 Rick Steves says it’s easy to walk through in order, but that’s not entirely true, be careful there are some strange cul de sacs; for example, there’s a scale statue from Parthenon at the end of a cul de sac that probably most people miss – it’s in room 20.
 

@@ -6,7 +6,7 @@ The **Ruta de los Pueblos Blancos** (Route of the White Villages) is one of Anda
 
 Ronda is the best-known southern hill town, and is a very common day trip destination because it can be done from Seville or Malaga.  Rick Steves recommended spending a night there, and we’re glad we did.  It’s an enchanting location, with a remarkable 18th-century stone bridge over a yawning gorge, which is beautifully well-lit.  Unlike many of the other small villages, there’s enough infrastructure there and things to see that a night seemed well worth it.
 
-There is a path from the old town down to various spots where you can look back at the bridge.  It's confusing where to 'stop'.   There is a new attraction the [Tagus Gorge](https://desfiladerodeltajo.info/) that we did not partake of, but as part of it there is an overlook, I think we had to pay 5 euro or similar to get to their viewpoint.  That was lovely -- there are others one "further down" but the day we were there it was plenty hot so we didn't feel the need to go super far down for a better view.
+A path windws down from the old town down to various spots where you can look back at the bridge.  It's confusing where to 'stop'.   Partway down the gorge is a new attraction the [Tagus Gorge](https://desfiladerodeltajo.info/) that we did not pay for. However, as part of that attraction there is an overlook, I think we had to pay 5 euro or similar to get to their viewpoint.  That was lovely -- there are others one "further down" but the day we were there it was plenty hot so we didn't feel the need to go super far down for a better view.
 
 ![The Puente Nuevo ("new" bridge) spanning the 400-foot deep river chasm that separates old from new Ronda, was built in 1793. It truly is an impressive bit of engineering for its time ... but mostly gorgeous.](images/ronda-01.jpg)
 
@@ -16,11 +16,11 @@ We saw a [Spanish Guitar show](https://www.rondaguitarmusic.com/) the evening we
 
 ![Paco Seco performed an educational and enjoyable set](images/ronda-06.mp4)
 
-There is a cave outside of town [Cueva Pileta](https://wagonersabroad.com/ronda-spain-cave/) with ancient (tens of thousands of years old) cave paintings, which I wish we'd made time for, the reviews look amazing but we sorta missed this in planning.
+A cave outside of town [Cueva Pileta](https://wagonersabroad.com/ronda-spain-cave/) features ancient (tens of thousands of years old) cave paintings.  We wish we'd made time for this, the reviews look amazing but we sorta missed this in planning.
 
 ![We have no idea how common peacocks are in Ronda, but this male had 5 or 10 hens in his group, all busily eating bugs.](images/ronda-02.jpg)
 
-By and large, Ronda is fun just to wander – great views in many places, and enough interesting sites to make it a perfect 24 hours destination.
+By and large, Ronda is fun just to wander.  Lookouts abound, and there are enough interesting sites to make it a perfect 24 hours destination.
 
 ![The Plaza de Toros, the Ronda bullring, was the first one constructed in Spain, in the late 18th century. There is only 1 'fight' there per year now, which we thankfully were not near.](images/ronda-03.jpg)
 

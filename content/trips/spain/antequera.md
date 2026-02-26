@@ -7,13 +7,13 @@ See the tips section for how we chose [daytrip.com](http://daytrip.com) for vari
 
 ## What We Did
 
-The best part of Antequera is the ancient Dolmens just outside, a set of 3 separate UNESCO World Heritage sites.  The oldest is from before Stonehenge, and features the largest single rock placed in Europe, or something like that.  Two of them are right next to one another, and the third is a 10-minute drive away, and each is worth visiting – we really found this extremely worth it.
+The best part of Antequera is the ancient Dolmens just outside, a set of 3 separate UNESCO World Heritage sites.  The oldest of these is old than Stonehenge, and features the largest single rock placed in Europe.  Two of the Dolmens are right next to one another. The third is a 10-minute drive away, and each is worth visiting – we really found this a unique and compelling few hours.
 
 ![Near the ancient town of Antequera are 3 ancient burial sites. This Dolmen of Menga is believed to be from circa 3700 BC, older than either the Great Pyramids or Stonehenge. The largest stone (not pictured, but on the main roof) is estimated to weigh 200 tons.](images/antequera-01.jpg)
 
 ![Tholos de El Romeral is from 1800 BC, so 2000 years "newer" than the previous Dolmen. It shows sophisticated building techniques -- there is no mortar, but the massive stone visible at top wedges all these rocks into place.](images/antequera-02.jpg)
 
-The small town of Antequera was also interesting, though probably would not have been a first choice on its own without the dolmens.  It’s a small/quaint town with over 30 churches, all with opulent interiors.  The true highlight was the citadel at the top of town, with Roman foundations (and a nearby Roman bath), and Moorish as well as post-reconquest Spanish influences.  Definitely worth 45 or 60 minutes.  There were great views on top as well.
+The small town of Antequera was also interesting, though probably would not have been a first choice on its own without the dolmens.  It’s a small/quaint town with over 30 churches, all with opulent interiors.  The true highlight was the citadel at the top of town, with Roman foundations (and a nearby Roman bath).  The citadel demonstrates Moorish as well as post-reconquest Spanish influences.  Definitely worth 45 or 60 minutes.  There were great views on top as well.
 
 ![Atop the town of Antequera is a Moorish fortress, which fell to Castilian forces in 1410. Note the ancient roman rock on the wall to the left and at the base of the tower, then the discontinuity to 14th-century Moorish construction for the top 2/3 of the tower.](images/antequera-03.jpg)
 
