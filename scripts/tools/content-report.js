@@ -12,38 +12,13 @@ const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
 const { MARKDOWN_IMAGE_REGEX } = require('../../lib/constants');
-const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery } = require('../../lib/build-utilities');
+const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, stripMarkdownToPlainText } = require('../../lib/build-utilities');
 
 // Analysis libraries
 const rs = require('text-readability').default;
 const writeGood = require('write-good');
 const Sentiment = require('sentiment');
 const sentiment = new Sentiment();
-
-// ---------------------------------------------------------------------------
-// Markdown → plain text
-// ---------------------------------------------------------------------------
-
-function stripMarkdownToPlainText(md) {
-    let text = md;
-    // Remove images (including alt text — those are counted separately)
-    text = text.replace(/!\[[^\]]*\]\([^\)]+\)/g, '');
-    // Convert links to just their text
-    text = text.replace(/\[([^\]]*)\]\([^\)]+\)/g, '$1');
-    // Remove header markers
-    text = text.replace(/^#{1,6}\s+/gm, '');
-    // Remove emphasis markers
-    text = text.replace(/(\*{1,3}|_{1,3})/g, '');
-    // Remove horizontal rules
-    text = text.replace(/^---+$/gm, '');
-    // Remove blockquotes
-    text = text.replace(/^>\s?/gm, '');
-    // Remove HTML tags (rare but possible)
-    text = text.replace(/<[^>]+>/g, '');
-    // Collapse whitespace
-    text = text.replace(/\s+/g, ' ').trim();
-    return text;
-}
 
 function countWords(text) {
     if (!text) return 0;

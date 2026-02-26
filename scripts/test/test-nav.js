@@ -40,10 +40,9 @@
 
 const fs   = require('fs');
 const path = require('path');
-const { findHtmlFiles, extractCssRule, hasCssProperty, getCssValue, createTestRunner } = require('./test-helpers');
+const { ROOT_DIR: ROOT, findHtmlFiles, extractCssRule, hasCssProperty, getCssValue, createTestRunner } = require('./test-helpers');
 
 // ── test runner ──────────────────────────────────────────────────
-const ROOT = path.join(__dirname, '../..');
 const htmlFiles = findHtmlFiles(ROOT);
 const { assert: _assert, report } = createTestRunner('🧭 Navigation smoke-test');
 

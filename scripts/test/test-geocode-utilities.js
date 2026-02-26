@@ -9,7 +9,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { createTestRunner } = require('./test-helpers');
+const { createTestRunner, backupFile, restoreFile } = require('./test-helpers');
 const { loadGeocodeCache, geocodeLocation } = require('../../lib/geocode');
 
 const { assert, report } = createTestRunner('🌍 Geocode utility tests');
@@ -18,12 +18,7 @@ const { assert, report } = createTestRunner('🌍 Geocode utility tests');
 
 const TEST_CACHE_DIR = path.join(__dirname, '../../_cache');
 const TEST_CACHE_FILE = path.join(TEST_CACHE_DIR, 'geocode.json');
-const BACKUP_CACHE_FILE = TEST_CACHE_FILE + '.test-backup';
-
-// Backup existing cache if it exists
-if (fs.existsSync(TEST_CACHE_FILE)) {
-    fs.copyFileSync(TEST_CACHE_FILE, BACKUP_CACHE_FILE);
-}
+const BACKUP_PATH = backupFile(TEST_CACHE_FILE);
 
 // ── Test cache loading ──────────────────────────────────────────
 
@@ -95,11 +90,7 @@ geocodeLocation('Paris, France').then(coords => {
 
 // Give async tests time to complete before reporting
 setTimeout(() => {
-    // Restore original cache if it existed
-    if (fs.existsSync(BACKUP_CACHE_FILE)) {
-        fs.copyFileSync(BACKUP_CACHE_FILE, TEST_CACHE_FILE);
-        fs.unlinkSync(BACKUP_CACHE_FILE);
-    }
+    restoreFile(TEST_CACHE_FILE, BACKUP_PATH);
 
     const exitCode = report();
     process.exit(exitCode);

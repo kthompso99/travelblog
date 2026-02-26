@@ -35,9 +35,8 @@
 const { JSDOM } = require('jsdom');
 const fs   = require('fs');
 const path = require('path');
-const { createTestRunner } = require('./test-helpers');
+const { ROOT_DIR: ROOT, createTestRunner } = require('./test-helpers');
 
-const ROOT      = path.join(__dirname, '../..');
 const indexPath = path.join(ROOT, 'index.html');
 
 if (!fs.existsSync(indexPath)) {

@@ -10,7 +10,10 @@
 
 const fs   = require('fs');
 const path = require('path');
+const os   = require('os');
 const { walkDir } = require('../../lib/build-utilities');
+
+const ROOT_DIR = path.join(__dirname, '../..');
 
 const SKIP_DIRS = new Set(['node_modules', '.git', 'content', 'config', 'templates', 'lib', 'scripts', 'docs']);
 const SKIP_FILES = new Set(['404.html', 'index.html.backup', 'main.html', 'writingstudio.html']);
@@ -24,6 +27,37 @@ function findHtmlFiles(dir) {
         skipDirs: SKIP_DIRS,
         fileFilter: name => name.endsWith('.html') && !SKIP_FILES.has(name)
     });
+}
+
+/**
+ * Discover the first available trip with intro, location, and map pages.
+ * Returns relative paths suitable for path.join(ROOT_DIR, ...) or null.
+ */
+function findTestTrip() {
+    const tripsDir = path.join(ROOT_DIR, 'trips');
+    if (!fs.existsSync(tripsDir)) return null;
+
+    for (const entry of fs.readdirSync(tripsDir, { withFileTypes: true })) {
+        if (!entry.isDirectory()) continue;
+        const tripDir = path.join(tripsDir, entry.name);
+        const intro = path.join(tripDir, 'index.html');
+        const map = path.join(tripDir, 'map.html');
+        if (!fs.existsSync(intro) || !fs.existsSync(map)) continue;
+
+        // Find first location/article page
+        const pages = fs.readdirSync(tripDir).filter(f =>
+            f.endsWith('.html') && f !== 'index.html' && f !== 'map.html'
+        );
+        if (pages.length > 0) {
+            return {
+                slug: entry.name,
+                intro: `trips/${entry.name}/index.html`,
+                location: `trips/${entry.name}/${pages[0]}`,
+                map: `trips/${entry.name}/map.html`
+            };
+        }
+    }
+    return null;
 }
 
 /**
@@ -90,4 +124,43 @@ function createTestRunner(suiteName) {
     return { assert, report, getStats: () => ({ passed, failed, failures }) };
 }
 
-module.exports = { findHtmlFiles, extractCssRule, hasCssProperty, getCssValue, createTestRunner };
+/** Backup a file before tests. Returns the backup path. */
+function backupFile(filePath) {
+    const backupPath = filePath + '.test-backup';
+    if (fs.existsSync(filePath)) {
+        fs.copyFileSync(filePath, backupPath);
+    }
+    return backupPath;
+}
+
+/** Restore a file from its backup and remove the backup. */
+function restoreFile(filePath, backupPath) {
+    if (fs.existsSync(backupPath)) {
+        fs.copyFileSync(backupPath, filePath);
+        fs.unlinkSync(backupPath);
+    }
+}
+
+/** Create a temporary directory for test fixtures. */
+function createTempDir(prefix) {
+    return fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+}
+
+/** Remove a temporary directory and all its contents. */
+function removeTempDir(dir) {
+    fs.rmSync(dir, { recursive: true, force: true });
+}
+
+module.exports = {
+    ROOT_DIR,
+    findHtmlFiles,
+    findTestTrip,
+    extractCssRule,
+    hasCssProperty,
+    getCssValue,
+    createTestRunner,
+    backupFile,
+    restoreFile,
+    createTempDir,
+    removeTempDir
+};

@@ -28,10 +28,9 @@
 
 const fs   = require('fs');
 const path = require('path');
-const os   = require('os');
 
 const { convertMarkdown } = require('../../lib/markdown-converter');
-const { createTestRunner } = require('./test-helpers');
+const { createTestRunner, createTempDir, removeTempDir } = require('./test-helpers');
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -78,7 +77,7 @@ function minimalPng(width, height) {
 // ─── Tests ──────────────────────────────────────────────────────────────────
 
 async function run() {
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'md-converter-test-'));
+    const dir = createTempDir('md-converter-test-');
 
     try {
         // Write PNG fixtures for orientation tests
@@ -181,7 +180,7 @@ async function run() {
         }
 
     } finally {
-        fs.rmSync(dir, { recursive: true, force: true });
+        removeTempDir(dir);
     }
 
     // ── Summary ──────────────────────────────────────────────────────────────
