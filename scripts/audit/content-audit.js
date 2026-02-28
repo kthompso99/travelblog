@@ -44,9 +44,6 @@ const VOICE_MARKERS = /\b(recommend|highlight|favorite|worth|skip|avoid|overrate
 
 const LOGISTICS_HEADINGS = ['practical tips', 'practical', 'logistics', 'getting there', 'getting around'];
 
-// Files to skip during audit (not editorial content)
-const SKIP_FILES = ['all-synced-photos.md'];
-
 // ---------------------------------------------------------------------------
 // Markdown parsing — line-aware
 // ---------------------------------------------------------------------------
@@ -547,8 +544,6 @@ function main() {
         }
 
         for (const item of contentItems) {
-            if (SKIP_FILES.includes(item.file)) continue;
-
             const pageName = path.basename(item.file, '.md');
             if (fileFilter && pageName !== fileFilter) continue;
 

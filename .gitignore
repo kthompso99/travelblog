@@ -24,6 +24,12 @@ takeout/
 # Image optimization backups
 **/.originals/
 
+# GPT audit output (generated per-trip)
+content/trips/*/audits/
+
+# Screenshots (local dev artifacts)
+screenshots/
+
 # Dependencies
 node_modules/
 

@@ -60,12 +60,19 @@ travelblog/
 │   └── template-utilities.js   assembleTemplate + fillTemplate helpers
 │
 ├── scripts/                    CLI build & utility scripts
+│   ├── audit/
+│   │   ├── content-audit.js    Mechanical content audit (sentence-level quality checks)
+│   │   ├── gpt-audit.mjs       AI editorial audit (OpenAI-powered scoring + suggestions)
+│   │   ├── gpt-audit-prompt.txt GPT audit system prompt
+│   │   ├── gpt-audit-mandate.txt GPT audit enforcement mandate
+│   │   └── gpt-dashboard.mjs  Dashboard for audit score history
 │   ├── build/
 │   │   ├── build.js            Full build — geocodes, renders, outputs HTML
 │   │   ├── build-smart.js      Incremental build — skips unchanged trips
 │   │   └── build-writing.js    Fast content-only rebuild (no geocoding)
 │   ├── test/
 │   │   ├── test-helpers.js     Shared test runner utilities
+│   │   ├── test-maps-helpers.js Shared helpers for map tests
 │   │   ├── test-nav.js         Navigation smoke-tests (Puppeteer)
 │   │   ├── test-filter.js      Homepage filter smoke-tests (Puppeteer)
 │   │   ├── test-maps.js        Map page smoke-tests (Puppeteer)
@@ -235,6 +242,8 @@ No geocoding, no map marker, no `place` or `duration` fields.
 | `watch:writing` | `npm run watch:writing` | Fast content-only watcher (nodemon, .md only) |
 | `serve` | `npm run serve` | Start local server without building |
 | `add` | `npm run add` | Interactive CLI to scaffold a new trip |
+| `audit` | `npm run audit -- spain/cordoba` | Mechanical content audit (sentence-level quality checks) |
+| `gpt-audit` | `npm run gpt-audit -- spain/cordoba` | AI editorial audit (scoring + suggestions). Accepts multiple files or a trip name for incremental mode |
 | `sync-photos` | `npm run sync-photos` | Extract and match photos from Google Takeout zip |
 | `assign-photos` | `npm run assign-photos` | Interactive tool to insert photos into markdown |
 | `report` | `npm run report` | Content quality report (readability + write-good) |

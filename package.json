@@ -1,6 +1,6 @@
 {
   "name": "travel-blog-builder",
-  "version": "1.0.0",
+    "version": "1.0.0",
   "description": "Build script for travel blog - geocodes locations and converts markdown offline",
   "main": "scripts/build/build.js",
   "scripts": {
@@ -13,7 +13,9 @@
     "watch:writing": "nodemon --watch content/trips/ --ext md --exec 'node scripts/build/build-writing.js'",
     "serve": "node scripts/server.js 8000",
     "add": "node scripts/tools/add-trip.js",
-    "audit": "node scripts/tools/content-audit.js",
+    "audit": "node scripts/audit/content-audit.js",
+    "gpt-audit": "node scripts/audit/gpt-audit.mjs",
+    "gpt-dashboard": "node scripts/audit/gpt-dashboard.mjs",
     "sync-photos": "node scripts/tools/sync-takeout-photos.js",
     "assign-photos": "node scripts/tools/assign-photos.js",
     "test": "node scripts/test/test-lib-utilities.js && node scripts/test/test-geocode-utilities.js && node scripts/test/test-build-cache.js && node scripts/test/test-markdown-converter.js && node scripts/test/test-nav.js && node scripts/test/test-filter.js && node scripts/test/test-css-injection.js && node scripts/test/test-maps.js",
@@ -30,7 +32,8 @@
     "adm-zip": "^0.5.16",
     "googleapis": "^171.4.0",
     "image-size": "^2.0.2",
-    "marked": "^9.1.6"
+    "marked": "^9.1.6",
+    "openai": "^6.25.0"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
