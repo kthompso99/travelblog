@@ -55,68 +55,32 @@ function computeWeightedScore(scores) {
 }
 
 // ==============================
-// 📂 Audit Function
+// 📂 Read & Prep Content
 // ==============================
 
-async function runAudit(filepath) {
-  const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-  });
+const GALLERY_MARKER = "*Add your photos here*";
 
-  // ------------------------------
-  // Trim gallery section
-  // ------------------------------
-
-  const GALLERY_MARKER = "*Add your photos here*";
+function readArticleContent(filepath) {
   let content = fs.readFileSync(filepath, "utf-8");
-
   const galleryIdx = content.indexOf(GALLERY_MARKER);
   if (galleryIdx !== -1) {
     content = content.slice(0, galleryIdx).trim();
   }
+  return content;
+}
 
-  const EDITORIAL_STANDARDS = fs.readFileSync(
-    "docs/brand/Editorial-Standards.md",
-    "utf-8"
-  );
+// ==============================
+// 🧠 Parse Audit Response
+// ==============================
 
-  const BRAND_IDENTITY = fs.readFileSync(
-    "docs/brand/Brand.md",
-    "utf-8"
-  );
-
-  // ------------------------------
-  // Call OpenAI
-  // ------------------------------
-
-  const response = await client.responses.create({
-    model: MODEL,
-    input: [
-      { role: "system", content: ENFORCEMENT_MANDATE },
-      { role: "system", content: "Binding Editorial Standards:\n\n" + EDITORIAL_STANDARDS },
-      { role: "system", content: "Brand Identity Context:\n\n" + BRAND_IDENTITY },
-      { role: "system", content: SYSTEM_PROMPT },
-      { role: "user", content: content }
-    ]
-  });
-
-  const output = response.output_text;
-
-  // console.log("RAW MODEL OUTPUT:\n", output);
-
-  // ------------------------------
-  // 🧠 Robust JSON Extraction
-  // ------------------------------
-
+function parseAuditResponse(output) {
+  // Extract JSON scores
   let jsonString;
-
-  // 1️⃣ Try fenced ```json block first
   const fencedMatch = output.match(/```json\s*([\s\S]*?)\s*```/);
 
   if (fencedMatch) {
     jsonString = fencedMatch[1];
   } else {
-    // 2️⃣ Fallback: extract from first { to last }
     const firstBrace = output.indexOf("{");
     const lastBrace = output.lastIndexOf("}");
 
@@ -128,7 +92,6 @@ async function runAudit(filepath) {
   }
 
   let parsed;
-
   try {
     parsed = JSON.parse(jsonString);
   } catch (err) {
@@ -141,40 +104,35 @@ async function runAudit(filepath) {
   }
 
   const scores = parsed.scores;
-
-  // Recompute overall score for consistency
   scores.overall_score = computeWeightedScore(scores);
 
-  // ------------------------------
-  // 📄 Extract Markdown Analysis
-  // ------------------------------
-
+  // Extract markdown analysis
   const markdownStart = output.indexOf(jsonString) + jsonString.length;
-  let markdownPart = output.slice(markdownStart).trim();
+  let markdown = output.slice(markdownStart).trim();
 
-  markdownPart = markdownPart
+  markdown = markdown
     .replace(/^```[\w]*\s*\n?/, "")
     .replace(/\n?```\s*$/, "")
     .replace(/^PART 2\s*[—–-]\s*MARKDOWN ANALYSIS:?\s*\n*/i, "")
     .trim();
 
-  // ------------------------------
-  // 💾 Save Files
-  // ------------------------------
+  return { scores, markdown };
+}
 
+// ==============================
+// 💾 Save Audit Results
+// ==============================
+
+function saveAuditResults(filepath, scores, markdown) {
   const today = new Date().toISOString().split("T")[0];
-
-  const tripFolder = path.dirname(filepath);
   const articleName = path.basename(filepath, ".md");
-
-  const auditFolder = path.join(tripFolder, "audits", articleName);
+  const auditFolder = path.join(path.dirname(filepath), "audits", articleName);
   fs.mkdirSync(auditFolder, { recursive: true });
 
   const jsonPath = path.join(auditFolder, `${today}.audit.json`);
   const mdPath = path.join(auditFolder, `${today}.audit.md`);
 
-  const now = new Date();
-  const timeStr = now
+  const timeStr = new Date()
     .toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
@@ -184,14 +142,46 @@ async function runAudit(filepath) {
 
   const prettyName =
     articleName.charAt(0).toUpperCase() + articleName.slice(1);
-
   const auditTitle = `# ${prettyName} Audit — ${today} ${timeStr}`;
 
   fs.writeFileSync(jsonPath, JSON.stringify(scores, null, 2));
-  fs.writeFileSync(mdPath, `${auditTitle}\n\n${markdownPart}`);
+  fs.writeFileSync(mdPath, `${auditTitle}\n\n${markdown}`);
 
   console.log(`\nAudit complete: ${articleName}`);
   console.log(`Overall Score: ${scores.overall_score}\n`);
+}
+
+// ==============================
+// 📂 Audit Orchestrator
+// ==============================
+
+async function runAudit(filepath) {
+  const client = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+  });
+
+  const content = readArticleContent(filepath);
+
+  const editorialStandards = fs.readFileSync(
+    "docs/brand/Editorial-Standards.md", "utf-8"
+  );
+  const brandIdentity = fs.readFileSync(
+    "docs/brand/Brand.md", "utf-8"
+  );
+
+  const response = await client.responses.create({
+    model: MODEL,
+    input: [
+      { role: "system", content: ENFORCEMENT_MANDATE },
+      { role: "system", content: "Binding Editorial Standards:\n\n" + editorialStandards },
+      { role: "system", content: "Brand Identity Context:\n\n" + brandIdentity },
+      { role: "system", content: SYSTEM_PROMPT },
+      { role: "user", content }
+    ]
+  });
+
+  const { scores, markdown } = parseAuditResponse(response.output_text);
+  saveAuditResults(filepath, scores, markdown);
 }
 
 // ==============================
