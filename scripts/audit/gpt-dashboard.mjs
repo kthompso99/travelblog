@@ -4,19 +4,11 @@
 
 import fs from "fs";
 import path from "path";
+import { WEIGHTS } from "./audit-shared.mjs";
 
 // ==============================
-// 🔧 CONFIG (MATCH audit.js)
+// 🔧 CONFIG
 // ==============================
-
-const WEIGHTS = {
-  prose_control_structure: 0.25,
-  narrative_clarity_arc: 0.25,
-  opening_strength: 0.15,
-  brand_alignment: 0.15,
-  distinctiveness: 0.10,
-  decision_clarity: 0.10
-};
 
 const DIMENSIONS = Object.keys(WEIGHTS);
 
@@ -26,24 +18,47 @@ const TRIP_THRESHOLD = 8.7;
 const DETAIL_MODE = process.argv.includes("--detail") ||
   process.argv.includes("-detail");
 
+// --provider gpt | claude | all (default: all)
+function getProviderFilter() {
+  const idx = process.argv.indexOf("--provider");
+  if (idx !== -1 && process.argv[idx + 1]) {
+    return process.argv[idx + 1];
+  }
+  return "all";
+}
+
+const PROVIDER_FILTER = getProviderFilter();
+
 // ==============================
 // 📂 Helpers
 // ==============================
 
-function getLatestAudit(folderPath) {
+function getLatestAudit(folderPath, provider) {
   if (!fs.existsSync(folderPath)) return null;
 
-  const files = fs
+  let files = fs
     .readdirSync(folderPath)
-    .filter(f => f.endsWith(".json"))
-    .sort();
+    .filter(f => f.endsWith(".audit.json"));
+
+  // Filter by provider if specified
+  if (provider !== "all") {
+    files = files.filter(f => f.includes(`.${provider}.`));
+  }
+
+  files.sort();
 
   if (files.length === 0) return null;
 
   const latestFile = files[files.length - 1];
   const fullPath = path.join(folderPath, latestFile);
 
-  return JSON.parse(fs.readFileSync(fullPath, "utf-8"));
+  // Extract provider from filename: YYYY-MM-DD.{provider}.audit.json
+  const match = latestFile.match(/\.(\w+)\.audit\.json$/);
+  const src = match ? match[1] : "?";
+
+  const data = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
+  data._provider = src;
+  return data;
 }
 
 function collectTrips() {
@@ -68,11 +83,12 @@ function collectTrips() {
         articleName
       );
 
-      const audit = getLatestAudit(auditFolder);
+      const audit = getLatestAudit(auditFolder, PROVIDER_FILTER);
       if (audit) {
         const entry = {
           article: articleName,
-          score: audit.overall_score
+          score: audit.overall_score,
+          provider: audit._provider
         };
         if (DETAIL_MODE) {
           for (const dim of DIMENSIONS) {
@@ -96,6 +112,9 @@ function runDashboard() {
 
   console.log("\n======================================");
   console.log(" TWO TRAVEL NUTS EDITORIAL DASHBOARD ");
+  if (PROVIDER_FILTER !== "all") {
+    console.log(`  (provider: ${PROVIDER_FILTER})`);
+  }
   console.log("======================================\n");
 
   let allArticles = [];
@@ -149,8 +168,9 @@ function runDashboard() {
   allArticles
     .sort((a, b) => a.score - b.score)
     .forEach(a => {
+      const src = a.provider ? ` [${a.provider}]` : "";
       console.log(
-        `${a.score.toFixed(2)}  |  ${a.trip} / ${a.article}`
+        `${a.score.toFixed(2)}  |  ${a.trip} / ${a.article}${src}`
       );
     });
 
@@ -173,10 +193,12 @@ function runDashboard() {
       ...allArticles.map(a => `${a.trip}/${a.article}`.length)
     );
     const colW = 6;
+    const srcW = 4;
 
     // Header
     const header =
       "Article".padEnd(nameW) + "  " +
+      "Src".padStart(srcW) + "  " +
       DIMENSIONS.map(d => (SHORT[d] || d).padStart(colW)).join("") +
       "  " + "Over".padStart(colW);
     console.log(header);
@@ -187,12 +209,13 @@ function runDashboard() {
       .sort((a, b) => a.score - b.score)
       .forEach(a => {
         const name = `${a.trip}/${a.article}`;
+        const src = (a.provider || "?").padStart(srcW);
         const dims = DIMENSIONS.map(d => {
           const v = a[d];
           return v != null ? v.toFixed(1).padStart(colW) : "  —   ";
         }).join("");
         const overall = a.score.toFixed(2).padStart(colW);
-        console.log(`${name.padEnd(nameW)}  ${dims}  ${overall}`);
+        console.log(`${name.padEnd(nameW)}  ${src}  ${dims}  ${overall}`);
       });
   }
 

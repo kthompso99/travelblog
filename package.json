@@ -1,6 +1,6 @@
 {
   "name": "travel-blog-builder",
-    "version": "1.0.0",
+  "version": "1.0.0",
   "description": "Build script for travel blog - geocodes locations and converts markdown offline",
   "main": "scripts/build/build.js",
   "scripts": {
@@ -15,6 +15,7 @@
     "add": "node scripts/tools/add-trip.js",
     "audit": "node scripts/audit/content-audit.js",
     "gpt-audit": "node scripts/audit/gpt-audit.mjs",
+    "claude-audit": "node scripts/audit/claude-audit.mjs",
     "gpt-dashboard": "node scripts/audit/gpt-dashboard.mjs",
     "sync-photos": "node scripts/tools/sync-takeout-photos.js",
     "assign-photos": "node scripts/tools/assign-photos.js",
@@ -29,6 +30,7 @@
     "hero-search": "node scripts/tools/hero-search.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
     "adm-zip": "^0.5.16",
     "googleapis": "^171.4.0",
     "image-size": "^2.0.2",

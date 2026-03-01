@@ -24,8 +24,9 @@ takeout/
 # Image optimization backups
 **/.originals/
 
-# GPT audit output (generated per-trip)
+# Audit output (generated per-trip)
 content/trips/*/audits/
+content/trips/*/audits-*/
 
 # Screenshots (local dev artifacts)
 screenshots/
