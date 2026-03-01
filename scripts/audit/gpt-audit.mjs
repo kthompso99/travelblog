@@ -50,7 +50,10 @@ async function runAudit(filepath) {
     apiKey: process.env.OPENAI_API_KEY
   });
 
-  const content = fs.readFileSync(filepath, "utf-8");
+  const GALLERY_MARKER = '*Add your photos here*';
+  let content = fs.readFileSync(filepath, "utf-8");
+  const galleryIdx = content.indexOf(GALLERY_MARKER);
+  if (galleryIdx !== -1) content = content.slice(0, galleryIdx).trim();
 
   const EDITORIAL_STANDARDS = fs.readFileSync(
     "docs/brand/Editorial-Standards.md",

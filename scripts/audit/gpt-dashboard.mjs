@@ -18,8 +18,13 @@ const WEIGHTS = {
   rating_integrity: 0.10
 };
 
+const DIMENSIONS = Object.keys(WEIGHTS);
+
 const ARTICLE_THRESHOLD = 8.5;
 const TRIP_THRESHOLD = 8.7;
+
+const DETAIL_MODE = process.argv.includes("--detail") ||
+  process.argv.includes("-detail");
 
 // ==============================
 // 📂 Helpers
@@ -65,10 +70,16 @@ function collectTrips() {
 
       const audit = getLatestAudit(auditFolder);
       if (audit) {
-        trips[tripName].push({
+        const entry = {
           article: articleName,
           score: audit.overall_score
-        });
+        };
+        if (DETAIL_MODE) {
+          for (const dim of DIMENSIONS) {
+            entry[dim] = audit[dim] ?? null;
+          }
+        }
+        trips[tripName].push(entry);
       }
     }
   }
@@ -142,6 +153,48 @@ function runDashboard() {
         `${a.score.toFixed(2)}  |  ${a.trip} / ${a.article}`
       );
     });
+
+  // ---------- DETAIL GRID ----------
+  if (DETAIL_MODE && allArticles.length > 0) {
+    console.log("\n📊 DIMENSION DETAIL GRID\n");
+
+    const SHORT = {
+      sentence_structure: "Sent",
+      narrative_clarity:  "Narr",
+      opening_strength:   "Open",
+      brand_alignment:    "Brand",
+      distinctiveness:    "Dist",
+      rating_integrity:   "Rate"
+    };
+
+    // Column widths
+    const nameW = Math.max(
+      5,
+      ...allArticles.map(a => `${a.trip}/${a.article}`.length)
+    );
+    const colW = 6;
+
+    // Header
+    const header =
+      "Article".padEnd(nameW) + "  " +
+      DIMENSIONS.map(d => (SHORT[d] || d).padStart(colW)).join("") +
+      "  " + "Over".padStart(colW);
+    console.log(header);
+    console.log("-".repeat(header.length));
+
+    // Rows — sorted by overall score ascending (worst first)
+    allArticles
+      .sort((a, b) => a.score - b.score)
+      .forEach(a => {
+        const name = `${a.trip}/${a.article}`;
+        const dims = DIMENSIONS.map(d => {
+          const v = a[d];
+          return v != null ? v.toFixed(1).padStart(colW) : "  —   ";
+        }).join("");
+        const overall = a.score.toFixed(2).padStart(colW);
+        console.log(`${name.padEnd(nameW)}  ${dims}  ${overall}`);
+      });
+  }
 
   console.log("\n");
 }
