@@ -1,218 +1,157 @@
-# Two Travel Nuts — Editorial Standards (Calibrated)
+# Two Travel Nuts — Editorial Standards
 
-This document defines enforceable publishing standards.
+This document defines what quality means.
+
+It is the only philosophical source of truth for scoring.
 
 The goal is not formatting perfection.
-The goal is durable, structured, confident travel writing.
+The goal is durable, confident, well-crafted travel writing.
 
 ---
 
-## Rating Scale
+# Rating Philosophy
 
-- 9.5+ → Exceptional. Rare. Structural, narrative, and tonal excellence.
-- 9.0–9.4 → Excellent. Strong thesis, strong structure, clear tradeoffs.
-- 8.5–8.9 → Publisher-ready. Minor polish issues only.
-- 8.0–8.4 → Strong but needs refinement.
-- 7.5–7.9 → Good raw material but incomplete.
-- 6.5–7.4 → Structurally or narratively weak.
-- Below 6.5 → Fundamentally incomplete.
+- 9.5+ → Exceptional craft and clarity. Rare.
+- 9.0–9.4 → Excellent. Strong voice, strong arc, polished prose.
+- 8.5–8.9 → Launch-ready. Minor refinements only.
+- 8.0–8.4 → Strong but not fully polished.
+- 7.5–7.9 → Competent but lacking authority or cohesion.
+- Below 7.5 → Structurally or narratively weak.
 
-Scores should cluster in the 8.0–8.8 range for strong work.
-9+ must be rare and clearly justified.
-
-An article is not launch-ready if any dimension is below 8.0.
+Launch readiness requires:
+- Overall ≥ 8.5
+- No dimension below 8.0
 
 ---
 
-# Core Evaluation Dimensions
+# Core Dimensions
 
-Each article must be evaluated across six dimensions.
+There are six dimensions.
 
 ---
 
-## 1. Sentence Structure (20%)
+## 1. Prose Control & Structure (25%)
 
-Measures readability and cadence.
+This measures sentence-level craft AND structural hygiene.
+
+High scores require:
+
+- Clean declarative phrasing
+- Minimal filler or slack wording
+- Strong verbs
+- Reduced hedging
+- Controlled rhythm and pacing
+- Clear transitions
+- Paragraphs that remain readable on screen
+
+Density alone is not a flaw.
 
 Penalize:
-- 4+ consecutive long sentences (>25 words)
-- Paragraphs that feel dense on laptop scroll
-- Repetition of intensifiers
-- Filler phrasing or slack wording
-- Clusters of hedging language
+- Repetitive phrasing
+- Overuse of intensifiers
+- Hedging clusters
+- Long sentence streaks without variation
+- Paragraphs that feel visually overwhelming
 
-Do NOT penalize:
-- Controlled historical explanation
-- Longer sentences that are deliberate and readable
-- Reflective tone that maintains clarity
+Reward:
+- Sentence-level authority
+- Tight phrasing
+- Confident evaluative tone
+- Deliberate structural control
 
-Density is only a problem when readability suffers.
+This dimension captures writing quality, not just formatting.
 
 ---
 
-## 2. Narrative Clarity (25%)
+## 2. Narrative Clarity & Arc (25%)
 
-Measures coherence and arc.
+Measures coherence and strength of progression.
 
-An 8.5+ piece:
-- Has a clear thesis
-- Moves logically from orientation → experience → evaluation
-- Connects facts to visitor meaning
-- Avoids informational dumping without framing
-- Makes it clear why the reader should care
+An 8.5+ piece demonstrates:
 
-A piece without a clear arc cannot score above 8.5.
+- A clear thesis
+- Logical movement from orientation → experience → evaluation
+- Sustained evaluative throughline
+- Emotional or intellectual progression
+- Clear reason the reader should care
 
-Logistical thoroughness alone is not narrative clarity.
+Descriptive sequencing alone cannot score above 8.4.
 
-An article with a clear thesis and sustained evaluative throughline
-should score at least 0.3–0.6 higher than a piece that is primarily logistical or descriptive.
+Presence of an arc is not enough.
+Strength and consistency of the arc determine score.
 
 ---
 
 ## 3. Opening Strength (15%)
 
 An effective opening:
-- Establishes stakes quickly
-- Signals the evaluative stance
-- Avoids generic travel framing
-- Tells the reader what kind of experience this was
 
-The opening should set the thesis, not just the itinerary.
+- Establishes stakes quickly
+- Signals evaluative stance
+- Avoids generic framing
+- Introduces the central idea or tension
+
+The opening should anchor the thesis.
 
 ---
 
 ## 4. Brand Alignment (15%)
 
-Measures tone and restraint.
+Measures tone and voice alignment with Two Travel Nuts.
 
-Strong brand alignment:
+High scores require:
+
 - Calm confidence
+- Mature restraint
+- Clear ownership of judgment
 - No hype language
-- No exaggerated claims
-- Willingness to acknowledge tradeoffs
-- Measured, adult voice
+- No influencer tone
 
-Emoji styling, gimmick headers, and influencer tone reduce this score.
-
----
-
-## 5. Distinctiveness (15%)
-
-Distinctiveness is NOT quirkiness.
-
-It includes:
-- Clear thesis
-- Memorable framing
-- Evaluative insight
-- Emotional or intellectual arc
-- Comparative judgment
-- Deliberate restraint
-
-Distinctiveness does NOT require:
-- Humor
-- Colorful language
-- Unique anecdotes
-
-Logistics alone does not equal distinctiveness.
-
-A piece that could appear on a generic travel site cannot score above 8.5.
+Confidence is rewarded.
+Caution without stance is not.
 
 ---
 
-## 6. Rating Integrity (10%)
+## 5. Distinctiveness (10%)
 
-Every article must clearly communicate:
+Measures originality of framing and insight.
 
-- Who it is for
-- Tradeoffs
-- An overall evaluative stance
+High scores require:
 
-This may appear:
-- In a formal verdict section
-- Or organically in the prose
+- Memorable perspective
+- Clear evaluative differentiation
+- Thoughtful comparative insight
+- Intentional restraint
 
-Do NOT penalize solely for lacking a boxed verdict
-if the above elements are clearly present.
-
-Penalize:
-- Unjustified “must” language
-- Over-strong recommendations without framing
-- Placeholder artifacts
-- Incomplete sections
+Logistical thoroughness alone does not equal distinctiveness.
 
 ---
 
-# Structural Thresholds
+## 6. Decision Clarity (10%)
 
-- No paragraph should feel visually overwhelming on a laptop screen.
-- Subhead cadence should generally fall within 400–700 words.
-- History must connect to visitor experience.
-- Captions should not function as full essays.
+Measures how clearly the article helps a reader decide.
 
-Violations must reduce sentence_structure.
+High scores require:
 
-However:
-Well-structured long explanation that remains readable is acceptable.
+- Clear overall stance
+- Explicit or implicit “who it’s for”
+- Tradeoffs acknowledged
+- Return intent addressed
+- A structured summary section (e.g., “In a Nutshell,” “Verdict,” or equivalent)
 
----
+Presence of a strong summary device materially improves this score.
 
-# Packaging Requirements
-
-Each post should:
-
-- Include 2–4 pull-quote-worthy lines
-- Use subheads aligned to skim behavior
-- Avoid placeholder text
-- Avoid emoji or gimmick styling
-- Maintain consistent tone throughout
-
-Packaging flaws reduce rating_integrity only when they materially affect polish or trust.
+Formatting purity is secondary.
+Decision usefulness is primary.
 
 ---
 
-# Launch Readiness Criteria
+# Structural Expectations
 
-An article is launch-ready only if:
+- Subheads should support skim behavior.
+- Long explanations are acceptable if readable.
+- Historical context must connect to visitor experience.
+- Placeholder text must not remain in published drafts.
 
-- Overall score ≥ 8.5
-- No dimension < 8.0
-- Clear thesis present
-- Tradeoffs explicitly or implicitly communicated
-- Structural density does not impair readability.  Analytical density that supports a clear thesis should not be penalized more than segmented but shallow prose.
-- Sentence structure scoring must consider depth and cohesion,
-not only paragraph length.
-- No placeholders remain
-
-Launch is a quality threshold, not a formatting checklist.
-
----
-
-# Calibration Guidance
-
-Well-written, structurally sound, confident pieces
-should normally score between 8.3 and 8.8.
-
-If a piece demonstrates:
-- Strong arc
-- Clear stance
-- Confident evaluation
-- Structural control
-
-It should not be artificially suppressed below 8.3
-solely for minor formatting imperfections.
-
-Structural enforcement must not override narrative strength.
-
-# Differentiation Rule
-
-When comparing two structurally similar articles:
-
-- The piece with the stronger thesis, clearer evaluative stance,
-  and more sustained narrative arc must score meaningfully higher
-  in narrative_clarity and distinctiveness (0.3–0.6 difference).
-
-Do not compress scores between competent and excellent work.
-
-Score compression between 7.8 and 8.2 should be avoided
-when qualitative differences are clear.
+Structural flaws reduce Prose Control.
+Weak summaries reduce Decision Clarity.

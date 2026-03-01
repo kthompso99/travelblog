@@ -11,23 +11,31 @@ import OpenAI from "openai";
 // ==============================
 
 const WEIGHTS = {
-  sentence_structure: 0.20,
-  narrative_clarity: 0.25,
+  prose_control_structure: 0.25,
+  narrative_clarity_arc: 0.25,
   opening_strength: 0.15,
   brand_alignment: 0.15,
-  distinctiveness: 0.15,
-  rating_integrity: 0.10
+  distinctiveness: 0.10,
+  decision_clarity: 0.10
 };
 
 const MODEL = "gpt-5.2";
 
 // ==============================
-// System Prompt (loaded from file)
+// 📂 Load Prompts
 // ==============================
 
 const scriptDir = path.dirname(new URL(import.meta.url).pathname);
-const ENFORCEMENT_MANDATE = fs.readFileSync(path.join(scriptDir, 'gpt-audit-mandate.txt'), 'utf-8');
-const SYSTEM_PROMPT = fs.readFileSync(path.join(scriptDir, 'gpt-audit-prompt.txt'), 'utf-8');
+
+const ENFORCEMENT_MANDATE = fs.readFileSync(
+  path.join(scriptDir, "gpt-audit-mandate.txt"),
+  "utf-8"
+);
+
+const SYSTEM_PROMPT = fs.readFileSync(
+  path.join(scriptDir, "gpt-audit-prompt.txt"),
+  "utf-8"
+);
 
 // ==============================
 // 🧮 Weighted Score Calculator
@@ -35,9 +43,14 @@ const SYSTEM_PROMPT = fs.readFileSync(path.join(scriptDir, 'gpt-audit-prompt.txt
 
 function computeWeightedScore(scores) {
   let total = 0;
+
   for (const key in WEIGHTS) {
+    if (typeof scores[key] !== "number") {
+      throw new Error(`Missing score for dimension: ${key}`);
+    }
     total += scores[key] * WEIGHTS[key];
   }
+
   return Number(total.toFixed(2));
 }
 
@@ -50,10 +63,17 @@ async function runAudit(filepath) {
     apiKey: process.env.OPENAI_API_KEY
   });
 
-  const GALLERY_MARKER = '*Add your photos here*';
+  // ------------------------------
+  // Trim gallery section
+  // ------------------------------
+
+  const GALLERY_MARKER = "*Add your photos here*";
   let content = fs.readFileSync(filepath, "utf-8");
+
   const galleryIdx = content.indexOf(GALLERY_MARKER);
-  if (galleryIdx !== -1) content = content.slice(0, galleryIdx).trim();
+  if (galleryIdx !== -1) {
+    content = content.slice(0, galleryIdx).trim();
+  }
 
   const EDITORIAL_STANDARDS = fs.readFileSync(
     "docs/brand/Editorial-Standards.md",
@@ -64,6 +84,10 @@ async function runAudit(filepath) {
     "docs/brand/Brand.md",
     "utf-8"
   );
+
+  // ------------------------------
+  // Call OpenAI
+  // ------------------------------
 
   const response = await client.responses.create({
     model: MODEL,
@@ -78,32 +102,65 @@ async function runAudit(filepath) {
 
   const output = response.output_text;
 
+  // console.log("RAW MODEL OUTPUT:\n", output);
 
-  
-// Extract JSON block safely
-const jsonMatch = output.match(/\{[\s\S]*?\}/);
+  // ------------------------------
+  // 🧠 Robust JSON Extraction
+  // ------------------------------
 
-if (!jsonMatch) {
-  throw new Error("Could not find JSON in model output.");
-}
+  let jsonString;
 
+  // 1️⃣ Try fenced ```json block first
+  const fencedMatch = output.match(/```json\s*([\s\S]*?)\s*```/);
 
+  if (fencedMatch) {
+    jsonString = fencedMatch[1];
+  } else {
+    // 2️⃣ Fallback: extract from first { to last }
+    const firstBrace = output.indexOf("{");
+    const lastBrace = output.lastIndexOf("}");
 
-const scores = JSON.parse(jsonMatch[0]);
-    // Everything after JSON is markdown
-const markdownStart = output.indexOf(jsonMatch[0]) + jsonMatch[0].length;
-let markdownPart = output.slice(markdownStart).trim();
+    if (firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace) {
+      throw new Error("Could not locate valid JSON object in model output.");
+    }
 
-// Strip code fences and "PART 2" header that GPT may wrap the response in
-markdownPart = markdownPart
-  .replace(/^```[\w]*\s*\n?/, '')
-  .replace(/\n?```\s*$/, '')
-  .replace(/^PART 2\s*[—–-]\s*MARKDOWN AUDIT:?\s*\n*/i, '')
-  .trim();
+    jsonString = output.slice(firstBrace, lastBrace + 1);
+  }
 
+  let parsed;
 
-    
+  try {
+    parsed = JSON.parse(jsonString);
+  } catch (err) {
+    console.error("Failed to parse JSON:\n", jsonString);
+    throw err;
+  }
+
+  if (!parsed.scores) {
+    throw new Error("Parsed JSON does not contain 'scores' object.");
+  }
+
+  const scores = parsed.scores;
+
+  // Recompute overall score for consistency
   scores.overall_score = computeWeightedScore(scores);
+
+  // ------------------------------
+  // 📄 Extract Markdown Analysis
+  // ------------------------------
+
+  const markdownStart = output.indexOf(jsonString) + jsonString.length;
+  let markdownPart = output.slice(markdownStart).trim();
+
+  markdownPart = markdownPart
+    .replace(/^```[\w]*\s*\n?/, "")
+    .replace(/\n?```\s*$/, "")
+    .replace(/^PART 2\s*[—–-]\s*MARKDOWN ANALYSIS:?\s*\n*/i, "")
+    .trim();
+
+  // ------------------------------
+  // 💾 Save Files
+  // ------------------------------
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -116,10 +173,18 @@ markdownPart = markdownPart
   const jsonPath = path.join(auditFolder, `${today}.audit.json`);
   const mdPath = path.join(auditFolder, `${today}.audit.md`);
 
-  // Build a human-friendly title: "Cordoba Audit — 2026-02-27 11:34am"
   const now = new Date();
-  const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).toLowerCase();
-  const prettyName = articleName.charAt(0).toUpperCase() + articleName.slice(1);
+  const timeStr = now
+    .toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    })
+    .toLowerCase();
+
+  const prettyName =
+    articleName.charAt(0).toUpperCase() + articleName.slice(1);
+
   const auditTitle = `# ${prettyName} Audit — ${today} ${timeStr}`;
 
   fs.writeFileSync(jsonPath, JSON.stringify(scores, null, 2));
@@ -130,21 +195,27 @@ markdownPart = markdownPart
 }
 
 // ==============================
-// Incremental check — skip if latest audit is newer than the .md file
+// Incremental Check
 // ==============================
 
 function needsAudit(filepath) {
-  const articleName = path.basename(filepath, '.md');
-  const auditFolder = path.join(path.dirname(filepath), 'audits', articleName);
+  const articleName = path.basename(filepath, ".md");
+  const auditFolder = path.join(path.dirname(filepath), "audits", articleName);
 
   if (!fs.existsSync(auditFolder)) return true;
 
-  const audits = fs.readdirSync(auditFolder).filter(f => f.endsWith('.audit.md'));
+  const audits = fs
+    .readdirSync(auditFolder)
+    .filter(f => f.endsWith(".audit.md"));
+
   if (audits.length === 0) return true;
 
   const latestAuditMtime = Math.max(
-    ...audits.map(f => fs.statSync(path.join(auditFolder, f)).mtimeMs)
+    ...audits.map(f =>
+      fs.statSync(path.join(auditFolder, f)).mtimeMs
+    )
   );
+
   return fs.statSync(filepath).mtimeMs > latestAuditMtime;
 }
 
@@ -161,29 +232,30 @@ if (args.length === 0) {
   process.exit(1);
 }
 
-// Expand arguments into a file list
 const files = [];
 
 for (const arg of args) {
   let resolved = arg;
-  if (!resolved.startsWith('content/')) resolved = `content/trips/${resolved}`;
+  if (!resolved.startsWith("content/"))
+    resolved = `content/trips/${resolved}`;
 
   if (fs.existsSync(resolved) && fs.statSync(resolved).isDirectory()) {
-    // Trip-level: audit all .md files, skip ones with current audits
-    const mds = fs.readdirSync(resolved)
-      .filter(f => f.endsWith('.md'))
+    const mds = fs
+      .readdirSync(resolved)
+      .filter(f => f.endsWith(".md"))
       .map(f => path.join(resolved, f));
 
     for (const md of mds) {
       if (needsAudit(md)) {
         files.push(md);
       } else {
-        console.log(`Skipping ${path.basename(md, '.md')} (audit is current)`);
+        console.log(
+          `Skipping ${path.basename(md, ".md")} (audit is current)`
+        );
       }
     }
   } else {
-    // Specific file
-    if (!resolved.endsWith('.md')) resolved += '.md';
+    if (!resolved.endsWith(".md")) resolved += ".md";
     files.push(resolved);
   }
 }

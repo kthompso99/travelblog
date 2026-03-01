@@ -10,12 +10,12 @@ import path from "path";
 // ==============================
 
 const WEIGHTS = {
-  sentence_structure: 0.20,
-  narrative_clarity: 0.25,
+  prose_control_structure: 0.25,
+  narrative_clarity_arc: 0.25,
   opening_strength: 0.15,
   brand_alignment: 0.15,
-  distinctiveness: 0.15,
-  rating_integrity: 0.10
+  distinctiveness: 0.10,
+  decision_clarity: 0.10
 };
 
 const DIMENSIONS = Object.keys(WEIGHTS);
@@ -159,12 +159,12 @@ function runDashboard() {
     console.log("\n📊 DIMENSION DETAIL GRID\n");
 
     const SHORT = {
-      sentence_structure: "Sent",
-      narrative_clarity:  "Narr",
-      opening_strength:   "Open",
-      brand_alignment:    "Brand",
-      distinctiveness:    "Dist",
-      rating_integrity:   "Rate"
+      prose_control_structure: "Prose",
+      narrative_clarity_arc:   "Narr",
+      opening_strength:        "Open",
+      brand_alignment:         "Brand",
+      distinctiveness:         "Dist",
+      decision_clarity:        "Decis"
     };
 
     // Column widths
