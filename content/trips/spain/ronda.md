@@ -36,6 +36,20 @@ Our restaurant luck in Ronda was less than perfect, so we have nothing to sugges
 
 Once you're there, Ronda is very manageable -- not as tiny as Cordoba or even more so as Grazalema, but 10-15 minutes from one end of the tourist zone to the other.  We were happy to have daytrip drop us off, because parking is scarce and you're far from the train lines.
 
+## 🥜 Ronda in a Nutshell
+
+*Rating (delete all but one):*
+🌍 "Would Plan Around"
+🧭 "Glad We Went"
+🍷 "Lovely but Optional"
+🚫 "Skip"
+
+**Stay Overnight?** [TBD]
+**Don't Miss:** [TBD]
+**Best Time of Day:** [TBD]
+**Worth the Splurge:** [TBD]
+**Return Visit?** [TBD]
+
 *Add your photos here*
 
 ---

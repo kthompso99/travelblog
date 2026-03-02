@@ -44,7 +44,21 @@ The [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/feni
 
 ## Practical Tips
 
-Madrid is an enormous city, and its tourist attractions are far more spread out than any of the other cities we visited in Spain.   The Tuk Tuk was a very comfortable way to get around, you feel like you’re a bit more ‘in’ the city than hiding in an SUV, but you can get to different parts of town easily.
+Madrid is an enormous city, and its tourist attractions are far more spread out than any of the other cities we visited in Spain.   The Tuk Tuk was a very comfortable way to get around, you feel like you're a bit more 'in' the city than hiding in an SUV, but you can get to different parts of town easily.
+
+## 🥜 Madrid in a Nutshell
+
+*Rating (delete all but one):*
+🌍 "Would Plan Around"
+🧭 "Glad We Went"
+🍷 "Lovely but Optional"
+🚫 "Skip"
+
+**Stay Overnight?** [TBD]
+**Don't Miss:** [TBD]
+**Best Time of Day:** [TBD]
+**Worth the Splurge:** [TBD]
+**Return Visit?** [TBD]
 
 *Add your photos here*
 

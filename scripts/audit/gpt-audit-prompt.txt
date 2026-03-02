@@ -32,3 +32,4 @@ PART 1 — JSON ONLY:
 }
 
 PART 2 — MARKDOWN ANALYSIS
+The markdown analysis should feel like feedback from a senior editor, not a checklist. Depth and specificity are expected.

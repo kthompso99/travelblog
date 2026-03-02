@@ -34,6 +34,20 @@ We really enjoyed our meal at [Tercer Acto](https://www.grupoterceracto.com/) ([
 
 The downtown area is walking only.  Getting to our hotel wasn't difficult, but was less than pleasant in a horrendous rain storm.
 
+## 🥜 Malaga in a Nutshell
+
+*Rating (delete all but one):*
+🌍 "Would Plan Around"
+🧭 "Glad We Went"
+🍷 "Lovely but Optional"
+🚫 "Skip"
+
+**Stay Overnight?** [TBD]
+**Don't Miss:** [TBD]
+**Best Time of Day:** [TBD]
+**Worth the Splurge:** [TBD]
+**Return Visit?** [TBD]
+
 *Add your photos here*
 
 ![Malaga features a very busy shopping district, much of it with the usual generic high-end brands found on every shopping street in Europe, but ... the Iberian Ham makes it look a bit more distinct.](images/malaga-01.jpg)

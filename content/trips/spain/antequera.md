@@ -23,7 +23,21 @@ We were in town only briefly, but had an excellent lunch at [Loulo Bistro](https
 
 ## Practical Tips
 
-A car is a must to do see the ancient sites outside of town.  The dolmens are close to the city, but definitely not walking distance.  The actual town is very compact/manageable, though we spent only a brief time there.  
+A car is a must to do see the ancient sites outside of town.  The dolmens are close to the city, but definitely not walking distance.  The actual town is very compact/manageable, though we spent only a brief time there.
+
+## 🥜 Antequera in a Nutshell
+
+*Rating (delete all but one):*
+🌍 "Would Plan Around"
+🧭 "Glad We Went"
+🍷 "Lovely but Optional"
+🚫 "Skip"
+
+**Stay Overnight?** [TBD]
+**Don't Miss:** [TBD]
+**Best Time of Day:** [TBD]
+**Worth the Splurge:** [TBD]
+**Return Visit?** [TBD]
 
 ---
 

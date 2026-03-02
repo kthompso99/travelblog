@@ -118,7 +118,7 @@ export function parseAuditResponse(output) {
   markdown = markdown
     .replace(/^```[\w]*\s*\n?/, "")
     .replace(/\n?```\s*$/, "")
-    .replace(/^PART 2\s*[—–-]\s*MARKDOWN ANALYSIS:?\s*\n*/i, "")
+    .replace(/^#{0,3}\s*PART 2\s*[—–-]\s*MARKDOWN ANALYSIS:?\s*\n*/i, "")
     .trim();
 
   return { scores, markdown };

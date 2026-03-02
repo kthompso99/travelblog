@@ -37,6 +37,20 @@ It’s maybe a 15-minute walk from the town square up to the top of the tower of
 
 We had a driver take us to all 3, and are happy we did.  In almost all cases the car park is a decent distance from these small towns, so we were able to get dropped off right near the main square, enjoy it, and efficiently get back in.  But that's not an option for everyone.
 
+## 🥜 White Villages in a Nutshell
+
+*Rating (delete all but one):*
+🌍 "Would Plan Around"
+🧭 "Glad We Went"
+🍷 "Lovely but Optional"
+🚫 "Skip"
+
+**Stay Overnight?** [TBD]
+**Don't Miss:** [TBD]
+**Best Time of Day:** [TBD]
+**Worth the Splurge:** [TBD]
+**Return Visit?** [TBD]
+
 *Add your photos here*
 
 ---

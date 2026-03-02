@@ -48,6 +48,20 @@ Once you are in the old town of Seville, this is a place to just wander -- the e
 
 Seville has excellent train service to many cities including Madrid, and I can't imagine going any other way to most other 'large' cities.  We took a daytrip "to" it as a way to see some White Villages, and because the train doesn't run from Ronda, but if coming from Malaga or Granada trains will be the way to go.
 
+## 🥜 Seville in a Nutshell
+
+*Rating (delete all but one):*
+🌍 "Would Plan Around"
+🧭 "Glad We Went"
+🍷 "Lovely but Optional"
+🚫 "Skip"
+
+**Stay Overnight?** [TBD]
+**Don't Miss:** [TBD]
+**Best Time of Day:** [TBD]
+**Worth the Splurge:** [TBD]
+**Return Visit?** [TBD]
+
 *Add your photos here*
 
 ---
