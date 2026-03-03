@@ -1,37 +1,43 @@
 
 ## Overview
 
-Granada is one of those cities that carries an outsized reputation. It’s home to the Alhambra — arguably Spain’s most famous historical site — and for many travelers that alone makes it a mandatory stop. But Granada isn’t just a monument. It’s a layered city where Islamic, Catholic, and Roma histories intersect; where neighborhoods climb steep hills with cinematic views; and where tapas arrive “free” with your drink and turn dinner into a slow, joyful surprise. We came for the Alhambra. We left thinking just as much about hillside walks, cultural complexity, and how different Granada feels from Córdoba or Seville.
+Granada arrives with a big reputation. It’s home to the Alhambra —  Spain’s most famous historical site — and for many travelers that alone makes it a mandatory stop. But Granada isn’t just a monument. It’s a layered city where Islamic, Catholic, and Roma histories intersect; where neighborhoods climb steep hills with cinematic views; and where tapas arrive included with your drink and  quietly become dinner. We came for the Alhambra. We left most impressed by Granada's hillside walks, cultural complexity, and food culture.
 
 ## What We Did
 
-In Granada, we started with a walking tour to get our bearings—and to decide which neighborhoods were worth the revisit.  We chose [Cicerone](https://www.ciceronegranada.com/en/) (recommended by Rick Steves), to get a sense of what was where and the layout of the central district.
+Granada is at its best when you treat the Alhambra as a timed 'anchor' and leave plenty of unstructured time for the rest.  We started with a guided walking tour to get oriented and decide what to explore later.  We chose [Cicerone](https://www.ciceronegranada.com/en/) (a Rick Steves recommendation).  We viewed the city Cathedral, which is worth 20-30 minutes but won't compete with Spain's top-tier interiors. 
 
-The highlight of Granada of course is the Alhambra, one of the best-preserved castle/palace complexes of the medieval Muslim world.  Amazingly, Kevin remembers visiting there in 1988 and it being nearly empty.  The Alhambra now sells out the daily allotment of thousands of visitors weeks or even months in advance.  
+### Alhambra
 
-So it’s necessary to plan ahead.  Buy Alhambra tickets only from the official site (linked  [here](https://tickets.alhambra-patronato.es/en/)). It may not rank high on Google, but it’s the source of truth—and popular days sell out weeks to months ahead.  Many guidebooks recommend doing both a night and day trip to see things lit up.  Unfortunately, the night visits were sold out by the time we were looking (nearly 2 months ahead\!), so we can’t say whether that’s worth it or not.
+Granada’s main draw is the Alhambra, one of the best-preserved palace complexes from the medieval Muslim world. Kevin last visited in 1988, when it was nearly empty in November; today, tickets routinely sell out months ahead.
+
+To enjoy Granada's highlight, plan ahead.  Buy Alhambra tickets only from the official site (linked [here](https://tickets.alhambra-patronato.es/en/)). It may not be the first search result, but it’s the only site that reliably reflects true availability.  Popular days sell out weeks to months ahead.  Many guidebooks suggest visiting by day and again by night to see the palace lit up.  Unfortunately, the night visits were sold out by the time we were looking (nearly 2 months ahead\!), so we can’t give a recommendation if that’s worth it or not.
 
 ![The Alhambra is a complex of many palaces from different eras.  This Partal Palace, from the early 14th century, is one of the oldest sections.](images/granada-07.jpg)
 
-We booked a guided tour.  Our guide was competent on facts but light on storytelling; we wouldn’t rebook her.  There are many, many guides online.  The Alhambra is vast and easy to misread without context, so a good guide can add real value. The site is also a steep uphill walk from the center; we took a taxi up and walked down.”
+We booked a guided tour.  Our guide had the facts but not the narrative, we wouldn't book her again.  Next time, I’d prioritize a guide who can explain the site’s sequencing and symbolism.  The Alhambra is vast and easy to misread without context, so a good guide can add real value. The site is also a steep uphill walk from the center; we took a taxi up and walked down.
 
 !["Patio de los Arrayanes", aka Court of the Myrtles, Alhambra.](images/granada-02.jpg)
 
-One can’t discuss this part of Spain without acknowledging the Roma community, who migrated from the Indian subcontinent over a thousand years ago and have long been part of Andalusia’s cultural fabric. In Spain they are often referred to as *Gitanos*, though terminology varies and can be sensitive. Historically marginalized and often pushed to the edges of cities, many settled in the hillside caves of Sacromonte above Granada.
+### Sacromonte
 
-We found the Museo Cuevas del Sacromonte well worth the visit for context. It’s small but specific — more lived history than museum spectacle — with intimate displays recreating daily life in the cave dwellings before residents were displaced in the 1960s. It adds cultural depth to Granada beyond its Moorish palaces. You can take a bus up the hill from town (recommended; it’s a steep climb on foot).
+After the Alhambra, we spent our remaining time looking for the Granada that doesn't fit on postcards.  One can’t discuss this part of Spain without acknowledging the Roma community, who migrated from the Indian subcontinent over a thousand years ago and have long been part of Andalusia’s cultural fabric. In Spain they are often referred to as *Gitanos*, though terminology varies and can be sensitive. Historically marginalized and often pushed to the edges of cities, many settled in the hillside caves of Sacromonte above Granada.
+
+Museo Cuevas del Sacromonte was worth the visit for context. It’s small but specific — more lived history than museum spectacle — with intimate displays recreating daily life in the cave dwellings before residents were displaced in the 1960s. It adds cultural depth to Granada beyond its Moorish palaces. You can take a bus up the hill from town (recommended; it’s a steep climb on foot).  This was the most ‘Granada’ hour we had outside the Alhambra.  It changed how we interpreted the city's neighborhoods.
 
 ![One of many small displays at Museo Cuevas del Sacromonte, giving a snapshot of Roma life as recently as the 1960s.](images/granada-10.jpg)
 
-The Albaicin is the old Moorish quarter, it’s on a steep hill above town.  We walked a small amount of it as part of our overall walking tour, just getting into the first bit of it.   It’s undoubtedly charming (once you get past the first block or two which are standard cheap fare for tourists).  
+### Albaicin
 
-Our plan was to spend our final (of 3) afternoons just wandering around up in the Albaicin.  Unfortunately, that day featured an intense rain storm, and apart from comfort it’s a very steep neighborhood with slick sidewalks.  So we passed on visiting it in the rain.  So sadly I think we missed a key part of seeing Granada.
+Perched on a steep hillside above the city, the Albaicín is Granada’s historic Moorish quarter — a tangle of narrow streets, viewpoints, and whitewashed homes.  We only skimmed the edge of it on our walking tour.   It gets increasingly charming once you’re past the first tourist-heavy blocks and into the quieter lanes and viewpoints.  
 
-![This view from the Alhambra is one of several from the Albacain, this is one of the lower ones, very accessible from the town below.  Google Maps has it as "Fuente de la Placeta Carvajales".](images/granada-01.jpg)
+We had saved the Albaicín for unstructured wandering on our last afternoon. A torrential rainstorm had other ideas. With steep grades and wet stone underfoot, we passed — practical, perhaps, but a decision we slightly regret.
+
+![This view from the Alhambra is one of several from the Albacain.   This is one of the lower Albaicín-style viewpoints—easy to reach from town, even if you don’t commit to the full climb. Google Maps has it as "Fuente de la Placeta Carvajales".](images/granada-01.jpg)
 
 ## Where We Stayed
 
-We stayed at [Palacio Gran Via](https://www.barcelo.com/es-es/palacio-gran-via-a-royal-hideaway-hotel/), which is on a very sizable boulevard (Gran Via).  The traffic there was a bit of a shock after the car-free quiet of the Cordoba old town.  Gran Via did, however, have a lovely rooftop bar with views of the Alhambra.  The lobby is gorgeously redone, keeping remnants of its historical roots as a early-20th-century bank –  which means we would recommend the hotel overall.  
+We stayed at [Palacio Gran Via](https://www.barcelo.com/es-es/palacio-gran-via-a-royal-hideaway-hotel/), which is on Gran Via, a busy arterial road.  The traffic there was a bit of a shock after the car-free quiet of the Cordoba old town.  There are small car-free zones, but one has to be more conscious of cars and noise than in Seville or Cordoba.  Palacio Gran Via did, however, have a lovely rooftop bar with views of the Alhambra.  The lobby is gorgeously redone, keeping remnants of its early-20th-century life as a bank.   We would recommend the hotel overall.  
 
 ![The Alhambra from our hotel roof at sunset.](images/granada-12.jpg)
 
@@ -39,17 +45,17 @@ We stayed at [Palacio Gran Via](https://www.barcelo.com/es-es/palacio-gran-via-a
 
 ## Food & Dining
 
-Granada is also unique in its Tapas culture.  Many cities in Spain, of course, have Tapas – just small plates that cost money, familiar to Americans.  But in Granada, the custom is that one gets “free” Tapas with every drink – e.g., if you order 3 drinks, you get 3 Tapas.   Different sources give different versions of how common this was in other cities 50 years ago, but Granada is the remaining practicer of "included".  We assumed this meant tiny little morsels, but instead some of the ‘free’ Tapas are incredible.  
+Granada is famous for its tapas culture. In most cities, tapas are small plates you choose and pay for. Here, they simply appear — one with each drink — and often far more substantial than you’d expect.  Some say this was once common across Spain; today, Granada is the place where the tradition still thrives.  Granada still follows the ‘tapa with a drink’ tradition. We expected token snacks; instead, several plates were nearly meal-sized and genuinely good.  
 
-We highly highly recommend [Granada Tapa Tours](https://www.granadatapastours.com/) by Gayle.  During her tour, some of the Tapas were just divine, and after 4 restaurant visits we were overly full with just ‘free’ Tapas.  If you don’t do the tour, just get used to food showing up that’s wonderful.
+We'd recommend [Granada Tapa Tours](https://www.granadatapastours.com/) by Gayle.  During her tour, some of the tapas were outstanding, and after 4 restaurant visits we were overly full with just ‘free’ tapas.  If you don’t do the tour, order drinks and let the tapas guide you.
 
 ![This was from our Granada tapas tour -- an indication that the 'free' tapas in this town aren't mere trifles.](images/madrid-15.jpg)
 
 ## Practical Tips
 
-After Cordoba, Granada feels like a much larger city.  It's by no means unmanageable, but it's quite a bit larger than Cordoba.  It also has a lot more 'traffic' around areas that are touristy compared to Seville, which has a compact walkable quarter that is almost traffic-free.  Please note that the Alhambra is up a quite steep hill from where most of the tourists stay.
+Granada demands more logistics than Córdoba. It’s larger, busier, and less seamlessly pedestrian, and the Alhambra’s hilltop location means you’ll need to budget both time and energy to reach it.
 
-Booking a tour at the Alhambra is a *must* -- some tours book up months in advance, especially at peak times.  We had considered doing a night tour (when the lighting is different) and the palace was sold out 8 weeks in advance -- and this was early November.
+Tickets and tours require real advance planning. The complex is expansive enough that a guide adds clarity, and popular time slots — especially night visits — disappear quickly. When we checked, evening entries were already sold out nearly eight weeks ahead, even outside peak season.
 
 ## 🥜 Granada in a Nutshell
 
@@ -58,13 +64,13 @@ Booking a tour at the Alhambra is a *must* -- some tours book up months in advan
 **Best for:** travelers who want a major historical site (Alhambra) plus great food culture, and don’t mind hills/crowds. 
 
 **Stay Overnight?** Three nights felt ideal  
-**Don’t Miss:** The Alhambra (plan ahead!)  
-**Best Time of Day:** Tapas in the evening -- try several spots!  
-**Worth the Splurge:** A private tour of the Alhambra was worth it.  
+**Don’t Miss:** The Alhambra (plan several months in advance!)  
+**Best Time of Day:** tapas in the evening -- try several spots!  
+**Worth the Splurge:** If we return, we would still recommend a private tour of the Alhambra, as the space does not lend itself well to large group tours.   
 **Return Visit?** Yes  
 
-**Granada is essential — but it rewards planners and wanderers differently.**
- The Alhambra absolutely lives up to its reputation, but it requires advance planning and stamina (mentally and physically). Beyond that, Granada feels bigger, busier, and a bit more chaotic than Córdoba — yet also more culturally layered. The Albaicín deserves real time (and good weather), the Sacromonte museum adds important context, and the tapas culture is genuinely delightful rather than gimmicky.
+**Granada is a high-value stop — but it rewards planners and wanderers differently.**
+ The Alhambra lives up to its reputation, but it requires advance planning and stamina (mentally and physically). Beyond that, Granada feels bigger, busier, and a bit more chaotic than Córdoba — yet also more culturally layered. The Albaicín deserves real time (and good weather), the Sacromonte museum adds important context, and the tapas culture is genuinely delightful rather than gimmicky.
 
 If you come expecting a compact, quiet Andalusian jewel, Granada may feel overwhelming. If you come prepared — tickets booked, walking shoes ready, afternoons reserved for hilltop wandering — it becomes a fascinating blend of grandeur, history, and everyday Spanish life.
 

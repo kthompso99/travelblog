@@ -43,7 +43,7 @@ We did not use a private guide for this visit, and cannot decide whether that wa
 
 We started our time in Cordoba with a Rick Steves-recommended 2-hour bike ride around town with [Ontdek Cordoba](https://ontdekcordoba.com/en/).  We highly recommend this; it starts a 15-20 minute walk from the center of town, but it was well worth it.  The guide Francisco is part Dutch but speaks excellent English and is just generally delightful company.  
 
-> Francisco has lived here for over a decade and has been visiting since childhood, which gave him a long-view perspective on how the city has evolved.  He informed us that there were trucks/traffic going over the old Roman bridge as recently as the 1990s.  
+> Francisco has lived In Cordoba for over a decade and has been visiting since childhood, which gave him a long-view perspective on how the city has evolved.  He informed us that there were trucks/traffic going over the old Roman bridge as recently as the 1990s.  
 
 Cordoba is a very ‘flat’/bikeable town, with relatively little traffic, so cycling is a great way to learn the overall layout.  The bike ride crosses the river to get to some nice viewpoints of the Mezquita from a distance.  
 
@@ -65,7 +65,7 @@ Cordoba’s Ruta de Patios allows one to see privately-maintained patios that ar
 
 We saw it as part of our bike tour.  Because these are gardens, the experience varies seasonally.  From what we heard, we would not plan a trip around the May festival crowds, which attracts hundreds of thousands.   Seeing a few patios outside festival season was manageable and charming.   
 
-![A typical patio on Cordoba's Ruta de Patios.](images/cordoba-03.jpg)
+![A typical patio on Córdoba's Ruta de Patios — each one lovingly tended by its owners.](images/cordoba-03.jpg)
 
 ## Where We Stayed
 
