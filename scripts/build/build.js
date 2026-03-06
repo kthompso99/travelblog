@@ -66,7 +66,7 @@ async function convertContentMarkdown(processed, item, tripId, tripTitle, warnin
     try {
         console.log(`    📝 Converting markdown: ${filePath}`);
 
-        const { html, galleryImages } = await convertMarkdownWithGallery(filePath, item.file);
+        const { html, galleryImages } = await convertMarkdownWithGallery(filePath);
         processed.contentHtml = html;
 
         console.log(`    ✅ HTML generated (${processed.contentHtml.length} chars)`);

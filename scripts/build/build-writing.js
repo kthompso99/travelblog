@@ -124,7 +124,7 @@ async function reconvertMarkdown(contentItem, tripId, contentSlug) {
         process.exit(0);
     }
 
-    const { html, galleryImages } = await convertMarkdownWithGallery(markdownPath, `${contentSlug}.md`);
+    const { html, galleryImages } = await convertMarkdownWithGallery(markdownPath);
     contentItem.contentHtml = html;
 
     if (galleryImages && galleryImages.length > 0) {
@@ -169,8 +169,7 @@ try {
     generateAndWritePage(contentItem, tripMetadata, tripContentData, fullConfig, tripId, contentSlug);
 
     const elapsed = Date.now() - startTime;
-    console.log(`   ✅ Generated trips/${tripId}/${contentSlug}.html (${elapsed}ms)`);
-    console.log('   ⚡ Skipped dependencies for speed\n');
+    console.log(`   ✅ Generated trips/${tripId}/${contentSlug}.html (${elapsed}ms)\n`);
 
 } catch (error) {
     console.error(`   ❌ Error: ${error.message}`);

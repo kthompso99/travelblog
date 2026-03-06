@@ -33,7 +33,7 @@ function analyzeMarkdownFile(filePath, itemFile) {
     const raw = fs.readFileSync(filePath, 'utf8');
 
     // Split at gallery marker
-    const { markdownContent, galleryImages } = processMarkdownWithGallery(filePath, itemFile);
+    const { markdownContent, galleryImages } = processMarkdownWithGallery(filePath);
 
     // Count inline images (in pre-marker content)
     const inlineMatches = [...markdownContent.matchAll(MARKDOWN_IMAGE_REGEX)];
