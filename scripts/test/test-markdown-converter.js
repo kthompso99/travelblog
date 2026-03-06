@@ -24,12 +24,16 @@
  *                    → .mov               → type="video/quicktime"
  *                    → .webm              → type="video/webm"
  *                    → no-alt video       → <p><video> (no figcaption)
+ * Gallery stripping  → marker + images    → marker stripped, images extracted
+ *                    → marker, no images  → marker still stripped from output
+ *                    → no marker          → content unchanged, galleryImages null
  */
 
 const fs   = require('fs');
 const path = require('path');
 
 const { convertMarkdown } = require('../../lib/markdown-converter');
+const { convertMarkdownWithGallery } = require('../../lib/build-utilities');
 const { createTestRunner, createTempDir, removeTempDir } = require('./test-helpers');
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -177,6 +181,36 @@ async function run() {
             const html = await convertMarkdown(f);
             assert('mp4 without alt text still becomes <video>', html.includes('<video'));
             assert('mp4 without alt text has no figcaption',     !html.includes('<figcaption>'));
+        }
+
+        // ── Gallery marker stripping ─────────────────────────────────────
+        console.log('\n📸 Gallery marker stripping');
+
+        {
+            const f = writeMd(dir, 'gallery-with-images.md',
+                'Some content.\n\n*Add your photos here*\n\n![caption](photo.jpg)\n');
+            const { html, galleryImages } = await convertMarkdownWithGallery(f);
+            assert('marker is stripped from HTML output',         !html.includes('Add your photos here'));
+            assert('content before marker is preserved',          html.includes('Some content.'));
+            assert('gallery images are extracted',                 galleryImages.length === 1);
+            assert('gallery image caption is correct',            galleryImages[0].caption === 'caption');
+        }
+
+        {
+            const f = writeMd(dir, 'gallery-no-images.md',
+                'Some content.\n\n*Add your photos here*\n\n---\n');
+            const { html, galleryImages } = await convertMarkdownWithGallery(f);
+            assert('marker stripped even with no gallery images',  !html.includes('Add your photos here'));
+            assert('content before marker is preserved (no imgs)', html.includes('Some content.'));
+            assert('galleryImages is empty array when no images',  Array.isArray(galleryImages) && galleryImages.length === 0);
+        }
+
+        {
+            const f = writeMd(dir, 'no-gallery-marker.md',
+                'Just regular content.\n');
+            const { html, galleryImages } = await convertMarkdownWithGallery(f);
+            assert('content renders normally without marker',      html.includes('Just regular content.'));
+            assert('galleryImages is null when no marker',         galleryImages === null);
         }
 
     } finally {
