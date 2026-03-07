@@ -27,7 +27,11 @@ One genuine surprise: we stumbled onto the Real Basílica de San Francisco el Gr
 
 We split the art museums across both visits — the Prado on the way in, the Reina Sofía on the way out. The Prado we'd each seen before and caught a few highlights at the end of a long day; we didn't do it justice and knew it. The Reina Sofía, the main modern art museum of Madrid, was new to both of us.
 
-There are several remarkable pieces in Reina Sofía, including some of Dali’s more famous works.  The draw is Guernica. Picasso refused to let it display in Spain while Franco was alive, so it hung in New York until 1981 — which means it's possible I saw it as a child without quite registering what it was. I thought I knew the painting well. Seeing it in person, the scale stops you: it's nearly 12 feet tall and 25 feet wide, and the grey tones that read as flat in reproduction have a texture and weight that photographs don't capture. We had a guide who walked us through it left to right, and I noticed details I'd never seen despite years of looking at it. That hour was worth the trip to the museum on its own.
+There are several remarkable pieces in Reina Sofía, including some of Dali’s more famous works.  The draw is Guernica. Picasso refused to let it display in Spain while Franco was alive, so it hung in New York until 1981 — which means it's possible I saw it as a child without quite registering what it was. I thought I knew the painting well. 
+
+> Seeing it in person, the scale stops you: it's nearly 12 feet tall and 25 feet wide, and the grey tones that read as flat in reproduction have a texture and weight that photographs don't capture. 
+
+We had a guide who walked us through it left to right, and I noticed details I'd never seen despite years of looking at it. That hour was worth the trip to the museum on its own.
 
 ![Guernica, Reina Sofía](images/madrid-09.jpg)
 

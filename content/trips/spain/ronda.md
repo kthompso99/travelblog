@@ -10,7 +10,9 @@ The Puente Nuevo — "new bridge," built in 1793 — spans a 400-foot gorge that
 
 A path winds down from the old town to several viewpoints along the gorge, and it’s not obvious where to stop.  Partway down the gorge is a paid attraction called [Tagus Gorge](https://desfiladerodeltajo.info/). We paid about €5 for access to one of its viewpoints, which was excellent.  There are other viewpoints "further down" but the day we were there it was plenty hot so we didn't feel the need to go much farther down for a better view.
 
-We were there on Halloween, which turns out to be worth knowing about. The town center was full of kids trick-or-treating in the downtown shops, and the bridge was lit up behind a queue of children waiting for a haunted house. Halloween is apparently rapidly overtaking Día de los Muertos as a Spanish holiday — something we didn't expect to learn in an 18th-century Andalusian hill town.
+We were there on Halloween, which turns out to be worth knowing about. The town center was full of kids trick-or-treating in the downtown shops, and the bridge was lit up behind a queue of children waiting for a haunted house. 
+
+> Halloween is apparently rapidly overtaking Día de los Muertos as a Spanish holiday — something we didn't expect to learn in an 18th-century Andalusian hill town.
 
 ![The Ronda bridge at night, from our hotel room. If you look closely, you can see hundreds of costumed kids lined up for a Halloween haunted mansion.](images/ronda-04.jpg)
 

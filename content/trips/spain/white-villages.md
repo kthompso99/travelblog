@@ -30,7 +30,9 @@ We loved Zahara de la Sierra.  Like many of the towns in this area, it began as 
 
 ![Lively but mellow town square in central Zahara](images/zahara-03.jpg)
 
-From the town square it's a 15-minute walk up to the tower of the 13th-century Moorish castle — well restored, with remnants of the medieval village still visible behind the walls. On a Saturday afternoon in October we had the top entirely to ourselves for a good ten minutes, which tells you something about how few visitors make it this far up. The views on the way are reason enough to go; the top is better still.
+From the town square it's a 15-minute walk up to the tower of the 13th-century Moorish castle — well restored, with remnants of the medieval village still visible behind the walls. 
+
+> On a Saturday afternoon in October we had the top entirely to ourselves for a good ten minutes, which tells you something about how few visitors make it this far up. The views on the way are reason enough to go; the top is better still.
 
 ![In nearby Zahara de la Sierra, we climbed the 13th-century Moorish castle. There are gorgeous views on the way up.](images/zahara-02.jpg)
 

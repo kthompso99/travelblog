@@ -1,6 +1,7 @@
 ## Overview
 
-Seville is the kind of city that rewards not having a plan. We spent four nights there, and more than anywhere else on this trip, we just wandered — through narrow streets that open unexpectedly into broad squares, past Moorish walls and orange trees, with no destination in mind. The historic core is compact enough (15 minutes across on foot) that getting pleasantly lost is low-risk. We loved it.
+Seville is the kind of city that rewards not having a plan. We spent four nights there, and more than anywhere else on this trip, we wandered — through narrow streets that open unexpectedly into broad squares, past Moorish walls and orange trees, with no destination in mind. The historic core is compact enough (15 minutes across on foot) that getting pleasantly lost is low-risk. We loved it.
+
 Our hotel sat in the northern part of the medieval city, about a 10-minute walk from the Cathedral and Royal Alcázar — a good position that we'd replicate.
 
 ## What We Did
@@ -21,7 +22,7 @@ We did a [walking tour](https://www.sevillawalkingtours.com/city-intro) with [Co
 
 ![Seville Cathedral interior](images/seville-09.jpg)
 
-The tower started as a minaret, which is why the ascent is ramps rather than stairs: the man responsible for the call to prayer five times a day needed to get up 250 feet by donkey.  The tower is a crowded walk up as with any large cathedral tower, but worth the 10-15 minutes each way of walking up the ramps. 
+The tower started as a minaret, which is why the ascent is ramps rather than stairs: the man responsible for the call to prayer five times a day needed to get up 250 feet by donkey.  Like most cathedral towers, the walk up is crowded, but worth the 10-15 minutes each way of climbing the ramps. 
 
 One thing worth seeing even if you don't know what to make of it: Las Setas — officially the Metropol Parasol, built in 2011 and billed as the world's largest wooden structure. The architect's name didn't stick; locals immediately started calling them "The Mushrooms." They're polarizing, but the square beneath them feels genuinely used by locals, and it's hard not to wonder if they'll eventually become beloved the way the Eiffel Tower was once loathed.
 
@@ -33,7 +34,11 @@ We liked our hotel, the [Vincci Seleccion Unuk](https://en.vincciunuk.com/?utm_s
 
 ## Food & Dining
 
-Food in Seville is a unique proposition. Before the trip, I used the internet to find a dozen or more interesting-sounding restaurants within walking distance of our hotel.  In retrospect, we wish we hadn’t bothered.  Seville more than any other place we’ve been really does seem to have ‘tapas culture’.  Here it's not just in the sense of what’s available, but in the sense of how people eat.  The several locals we met said that few locals sit at a restaurant for 90 minutes or 2 hours.  Locals drop in somewhere, have one drink \+ 1 tapas, and move on.  We could walk up to a restaurant and see it ‘full’ – but the turnover is such that a table seems to clears within 5-10 minutes.  The servers are like F-1 pit crews in clearing a table and prepping it for the next group.  So basically you can walk up to any restaurant, feel out whether you like the vibe, hang out, and sit down, all within 10 minutes.  So in 4 nights …we probably ate at 10 or 12 restaurants, almost all based on ‘feel’. 
+Food in Seville is a unique proposition. Before the trip, I used the internet to find a dozen or more interesting-sounding restaurants within walking distance of our hotel.  In retrospect, we wish we hadn’t bothered.  Seville more than any other place we’ve been really does seem to have ‘tapas culture’.  Here it's not just in the sense of what’s available, but in the sense of how people eat.  The several locals we met said that few locals sit at a restaurant for 90 minutes or 2 hours.  Locals drop in somewhere, have one drink \+ 1 tapas, and move on.  We could walk up to a restaurant and see it ‘full’ – but the turnover is such that a table seems to clear within 5-10 minutes.  
+
+> The servers are like F-1 pit crews in clearing a table and prepping it for the next group.  So basically you can walk up to any restaurant, feel out whether you like the vibe, hang out, and sit down, all within 10 minutes.  
+
+So in 4 nights … we probably ate at 10 or 12 restaurants, almost all based on ‘feel’. 
 
 That being said … as much as we enjoy Spanish food, there is a certain sameness to a lot of the meals.  We love Jamon Iberico (Spanish ham), but …. Towards the end of week 2 we couldn’t even look at it.
 

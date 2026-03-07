@@ -6,7 +6,9 @@ For nearly 800 years, much of the Iberian peninsula was under Moorish rule — a
 
 That isn’t accidental — it’s what happens when cultures overlap for centuries.
 
-We spent 16 days in late October and early November, starting and ending in Madrid and spending the bulk of our time in the Andalucían cities. The weather was ideal. The crowds were manageable. And Córdoba, which we almost treated as a box to check, became one of our favorite cities in Europe.
+We spent 16 days in late October and early November, starting and ending in Madrid and spending the bulk of our time in the Andalucían cities. The weather was ideal. The crowds were manageable. 
+
+> And Córdoba, which we almost treated as a box to check, became one of our favorite cities in Europe.
 
 ## How the Trip Was Structured
 

@@ -23,7 +23,9 @@ We booked a guided tour.  Our guide had the facts but not the narrative, we woul
 
 After the Alhambra, we spent our remaining time looking for the Granada that doesn't fit on postcards.  One can’t discuss this part of Spain without acknowledging the Roma community, who migrated from the Indian subcontinent over a thousand years ago and have long been part of Andalusia’s cultural fabric. In Spain they are often referred to as *Gitanos*, though terminology varies and can be sensitive. Historically marginalized and often pushed to the edges of cities, many settled in the hillside caves of Sacromonte above Granada.
 
-Museo Cuevas del Sacromonte was worth the visit for context. It’s small but specific — more lived history than museum spectacle — with intimate displays recreating daily life in the cave dwellings before residents were displaced in the 1960s. It adds cultural depth to Granada beyond its Moorish palaces. You can take a bus up the hill from town (recommended; it’s a steep climb on foot).  This was the most ‘Granada’ hour we had outside the Alhambra.  It changed how we interpreted the city's neighborhoods.
+Museo Cuevas del Sacromonte was worth the visit for context. It’s small but specific — more lived history than museum spectacle — with intimate displays recreating daily life in the cave dwellings before residents were displaced in the 1960s. It adds cultural depth to Granada beyond its Moorish palaces. You can take a bus up the hill from town (recommended; it’s a steep climb on foot).  
+
+> This was the most ‘Granada’ hour we had outside the Alhambra.  It changed how we interpreted the city's neighborhoods.
 
 ![One of many small displays at Museo Cuevas del Sacromonte, giving a snapshot of Roma life as recently as the 1960s.](images/granada-10.jpg)
 
