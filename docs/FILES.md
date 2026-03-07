@@ -18,7 +18,7 @@ travelblog/
 │   └── trips/                  Auto-discovered (sorted by date, newest first)
 │       └── {tripId}/
 │           ├── trip.json       Trip metadata + content array
-│           ├── main.md         Trip intro page (optional)
+│           ├── overview.md     Trip intro page (optional)
 │           ├── {location}.md   One file per content item
 │           └── images/         Trip-specific photos
 │

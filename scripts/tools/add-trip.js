@@ -16,7 +16,7 @@
  *    - Lists all content items (locations and articles)
  *    - Each location has: type, title, place (for geocoding), duration, file
  *
- * 3. Creates intro file: content/trips/spain/main.md
+ * 3. Creates intro file: content/trips/spain/overview.md
  *    - Template markdown for the trip overview page
  *
  * 4. Creates content files for each location/article:
@@ -48,7 +48,7 @@
  * AFTER RUNNING THIS SCRIPT:
  *
  * 1. Add trip cover image to root images/ directory: images/spain.jpg
- * 2. Edit content/trips/spain/main.md with trip introduction
+ * 2. Edit content/trips/spain/overview.md with trip introduction
  * 3. Edit location markdown files with your travel stories
  * 4. Add trip photos to content/trips/spain/images/
  * 5. Optionally add thumbnail field to locations in trip.json
@@ -265,7 +265,7 @@ function createTripFiles(tripDir, tripConfig, content, metadata) {
 function printSummary(tripId, tripDir, content) {
     console.log('\n📋 Next steps:');
     console.log(`  1. Add trip image to images/${tripId}.jpg`);
-    console.log(`  2. Edit ${tripDir}/main.md with your trip introduction`);
+    console.log(`  2. Edit ${tripDir}/overview.md with your trip introduction`);
     console.log('  3. Edit content markdown files with your travel stories');
     console.log('  4. Optionally add thumbnail images for each location');
     console.log('  5. Run "npm run build" to generate the trip pages');
@@ -273,7 +273,7 @@ function printSummary(tripId, tripDir, content) {
 
     console.log('📁 Created files:');
     console.log(`  - ${tripDir}/trip.json`);
-    console.log(`  - ${tripDir}/main.md`);
+    console.log(`  - ${tripDir}/overview.md`);
     content.forEach(item => {
         console.log(`  - ${tripDir}/${slugify(item.title)}.md`);
     });

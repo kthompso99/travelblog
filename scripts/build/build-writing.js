@@ -34,7 +34,7 @@ if (!changedFile) {
         const tripDir = path.join(CONFIG.TRIPS_DIR, tripId);
         const files = fs.readdirSync(tripDir);
         for (const file of files) {
-            if (file.endsWith('.md') && file !== 'main.md') {
+            if (file.endsWith('.md') && file !== 'overview.md') {
                 const filePath = path.join(tripDir, file);
                 const stats = fs.statSync(filePath);
                 recentFiles.push({ path: filePath, mtime: stats.mtimeMs });
@@ -73,8 +73,8 @@ const [, tripId, contentSlug] = match;
 console.log(`\n⚡ Fast rebuild: ${tripId}/${contentSlug}.md`);
 
 // Skip main.md files (trip intro content)
-if (contentSlug === 'main') {
-    console.log('   ⏭️  Skipped: main.md (run full build for trip intro changes)\n');
+if (contentSlug === 'overview') {
+    console.log('   ⏭️  Skipped: overview.md (run full build for trip intro changes)\n');
     process.exit(0);
 }
 

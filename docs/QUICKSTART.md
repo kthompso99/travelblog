@@ -32,7 +32,7 @@ Prompts for trip name, locations, and scaffolds all files.
 ### Manual
 
 1. Create `content/trips/{id}/trip.json` — see [FILES.md](FILES.md) for the schema.
-2. Create `content/trips/{id}/main.md` — trip intro.
+2. Create `content/trips/{id}/overview.md` — trip intro.
 3. Create `content/trips/{id}/{location}.md` — one file per stop.
 4. `npm run build`
 

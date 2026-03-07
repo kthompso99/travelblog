@@ -225,8 +225,8 @@ async function processTrip(tripId, warnings = []) {
     // Validate main.md exists
     const mainMdPath = CONFIG.getTripMainPath(tripId);
     if (!fs.existsSync(mainMdPath)) {
-        console.log(`  ⚠️  WARNING: main.md not found at ${mainMdPath}`);
-        console.log(`     Every trip should have a main.md file for the intro page.\n`);
+        console.log(`  ⚠️  WARNING: overview.md not found at ${mainMdPath}`);
+        console.log(`     Every trip should have an overview.md file for the intro page.\n`);
     }
 
     const duration = calculateDuration(tripConfig.beginDate, tripConfig.endDate);

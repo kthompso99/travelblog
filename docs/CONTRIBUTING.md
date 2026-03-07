@@ -27,7 +27,7 @@ module.exports = {
     SITE_CONFIG: 'config/site.json',
     TRIPS_DIR: 'content/trips',
     TRIP_CONFIG_FILE: 'trip.json',
-    TRIP_MAIN_FILE: 'main.md',
+    TRIP_MAIN_FILE: 'overview.md',
     OUTPUT_FILE: 'config.built.json',
     TRIPS_OUTPUT_DIR: 'trips',
     CACHE_DIR: '_cache',

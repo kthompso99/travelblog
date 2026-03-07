@@ -7,7 +7,7 @@ This directory contains all trip content organized by trip ID.
 ```
 content/trips/{trip-id}/
 ├── trip.json          # Trip metadata and content structure
-├── main.md            # Trip intro content (optional but recommended)
+├── overview.md            # Trip intro content (optional but recommended)
 ├── {location}.md      # Content for each location
 └── images/            # Trip-specific images
     ├── photo1.jpg
@@ -59,7 +59,7 @@ images/
 ```
 content/trips/greece/
 ├── trip.json            # References "coverImage": "images/greece-cover.jpg"
-├── main.md              # Trip introduction
+├── overview.md              # Trip introduction
 ├── milos.md             # Contains: ![Photo](images/milos-sunset.jpg)
 ├── santorini.md
 ├── paros.md

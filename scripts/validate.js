@@ -116,13 +116,13 @@ function validateTrip(tripId, index) {
         if (!tripConfig.metadata.country) warning(`${prefix}: Missing metadata.country`);
     }
 
-    // Check main.md exists
+    // Check overview.md exists
     if (!fs.existsSync(mainMdPath)) {
-        warning(`${prefix}: main.md not found - trip intro page will have no content`);
+        warning(`${prefix}: overview.md not found - trip intro page will have no content`);
     } else {
         const stats = fs.statSync(mainMdPath);
         if (stats.size === 0) {
-            warning(`${prefix}: main.md is empty`);
+            warning(`${prefix}: overview.md is empty`);
         }
     }
 

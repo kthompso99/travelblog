@@ -83,7 +83,7 @@ assert('escapeHtml: undefined returns empty', escapeHtml(undefined) === '');
 assert('getTripDir', CONFIG.getTripDir('spain') === 'content/trips/spain');
 assert('getTripConfigPath', CONFIG.getTripConfigPath('spain') === 'content/trips/spain/trip.json');
 assert('getTripImagesDir', CONFIG.getTripImagesDir('spain') === 'content/trips/spain/images');
-assert('getTripMainPath', CONFIG.getTripMainPath('spain') === 'content/trips/spain/main.md');
+assert('getTripMainPath', CONFIG.getTripMainPath('spain') === 'content/trips/spain/overview.md');
 assert('getSyncedPhotosPath', CONFIG.getSyncedPhotosPath('spain') === 'content/trips/spain/images/all-synced-photos.md');
 
 // ── css-utilities ───────────────────────────────────────────
