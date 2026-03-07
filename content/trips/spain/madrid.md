@@ -1,18 +1,15 @@
-
-
 ## Overview
 
-We visited Madrid for roughly 36 hours each before and after our Andalucian loop, largely because it’s where flights from the US arrive/depart (there were a handful of flights in and out of Seville, but they didn’t have good itineraries by our taste).  By design, we didn’t want to make Madrid the focus, we can return there on another trip and/or early November is not the ideal weather time once you get further north in Spain.
-
+Madrid bookended our trip — 36 hours before the Andalucian loop, 36 hours after — and we were deliberate about not making it the focus. We can return and do it properly; early November in northern Spain is also not the ideal weather window. That said, we came away with more than we expected from the time we had.
 
 
 ## What We Did
 
-For reasons I’m not clear on, Tuk Tuk tours are ubiquitous in Madrid – we highly recommend one, some of the major ‘sites’ of Madrid are fairly spread out, so in a 3-hour tour we saw a lot more than we would have otherwise.
+The practical reality of Madrid is that its major sites are spread out in a way that Seville and Granada are not. We did a Tuk Tuk tour on the first visit — three hours that covered a lot of ground and worked well as an introduction to the city.  
 
-![We did a great Tuk Tuk tour of Madrid -- some of the highlights are spread out, so we highly recommend this as an introduction to the city.](images/madrid-06.jpg)
+![Neither of us drove the Tuk Tuk, but it was a good photo-op](images/madrid-06.jpg)
 
-The Mercado de San Miguel was far from our hotel but near Plaza Mayor.  It is 100% tourist-oriented, but is beautifully housed in a beautiful wrought-iron and glass structure.
+We visited the Mercado de San Miguel near Plaza Mayor — 100% tourist-oriented, but housed in a lovely wrought-iron and glass structure and worth an hour if you're in the area.
 
 ![The Mercado de San Miguel](images/madrid-04.jpg)
 
@@ -20,13 +17,21 @@ The Mercado de San Miguel was far from our hotel but near Plaza Mayor.  It is 10
 
 The Tuk Tuk took us also to the modern cathedral and the palace, neither of which we entered.
 
-![Catedral de Santa María la Real de la Almudena, Madrid.  Because more words in a name are better?](images/madrid-01.jpg)
+![Catedral de Santa María la Real de la Almudena, Madrid.  A cathedral with an impressively long name.](images/madrid-01.jpg)
 
-We did make an effort to see several art museums (one before Andalucia, one after).  We visited the Prado, which is The Big Art Museum (analogous to the Louvre), but at the end of a long day and we probably didn’t do it justice – we each had seen it in previous lives and didn’t prioritize it.  We were glad to see a few highlights.  After Andalucia, we visited for the first time the Reina Sofia which is the main modern art museum.  There are several remarkable pieces in there, including some of Dali’s more famous works.  But a common reason to visit is to see Picasso’s Guernica, which each of us thinks we have never seen (though it hung in New York until 1981, Picasso insisted it not display in Spain while Franco lived – so it’s possible I saw it as a child).  As much as I love this piece, and thought I ‘knew’ it, seeing it in person really is stunning.  We were glad to have a guide with us, who could take us left to right and point out details I wasn’t previously aware of.      
+One genuine surprise: we stumbled onto the Real Basílica de San Francisco el Grande almost by accident, and it ended up being one of our favorite churches in Spain. Worth seeking out even if it's not on the standard itinerary.
 
-![Guernica is incredible to see in person.](images/madrid-09.jpg)
+![Real Basílica de San Francisco el Grande, Madrid.  We found this almost by accident, and it was one of our favorite churches in Spain.](images/madrid-05.jpg)
 
-We also spent an hour or two at the Madrid Archaeological Museum on our last day.  We were pretty tired by then, but it’s an excellent museum, well-displayed and with some stunning pieces from a variety of ancient eras.
+## Museums
+
+We split the art museums across both visits — the Prado on the way in, the Reina Sofía on the way out. The Prado we'd each seen before and caught a few highlights at the end of a long day; we didn't do it justice and knew it. The Reina Sofía, the main modern art museum of Madrid, was new to both of us.
+
+There are several remarkable pieces in Reina Sofía, including some of Dali’s more famous works.  The draw is Guernica. Picasso refused to let it display in Spain while Franco was alive, so it hung in New York until 1981 — which means it's possible I saw it as a child without quite registering what it was. I thought I knew the painting well. Seeing it in person, the scale stops you: it's nearly 12 feet tall and 25 feet wide, and the grey tones that read as flat in reproduction have a texture and weight that photographs don't capture. We had a guide who walked us through it left to right, and I noticed details I'd never seen despite years of looking at it. That hour was worth the trip to the museum on its own.
+
+![Guernica, Reina Sofía](images/madrid-09.jpg)
+
+On our last day we spent a few hours at the Madrid Archaeological Museum — we were tired by then, but it's well-curated, well-displayed, and has genuinely remarkable pieces across a wide span of ancient history.
 
 ![The Madrid Archaeological museum featured displays from over many centuries, including some beautiful Roman mosaics.](images/madrid-12.jpg)
 
@@ -34,31 +39,31 @@ We also spent an hour or two at the Madrid Archaeological Museum on our last day
 
 ## Where We Stayed
 
-We stayed in Madrid twice, both at the beginning and end of our trip.  We deliberately chose different neighborhoods.
+We stayed in different neighborhoods on each visit, which worked well.
 
-After we landed, we stayed at the [Gran Hotel Inglés](https://www.hyatt.com/mr-and-mrs-smith/en-US/m1391-gran-hotel-ingles).  This is an elegant hotel well-situated near many tourist sites, and has a history dating to 1886.  We were very happy for our entire 36 hours there.
+After we arrived, we stayed at the [Gran Hotel Inglés](https://www.hyatt.com/mr-and-mrs-smith/en-US/m1391-gran-hotel-ingles).  This is an elegant hotel well-situated near many tourist sites, and has a history dating to 1886.  We were very happy for our 36 hours there.
 
-The [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/fenix-gran-melia) is in a less-touristy neighborhood a bit further from the tourist district, but still by coincidence a 5-minute walk from the National Archaeological Museum.  Its lobby atrium is gorgeous, and while its history is less deep than the Gran Hotel Inglés, the Beatles and Cary Grant did stay there.....
+The [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/fenix-gran-melia) is a bit further from the tourist center but a 5-minute walk from the Archaeological Museum. The 1953 lobby atrium is the kind of space that makes you want to dress for it, which we did. The Beatles and Cary Grant stayed here, which tells you something about the register. As we often notice in Spain, locals look far more put-together — a scarf, a jacket, some deliberate choice.  The contrast was immediately noticable when we re-entered the US.
 
-![Tiffany said I should add this picture as evidence that *sometime* I dress up in Europe. The 1953 lobby of the Hotel Fénix Gran Meliá demanded a bit of effort. Spaniards look so much more put-together, always a scarf or some other adornment. We noticed immediately on landing back on Charlotte how much less stylish Americans are.](images/madrid-14.jpg)
+![Tiffany said I should add this picture as evidence that *sometime* I dress up in Europe.](images/madrid-14.jpg)
 
 ## Practical Tips
 
-Madrid is an enormous city, and its tourist attractions are far more spread out than any of the other cities we visited in Spain.   The Tuk Tuk was a very comfortable way to get around, you feel like you're a bit more 'in' the city than hiding in an SUV, but you can get to different parts of town easily.
+Madrid is an enormous city, and its tourist attractions are far more spread out than any of the other cities we visited in Spain.   The Tuk Tuk was a very comfortable way to get around, you feel like you're a bit more 'in' the city than hiding in an SUV, but you can get to different parts of town easily.  The city rewards a longer visit than we gave it.
 
 ## 🥜 Madrid in a Nutshell
 
-*Rating (delete all but one):*
-🌍 "Would Plan Around"
-🧭 "Glad We Went"
-🍷 "Lovely but Optional"
-🚫 "Skip"
+"Glad We Went"
 
-**Stay Overnight?** [TBD]
-**Don't Miss:** [TBD]
-**Best Time of Day:** [TBD]
-**Worth the Splurge:** [TBD]
-**Return Visit?** [TBD]
+**Stay Overnight?** Yes, but budget more than 36 hours.
+
+**Don't Miss:** Guernica at the Reina Sofía, with a guide if possible; the Archaeological Museum if ancient history is your thing.
+
+**Best Time of Day:** Museums in the morning before crowds build.
+
+**Worth the Splurge:** A guide for the Reina Sofía — Guernica specifically rewards explanation.
+
+**Return Visit?** Yes, and with more time. This is a city we under-invested in.
 
 *Add your photos here*
 
@@ -72,14 +77,12 @@ Madrid is an enormous city, and its tourist attractions are far more spread out 
 
 
 
-![Real Basicilica de San Francisco el Grande, Madrid.  We found this almost by accident, and it was one of our favorite churches in Spain.](images/madrid-05.jpg)
 
 
 
 ![Dali's The Great Masturbator](images/madrid-07.jpg)
 
-![Cool close-up detail of a corner of Dali's masterpiece, including his signature.](images/madrid-08.jpg)
-
+![Detail of Dalí's Great Masturbator, including his signature](images/madrid-08.jpg)
 
 
 ![We passed on the Baby Eel toast (yes, that's really what the menu said).](images/madrid-10.jpg)

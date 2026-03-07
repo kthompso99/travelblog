@@ -1,38 +1,47 @@
-# Southern Spain 2025
+# Southern Spain — October 2025
 
-Welcome to our trip summary for Southern Spain 2025!
+This trip was built around a single idea: go see what's left of Al-Andalus.
 
-This trip was intended to focus on the former land of Al-Andalus, now known as Andalucia – southern Spain, the area with the densest concentrations of remnants from the centuries of Moorish (Muslim) rule.  We did spend 2-3 nights in Madrid, but only because it’s where the flights landed/departed – our focus was elsewhere, and we hope to return to Madrid some other time to give it its due.
+For nearly 800 years, much of the Iberian peninsula was under Moorish rule — and southern Spain still wears that history visibly, in its architecture, its street plans, and the layered way its cities feel. Córdoba was once the largest city in Europe. Granada held out until 1492, two and a half centuries after the rest of Andalucía had fallen. Even buildings constructed under Christian kings in the 14th and 15th centuries look more like mosques than cathedrals. 
 
-| Nights | Where We Slept |
-| :---- | :---- |
-| 1-2 Madrid | [Gran Hotel Inglés](https://www.hyatt.com/mr-and-mrs-smith/en-US/m1391-gran-hotel-ingles) |
-| 3-4 Cordoba | [NH Collection Amistad](https://www.nh-hotels.com/en/hotel/nh-collection-amistad-cordoba) |
-| 5-7 Granada | [Palacio Gran Via](https://www.barcelo.com/es-es/palacio-gran-via-a-royal-hideaway-hotel/) |
-| 8-9 Malaga | [Vincci Larios Diez](https://en.vinccihoteles.com/hotels/malaga/vincci-larios-diez/) |
-| 10 Ronda | [Hotel Montelirio](https://www.hotelmontelirio.com/en/) |
-| 11-14 Seville | [Vincci Seleccion Unuk](https://en.vincciunuk.com/?utm_source=tripadvisor&utm_medium=Business_Advantage&utm_campaign=TA_BA_direct_link&partner=9818) |
-| 15 Madrid | [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/fenix-gran-melia) |
+That isn’t accidental — it’s what happens when cultures overlap for centuries.
 
+We spent 16 days in late October and early November, starting and ending in Madrid and spending the bulk of our time in the Andalucían cities. The weather was ideal. The crowds were manageable. And Córdoba, which we almost treated as a box to check, became one of our favorite cities in Europe.
 
-## Trip Overview
+## How the Trip Was Structured
 
-This trip was delightful in all ways, but largely for the layers of history.  
+We spent 16 days looping through southern Spain:
 
-### History and Moorish Influence
+Madrid → Córdoba → Granada → Antequera → Málaga → White Villages → Ronda → Seville → Madrid
 
-Do yourself a favor if you haven’t yet and do a basic reading of the Moorish (Muslim) [conquest of the Iberian peninsula](https://en.wikipedia.org/wiki/Muslim_conquest_of_the_Iberian_Peninsula), starting roughly in the early 8th Century. An interesting aspect of this history for this blog is that the [*Reconquista*](https://en.wikipedia.org/wiki/Chronology_of_the_Reconquista) (re-conquest by Christian forces) played out over *centuries*. Toledo was recaptured in the 12thC, Cordoba in 1236, and Seville in 1248 – but Granada not until 1492\.  Thus, Granada remained under Moorish rule for 250 years longer than Seville and Cordoba, but also interestingly there was a 250-year period where the rulers of Catholic Castilla were at least *somewhat* tolerant of non-Catholics.  You see this in particular in Seville, where the Royal Alcázar (palace) has sections built well into the 13th and 14th centuries (e.g., under Christian rule) that look far more Moorish in design than European. It was only after the final battles of the [*Reconquista*](https://en.wikipedia.org/wiki/Chronology_of_the_Reconquista) in 1492 that Ferdinand and Isabella started the Inquisition, and that tolerance of Muslims on the Iberian peninsula abruptly decreased.  
+You can follow the journey three ways on this site:
 
-Still, it’s almost impossible to overstate the influence Moorish rule had over this part of Europe.  Even the Plaza de España in Seville, built in 1929, shows heavy Moorish influence in design. Thus this part of Spain just plain looks different than anywhere else in Europe.
+• **Route page** — see the entire journey on a map  
+• **Tips for Spain** — practical lessons we learned along the way  
+• **City pages** — deeper writeups of each destination
 
-## Highlights
+## What We'd Tell You Before You Go
 
-- **Duration**: 2025-10-22 to 2025-11--7
-- **Locations Visited**: 5
-- **Best For**: culture and history enthusiasts
+**Read something first.** Kevin recommends *Ghosts of Spain* by Giles Tremlett — a British journalist who spent years living in Seville and writing about the country just after Franco. It's the best single preparation we know for understanding what modern Spain is and how it got there.
 
+**Understand the history, even roughly.** The Moorish conquest began in 711. The Reconquista played out over seven centuries — Toledo fell in 1085, Córdoba in 1236, Seville in 1248, Granada not until 1492. That 250-year gap between cities matters: you can see it in the architecture. The Royal Alcázar in Seville was built decades after the reconquest and still looks unmistakably Moorish. Granada's Alhambra represents the last flowering of a civilization that had been retreating for generations. Knowing this before you arrive changes what you see.
 
+**Go in late October or early November.** Crowds are manageable, temperatures are in the 70s, and Seville — one of the hottest cities in Europe in summer — is genuinely pleasant. The tradeoff is that some things close early and the evenings are cool. We'd make the same choice again without hesitation.
 
----
+**Don't skip Córdoba.** It's often treated as a half-day stop on the way to Granada or Seville. We gave it two nights and it became the unexpected highlight of the trip. The Mezquita alone justifies staying; the city rewards it.
 
-*Explore each location below to learn more about our journey.*
+## Honest Verdicts, City by City
+
+Here’s how each stop on the trip worked out.
+
+| Location | Verdict | Why |
+|:---|:---|:---|
+| Córdoba | Would Plan Around | Two nights minimum |
+| Granada | Would Plan Around | Book the Alhambra months ahead |
+| Málaga | Lovely but Optional | One night; bike the coast if weather cooperates |
+| White Villages | Would Plan Around | Day trips; hire a driver |
+| Ronda | Would Plan Around | Stay the night; book the bridge-view room |
+| Seville | Would Plan Around | Four nights; no reservations needed for food |
+| Madrid | Glad We Went | We under-invested — return with more time |
+
+Southern Spain rewards travelers who slow down and pay attention. This route gave us just enough time to start doing both.
