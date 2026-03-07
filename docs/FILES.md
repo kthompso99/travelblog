@@ -52,6 +52,7 @@ travelblog/
 │   ├── image-utilities.js      Image path and dimension helpers
 │   ├── maps-config.js          Google Maps API key resolver
 │   ├── markdown-converter.js   Markdown → HTML with post-processing pipeline
+│   ├── nutshell.js             Nutshell block parser and renderer
 │   ├── prompt-utilities.js     AI prompt helpers (add-trip CLI)
 │   ├── remark42-config.js      Remark42 config loader + comment page ID generation
 │   ├── seo-metadata.js         Generates <meta> / Open Graph tags
@@ -307,8 +308,12 @@ markdown content during the build:
 1. **Image sizing:** All `<img>` tags get `max-width: 600px; width: 100%; height: auto;`
 2. **Visible captions:** Images with alt text `![caption](img.jpg)` are wrapped in
    `<figure><img><figcaption>caption</figcaption></figure>`
-3. **External links:** All `<a>` tags get `target="_blank" rel="noopener noreferrer"`
+3. **External links:** Links to external URLs (`http://`, `https://`) get
+   `target="_blank" rel="noopener noreferrer"`. Internal links (e.g. `tips.html`) stay in the same tab.
 4. **Gallery captions:** Gallery links get `data-description` attribute for GLightbox
+5. **Nutshell blocks:** `:::nutshell Location Name` fenced blocks are parsed and rendered
+   into styled HTML with verdict badge and field layout. Field order is controlled centrally
+   via `NUTSHELL_FIELDS` in `lib/constants.js`. See `docs/Content/nutshell-format.md` for syntax.
 
 This means Kevin can write plain markdown without worrying about image sizing,
 visible captions, or link behavior—the build handles it automatically.
