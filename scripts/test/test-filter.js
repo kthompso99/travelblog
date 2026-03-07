@@ -35,6 +35,7 @@
 const { JSDOM } = require('jsdom');
 const fs   = require('fs');
 const path = require('path');
+const { readTextFile } = require('../../lib/build-utilities');
 const { ROOT_DIR: ROOT, createTestRunner } = require('./test-helpers');
 
 const indexPath = path.join(ROOT, 'index.html');
@@ -44,7 +45,7 @@ if (!fs.existsSync(indexPath)) {
     process.exit(1);
 }
 
-const html = fs.readFileSync(indexPath, 'utf8');
+const html = readTextFile(indexPath);
 
 // jsdom with inline-script execution.  fetch() is not available so the first
 // script's loadConfig() will silently catch and fall back — that's fine; the

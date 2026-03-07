@@ -16,7 +16,7 @@
 
 const fs   = require('fs');
 const path = require('path');
-const { loadJsonFile, walkDir } = require('../lib/build-utilities');
+const { loadJsonFile, readTextFile, walkDir } = require('../lib/build-utilities');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -47,7 +47,7 @@ const issues = [];   // { file, line, kind, message }
 for (const mdFile of mdFiles) {
     if (!fs.existsSync(mdFile)) continue;
 
-    const text  = fs.readFileSync(mdFile, 'utf8');
+    const text  = readTextFile(mdFile);
     const lines = text.split('\n');
 
     lines.forEach((line, idx) => {

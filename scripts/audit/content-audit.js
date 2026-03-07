@@ -16,8 +16,7 @@
 const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
-const { GALLERY_MARKER } = require('../../lib/constants');
-const { discoverAllTrips, loadTripConfig } = require('../../lib/build-utilities');
+const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery } = require('../../lib/build-utilities');
 const writeGood = require('write-good');
 
 // ---------------------------------------------------------------------------
@@ -383,11 +382,9 @@ function formatLine(lineNum, contentLines) {
 // ---------------------------------------------------------------------------
 
 function auditFile(filePath) {
-    const raw = fs.readFileSync(filePath, 'utf8');
-
     // Split at gallery marker — only audit pre-gallery content
-    const markerIndex = raw.indexOf(GALLERY_MARKER);
-    const content = markerIndex !== -1 ? raw.substring(0, markerIndex).trim() : raw;
+    const { markdownContent } = processMarkdownWithGallery(filePath);
+    const content = markdownContent;
     const contentLines = content.split('\n');
 
     const blocks = parseBlocks(content);

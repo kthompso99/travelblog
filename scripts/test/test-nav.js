@@ -38,8 +38,8 @@
  *    outside the dropdown closes it.
  */
 
-const fs   = require('fs');
 const path = require('path');
+const { readTextFile } = require('../../lib/build-utilities');
 const { ROOT_DIR: ROOT, findHtmlFiles, extractCssRule, hasCssProperty, getCssValue, createTestRunner } = require('./test-helpers');
 
 // ── test runner ──────────────────────────────────────────────────
@@ -56,7 +56,7 @@ if (htmlFiles.length === 0) {
 }
 
 htmlFiles.forEach(file => {
-    const html = fs.readFileSync(file, 'utf8');
+    const html = readTextFile(file);
 
     // ── 1. header z-index > 1000 ─────────────────────────────────
     const headerRule = extractCssRule(html, 'header');

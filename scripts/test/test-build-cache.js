@@ -45,7 +45,8 @@ assert('loadCache: has required structure', 'files' in cache && 'trips' in cache
 // We need to access getCoreFiles indirectly by checking what coreBuildFilesChanged touches
 
 // Read build-cache.js to extract the getCoreFiles logic
-const buildCacheSource = fs.readFileSync(path.join(__dirname, '../../lib/build-cache.js'), 'utf8');
+const { readTextFile } = require('../../lib/build-utilities');
+const buildCacheSource = readTextFile(path.join(__dirname, '../../lib/build-cache.js'));
 const getCoreFilesMatch = buildCacheSource.match(/function getCoreFiles\(\) \{([\s\S]*?)\n\}/);
 
 if (getCoreFilesMatch) {
@@ -158,7 +159,7 @@ if (fs.existsSync(CONFIG.BUILD_CACHE_FILE)) {
 
 // This test would have caught the generate-html.js bug
 const buildCachePath = path.join(__dirname, '../../lib/build-cache.js');
-const buildCacheCode = fs.readFileSync(buildCachePath, 'utf8');
+const buildCacheCode = readTextFile(buildCachePath);
 
 // Check for common non-existent files that might be referenced
 const suspiciousReferences = [

@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
 const { MARKDOWN_IMAGE_REGEX } = require('../../lib/constants');
-const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, stripMarkdownToPlainText } = require('../../lib/build-utilities');
+const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, readTextFile, stripMarkdownToPlainText } = require('../../lib/build-utilities');
 
 // Analysis libraries
 const rs = require('text-readability').default;
@@ -30,7 +30,7 @@ function countWords(text) {
 // ---------------------------------------------------------------------------
 
 function analyzeMarkdownFile(filePath, itemFile) {
-    const raw = fs.readFileSync(filePath, 'utf8');
+    const raw = readTextFile(filePath);
 
     // Split at gallery marker
     const { markdownContent, galleryImages } = processMarkdownWithGallery(filePath);

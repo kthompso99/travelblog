@@ -5,6 +5,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { readTextFile } = require('../../lib/build-utilities');
 const { ROOT_DIR, extractCssRule, createTestRunner, findTestTrip } = require('./test-helpers');
 
 const { assert, report } = createTestRunner('🎨 CSS Injection smoke-test');
@@ -19,7 +20,7 @@ function assertCSSRule(filePath, selector, shouldExist, description) {
         return false;
     }
 
-    const content = fs.readFileSync(fullPath, 'utf8');
+    const content = readTextFile(fullPath);
     const rule = extractCssRule(content, selector);
     assert(description, shouldExist ? rule !== null : rule === null);
     return shouldExist ? rule !== null : rule === null;
