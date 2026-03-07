@@ -112,6 +112,15 @@ async function run() {
             assert('does not duplicate target= on links that already have it', count === 1);
         }
 
+        {
+            // Internal (relative) links should NOT get target="_blank"
+            const f = writeMd(dir, 'internal-link.md', '[Tips](tips.html)\n');
+            const html = await convertMarkdown(f);
+            assert('internal link does not get target="_blank"', !html.includes('target="_blank"'));
+            assert('internal link is still an <a> tag',          html.includes('<a'));
+            assert('internal link href is preserved',            html.includes('href="tips.html"'));
+        }
+
         // ── Image captions ───────────────────────────────────────────────────
         console.log('\n🖼️  Image captions');
 
