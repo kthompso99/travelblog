@@ -15,3 +15,12 @@ We did a 1-day 3-way boat ferry from Paros to Delos & Mykonos with [Polos tours]
 
 
 ![The famous lions, now safely in a museum -- there are replicas outdoors where they once stood](images/Delos-03.jpg)
+
+:::nutshell Delos
+verdict: Glad We Went
+Stay Overnight: Not possible — Delos is an uninhabited archaeological site. Day trip only.
+Don't Miss: The museum; the lion replicas outdoors where they once stood.
+Best Time of Day: Morning — before the afternoon heat on a fully exposed site.
+Worth the Splurge: A tour guide, if you can find one. We didn't and got maybe 40% of the experience.
+Return Visit: Yes, but with a proper guide next time.
+:::

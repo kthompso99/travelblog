@@ -37,6 +37,15 @@ Recommend restaurants and local cuisine...
 - What to bring
 - Best time to visit
 
+:::nutshell Cape Town
+verdict: Glad We Went
+Stay Overnight: The Mt Nelson is an oasis, but evening ventures beyond the hotel felt constrained by security concerns.
+Don't Miss: Cape Peninsula day tour; District 6 Museum; Kirstenbosch with a guide.
+Best Time of Day: Afternoon for the Cape Peninsula loop — catches the best light at the viewpoints.
+Worth the Splurge: Chef's Table at the Mt Nelson — a special experience inside the kitchen.
+Return Visit: Yes — we'd come back in summer to do Table Mountain and spend more time in the Constantia Valley.
+:::
+
 *Add your photos here*
 
 ---

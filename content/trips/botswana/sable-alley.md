@@ -76,6 +76,15 @@ All three guides across two countries made the same joke: the nickname for Impal
 
 ![Sable Alley firepit](images/sable-alley-39.jpg)
 
+:::nutshell Sable Alley
+verdict: Glad We Went
+Stay Overnight: Canvas tents with flush toilets, a full shower, and hippos outside — comfortable without being ostentatious.
+Don't Miss: The leopard — 40 minutes at 20 feet; sunset on the Khwai River with CJ.
+Best Time of Day: Sunset — dead trees against the equatorial sky, hippos in the foreground.
+Worth the Splurge: It's the Okavango, so it's already a splurge. Sable Alley delivers without overpaying.
+Return Visit: Probably North Island next time, but Sable Alley was an excellent introduction to the delta.
+:::
+
 *Add your photos here*
 
 ---

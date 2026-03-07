@@ -22,3 +22,12 @@ We can’t recommend enough our tour guide Alex, see him [here](https://www.tour
 
 ![Apollo Temple](images/Naxos-05.jpg)
 
+:::nutshell Naxos
+verdict: Wish We'd Stayed Longer
+Stay Overnight: We didn't, and regretted it. Six hours was a tease — Naxos deserves at least two nights.
+Don't Miss: Panagia Drossiani (4th-century church); the marble village of Apeiranthos; the cherry tomatoes.
+Best Time of Day: Hard to say from a half-day, but the morning ferry from Santorini worked well.
+Worth the Splurge: A private tour with Alex — his local knowledge made the half-day count.
+Return Visit: Top of the list for a return to the Cyclades.
+:::
+

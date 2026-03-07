@@ -44,3 +44,12 @@ There are innumerable bars/restaurants that are perched on the rim for sunset vi
 
 ![Another view of the front row at PK Bar](images/Santorini-07.jpg)
 
+:::nutshell Santorini
+verdict: Would Plan Around
+Stay Overnight: Multiple nights — you want separate sunsets from Oia, Fira, and Imerovigli, each with a different angle.
+Don't Miss: Catamaran cruise with Spiridakos; front-row sunset at PK Bar in Fira.
+Best Time of Day: Sunset, obviously — but each town catches it differently.
+Worth the Splurge: Front-row champagne at PK Bar; the Spiridakos catamaran.
+Return Visit: Yes — we'd stay in Oia next time. It's Disneyland, but spectacular Disneyland.
+:::
+

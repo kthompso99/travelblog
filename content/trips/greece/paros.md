@@ -75,7 +75,16 @@ Siparos is a taxi ride (not a walk) from Naoussa, but had a great view for sunse
 
 Moraitis winery is a moderate-length walk from Naoussa, but was a very very nice experience.  It’s a very small family-owned business
 
-Sakis Grill House was what I found searching for “best gyro in Mykonos”, and it sure is popular, and we thought it was excellent (gyros, souvlaki).
+Sakis Grill House was what I found searching for "best gyro in Mykonos", and it sure is popular, and we thought it was excellent (gyros, souvlaki).
+
+:::nutshell Paros
+verdict: Would Plan Around
+Stay Overnight: Avant Mar near Naoussa — resorty in a refreshing way, easy walk to town, opened 2023.
+Don't Miss: Naoussa port at sunset; Lefkes mountain village; the Church of 100 Doors.
+Best Time of Day: Late afternoon into sunset at the waterfront bar near the Venetian fort.
+Worth the Splurge: Dinner at Yemeni — the moussaka was good enough to go twice.
+Return Visit: Yes — we missed Marpissa and barely explored Antiparos.
+:::
 
 
 

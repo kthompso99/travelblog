@@ -44,5 +44,14 @@ One caution is that our helpful car rental representative gave us a ‘free upgr
 
 <img src="images/Milos-04.jpg" alt="Description" style="float: left; margin-right: 15px; width: 150px;">
 This text will wrap around the image. The inline CSS style ensures the image floats to the left, and the `margin-right` adds some space so the text doesn't stick to the image. This approach is more reliable in environments that support inline styles.<br>
-<div style="clear:both"></div> 
+<div style="clear:both"></div>
+
+:::nutshell Milos
+verdict: Glad We Went
+Stay Overnight: Tania Milos in Pollonia — stunning sunset views from the balcony, under $300/night in shoulder season.
+Don't Miss: Sarakiniko beach; Kostankis winery, a 10-minute walk from Pollonia.
+Best Time of Day: Sunset from the Tania Milos balcony.
+Worth the Splurge: The Deluxe Room with Full Sunset Sea View — a bargain by island standards.
+Return Visit: Yes — we missed the catamaran cruise and barely scratched the surface.
+:::
 

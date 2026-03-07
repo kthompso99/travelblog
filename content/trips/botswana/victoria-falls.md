@@ -34,6 +34,15 @@ The Old Drift Lodge was excellent in every way.   It lies right on the Zambezi R
 
 ![View out of Old Drift Lodge.](images/victoria-falls-20.jpg)
 
+:::nutshell Victoria Falls
+verdict: Would Plan Around
+Stay Overnight: Old Drift Lodge is right on the Zambezi — we thought of it as just a base for the Falls, but it's a safari experience in its own right.
+Don't Miss: Victoria Falls in the afternoon for the rainbows; the sunset boat cruise on arrival day.
+Best Time of Day: Afternoon for the Falls (the guides were right about the light); sunrise on the Zambezi.
+Worth the Splurge: Old Drift Lodge. The Zambezi frontage, the game drives, the boat — it all exceeded expectations.
+Return Visit: Would love to see the Falls at higher water in April.
+:::
+
 *Add your photos here*
 
 ---

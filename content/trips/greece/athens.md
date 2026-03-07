@@ -33,6 +33,15 @@ Other ancient ruins in Athens
 
 The Benizelos Mansion is billed as "the oldest house in Athens". It has sections that are 16th century … it's not "amazing", but we were glad we spent 20 minutes of our time since it was right near our hotel.
 
+:::nutshell Athens
+verdict: Would Plan Around
+Stay Overnight: Electra Metropolis — incredible Acropolis views from the suite and rooftop restaurant.
+Don't Miss: National Archaeology Museum (Mycenaean room first); Acropolis at sunset with a guide; Thespis in the Plaka.
+Best Time of Day: Late afternoon — museum 4-6pm, then up the Acropolis 6-8pm per Rick Steves.
+Worth the Splurge: The Acropolis Suite at Electra Metropolis — the corner view is everything.
+Return Visit: Yes — we missed the Tower of Winds and barely scratched the Agora.
+:::
+
 *Add your photos here*
 
 ![Temple of Hephaestus in Athen's ancient Agora](images/Athens-01.jpg)

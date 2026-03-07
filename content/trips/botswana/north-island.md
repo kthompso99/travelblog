@@ -120,6 +120,15 @@ We noticed villagers gathering grass near the camp in what appeared to be a comb
 
 ![Another great sunset from our second camp.](images/north-island-42.jpg)
 
+:::nutshell North Island
+verdict: Would Plan Around
+Stay Overnight: This is a multi-night safari camp — 7 tents, more intimate and polished than Sable Alley.
+Don't Miss: The wild dog den; the multi-hour boat trip through the delta.
+Best Time of Day: Early morning — 6:45am game drives in the soft light produced the best sightings.
+Worth the Splurge: The upgrade from Sable Alley. Better food, higher service, and a fire pit over the hippo pool.
+Return Visit: Without hesitation.
+:::
+
 *Add your photos here*
 
 ---

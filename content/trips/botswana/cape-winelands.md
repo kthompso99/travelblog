@@ -34,6 +34,15 @@ We particularly enjoyed dinners at [Reubens](https://www.reubens.co.za/) (the be
 
 Franschhoek itself is very walkable for the main "restaurant area" -- we were delighted to wander in the afternoon/evenings.  However, there are few wineries that are decent walking distance from town -- if your goal is wine tasting, then "someone" likely needs to drive, whether it's you or a hired driver.
 
+:::nutshell Cape Winelands
+verdict: Glad We Went
+Stay Overnight: Franschhoek is walkable with excellent restaurants in every direction — staying there made the evenings easy.
+Don't Miss: Kanonkop for Pinotage; Hermanus whale watching via the Hemel en Aarde valley.
+Best Time of Day: Late afternoon for wandering Franschhoek's restaurant row.
+Worth the Splurge: Stock up at Kanonkop — we wish we'd bought more.
+Return Visit: Yes, in better weather. Four winter nights was relaxing but we barely scratched the surface.
+:::
+
 *Add your photos here*
 
 ---
