@@ -81,7 +81,7 @@ async function testTripMap(browser) {
     const { errors, logs } = setupPageListeners(page);
 
     try {
-        await navigateAndWaitForMaps(page, `${BASE_URL}/trips/greece/map.html`);
+        await navigateAndWaitForMaps(page, `${BASE_URL}/trips/greece/route.html`);
 
         // Validate map rendered
         const mapInfo = await validateMapContent(page, 'trip-map-full');

@@ -33,7 +33,7 @@
 - **Build:** `npm run build` (full) or `npm run build:smart` (incremental). **Dev modes:** `npm run dev` (safe incremental) or `npm run writing` (fast content-only). Test: `npm test` (navigation, filter, and map smoke tests).
 - **Homepage:** build auto-promotes `index.html.new` → `index.html` (old version backed up to `index.html.backup`).
 - **Colour scheme:** amber `#f59e0b` throughout — polyline, markers (SVG divIcon), button accents, nav hover.
-- **Maps:** Two Google Maps instances — global (`/map/`) and per-trip (`/trips/{slug}/map.html`). Trip intro pages show a hero image, not a map. Amber SVG divIcon markers. Popup hover-linger: 300 ms delay on mouseout, cancelled by mouseenter on popup. Nav z-index must stay ≥ 2000.
+- **Maps:** Two Google Maps instances — global (`/map/`) and per-trip (`/trips/{slug}/route.html`). Trip intro pages show a hero image, not a map. Amber SVG divIcon markers. Popup hover-linger: 300 ms delay on mouseout, cancelled by mouseenter on popup. Nav z-index must stay ≥ 2000.
 - **Gitignore gotchas:** `/trips/` output is gitignored; only `index.html`, `about/`, `map/` outputs are tracked. `index.html.backup` and `_cache/` also ignored.
 - **CI:** `.github/workflows/deploy.yml` — build (auto-promotes homepage) → `npm test` → copy to `deploy/` → Pages API. Deploy step copies: index.html, 404.html, config.built.json, sitemap.xml, images/, trips/, map/, about/, robots.txt.
 - **Scale target:** Kevin anticipates 30–50 trips long-term. Design decisions should hold at that count without re-architecting. Client-side filtering/searching of homepage cards is fine up to hundreds; image lazy-loading on the homepage becomes relevant around 30+ trips. Pagination is not needed at 50 but may be considered for UX.

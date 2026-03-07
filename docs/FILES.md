@@ -294,7 +294,7 @@ All paths are resolved through `lib/config-paths.js`.
 | World map | `map-global-script.html` (inlined) | `/map/` |
 | About | (markdown → HTML, no separate template) | `/about/` |
 | Trip intro | `trip-intro-page.html` | `/trips/{slug}/` |
-| Trip map | `trip-map-page.html` | `/trips/{slug}/map.html` |
+| Trip map | `trip-map-page.html` | `/trips/{slug}/route.html` |
 | Location | `trip-location-page.html` | `/trips/{slug}/{loc}.html` |
 
 Trip intro pages feature a full-bleed hero (cover image + title overlay) injected via the `{{PRE_MAIN}}` placeholder in `base.html`.

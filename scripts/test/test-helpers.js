@@ -41,19 +41,19 @@ function findTestTrip() {
         if (!entry.isDirectory()) continue;
         const tripDir = path.join(tripsDir, entry.name);
         const intro = path.join(tripDir, 'index.html');
-        const map = path.join(tripDir, 'map.html');
+        const map = path.join(tripDir, 'route.html');
         if (!fs.existsSync(intro) || !fs.existsSync(map)) continue;
 
         // Find first location/article page
         const pages = fs.readdirSync(tripDir).filter(f =>
-            f.endsWith('.html') && f !== 'index.html' && f !== 'map.html'
+            f.endsWith('.html') && f !== 'index.html' && f !== 'route.html'
         );
         if (pages.length > 0) {
             return {
                 slug: entry.name,
                 intro: `trips/${entry.name}/index.html`,
                 location: `trips/${entry.name}/${pages[0]}`,
-                map: `trips/${entry.name}/map.html`
+                map: `trips/${entry.name}/route.html`
             };
         }
     }
