@@ -2,7 +2,7 @@
 
 [Sable Alley](https://naturalselection.travel/camps/sable-alley-okavango-delta/) was our first Okavango camp, and our introduction to what safari in the delta actually feels like. It's the more affordable of our two camps — which is relative, this being the Okavango — but hardly roughing it. The tents are canvas on the outside, with wooden structures inside framing a perfectly modern bathroom: sinks, flush toilets, a full shower, and an outdoor shower facing the hippo pool. Showering in the open while staring at hippos is definitely memorable. Hopefully not for the hippos.
 
-The camp sits on 12 tents, spread out along the Khwai River. We arrived from Victoria Falls via a drive to the Botswana border and then a short flight from Kasane — an airport that was surprisingly modern, brand new when we passed through.
+The camp sits on 12 tents spread out along the Khwai River. We arrived from Victoria Falls via a drive to the Botswana border and a short flight from Kasane — an airport that was surprisingly modern, brand new when we passed through.
 
 ![Sable Alley bed](images/sable-alley-02.jpg)
 
@@ -16,11 +16,11 @@ The camp sits on 12 tents, spread out along the Khwai River. We arrived from Vic
 
 We were there during flood season, which shapes everything about how you move through the delta. The roads were underwater — typically 1-2 feet deep, occasionally more. The game drives crossed these flooded tracks routinely, which felt alarming the first time and unremarkable by the third day.
 
-![This shows what things were like at our first Okavango lodge, where the floods were in full force. A view of the 'road' covered in water — typically 1-2 feet deep, though we had some deeper crossings.](images/sable-alley-09.jpg)
+![A view of the 'road' covered in water — typically 1-2 feet deep, though we had some deeper crossings.](images/sable-alley-09.jpg)
 
 ## What We Saw
 
-**The leopard** was the standout sighting at Sable Alley — a young male that we stayed with for a good 40 minutes. He was hunting, scanning, drinking, entirely indifferent to our truck. The camouflage, the musculature of those front legs, the black collar in his markings — none of it fully registers in photographs the way it does at 20 feet.
+The standout sighting at Sable Alley was a young male leopard we stayed with for a good 40 minutes. He was hunting, scanning, drinking, entirely indifferent to our truck. The camouflage, the musculature of those front legs, the black collar in his markings — photographs don't capture it the way 20 feet does.
 
 ![This was our first view of the Sable Alley leopard sighting, which lasted a good 40 minutes overall.](images/sable-alley-11.jpg)
 
@@ -32,7 +32,7 @@ We were there during flood season, which shapes everything about how you move th
 
 ![Leopard drinking](images/sable-alley-18.jpg)
 
-**Elephants** were everywhere — to the point that by the end of the trip our group was joking about the "elusive elephant" on our 25th sighting of the day. The older adults generally ignore the trucks and keep eating. One young male will typically do a lot of mock-charging and ear-flapping to make sure you take him seriously. On our last morning game drive at Sable Alley, we were literally in the middle of a herd of dozens, coming from the left toward the water on the right, and they just kept coming. Back at camp, everyone was envious. Elephants also came into camp regularly — one delayed our return to lunch by parking itself at our tent door.
+Elephants were everywhere — to the point that by the end of the trip our group was joking about the "elusive elephant" on our 25th sighting of the day. The older adults generally ignore the trucks and keep eating. One young male will typically do a lot of mock-charging and ear-flapping to make sure you take him seriously. On our last morning game drive at Sable Alley we were literally in the middle of a herd of dozens, coming from the left toward the water on the right, and they just kept coming. Back at camp, everyone was envious. Elephants also came into camp regularly — one delayed our return to lunch by parking itself at our tent door.
 
 ![Elephant visitor at Sable Alley. This is from the front door of our tent — we were delayed in our return to lunch.](images/sable-alley-05.jpg)
 
@@ -42,27 +42,27 @@ We were there during flood season, which shapes everything about how you move th
 
 ![At all three of our camps over 9 days in the bush, we had elephants right in camp. This one was behind a Sable Alley lunch table.](images/sable-alley-30.jpg)
 
-**Lion cubs** — we had three lion cub sightings across the whole trip, one of them at Sable Alley.
+We had three lion cub sightings across the whole trip; one of them was here.
 
 ![One of three lion cub sightings overall, this one at Sable Alley.](images/sable-alley-22.jpg)
 
 ![Lion cub at Sable Alley](images/sable-alley-23.jpg)
 
-**On the water.** Our guide CJ took us out on the Khwai River, which at sunset was one of the most beautiful hours of the trip. The profile of the trees against the near-equatorial sun, hippos in the foreground, the stillness of the water.
+Our guide CJ took us out on the Khwai River at sunset — the profile of dead trees against the near-equatorial sun, hippos in the foreground. One of the quieter hours of the trip.
 
-![One of many sunsets we captured; the profile of the trees against the near-equatorial sun was something else. This one was at the tail end of a river trip on the Khwai River. Note hippos in the foreground to the left.](images/sable-alley-20.jpg)
+![The profile of the trees against the near-equatorial sun was something else. Tail end of a river trip on the Khwai River. Note hippos in the foreground to the left.](images/sable-alley-20.jpg)
 
 ![Tour guide CJ on the Khwai river](images/sable-alley-21.jpg)
 
-**The guide.** CJ is of the San people — one of the most ancient cultures on earth, making up less than 3% of Botswana's population. His grandfather lived as a hunter-gatherer. CJ grew up watching that world close. His outdoor sense was immediately apparent: he read which direction animals were looking, identified alarm calls from other species, tracked footprint direction. Things that our suburban instincts simply don't register. Having him as a guide changed how we understood what we were looking at.
+CJ is of the San people, making up less than 3% of Botswana's population. His grandfather lived as a hunter-gatherer. CJ grew up watching that world close. His outdoor sense was immediately apparent: he read which direction animals were looking, identified alarm calls from other species, tracked footprint direction in ways we would never have registered on our own. Having him as a guide changed how we understood what we were looking at.
 
-**Zebras.** We saw relatively few at Sable Alley until the last day. At North Island they were everywhere. We're not entirely sure why — possibly fencing used to protect nearby livestock affecting migration patterns. In the Serengeti you see hundreds of wildebeest and a handful of zebra; here it was the reverse. We wish we understood the dynamics better.
+We saw relatively few zebras at Sable Alley until the last day; at North Island they were everywhere. We're not entirely sure why — possibly fencing used to protect nearby livestock affecting migration patterns. In the Serengeti you see hundreds of wildebeest and a handful of zebra; here it was roughly the reverse. We wish we understood the dynamics better.
 
 ![At our first Okavango camp we saw relatively few zebra until the last day.](images/sable-alley-34.jpg)
 
 ![Notice two zebras nose-to-tail, keeping sentry duty](images/sable-alley-32.jpg)
 
-**One small note on the Impala.** All three guides across two countries made the same joke: the nickname for Impala is "McDonalds" because you see them everywhere. At least 5-10 sightings a day. They're not unattractive antelope, but you stop photographing them after day two.
+All three guides across two countries made the same joke: the nickname for Impala is "McDonalds" because you see them everywhere. At least 5-10 sightings a day. They're not unattractive antelope, but you stop photographing them after day two.
 
 ![All 3 guides across 2 countries called Impala "McDonalds" — you see them everywhere. But they're not unattractive antelope.](images/sable-alley-10.jpg)
 
