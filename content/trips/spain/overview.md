@@ -18,8 +18,8 @@ Madrid → Córdoba → Granada → Antequera → Málaga → White Villages →
 
 You can follow the journey three ways on this site:
 
-• **Route page** — see the entire journey on a map  
-• **Tips for Spain** — practical lessons we learned along the way  
+• [Route page](route.html) — see the entire journey on a map  
+• [Tips for Spain](tips.html) — practical lessons we learned along the way  
 • **City pages** — deeper writeups of each destination
 
 ## What We'd Tell You Before You Go
@@ -34,7 +34,7 @@ You can follow the journey three ways on this site:
 
 ## Honest Verdicts, City by City
 
-Here’s how each stop on the trip worked out.
+Each location page ends with a 🥜 Nutshell — our honest one-paragraph verdict plus practical ratings. Here's the summary:
 
 | Location | Verdict | Why |
 |:---|:---|:---|
