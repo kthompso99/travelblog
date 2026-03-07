@@ -45,19 +45,14 @@ We had a driver take us to all 3, and are happy we did.  In almost all cases the
 See the section on [Tips for Spain](tips.html) for how we chose [daytrip.com](http://daytrip.com) for various of our shuttles from point A to point B.    
 
 
-## 🥜 White Villages in a Nutshell
-
-"Would Plan Around"
-
-**Stay Overnight?** Not necessary.
-
-**Don't Miss:** Setenil de las Bodegas is remarkable and unique.
-
-**Best Time of Day:** These are all day-trip destinations.
-
-**Worth the Splurge:** Hiring a driver who dropped us off right at the town center, thus avoiding shuttles or walks from the remote parking lots.
-
-**Return Visit?** Not sure.  Each is beautiful, but not sure there's enough that I'd return.
+:::nutshell White Villages
+verdict: Would Plan Around
+Stay Overnight: Not necessary.
+Don't Miss: Setenil de las Bodegas is remarkable and unique.
+Best Time of Day: These are all day-trip destinations.
+Worth the Splurge: Hiring a driver who dropped us off right at the town center, thus avoiding shuttles or walks from the remote parking lots.
+Return Visit: Not sure. Each is beautiful, but not sure there's enough that I'd return.
+:::
 
 *Add your photos here*
 

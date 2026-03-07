@@ -62,17 +62,15 @@ Granada demands more logistics than Córdoba. It’s larger, busier, and less se
 
 Tickets and tours require real advance planning. The complex is expansive enough that a guide adds clarity, and popular time slots — especially night visits — disappear quickly. When we checked, evening entries were already sold out nearly eight weeks ahead, even outside peak season.
 
-## 🥜 Granada in a Nutshell
-
-Two Travel Nuts Verdict: Would Plan Around
-
-**Best for:** travelers who want a major historical site (Alhambra) plus great food culture, and don’t mind hills/crowds. 
-
-**Stay Overnight?** Three nights felt ideal  
-**Don’t Miss:** The Alhambra (plan several months in advance!)  
-**Best Time of Day:** tapas in the evening -- try several spots!  
-**Worth the Splurge:** If we return, we would still recommend a private tour of the Alhambra, as the space does not lend itself well to large group tours.   
-**Return Visit?** Yes  
+:::nutshell Granada
+verdict: Would Plan Around
+Best for: Travelers who want a major historical site (Alhambra) plus great food culture, and don't mind hills/crowds.
+Stay Overnight: Three nights felt ideal
+Don't Miss: The Alhambra (plan several months in advance!)
+Best Time of Day: Tapas in the evening -- try several spots!
+Worth the Splurge: If we return, we would still recommend a private tour of the Alhambra, as the space does not lend itself well to large group tours.
+Return Visit: Yes
+:::
 
 **Granada is a high-value stop — but it rewards planners and wanderers differently.**
  The Alhambra lives up to its reputation, but it requires advance planning and stamina (mentally and physically). Beyond that, Granada feels bigger, busier, and a bit more chaotic than Córdoba — yet also more culturally layered. The Albaicín deserves real time (and good weather), the Sacromonte museum adds important context, and the tapas culture is genuinely delightful rather than gimmicky.

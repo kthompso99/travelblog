@@ -42,20 +42,14 @@ Our restaurant luck in Ronda was less than perfect, so we have nothing to sugges
 
 Ronda is compact — 10-15 minutes across the tourist zone on foot. Parking is scarce and train access is limited, so a car shuttle or taxi drop-off works well. Once you're there, you don't need a car.
 
-## 🥜 Ronda in a Nutshell
-
-"Would Plan Around"
-
-
-**Stay Overnight?** Absolutely: the bridge lit up alone is worth the overnight.
-
-**Don't Miss:** The Puente Nuevo from below; Cueva Pileta if you plan ahead (we didn't).
-
-**Best Time of Day:** Late afternoon light from the gorge viewpoints; after dark from the hotel.
-
-**Worth the Splurge:** A room with a gorge view at Montelirio — don't book a standard room here.
-
-**Return Visit?** Yes.  This is a place worth lingering in, not just checking off.
+:::nutshell Ronda
+verdict: Would Plan Around
+Stay Overnight: Absolutely: the bridge lit up alone is worth the overnight.
+Don't Miss: The Puente Nuevo from below; Cueva Pileta if you plan ahead (we didn't).
+Best Time of Day: Late afternoon light from the gorge viewpoints; after dark from the hotel.
+Worth the Splurge: A room with a gorge view at Montelirio — don't book a standard room here.
+Return Visit: Yes. This is a place worth lingering in, not just checking off.
+:::
 
 *Add your photos here*
 

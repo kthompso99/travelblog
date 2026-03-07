@@ -40,19 +40,14 @@ You need a car to reach the dolmens — they're close to town but not walkable. 
 See the section on [Tips for Spain](tips.html) for how we chose [daytrip.com](http://daytrip.com) for various of our shuttles from point A to point B.    
 
 
-## 🥜 Antequera in a Nutshell
-
-"Glad We Went"
-
-**Stay Overnight?** We would not prioritize this town for an overnight visit.
-
-**Don't Miss:** The Dolmens; all three are interesting, the Dolmen of Menga most of all with Tholos a close second.
-
-**Best Time of Day:** The Dolmens are open much of the day; see [the museum site](https://whichmuseum.com/museum/archaeological-dolmens-of-antequera-28815/opening-hours).
-
-**Worth the Splurge:** Cost: Low. No ‘splurge’ needed; just go.
-
-**Return Visit?** This feels like a great place to visit -- once.
+:::nutshell Antequera
+verdict: Glad We Went
+Stay Overnight: We would not prioritize this town for an overnight visit.
+Don't Miss: The Dolmens; all three are interesting, the Dolmen of Menga most of all with Tholos a close second.
+Best Time of Day: The Dolmens are open much of the day; see [the museum site](https://whichmuseum.com/museum/archaeological-dolmens-of-antequera-28815/opening-hours).
+Worth the Splurge: Cost: Low. No 'splurge' needed; just go.
+Return Visit: This feels like a great place to visit -- once.
+:::
 
 ---
 

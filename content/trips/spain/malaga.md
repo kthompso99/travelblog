@@ -1,7 +1,11 @@
 
 ## Overview
 
-Málaga is a bit of a mixed bag: cruise ship port (blech), seaside destination for British expats, and a genuinely historic city whose sites are good but don't quite hold up to Granada or Seville. Its Alcazaba is lovely — it just suffers if you've been to the Alhambra a few days earlier. We enjoyed our time here, though fairness requires noting that we arrived in the most old-testament-style rain of a three-week trip, which may have colored things.
+Málaga is a bit of a mixed bag: cruise ship port (blech), seaside destination for British expats, and a genuinely historic city whose sites are good but don't quite hold up to Granada or Seville. 
+
+> Its Alcazaba is lovely — it just suffers if you've been to the Alhambra a few days earlier. 
+
+We enjoyed our time here, though fairness requires noting that we arrived in the most old-testament-style rain of a three-week trip, which may have colored things.
 
 ## What We Did
 
@@ -41,15 +45,14 @@ The downtown area is walking only.  Getting to our hotel wasn't difficult, but w
 
 Taxi up to Gibralfaro, walk down. If the weather is good, the bike ride along the coast is the best few hours you'll spend here.
 
-## 🥜 Malaga in a Nutshell
-
-"Lovely but Optional"
-
-**Stay Overnight?** One night is enough — two if the weather is good and you want the bike ride plus the historic sites at an unhurried pace.
-**Don't Miss:** The bike ride along the coast; the Alcazaba if you haven't just come from Granada.
-**Best Time of Day:** Castle and Alcazaba in the morning; bike ride in the afternoon.
-**Worth the Splurge:** Spring for the view room at whatever hotel you pick — Málaga earns it.
-**Return Visit?** Probably not a priority, but we'd go back in better weather without hesitation.
+:::nutshell Malaga
+verdict: Lovely but Optional
+Stay Overnight: One night is enough — two if the weather is good and you want the bike ride plus the historic sites at an unhurried pace.
+Don't Miss: The bike ride along the coast; the Alcazaba if you haven't just come from Granada.
+Best Time of Day: Castle and Alcazaba in the morning; bike ride in the afternoon.
+Worth the Splurge: Spring for the view room at whatever hotel you pick — Málaga earns it.
+Return Visit: Probably not a priority, but we'd go back in better weather without hesitation.
+:::
 
 *Add your photos here*
 

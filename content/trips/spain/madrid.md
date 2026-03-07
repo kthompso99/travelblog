@@ -55,19 +55,14 @@ The [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/feni
 
 Madrid is an enormous city, and its tourist attractions are far more spread out than any of the other cities we visited in Spain.   The Tuk Tuk was a very comfortable way to get around, you feel like you're a bit more 'in' the city than hiding in an SUV, but you can get to different parts of town easily.  The city rewards a longer visit than we gave it.
 
-## 🥜 Madrid in a Nutshell
-
-"Glad We Went"
-
-**Stay Overnight?** Yes, but budget more than 36 hours.
-
-**Don't Miss:** Guernica at the Reina Sofía, with a guide if possible; the Archaeological Museum if ancient history is your thing.
-
-**Best Time of Day:** Museums in the morning before crowds build.
-
-**Worth the Splurge:** A guide for the Reina Sofía — Guernica specifically rewards explanation.
-
-**Return Visit?** Yes, and with more time. This is a city we under-invested in.
+:::nutshell Madrid
+verdict: Glad We Went
+Stay Overnight: Yes, but budget more than 36 hours.
+Don't Miss: Guernica at the Reina Sofía, with a guide if possible; the Archaeological Museum if ancient history is your thing.
+Best Time of Day: Museums in the morning before crowds build.
+Worth the Splurge: A guide for the Reina Sofía — Guernica specifically rewards explanation.
+Return Visit: Yes, and with more time. This is a city we under-invested in.
+:::
 
 *Add your photos here*
 

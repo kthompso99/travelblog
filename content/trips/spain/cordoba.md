@@ -91,15 +91,14 @@ We probably didn't need to make reservations anywhere, but one night we did book
 
 The old town is close to the train station, but not close enough to be walking distance; getting a taxi was trivial.  It's a small enough town that Uber is not an option.  Once you're in the old town, everything is very walkable, it's probably 10-15 minutes from one "end" to the other.
 
-## 🥜 Cordoba in a Nutshell
-
-🌍 “Would Plan Around”
-
-**Stay Overnight?** Two nights felt ideal  
-**Don’t Miss:** The Mezquita (allow 2+ hours)  
-**Best Time of Day:** Evening, after day-trippers leave  
-**Worth the Splurge:** Premium Royal Stables tickets  
-**Return Visit?** Yes  
+:::nutshell Cordoba
+verdict: Would Plan Around
+Stay Overnight: Two nights felt ideal
+Don't Miss: The Mezquita (allow 2+ hours)
+Best Time of Day: Evening, after day-trippers leave
+Worth the Splurge: Premium Royal Stables tickets
+Return Visit: Yes
+:::
 
 *Add your photos here*
 

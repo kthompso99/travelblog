@@ -232,6 +232,15 @@ Recommend restaurants and local cuisine...
 - What to bring
 - Best time to visit
 
+:::nutshell ${item.title}
+verdict: Glad We Went
+Stay Overnight: TBD
+Don't Miss: TBD
+Best Time of Day: TBD
+Worth the Splurge: TBD
+Return Visit: TBD
+:::
+
 *Add your photos here*
 
 ---

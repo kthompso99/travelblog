@@ -32,9 +32,9 @@ You can follow the journey three ways on this site:
 
 **Don't skip Córdoba.** It's often treated as a half-day stop on the way to Granada or Seville. We gave it two nights and it became the unexpected highlight of the trip. The Mezquita alone justifies staying; the city rewards it.
 
-## Honest Verdicts, City by City
+## Spain at a Glance
 
-Each location page ends with a 🥜 Nutshell — our honest one-paragraph verdict plus practical ratings. Here's the summary:
+Each location page ends with a 🥜 Nutshell summary — our honest verdict plus practical ratings. Here's the summary:
 
 | Location | Verdict | Why |
 |:---|:---|:---|

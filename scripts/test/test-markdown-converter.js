@@ -27,6 +27,10 @@
  * Gallery stripping  → marker + images    → marker stripped, images extracted
  *                    → marker, no images  → marker still stripped from output
  *                    → no marker          → content unchanged, galleryImages null
+ * Nutshell blocks    → :::nutshell block  → parsed and rendered as structured HTML
+ *                    → no block           → content unchanged
+ *                    → field ordering     → follows NUTSHELL_FIELDS from constants
+ *                    → extra fields       → appended after schema-defined fields
  */
 
 const fs   = require('fs');
@@ -34,6 +38,7 @@ const path = require('path');
 
 const { convertMarkdown } = require('../../lib/markdown-converter');
 const { convertMarkdownWithGallery } = require('../../lib/build-utilities');
+const { parseNutshellBlock, renderNutshell, processNutshell } = require('../../lib/nutshell');
 const { createTestRunner, createTempDir, removeTempDir } = require('./test-helpers');
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -211,6 +216,109 @@ async function run() {
             const { html, galleryImages } = await convertMarkdownWithGallery(f);
             assert('content renders normally without marker',      html.includes('Just regular content.'));
             assert('galleryImages is null when no marker',         galleryImages === null);
+        }
+
+        // ── Nutshell block parsing ─────────────────────────────────────
+        console.log('\n🥜 Nutshell block parsing');
+
+        {
+            const md = `Some intro text.
+
+:::nutshell Ronda
+verdict: Would Plan Around
+Stay Overnight: Yes, two nights.
+Don't Miss: The bridge at sunset.
+Best Time of Day: Late afternoon.
+Worth the Splurge: A gorge-view room.
+Return Visit: Yes.
+:::
+
+More text after.`;
+
+            const parsed = parseNutshellBlock(md);
+            assert('parseNutshellBlock extracts name',           parsed !== null && parsed.name === 'Ronda');
+            assert('parseNutshellBlock extracts verdict',        parsed.verdict === 'Would Plan Around');
+            assert('parseNutshellBlock extracts Stay Overnight', parsed.fields['Stay Overnight'] === 'Yes, two nights.');
+            assert("parseNutshellBlock extracts Don't Miss",     parsed.fields["Don't Miss"] === 'The bridge at sunset.');
+            assert('parseNutshellBlock extracts all 5 fields',   Object.keys(parsed.fields).length === 5);
+        }
+
+        {
+            const md = 'No nutshell block here.\n';
+            const parsed = parseNutshellBlock(md);
+            assert('parseNutshellBlock returns null when no block', parsed === null);
+        }
+
+        // ── Nutshell rendering ────────────────────────────────────────────
+        console.log('\n🥜 Nutshell rendering');
+
+        {
+            const parsed = {
+                name: 'Seville',
+                verdict: 'Would Plan Around',
+                fields: {
+                    'Return Visit': 'Yes.',
+                    'Stay Overnight': 'Four nights.',
+                    "Don't Miss": 'The Alcázar.',
+                    'Best Time of Day': 'Late afternoon.',
+                    'Worth the Splurge': 'A private guide.',
+                }
+            };
+            const html = renderNutshell(parsed);
+            assert('renderNutshell wraps in nutshell-section',       html.includes('<section class="nutshell-section">'));
+            assert('renderNutshell includes location name heading',  html.includes('Seville in a Nutshell'));
+            assert('renderNutshell includes verdict',                html.includes('Would Plan Around'));
+            assert('renderNutshell uses <dl> for fields',            html.includes('<dl class="nutshell-fields">'));
+
+            // Verify field ordering follows NUTSHELL_FIELDS (Stay Overnight before Return Visit)
+            const stayIdx   = html.indexOf('Stay Overnight');
+            const returnIdx = html.indexOf('Return Visit');
+            assert('renderNutshell orders fields per NUTSHELL_FIELDS', stayIdx < returnIdx);
+        }
+
+        {
+            // Extra fields not in NUTSHELL_FIELDS should be appended
+            const parsed = {
+                name: 'Granada',
+                verdict: 'Would Plan Around',
+                fields: {
+                    'Stay Overnight': 'Three nights.',
+                    'Best for': 'History lovers.',
+                }
+            };
+            const html = renderNutshell(parsed);
+            assert('renderNutshell includes extra fields',    html.includes('Best for'));
+            assert('renderNutshell includes extra field value', html.includes('History lovers.'));
+            const stayIdx = html.indexOf('Stay Overnight');
+            const bestForIdx = html.indexOf('Best for');
+            assert('extra fields appear after schema fields', stayIdx < bestForIdx);
+        }
+
+        // ── Nutshell in full pipeline ─────────────────────────────────────
+        console.log('\n🥜 Nutshell in full pipeline');
+
+        {
+            const f = writeMd(dir, 'nutshell-pipeline.md', `# A Page
+
+:::nutshell TestPlace
+verdict: Glad We Went
+Stay Overnight: One night.
+Return Visit: Maybe.
+:::
+
+Regular paragraph after.
+`);
+            const html = await convertMarkdown(f);
+            assert('nutshell block rendered in convertMarkdown pipeline',     html.includes('nutshell-section'));
+            assert('heading rendered correctly',                              html.includes('TestPlace in a Nutshell'));
+            assert('regular content after block is preserved',                html.includes('Regular paragraph after.'));
+            assert('raw :::nutshell marker is not in output',                 !html.includes(':::nutshell'));
+        }
+
+        {
+            const md = 'No nutshell here, just text.\n';
+            const result = processNutshell(md);
+            assert('processNutshell returns markdown unchanged when no block', result === md);
         }
 
     } finally {

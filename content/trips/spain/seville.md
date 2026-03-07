@@ -54,19 +54,14 @@ Once you are in the old town of Seville, this is a place to just wander -- the e
 
 Seville has excellent train service to many cities including Madrid, that's easily the best way to reach most major cities.  We took a daytrip "to" Seville as a way to see some White Villages, and because the train doesn't run from Ronda, but if coming from Malaga or Granada trains will be the way to go.
 
-## 🥜 Seville in a Nutshell
-
-"Would Plan Around"
-
-**Stay Overnight?** Yes — four nights felt right. Two minimum to do it properly.
-
-**Don't Miss:** The Alcázar; Casa del Flamenco even if you're skeptical; Bar El Comercio for breakfast once.
-
-**Best Time of Day:** The Alcázar gardens in the late afternoon; the streets after dinner when locals are out.
-
-**Worth the Splurge:** A private guide for the Alcázar — the layers of history reward explanation; a walking tour with the excellent Concepcion.  
-
-**Return Visit?** Yes. There is a richness to this city that supports multiple visits.
+:::nutshell Seville
+verdict: Would Plan Around
+Stay Overnight: Yes — four nights felt right. Two minimum to do it properly.
+Don't Miss: The Alcázar; Casa del Flamenco even if you're skeptical; Bar El Comercio for breakfast once.
+Best Time of Day: The Alcázar gardens in the late afternoon; the streets after dinner when locals are out.
+Worth the Splurge: A private guide for the Alcázar — the layers of history reward explanation; a walking tour with the excellent Concepcion.
+Return Visit: Yes. There is a richness to this city that supports multiple visits.
+:::
 
 *Add your photos here*
 
