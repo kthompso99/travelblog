@@ -6,8 +6,12 @@
 🍷 "Lovely but Optional"
 🚫 "Skip"
 
-**Stay Overnight?** [TBD]
-**Don't Miss:** [TBD]
-**Best Time of Day:** [TBD]
-**Worth the Splurge:** [TBD]
-**Return Visit?** [TBD]
+**Stay Overnight?** TBD
+
+**Don't Miss:** TBD
+
+**Best Time of Day:** TBD
+
+**Worth the Splurge:** TBD
+
+**Return Visit?** TBD

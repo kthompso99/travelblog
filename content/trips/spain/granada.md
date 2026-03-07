@@ -27,19 +27,22 @@ Museo Cuevas del Sacromonte was worth the visit for context. It’s small but sp
 
 ![One of many small displays at Museo Cuevas del Sacromonte, giving a snapshot of Roma life as recently as the 1960s.](images/granada-10.jpg)
 
-### Albaicin
+### Albaicín
 
 Perched on a steep hillside above the city, the Albaicín is Granada’s historic Moorish quarter — a tangle of narrow streets, viewpoints, and whitewashed homes.  We only skimmed the edge of it on our walking tour.   It gets increasingly charming once you’re past the first tourist-heavy blocks and into the quieter lanes and viewpoints.  
 
 We had saved the Albaicín for unstructured wandering on our last afternoon. A torrential rainstorm had other ideas. With steep grades and wet stone underfoot, we passed — practical, perhaps, but a decision we slightly regret.
 
-![This view from the Alhambra is one of several from the Albacain.   This is one of the lower Albaicín-style viewpoints—easy to reach from town, even if you don’t commit to the full climb. Google Maps has it as "Fuente de la Placeta Carvajales".](images/granada-01.jpg)
+![This view from the Alhambra is one of several from the Albaicín.   This is one of the lower Albaicín-style viewpoints—easy to reach from town, even if you don’t commit to the full climb. Google Maps has it as "Fuente de la Placeta Carvajales".](images/granada-01.jpg)
 
 ## Where We Stayed
 
-We stayed at [Palacio Gran Via](https://www.barcelo.com/es-es/palacio-gran-via-a-royal-hideaway-hotel/), which is on Gran Via, a busy arterial road.  The traffic there was a bit of a shock after the car-free quiet of the Cordoba old town.  There are small car-free zones, but one has to be more conscious of cars and noise than in Seville or Cordoba.  Palacio Gran Via did, however, have a lovely rooftop bar with views of the Alhambra.  The lobby is gorgeously redone, keeping remnants of its early-20th-century life as a bank.   We would recommend the hotel overall.  
+We stayed at [Palacio Gran Via](https://www.barcelo.com/es-es/palacio-gran-via-a-royal-hideaway-hotel/), which is on Gran Via, a busy arterial road.  The traffic there was a bit of a shock after the car-free quiet of the Cordoba old town.  There are small car-free zones, but one has to be more conscious of cars and noise than in Seville or Cordoba.  
 
 ![The Alhambra from our hotel roof at sunset.](images/granada-12.jpg)
+
+Palacio Gran Via did, however, have a lovely rooftop bar with views of the Alhambra.  The lobby is gorgeously redone, keeping remnants of its early-20th-century life as a bank.   We would recommend the hotel overall.  
+
 
 ![Our hotel rooftop, looking back at the nearby Granada cathedral.](images/granada-13.jpg)
 
@@ -59,7 +62,7 @@ Tickets and tours require real advance planning. The complex is expansive enough
 
 ## 🥜 Granada in a Nutshell
 
-🌍 “Would Plan Around”
+Two Travel Nuts Verdict: Would Plan Around
 
 **Best for:** travelers who want a major historical site (Alhambra) plus great food culture, and don’t mind hills/crowds. 
 

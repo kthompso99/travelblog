@@ -1,44 +1,45 @@
-
-
-
-
-
-
 ## Overview
 
-We loved Seville.  Like many mid-sized European cities, while the entire metropolitan area is quite large (1.5 million people by some estimates), the historic core is highly manageable.  Our hotel (the [Vincci Seleccion Unuk](https://en.vincciunuk.com/?utm_source=tripadvisor&utm_medium=Business_Advantage&utm_campaign=TA_BA_direct_link&partner=9818)) is/was roughly towards the northern quadrant of the medieval city.  We were thus only a 10ish minute walk from the tourism ‘center’ of the Cathedral and Royal Alcázar. Because we spent 4 nights in the city, we got to know our way around in a delightful way.  The city certainly has winding streets but not nearly as crazy as (for example) Cordoba.  Here in Seville, the narrow winding streets mix with broad squares, so we just found it a very inviting city.  Thus though we spent a full 4 days there, we have fewer ‘notes’, because more than usual, we just … wandered, delightfully.
+Seville is the kind of city that rewards not having a plan. We spent four nights there, and more than anywhere else on this trip, we just wandered — through narrow streets that open unexpectedly into broad squares, past Moorish walls and orange trees, with no destination in mind. The historic core is compact enough (15 minutes across on foot) that getting pleasantly lost is low-risk. We loved it.
+Our hotel sat in the northern part of the medieval city, about a 10-minute walk from the Cathedral and Royal Alcázar — a good position that we'd replicate.
 
 ## What We Did
 
-We did a walking [tour](https://www.sevillawalkingtours.com/city-intro) with [Concepcion](https://www.sevillawalkingtours.com/about-us) including the Cathedral who Rick Steves recommended.  She gave an outstanding tour, and we would highly recommend her.  This 3-hour tour combined a general “walking around the city” with a visit to the Cathedral. The Cathedral is enormous, but I’m not sure I would say one of the most compelling cathedrals in Europe.  Seville largely brags about how enormous it is, it’s one of the largest church buildings on earth, but …. we have seen ones we love more.  
-
-![Seville Cathedral interior](images/seville-09.jpg)
-
-The tower is a crowded walk up as with any large cathedral tower, but worth the 10-15 minutes each way of walking up the ramps.  This tower started as a minaret, and some poor gentleman had to climb the tower multiple times a day for the call to prayer.  The climb up is thus by ramps, so he could ascend by donkey.
-
-![The Seville Cathedral is the 3rd largest in Europe, and bills itself as the world's largest Gothic cathedral. It is gorgeous from the outside, though the inside is less overwhelming to our taste. The large bell tower is largely a 12th-Century minaret, with only the top 20% being later Christian additions. To walk to the top, there are ramps not stairs so the poor guy who had to do call to prayer 5x daily could ride up the 250+ feet via donkey.](images/seville-03.jpg)
-
-We found the Alcázar very interesting and well worth several hours.  It’s a complicated complex of multiple buildings built over several different eras.  Much of the most famous portions were built in the 13th or 14th century *after* the Catholic reconquest.  In that era, Moorish artisans were still in the city, and the design is far more reminiscent of Moorish influences than Christian ones.  The gardens behind the palace are also beautiful and well worth some time just wandering.    If you’re into the Game of Thrones, several scenes from Dorne were filmed at the Alcázar.  See, for example, in Season 5 of GoT where [Jaime meets with Prince Doran](https://www.youtube.com/watch?v=fdsbDTS4Mtg) and Ellaria Sand meets with her daughters to plot her revenge.
+The Royal Alcázar is the unqualified highlight of Seville, and arguably the best single site in Andalusia after the Alhambra. The most famous sections were built in the 1360s — after the Catholic reconquest — but designed almost entirely in Moorish style, by Moorish artisans still living in the city. The result is a palace that looks more like Granada than anything you'd expect from 14th-century Christian kings. 
 
 ![The unquestionable highlight of Seville is the Royal Alcázar (palace), built in stages like most palaces but the best-known part was built in the 1360s. Interestingly it was built *after* the Catholic reconquest, but designed largely in Mudéjar (Moorish) style - under the direction of Christian kings but far more Moorish-looking than otherwise. Parts are comparable to the Alhambra in Granada in beauty.](images/seville-14.jpg)
 
-The gardens behind the Alcázar are worth an hour of and in themselves.
+If you’re into the Game of Thrones, several scenes from Dorne were filmed at the Alcázar.  See, for example, in Season 5 of GoT where [Jaime meets with Prince Doran](https://www.youtube.com/watch?v=fdsbDTS4Mtg) and Ellaria Sand meets with her daughters to plot her revenge.
+
+The gardens behind deserve an hour on their own.
 
 ![The gardens behind the palace are immense but tasteful.](images/seville-18.jpg)
 
-We thought we didn’t particularly like flamenco, and were admittedly skeptical of going to something we thought would be overly touristy.  We’re glad we overcame this.  Multiple locals, including the guitarist from Ronda, recommended the Casa del Flamenco ([TA](https://www.tripadvisor.com/Attraction_Review-g187443-d4114622-Reviews-La_Casa_del_Flamenco-Seville_Province_of_Seville_Andalucia.html)) as the least-overly-touristy (most authentic?) flamenco show in town.  We thoroughly thoroughly enjoyed it – the performances felt passionate to us (ignorant Americans, sure), it was a great bite-sized performance. 
+We did a [walking tour](https://www.sevillawalkingtours.com/city-intro) with [Concepcion](https://www.sevillawalkingtours.com/about-us), whom Rick Steves recommends — a 3-hour combination of city walking and Cathedral visit. She was excellent. The Cathedral itself is enormous — one of the largest church buildings on earth — and genuinely impressive from outside. The interior left us less moved than some we've seen, but the tower is worth the climb. 
+
+![The Seville Cathedral is the 3rd largest in Europe, and bills itself as the world's largest Gothic cathedral. It is gorgeous from the outside, though the inside is less overwhelming to our taste. The large bell tower is largely a 12th-Century minaret, with only the top 20% being later Christian additions.](images/seville-03.jpg)
+
+![Seville Cathedral interior](images/seville-09.jpg)
+
+The tower started as a minaret, which is why the ascent is ramps rather than stairs: the man responsible for the call to prayer five times a day needed to get up 250 feet by donkey.  The tower is a crowded walk up as with any large cathedral tower, but worth the 10-15 minutes each way of walking up the ramps. 
+
+One thing worth seeing even if you don't know what to make of it: Las Setas — officially the Metropol Parasol, built in 2011 and billed as the world's largest wooden structure. The architect's name didn't stick; locals immediately started calling them "The Mushrooms." They're polarizing, but the square beneath them feels genuinely used by locals, and it's hard not to wonder if they'll eventually become beloved the way the Eiffel Tower was once loathed.
+
+We went to the Casa del Flamenco ([TA](https://www.tripadvisor.com/Attraction_Review-g187443-d4114622-Reviews-La_Casa_del_Flamenco-Seville_Province_of_Seville_Andalucia.html)) skeptically — we weren't sure we liked flamenco, and assumed anything recommended to tourists would be watered down. Multiple locals, including the guitarist from Ronda, pointed us here as the most authentic show in the city. They were right. The performances felt genuinely passionate, the venue is intimate, and it's a contained enough experience that you don't leave exhausted.
 
 ## Where We Stayed
 
-We liked our hotel (the Vincci Seleccion) but I’m not sure I’d say it a 100% slam-dunk win. One of the reasons we picked it was their website heavily sells their rooftop restaurant/bar.  Unfortunately, the rooftop bar/restaurant were 100% closed the entire time we were there in early November, with confusing non-explanations. We ate dinner in the downstairs restaurant one night and saw many seemingly-locals showing up for their rooftop dinner, to be told it was closed – so the restaurant closure was at best poorly communicated.
+We liked our hotel, the [Vincci Seleccion Unuk](https://en.vincciunuk.com/?utm_source=tripadvisor&utm_medium=Business_Advantage&utm_campaign=TA_BA_direct_link&partner=9818).   But we're not sure we'd call it a 100% slam-dunk win. One of the reasons we picked it was their website heavily sells their rooftop restaurant/bar.  Unfortunately, the rooftop bar/restaurant were 100% closed the entire time we were there in early November, with confusing non-explanations. We ate dinner in the downstairs restaurant one night and saw many seemingly-locals showing up for their rooftop dinner, to be told it was closed – so the restaurant closure was at best poorly communicated.
 
 ## Food & Dining
 
-Food in Seville is a unique proposition. Before the trip, I used the internet to find  a dozen or more interesting-sounding restaurants within walking distance of our hotel.  In retrospect, we wish we hadn’t bothered.  Seville more than any other place we’ve been really does seem to have ‘tapas culture’.  Here it's not just in the sense of what’s available, but in the sense of how people eat.  The several locals we met said that few locals sit at a restaurant for 90 minutes or 2 hours.  Locals drop in somewhere, have one drink \+ 1 tapas, and move on.  We could walk up to a restaurant and see it ‘full’ – but the turnover is such that a table seems to clears within 5-10 minutes.  The servers are like F-1 pit crews in clearing a table and prepping it for the next group.  So basically you can walk up to any restaurant, feel out whether you like the vibe, hang out, and sit down, all within 10 minutes.  So in 4 nights …we probably ate at 10 or 12 restaurants, almost all based on ‘feel’. That being said … as much as we enjoy Spanish food, there is a certain sameness to a lot of the meals.  We love Jamon Iberico (Spanish ham), but …. Towards the end of week 2 we couldn’t even look at it.
+Food in Seville is a unique proposition. Before the trip, I used the internet to find a dozen or more interesting-sounding restaurants within walking distance of our hotel.  In retrospect, we wish we hadn’t bothered.  Seville more than any other place we’ve been really does seem to have ‘tapas culture’.  Here it's not just in the sense of what’s available, but in the sense of how people eat.  The several locals we met said that few locals sit at a restaurant for 90 minutes or 2 hours.  Locals drop in somewhere, have one drink \+ 1 tapas, and move on.  We could walk up to a restaurant and see it ‘full’ – but the turnover is such that a table seems to clears within 5-10 minutes.  The servers are like F-1 pit crews in clearing a table and prepping it for the next group.  So basically you can walk up to any restaurant, feel out whether you like the vibe, hang out, and sit down, all within 10 minutes.  So in 4 nights …we probably ate at 10 or 12 restaurants, almost all based on ‘feel’. 
 
-We do highly recommend Bar el Commercio, a famous 120-year-old (opened 1903\) spot that makes divine fresh churros on demand.  Even if you think you don’t like churros, go there and have some with chocolate.  Crazy tasty.  Not a good daily breakfast ;).
+That being said … as much as we enjoy Spanish food, there is a certain sameness to a lot of the meals.  We love Jamon Iberico (Spanish ham), but …. Towards the end of week 2 we couldn’t even look at it.
 
-![Seville is an amazing food destination. Bar El Comercio was opened in 1904 and makes fresh churros.](images/seville-07.jpg)
+Bar El Comercio has been making fresh churros since 1904 — light, not greasy, served with chocolate for dipping. Nothing like what gets sold as churros elsewhere. Worth going even if you think you don't like churros. Not a sustainable daily breakfast, but we understood the temptation.
+
+![Bar El Comercio was opened in 1904 and makes fresh churros.](images/seville-07.jpg)
 
 ![The churros are completely unlike what we get in California -- light/airy, and a great breakfast dipped in fresh chocolate.](images/seville-06.jpg)
 
@@ -46,21 +47,21 @@ We do highly recommend Bar el Commercio, a famous 120-year-old (opened 1903\) sp
 
 Once you are in the old town of Seville, this is a place to just wander -- the entire old town is only 15ish minutes of walking from one end to the other.  The Plaza de España is a bit further away, but still walkable.
 
-Seville has excellent train service to many cities including Madrid, and I can't imagine going any other way to most other 'large' cities.  We took a daytrip "to" it as a way to see some White Villages, and because the train doesn't run from Ronda, but if coming from Malaga or Granada trains will be the way to go.
+Seville has excellent train service to many cities including Madrid, that's easily the best way to reach most major cities.  We took a daytrip "to" Seville as a way to see some White Villages, and because the train doesn't run from Ronda, but if coming from Malaga or Granada trains will be the way to go.
 
 ## 🥜 Seville in a Nutshell
 
-*Rating (delete all but one):*
-🌍 "Would Plan Around"
-🧭 "Glad We Went"
-🍷 "Lovely but Optional"
-🚫 "Skip"
+"Would Plan Around"
 
-**Stay Overnight?** [TBD]
-**Don't Miss:** [TBD]
-**Best Time of Day:** [TBD]
-**Worth the Splurge:** [TBD]
-**Return Visit?** [TBD]
+**Stay Overnight?** Yes — four nights felt right. Two minimum to do it properly.
+
+**Don't Miss:** The Alcázar; Casa del Flamenco even if you're skeptical; Bar El Comercio for breakfast once.
+
+**Best Time of Day:** The Alcázar gardens in the late afternoon; the streets after dinner when locals are out.
+
+**Worth the Splurge:** A private guide for the Alcázar — the layers of history reward explanation; a walking tour with the excellent Concepcion.  
+
+**Return Visit?** Yes. There is a richness to this city that supports multiple visits.
 
 *Add your photos here*
 
@@ -79,11 +80,11 @@ Seville has excellent train service to many cities including Madrid, and I can't
 
 ![Christopher Columbus' tomb in the Seville Cathedral](images/seville-10.jpg)
 
-![A Moorish gate through which one can see parts of the Seville cathedral. Love the juxtaposition.](images/seville-11.jpg)
+![A 12th-century Moorish arch framing the cathedral beyond](images/seville-11.jpg)
 
 ![Fans are for sale everywhere](images/seville-12.jpg)
 
-!["Water Alley" is the most iconic, picturesque 140-meter pedestrian street running directly alongside the ancient Moorish defensive walls in Seville’s Santa Cruz quarter. I](images/seville-13.jpg)
+!["Water Alley" is the iconic, picturesque 140-meter pedestrian street running directly alongside the ancient Moorish defensive walls in Seville’s Santa Cruz quarter.](images/seville-13.jpg)
 
 ![More of the Alcázar.](images/seville-15.jpg)
 

@@ -1,43 +1,58 @@
-
-
-
 ## Overview
 
-See the tips section for how we chose [daytrip.com](http://daytrip.com) for various of our shuttles from point A to point B.  For our ‘daytrip’ from Granada to Malaga, we visited the areas in and around Antequera.  
+Just outside Antequera are three ancient burial sites that would justify a detour on their own. The oldest predates both Stonehenge and the Great Pyramids — and contains the largest single stone placed anywhere in Europe, a 200-ton capstone that has sat undisturbed since roughly 3700 BC. We visited as a daytrip.com-suggested stop between Granada and Málaga, and were genuinely surprised by how much was here.  The town itself is worth an hour or two, though we'd be honest: without the dolmens, it might not make our list for Southern Spain.  
 
-## What We Did
+## The Dolmens
 
-The best part of Antequera is the ancient Dolmens just outside, a set of 3 separate UNESCO World Heritage sites.  The oldest of these is old than Stonehenge, and features the largest single rock placed in Europe.  Two of the Dolmens are right next to one another. The third is a 10-minute drive away, and each is worth visiting – we really found this a unique and compelling few hours.
+A dolmen is a type of [megalithic tomb](https://en.wikipedia.org/wiki/Megalith#Tombs).  There are three UNESCO-listed dolmens outside of Antequera, two near one another and another a 10-minute drive away. All three are worth visiting; Menga is the standout. The scale is what surprised us most.  These aren't just old rocks, they're enormous, precisely placed, and somehow still standing after (for the oldest) nearly 6,000 years.
 
-![Near the ancient town of Antequera are 3 ancient burial sites. This Dolmen of Menga is believed to be from circa 3700 BC, older than either the Great Pyramids or Stonehenge. The largest stone (not pictured, but on the main roof) is estimated to weigh 200 tons.](images/antequera-01.jpg)
+> The Dolmen of Menga was to us the most impressive.  It is believed to be from circa 3700 BC, older than either the Great Pyramids or Stonehenge.  
 
-![Tholos de El Romeral is from 1800 BC, so 2000 years "newer" than the previous Dolmen. It shows sophisticated building techniques -- there is no mortar, but the massive stone visible at top wedges all these rocks into place.](images/antequera-02.jpg)
+![The largest stone of Menga (not pictured, but on the main roof) is estimated to weigh 200 tons.](images/antequera-01.jpg)
 
-The small town of Antequera was also interesting, though probably would not have been a first choice on its own without the dolmens.  It’s a small/quaint town with over 30 churches, all with opulent interiors.  The true highlight was the citadel at the top of town, with Roman foundations (and a nearby Roman bath).  The citadel demonstrates Moorish as well as post-reconquest Spanish influences.  Definitely worth 45 or 60 minutes.  There were great views on top as well.
+From the entrance of Menga facing out is Peña de los Enamorados (Lovers' Rock), a mountain which from various angles looks remarkably like a human profile.  Menga is the only known dolmen in Europe aimed at a natural feature rather than a celestial one.
 
-![Atop the town of Antequera is a Moorish fortress, which fell to Castilian forces in 1410. Note the ancient roman rock on the wall to the left and at the base of the tower, then the discontinuity to 14th-century Moorish construction for the top 2/3 of the tower.](images/antequera-03.jpg)
+![Lover's Rock from the entrance of Menga.](images/antequera-05.jpg)
+
+The Dolmen of Viera is presumed to be also a burial site, built somewhere between 3500 and 3000 BC.  From the entrance, one sees a long corridor supported by 27 stones, leading to a rectangular chamber. 
+
+![The Dolmen of Viera features a long entrance to what is assumed to be the burial site.](images/antequera-04.jpg)
+
+
+Tholos de El Romeral is from 1800 BC, so 2000 years "newer" than the previous two. It shows sophisticated building techniques.  Tholos uses dry-stone construction: no mortar, just weight and geometry.
+
+![Tholos is impressive in its construction.](images/antequera-02.jpg)
+
+## The Town
+
+Antequera is a small town with over 30 churches, all with opulent interiors — which start to blur together. The real highlight is the citadel at the top of town.  Roman foundations sit beside a Roman bath; Moorish construction rises above them, with post-Reconquest Spanish layers added later. You can see the architectural discontinuity in the walls themselves. “Worth about an hour, more if you're having lunch, if you're already here for the dolmens.”
+
+![Atop the town of Antequera is a Moorish fortress, which fell to Castilian forces in 1410. Note the ancient Roman rock on the wall to the left and at the base of the tower, then the discontinuity to 14th-century Moorish construction for the top 2/3 of the tower.](images/antequera-03.jpg)
 
 ## Food & Dining
 
-We were in town only briefly, but had an excellent lunch at [Loulo Bistro](https://loulubistro.com/) right on the Plaza de San Sebastián, a lovely square.  It was a great spot to watch locals do their own thing, and is right across from one of the main churches in town.  The menu is simple but excellent.
+We enjoyed a lunch at [Loulo Bistro](https://loulubistro.com/) on the Plaza de San Sebastián — simple menu, well executed, and a great spot to watch locals go about their afternoon. Right across from one of the main churches; you'll walk past this bistro anyway, it's only a short walk down from the hilltop castle.
 
 ## Practical Tips
 
-A car is a must to do see the ancient sites outside of town.  The dolmens are close to the city, but definitely not walking distance.  The actual town is very compact/manageable, though we spent only a brief time there.
+You need a car to reach the dolmens — they're close to town but not walkable. The town itself is compact and easy on foot. We came through on a shuttle between Granada and Málaga, which worked well for this kind of stop.
+
+See the section on [Tips for Spain](tips.html) for how we chose [daytrip.com](http://daytrip.com) for various of our shuttles from point A to point B.    
+
 
 ## 🥜 Antequera in a Nutshell
 
-*Rating (delete all but one):*
-🌍 "Would Plan Around"
-🧭 "Glad We Went"
-🍷 "Lovely but Optional"
-🚫 "Skip"
+"Glad We Went"
 
-**Stay Overnight?** [TBD]
-**Don't Miss:** [TBD]
-**Best Time of Day:** [TBD]
-**Worth the Splurge:** [TBD]
-**Return Visit?** [TBD]
+**Stay Overnight?** We would not prioritize this town for an overnight visit.
+
+**Don't Miss:** The Dolmens; all three are interesting, the Dolmen of Menga most of all with Tholos a close second.
+
+**Best Time of Day:** The Dolmens are open much of the day; see [the museum site](https://whichmuseum.com/museum/archaeological-dolmens-of-antequera-28815/opening-hours).
+
+**Worth the Splurge:** Cost: Low. No ‘splurge’ needed; just go.
+
+**Return Visit?** This feels like a great place to visit -- once.
 
 ---
 
