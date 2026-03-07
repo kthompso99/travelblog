@@ -276,8 +276,25 @@ More text after.`;
             const html = renderNutshell(parsed);
             assert('renderNutshell wraps in nutshell-section',       html.includes('<section class="nutshell-section">'));
             assert('renderNutshell includes location name heading',  html.includes('Seville in a Nutshell'));
-            assert('renderNutshell includes verdict',                html.includes('Would Plan Around'));
-            assert('renderNutshell uses <dl> for fields',            html.includes('<dl class="nutshell-fields">'));
+            assert('renderNutshell includes verdict text',           html.includes('Would Plan Around'));
+            assert('renderNutshell uses <div> for fields',           html.includes('<div class="nutshell-fields">'));
+
+            // Header structure
+            assert('renderNutshell includes header wrapper',         html.includes('nutshell-header'));
+            assert('renderNutshell includes subtitle',               html.includes('Two Travel Nuts Verdict'));
+            assert('renderNutshell verdict has CSS class',           html.includes('nutshell-verdict--would-plan-around'));
+
+            // Icon circles
+            assert('renderNutshell includes icon containers',        html.includes('nutshell-icon'));
+            assert('renderNutshell includes SVG icons',              html.includes('<svg'));
+
+            // Layout classes
+            assert('renderNutshell marks pair fields',               html.includes('nutshell-field--pair'));
+            assert("renderNutshell marks Don't Miss as highlight",   html.includes('nutshell-field--highlight'));
+
+            // Return Visit yes indicator
+            assert('renderNutshell adds yes indicator for Return Visit', html.includes('nutshell-return-yes'));
+            assert('renderNutshell includes check indicator SVG',    html.includes('nutshell-indicator'));
 
             // Verify field ordering follows NUTSHELL_FIELDS (Stay Overnight before Return Visit)
             const stayIdx   = html.indexOf('Stay Overnight');
@@ -301,6 +318,21 @@ More text after.`;
             const stayIdx = html.indexOf('Stay Overnight');
             const bestForIdx = html.indexOf('Best for');
             assert('extra fields appear after schema fields', stayIdx < bestForIdx);
+        }
+
+        {
+            // Verdict CSS classes for different levels
+            const gladHtml = renderNutshell({ name: 'Test', verdict: 'Glad We Went', fields: {} });
+            assert('Glad We Went gets correct CSS class',    gladHtml.includes('nutshell-verdict--glad-we-went'));
+
+            const optionalHtml = renderNutshell({ name: 'Test', verdict: 'Lovely but Optional', fields: {} });
+            assert('Lovely but Optional gets correct CSS class', optionalHtml.includes('nutshell-verdict--lovely-but-optional'));
+        }
+
+        {
+            // Return Visit "No" indicator
+            const noHtml = renderNutshell({ name: 'Test', verdict: '', fields: { 'Return Visit': 'No, too crowded.' } });
+            assert('Return Visit "No" gets X indicator',     noHtml.includes('nutshell-return-no'));
         }
 
         // ── Nutshell in full pipeline ─────────────────────────────────────
