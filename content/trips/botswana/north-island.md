@@ -1,185 +1,131 @@
 ## Overview
 
-After 3 nights at Sable Alley, we took a short (20 minute?) charter plane to our second Okavango reserve.  Our second lodge, [North Island Okavango](https://naturalselection.travel/camps/north-island-okavango-delta/) – is priced at a more luxury price point, and you could feel the difference.  But again, this isn’t a diss on Sable Alley; rather just that North Island was incredibly over-the-top amazing.  The service was just that much better; it was more intimate (7 tents vs 12 at Sable Alley), and honestly the food was better.   
+After 3 nights at Sable Alley, we took a short charter flight — 20 minutes or so — to our second Okavango reserve. [North Island Okavango](https://naturalselection.travel/camps/north-island-okavango-delta/) is priced at a higher point than Sable Alley, and you could feel the difference immediately: more intimate (7 tents vs 12), better food, a higher level of service throughout. This isn't a criticism of Sable Alley, which was excellent. North Island was just in a different register.
+
+The camp sits next to a hippo pool. We woke up every night listening to them vocalize.
+
+
+
+![North Island back porch](images/north-island-07.jpg)
+
+![Our last lodge, North Island Okavango, had a fire pit thrust out into the hippo pools.](images/north-island-41.jpg)
+
+## Getting There
+
+Visiting the Okavango involves a lot of small planes. We were typically on 12-seaters, always on MackAir, which did a nice job. The flights were mostly 20-30 minutes — short enough that claustrophobia wasn't an issue — and we saw elephants out the window on several of them.
+
+![Visiting the Okavango Delta typically involves quite a few small planes — we were usually on 12-seaters, always on MackAir.](images/north-island-01.jpg)
+
+![Aerial view of the delta](images/north-island-02.jpg)
+
+## What We Saw
+
+A typical day started with a game drive at around 6:45am, just before sunrise. By mid-morning it would start to warm up, and we'd stop around 9am for coffee and snacks and a leg stretch before heading back to camp for lunch. The afternoon drive went out again around 4pm and ran through sunset and into dark.
+
+![A typical day started with a 6:45am or so game drive. We typically had a lovely 9am stop for hot coffee and snacks.](images/north-island-47.jpg)
+
+The guiding at North Island — our guide was Parks — required a different kind of skill than open-grassland safari. The Okavango's heavy vegetation means you can't just scan the horizon. The guides read tracks, listen for alarm calls, and watch which direction animals are looking. We were consistently impressed.
+
+![Parks (our North Island guide) at a morning elephant sighting](images/north-island-63.jpg)
+
+![We felt our Okavango guides had to work far harder than our memory from the Serengeti in 2013, which is open grassland where you can look 2 miles into the distance. The parts of the Okavango we visited featured much heavier vegetation.](images/north-island-43.jpg)
+
+**The wild dogs** were the standout sighting of the entire trip. The African Wild Dog is one of the world's most endangered mammals — roughly 6,000 left in the wild. A thriving pack lived about 30 minutes from our lodge, and we visited their den twice. The puppies were 5 weeks old, basking in the morning sun outside the den, occasionally getting up to play. The adult markings — which is why they're also called Painted Wolves — are extraordinary up close.
+
+![The African Wild Dog is one of the world's most endangered mammals, with estimates of only ~6,000 left in the wild. These puppies are 5 weeks old, basking in the morning sun outside their den.](images/north-island-27.jpg)
+
+![The African Wild Dog pups were mostly just hanging, but would occasionally get up to play briefly.](images/north-island-28.jpg)
+
+![Beautiful closeup of adult wild dog.](images/north-island-29.jpg)
+
+![The markings of the adult Wild Dogs (also known as the Painted Wolf) are gorgeous.](images/north-island-30.jpg)
+
+![Another angle of the pup den.](images/north-island-31.jpg)
+
+**Lions.** One morning we found a lioness with three cubs — an auntie standing watch while the mother returned from wherever she'd been. A waterbuck stood a quarter mile away, facing exactly in the lions' direction, motionless, for minutes. On our final afternoon drive, we'd given up on seeing a male lion. We were rewarded for patience. And on our last evening — after our sunset photos, when we thought we were done — a lioness walked right past our truck.
+
+![Gorgeous picture of lioness in the morning light — this was the first sighting before we saw the cubs.](images/north-island-17.jpg)
+
+![Auntie and cub waiting for mother to return.](images/north-island-19.jpg)
+
+![Mother (or Auntie?) returning to her cub](images/north-island-20.jpg)
+
+![This waterbuck was 1/4 mile from the lions, and very vigilant, facing exactly in their direction for minutes.](images/north-island-21.jpg)
+
+![Mother with 3 cubs.](images/north-island-23.jpg)
+
+![On our final afternoon drive, we had given up on seeing a male lion, but were rewarded for patience.](images/north-island-76.jpg)
+
+![Our last evening, *after* our sunset photos, we got one final treat.](images/north-island-83.jpg)
+
+![She walked *right* by our truck.](images/north-island-84.jpg)
+
+![One of several sightings of a lioness, this one on our final game drive. A beautiful goodbye to the trip.](images/north-island-85.jpg)
+
+**Leopards.** We had a second leopard sighting here — not as extended as the one at Sable Alley, but a young male walked right up to Tiffany's side of the truck. The photos speak for themselves.
+
+![Incredible leopard sighting](images/north-island-48.jpg)
+
+![Leopard washing his face](images/north-island-49.jpg)
+
+![Second leopard sighting — this young male walked right up to Tiffany's side of the truck.](images/north-island-51.jpg)
+
+**Giraffes.** What started as a brief sighting turned into nearly an hour — including sundowner cocktails — just watching a group of giraffes. We also caught one walking alongside an elephant herd, which we still can't quite believe we photographed.
+
+![First glimpse of what turned out to be nearly an hour with the giraffes.](images/north-island-13.jpg)
+
+![Couldn't believe we captured the giraffe walking right next to an elephant herd like this.](images/north-island-26.jpg)
+
+![Pair of snuggling giraffes.](images/north-island-35.jpg)
+
+**Elephants** were everywhere, as at Sable Alley — in camp, in the water, out the window of the charter plane. One morning an elephant greeted us on the transfer from the airstrip at 11:15am. We also learned to give distance to males in musth — the telltale secretions on the cheek indicate a male ready for mating, and our driver went into reverse fast when we came around a corner to find one. He said males in musth are just plain unpredictable.
+
+![This elephant greeted us on our first transfer from the airstrip to North Island.](images/north-island-03.jpg)
+
+![The secretions on the cheek of this male elephant indicate he's in musth. Our driver went into reverse *fast*.](images/north-island-04.jpg)
+
+![Baby elephant from our North Island living room](images/north-island-09.jpg)
+
+![Elephants shoulders-deep in the water, feeding on the tender greens found in Okavango wetlands.](images/north-island-71.jpg)
+
+**On the water.** We had two boat outings — one Saturday afternoon, one Sunday morning. The delta by boat is a different experience from the game drive: slower, closer to the water, surrounded by birds, and occasionally by hippos. We did a multi-hour trip through the delta and could have made an entire post just from the hippo sightings. One got skittish as we passed and crashed into the water closer than we wanted.
+
+![Both Saturday afternoon and Sunday morning we had outings on this boat.](images/north-island-58.jpg)
+
+![We did a multi-hour boat trip through the delta — dozens of hippos, sometimes surrounding us.](images/north-island-65.jpg)
+
+![This hippo got skittish when our boat went by, and abruptly crashed into the water a bit closer than we wanted.](images/north-island-67.jpg)
+
+![We saw quite a few crocodiles along the various waterways, this one was roughly 15 feet long. Usually we had 2-4 seconds before they disappeared into the water.](images/north-island-70.jpg)
+
+We timed our trip for a full moon, which we were glad of.
+
+![We were very fortunate to time our trip for a full moon.](images/north-island-61.jpg)
+
+**A cold front** came through for 48 hours — lows in the 40s — cold enough that the hippos weren't in the water at 7:20am, which we'd never seen before. It made the morning drives genuinely chilly.
+
+![We had a cold front come through for 48 hours. Even the hippos weren't in the water at 7:20am — we'd never seen one so far from water before.](images/north-island-16.jpg)
+
+**One observation about the local people.** We noticed villagers gathering grass in what appeared to be a combination of income and tradition. At one point we saw locals walking through the Okavango in the middle of the day — the safety aspects of which we didn't fully understand. One of us noted that they tended to wear extremely bright clothing, in contrast to the all-khaki of official safari wear. We speculated they might prefer to be seen by wildlife so it moves away — the opposite of our goal.
+
+![Local villagers have been gathering grass for generations.](images/north-island-57.jpg)
+
+![One of us noted they tended to wear extremely bright clothing — we speculated maybe they prefer to be seen by wildlife so it moves away, the opposite of our goal.](images/north-island-64.jpg)
+
+## Where We Stayed
+
+[North Island Okavango](https://naturalselection.travel/camps/north-island-okavango-delta/) — 7 tents, higher service level than Sable Alley, better food, more intimate feel. The fire pit extends out over the hippo pool. The back porch faces the water. We'd book it again without hesitation.
+
+![North Island back porch](images/north-island-07.jpg)
 
 ![Our North Island room](images/north-island-05.jpg)
 
 ![Our North Island bed](images/north-island-06.jpg)
 
-![North Island back porch](images/north-island-07.jpg)
+![Another great sunset from our second camp.](images/north-island-42.jpg)
 
 *Add your photos here*
 
 ---
 
 *Last updated: February 2026*
-![Visiting the Okavango Delta typically involves quite a few small planes, we were usually on 12-seaters, always on MackAir which did a really nice job. The flights were mostly 20-30 minutes so claustrophobia didn't set in -- and we saw elephants out the window on many flights.](images/north-island-01.jpg)
-
-![Aerial view of the delta](images/north-island-02.jpg)
-
-![This elephant greeted us on our first transfer from the airstrip to North Island (note 11:15am).](images/north-island-03.jpg)
-
-![The telltable secretions on the cheek of this male elephant indicate he's in must (e.g., ready for mating). Our driver turned a corner to see a male in must one evening, and he went into reverse *fast* -- he said males in must are just plain unpredictable, not in a good way. Insert joke about men in bars here.](images/north-island-04.jpg)
-
-![This isn't a great photo of a hippo, but it's notable in that I took it from the North Island lunch spot.](images/north-island-08.jpg)
-
-![Baby elephant from our North Island living room](images/north-island-09.jpg)
-
-![Lovely view from our hotel room (Kevin was getting a massage and managed to miss this)](images/north-island-10.jpg)
-
-![The Topi is less common in at least the parts of the Okavango we saw, but were a lovely kind of antelope](images/north-island-11.jpg)
-
-![North Island had a *lot* more wildebeest, for whatever reason, than Sable Alley.](images/north-island-12.jpg)
-
-![First glimpe of what turned out to be a long (nearly an hour, including sundowner cocktails) time hanging with the giraffes.](images/north-island-13.jpg)
-
-![Giraffes munching](images/north-island-14.jpg)
-
-![Sunset near North Island](images/north-island-15.jpg)
-
-![We had a cold front come through for 48 hours -- so cold (low 40s?) one morning that even the hippos weren't in the water -- note this picture was at 7:20am. We'd never seen one so far from water before.](images/north-island-16.jpg)
-
-![Gorgeous picture of lioness in the morning light -- this was the first sighting before we saw the cubs.](images/north-island-17.jpg)
-
-![Beautiful lioness in the morning (8am or so) light](images/north-island-18.jpg)
-
-![Auntie and cub waiting for mother to return.](images/north-island-19.jpg)
-
-![Mother (or Auntie?) returning to her cub](images/north-island-20.jpg)
-
-![This WaterBuck was 1/4 mile from the lions, and very vigilant, facing exactly in the lions' direction for minutes.](images/north-island-21.jpg)
-
-![Mother and cubs head out to hunt](images/north-island-22.jpg)
-
-![Mother with 3 cubs.](images/north-island-23.jpg)
-
-![Elephant behavior that we can't fully explain](images/north-island-24.jpg)
-
-![A nice profile of adult giraffe.](images/north-island-25.jpg)
-
-![Couldn't believe we captured the giraffe walking right next to an elephant herd like this.](images/north-island-26.jpg)
-
-![The African Wild Dog is one of the world's most endangered mammals, with estimates of only ~6,000 left in the wild. We are so fortunate to have a thriving pack 30 minutes from our lodge. Our guide says these puppies are 5 weeks old -- this is them basking in the morning sun outside their den.](images/north-island-27.jpg)
-
-![The African Wild Pups were mostly just hanging, but would occasionally get up to play briefly.](images/north-island-28.jpg)
-
-![Beautiful closeup of adult wild dog.](images/north-island-29.jpg)
-
-![The markings of the adult Wild Dogs (also known as the Painted Wolf, and you see why in this photo) are gorgeous.](images/north-island-30.jpg)
-
-![Another angle of the pup den.](images/north-island-31.jpg)
-
-![This South African Rock Python crossed right in front of our truck. This one was only 5ish feet long, evidently they grow to nearly 18 feet long, not sure we need to see that up close.](images/north-island-32.jpg)
-
-![The Steenbok is a small antelope in the ecosystem.  One lucky sighting.](images/north-island-33.jpg)
-
-![Gorgeous male ostrich.](images/north-island-34.jpg)
-
-![Pair of snuggling giraffes.](images/north-island-35.jpg)
-
-![Malakite](images/north-island-36.jpg)
-
-![We have no idea what was going on here, but lucked into this photo.](images/north-island-37.jpg)
-
-![](images/north-island-38.jpg)
-
-![A Grey Lourie in particularly nice profile. Each of our main game drive guides seemed more interested in the predators than birds, so we have fewer bird photos than I wish we did -- an amazing variety of birds were visible everywhere.](images/north-island-39.jpg)
-
-![Tiffany loved the ways the dead trees dotting the landscape provided a sort of stark beauty.](images/north-island-40.jpg)
-
-![Our last lodge, North Island Okavango, had an incredible fire pit thrust out into the hippo pools. We woke up every night listening to the hippos vocalize.](images/north-island-41.jpg)
-
-![Another great sunset from our second camp.](images/north-island-42.jpg)
-
-![We felt our Okavango guides had to work far harder than our memory from the Serengeti in 2013, which is open grassland so you can just look 2 miles into the distance to see a collection of trucks and figure out where the {leopard, lion, cheetah, etc} was. The parts of the Okavango we visited featured much more heavy vegetation, and while the animals were incredible they were more sparse than in the Serengeti. We were impressed at each of our guides and how much reading of prints they did to help us find the great sightings.](images/north-island-43.jpg)
-
-![We saw quite a few herds of Cape Buffalo. They didn't charge, but seemed more agitated by the game trucks than many other herbivores.  I wouldn't get in a staring contest with this adult.](images/north-island-44.jpg)
-
-![Lucked into one sighting of the Sable Antelope, the largest antelope of the Okavango.](images/north-island-45.jpg)
-
-![Our best sighting of the jackal, a small (25 lb?) scavenger.](images/north-island-46.jpg)
-
-![A typical day started with a 6:45am or so (just before sunrise) game drive. Just as it started warming up each morning, we typically had a lovely 9amish stop for hot coffee and snacks, and for a welcome leg stretch.](images/north-island-47.jpg)
-
-![Incredible leopard sighting](images/north-island-48.jpg)
-
-![Leopard washing his face](images/north-island-49.jpg)
-
-![Beautiful leopard shot](images/north-island-50.jpg)
-
-![Second leopard sighting -- not as lengthy as the one at Sable Alley a week earlier, but this young male did walk right up to Tiffany's side of the truck, and sure looks like he's eyeing her.](images/north-island-51.jpg)
-
-![We saw relatively few warthogs at Sable Alley, but they were *everywhere* at North Island, multiple sightings a day.](images/north-island-52.jpg)
-
-![Wildebeest's best side](images/north-island-53.jpg)
-
-![Nice composite of Zebra and Impala -- often seen together](images/north-island-54.jpg)
-
-![Kevin was away reading, but a troupe of vervet monkeys visited Tiffany in our room](images/north-island-55.jpg)
-
-![Vervet monkeys from our back porch](images/north-island-56.jpg)
-
-![Local villagers have been gathering grass for generations.  As far as we could tell it's a combination of income and tradition.  At one point we saw locals just wandering through the Okavango in mid-day -- I'm not quite clear on the safety aspects of that.](images/north-island-57.jpg)
-
-![Both Saturday afternoon and Sunday morning we had outings on this boat.](images/north-island-58.jpg)
-
-![Bird in flight](images/north-island-59.jpg)
-
-![Cormorants and sacred ibis](images/north-island-60.jpg)
-
-![We were very fortunate to time our trip for a full moon.](images/north-island-61.jpg)
-
-![Note the 7:06am timestamp -- this Sunday morning we left for our morning boat safari luxuriously late, maybe 8am.  That meant we got to hang out at camp -- and these hippos were right there at the pool next to our breakfast spot.](images/north-island-62.jpg)
-
-![Parks (our North Island guide) at a morning elephant sighting](images/north-island-63.jpg)
-
-![Locals (seen to the right) gathering grass in a traditional manner.
-
-One of us noted that they tended to wear extremely bright clothing, in contrast to the official safari clothing of all-khaki.  We speculated maybe they prefer to be seen by wildlife so it moves away, the opposite of our goal....](images/north-island-64.jpg)
-
-![We did a multi-hour boat trip through the delta, and could make a post just of the dozens of hippos, sometimes surrounding us (that'll replace caffeine in the morning).](images/north-island-65.jpg)
-
-![](images/north-island-66.jpg)
-
-![This hippo got skittish when our boat went by, and abruptly crashed into the water a bit closer than we wanted.](images/north-island-67.jpg)
-
-![I think these are marabous, a tall scavenger, hanging out with cattle by the river](images/north-island-68.jpg)
-
-![Yellow-billed stork in the ubiquitous wetlands of the Okavango.](images/north-island-69.jpg)
-
-![We saw quite a few crocodiles along the various waterways, this one was roughly 15 feet long. They were/are quite skittish with boats around, so usually we had 2-4 seconds to get the right shot before they disappeared into the water.](images/north-island-70.jpg)
-
-![Elephants shoulders-deep in the water, feeding on the tender greens found in Okavango wetlands.](images/north-island-71.jpg)
-
-![](images/north-island-72.jpg)
-
-![It's not super common to see hippos 100% out of the water in the heat of the day, our driver was speculating whether this one was healthy or not.](images/north-island-73.jpg)
-
-![Red lechwes running through the wetlands](images/north-island-74.jpg)
-
-![](images/north-island-75.jpg)
-
-![On our final afternoon drive, we had given up on seeing a male lion, but were rewarded for patience. Gorgeous creature.](images/north-island-76.jpg)
-
-![](images/north-island-77.jpg)
-
-![](images/north-island-78.jpg)
-
-![](images/north-island-79.jpg)
-
-![](images/north-island-80.jpg)
-
-![Vervet monkeys.  We saw them in camp, I think? this was the only time we saw one out on a game drive.](images/north-island-81.jpg)
-
-![Sunset over the wild.  One of our last sunsets.](images/north-island-82.jpg)
-
-![Our last evening, *after* our sunset photos, we got one final treat.](images/north-island-83.jpg)
-
-![She walked *right* by our truck.](images/north-island-84.jpg)
-
-![One of several sightings of a lioness, this one on our final game drive. Such a beautiful good-bye to our trip.](images/north-island-85.jpg)
-
-![](images/north-island-86.jpg)
-
-![Elephants before our last sunset.](images/north-island-87.jpg)
-
