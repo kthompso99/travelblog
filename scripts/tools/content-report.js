@@ -6,6 +6,8 @@
  * Usage:
  *   npm run report              # All trips
  *   npm run report -- greece    # Single trip
+ *   npm run report -- --wordcount          # Word counts only + cross-trip summary
+ *   npm run report -- greece --wordcount   # Single trip, word counts only
  */
 
 const fs = require('fs');
@@ -226,6 +228,82 @@ function printQualityTable(rows) {
     console.log('  └─' + cols.map(c => '─'.repeat(c.w)).join('─┴─') + '─┘');
 }
 
+function printWordCountTable(rows, tripTitle) {
+    const cols = [
+        { key: 'name',         label: 'Page',     w: 18, align: 'left' },
+        { key: 'words',        label: 'Words',    w: 7 },
+        { key: 'captionWords', label: 'Captions', w: 9 },
+    ];
+
+    console.log(`\n${tripTitle}`);
+
+    const header = cols.map(c => pad(c.label, c.w, c.align)).join(' │ ');
+    const sep = cols.map(c => '─'.repeat(c.w)).join('─┼─');
+    console.log('  ┌─' + cols.map(c => '─'.repeat(c.w)).join('─┬─') + '─┐');
+    console.log('  │ ' + header + ' │');
+    console.log('  ├─' + sep + '─┤');
+
+    for (const row of rows) {
+        const line = cols.map(c => {
+            const v = row[c.key];
+            return pad(typeof v === 'number' ? fmtNum(v) : v, c.w, c.align);
+        }).join(' │ ');
+        console.log('  │ ' + line + ' │');
+    }
+
+    const totals = { name: 'TOTAL' };
+    for (const c of cols) {
+        if (c.key === 'name') continue;
+        totals[c.key] = rows.reduce((sum, r) => sum + (r[c.key] || 0), 0);
+    }
+    console.log('  ├─' + sep + '─┤');
+    const totalLine = cols.map(c => {
+        const v = totals[c.key];
+        return pad(typeof v === 'number' ? fmtNum(v) : v, c.w, c.align);
+    }).join(' │ ');
+    console.log('  │ ' + totalLine + ' │');
+    console.log('  └─' + cols.map(c => '─'.repeat(c.w)).join('─┴─') + '─┘');
+
+    return { words: totals.words, captionWords: totals.captionWords };
+}
+
+function printWordCountSummary(tripTotals) {
+    const cols = [
+        { key: 'name',         label: 'Trip',     w: 18, align: 'left' },
+        { key: 'words',        label: 'Words',    w: 7 },
+        { key: 'captionWords', label: 'Captions', w: 9 },
+    ];
+
+    console.log('\n── Word Count Summary ──');
+
+    const header = cols.map(c => pad(c.label, c.w, c.align)).join(' │ ');
+    const sep = cols.map(c => '─'.repeat(c.w)).join('─┼─');
+    console.log('  ┌─' + cols.map(c => '─'.repeat(c.w)).join('─┬─') + '─┐');
+    console.log('  │ ' + header + ' │');
+    console.log('  ├─' + sep + '─┤');
+
+    for (const row of tripTotals) {
+        const line = cols.map(c => {
+            const v = row[c.key];
+            return pad(typeof v === 'number' ? fmtNum(v) : v, c.w, c.align);
+        }).join(' │ ');
+        console.log('  │ ' + line + ' │');
+    }
+
+    const grand = { name: 'TOTAL' };
+    for (const c of cols) {
+        if (c.key === 'name') continue;
+        grand[c.key] = tripTotals.reduce((sum, r) => sum + (r[c.key] || 0), 0);
+    }
+    console.log('  ├─' + sep + '─┤');
+    const totalLine = cols.map(c => {
+        const v = grand[c.key];
+        return pad(typeof v === 'number' ? fmtNum(v) : v, c.w, c.align);
+    }).join(' │ ');
+    console.log('  │ ' + totalLine + ' │');
+    console.log('  └─' + cols.map(c => '─'.repeat(c.w)).join('─┴─') + '─┘');
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -239,7 +317,9 @@ console.log = function (...args) {
 };
 
 function main() {
-    const filterTrip = process.argv[2] || null;
+    const args = process.argv.slice(2).filter(a => a !== '--');
+    const wordcountMode = args.includes('--wordcount');
+    const filterTrip = args.find(a => !a.startsWith('--')) || null;
 
     const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
 
@@ -248,7 +328,9 @@ function main() {
         return;
     }
 
-    origLog('\n═══ Content Report ═══');
+    origLog(wordcountMode ? '\n═══ Word Count Report ═══' : '\n═══ Content Report ═══');
+
+    const tripTotals = [];
 
     for (const tripId of tripIds) {
         if (filterTrip && tripId !== filterTrip) continue;
@@ -287,9 +369,18 @@ function main() {
 
         if (rows.length === 0) continue;
 
-        printContentTable(rows, tripConfig.title || tripId, locationCount, articleCount);
-        origLog('');
-        printQualityTable(rows);
+        if (wordcountMode) {
+            const totals = printWordCountTable(rows, tripConfig.title || tripId);
+            tripTotals.push({ name: tripId, ...totals });
+        } else {
+            printContentTable(rows, tripConfig.title || tripId, locationCount, articleCount);
+            origLog('');
+            printQualityTable(rows);
+        }
+    }
+
+    if (wordcountMode && tripTotals.length > 1) {
+        printWordCountSummary(tripTotals);
     }
 
     origLog('');
