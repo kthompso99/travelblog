@@ -16,7 +16,7 @@ We finished the day at [Rainbow’s End](https://rainbowsend.co.za/), with strik
 
 ![From Rainbow's End](images/cape-winelands-03.jpg)
 
-The second day trip was to the coastal town of Hermanus for whale watching.  This is often listed as a day trip from Cape Town, but if you look at a map it’s actually closer to Franschoek.  This had the added advantage that on the way back from Hermanus, we drove through the “Hemel en Aarde” (Heaven and Earth) valley, which due to its coastal location is cooler and is where some excellent Pinot Noirs are made.  We stopped at a winery in that valley which was lovely.
+The second day trip was to the coastal town of Hermanus for whale watching.  This is often listed as a day trip from Cape Town, but if you look at a map it’s actually closer to Franschhoek.  This had the added advantage that on the way back from Hermanus, we drove through the “Hemel en Aarde” (Heaven and Earth) valley, which due to its coastal location is cooler and is where some excellent Pinot Noirs are made.  We stopped at a winery in that valley which was lovely.
 
 ![Right whale breaching](images/cape-winelands-06.jpg)
 
