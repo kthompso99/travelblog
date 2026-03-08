@@ -20,7 +20,7 @@ We were there during flood season, which shapes everything about how you move th
 
 ## What We Saw
 
-The standout sighting at Sable Alley was a young male leopard we stayed with for a good 40 minutes. He was hunting, scanning, drinking, entirely indifferent to our truck. The camouflage, the musculature of those front legs, the black collar in his markings — photographs don't capture it the way 20 feet does.
+> The standout sighting at Sable Alley was a young male leopard we stayed with for a good 40 minutes. He was hunting, scanning, drinking, entirely indifferent to our truck. The camouflage, the musculature of those front legs, the black collar in his markings — photographs don't capture it the way 20 feet does.
 
 ![This was our first view of the Sable Alley leopard sighting, which lasted a good 40 minutes overall.](images/sable-alley-11.jpg)
 
@@ -54,7 +54,9 @@ Our guide CJ took us out on the Khwai River at sunset — the profile of dead tr
 
 ![Tour guide CJ on the Khwai river](images/sable-alley-21.jpg)
 
-CJ is of the San people, making up less than 3% of Botswana's population. His grandfather lived as a hunter-gatherer. CJ grew up watching that world close. His outdoor sense was immediately apparent: he read which direction animals were looking, identified alarm calls from other species, tracked footprint direction in ways we would never have registered on our own. Having him as a guide changed how we understood what we were looking at.
+> CJ is of the San people, making up less than 3% of Botswana's population. 
+
+His outdoor sense was immediately apparent: he read which direction animals were looking, identified alarm calls from other species, tracked footprint direction in ways we would never have registered on our own. Having him as a guide changed how we understood what we were looking at.
 
 We saw relatively few zebras at Sable Alley until the last day; at North Island they were everywhere. We're not entirely sure why — possibly fencing used to protect nearby livestock affecting migration patterns. In the Serengeti you see hundreds of wildebeest and a handful of zebra; here it was roughly the reverse. We wish we understood the dynamics better.
 
@@ -80,9 +82,9 @@ All three guides across two countries made the same joke: the nickname for Impal
 verdict: Glad We Went
 Stay Overnight: Canvas tents with flush toilets, a full shower, and hippos outside — comfortable without being ostentatious.
 Don't Miss: The leopard — 40 minutes at 20 feet; sunset on the Khwai River with CJ.
-Best Time of Day: Sunset — dead trees against the equatorial sky, hippos in the foreground.
-Worth the Splurge: It's the Okavango, so it's already a splurge. Sable Alley delivers without overpaying.
-Return Visit: Probably North Island next time, but Sable Alley was an excellent introduction to the delta.
+Best Time of Day: Sunset — dead trees against the near-equatorial sun, hippos in the foreground.
+Worth the Splurge: It's the Okavango, so it's already a splurge. Sable Alley is an excellent place to start.
+Return Visit: Probably North Island next time — but we'd have missed something if we'd skipped Sable Alley.
 :::
 
 *Add your photos here*

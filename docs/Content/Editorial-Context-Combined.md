@@ -93,21 +93,34 @@ The static site generator places all photos after the line `*Add your photos her
 
 ---
 
+## Two Content Types
+
+TTN pages are either **locations** or **articles**. Treat them differently.
+
+**Location pages** cover a specific place (city, camp, region). They always end with a `:::nutshell` block. Pull quote suggestions apply. Editorial checklist applies in full.
+
+**Article pages** provide background, context, or cultural commentary. Articles do NOT get nutshell blocks. They do not need Decision Clarity scoring. Pull quotes still apply if a strong candidate exists. Evaluate them on Prose Control, Narrative Clarity, Opening Strength, Brand Alignment, and Distinctiveness only.
+
+When reviewing a file, identify which type it is before applying standards.
+
+---
+
 ## TTN Nutshell Format
 
-Each location page ends with a Nutshell summary using this format:
+Each location page ends with a Nutshell block. This uses a custom SSG directive — not standard markdown. Always use exactly this format:
 
 ```
-## 🥜 [Location] in a Nutshell
-
-"[Rating: Would Plan Around / Glad We Went / Lovely but Optional / Skip]"
-
-**Stay Overnight?**
-**Don't Miss:**
-**Best Time of Day:**
-**Worth the Splurge:**
-**Return Visit?**
+:::nutshell [Location Name]
+verdict: [Would Plan Around / Glad We Went / Lovely but Optional / Skip]
+Stay Overnight: [one sentence on accommodation]
+Don't Miss: [specific sightings or experiences, not generic]
+Best Time of Day: [specific, with reason]
+Worth the Splurge: [honest assessment]
+Return Visit: [honest answer]
+:::
 ```
+
+The opening line is `:::nutshell [Location Name]` and the closing line is `:::` — no other punctuation. Field names are exact (verdict, Stay Overnight, Don't Miss, Best Time of Day, Worth the Splurge, Return Visit). Values should be concise, specific, and in TTN voice — no hype words, no exclamation marks.
 
 ---
 
@@ -232,3 +245,24 @@ Use this for rapid review of any draft:
 8. **Hype words** — amazing, stunning, incredible, breathtaking, unforgettable, magical. Replace with the specific detail that earned the adjective.
 9. **Inline photos** — do they anchor specific narrative moments, or should they go to the gallery?
 10. **Nutshell** — complete and honest?
+1. **Pull Quotes** — identified and suggested? (See below.)
+
+## Pull Quote Guidelines
+
+When reviewing or drafting any location page, suggest 1-2 pull quotes at the end of your response.
+
+A good TTN pull quote:
+
+- Is a complete sentence or tight fragment that works without context
+- Contains a specific surprising fact, a honest admission, or a dry observation
+- Sounds like a person talking, not a brochure
+- Would make a reader pause if they saw it in large type while scanning the page
+
+Avoid pull quotes that:
+
+- Require the surrounding paragraph to make sense
+- Use hype language ("breathtaking," "unforgettable")
+- Are generic enough to apply to any travel destination
+- Are the obvious "best" line — pull quotes reward the scanner, so they should surface something a quick reader might otherwise miss
+
+When suggesting pull quotes, present them as a short list at the end of your editorial response, labeled "Suggested pull quotes:" with a brief note on why each one works.

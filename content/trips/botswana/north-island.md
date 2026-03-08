@@ -2,7 +2,7 @@
 
 After 3 nights at Sable Alley, we took a short charter flight — 20 minutes or so — to our second Okavango reserve. [North Island Okavango](https://naturalselection.travel/camps/north-island-okavango-delta/) is priced at a higher point than Sable Alley, and you could feel the difference immediately: more intimate (7 tents vs 12), better food, a higher level of service throughout. This isn't a criticism of Sable Alley, which was excellent. North Island was just in a different register.
 
-The camp sits next to a hippo pool. We woke up every night listening to them vocalize.
+> The camp sits next to a hippo pool. We woke up every night listening to them vocalize.
 
 ![Our North Island room](images/north-island-05.jpg)
 
@@ -44,7 +44,9 @@ The wild dogs were the standout sighting of the entire trip. The African Wild Do
 
 ![Another angle of the pup den.](images/north-island-31.jpg)
 
-One morning we found a lioness with three cubs, an auntie standing watch while the mother returned. A waterbuck stood a quarter mile away, facing exactly in the lions' direction, motionless, for minutes. On our final afternoon drive we'd given up on seeing a male lion. We were rewarded for patience. And on our last evening, after our sunset photos, when we thought we were done, a lioness walked right past our truck.
+One morning we found a lioness with three cubs, an auntie standing watch while the mother returned. A waterbuck stood a quarter mile away, facing exactly in the lions' direction, motionless, for minutes. On our final afternoon drive we'd given up on seeing a male lion. We were rewarded for patience. 
+
+> And on our last evening, after our sunset photos, when we thought we were done, a lioness walked right past our truck.
 
 ![Gorgeous picture of lioness in the morning light — this was the first sighting before we saw the cubs.](images/north-island-17.jpg)
 
@@ -122,11 +124,11 @@ We noticed villagers gathering grass near the camp in what appeared to be a comb
 
 :::nutshell North Island
 verdict: Would Plan Around
-Stay Overnight: This is a multi-night safari camp — 7 tents, more intimate and polished than Sable Alley.
-Don't Miss: The wild dog den; the multi-hour boat trip through the delta.
-Best Time of Day: Early morning — 6:45am game drives in the soft light produced the best sightings.
+Stay Overnight: Quieter and more personal than Sable Alley. The fire pit sits over the hippo pool; you'll hear them all night.
+Don't Miss: The wild dog den — 5-week-old pups, a thriving pack, one of the rarest sightings in the Okavango.
+Best Time of Day: Early morning — the lioness with cubs, the male lion we'd given up on, and the final goodbye were all before 9am.
 Worth the Splurge: The upgrade from Sable Alley. Better food, higher service, and a fire pit over the hippo pool.
-Return Visit: Without hesitation.
+Return Visit: Without hesitation.  The wild dogs aren't guaranteed, but the entire experience was incredible.
 :::
 
 *Add your photos here*
