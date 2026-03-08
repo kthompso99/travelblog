@@ -4,7 +4,9 @@ Focus especially on:
 
 - Prose Control & Structure (sentence-level craft + readability)
 - Narrative Clarity & Arc strength
-- Decision Clarity and summary strength
+- Decision Clarity and summary strength (location pages only)
+
+If this is an article page (indicated by a [Content type: article] header), skip Decision Clarity evaluation entirely — articles do not have nutshell blocks and are not scored on this dimension. Focus feedback on the other five dimensions only.
 
 Ignore any content appearing after "*Add your photos here*".
 

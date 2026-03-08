@@ -1,3 +1,33 @@
+## Two Content Types
+
+TTN pages are either **locations** or **articles**. Treat them differently.
+
+**Location pages** cover a specific place (city, camp, region). They always end with a `:::nutshell` block. Pull quote suggestions apply. Editorial checklist applies in full.
+
+**Article pages** provide background, context, or cultural commentary. Articles do NOT get nutshell blocks. They do not need Decision Clarity scoring. Pull quotes still apply if a strong candidate exists. Evaluate them on Prose Control, Narrative Clarity, Opening Strength, Brand Alignment, and Distinctiveness only.
+
+When reviewing a file, identify which type it is before applying standards.
+
+---
+
+## TTN Nutshell Format
+
+Each location page ends with a Nutshell block. This uses a custom SSG directive — not standard markdown. Always use exactly this format:
+
+```
+:::nutshell [Location Name]
+verdict: [Would Plan Around / Glad We Went / Lovely but Optional / Skip]
+Stay Overnight: [one sentence on accommodation]
+Don't Miss: [specific sightings or experiences, not generic]
+Best Time of Day: [specific, with reason]
+Worth the Splurge: [honest assessment]
+Return Visit: [honest answer]
+:::
+```
+
+The opening line is `:::nutshell [Location Name]` and the closing line is `:::` — no other punctuation. Field names are exact (verdict, Stay Overnight, Don't Miss, Best Time of Day, Worth the Splurge, Return Visit). Values should be concise, specific, and in TTN voice — no hype words, no exclamation marks.
+
+---
 # Two Travel Nuts — Editorial Standards
 
 This document defines what quality means.

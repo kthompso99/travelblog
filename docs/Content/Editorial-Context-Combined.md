@@ -1,7 +1,7 @@
 # TTN Editorial Context
 ## How To Use This File
 
-Upload this file at the start of any Claude.ai session where you want editorial review or writing assistance.
+Upload this file at the start of any AI session where you want editorial review or writing assistance.
 
 Then say: "Please review [filename] against my editorial standards" or "Please draft/edit [content] keeping TTN standards in mind."
 
@@ -245,7 +245,7 @@ Use this for rapid review of any draft:
 8. **Hype words** — amazing, stunning, incredible, breathtaking, unforgettable, magical. Replace with the specific detail that earned the adjective.
 9. **Inline photos** — do they anchor specific narrative moments, or should they go to the gallery?
 10. **Nutshell** — complete and honest?
-1. **Pull Quotes** — identified and suggested? (See below.)
+11. **Pull Quotes** — identified and suggested? (See below.)
 
 ## Pull Quote Guidelines
 

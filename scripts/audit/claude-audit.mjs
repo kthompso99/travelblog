@@ -9,6 +9,7 @@ import {
   parseAuditResponse,
   saveAuditResults,
   resolveFiles,
+  getContentType,
   ENFORCEMENT_MANDATE,
   SYSTEM_PROMPT
 } from "./audit-shared.mjs";
@@ -33,7 +34,11 @@ async function runAudit(filepath) {
   const client = new Anthropic();
   const model = getModel();
 
-  const content = readArticleContent(filepath);
+  const contentType = getContentType(filepath);
+  const rawContent = readArticleContent(filepath);
+  const content = contentType === "article"
+    ? "[Content type: article — evaluate on 5 dimensions only, exclude Decision Clarity per editorial standards]\n\n" + rawContent
+    : rawContent;
   const { editorialStandards, brandIdentity } = loadContextDocs();
 
   const systemPrompt = [
@@ -53,7 +58,7 @@ async function runAudit(filepath) {
   });
 
   const outputText = response.content[0].text;
-  const { scores, markdown } = parseAuditResponse(outputText);
+  const { scores, markdown } = parseAuditResponse(outputText, contentType);
   saveAuditResults(filepath, scores, markdown, PROVIDER);
 }
 

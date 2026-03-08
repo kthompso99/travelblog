@@ -21,20 +21,40 @@ export const WEIGHTS = {
 const GALLERY_MARKER = "*Add your photos here*";
 
 // ==============================
+// 🗂️ Content Type Detection
+// ==============================
+
+export function getContentType(filepath) {
+  const dir = path.dirname(filepath);
+  const filename = path.basename(filepath);
+  const tripJsonPath = path.join(dir, "trip.json");
+
+  if (!fs.existsSync(tripJsonPath)) return "location";
+
+  const trip = JSON.parse(fs.readFileSync(tripJsonPath, "utf-8"));
+  const entry = trip.content?.find(c => c.file === filename);
+
+  return entry?.type === "article" ? "article" : "location";
+}
+
+// ==============================
 // 🧮 Weighted Score Calculator
 // ==============================
 
-export function computeWeightedScore(scores) {
+export function computeWeightedScore(scores, contentType) {
   let total = 0;
+  let activeWeight = 0;
 
   for (const key in WEIGHTS) {
+    if (contentType === "article" && key === "decision_clarity") continue;
     if (typeof scores[key] !== "number") {
       throw new Error(`Missing score for dimension: ${key}`);
     }
     total += scores[key] * WEIGHTS[key];
+    activeWeight += WEIGHTS[key];
   }
 
-  return Number(total.toFixed(2));
+  return Number((total / activeWeight).toFixed(2));
 }
 
 // ==============================
@@ -80,7 +100,7 @@ export function loadContextDocs() {
 // 🧠 Parse Audit Response
 // ==============================
 
-export function parseAuditResponse(output) {
+export function parseAuditResponse(output, contentType) {
   let jsonString;
   const fencedMatch = output.match(/```json\s*([\s\S]*?)\s*```/);
 
@@ -110,7 +130,7 @@ export function parseAuditResponse(output) {
   }
 
   const scores = parsed.scores;
-  scores.overall_score = computeWeightedScore(scores);
+  scores.overall_score = computeWeightedScore(scores, contentType);
 
   const markdownStart = output.indexOf(jsonString) + jsonString.length;
   let markdown = output.slice(markdownStart).trim();

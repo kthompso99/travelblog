@@ -4,7 +4,7 @@
 
 import fs from "fs";
 import path from "path";
-import { WEIGHTS } from "./audit-shared.mjs";
+import { WEIGHTS, getContentType, computeWeightedScore } from "./audit-shared.mjs";
 
 // ==============================
 // 🔧 CONFIG
@@ -102,14 +102,21 @@ function collectTrips() {
 
       const audit = getLatestAudit(auditFolder, PROVIDER_FILTER);
       if (audit) {
+        const contentType = getContentType(path.join(tripPath, file));
+        const score = computeWeightedScore(audit, contentType);
         const entry = {
           article: articleName,
-          score: audit.overall_score,
-          provider: audit._provider
+          score,
+          provider: audit._provider,
+          contentType
         };
         if (DETAIL_MODE) {
           for (const dim of DIMENSIONS) {
-            entry[dim] = audit[dim] ?? null;
+            if (contentType === "article" && dim === "decision_clarity") {
+              entry[dim] = null;
+            } else {
+              entry[dim] = audit[dim] ?? null;
+            }
           }
         }
         trips[tripName].push(entry);
@@ -186,8 +193,9 @@ function runDashboard() {
     .sort((a, b) => a.score - b.score)
     .forEach(a => {
       const src = a.provider ? ` [${a.provider}]` : "";
+      const type = a.contentType === "article" ? " [A]" : "";
       console.log(
-        `${a.score.toFixed(2)}  |  ${a.trip} / ${a.article}${src}`
+        `${a.score.toFixed(2)}  |  ${a.trip} / ${a.article}${type}${src}`
       );
     });
 

@@ -9,6 +9,7 @@ import {
   parseAuditResponse,
   saveAuditResults,
   resolveFiles,
+  getContentType,
   ENFORCEMENT_MANDATE,
   SYSTEM_PROMPT
 } from "./audit-shared.mjs";
@@ -25,7 +26,11 @@ async function runAudit(filepath) {
     apiKey: process.env.OPENAI_API_KEY
   });
 
-  const content = readArticleContent(filepath);
+  const contentType = getContentType(filepath);
+  const rawContent = readArticleContent(filepath);
+  const content = contentType === "article"
+    ? "[Content type: article — evaluate on 5 dimensions only, exclude Decision Clarity per editorial standards]\n\n" + rawContent
+    : rawContent;
   const { editorialStandards, brandIdentity } = loadContextDocs();
 
   const response = await client.responses.create({
@@ -39,7 +44,7 @@ async function runAudit(filepath) {
     ]
   });
 
-  const { scores, markdown } = parseAuditResponse(response.output_text);
+  const { scores, markdown } = parseAuditResponse(response.output_text, contentType);
   saveAuditResults(filepath, scores, markdown, PROVIDER);
 }
 
