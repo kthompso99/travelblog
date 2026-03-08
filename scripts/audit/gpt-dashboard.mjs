@@ -29,6 +29,22 @@ function getProviderFilter() {
 
 const PROVIDER_FILTER = getProviderFilter();
 
+// Optional trip filter: first positional arg (not a flag or flag value)
+function getTripFilter() {
+  const skip = new Set(["--detail", "-detail", "--provider"]);
+  for (let i = 2; i < process.argv.length; i++) {
+    const arg = process.argv[i];
+    if (skip.has(arg)) {
+      if (arg === "--provider") i++; // skip its value too
+      continue;
+    }
+    if (!arg.startsWith("-")) return arg;
+  }
+  return null;
+}
+
+const TRIP_FILTER = getTripFilter();
+
 // ==============================
 // 📂 Helpers
 // ==============================
@@ -70,6 +86,7 @@ function collectTrips() {
   for (const tripName of fs.readdirSync(tripsRoot)) {
     const tripPath = path.join(tripsRoot, tripName);
     if (!fs.statSync(tripPath).isDirectory()) continue;
+    if (TRIP_FILTER && tripName !== TRIP_FILTER) continue;
 
     trips[tripName] = [];
 
