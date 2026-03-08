@@ -68,10 +68,10 @@ export const SYSTEM_PROMPT = fs.readFileSync(
 
 export function loadContextDocs() {
   const editorialStandards = fs.readFileSync(
-    "docs/brand/Editorial-Standards.md", "utf-8"
+    "docs/Content/Editorial-Standards.md", "utf-8"
   );
   const brandIdentity = fs.readFileSync(
-    "docs/brand/Brand.md", "utf-8"
+    "docs/Content/Brand.md", "utf-8"
   );
   return { editorialStandards, brandIdentity };
 }
