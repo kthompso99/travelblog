@@ -347,7 +347,7 @@ function main() {
             suppressLog = true;
             const metrics = analyzeMarkdownFile(mainPath, 'main.md');
             suppressLog = false;
-            rows.push({ name: 'main', ...metrics });
+            rows.push({ name: 'overview', ...metrics });
         }
 
         // Analyze each content item
