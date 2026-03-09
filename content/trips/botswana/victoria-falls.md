@@ -1,20 +1,20 @@
 ## Overview
 
-The short Zimbabwe part of our trip was better than we expected on both counts — as a safari introduction and as a way to see Victoria Falls. 
+We visited Zimbabwe for 2 nights before heading to Botswana. This short part of our trip was better than we expected on both counts — as a safari introduction and as a way to see the mighty Victoria Falls. 
 
-We arrived by air from Cape Town (with a stop at Kruger airport) to Victoria Falls airport. A 15-minute car transfer took us, with a brief glimpse at the local town, to a boat dock and then a 20-minute boat transfer upriver to the Old Drift. We didn't see a lot of animals in that first 20 minutes but it felt like we were 'in the wild'.
+We arrived by air from Cape Town (with a stop at Kruger airport) to Victoria Falls airport. A 15-minute car transfer took us, with a brief glimpse at the local town, to a boat dock and then a 20-minute boat transfer upriver to our home for 2 nights, the Old Drift Lodge. We didn't see a lot of animals in that first 20 minutes but it felt like we were 'in the wild'.
 
 ![Approaching Old Drift for the first time.](images/victoria-falls-01.jpg)
 
-On check-in, we saw an elephant just mellowly munching on tree branches maybe 50 yards from the hotel lobby — quite the intro.
+On check-in, we saw an elephant just mellowly munching on tree branches 50 yards from the hotel lobby — quite the intro.
 
-![This elephant greeted us, 20 yards from the lobby of our Zimbabwe lodge (The Old Drift Inn), immediately as we arrived Saturday afternoon. A strong start.](images/victoria-falls-02.jpg)
+![This elephant greeted us, 20 yards from the lobby of our Zimbabwe lodge, immediately as we arrived Saturday afternoon. A strong start.](images/victoria-falls-02.jpg)
 
 We unpacked and then had a 2-3 hour boat safari on the Zambezi — seeing kudu, elephants, a monitor lizard digging a nest, crocodiles, a baby hippo with its parents. Our guide/captain knew a great spot on the river to anchor for sunset. Lovely end to our first day "in the bush".
 
-![Our lodge was on the Zambezi river, and we did a sunset cruise just after arriving. This is a baby hippo learning to swim in the river. The father was nearby and gave a pretty impressive bellow to let us know not to get closer.](images/victoria-falls-04.jpg)
+![Our lodge was on the Zambezi river, and we did a sunset cruise just after arriving. This is a baby hippo learning to swim in the river. The father was nearby and gave an impressive bellow to let us know not to get closer.](images/victoria-falls-04.jpg)
 
-Day 2 our priority was Victoria Falls, which the guides recommended visiting in the afternoon. That left the morning for our first game drive. We, or maybe I, had low expectations — the Old Drift's surroundings are dry and dusty compared to the Okavango — but the lodge sits inside Zambezi National Park, and we saw elephants, giraffes, baboons, and cape buffalo in that one morning. 
+Day 2 our priority was Victoria Falls, which the guides recommended visiting in the afternoon. That left the morning for our first game drive. We had low expectations — the Old Drift's surroundings are dry and dusty compared to the Okavango — but the lodge sits inside Zambezi National Park, and we saw elephants, giraffes, baboons, and cape buffalo in that one morning. 
 
 ![Our morning morning game drive featured more elephants than we can count. This juvenile is learning to flap its ears to look threatening.](images/victoria-falls-08.jpg)
 
@@ -22,18 +22,33 @@ Day 2 our priority was Victoria Falls, which the guides recommended visiting in 
 
 ![Coffee break on the Zambezi river. It was winter in early August — probably 40s when we started, but 60s by late morning.](images/victoria-falls-14.jpg)
 
-One afternoon moment worth mentioning separately: we needed to leave our room to get back to the main lodge, but a young male elephant was on our porch. We decided to wait, maybe just a little while. When we finally opened the front door, he turned toward us pretty aggressively. Later he was doing not-very-subtle charging behavior at our friends in the next room over. Staying at a lodge inside an African national park is ... interesting at times.
+One afternoon moment worth mentioning separately: we needed to leave our room to get back to the main lodge, but a young male elephant was on our porch. We decided to wait, just a little while. When we finally opened the front door, he turned toward us aggressively. Later he was doing not-very-subtle charging behavior at our friends in the next room over. 
 
-![We needed to leave our room to get back to the main lodge building ... but decided to wait, maybe just a little while.](images/victoria-falls-21.jpg)
+![We needed to leave our room to get back to the main lodge building ... but this elephant had other ideas.](images/victoria-falls-21.jpg)
 
-The afternoon was Victoria Falls. About a 25-minute drive to the park, then maybe 3 hours of walking. It's not long after you start that you hear the rumble — in the local language the falls are known as Mosi-oa-Tunya, meaning "the smoke that thunders", which sounds considerably better than 'Victoria', and gives a sense of just how powerful and *loud* it is. 
+## Victoria Falls
+
+The afternoon was Victoria Falls. About a 25-minute drive to the park, then 3 hours of walking. It's one of Africa's best-known tourist attractions, and certainly a bit of a shock to come into a parking lot filled with buses and vans.  But once in the park, the crowds were spread out enough that it wasn't unpleasant.
+
+![Park entrance.](images/victoria-falls-22.jpg)
+
+It's not long after you start that you hear the rumble — in the local language the falls are known as Mosi-oa-Tunya, meaning "the smoke that thunders", which sounds considerably better than 'Victoria', and gives a sense of just how powerful and *loud* it is. 
 
 ![We could include 20 pictures just of the rainbows coming out of the falls. We were not at the highest water time of year (that's April, end of the rainy season), but I'm glad we saw it in August — the waterfall was nearly invisible in many spots due to the mist, and evidently that's even more true at higher water.](images/victoria-falls-24.jpg)
 
-Victoria Falls is generally considered the world's largest waterfall combining width and height — over a mile wide, shared between Zambia and Zimbabwe. We were on the Zimbabwe side and walked pretty much the full width, maybe 20 or 30 viewpoints, none of which see more than 25-30% of the falls. There's no vantage point from the ground that takes in even most of it.
-Tiffany was moved to tears at the first viewpoint. The guides were right about the afternoon — the rainbows were real and they were everywhere.
+The guides were right about the afternoon — the rainbows were real and they were everywhere. Tiffany was moved to tears at the first viewpoint.
+
+That reaction surprised neither of us after a few minutes standing there. The scale of the falls is in a different category.
+
+Victoria Falls is often described as the largest waterfall in the world when width and height are combined. The falls stretch more than a mile across the border between Zambia and Zimbabwe.
+
+From the Zimbabwe side you walk a series of viewpoints along the entire length. Each viewpoint shows only a small portion of the falls — maybe 25–30% at most — so the experience unfolds gradually as you move along the path.
+
+There’s no single ground viewpoint that captures the whole thing.
 
 ![This is maybe 5% of the falls.](images/victoria-falls-27.jpg)
+
+It's an option to fly over the falls by helicopter to see all of the falls at once.  While we appreciate how incredible the views are from 'up there', our comfort level with helicopters is such that ... we passed.  Maybe next time.
 
 
 ![This spot in particular was drenching.…](images/victoria-falls-25.jpg)
@@ -55,7 +70,7 @@ Stay Overnight: Old Drift Lodge is right on the Zambezi — we thought of it as 
 Don't Miss: Victoria Falls in the afternoon — the rainbows are real and the guides were right about timing. Bring something waterproof.
 Best Time of Day: Afternoon for the Falls (the guides were right about the light); sunrise on the Zambezi.
 Worth the Splurge: Old Drift Lodge. The Zambezi frontage, the game drives, the boat — worth every bit of it.
-Return Visit: Would love to see the Falls at higher water in April.
+Return Visit: Would love to see the Falls again, and maybe try the helicopter ride.
 :::
 
 *Add your photos here*
@@ -89,7 +104,6 @@ Return Visit: Would love to see the Falls at higher water in April.
 
 ![The Old Drift staff used non-lethal slingshots to keep this monkey from begging "too" much at meals.](images/victoria-falls-18.jpg)
 
-![Park entrance.](images/victoria-falls-22.jpg)
 
 
 

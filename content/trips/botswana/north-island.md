@@ -12,11 +12,11 @@ After 3 nights at Sable Alley, we took a short charter flight — 20 minutes or 
 
 ![Our last lodge, North Island Okavango, had a fire pit thrust out into the hippo pools.](images/north-island-41.jpg)
 
+For general information on the Okavango, see the [Okavango overview](okavango.html) for background on the delta overall.
+
 ## Getting There
 
-Visiting the Okavango involves a lot of small planes. We were typically on 12-seaters, always on MackAir, which did a nice job. The flights were mostly 20-30 minutes, short enough that claustrophobia wasn't an issue, and we saw elephants out the window on several of them.
-
-![Visiting the Okavango Delta typically involves quite a few small planes — we were usually on 12-seaters, always on MackAir.](images/north-island-01.jpg)
+The MackAir flight from Sable Alley was only 15-20 minutes, and allowed gorgeous views of the delta from above.
 
 ![Aerial view of the delta](images/north-island-02.jpg)
 
@@ -30,7 +30,7 @@ The guiding at North Island required a different kind of skill than open-grassla
 
 ![Parks (our North Island guide) at a morning elephant sighting](images/north-island-63.jpg)
 
-![We felt our Okavango guides had to work far harder than our memory from the Serengeti in 2013, which is open grassland where you can look 2 miles into the distance. The parts of the Okavango we visited featured much heavier vegetation.](images/north-island-43.jpg)
+![Big kitty pawprint overlaying a tire track](images/north-island-43.jpg)
 
 The wild dogs were the standout sighting of the entire trip. The African Wild Dog is one of the world's most endangered mammals, roughly 6,000 left in the wild. A thriving pack lived about 30 minutes from our lodge, and we visited their den twice. The puppies were 5 weeks old, basking in the morning sun outside the den, occasionally getting up to play. The adult markings are extraordinary up close, which is why they're also called Painted Wolves.
 
@@ -90,7 +90,6 @@ Elephants were everywhere, as at Sable Alley: in camp, in the water, visible fro
 
 ![Baby elephant from our North Island living room](images/north-island-09.jpg)
 
-![Elephants shoulders-deep in the water, feeding on the tender greens found in Okavango wetlands.](images/north-island-71.jpg)
 
 We had two boat outings, one Saturday afternoon and one Sunday morning. The delta by boat is a different experience from the game drive: slower, closer to the water, surrounded by birds, and occasionally by hippos. We did a multi-hour trip through the delta. One hippo got skittish as we passed and crashed into the water closer than we wanted.
 
@@ -102,17 +101,16 @@ We had two boat outings, one Saturday afternoon and one Sunday morning. The delt
 
 ![We saw quite a few crocodiles along the various waterways, this one was roughly 15 feet long. Usually we had 2-4 seconds before they disappeared into the water.](images/north-island-70.jpg)
 
+![Elephants shoulders-deep in the water, feeding on the tender greens found in Okavango wetlands.](images/north-island-71.jpg)
+
+
 We timed our trip for a full moon, which we were glad of. A cold front also came through for 48 hours, lows in the 40s, cold enough that the hippos weren't in the water at 7:20am. We'd never seen one so far from water before.
 
 ![We were very fortunate to time our trip for a full moon.](images/north-island-61.jpg)
 
 ![We had a cold front come through for 48 hours. Even the hippos weren't in the water at 7:20am.](images/north-island-16.jpg)
 
-We noticed villagers gathering grass near the camp in what appeared to be a combination of income and tradition. At one point we saw locals walking through the Okavango in the middle of the day; the safety aspects of that we didn't fully understand. One of us noted they tended to wear extremely bright clothing, in contrast to the all-khaki of official safari wear. We speculated they might prefer to be seen by wildlife so it moves away, the opposite of our goal.
 
-![Local villagers have been gathering grass for generations.](images/north-island-57.jpg)
-
-![One of us noted they tended to wear extremely bright clothing — we speculated maybe they prefer to be seen by wildlife so it moves away, the opposite of our goal.](images/north-island-64.jpg)
 
 ## Where We Stayed
 
@@ -126,7 +124,7 @@ We noticed villagers gathering grass near the camp in what appeared to be a comb
 verdict: Would Plan Around
 Stay Overnight: Quieter and more personal than Sable Alley. The fire pit sits over the hippo pool; you'll hear them all night.
 Don't Miss: The wild dog den — 5-week-old pups, a thriving pack, one of the rarest sightings in the Okavango.
-Best Time of Day: Early morning — the lioness with cubs, the male lion we'd given up on, and the final goodbye were all before 9am.
+Best Time of Day: Early morning and late afternoon — the lioness with cubs was around 8am, the male lion we'd given up on was 530pm.
 Worth the Splurge: The upgrade from Sable Alley. Better food, higher service, and a fire pit over the hippo pool.
 Return Visit: Without hesitation.  The wild dogs aren't guaranteed, but the entire experience was incredible.
 :::

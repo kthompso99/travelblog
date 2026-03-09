@@ -249,7 +249,7 @@ Use this for rapid review of any draft:
 
 ## Pull Quote Guidelines
 
-When reviewing or drafting any location page, suggest 1-2 pull quotes at the end of your response.
+When suggesting pull quotes, first check whether the document already contains blockquotes (lines beginning with >). If 2 or more blockquotes are already present, skip the pull quote suggestion entirely — the author has already made those choices. If fewer than 2 blockquotes exist, suggest enough to bring the total to 2, with a brief note on why each works.
 
 A good TTN pull quote:
 

@@ -4,13 +4,13 @@
 
 The camp sits on 12 tents spread out along the Khwai River. We arrived from Victoria Falls via a drive to the Botswana border and a short flight from Kasane — an airport that was surprisingly modern, brand new when we passed through.
 
+For general information on the Okavango, see the [Okavango overview](okavango.html) for background on the delta overall.
+
 ![Sable Alley bed](images/sable-alley-02.jpg)
 
 ![Front porch at Sable Alley, facing the hippo pool.](images/sable-alley-03.jpg)
 
 ![Roughing it at Sable Alley](images/sable-alley-04.jpg)
-
-![We were driven from Victoria Falls to Kasane in Botswana, and pleasantly surprised how modern the airport was.](images/sable-alley-01.jpg)
 
 ## The Floods
 
@@ -18,7 +18,7 @@ We were there during flood season, which shapes everything about how you move th
 
 ![A view of the 'road' covered in water — typically 1-2 feet deep, though we had some deeper crossings.](images/sable-alley-09.jpg)
 
-## What We Saw
+## Wildlife Highlights
 
 > The standout sighting at Sable Alley was a young male leopard we stayed with for a good 40 minutes. He was hunting, scanning, drinking, entirely indifferent to our truck. The camouflage, the musculature of those front legs, the black collar in his markings — photographs don't capture it the way 20 feet does.
 
@@ -48,16 +48,6 @@ We had three lion cub sightings across the whole trip; one of them was here.
 
 ![Lion cub at Sable Alley](images/sable-alley-23.jpg)
 
-Our guide CJ took us out on the Khwai River at sunset — the profile of dead trees against the near-equatorial sun, hippos in the foreground. One of the quieter hours of the trip.
-
-![The profile of the trees against the near-equatorial sun was something else. Tail end of a river trip on the Khwai River. Note hippos in the foreground to the left.](images/sable-alley-20.jpg)
-
-![Tour guide CJ on the Khwai river](images/sable-alley-21.jpg)
-
-> CJ is of the San people, making up less than 3% of Botswana's population. 
-
-His outdoor sense was immediately apparent: he read which direction animals were looking, identified alarm calls from other species, tracked footprint direction in ways we would never have registered on our own. Having him as a guide changed how we understood what we were looking at.
-
 We saw relatively few zebras at Sable Alley until the last day; at North Island they were everywhere. We're not entirely sure why — possibly fencing used to protect nearby livestock affecting migration patterns. In the Serengeti you see hundreds of wildebeest and a handful of zebra; here it was roughly the reverse. We wish we understood the dynamics better.
 
 ![At our first Okavango camp we saw relatively few zebra until the last day.](images/sable-alley-34.jpg)
@@ -68,20 +58,35 @@ All three guides across two countries made the same joke: the nickname for Impal
 
 ![All 3 guides across 2 countries called Impala "McDonalds" — you see them everywhere. But they're not unattractive antelope.](images/sable-alley-10.jpg)
 
+## Boating Adventures
+
+Our guide CJ took us out on the Khwai River at sunset — the profile of dead trees against the near-equatorial sun, hippos in the foreground. One of the quieter hours of the trip.
+
+![The profile of the trees against the near-equatorial sun was something else. Tail end of a river trip on the Khwai River. Note hippos in the foreground to the left.](images/sable-alley-20.jpg)
+
+![Tour guide CJ on the Khwai river](images/sable-alley-21.jpg)
+
+> Interestingly, CJ is of the [San](https://en.wikipedia.org/wiki/San_people) tribe, which makes up less than 3% of the population of Botswana.  They are one of the most ancient people on earth.
+
+Early white settlers called them 'Bushmen' — the same patronizing framing that runs through the 1980 film "The Gods Must Be Crazy".  They were semi-nomadic until the 1960s before the government largely convinced (forced?) them to settle into villages.  This meant that CJ (he looked to be in his 40s?) remembers his grandfather who … lived much of his life as a hunter-gatherer, unchanged as far as I can tell from how his tribe had lived for thousands of years.  
+
+His outdoor sense was immediately apparent: he read which direction animals were looking, identified alarm calls from other species, tracked footprint direction in ways we would never have registered on our own. Having him as a guide changed how we understood what we were looking at.
+
+
 ## Where We Stayed
 
 [Sable Alley](https://naturalselection.travel/camps/sable-alley-okavango-delta/) — 12 tents, Khwai Reserve, well-run, comfortable without being ostentatious. The main area and firepit face the water. The two chairs facing the hippo pool got a lot of use by our group.
 
-![Sable Alley main area. The 4 of us sat in those chairs right in front of this photo pretty regularly.](images/sable-alley-40.jpg)
+![Sable Alley main area. The 4 of us sat in those chairs right in front of this photo regularly.](images/sable-alley-40.jpg)
 
 ![These two seats facing the hippo pool got a lot of use.](images/sable-alley-41.jpg)
 
 ![Sable Alley firepit](images/sable-alley-39.jpg)
 
 :::nutshell Sable Alley
-verdict: Glad We Went
+verdict: Would Plan Around
 Stay Overnight: Canvas tents with flush toilets, a full shower, and hippos outside — comfortable without being ostentatious.
-Don't Miss: The leopard — 40 minutes at 20 feet; sunset on the Khwai River with CJ.
+Don't Miss: The leopard — 40 minutes from 50 feet away; sunset on the Khwai River.
 Best Time of Day: Sunset — dead trees against the near-equatorial sun, hippos in the foreground.
 Worth the Splurge: It's the Okavango, so it's already a splurge. Sable Alley is an excellent place to start.
 Return Visit: Probably North Island next time — but we'd have missed something if we'd skipped Sable Alley.

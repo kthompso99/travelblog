@@ -1,41 +1,51 @@
 ## Overview
-Cape Town has a strong claim to being one of the most beautiful cities in the world — August isn't the best time to find out (even if it's a San Francisco, not Chicago, winter).  This trip optimized for "best time to visit the Okavango" rather than "best time to visit Cape Town".  There can evidently be some pretty fierce winter storms coming off the ocean, we got lucky, one rainy day but only for a few hours, and some drizzle.  
+We planned this trip around the Okavango, not Cape Town. August is the dry season in Botswana — the right call for safari — and it drops you into Cape Town in the middle of winter. That tradeoff is worth knowing before you go: the city is beautiful, the weather is not guaranteed, and Table Mountain will be in clouds more often than not.
+
 
 ## Cape Town Sites
 
-We *did* go to the District 6 Museum, we did *not* go to to Robben Island, famously one of several prisons where Nelson Mandela was imprisoned (1964-1982).  Several people, including Kili from Next Adventure, suggested that Robben Island is a big trip – sorta a 6-hour trip end-to-end (waiting for the boat, the boat trip, etc) … to have your 3 minutes in front of Mandela’s cell, and that it may or may not be worth the overhead.  Evidently in the past the tour guides would be former prisoners, and 10-15 years ago you might have anecdotes of people who knew the great man … now much less so since time marches on.  
+We chose *not* go to to Robben Island, famously one of several prisons where Nelson Mandela was imprisoned (1964-1982).  Several people, including Kili from Next Adventure, suggested that Robben Island is a big trip -- a 6-hour trip end-to-end (waiting for the boat, the boat trip, etc) … to have your 3 minutes in front of Mandela’s cell, and that it may not be worth the overhead.  Evidently in the past the tour guides would be former prisoners, and 10-15 years ago you might have anecdotes of people who knew the great man … now much less so as the former prisoners age out.  
 
 > I read one TripAdvisor review in which the young tour guide made vaguely racist jokes *on Robben Island* … blech.
 
-However, we found the District 6 museum compelling – it’s not huge, it’s a 90-120 minute sort of visit, but well worth it.  District 6 was an entire mixed-race neighborhood that the apartheid government just decided to empty and then bulldoze in the 1960s, because it was too close to white areas.  The stories told are compelling, and we found it affecting.  Interestingly, there was a tour guide there while we were there who was a resident of that neighborhood in the 1960s … our tour guide was the child of two District 6 residents.  Generally very recommended, and book a tour in advance, I think they were sold out the day we were there (not to visit the museum, but for the guided tours).
+To learn some about apartheid history, we found the District 6 museum compelling – it’s not huge, it’s a 90-120 minute visit, but well worth it.  District 6 was an entire mixed-race neighborhood that the apartheid government just decided to empty and then bulldoze in the 1960s, because it was too close to white areas.  The stories told are compelling, and we found it affecting.  Interestingly, we saw a tour guide there who was a former resident of that neighborhood … our tour guide was the child of two District 6 residents.  Book a tour in advance, the guided tours were sold out the day we were there.
 
 ![The District 6 Museum tells the harrowing story of apartheid from the microcosm of a single neighborhood. The government decided in 1966 that this district of Cape Town should be designated whites-only, and forcibly removed 60,000 people from a thriving community. Our guide was the child of a couple who were amongst those dislocated. In the back of this main hall are street signs rescued from the neighborhood.](images/cape-town-02.jpg)
 
 ![There's something about being right in front of an actual sign from the era that is searing.](images/cape-town-03.jpg)
 
-We thoroughly enjoyed [**GOLD**](https://goldrestaurant.co.za/) for an evening show.  We thought it was ‘just’ dinner, but it’s really a full-on dinner theater, probably a 90-minute show with multi-course African-themed food.  It’s unambiguously something for tourists … but it was/is extremely well-executed.  The performers had infectious energy, and the food was excellent.  Per security comments above … they had a Gold staff member escort us the 30 \*feet\* to our Uber.  
+We thoroughly enjoyed [**GOLD**](https://goldrestaurant.co.za/) for an evening show.  We thought it was ‘just’ dinner, but it’s really a full-on dinner theater, probably a 90-minute show with multi-course African-themed food.  It’s unambiguously something for tourists … but it was/is extremely well-executed.  The performers had infectious energy, and the food was excellent.  Per our overall comments on Cape Town security … they had a Gold staff member escort us the 30 \*feet\* to our Uber.  
 
 ![We saw an African cultural show at Gold Restaurant our first night. Sure it was/is for tourists, but the energy was infectious, and the food was tasty.](images/cape-town-04.jpg)
 
+A standard Cape Town recommendation is to ascend Table Mountain on the gondola.  Sadly, they close the gondola up the mountain 5 days a year for maintenance.  Guess which days we were there? So we can’t tell you how that is.    
+
+![As much as it's in every tourist guide for Cape Town, it's difficult to overestimate how much Table Mountain *looms* over the central district.  We had quite a bit of cloud cover, but one day where the view was perfect.  ](images/cape-town-26.jpg)
+
+We certainly had quite a bit of time from Cape Town in which we couldn’t see the top of the mountain.
+
+![Table Mountain bathed in clouds from Mt Nelson hotel](images/cape-town-05.jpg)
+
+
 ## Outside of Cape Town
 
-A day-long Cape Peninsula tour is worth a full day of your trip.  Doing the full loop down the west coast, over Chapman’s Peak drive, down all the way to Cape Point, and then back is probably 3ish hours of more of straight driving, but it ends up being quite a bit of a day given all the stops for photo opps, short walks, etc.  We wouldn’t recommend our vendor, as our driver was casually racist in a way we didn’t love, but any number of companies do this tour if you web-search.  Our friend who did it a year before us drove it herself, and wished she’d had a driver, and we were happy we did, as some of the driving is on narrow hairpin-y roads (on the left hand side of the road, of course).  
+A day-long Cape Peninsula tour is worth a full day of your trip.  Doing the full loop down the west coast, over Chapman’s Peak drive, down all the way to Cape Point, and then back is probably 3ish hours of more of straight driving, but it ends up being quite a bit of a day given all the stops for photo opps, short walks, etc.  We wouldn’t recommend our vendor, as our driver was casually racist in a way we didn’t love (a direct quote from our driver: “all blacks here don’t want to work”), do your own searching to find a well-reviewed driver.  Our friend who did it a year before us drove it herself, and wished she’d had a driver, and we were happy we did, as some of the driving is on narrow hairpin-y roads (on the left hand side of the road, of course).  
 
 ![Baboons in Table Mountain National Park.  They crossed right in front of our vehicle, with one male taking the time (not pictured) to copulate in mid-street-crossing.](images/cape-town-17.jpg)
 
 ![The Cape of Good Hope marked the spot where early Portuguese travellers could start travelling more east than south on their way to Asia.  The line to get The Picture of us behind the sign was longer than felt worth it to us.](images/cape-town-21.jpg)
 
-The African penguins on Boulder Beach are adorable and extremely accessible.  Sadly, at the Two Oceans Aquarium in Cape Town they warned us that African penguins may not make it past the 2030s.  Too much food disappearing.  We had a lovely lunch out at Cape Point at Two Oceans Restaurant, it was better than expected for a touristy spot, it worked well.
+The African penguins on Boulder Beach are adorable and extremely accessible.  Sadly, at the Two Oceans Aquarium in Cape Town they warned us that African penguins may not make it past the 2030s.  Too much food disappearing.  
 
 ![African penguins at Boulders Beach, about an hour from Cape Town.  They are sadly highly endangered.](images/cape-town-22.jpg)
 
+We had a lovely lunch out at Cape Point at Two Oceans Restaurant, it was better than expected for a touristy spot, it worked well.
 
-A standard Cape Town recommendation is to ascend Table Mountain on the gondola.  That works, except … it closes for 4 days every year for maintenance and …. We drew the short straw.  So we can’t tell you how that is.  Many guidebooks recommend you schedule it for your first day because the weather is so unpredictable – and then you can postpone it if it's cloudy.  We certainly had quite a bit of time from Cape Town in which we couldn’t see the top of the mountain.
+![Cape Point (the Southwest tip of Africa) in the background.](images/cape-town-18.jpg)
 
+## Gardens and Wine
 
-![As much as it's in every tourist guide for Cape Town, it's difficult to overestimate how much Table Mountain *looms* over the central district.  We had quite a bit of cloud cover, but one day where the view was perfect.  Sadly, they close the gondola up the mountain 5 days a year for maintenance.  Guess which days we were there?](images/cape-town-26.jpg)
-
-Kirstenbosch is the oldest botanical garden in South Africa.  It’s a 15 or 20 minute drive from the Central Business District, sorta “behind” Table Mountain, but a (beautiful) world apart.  It’s to our mind well worth 2 or 3 hours of your time in Cape Town.  I think the best or only trails to the top of Table Mountain actually start near here, on the ‘back’ (less table-shaped) side of Table Mountain.  
+Kirstenbosch is the oldest botanical garden in South Africa.  It’s a 15 or 20 minute drive from the Central Business District, “behind” Table Mountain from a Cape Town perspective, but a (beautiful) world apart.  It’s to our mind well worth 2 or 3 hours of your time in Cape Town.  The best or only trails to the top of Table Mountain actually start near here, on the ‘back’ (less table-shaped) side of Table Mountain.  
 
 ![The Kirstenbosch botanical garden is only 20 minutes from downtown Cape Town, but feels a world apart.](images/cape-town-07.jpg)
 
@@ -43,10 +53,9 @@ We visited Kirstenbosch guided by [Christopher Smith](https://tablemountain.my-h
 
 ![The protea is the national flower of South Africa, and common at Kirstenbosch](images/cape-town-06.jpg)
 
+The [Constantia Valley](https://constantiawineroute.com/) is a small and venerable wine region found right on the southern outskirts of Cape Town; this is distinct from the Cape Winelands (see [separate article](cape-winelands.html)) which are north and east of town (and further away).  We were able to visit [Groot Costantia](https://grootconstantia.co.za/), a winery that dates to the 17th century, on our way back from our Cape Peninsula tour, it’s also 10 minutes from Kirstenbosch and 22 minutes from the Mt Nelson so in retrospect we could have planned differently.  
 
-The [Constantia Valley](https://constantiawineroute.com/) is a small and venerable wine region found right on the southern outskirts of Cape Town; this is distinct from the Cape Winelands (below) which are north and east of town (and further away).  We were able to visit [Groot Costantia](https://grootconstantia.co.za/), a winery that dates to the 17th century, on our way back from our Cape Peninsula tour, it’s also 10 minutes from Kirstenbosch and 22 minutes from the Mt Nelson so in retrospect we could have planned differently.  
-
-> This turned out to be one of the best wineries we visited in South Africa, and we sort of wish we’d ordered some from there but didn’t know at the time because it was the first South African winery we visited.  
+> This turned out to be one of the best wineries we visited in South Africa, and we wish we’d ordered some from there but didn’t know at the time because it was the first South African winery we visited.  
 
 It’s run as a non-profit, to preserve South Africa’s wine heritage; I feel as though its wines may be under-priced for their quality in retrospect.  Excellent stop, highly recommended.
 
@@ -54,11 +63,13 @@ It’s run as a non-profit, to preserve South Africa’s wine heritage; I feel a
 
 We stayed at the [Mount Nelson](https://www.belmond.com/hotels/africa/south-africa/cape-town/belmond-mount-nelson-hotel/), a venerable 1899 hotel with notable past guests including Winston Churchill, Queen Elizabeth, and John Lennon.  We found it outstanding in every way, a lovely spot to relax after 20 hours of flying and before heading out to safari.  
 
-![Table Mountain from Mt Nelson hotel](images/cape-town-05.jpg)
-
 We booked a dinner one night at the [Kloof Street House](https://www.kloofstreethouse.co.za/), which is about 500 yards from the hotel – and the hotel insisted on having a staff member escort us there due to perceived risk (they said daytime didn’t worry them).  It’s always tricky to talk about safety, as different people have different experiences and/or risk profiles.  Is this overkill?  It’s so hard to know.  
 
-We (Kevin) did have a non-violent but non-pleasant experience during that 500 yards where a clearly-not-sober individual yelled *loudly* at Kevin (who had not said a word) with some form of “figures, it’s a white guy” (the speaker was not) – but that could probably happen anywhere.  We have a friend who visited Cape Town in 2023, stayed in an AirbnB near Kloof St, and didn’t feel all that unsafe.  All that being said – if the hotel feels that paranoid, it’s not a great feeling.  So the Mt Nelson felt like an oasis – but not one from which we were confident we can venture out safely at night.  Note that Uber worked quite well in town, and is absurdly cheap ($3 or $4 for a ride), which does help a lot.
+Kevin did have one uncomfortable encounter during that short walk — a clearly intoxicated man loudly shouted something along the lines of “figures, it’s a white guy.” It wasn’t violent, but it wasn’t pleasant either.
+
+That sort of thing can happen anywhere, and a friend who stayed nearby in 2023 felt perfectly safe. Still, if the hotel insists on escorts at night, it changes how the city feels.
+
+Cape Town is a beautiful city, but most visitors will rely heavily on Uber rather than walking after dark.  Uber worked extremely well in Cape Town and was remarkably cheap, which helped mitigate some of those concerns.
 
 There’s a section of Cape Town known as the “V\&A Waterfront” (Victoria & Albert).  This is where the cruise ships dock (not in August, but in general), and is an enclosed, highly sanitized section with security in a great deal of evidence – vs a lot of the rest of town where police were certainly not highly visible.  Many hotels are in the V\&A section, and there are quite a few lovely hotels – we’re not necessarily sad we didn’t stay there, but it would have been nice to be able to just get out and walk without quite as much security concerns, perceived or otherwise, around it.  
 
@@ -104,13 +115,12 @@ Return Visit: Yes — we'd come back in summer to do Table Mountain and spend mo
 
 ![Bo-Kaap is a non-white Cape Town neighborhood that was not destroyed by apartheid (it's not quite clear why), and still has colorful homes that please the eye.](images/cape-town-13.jpg)
 
-![This Southern Fur Seal (found in Hout Bay, 30 minutes south) is fed by hawkers trying to charge tourists for a photo, and is overly comfortable with humans ... but is still pretty impressive to see.](images/cape-town-14.jpg)
+![This Southern Fur Seal (found in Hout Bay, 30 minutes south) is fed by hawkers trying to charge tourists for a photo, and is overly comfortable with humans ... but is still impressive to see.](images/cape-town-14.jpg)
 
 ![Tiffany noticed how different the bouquets are in South Africa.](images/cape-town-15.jpg)
 
 ![One can travel 10,000 miles and still not get away from US news..... the tariffs were a source of great consternation based on how many asked us about them.](images/cape-town-16.jpg)
 
-![Cape Point (the Southwest tip of Africa) in the background.](images/cape-town-18.jpg)
 
 ![Ostrich by the ocean](images/cape-town-19.jpg)
 
