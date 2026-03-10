@@ -26,11 +26,15 @@ It was 100% the right choice to rent a car, though per above we didn't need it f
 
 ![The small beach town of Aliki was a great lunch spot](images/Paros-10.jpg)
 
-- We went to ‘Golden Beach’ which fit under the category of “maybe it’s amazing when the beach clubs are open”, but didn’t blow us away in early May
-- I wish we’d gone to the small village of Marpissa, I read about it later, but we missed it, an oversight we regret.
-- We drove over to Antiparos (10-minute small car ferry, departs on the half-hour) which as promised was sleepy. There are quite a few beaches; some of which didn’t impress us a lot, but again it was offseason.
-  - We drove the 25 minutes from the ferry to “Plage Ag Georgios”, a smallish beach that’s about as far from the ferry as you can get on this small island. We ate right there at Mpakas Fish Tavern, which has a great view of the water. You can also from there see Despotiko, an uninhabited island with a newly-excavated Greek temple area that is from the 8thC BC (e.g., 400 years older than the Parthenon). 
-  - There are a few “waterfront” taverna in Antiparos town, right near the ferry. 
+We went to ‘Golden Beach’ which fit under the category of “maybe it’s amazing when the beach clubs are open”, but didn’t blow us away in early May
+
+I wish we’d gone to the small village of Marpissa, I read about it later, but we missed it, an oversight we regret.
+
+We drove over to Antiparos (10-minute small car ferry, departs on the half-hour) which as promised was sleepy. There are quite a few beaches; some of which didn’t impress us a lot, but again it was offseason.
+  
+  We drove the 25 minutes from the ferry to “Plage Ag Georgios”, a smallish beach that’s about as far from the ferry as you can get on this small island. We ate right there at Mpakas Fish Tavern, which has a great view of the water. You can also from there see Despotiko, an uninhabited island with a newly-excavated Greek temple area that is from the 8thC BC (e.g., 400 years older than the Parthenon). 
+  
+  There are a few “waterfront” taverna in Antiparos town, right near the ferry. 
   
   > We had a lunch at [Taverna Yorgi](https://www.tripadvisor.com/Restaurant_Review-g3569526-d6673076-Reviews-Taverna_Yorgi-Antiparos_Town_Antiparos_Cyclades_South_Aegean.html) 250 yards inland on the main street, and found its atmosphere delightful, we saw locals (kids leaving school, etc) wandering and living their life more than one might see on the waterfront.
 
@@ -38,19 +42,17 @@ It was 100% the right choice to rent a car, though per above we didn't need it f
 
 ![Plage Ag Georgios in early May is pleasant but not spectacular](images/Antiparos-02.jpg)
 
-
-
-- The 5th-century part of “The Church of 100 Doors” is right near Paros town.  It's a very early (parts from the 5th century) Christian church, very different feel from western European churches as it’s Orthodox. 
+The 5th-century part of “The Church of 100 Doors” is right near Paros town.  It's a very early (parts from the 5th century) Christian church, very different feel from western European churches as it’s Orthodox. 
 
 ![It turns out people were shorter in the 5th century](images/Paros-01.jpg)
 
 ![The "Church of 100 Doors"](images/Paros-02.jpg)
 
-- Kolympethres beach has quite striking rock formations.
+Kolympethres beach has quite striking rock formations.
 
 ![The evocative Kolimpithres beach near Naoussa is evidently packed in summer, but we saw it with 4 or 5 beachgoers.](images/Paros-07.jpg)
 
-- Some friends visited a year before us and rented a bare boat to go around Paros on their own; we chose not to because we had some crazy windy days.  They rented it from [The Sailors Ride](https://thesailorsride.gr/our-boats/electra-compass-160e) – note smaller boats don’t require a license.
+Some friends visited a year before us and rented a bare boat to go around Paros on their own; we chose not to because we had some crazy windy days.  They rented it from [The Sailors Ride](https://thesailorsride.gr/our-boats/electra-compass-160e) – note smaller boats don’t require a license.
 
 ## Where We Stayed
 
