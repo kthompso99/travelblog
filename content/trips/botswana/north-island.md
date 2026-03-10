@@ -44,9 +44,10 @@ The wild dogs were the standout sighting of the entire trip. The African Wild Do
 
 ![Another angle of the pup den.](images/north-island-31.jpg)
 
-One morning we found a lioness with three cubs, an auntie standing watch while the mother returned. A waterbuck stood a quarter mile away, facing exactly in the lions' direction, motionless, for minutes. On our final afternoon drive we'd given up on seeing a male lion. We were rewarded for patience. 
+One morning we found a lioness with three cubs, an auntie standing watch while the mother returned. A waterbuck stood a quarter mile away, facing exactly in the lions' direction, motionless, for minutes. 
 
-> And on our last evening, after our sunset photos, when we thought we were done, a lioness walked right past our truck.
+
+
 
 ![Gorgeous picture of lioness in the morning light — this was the first sighting before we saw the cubs.](images/north-island-17.jpg)
 
@@ -58,9 +59,13 @@ One morning we found a lioness with three cubs, an auntie standing watch while t
 
 ![Mother with 3 cubs.](images/north-island-23.jpg)
 
-![On our final afternoon drive, we had given up on seeing a male lion, but were rewarded for patience.](images/north-island-76.jpg)
+On our final afternoon drive we'd given up on seeing a male lion. We were rewarded for patience. 
 
-![Our last evening, *after* our sunset photos, we got one final treat.](images/north-island-83.jpg)
+![Finally, a male lion.](images/north-island-76.jpg)
+
+> And on our last evening, after our sunset photos, when we thought we were done, a lioness walked right past our truck.
+
+![Our last evening we got one final treat.](images/north-island-83.jpg)
 
 ![She walked *right* by our truck.](images/north-island-84.jpg)
 
