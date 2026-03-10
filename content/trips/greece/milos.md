@@ -1,7 +1,7 @@
 
 Milos is less on the top tier of visited Cycladian islands than Santorini, or Mykonos, or Paros, but we thoroughly enjoyed it.  It has fewer tourists and feels more “Greek” than some other islands we visited.
 
-There are two main towns in Milos that attract tourists.  Pollonia is nice, quaint, and pretty, while Adamantas (sometimes spelled Adamas) is the much busier ferry port. They are maybe a 15-20 minute drive apart.
+There are two main towns in Milos that attract tourists.  Pollonia is nice, quaint, and pretty, while Adamantas (sometimes spelled Adamas) is the much busier ferry port. They are a 15-20 minute drive apart.
 
 ## Where We Stayed
 
@@ -30,15 +30,15 @@ One caution is that our helpful car rental representative gave us a ‘free upgr
 
 - There are some nice beaches, 
   - I made a quick ‘n dirty map for myself [here](https://www.google.com/maps/d/edit?mid=10STMCKq4Tnfg4n-Z_B0SCEIKhQogt8I&usp=sharing) based on some online recommendations of “best beach in Milos”.
-  - We especially recommend Sarakiniko beach which is maybe a 5-8 minute walk downhill from the parking lot but sooo photogenic. 
-  - Note that Milos is *very* hilly – so that for example it looks on the map that Fyriplaka beach is right near Paliochori beach, but there’s no “circle” road on this island, you drive 10 minutes back into the interior then back out to the next beach. The road down from the interior to Fyriplaka is a bit hairy, you’re going down a steep road right near a quarry with massive trucks around you.
+  - We especially recommend Sarakiniko beach which is a 5-8 minute walk downhill from the parking lot but sooo photogenic. 
+  - Note that Milos is *very* hilly – so that for example it looks on the map that Fyriplaka beach is right near Paliochori beach, but there’s no “circle” road on this island, you drive 10 minutes back into the interior then back out to the next beach. The road down from the interior to Fyriplaka is hairy, you’re going down a steep road right near a quarry with massive trucks around you.
   - Many of these beaches have offroad components; when we rented our car we were told “not to drive offroad” or something like that … I can only assume most tourists ignore that, since many of the best beaches on Milos … require offroading (this was true in Paros as well, as an aside).
 
 ![Sarakiniko Beach](images/Milos-03.jpg)
 
 ## Food and drink
   - The locals (?) say Yialos is the best restaurant in the main waterfront row in Pollonia, we thought it was excellent. Some sites (TripAdvisor, others) list this as “Gialos’, but the menu very definitely had a Y. 
-  - There is an Asian (sushi) restaurant in Pollonia called Hanabi, I think the locals aren’t thrilled for whatever set of reasons, but we enjoyed it as a change from the Greek fish restaurants which all have sorta the same menu.
+  - There is an Asian (sushi) restaurant in Pollonia called Hanabi, the locals are seemingly un-thrilled for whatever set of reasons, but we enjoyed it as a change from the Greek fish restaurants which all have similar menus.
   - Medusa restaurant in Mandraki is well-known (various celebs have eaten there) and worth the detour for lunch (and probably dinner) – lovely views, nice food (15? minute drive from Pollonia).
   - [Kostankis](https://kostantakiswinery.com/) winery is a 10-min walk from Pollonia – it was very good, super friendly young staff. It’s the only winery on Milos, and was a nice intro to local varietals.  
 

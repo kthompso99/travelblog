@@ -21,6 +21,6 @@ verdict: Glad We Went
 Stay Overnight: Not possible — Delos is an uninhabited archaeological site. Day trip only.
 Don't Miss: The museum; the lion replicas outdoors where they once stood.
 Best Time of Day: Morning — before the afternoon heat on a fully exposed site.
-Worth the Splurge: A tour guide, if you can find one. We didn't and got maybe 40% of the experience.
+Worth the Splurge: A tour guide, if you can find one. We didn't and got much less out of the experience.
 Return Visit: Yes, but with a proper guide next time.
 :::

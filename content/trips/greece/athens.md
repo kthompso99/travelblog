@@ -4,11 +4,11 @@ At a friend’s recommendation, we stayed at the Electra Metropolis, and found i
 
 ##  Getting Around in Athens
 
-We had pretty mixed experiences with our 2 taxi rides – be prepared for tough communication. You can order a taxi through Uber, I sorta wish I had. Taxis are cheap tho, that was great. We didn’t try the subway, it didn’t really go anywhere helpful for us.
+We had pretty mixed experiences with our 2 taxi rides – be prepared for tough communication. You can order a taxi through Uber, I  wish I had. Taxis are cheap though, that was great. We didn’t try the subway, it didn’t really go anywhere helpful for us.
 
 ## Things to See in Athens
 
-National Archaeology museum – we spent about 2 hours there, maybe 2 ½. See this [museum map](https://www.namuseum.gr/wp-content/uploads/2022/03/nam-brochure-ΕΝ-low.pdf) online. The rooms are chronological (e.g., room 1 has the oldest piece, room 35 the newest). Pacing-wise, the first 10-15 rooms are the highlight in our humble opinion.  
+National Archaeology museum – we spent over 2 hours there. See this [museum map](https://www.namuseum.gr/wp-content/uploads/2022/03/nam-brochure-ΕΝ-low.pdf) online. The rooms are chronological (e.g., room 1 has the oldest piece, room 35 the newest). Pacing-wise, the first 10-15 rooms are the highlight in our humble opinion.  
 
 > Don’t pace yourself evenly at this museum.  Instead, spend a ton of time in the first few rooms, especially the Mycenaean room (#4) which is right in your face as you enter.  The Mycenaean collection has incredible artifacts, just that room alone would make that museum a must-see. 
 
@@ -27,9 +27,9 @@ Other ancient ruins in Athens
 - In general the Agora was interesting, but less than I anticipated
   - the good Stoa of Attolos near the entrance is an 1950s reproduction of the original building, and has a small but excellent museum.
   - The Temple of Hephaestus is remarkable, it’s one of the best-preserved ancient Greek temples, and just extraordinary.
-  - We did the Agora without a tour guide, and found it hard to visualize much – maybe with a guide you get more out of it.
+  - We did the Agora without a tour guide, and found it hard to visualize much – perhaps with a guide you get more out of it.
 - We were a block from the Tower of Winds but somehow managed to miss it, which I regret, it sounds interesting.
-- I wanted to go see the massive ruins of the Temple of Olympian Zeus, but it’s across a crazy 8-lane road and we ended looking at it from afar. Honestly, when we looked down at it from the Acropolis, I felt like maybe I didn’t miss that much.
+- I wanted to go see the massive ruins of the Temple of Olympian Zeus, but it’s across a crazy 8-lane road and we ended looking at it from afar. Honestly, when we looked down at it from the Acropolis, I felt like I didn’t miss that much.
 
 The Benizelos Mansion is billed as "the oldest house in Athens". It has sections that are 16th century … it's not "amazing", but we were glad we spent 20 minutes of our time since it was right near our hotel.
 

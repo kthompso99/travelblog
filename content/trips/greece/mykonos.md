@@ -12,6 +12,9 @@ We did a 1-day 3-way boat ferry from Paros to Delos & Mykonos with [Polos tours]
 
 ![View of the port through ancient wall](images/Mykonos-03.jpg)
 
+Sakis Grill House was what I found searching for "best gyro in Mykonos", and it sure is popular, and we thought it was excellent (gyros, souvlaki).
+
+
 :::nutshell Mykonos
 verdict: Glad We Went
 Stay Overnight: We didn't — three hours was enough to see why people love it, not enough to really explore.
