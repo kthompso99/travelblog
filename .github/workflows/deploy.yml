@@ -16,18 +16,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+        with:
+          fetch-depth: 1
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+          cache: 'npm'
+
+      - name: Restore geocode cache
+        uses: actions/cache@v4
+        with:
+          path: _cache
+          key: geocode-${{ hashFiles('content/trips/*/trip.json') }}
+          restore-keys: geocode-
+
       - name: Install dependencies
         run: npm install
-      
+
       - name: Validate configuration
         run: npm run validate
-      
+
       - name: Build site
         env:
           NODE_ENV: production
