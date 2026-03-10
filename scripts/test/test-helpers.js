@@ -15,7 +15,7 @@ const { walkDir } = require('../../lib/build-utilities');
 
 const ROOT_DIR = path.join(__dirname, '../..');
 
-const SKIP_DIRS = new Set(['node_modules', '.git', 'content', 'config', 'templates', 'lib', 'scripts', 'docs']);
+const SKIP_DIRS = new Set(['node_modules', '.git', 'content', 'config', 'templates', 'lib', 'scripts', 'docs', 'screenshots']);
 const SKIP_FILES = new Set(['404.html', 'index.html.backup', 'main.html', 'writingstudio.html']);
 
 /**
