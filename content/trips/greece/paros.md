@@ -30,7 +30,7 @@ We went to ‘Golden Beach’ which fit under the category of “maybe it’s am
 
 I wish we’d gone to the small village of Marpissa, I read about it later, but we missed it, an oversight we regret.
 
-We drove over to Antiparos (10-minute small car ferry, departs on the half-hour) which as promised was sleepy. There are quite a few beaches; some of which didn’t impress us a lot, but again it was offseason.
+We drove over to Antiparos (10-minute small car ferry, departs on the half-hour) which as promised was sleepy. There are quite a few beaches on Antiparos; some of which didn’t impress us a lot, but again it was offseason.
   
   We drove the 25 minutes from the ferry to “Plage Ag Georgios”, a smallish beach that’s about as far from the ferry as you can get on this small island. We ate right there at Mpakas Fish Tavern, which has a great view of the water. You can also from there see Despotiko, an uninhabited island with a newly-excavated Greek temple area that is from the 8thC BC (e.g., 400 years older than the Parthenon). 
   
