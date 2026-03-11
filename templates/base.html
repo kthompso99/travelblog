@@ -217,6 +217,24 @@
             color: white;
         }
 
+        /* ─── Mobile: accordion instead of cascade ─── */
+        @media (max-width: 640px) {
+            .continent-submenu {
+                position: static;
+                border: none;
+                box-shadow: none;
+                border-radius: 0;
+                min-width: auto;
+                padding-left: 0.75rem;
+            }
+            .continent-group::after {
+                display: none;
+            }
+            .continent-group:hover .continent-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
         /* ─── Main Content ─── */
         main {
             max-width: 1200px;
