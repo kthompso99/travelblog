@@ -32,7 +32,7 @@ Near North Island, we noticed villagers gathering grass near the camp in what ap
 
 ## Recommended Reading
 
-If you have a chance, read [Cry of the Kalahari](https://www.amazon.com/gp/product/B00JTJDB2W/ref=ppx_yo_dt_b_d_asin_title_351_o07?ie=UTF8&psc=1) before you go.  It's about a young American couple of wildlife biologists studying in Botswana in the 1970s — before the camps, before the tourism infrastructure, when the delta was genuinely remote. Reading it before you go changes how you look at what's been built there since.
+If you have a chance, read [Cry of the Kalahari](https://bookshop.org/p/books/cry-of-the-kalahari-mark-owens/11275458) before you go.  It's about a young American couple of wildlife biologists studying in Botswana in the 1970s — before the camps, before the tourism infrastructure, when the delta was genuinely remote. Reading it before you go changes how you look at what's been built there since.
 
 ## Closing
 
