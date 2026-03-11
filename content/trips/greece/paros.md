@@ -1,62 +1,71 @@
-Paros was an island we chose after long consideration as the Cycladic island to spend the longest, and slow the pace. we chose it over Mykonos (too discovered), Milos (lovely, but small), or Santorini (over-discovered). Then we spent three of our five days barely leaving Naoussa port, and enjoyed it thoroughly.  We had a car for 2 days and also a day trip to [Delos](delos.html) and [Mykonos](mykonos.html), but Paros is well-located so was an excellent base for the longest stretch of our Cyclades stay.
+Paros was our deliberate choice as the Cycladic island to spend the longest, and slow the pace. We chose it over Mykonos (too focused on glamor), Milos (lovely, but small), or Santorini (over-discovered). Then we spent three of our five days barely leaving the tiny Naoussa port — and didn't mind at all. We did rent a car for two days and made day trips to [Delos](delos.html) and [Mykonos](mykonos.html), but Paros earns its place as the natural home base for this stretch of the Cyclades.  
 
 ## Naoussa Port
 
-Naoussa is a delightful town, it seems much prettier than the ferry town of Parikia. 
-The high-end resorts seem to be almost entirely clustered around Naoussa.
+Naoussa is a delightful town, far more attractive than the ferry town of Parikia. 
+The high-end resorts of Paros are largely clustered on this Northern part of the island, only a 15-minute drive from the ferry.
 
-We stayed near Naoussa, and honestly spent a lot of time just hanging out around Naoussa which was excellent, especially on the heels of bouncing around on a cruise and then Milos/Santorini/Naxos the previous week.  It's just a near-perfect small town -- enough things to see to keep your attention, but very walkable and manageable.
+![This local resident greeted us at Naoussa port every day ](images/Paros-03.jpg)
 
-![This cat greeted us at Naoussa port every day ](images/Paros-03.jpg)
+We stayed at a hotel that was a 5-minute walk from Naoussa, and spent a lot of time just hanging out around the shops and sites of Naoussa Port.  Staying in one place was just what the doctor ordered, especially on the heels of bouncing around on a cruise for 10 days and then Milos, Santorini, and Naxos the previous week. Naoussa has enough to see and do to keep your attention, but remains walkable and manageable.
+
 
 ![Fireworks over Naoussa](images/Paros-05.jpg)
 
-![Near Naoussa is a 14th-century Venetian fort; this is the view of Naoussa port from that fort](images/Paros-08.jpg)
+Near Naoussa is a 14th-century Venetian fort; this is the view of Naoussa port from that fort.  
+
+![From the fort, towards the port.](images/Paros-08.jpg)
 
 ![Sunset over Naoussa Port](images/Paros-09.jpg)
 
-## Things to See in Paros
+## A Car Tour of Paros
 
-It was 100% the right choice to rent a car, though per above we didn't need it for several days where our entire goal was just to hang out at Naoussa port. We rented a car for 2 days and wandered a lot, we saw many island sites.  The island is large enough to be interesting but still worth visiting with day trips.
-- Lefkes was well worth a visit, a small mountain town that is touristy, but was very picturesque for us. We spent 1-2 hours just to wander and shop, longer depending on whether you eat a meal there (we didn’t).
+While we spent several days walking around Naoussa, we were happy to rent a car for two middle days.  The island is large enough to be interesting but still worth visiting with day trips.
+
+Lefkes is a small mountain town in the center of Paros.  Its small central district is touristy, but was very picturesque for us. We spent 1-2 hours just to wander and shop, we did not stay for lunch but there were many spots that looked excellent.
 
 ![The delightful mountain town of Lefkes in the center of Paros was quiet and beautiful.](images/Paros-06.jpg)
 
-- Aliki is a nice little beachy area with a bunch of nice restaurants right near the water.
+Aliki is a nice little beachy area with a cluster of seaside restaurants.
 
 ![The small beach town of Aliki was a great lunch spot](images/Paros-10.jpg)
 
-We went to ‘Golden Beach’ which fit under the category of “maybe it’s amazing when the beach clubs are open”, but didn’t blow us away in early May
-
-I wish we’d gone to the small village of Marpissa, I read about it later, but we missed it, an oversight we regret.
-
-We drove over to Antiparos (10-minute small car ferry, departs on the half-hour) which as promised was sleepy. There are quite a few beaches on Antiparos; some of which didn’t impress us a lot, but again it was offseason.
-  
-  We drove the 25 minutes from the ferry to “Plage Ag Georgios”, a smallish beach that’s about as far from the ferry as you can get on this small island. We ate right there at Mpakas Fish Tavern, which has a great view of the water. You can also from there see Despotiko, an uninhabited island with a newly-excavated Greek temple area that is from the 8thC BC (e.g., 400 years older than the Parthenon). 
-  
-  There are a few “waterfront” taverna in Antiparos town, right near the ferry. 
-  
-  > We had a lunch at [Taverna Yorgi](https://www.tripadvisor.com/Restaurant_Review-g3569526-d6673076-Reviews-Taverna_Yorgi-Antiparos_Town_Antiparos_Cyclades_South_Aegean.html) 250 yards inland on the main street, and found its atmosphere delightful, we saw locals (kids leaving school, etc) wandering and living their life more than one might see on the waterfront.
-
-![Despotiko, 8th-Century temple visible from Antiparos](images/Antiparos-01.jpg)
-
-![Plage Ag Georgios in early May is pleasant but not spectacular](images/Antiparos-02.jpg)
-
-The 5th-century part of “The Church of 100 Doors” is right near Paros town.  It's a very early (parts from the 5th century) Christian church, very different feel from western European churches as it’s Orthodox. 
-
-![It turns out people were shorter in the 5th century](images/Paros-01.jpg)
-
-![The "Church of 100 Doors"](images/Paros-02.jpg)
+We went to ‘Golden Beach’ which fit under the category of “maybe it’s special when the beach clubs are open”, but didn’t blow us away in early May.
 
 Kolympethres beach has quite striking rock formations.
 
 ![The evocative Kolimpithres beach near Naoussa is evidently packed in summer, but we saw it with 4 or 5 beachgoers.](images/Paros-07.jpg)
 
-Some friends visited a year before us and rented a bare boat to go around Paros on their own; we chose not to because we had some crazy windy days.  They rented it from [The Sailors Ride](https://thesailorsride.gr/our-boats/electra-compass-160e) – note smaller boats don’t require a license.
+I wish we’d gone to the small village of Marpissa, I read about it later, but we missed it, an oversight we regret.
+
+The Panagia Ekatontapiliani, aka “The Church of 100 Doors” is right near Paros town.  It's a very early Christian church, with oldest features that likely predate the adoption of Christianity as the state religion of the Roman Empire in 391.  As the complex has evolved over the centuries, it is now a mix of PaleoChristian, Byzantine, and post-Byzantine styles.  The entire complex is beautiful, but the most compelling part is the crypt, believed to date from the 4th century.  
+
+![The "Church of 100 Doors"](images/Paros-02.jpg)
+
+![It turns out people were shorter in the 5th century](images/Paros-01.jpg)
+
+Some friends visited a year before us and rented a bare boat to go around Paros on their own; we didn't really have this option because our days were mostly too windy for calm boating.  They recommend [The Sailors Ride](https://thesailorsride.gr/our-boats/electra-compass-160e) – note smaller boats don’t require a license to self-drive.
+
+## Antiparos: Paros' Small Drivable Neighbor
+
+Antiparos is a 10-minute ride on the small car ferry, which departs on the half-hour.  Antiparos was as promised sleepy; it's famous for being a hiding place for such A-listers as Tom Hanks (who has owned a villa there since 2004), Matthew McConaughey, Madonna, and Springsteen. It makes Paros feels like Santorini -- the infrastructure is modest, but the views are beautiful.
+
+Antiparos features quite a few small beaches.  Many of these didn’t impress us a lot in early May, but as we said about all the islands, it was before the season started so the chairs and services were not in evidence.  We drove the 25 minutes from the ferry to “Plage Ag Georgios”, a smallish beach that’s about as far from the ferry as you can get on this small island.
+
+![Plage Ag Georgios in early May is pleasant but not spectacular](images/Antiparos-02.jpg)
+
+ We ate right there at Mpakas Fish Tavern, which has a great view of the water. From the tavern, one can gaze at Despotiko, an uninhabited island with a newly-excavated Greek temple area that is from the 8thC BC (e.g., 400 years older than the Parthenon). 
+
+ ![Despotiko, 8th-Century temple visible from Antiparos](images/Antiparos-01.jpg)
+
+  
+  > We had a lunch at [Taverna Yorgi](https://www.tripadvisor.com/Restaurant_Review-g3569526-d6673076-Reviews-Taverna_Yorgi-Antiparos_Town_Antiparos_Cyclades_South_Aegean.html) 250 yards inland on the main street, and found its atmosphere delightful, we saw locals (kids leaving school, etc) wandering and living their life more than one might see on the waterfront.
+
+
+![Local enjoying the first minutes after a hard day at school.](images/Paros-13.jpg)
+
 
 ## Where We Stayed
-
-
 
 We stayed at Avant Mar and highly recommend it – it’s a 5-8 minute walk from Naoussa, but feels a 
 bit “resorty” (in a refreshing way).  Unlike many other places we stayed in the Greek Islands, it is modern and comfortable, with a nice pool (though chilly when we were there), a nice beach with service, and great staff. It opened in 2023, and feels it in a good way, everything is still gleaming.
@@ -75,8 +84,7 @@ On the water, there’s a bar whose name I can’t find, but it’s right in fro
 
 ![Sunset from our favorite spot in Naoussa](images/Paros-11.jpg)
 
-
-Siparos is a taxi ride (not a walk) from Naoussa, but had a great view for sunset, and was a great restaurant. Note that taxis around there are quite expensive, if you want to drive it’d be better (depending on what you choose to drink with dinner), we didn’t have a car that evening.
+Siparos was a great restaurant a short taxi ride (not a walk) from Naoussa.  It had great sunset views. Note that taxis around there are quite expensive, if you want to drive it’d be better (depending on what you choose to drink with dinner), we didn’t have a car that evening.
 
 Moraitis winery is a moderate-length walk from Naoussa, but was a very nice experience.  It’s a very small family-owned business with friendly staff, and a lovely view of their small vineyard.
 

@@ -258,6 +258,8 @@ A good TTN pull quote:
 - Sounds like a person talking, not a brochure
 - Would make a reader pause if they saw it in large type while scanning the page
 
+Do NOT suggest pull quotes that are held in the Nutshell code block.
+
 Avoid pull quotes that:
 
 - Require the surrounding paragraph to make sense
