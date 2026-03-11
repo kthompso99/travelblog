@@ -283,6 +283,17 @@
             markerSets.push(markerSet);
         });
 
+        // Auto-fit map to show all trips
+        var bounds = new google.maps.LatLngBounds();
+        config.trips.forEach(function(dest) {
+            if (dest.mapCenter && dest.mapCenter.coordinates) {
+                bounds.extend({ lat: dest.mapCenter.coordinates.lat, lng: dest.mapCenter.coordinates.lng });
+            }
+        });
+        if (!bounds.isEmpty()) {
+            map.fitBounds(bounds, 40);
+        }
+
         // Add zoom event listener for progressive detail disclosure
         const DETAIL_ZOOM_THRESHOLD = 5;
 
