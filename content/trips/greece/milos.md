@@ -45,7 +45,7 @@ Note that Milos is *very* hilly – so that for example it looks on the map that
   
 Many of these beaches have offroad components; when we rented our car we were told “not to drive offroad” or something like that … I can only assume most tourists ignore that, since many of the best beaches on Milos … require offroading (this was true in Paros as well, as an aside).
 
-## Food and drink
+## Food and Drink
 
 Several locals told us Yialos is the best restaurant in the main waterfront row in Pollonia, we thought it was excellent. Some sites (TripAdvisor, others) list this as “Gialos’, but the menu very definitely had a Y. 
 

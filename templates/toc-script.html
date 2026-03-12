@@ -1,0 +1,153 @@
+
+<script>
+(function() {
+    var mc = document.querySelector('.markdown-content');
+    if (!mc) return;
+    var headings = mc.querySelectorAll('h2[id], h3[id]');
+    if (headings.length < 3) return;
+
+    // SVG icons
+    var listIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>';
+    var closeIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    var checkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+    // Build DOM
+    var backdrop = document.createElement('div');
+    backdrop.className = 'toc-backdrop';
+    document.body.appendChild(backdrop);
+
+    var btn = document.createElement('button');
+    btn.className = 'toc-toggle';
+    btn.setAttribute('aria-label', 'Table of contents');
+    btn.innerHTML = listIcon;
+    document.body.appendChild(btn);
+
+    var panel = document.createElement('div');
+    panel.className = 'toc-panel';
+    var items = [];
+    var listHtml = '';
+    for (var i = 0; i < headings.length; i++) {
+        var h = headings[i];
+        var isH3 = h.tagName === 'H3';
+        var cls = 'toc-item' + (isH3 ? ' toc-item--h3' : '');
+        listHtml += '<a href="#' + h.id + '" class="' + cls + '" data-idx="' + i + '">'
+            + '<span class="toc-indicator toc-indicator--unread"></span>'
+            + '<span class="toc-label">' + h.textContent + '</span>'
+            + '<span class="toc-active-dot"></span></a>';
+    }
+    panel.innerHTML = '<div class="toc-header">'
+        + '<div><div class="toc-title">On This Page</div>'
+        + '<div class="toc-subtitle">Jump to any section</div></div>'
+        + '<button class="toc-close" aria-label="Close">' + closeIcon + '</button></div>'
+        + '<div class="toc-list">' + listHtml + '</div>'
+        + '<div class="toc-progress-bar"><div class="toc-progress-fill" style="width:0%"></div></div>'
+        + '<div class="toc-footer"><span class="toc-progress-label">Progress</span>'
+        + '<span class="toc-progress-count">0 / ' + headings.length + ' sections</span></div>';
+    document.body.appendChild(panel);
+
+    items = panel.querySelectorAll('.toc-item');
+    var progressFill = panel.querySelector('.toc-progress-fill');
+    var progressCount = panel.querySelector('.toc-progress-count');
+    var closeBtn = panel.querySelector('.toc-close');
+    var isOpen = false;
+    var currentIdx = -1;
+    var readSet = {};
+
+    function open() {
+        if (isOpen) return;
+        isOpen = true;
+        btn.classList.add('open');
+        panel.classList.add('open');
+        backdrop.classList.add('open');
+    }
+
+    function close() {
+        if (!isOpen) return;
+        isOpen = false;
+        btn.classList.remove('open');
+        panel.classList.remove('open');
+        backdrop.classList.remove('open');
+    }
+
+    btn.addEventListener('click', function() { isOpen ? close() : open(); });
+    backdrop.addEventListener('click', close);
+    closeBtn.addEventListener('click', close);
+
+    // Click a section -> scroll + close
+    for (var j = 0; j < items.length; j++) {
+        items[j].addEventListener('click', function(e) {
+            e.preventDefault();
+            var target = document.getElementById(this.getAttribute('href').slice(1));
+            if (target) {
+                var headerH = document.querySelector('header') ? document.querySelector('header').offsetHeight : 0;
+                var y = target.getBoundingClientRect().top + window.pageYOffset - headerH - 16;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+            close();
+        });
+    }
+
+    // Escape key closes
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') close();
+    });
+
+    function updateIndicators() {
+        var readCount = 0;
+        for (var k = 0; k < items.length; k++) {
+            var ind = items[k].querySelector('.toc-indicator');
+            items[k].classList.remove('active', 'read');
+            if (k === currentIdx) {
+                items[k].classList.add('active');
+                ind.className = 'toc-indicator toc-indicator--current';
+                ind.innerHTML = '';
+            } else if (readSet[k]) {
+                items[k].classList.add('read');
+                ind.className = 'toc-indicator toc-indicator--read';
+                ind.innerHTML = checkIcon;
+                readCount++;
+            } else {
+                ind.className = 'toc-indicator toc-indicator--unread';
+                ind.innerHTML = '';
+            }
+        }
+        if (currentIdx >= 0) readCount++; // include current in progress
+        var pct = headings.length > 0 ? Math.round((readCount / headings.length) * 100) : 0;
+        progressFill.style.width = pct + '%';
+        progressCount.textContent = readCount + ' / ' + headings.length + ' sections';
+    }
+
+    // Scroll spy: find which heading is current
+    function onScroll() {
+        var headerH = document.querySelector('header') ? document.querySelector('header').offsetHeight : 0;
+        var scrollY = window.pageYOffset + headerH + 32;
+        var newIdx = -1;
+        for (var k = 0; k < headings.length; k++) {
+            if (headings[k].offsetTop <= scrollY) {
+                newIdx = k;
+            }
+        }
+        if (newIdx !== currentIdx) {
+            // Mark previous as read
+            if (currentIdx >= 0) readSet[currentIdx] = true;
+            currentIdx = newIdx;
+            updateIndicators();
+        }
+    }
+
+    // Throttled scroll handler
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(function() {
+                onScroll();
+                ticking = false;
+            });
+        }
+    }, { passive: true });
+
+    // Initial state
+    onScroll();
+})();
+</script>

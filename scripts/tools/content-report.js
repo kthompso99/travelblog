@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
 const { MARKDOWN_IMAGE_REGEX } = require('../../lib/constants');
-const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, readTextFile, stripMarkdownToPlainText } = require('../../lib/build-utilities');
+const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, readTextFile, stripMarkdownToPlainText, countWords } = require('../../lib/build-utilities');
 
 // Analysis libraries
 const rs = require('text-readability').default;
@@ -22,18 +22,58 @@ const writeGood = require('write-good');
 const Sentiment = require('sentiment');
 const sentiment = new Sentiment();
 
-function countWords(text) {
-    if (!text) return 0;
-    return text.split(/\s+/).filter(w => w.length > 0).length;
-}
-
 // ---------------------------------------------------------------------------
 // Metrics extraction
 // ---------------------------------------------------------------------------
 
-function analyzeMarkdownFile(filePath, itemFile) {
-    const raw = readTextFile(filePath);
+function computeReadability(plainText, words) {
+    let fk = 0, fog = 0, cl = 0;
+    if (words >= 20) {
+        try {
+            fk = rs.fleschKincaidGrade(plainText);
+            fog = rs.gunningFog(plainText);
+            cl = rs.colemanLiauIndex(plainText);
+        } catch (e) {
+            // Some texts too short for readability
+        }
+    }
+    return { fk, fog, cl };
+}
 
+function runWriteGoodAnalysis(plainText, words, sentences) {
+    let passivePct = 0, weaselCount = 0, totalIssues = 0;
+    if (words >= 10) {
+        try {
+            const allSuggestions = writeGood(plainText);
+            totalIssues = allSuggestions.length;
+
+            const passiveSuggestions = writeGood(plainText, {
+                passive: true, illusion: false, so: false, thereIs: false,
+                weasel: false, adverb: false, tooWordy: false, cliches: false
+            });
+            passivePct = sentences > 0 ? Math.round((passiveSuggestions.length / sentences) * 100) : 0;
+
+            const weaselSuggestions = writeGood(plainText, {
+                weasel: true, passive: false, illusion: false, so: false,
+                thereIs: false, adverb: false, tooWordy: false, cliches: false
+            });
+            weaselCount = weaselSuggestions.length;
+        } catch (e) {
+            // Skip on error
+        }
+    }
+    return { passivePct, weaselCount, totalIssues };
+}
+
+function analyzeSentiment(plainText, words) {
+    if (words >= 5) {
+        const result = sentiment.analyze(plainText);
+        return result.comparative; // normalized per word
+    }
+    return 0;
+}
+
+function analyzeMarkdownFile(filePath, itemFile) {
     // Split at gallery marker
     const { markdownContent, galleryImages } = processMarkdownWithGallery(filePath);
 
@@ -59,48 +99,9 @@ function analyzeMarkdownFile(filePath, itemFile) {
     const words = countWords(plainText);
     const sentences = plainText.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
 
-    // Readability (need enough text for meaningful scores)
-    let fk = 0, fog = 0, cl = 0;
-    if (words >= 20) {
-        try {
-            fk = rs.fleschKincaidGrade(plainText);
-            fog = rs.gunningFog(plainText);
-            cl = rs.colemanLiauIndex(plainText);
-        } catch (e) {
-            // Some texts too short for readability
-        }
-    }
-
-    // Write-good analysis
-    let passivePct = 0, weaselCount = 0, totalIssues = 0;
-    if (words >= 10) {
-        try {
-            const allSuggestions = writeGood(plainText);
-            totalIssues = allSuggestions.length;
-
-            const passiveSuggestions = writeGood(plainText, {
-                passive: true, illusion: false, so: false, thereIs: false,
-                weasel: false, adverb: false, tooWordy: false, cliches: false
-            });
-            const passiveCount = passiveSuggestions.length;
-            passivePct = sentences > 0 ? Math.round((passiveCount / sentences) * 100) : 0;
-
-            const weaselSuggestions = writeGood(plainText, {
-                weasel: true, passive: false, illusion: false, so: false,
-                thereIs: false, adverb: false, tooWordy: false, cliches: false
-            });
-            weaselCount = weaselSuggestions.length;
-        } catch (e) {
-            // Skip on error
-        }
-    }
-
-    // Sentiment
-    let tone = 0;
-    if (words >= 5) {
-        const result = sentiment.analyze(plainText);
-        tone = result.comparative; // normalized per word
-    }
+    const { fk, fog, cl } = computeReadability(plainText, words);
+    const { passivePct, weaselCount, totalIssues } = runWriteGoodAnalysis(plainText, words, sentences);
+    const tone = analyzeSentiment(plainText, words);
 
     return {
         words, sentences, inlineImages, galleryCount, captionWords,

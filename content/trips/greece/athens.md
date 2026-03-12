@@ -1,6 +1,4 @@
-### Where we Stayed
 
-At a friend’s recommendation, we stayed at the Electra Metropolis, and found it excellent in every way. We spent extra for the “Acropolis Suite”, which was expensive, but the corner room had just incredible views of the full Acropolis. If you choose not to blow $ on that … the rooftop restaurant which serves breakfast, dinner, and late night drinks has all that same view for every customer without the upgraded room. A number of other hotels in that district feature roughly the same rooftop restaurant.  We have no idea if this one is the best but we were pretty happy with it.
 
 ##  Getting Around in Athens
 
@@ -16,12 +14,12 @@ If you’re a technology nerd (yes, that’s your humble author), the [Antikythe
 
 Rick Steves says it’s easy to walk through in order, but that’s not entirely true, be careful there are some strange cul de sacs; for example, there’s a scale statue from Parthenon at the end of a cul de sac that probably most people miss – it’s in room 20.
 
-We thought the Plaka district at the foot of the Acropolis was great, there are sure super touristy ‘lanes’, but there are also really nice restaurants that seem to have actual Athenians there, we particularly loved [Thespis](https://thespis.gr/) that we went to twice (OMG their beef skewers were to die for).
+We thought the Plaka district at the foot of the Acropolis was enjoyable, there are very touristy ‘lanes’, but there are also really nice restaurants that seem to have actual Athenians there, we particularly loved [Thespis](https://thespis.gr/) that we went to twice (their beef skewers bore a repeat performance).
 
 The Acropolis:
 - We found a guide through toursbylocals (she was good, but not so good we’d automatically recommend her) who gave us a 4-hour tour from 4-8pm, we used 3.5 of that easily. That was for both the Acropolis museum and up top – she gave us a lot of detail in the museum that I would have been sad not to have, we really learned a lot.
 - Regardless of whether you hire a guide or not, you have to buy timed tickets for the museum and the actual Acropolis – separately. Rick Steves recommends “end of day” for less crowds, and that way you’re doing 4-6 in the air conditioned museum, and up top outdoors 6-8pm – that worked really well. We found about 1.5-2 hours in the museum just right, and then the 10 minute walk up the hill for our times entry at 6pm to the top also worked.
-- Up top was by all means gorgeous, but realize there are only 2-3 buildings actually intact up there, you can only spend so much time up there before you run out of things to talk about with your guide (and of course about 20 photo ops).
+- Up top was as memorably as you've probably imagined, but realize there are only 2-3 buildings actually intact up there, you can only spend so much time up there before you run out of things to talk about with your guide (and of course about 20 photo ops).
 
 Other ancient ruins in Athens
 - In general the Agora was interesting, but less than I anticipated
@@ -29,13 +27,17 @@ Other ancient ruins in Athens
   - The Temple of Hephaestus is remarkable, it’s one of the best-preserved ancient Greek temples, and just extraordinary.
   - We did the Agora without a tour guide, and found it hard to visualize much – perhaps with a guide you get more out of it.
 - We were a block from the Tower of Winds but somehow managed to miss it, which I regret, it sounds interesting.
-- I wanted to go see the massive ruins of the Temple of Olympian Zeus, but it’s across a crazy 8-lane road and we ended looking at it from afar. Honestly, when we looked down at it from the Acropolis, I felt like I didn’t miss that much.
+- I wanted to go see the massive ruins of the Temple of Olympian Zeus, but it’s across a busy 8-lane road and we ended looking at it from afar. Honestly, when we looked down at it from the Acropolis, I felt like I didn’t miss that much.
 
 The Benizelos Mansion is billed as "the oldest house in Athens". It has sections that are 16th century … it's not "amazing", but we were glad we spent 20 minutes of our time since it was right near our hotel.
 
+## Where We Stayed
+
+At a friend’s recommendation, we stayed at the Electra Metropolis, and found it excellent in every way. We spent extra for the “Acropolis Suite”, which was expensive, but the corner room had spectacular views of the full Acropolis. If you choose not to blow $ on that … the rooftop restaurant which serves breakfast, dinner, and late night drinks has all that same view for every customer without the upgraded room. A number of other hotels in that district feature roughly the same rooftop restaurant.  We have no idea if this one is the best but we were pretty happy with it.
+
 :::nutshell Athens
 verdict: Would Plan Around
-Stay Overnight: Electra Metropolis — incredible Acropolis views from the suite and rooftop restaurant.
+Stay Overnight: Electra Metropolis — memorable Acropolis views from the suite and rooftop restaurant.
 Don't Miss: National Archaeology Museum (Mycenaean room first); Acropolis at sunset with a guide; Thespis in the Plaka.
 Best Time of Day: Late afternoon — museum 4-6pm, then up the Acropolis 6-8pm per Rick Steves.
 Worth the Splurge: The Acropolis Suite at Electra Metropolis — the corner view is everything.

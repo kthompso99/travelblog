@@ -16,7 +16,7 @@
 const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
-const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery } = require('../../lib/build-utilities');
+const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, stripInlineMarkdown, countWords } = require('../../lib/build-utilities');
 const writeGood = require('write-good');
 
 // ---------------------------------------------------------------------------
@@ -88,23 +88,6 @@ function parseBlocks(markdown) {
     }
     if (currentBlock) blocks.push(currentBlock);
     return blocks;
-}
-
-function stripInlineMarkdown(text) {
-    return text
-        .replace(/!\[[^\]]*\]\([^\)]+\)/g, '')
-        .replace(/\[([^\]]*)\]\([^\)]+\)/g, '$1')
-        .replace(/(\*{1,3}|_{1,3})/g, '')
-        .replace(/<[^>]+>/g, '')
-        .replace(/^>\s?/gm, '')
-        .replace(/\\\~/g, '~')
-        .replace(/\\([€$])/g, '$1')
-        .trim();
-}
-
-function countWords(text) {
-    if (!text) return 0;
-    return text.split(/\s+/).filter(w => w.length > 0).length;
 }
 
 function splitSentences(text) {

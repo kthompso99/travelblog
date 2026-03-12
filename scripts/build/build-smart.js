@@ -136,6 +136,53 @@ async function runIncrementalBuild(tripIds) {
     return true;
 }
 
+// ─── Auto-detect helpers ──────────────────────────────────────────────────────
+
+function detectChangedTrips(cache) {
+    if (!cache.lastFullBuild) {
+        console.log('📦 First build - running full build\n');
+        return null; // signals: run full build
+    }
+
+    console.log('🔍 Checking for changes...\n');
+
+    if (coreBuildFilesChanged(cache)) {
+        console.log('\n⚠️  Core build files or templates changed - full rebuild required\n');
+        return null; // signals: run full build
+    }
+
+    const changedTrips = getChangedTrips(cache);
+
+    if (changedTrips.length === 0) {
+        console.log('✅ No changes detected - nothing to build!\n');
+        console.log('💡 Tips:');
+        console.log('   • Edit files in content/trips/ to trigger rebuild');
+        console.log('   • Use --force to rebuild everything\n');
+        return []; // signals: nothing to do
+    }
+
+    console.log(`📝 ${changedTrips.length} trip(s) changed:`);
+    changedTrips.forEach(id => console.log(`   - ${id}`));
+    console.log('');
+
+    return changedTrips;
+}
+
+async function handleAutoDetect() {
+    const cache = loadCache();
+    const changedTrips = detectChangedTrips(cache);
+
+    if (changedTrips === null) return runFullBuild();
+    if (changedTrips.length === 0) return true;
+
+    const success = await runIncrementalBuild(changedTrips);
+    if (success) {
+        updateCacheForTrips(cache, changedTrips);
+        saveCache(cache);
+    }
+    return success;
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -150,49 +197,12 @@ async function main() {
         return runFullBuild();
     }
 
-    // Specific trip(s) on command line — skip change detection
     if (specificTrips.length > 0) {
         console.log(`🎯 Building specific trip(s): ${specificTrips.join(', ')}\n`);
         return await runIncrementalBuild(specificTrips);
     }
 
-    // Auto-detect mode
-    const cache = loadCache();
-
-    if (!cache.lastFullBuild) {
-        console.log('📦 First build - running full build\n');
-        return runFullBuild();
-    }
-
-    console.log('🔍 Checking for changes...\n');
-
-    if (coreBuildFilesChanged(cache)) {
-        console.log('\n⚠️  Core build files or templates changed - full rebuild required\n');
-        return runFullBuild();
-    }
-
-    const changedTrips = getChangedTrips(cache);
-
-    if (changedTrips.length === 0) {
-        console.log('✅ No changes detected - nothing to build!\n');
-        console.log('💡 Tips:');
-        console.log('   • Edit files in content/trips/ to trigger rebuild');
-        console.log('   • Use --force to rebuild everything\n');
-        return true;
-    }
-
-    console.log(`📝 ${changedTrips.length} trip(s) changed:`);
-    changedTrips.forEach(id => console.log(`   - ${id}`));
-    console.log('');
-
-    const success = await runIncrementalBuild(changedTrips);
-
-    if (success) {
-        updateCacheForTrips(cache, changedTrips);
-        saveCache(cache);
-    }
-
-    return success;
+    return await handleAutoDetect();
 }
 
 main().then(success => {
