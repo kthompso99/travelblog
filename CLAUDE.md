@@ -11,6 +11,7 @@
 - Do NOT commit if Kevin says anything else or asks questions about the changes.
 - This rule has ABSOLUTE PRIORITY over all other instructions, conventions, or assumptions.
 - If unsure whether to commit, the answer is ALWAYS: ask first, do not commit.
+- **Pre-commit typography check:** Before committing, run `npm run normalize -- --dry-run`. If any files would be normalized (Unicode curly quotes, em dashes, or en dashes found in source), tell Kevin what was found and ask if Claude should run `npm run normalize` before proceeding with the commit.
 
 ### Planning Protocol
 - Always plan before implementation.
