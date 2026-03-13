@@ -1,12 +1,12 @@
 The Okavango Delta is not what most people picture when they picture safari.  It looks nothing like the classic Serengeti landscape.
 
-There's no open savanna and no distant horizon to scan for wildlife. Instead the delta is dense and flooded — water channels, thick vegetation, and animals that may be only ten feet away but completely hidden.
+There's no open savanna and no distant horizon to scan for wildlife. Instead the delta is dense and flooded -- water channels, thick vegetation, and animals that may be only ten feet away but completely hidden.
 
 Guiding here requires a different skill set. Our guides read tracks, listened for alarm calls, and watched the direction animals were looking. It's a very different style of safari.
 
-We stayed at two camps across seven days. Neither was a lodge in any conventional sense — they were small collections of tents set into the landscape, separated by vast private concessions and accessible only by small charter plane. This is not an accident of geography. It's a deliberate, carefully managed structure, and understanding it changes how you appreciate what you're experiencing.
+We stayed at two camps across seven days. Neither was a lodge in any conventional sense -- they were small collections of tents set into the landscape, separated by vast private concessions and accessible only by small charter plane. This is not an accident of geography. It's a deliberate, carefully managed structure, and understanding it changes how you appreciate what you're experiencing.
 
-The Okavango Delta is not a National Park — Botswana has several of those. It's a network of private concessions, each managed differently, some community-owned, some not, with a governance structure I'll be honest I don't fully understand. What it produces is quiet: tiny camps spread far apart, very few vehicles, very few other people.
+The Okavango Delta is not a National Park -- Botswana has several of those. It's a network of private concessions, each managed differently, some community-owned, some not, with a governance structure I'll be honest I don't fully understand. What it produces is quiet: tiny camps spread far apart, very few vehicles, very few other people.
 
 See this map which shows the various reserves in the Okavango.  The water flows from the northwest towards the southeast, fanning out across the flat terrain.
 
@@ -20,7 +20,7 @@ Many reviewers recommend as the best section of the Okavango "Chief's Island" or
 
 ## The People of Botswana 
 
-My one disappointment was that we didn't meet more local people.  There are villages in the Okavango, but they were at each lodge an hour-long bumpy ride from our lodge – there was an option to visit from Sable Alley, and we did not choose it.
+My one disappointment was that we didn't meet more local people.  There are villages in the Okavango, but they were at each lodge an hour-long bumpy ride from our lodge -- there was an option to visit from Sable Alley, and we did not choose it.
 
 At the lodges, there was usually a small subset of imported senior staff who had trained in hospitality and spoke impeccable English.  Then the majority of the staff were from local villages, and usually spoke quite limited English.  Very friendly … but communication was sparse.  Very friendly, lots of smiling and nodding, but not a lot of conversation with nuance.
 
@@ -28,12 +28,12 @@ Near North Island, we noticed villagers gathering grass near the camp in what ap
 
 ![Local villagers have been gathering grass for generations.](images/north-island-57.jpg)
 
-![One of us noted they tended to wear extremely bright clothing — we speculated they prefer to be seen by wildlife so it moves away, the opposite of our goal.](images/north-island-64.jpg)
+![One of us noted they tended to wear extremely bright clothing -- we speculated they prefer to be seen by wildlife so it moves away, the opposite of our goal.](images/north-island-64.jpg)
 
 ## Recommended Reading
 
-If you have a chance, read [Cry of the Kalahari](https://bookshop.org/p/books/cry-of-the-kalahari-mark-owens/11275458) before you go.  It's about a young American couple of wildlife biologists studying in Botswana in the 1970s — before the camps, before the tourism infrastructure, when the delta was genuinely remote. Reading it before you go changes how you look at what's been built there since.
+If you have a chance, read [Cry of the Kalahari](https://bookshop.org/p/books/cry-of-the-kalahari-mark-owens/11275458) before you go.  It's about a young American couple of wildlife biologists studying in Botswana in the 1970s -- before the camps, before the tourism infrastructure, when the delta was genuinely remote. Reading it before you go changes how you look at what's been built there since.
 
 ## Closing
 
-We left knowing we'd seen a version of it — the comfortable, well-managed, tourist version. What the delta was before that, and what it costs to keep it this way, is something we're still thinking about.
+We left knowing we'd seen a version of it -- the comfortable, well-managed, tourist version. What the delta was before that, and what it costs to keep it this way, is something we're still thinking about.

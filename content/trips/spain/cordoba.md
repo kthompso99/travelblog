@@ -7,17 +7,17 @@ See the Mezquita. Walk the Roman bridge. Have lunch. Move on.
 
 Instead, it became one of our favorite cities in Europe.
 
-We spent two nights here — and that turned out to be exactly right. Córdoba is compact, atmospheric, and just chaotic enough (directionally speaking) to make wandering feel like an adventure. 
+We spent two nights here -- and that turned out to be exactly right. Córdoba is compact, atmospheric, and just chaotic enough (directionally speaking) to make wandering feel like an adventure. 
 
 ![Beautiful Cordoba was once a Roman city -- this bridge, carrying vehicles until the 1990s, dates from Roman times. Under the Moors, Cordoba was the largest city in Europe in the 9th and 10th Century. Capital of the emirate of Al-Andalus from 756 until its reconquest by the Spanish in 1236, Cordoba grabbed our heart.](images/cordoba-02.jpg)
 
 The Mezquita alone would justify a visit. Staying overnight is what makes it memorable.
 
-> It was our first Andalucía stop outside Madrid, which may have amplified the effect — but even in hindsight, Córdoba stands out. Still, it's an unusually approachable tourist city.  And to top it off, the Mezquita was one of the most remarkable destinations in Europe.
+> It was our first Andalucía stop outside Madrid, which may have amplified the effect -- but even in hindsight, Córdoba stands out. Still, it's an unusually approachable tourist city.  And to top it off, the Mezquita was one of the most remarkable destinations in Europe.
 
 
 
-In general, Cordoba has a very compact "old" city, which is extremely walkable but also extremely easy to get lost in.  One of us (ahem) has a better sense of direction than the other.  Kevin lost his sense of direction repeatedly — but in a compact city like this, you can only wander so far..  The street "plan" is from the Moorish era, and there's not a single 90 degree turn anywhere.  
+In general, Cordoba has a very compact "old" city, which is extremely walkable but also extremely easy to get lost in.  One of us (ahem) has a better sense of direction than the other.  Kevin lost his sense of direction repeatedly -- but in a compact city like this, you can only wander so far..  The street "plan" is from the Moorish era, and there's not a single 90 degree turn anywhere.  
 
 While it's not 100% car-free, the few random taxis are moving quite slowly, so you can just wander, which we loved.
 
@@ -65,13 +65,13 @@ Cordoba's Ruta de Patios allows one to see privately-maintained patios that are 
 
 We saw it as part of our bike tour.  Because these are gardens, the experience varies seasonally.  From what we heard, we would not plan a trip around the May festival crowds, which attracts hundreds of thousands.   Seeing a few patios outside festival season was manageable and charming.   
 
-![A typical patio on Córdoba's Ruta de Patios — each one lovingly tended by its owners.](images/cordoba-03.jpg)
+![A typical patio on Córdoba's Ruta de Patios -- each one lovingly tended by its owners.](images/cordoba-03.jpg)
 
 ## Where We Stayed
 
 We stayed at the NH Collection Amistad.  This had an excellent location only a few minutes from the Mezquita and right on the edge of the ancient city.  Part of the hotel's walls are in fact the ancient walls of the medieval city.  
 
-The hotel has only 6 Junior Suites.  We were randomly assigned room 280 — and it turned out to be one of the most atmospheric rooms we've ever had.  It has a window carved centuries ago into the ancient wall.  We recommend requesting room 280 if you can, it's just a cool experience.
+The hotel has only 6 Junior Suites.  We were randomly assigned room 280 -- and it turned out to be one of the most atmospheric rooms we've ever had.  It has a window carved centuries ago into the ancient wall.  We recommend requesting room 280 if you can, it's just a cool experience.
 
 ![Our Cordoba hotel room, with the intact medieval wall, and our window peeking out from the wall.](images/cordoba-15.jpg)
 

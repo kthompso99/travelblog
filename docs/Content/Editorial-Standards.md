@@ -195,5 +195,18 @@ TTN source files (.md) use **all-straight ASCII quotes**. The build pipeline aut
 - **In source files**: Write `wasn't`, `"marble town"`, `Kevin's` — straight quotes only.
 - **Never use** curly quotes in source files. The build handles typography.
 - **Single-quote scare quotes**: Do not use. Use double quotes for emphasis/scare quotes. Example: `'lanes'` should be `"lanes"`.
-- **Cleanup tool**: `npm run normalize-quotes` flattens any curly quotes back to ASCII.
+- **Cleanup tool**: `npm run normalize` flattens any curly quotes back to ASCII.
 - **Audit**: `npm run audit` flags curly quotes in source and single-quote scare quotes.
+
+---
+
+# Typography: Dashes
+
+TTN source files (.md) use **ASCII hyphens only**. The build pipeline automatically converts to typographic dashes in the rendered HTML.
+
+- **Em dash**: Write `--` (double hyphen) in source. Build converts to — (U+2014). Example: `Six hours was a tease -- Naxos deserves two nights.`
+- **Numeric ranges**: Write a regular hyphen between digits. Build converts to en dash (U+2013). Example: `5-8 minute walk` renders as `5–8 minute walk`.
+- **Never use** Unicode em dashes or en dashes in source files. The build handles typography.
+- **Cleanup tool**: `npm run normalize` flattens any Unicode dashes back to ASCII.
+- **Audit**: `npm run audit` flags Unicode dashes in source.
+- **AI tools note**: Claude, GPT, and Gemini all output Unicode dashes in their responses. Run `npm run normalize` after pasting from AI editing sessions.

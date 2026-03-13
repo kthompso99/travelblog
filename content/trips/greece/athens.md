@@ -1,23 +1,23 @@
 
-Athens is one of those cities where the history isn't background — it's the foreground, literally. The Parthenon is visible from the street, from rooftop bars, from your hotel room if you pick the right one. We spent three nights there at the end of the trip and it was for us just about right. The archaeology alone justifies it; the city around it is better than we expected.
+Athens is one of those cities where the history isn't background -- it's the foreground, literally. The Parthenon is visible from the street, from rooftop bars, from your hotel room if you pick the right one. We spent three nights there at the end of the trip and it was for us just about right. The archaeology alone justifies it; the city around it is better than we expected.
 
 ##  Getting Around in Athens
 
-Order taxis through Uber — we didn't, and the communication was harder than we anticipated. Fares are cheap either way. The subway didn't serve anywhere we needed to go.
+Order taxis through Uber -- we didn't, and the communication was harder than we anticipated. Fares are cheap either way. The subway didn't serve anywhere we needed to go.
 
 ## The Acropolis
 
-The Acropolis is the one site in Athens that requires no justification, but it does require a plan.  Our guide recommended a 4-hour tour from 4-8pm, we used 3.5 of that easily; Rick Steves also recommends "end of day" both for fewer crowds and less heat.  That four hours covered both the Acropolis museum — at the foot of the hill — and the Acropolis itself.  
+The Acropolis is the one site in Athens that requires no justification, but it does require a plan.  Our guide recommended a 4-hour tour from 4-8pm, we used 3.5 of that easily; Rick Steves also recommends "end of day" both for fewer crowds and less heat.  That four hours covered both the Acropolis museum -- at the foot of the hill -- and the Acropolis itself.  
 
-With this schedule you're spending 4:00-6:00 in the air conditioned museum, and walking outdoors 6-8pm – that worked really well. We found about 1.5-2 hours in the museum just right, and then the 10 minute walk up the hill for our timed entry at 6pm to the top nicely choreographed.  Regardless of whether you hire a guide or not, you have to buy timed tickets for the museum and the actual Acropolis – separately. 
+With this schedule you're spending 4:00-6:00 in the air conditioned museum, and walking outdoors 6-8pm -- that worked really well. We found about 1.5-2 hours in the museum just right, and then the 10 minute walk up the hill for our timed entry at 6pm to the top nicely choreographed.  Regardless of whether you hire a guide or not, you have to buy timed tickets for the museum and the actual Acropolis -- separately. 
 
 We found our private guide on toursbylocals; she gave us a lot of detail in the museum in particular that we would have been sad to miss.  She was good, but not so good we'd automatically recommend her.
 
-The museum does an excellent job reconstructing how the Parthenon sculpture program originally fit together, and holds some of the original pieces removed from the Acropolis for preservation. The most striking are the **Caryatids** — the sculpted female figures that supported the porch of the Erechtheion temple. The originals are in the museum; reproductions stand on the hill.
+The museum does an excellent job reconstructing how the Parthenon sculpture program originally fit together, and holds some of the original pieces removed from the Acropolis for preservation. The most striking are the **Caryatids** -- the sculpted female figures that supported the porch of the Erechtheion temple. The originals are in the museum; reproductions stand on the hill.
 
 ![The original Caryatids](images/Athens-12.jpg)
 
-The museum also includes sculptures from an earlier temple built on the Acropolis.  These are from 570BC, 140 years before the Parthenon that we know. Evidently paint lasts longer on limestone than marble — it's surprising to see color on items this old.
+The museum also includes sculptures from an earlier temple built on the Acropolis.  These are from 570BC, 140 years before the Parthenon that we know. Evidently paint lasts longer on limestone than marble -- it's surprising to see color on items this old.
 
 ![Sculptures from an earlier Acropolis temple](images/Athens-11.jpg)
 
@@ -59,7 +59,7 @@ The Temple of Hephaestus near the Agora is so well-preserved that you can actual
 
 ![Temple of Hephaestus](images/Athens-05.jpg)
 
-We visited the Agora without a tour guide, and found it hard to visualize much – perhaps with a guide you get more out of it.
+We visited the Agora without a tour guide, and found it hard to visualize much -- perhaps with a guide you get more out of it.
 
 We were a block from the Tower of Winds but somehow managed to miss it, which I regret, it sounds interesting.
 
@@ -97,7 +97,7 @@ If you're a technology nerd (yes, that's your humble author), the [Antikythera m
 
 ![Fragments of the Antikythera Mechanism](images/Athens-32.jpg)
 
-Rick Steves says it's easy to walk through this museum in order, but that's not entirely true, watch for some strange dead ends; for example, there's a scale statue of Athena from the Parthenon at the end of a cul de sac that probably most people miss – it's in room 20.
+Rick Steves says it's easy to walk through this museum in order, but that's not entirely true, watch for some strange dead ends; for example, there's a scale statue of Athena from the Parthenon at the end of a cul de sac that probably most people miss -- it's in room 20.
 
 We thought the Plaka district at the foot of the Acropolis was enjoyable, there are very touristy "lanes", but there are also really nice restaurants that seem to have actual Athenians there.
 
@@ -122,11 +122,11 @@ A number of other hotels in that district feature roughly the same rooftop resta
 
 :::nutshell Athens
 verdict: Would Plan Around
-Stay Overnight: Electra Metropolis — memorable Acropolis views from the suite and rooftop restaurant.
+Stay Overnight: Electra Metropolis -- memorable Acropolis views from the suite and rooftop restaurant.
 Don't Miss: National Archaeology Museum (Mycenaean room first); Acropolis at sunset with a guide; Thespis in the Plaka.
-Best Time of Day: Late afternoon — museum 4-6pm, then up the Acropolis 6-8pm per Rick Steves.
-Worth the Splurge: The Acropolis Suite at Electra Metropolis — the corner view is everything.
-Return Visit: Yes — we missed the Tower of Winds and barely scratched the Agora.
+Best Time of Day: Late afternoon -- museum 4-6pm, then up the Acropolis 6-8pm per Rick Steves.
+Worth the Splurge: The Acropolis Suite at Electra Metropolis -- the corner view is everything.
+Return Visit: Yes -- we missed the Tower of Winds and barely scratched the Agora.
 :::
 
 *Add your photos here*

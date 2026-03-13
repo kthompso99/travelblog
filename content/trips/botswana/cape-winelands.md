@@ -4,9 +4,9 @@ We spent 4 nights in the Cape Winelands, 90 minutes from Cape Town, after the sa
 
 ## What We Found
 
-The two main towns of the Cape Winelands are Stellenbosch and Franschhoek.  We spent a few hours in Stellenbosch on a day tour and found it pleasant, but we were glad to have stayed in Franschhoek – it is/was very sleepy, but very compact and walkable.  After being unable to really stretch our legs for any decent-length walk in the Okavango, being 5 minutes from dinner was a delight. 
+The two main towns of the Cape Winelands are Stellenbosch and Franschhoek.  We spent a few hours in Stellenbosch on a day tour and found it pleasant, but we were glad to have stayed in Franschhoek -- it is/was very sleepy, but very compact and walkable.  After being unable to really stretch our legs for any decent-length walk in the Okavango, being 5 minutes from dinner was a delight. 
 
-We did two day tours from Franschhoek.  The first was a standard winery tour – 3 wineries plus a wine lunch.  We particularly enjoyed [Kanonkop](https://kanonkop.co.za/), which a friend of Kevin's had recommended as having the best Pinotage she tasted – suffice it to say we made some investments there.  Pinotage is a grape native to South Africa \- it's a blend of Pinot Noir and what was once called Hermitage, better-known as Cinsault.  
+We did two day tours from Franschhoek.  The first was a standard winery tour -- 3 wineries plus a wine lunch.  We particularly enjoyed [Kanonkop](https://kanonkop.co.za/), which a friend of Kevin's had recommended as having the best Pinotage she tasted -- suffice it to say we made some investments there.  Pinotage is a grape native to South Africa \- it's a blend of Pinot Noir and what was once called Hermitage, better-known as Cinsault.  
 
 > It's easy to make a bad Pinotage and many houses do, but Kanonkop made some very very tasty wines.  
 
@@ -20,13 +20,13 @@ The second day trip was to the coastal town of Hermanus for whale watching.  Thi
 
 ![Right whale breaching](images/cape-winelands-06.jpg)
 
-Hermanus is a fairly typical quaint coastal town.  The whale watching is excellent – Southern Right Whales swim right ¼ mile off the coast, so it's easy to see them (which is amazing, since Northern Right Whales are nearly extinct).  They're not as spectacular as Humpbacks (few are), but it was exciting to see them.  We also saw a Bryde's whale, which was exciting as they are rarely seen.
+Hermanus is a fairly typical quaint coastal town.  The whale watching is excellent -- Southern Right Whales swim right ¼ mile off the coast, so it's easy to see them (which is amazing, since Northern Right Whales are nearly extinct).  They're not as spectacular as Humpbacks (few are), but it was exciting to see them.  We also saw a Bryde's whale, which was exciting as they are rarely seen.
 
 ![Southern Right Whale and calf (near Hermanus, about an hour east of Cape Town)](images/cape-winelands-07.jpg)
 
 For both of these day trips, we lucked into an outstanding driver, Theunis Minnie.  Theunis is a lifelong South African of Dutch ancestry, and was extremely knowledgeable about wine, history, and culture.  We had had a few rough experiences with other locals attitude-wise, and we also have found around the world that people want to ask us about American politics and … it's fatiguing.  So we were unenthused by the end of the trip to engage in "politics" with people.
 
-> Theunis had such insights into government, democracy, how South Africa had evolved since apartheid (his age is such that his first vote was in the 1994 Mandela election), etc – that we had outstanding conversations.  
+> Theunis had such insights into government, democracy, how South Africa had evolved since apartheid (his age is such that his first vote was in the 1994 Mandela election), etc -- that we had outstanding conversations.  
 
 Book him if you can.
 
@@ -43,17 +43,17 @@ We particularly enjoyed dinners at [Reubens](https://www.reubens.co.za/) (the be
 
 Franschhoek itself is very walkable for the main "restaurant area" -- we were delighted to wander in the afternoon/evenings.  However, there are few wineries that are decent walking distance from town -- if your goal is wine tasting, then "someone" likely needs to drive, whether it's you or a hired driver.
 
-We booked Theunis through an agency but of course he does better if you go directly to him – here is [his contact info](https://www.pathfind.media/vcard/theunis).  
+We booked Theunis through an agency but of course he does better if you go directly to him -- here is [his contact info](https://www.pathfind.media/vcard/theunis).  
 
 There is a [Franschhoek wine tram](https://winetram.co.za/) which we chose not to do.  We had a few people tell us it take you to popular wineries, but not necessarily the best ones, so we opted for the private driver.
 
 
 :::nutshell Cape Winelands
 verdict: Glad We Went
-Stay Overnight: Franschhoek is walkable with excellent restaurants in every direction — staying there made the evenings easy.
+Stay Overnight: Franschhoek is walkable with excellent restaurants in every direction -- staying there made the evenings easy.
 Don't Miss: Kanonkop for Pinotage; Hermanus whale watching via the Hemel en Aarde valley.
 Best Time of Day: Early evening for wandering Franschhoek's restaurant row.
-Worth the Splurge: Stock up at Kanonkop — we wish we'd bought more.
+Worth the Splurge: Stock up at Kanonkop -- we wish we'd bought more.
 Return Visit: Yes, in better weather. Four winter nights was enough to relax. Summer would be a different trip entirely.
 :::
 

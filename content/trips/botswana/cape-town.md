@@ -1,5 +1,5 @@
 ## Overview
-We planned this trip around the Okavango, not Cape Town. August is the dry season in Botswana — the right call for safari — and it drops you into Cape Town in the middle of winter. That tradeoff is worth knowing before you go: the city is beautiful, the weather is not guaranteed, and Table Mountain will be in clouds more often than not.
+We planned this trip around the Okavango, not Cape Town. August is the dry season in Botswana -- the right call for safari -- and it drops you into Cape Town in the middle of winter. That tradeoff is worth knowing before you go: the city is beautiful, the weather is not guaranteed, and Table Mountain will be in clouds more often than not.
 
 
 ## Cape Town Sites
@@ -8,7 +8,7 @@ We chose *not* go to to Robben Island, famously one of several prisons where Nel
 
 > I read one TripAdvisor review in which the young tour guide made vaguely racist jokes *on Robben Island* … blech.
 
-To learn some about apartheid history, we found the District 6 museum compelling – it's not huge, it's a 90-120 minute visit, but well worth it.  District 6 was an entire mixed-race neighborhood that the apartheid government just decided to empty and then bulldoze in the 1960s, because it was too close to white areas.  The stories told are compelling, and we found it affecting.  Interestingly, we saw a tour guide there who was a former resident of that neighborhood … our tour guide was the child of two District 6 residents.  Book a tour in advance, the guided tours were sold out the day we were there.
+To learn some about apartheid history, we found the District 6 museum compelling -- it's not huge, it's a 90-120 minute visit, but well worth it.  District 6 was an entire mixed-race neighborhood that the apartheid government just decided to empty and then bulldoze in the 1960s, because it was too close to white areas.  The stories told are compelling, and we found it affecting.  Interestingly, we saw a tour guide there who was a former resident of that neighborhood … our tour guide was the child of two District 6 residents.  Book a tour in advance, the guided tours were sold out the day we were there.
 
 ![The District 6 Museum tells the harrowing story of apartheid from the microcosm of a single neighborhood. The government decided in 1966 that this district of Cape Town should be designated whites-only, and forcibly removed 60,000 people from a thriving community. Our guide was the child of a couple who were amongst those dislocated. In the back of this main hall are street signs rescued from the neighborhood.](images/cape-town-02.jpg)
 
@@ -63,15 +63,15 @@ It's run as a non-profit, to preserve South Africa's wine heritage; I feel as th
 
 We stayed at the [Mount Nelson](https://www.belmond.com/hotels/africa/south-africa/cape-town/belmond-mount-nelson-hotel/), a venerable 1899 hotel with notable past guests including Winston Churchill, Queen Elizabeth, and John Lennon.  We found it outstanding in every way, a lovely spot to relax after 20 hours of flying and before heading out to safari.  
 
-We booked a dinner one night at the [Kloof Street House](https://www.kloofstreethouse.co.za/), which is about 500 yards from the hotel – and the hotel insisted on having a staff member escort us there due to perceived risk (they said daytime didn't worry them).  It's always tricky to talk about safety, as different people have different experiences and/or risk profiles.  Is this overkill?  It's so hard to know.  
+We booked a dinner one night at the [Kloof Street House](https://www.kloofstreethouse.co.za/), which is about 500 yards from the hotel -- and the hotel insisted on having a staff member escort us there due to perceived risk (they said daytime didn't worry them).  It's always tricky to talk about safety, as different people have different experiences and/or risk profiles.  Is this overkill?  It's so hard to know.  
 
-Kevin did have one uncomfortable encounter during that short walk — a clearly intoxicated man loudly shouted something along the lines of "figures, it's a white guy." It wasn't violent, but it wasn't pleasant either.
+Kevin did have one uncomfortable encounter during that short walk -- a clearly intoxicated man loudly shouted something along the lines of "figures, it's a white guy." It wasn't violent, but it wasn't pleasant either.
 
 That sort of thing can happen anywhere, and a friend who stayed nearby in 2023 felt perfectly safe. Still, if the hotel insists on escorts at night, it changes how the city feels.
 
 Cape Town is a beautiful city, but most visitors will rely heavily on Uber rather than walking after dark.  Uber worked extremely well in Cape Town and was remarkably cheap, which helped mitigate some of those concerns.
 
-There's a section of Cape Town known as the "V\&A Waterfront" (Victoria & Albert).  This is where the cruise ships dock (not in August, but in general), and is an enclosed, highly sanitized section with security in a great deal of evidence – vs a lot of the rest of town where police were certainly not highly visible.  Many hotels are in the V\&A section, and there are quite a few lovely hotels – we're not necessarily sad we didn't stay there, but it would have been nice to be able to just get out and walk without quite as much security concerns, perceived or otherwise, around it.  
+There's a section of Cape Town known as the "V\&A Waterfront" (Victoria & Albert).  This is where the cruise ships dock (not in August, but in general), and is an enclosed, highly sanitized section with security in a great deal of evidence -- vs a lot of the rest of town where police were certainly not highly visible.  Many hotels are in the V\&A section, and there are quite a few lovely hotels -- we're not necessarily sad we didn't stay there, but it would have been nice to be able to just get out and walk without quite as much security concerns, perceived or otherwise, around it.  
 
 ## Food & Dining
 
@@ -89,9 +89,9 @@ Christopher Smith can be reached at Whatsapp \+27 83 699 6661\.
 verdict: Glad We Went
 Stay Overnight: The Mt Nelson is an oasis. Getting out at night requires more planning than it should.
 Don't Miss: Cape Peninsula day tour; District 6 Museum; Kirstenbosch with a guide.
-Best Time of Day: Afternoon for the Cape Peninsula loop — catches the best light at the viewpoints.
-Worth the Splurge: Chef's Table at the Mt Nelson — a special experience inside the kitchen.
-Return Visit: Yes — we'd come back in summer to do Table Mountain and spend more time in the Constantia Valley.
+Best Time of Day: Afternoon for the Cape Peninsula loop -- catches the best light at the viewpoints.
+Worth the Splurge: Chef's Table at the Mt Nelson -- a special experience inside the kitchen.
+Return Visit: Yes -- we'd come back in summer to do Table Mountain and spend more time in the Constantia Valley.
 :::
 
 *Add your photos here*

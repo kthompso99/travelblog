@@ -1,26 +1,26 @@
 ## Overview
 
-We visited Zimbabwe for 2 nights before heading to Botswana. This short part of our trip was better than we expected on both counts — as a safari introduction and as a way to see the mighty Victoria Falls. 
+We visited Zimbabwe for 2 nights before heading to Botswana. This short part of our trip was better than we expected on both counts -- as a safari introduction and as a way to see the mighty Victoria Falls. 
 
 We arrived by air from Cape Town (with a stop at Kruger airport) to Victoria Falls airport. A 15-minute car transfer took us, with a brief glimpse at the local town, to a boat dock and then a 20-minute boat transfer upriver to our home for 2 nights, the Old Drift Lodge. We didn't see a lot of animals in that first 20 minutes but it felt like we were "in the wild".
 
 ![Approaching Old Drift for the first time.](images/victoria-falls-01.jpg)
 
-On check-in, we saw an elephant just mellowly munching on tree branches 50 yards from the hotel lobby — quite the intro.
+On check-in, we saw an elephant just mellowly munching on tree branches 50 yards from the hotel lobby -- quite the intro.
 
 ![This elephant greeted us, 20 yards from the lobby of our Zimbabwe lodge, immediately as we arrived Saturday afternoon. A strong start.](images/victoria-falls-02.jpg)
 
-We unpacked and then had a 2-3 hour boat safari on the Zambezi — seeing kudu, elephants, a monitor lizard digging a nest, crocodiles, a baby hippo with its parents. Our guide/captain knew a great spot on the river to anchor for sunset. Lovely end to our first day "in the bush".
+We unpacked and then had a 2-3 hour boat safari on the Zambezi -- seeing kudu, elephants, a monitor lizard digging a nest, crocodiles, a baby hippo with its parents. Our guide/captain knew a great spot on the river to anchor for sunset. Lovely end to our first day "in the bush".
 
 ![Our lodge was on the Zambezi river, and we did a sunset cruise just after arriving. This is a baby hippo learning to swim in the river. The father was nearby and gave an impressive bellow to let us know not to get closer.](images/victoria-falls-04.jpg)
 
-Day 2 our priority was Victoria Falls, which the guides recommended visiting in the afternoon. That left the morning for our first game drive. We had low expectations — the Old Drift's surroundings are dry and dusty compared to the Okavango — but the lodge sits inside Zambezi National Park, and we saw elephants, giraffes, baboons, and cape buffalo in that one morning. 
+Day 2 our priority was Victoria Falls, which the guides recommended visiting in the afternoon. That left the morning for our first game drive. We had low expectations -- the Old Drift's surroundings are dry and dusty compared to the Okavango -- but the lodge sits inside Zambezi National Park, and we saw elephants, giraffes, baboons, and cape buffalo in that one morning. 
 
 ![Our morning morning game drive featured more elephants than we can count. This juvenile is learning to flap its ears to look threatening.](images/victoria-falls-08.jpg)
 
 > Partway through, our guide pulled over right at the river's edge for a coffee break. I asked him why it was safe to be standing next to a crocodile- and hippo-infested river. I'm not sure the answer was satisfactory, but it was lovely.
 
-![Coffee break on the Zambezi river. It was winter in early August — probably 40s when we started, but 60s by late morning.](images/victoria-falls-14.jpg)
+![Coffee break on the Zambezi river. It was winter in early August -- probably 40s when we started, but 60s by late morning.](images/victoria-falls-14.jpg)
 
 One afternoon moment worth mentioning separately: we needed to leave our room to get back to the main lodge, but a young male elephant was on our porch. We decided to wait, just a little while. When we finally opened the front door, he turned toward us aggressively. Later he was doing not-very-subtle charging behavior at our friends in the next room over. 
 
@@ -32,17 +32,17 @@ The afternoon was Victoria Falls. About a 25-minute drive to the park, then 3 ho
 
 ![Park entrance.](images/victoria-falls-22.jpg)
 
-It's not long after you start that you hear the rumble — in the local language the falls are known as Mosi-oa-Tunya, meaning "the smoke that thunders", which sounds considerably better than "Victoria", and gives a sense of just how powerful and *loud* it is. 
+It's not long after you start that you hear the rumble -- in the local language the falls are known as Mosi-oa-Tunya, meaning "the smoke that thunders", which sounds considerably better than "Victoria", and gives a sense of just how powerful and *loud* it is. 
 
-![We could include 20 pictures just of the rainbows coming out of the falls. We were not at the highest water time of year (that's April, end of the rainy season), but I'm glad we saw it in August — the waterfall was nearly invisible in many spots due to the mist, and evidently that's even more true at higher water.](images/victoria-falls-24.jpg)
+![We could include 20 pictures just of the rainbows coming out of the falls. We were not at the highest water time of year (that's April, end of the rainy season), but I'm glad we saw it in August -- the waterfall was nearly invisible in many spots due to the mist, and evidently that's even more true at higher water.](images/victoria-falls-24.jpg)
 
-The guides were right about the afternoon — the rainbows were real and they were everywhere. Tiffany was moved to tears at the first viewpoint.
+The guides were right about the afternoon -- the rainbows were real and they were everywhere. Tiffany was moved to tears at the first viewpoint.
 
 That reaction surprised neither of us after a few minutes standing there. The scale of the falls is in a different category.
 
 Victoria Falls is often described as the largest waterfall in the world when width and height are combined. The falls stretch more than a mile across the border between Zambia and Zimbabwe.
 
-From the Zimbabwe side you walk a series of viewpoints along the entire length. Each viewpoint shows only a small portion of the falls — maybe 25–30% at most — so the experience unfolds gradually as you move along the path.
+From the Zimbabwe side you walk a series of viewpoints along the entire length. Each viewpoint shows only a small portion of the falls -- maybe 25-30% at most -- so the experience unfolds gradually as you move along the path.
 
 There's no single ground viewpoint that captures the whole thing.
 
@@ -66,10 +66,10 @@ The Old Drift Lodge sits right on the mighty Zambezi, about 10 miles upstream fr
 
 :::nutshell Victoria Falls
 verdict: Would Plan Around
-Stay Overnight: Old Drift Lodge is right on the Zambezi — we thought of it as just a base for the Falls, but it's a safari experience in its own right.
-Don't Miss: Victoria Falls in the afternoon — the rainbows are real and the guides were right about timing. Bring something waterproof.
+Stay Overnight: Old Drift Lodge is right on the Zambezi -- we thought of it as just a base for the Falls, but it's a safari experience in its own right.
+Don't Miss: Victoria Falls in the afternoon -- the rainbows are real and the guides were right about timing. Bring something waterproof.
 Best Time of Day: Afternoon for the Falls (the guides were right about the light); sunrise on the Zambezi.
-Worth the Splurge: Old Drift Lodge. The Zambezi frontage, the game drives, the boat — worth every bit of it.
+Worth the Splurge: Old Drift Lodge. The Zambezi frontage, the game drives, the boat -- worth every bit of it.
 Return Visit: Would love to see the Falls again, and maybe try the helicopter ride.
 :::
 
@@ -98,7 +98,7 @@ Return Visit: Would love to see the Falls again, and maybe try the helicopter ri
 
 ![Baobab trees were plentiful in Zambezi national park.](images/victoria-falls-15.jpg)
 
-![Not sure if this baboon was showing us her best side, but the baby sure was cute. Baboons travel in troops — probably a few dozen in this one.](images/victoria-falls-16.jpg)
+![Not sure if this baboon was showing us her best side, but the baby sure was cute. Baboons travel in troops -- probably a few dozen in this one.](images/victoria-falls-16.jpg)
 
 ![Baboon troop](images/victoria-falls-17.jpg)
 

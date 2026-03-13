@@ -1,4 +1,4 @@
-Paros was our deliberate choice as the Cycladic island to spend the longest, and slow the pace. We chose it over Mykonos (too focused on glamor), Milos (lovely, but small), or Santorini (over-discovered). Then we spent three of our five days barely leaving the tiny Naoussa port — and didn't mind at all. We did rent a car for two days and made day trips to [Delos](delos.html) and [Mykonos](mykonos.html), but Paros earns its place as the natural home base for this stretch of the Cyclades.  
+Paros was our deliberate choice as the Cycladic island to spend the longest, and slow the pace. We chose it over Mykonos (too focused on glamor), Milos (lovely, but small), or Santorini (over-discovered). Then we spent three of our five days barely leaving the tiny Naoussa port -- and didn't mind at all. We did rent a car for two days and made day trips to [Delos](delos.html) and [Mykonos](mykonos.html), but Paros earns its place as the natural home base for this stretch of the Cyclades.  
 
 ## Naoussa Port
 
@@ -45,12 +45,12 @@ The Panagia Ekatontapiliani, aka "The Church of 100 Doors" is right near Paros t
 
 ![It turns out people were shorter in the 5th century](images/Paros-01.jpg)
 
-Some friends visited a year before us and rented a bare boat to go around Paros on their own; we didn't really have this option because our days were mostly too windy for calm boating.  They recommend [The Sailors Ride](https://thesailorsride.gr/our-boats/electra-compass-160e) – note smaller boats don't require a license to self-drive.
+Some friends visited a year before us and rented a bare boat to go around Paros on their own; we didn't really have this option because our days were mostly too windy for calm boating.  They recommend [The Sailors Ride](https://thesailorsride.gr/our-boats/electra-compass-160e) -- note smaller boats don't require a license to self-drive.
 
 ## Antiparos: Paros' Small Drivable Neighbor
 
 Antiparos is a 10-minute ride on the small car ferry, which departs on the half-hour.  Antiparos was as promised sleepy; it's famous for being a hiding place for such A-listers as Tom Hanks (who has owned a villa there since 2004), Matthew McConaughey, Madonna, and Springsteen. 
-By comparison, it makes Paros feel almost like Santorini — the infrastructure is modest, but the views are beautiful.
+By comparison, it makes Paros feel almost like Santorini -- the infrastructure is modest, but the views are beautiful.
 
 Antiparos has quite a few small beaches.  Many of these didn't impress us a lot in early May, but as we said about all the islands, it was before the season started so the chairs and services were not in evidence.  We drove the 25 minutes from the ferry to "Plage Ag Georgios", a smallish beach that's about as far from the ferry as you can get on this small island.
 
@@ -69,7 +69,7 @@ Antiparos has quite a few small beaches.  Many of these didn't impress us a lot 
 
 ## Where We Stayed
 
-We stayed at Avant Mar and highly recommend it – it's a 5-8 minute walk from Naoussa, but feels a 
+We stayed at Avant Mar and highly recommend it -- it's a 5-8 minute walk from Naoussa, but feels a 
 bit "resorty" (in a refreshing way).  Unlike many other places we stayed in the Greek Islands, it is modern and comfortable, with a nice pool (though chilly when we were there), a nice beach with service, and great staff. It opened in 2023, and feels it in a good way, everything is still gleaming.
 
 ## Food and Drink
@@ -92,11 +92,11 @@ Moraitis winery is a moderate-length walk inland from Naoussa.  It's a very smal
 
 :::nutshell Paros
 verdict: Would Plan Around
-Stay Overnight: Avant Mar near Naoussa — resorty in a refreshing way, easy walk to town, opened 2023.
+Stay Overnight: Avant Mar near Naoussa -- resorty in a refreshing way, easy walk to town, opened 2023.
 Don't Miss: Naoussa port at sunset; Lefkes mountain village; the Church of 100 Doors.
 Best Time of Day: Late afternoon into sunset at the waterfront bar near the Venetian fort.
-Worth the Splurge: Dinner at Yemeni — the moussaka was good enough to go twice.
-Return Visit: Yes — we missed Marpissa and barely explored Antiparos.
+Worth the Splurge: Dinner at Yemeni -- the moussaka was good enough to go twice.
+Return Visit: Yes -- we missed Marpissa and barely explored Antiparos.
 :::
 
 

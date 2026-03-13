@@ -43,10 +43,12 @@ const VOICE_MARKERS = /\b(recommend|highlight|favorite|worth|skip|avoid|overrate
 
 const LOGISTICS_HEADINGS = ['practical tips', 'practical', 'logistics', 'getting there', 'getting around'];
 
-// Quote typography patterns — source files should be all-ASCII (build pipeline adds curly quotes)
+// Typography patterns — source files should be all-ASCII (build pipeline adds smart typography)
 const CURLY_DOUBLE_QUOTES = /[\u201C\u201D]/;
 const CURLY_SINGLE_QUOTES = /[\u2018\u2019]/;
 const SINGLE_QUOTE_SCARE = /'([^']{1,40})'/g;
+const EM_DASH = /\u2014/;
+const EN_DASH = /\u2013/;
 
 // ---------------------------------------------------------------------------
 // Markdown parsing — line-aware
@@ -211,7 +213,7 @@ function checkQuoteTypography(contentLines) {
             issues.push({
                 severity: 'warn', tag: 'QUOTE', line: lineNum,
                 text: truncate(line, 90),
-                detail: 'curly double quote in source — run npm run normalize-quotes to fix'
+                detail: 'curly double quote in source — run npm run normalize to fix'
             });
         }
 
@@ -220,7 +222,7 @@ function checkQuoteTypography(contentLines) {
             issues.push({
                 severity: 'warn', tag: 'QUOTE', line: lineNum,
                 text: truncate(line, 90),
-                detail: 'curly apostrophe in source — run npm run normalize-quotes to fix'
+                detail: 'curly apostrophe in source — run npm run normalize to fix'
             });
         }
 
@@ -237,6 +239,35 @@ function checkQuoteTypography(contentLines) {
                 severity: 'warn', tag: 'QUOTE', line: lineNum,
                 text: `${match[0]}`,
                 detail: 'single-quote scare quote — change to double quotes manually'
+            });
+        }
+    }
+    return issues;
+}
+
+function checkDashTypography(contentLines) {
+    const issues = [];
+
+    for (let i = 0; i < contentLines.length; i++) {
+        const line = contentLines[i];
+        const lineNum = i + 1;
+
+        if (line.trim().startsWith('```')) continue;
+        if (line.trim().startsWith(':::')) continue;
+
+        if (EM_DASH.test(line)) {
+            issues.push({
+                severity: 'warn', tag: 'DASH', line: lineNum,
+                text: truncate(line, 90),
+                detail: 'em dash in source — run npm run normalize to fix'
+            });
+        }
+
+        if (EN_DASH.test(line)) {
+            issues.push({
+                severity: 'warn', tag: 'DASH', line: lineNum,
+                text: truncate(line, 90),
+                detail: 'en dash in source — run npm run normalize to fix'
             });
         }
     }
@@ -489,8 +520,9 @@ function auditFile(filePath) {
     issues.push(...checkFirstSentence(blocks));
     issues.push(...checkVoiceProxy(blocks, totalWords));
 
-    // Quote typography checks
+    // Typography checks (quotes and dashes)
     issues.push(...checkQuoteTypography(contentLines));
+    issues.push(...checkDashTypography(contentLines));
 
     return { totalWords, contentLines, issues: sortIssues(issues) };
 }

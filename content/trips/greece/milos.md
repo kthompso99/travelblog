@@ -26,7 +26,7 @@ Be careful near Plaka, there are some narrow lanes.  Don't always optimize for "
 
 One of the most popular things to do in Milos is a catamaran cruise around the island's coastline.  We booked ours with Odysseus Cruises.  They cancelled at 7pm the night before due to lack of staffing. So we can't report on it firsthand.  
 
-If you're interested in art history, it's worth driving to the capital, Plaka, to see a replica of the Venus de Milo — known locally as Aphrodite de Milos — overlooking the water near where she was discovered.  She has a great view of the water from her hillside perch.
+If you're interested in art history, it's worth driving to the capital, Plaka, to see a replica of the Venus de Milo -- known locally as Aphrodite de Milos -- overlooking the water near where she was discovered.  She has a great view of the water from her hillside perch.
 
 ![Beautiful church above Plaka](images/Milos-04.jpg)
 
@@ -36,11 +36,11 @@ If you're interested in art history, it's worth driving to the capital, Plaka, t
   
 I made a quick map for myself [here](https://www.google.com/maps/d/edit?mid=10STMCKq4Tnfg4n-Z_B0SCEIKhQogt8I&usp=sharing) based on some online recommendations of "best beach in Milos".
   
-We especially recommend Sarakiniko beach. It's a 5–8 minute walk downhill from the parking lot and one of the most unusual beaches we saw in the Cyclades.
+We especially recommend Sarakiniko beach. It's a 5-8 minute walk downhill from the parking lot and one of the most unusual beaches we saw in the Cyclades.
 
 ![Sarakiniko Beach](images/Milos-03.jpg)
 
-Milos is very hilly. For example, Fyriplaka beach looks close to Paliochori on the map, but there's no "circle" road — you drive back into the interior and then out again.  The road down from the interior to Fyriplaka is hairy, you're going down a steep road right near a quarry with massive trucks around you.
+Milos is very hilly. For example, Fyriplaka beach looks close to Paliochori on the map, but there's no "circle" road -- you drive back into the interior and then out again.  The road down from the interior to Fyriplaka is hairy, you're going down a steep road right near a quarry with massive trucks around you.
   
 ## Food and Drink
 
@@ -54,10 +54,10 @@ Medusa restaurant in Mandraki is well-known, Justin Bieber and Tom Hanks are amo
 
 :::nutshell Milos
 verdict: Glad We Went
-Stay Overnight: Tania Milos in Pollonia — direct sunset views from the balcony, under $300/night in shoulder season.
+Stay Overnight: Tania Milos in Pollonia -- direct sunset views from the balcony, under $300/night in shoulder season.
 Don't Miss: Sarakiniko beach; Kostankis winery, a 10-minute walk from Pollonia.
 Best Time of Day: Sunset from the Tania Milos balcony.
-Worth the Splurge: The Deluxe Room with Full Sunset Sea View — a bargain by island standards.
-Return Visit: Yes — we missed the catamaran cruise and barely scratched the surface.
+Worth the Splurge: The Deluxe Room with Full Sunset Sea View -- a bargain by island standards.
+Return Visit: Yes -- we missed the catamaran cruise and barely scratched the surface.
 :::
 

@@ -2,7 +2,7 @@
 
 We did not stay in Naxos, but arranged a ferry schedule to be able to spend 6 hours in Naxos which was delightful.  The Santorini=>Paros ferry actually stops in Naxos.  We were able to get a morning ferry (roughly 930-11) to Naxos, and then we had a driver pick us up to take us around for a half-day, with our luggage safely in his trunk.  Then it was only a 30-minute ferry ride around dinnertime to Paros.
 
-Before the trip, we spent a lot of time deciding whether to stay in Paros or Naxos, and while we don't regret our decision (we liked Paros a lot) … our 6 hours in Naxos made us wish we'd stayed there longer.  Naxos is surprisingly different from Paros – it has an underground water supply, so it has the most agriculture in the Cyclades (including OMG the best cherry tomatoes we've ever tasted).  
+Before the trip, we spent a lot of time deciding whether to stay in Paros or Naxos, and while we don't regret our decision (we liked Paros a lot) … our 6 hours in Naxos made us wish we'd stayed there longer.  Naxos is surprisingly different from Paros -- it has an underground water supply, so it has the most agriculture in the Cyclades (including OMG the best cherry tomatoes we've ever tasted).  
 
 Like anywhere in Greece seemingly, Naxos has a lot of interesting history.  There are many ancient churches dotted around the landscape; a highlight to us was the 4th century [Panagia Drossiani](https://www.greeka.com/cyclades/naxos/sightseeing/drosiani-church-naxos/). It's tiny so it's a 15-minute stop not 2 hours, but highly worth the detour.  
 
@@ -24,10 +24,10 @@ We can't recommend enough our tour guide Alex, see him [here](https://www.toursb
 
 :::nutshell Naxos
 verdict: Wish We'd Stayed Longer
-Stay Overnight: We didn't, and regretted it. Six hours was a tease — Naxos deserves at least two nights.
+Stay Overnight: We didn't, and regretted it. Six hours was a tease -- Naxos deserves at least two nights.
 Don't Miss: Panagia Drossiani (4th-century church); the marble village of Apeiranthos; the cherry tomatoes.
 Best Time of Day: Hard to say from a half-day, but the morning ferry from Santorini worked well.
-Worth the Splurge: A private tour with Alex — his local knowledge made the half-day count.
+Worth the Splurge: A private tour with Alex -- his local knowledge made the half-day count.
 Return Visit: Top of the list for a return to the Cyclades.
 :::
 

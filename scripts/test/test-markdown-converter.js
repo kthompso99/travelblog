@@ -31,6 +31,10 @@
  *                    → no block           → content unchanged
  *                    → field ordering     → follows NUTSHELL_FIELDS from constants
  *                    → extra fields       → appended after schema-defined fields
+ * Smart dashes       → double-hyphen     → -- becomes em dash \u2014 in text
+ *                    → numeric ranges    → digit-hyphen-digit becomes en dash \u2013
+ *                    → triple hyphens    → --- left alone (not converted)
+ *                    → HTML attributes   → dashes inside tags are NOT converted
  * Smart quotes       → apostrophes       → straight ' → curly \u2019 in text
  *                    → double quotes      → straight " → curly \u201C/\u201D in text
  *                    → HTML attributes    → quotes inside tags are NOT converted
@@ -364,6 +368,65 @@ Regular paragraph after.
             const md = 'No nutshell here, just text.\n';
             const result = processNutshell(md);
             assert('processNutshell returns markdown unchanged when no block', result === md);
+        }
+
+        // ── Smart dashes ────────────────────────────────────────────────────
+        console.log('\n\u2014 Smart dashes');
+
+        {
+            const f = writeMd(dir, 'sd-em.md', 'Six hours was a tease -- Naxos deserves two nights.\n');
+            const html = await convertMarkdown(f);
+            assert('-- becomes em dash in text', html.includes('tease \u2014 Naxos'));
+        }
+
+        {
+            const f = writeMd(dir, 'sd-range.md', 'A 5-8 minute walk from the port.\n');
+            const html = await convertMarkdown(f);
+            assert('digit-hyphen-digit becomes en dash', html.includes('5\u20138'));
+        }
+
+        {
+            const f = writeMd(dir, 'sd-triple.md', 'Word---another word.\n');
+            const html = await convertMarkdown(f);
+            assert('triple hyphens not converted to em dash', !html.includes('Word\u2014'));
+        }
+
+        {
+            const f = writeMd(dir, 'sd-href.md', '[Link](https://example.com/page--two)\n');
+            const html = await convertMarkdown(f);
+            assert('href not corrupted by dash conversion', html.includes('href="https://example.com/page--two"'));
+        }
+
+        {
+            const f = writeMd(dir, 'sd-caption.md', '![The lions -- replicas outdoors](missing.jpg)\n');
+            const html = await convertMarkdown(f);
+            assert('-- in figcaption becomes em dash', html.includes('lions \u2014 replicas'));
+        }
+
+        {
+            const f = writeMd(dir, 'sd-single.md', 'Just a single - hyphen here.\n');
+            const html = await convertMarkdown(f);
+            assert('single hyphen not converted', html.includes('single - hyphen'));
+        }
+
+        {
+            const f = writeMd(dir, 'sd-combo.md', "Kevin's trip -- the \"best\" one.\n");
+            const html = await convertMarkdown(f);
+            assert('em dash and smart quotes both convert', html.includes('\u2014') && html.includes('\u201C'));
+        }
+
+        {
+            const f = writeMd(dir, 'sd-nutshell.md', `:::nutshell TestPlace
+verdict: Glad We Went
+Stay Overnight: Yes -- two nights minimum.
+Don't Miss: The sunset
+Best Time of Day: Morning
+Worth the Splurge: Maybe
+Return Visit: Yes
+:::
+`);
+            const html = await convertMarkdown(f);
+            assert('nutshell value gets em dash conversion', html.includes('Yes \u2014 two nights'));
         }
 
         // ── Smart quotes ────────────────────────────────────────────────────

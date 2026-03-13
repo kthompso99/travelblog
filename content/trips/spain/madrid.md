@@ -1,15 +1,15 @@
 ## Overview
 
-Madrid bookended our trip — 36 hours before the Andalucian loop, 36 hours after — and we were deliberate about not making it the focus. We can return and do it properly; early November in northern Spain is also not the ideal weather window. That said, we came away with more than we expected from the time we had.
+Madrid bookended our trip -- 36 hours before the Andalucian loop, 36 hours after -- and we were deliberate about not making it the focus. We can return and do it properly; early November in northern Spain is also not the ideal weather window. That said, we came away with more than we expected from the time we had.
 
 
 ## What We Did
 
-The practical reality of Madrid is that its major sites are spread out in a way that Seville and Granada are not. We did a Tuk Tuk tour on the first visit — three hours that covered a lot of ground and worked well as an introduction to the city.  
+The practical reality of Madrid is that its major sites are spread out in a way that Seville and Granada are not. We did a Tuk Tuk tour on the first visit -- three hours that covered a lot of ground and worked well as an introduction to the city.  
 
 ![Neither of us drove the Tuk Tuk, but it was a good photo-op](images/madrid-06.jpg)
 
-We visited the Mercado de San Miguel near Plaza Mayor — 100% tourist-oriented, but housed in a lovely wrought-iron and glass structure and worth an hour if you're in the area.
+We visited the Mercado de San Miguel near Plaza Mayor -- 100% tourist-oriented, but housed in a lovely wrought-iron and glass structure and worth an hour if you're in the area.
 
 ![The Mercado de San Miguel](images/madrid-04.jpg)
 
@@ -25,9 +25,9 @@ One genuine surprise: we stumbled onto the Real Basílica de San Francisco el Gr
 
 ## Museums
 
-We split the art museums across both visits — the Prado on the way in, the Reina Sofía on the way out. The Prado we'd each seen before and caught a few highlights at the end of a long day; we didn't do it justice and knew it. The Reina Sofía, the main modern art museum of Madrid, was new to both of us.
+We split the art museums across both visits -- the Prado on the way in, the Reina Sofía on the way out. The Prado we'd each seen before and caught a few highlights at the end of a long day; we didn't do it justice and knew it. The Reina Sofía, the main modern art museum of Madrid, was new to both of us.
 
-There are several remarkable pieces in Reina Sofía, including some of Dali's more famous works.  The draw is Guernica. Picasso refused to let it display in Spain while Franco was alive, so it hung in New York until 1981 — which means it's possible I saw it as a child without quite registering what it was. I thought I knew the painting well. 
+There are several remarkable pieces in Reina Sofía, including some of Dali's more famous works.  The draw is Guernica. Picasso refused to let it display in Spain while Franco was alive, so it hung in New York until 1981 -- which means it's possible I saw it as a child without quite registering what it was. I thought I knew the painting well. 
 
 > Seeing it in person, the scale stops you: it's nearly 12 feet tall and 25 feet wide, and the grey tones that read as flat in reproduction have a texture and weight that photographs don't capture. 
 
@@ -35,7 +35,7 @@ We had a guide who walked us through it left to right, and I noticed details I'd
 
 ![Guernica, Reina Sofía](images/madrid-09.jpg)
 
-On our last day we spent a few hours at the Madrid Archaeological Museum — we were tired by then, but it's well-curated, well-displayed, and has genuinely remarkable pieces across a wide span of ancient history.
+On our last day we spent a few hours at the Madrid Archaeological Museum -- we were tired by then, but it's well-curated, well-displayed, and has genuinely remarkable pieces across a wide span of ancient history.
 
 ![The Madrid Archaeological museum featured displays from over many centuries, including some beautiful Roman mosaics.](images/madrid-12.jpg)
 
@@ -47,7 +47,7 @@ We stayed in different neighborhoods on each visit, which worked well.
 
 After we arrived, we stayed at the [Gran Hotel Inglés](https://www.hyatt.com/mr-and-mrs-smith/en-US/m1391-gran-hotel-ingles).  This is an elegant hotel well-situated near many tourist sites, and has a history dating to 1886.  We were very happy for our 36 hours there.
 
-The [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/fenix-gran-melia) is a bit further from the tourist center but a 5-minute walk from the Archaeological Museum. The 1953 lobby atrium is the kind of space that makes you want to dress for it, which we did. The Beatles and Cary Grant stayed here, which tells you something about the register. As we often notice in Spain, locals look far more put-together — a scarf, a jacket, some deliberate choice.  The contrast was immediately noticable when we re-entered the US.
+The [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/fenix-gran-melia) is a bit further from the tourist center but a 5-minute walk from the Archaeological Museum. The 1953 lobby atrium is the kind of space that makes you want to dress for it, which we did. The Beatles and Cary Grant stayed here, which tells you something about the register. As we often notice in Spain, locals look far more put-together -- a scarf, a jacket, some deliberate choice.  The contrast was immediately noticable when we re-entered the US.
 
 ![Tiffany said I should add this picture as evidence that *sometime* I dress up in Europe.](images/madrid-14.jpg)
 
@@ -60,7 +60,7 @@ verdict: Glad We Went
 Stay Overnight: Yes, but budget more than 36 hours.
 Don't Miss: Guernica at the Reina Sofía, with a guide if possible; the Archaeological Museum if ancient history is your thing.
 Best Time of Day: Museums in the morning before crowds build.
-Worth the Splurge: A guide for the Reina Sofía — Guernica specifically rewards explanation.
+Worth the Splurge: A guide for the Reina Sofía -- Guernica specifically rewards explanation.
 Return Visit: Yes, and with more time. This is a city we under-invested in.
 :::
 

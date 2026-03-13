@@ -190,6 +190,14 @@ TTN source files (.md) use **all-straight ASCII quotes**. The build pipeline aut
 - **Never use** curly quotes in source files. The build handles typography.
 - **Single-quote scare quotes**: Do not use. Use double quotes for emphasis/scare quotes.
 
+## Typography: Dashes
+
+TTN source files (.md) use **ASCII hyphens only**. The build pipeline automatically converts to typographic dashes in the rendered HTML.
+
+- **Em dash**: Write `--` (double hyphen) in source. Build converts to — (U+2014). Example: `Six hours was a tease -- Naxos deserves two nights.`
+- **Numeric ranges**: Write a regular hyphen between digits. Build converts to en dash (U+2013). Example: `5-8 minute walk` renders as `5–8 minute walk`.
+- **Never use** Unicode em dashes or en dashes in source files. The build handles typography.
+
 ---
 
 # PART 3: Anti-AI Writing Guidelines

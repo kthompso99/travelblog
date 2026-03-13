@@ -1,10 +1,10 @@
 ## Overview 
 
-Ronda may be the most famous of Andalusia's **Pueblos Blancos** — and unlike many famous places, it actually earns the reputation.  Rick Steves recommended spending a night rather than day-tripping from Seville or Málaga, and he's right. The bridge alone justifies the overnight.
+Ronda may be the most famous of Andalusia's **Pueblos Blancos** -- and unlike many famous places, it actually earns the reputation.  Rick Steves recommended spending a night rather than day-tripping from Seville or Málaga, and he's right. The bridge alone justifies the overnight.
 
 ## What We Did
 
-The Puente Nuevo — "new bridge," built in 1793 — spans a 400-foot gorge that splits old Ronda from new. It's the kind of thing that photographs well and then somehow exceeds the photograph in person. At night, floodlit from below, it's genuinely hard to look away.
+The Puente Nuevo -- "new bridge," built in 1793 -- spans a 400-foot gorge that splits old Ronda from new. It's the kind of thing that photographs well and then somehow exceeds the photograph in person. At night, floodlit from below, it's genuinely hard to look away.
 
 ![The Puente Nuevo ("new" bridge) spanning the 400-foot deep river chasm that separates old from new Ronda, was built in 1793. It truly is an impressive bit of engineering for its time ... but mostly gorgeous.](images/ronda-01.jpg)
 
@@ -12,7 +12,7 @@ A path winds down from the old town to several viewpoints along the gorge, and i
 
 We were there on Halloween, which turns out to be worth knowing about. The town center was full of kids trick-or-treating in the downtown shops, and the bridge was lit up behind a queue of children waiting for a haunted house. 
 
-> Halloween is apparently rapidly overtaking Día de los Muertos as a Spanish holiday — something we didn't expect to learn in an 18th-century Andalusian hill town.
+> Halloween is apparently rapidly overtaking Día de los Muertos as a Spanish holiday -- something we didn't expect to learn in an 18th-century Andalusian hill town.
 
 ![The Ronda bridge at night, from our hotel room. If you look closely, you can see hundreds of costumed kids lined up for a Halloween haunted mansion.](images/ronda-04.jpg)
 
@@ -40,14 +40,14 @@ Our restaurant luck in Ronda was less than perfect, so we have nothing to sugges
 
 ## Practical Tips
 
-Ronda is compact — 10-15 minutes across the tourist zone on foot. Parking is scarce and train access is limited, so a car shuttle or taxi drop-off works well. Once you're there, you don't need a car.
+Ronda is compact -- 10-15 minutes across the tourist zone on foot. Parking is scarce and train access is limited, so a car shuttle or taxi drop-off works well. Once you're there, you don't need a car.
 
 :::nutshell Ronda
 verdict: Would Plan Around
 Stay Overnight: Absolutely: the bridge lit up alone is worth the overnight.
 Don't Miss: The Puente Nuevo from below; Cueva Pileta if you plan ahead (we didn't).
 Best Time of Day: Late afternoon light from the gorge viewpoints; after dark from the hotel.
-Worth the Splurge: A room with a gorge view at Montelirio — don't book a standard room here.
+Worth the Splurge: A room with a gorge view at Montelirio -- don't book a standard room here.
 Return Visit: Yes. This is a place worth lingering in, not just checking off.
 :::
 

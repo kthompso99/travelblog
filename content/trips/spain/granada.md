@@ -1,7 +1,7 @@
 
 ## Overview
 
-Granada arrives with a big reputation. It's home to the Alhambra —  Spain's most famous historical site — and for many travelers that alone makes it a mandatory stop. But Granada isn't just a monument. It's a layered city where Islamic, Catholic, and Roma histories intersect; where neighborhoods climb steep hills with cinematic views; and where tapas arrive included with your drink and  quietly become dinner. We came for the Alhambra. We left most impressed by Granada's hillside walks, cultural complexity, and food culture.
+Granada arrives with a big reputation. It's home to the Alhambra --  Spain's most famous historical site -- and for many travelers that alone makes it a mandatory stop. But Granada isn't just a monument. It's a layered city where Islamic, Catholic, and Roma histories intersect; where neighborhoods climb steep hills with cinematic views; and where tapas arrive included with your drink and  quietly become dinner. We came for the Alhambra. We left most impressed by Granada's hillside walks, cultural complexity, and food culture.
 
 ## What We Did
 
@@ -23,7 +23,7 @@ We booked a guided tour.  Our guide had the facts but not the narrative, we woul
 
 After the Alhambra, we spent our remaining time looking for the Granada that doesn't fit on postcards.  One can't discuss this part of Spain without acknowledging the Roma community, who migrated from the Indian subcontinent over a thousand years ago and have long been part of Andalusia's cultural fabric. In Spain they are often referred to as *Gitanos*, though terminology varies and can be sensitive. Historically marginalized and often pushed to the edges of cities, many settled in the hillside caves of Sacromonte above Granada.
 
-Museo Cuevas del Sacromonte was worth the visit for context. It's small but specific — more lived history than museum spectacle — with intimate displays recreating daily life in the cave dwellings before residents were displaced in the 1960s. It adds cultural depth to Granada beyond its Moorish palaces. You can take a bus up the hill from town (recommended; it's a steep climb on foot).  
+Museo Cuevas del Sacromonte was worth the visit for context. It's small but specific -- more lived history than museum spectacle -- with intimate displays recreating daily life in the cave dwellings before residents were displaced in the 1960s. It adds cultural depth to Granada beyond its Moorish palaces. You can take a bus up the hill from town (recommended; it's a steep climb on foot).  
 
 > This was the most "Granada" hour we had outside the Alhambra.  It changed how we interpreted the city's neighborhoods.
 
@@ -31,11 +31,11 @@ Museo Cuevas del Sacromonte was worth the visit for context. It's small but spec
 
 ### Albaicín
 
-Perched on a steep hillside above the city, the Albaicín is Granada's historic Moorish quarter — a tangle of narrow streets, viewpoints, and whitewashed homes.  We only skimmed the edge of it on our walking tour.   It gets increasingly charming once you're past the first tourist-heavy blocks and into the quieter lanes and viewpoints.  
+Perched on a steep hillside above the city, the Albaicín is Granada's historic Moorish quarter -- a tangle of narrow streets, viewpoints, and whitewashed homes.  We only skimmed the edge of it on our walking tour.   It gets increasingly charming once you're past the first tourist-heavy blocks and into the quieter lanes and viewpoints.  
 
-We had saved the Albaicín for unstructured wandering on our last afternoon. A torrential rainstorm had other ideas. With steep grades and wet stone underfoot, we passed — practical, perhaps, but a decision we slightly regret.
+We had saved the Albaicín for unstructured wandering on our last afternoon. A torrential rainstorm had other ideas. With steep grades and wet stone underfoot, we passed -- practical, perhaps, but a decision we slightly regret.
 
-![This view from the Alhambra is one of several from the Albaicín.   This is one of the lower Albaicín-style viewpoints—easy to reach from town, even if you don't commit to the full climb. Google Maps has it as "Fuente de la Placeta Carvajales".](images/granada-01.jpg)
+![This view from the Alhambra is one of several from the Albaicín.   This is one of the lower Albaicín-style viewpoints--easy to reach from town, even if you don't commit to the full climb. Google Maps has it as "Fuente de la Placeta Carvajales".](images/granada-01.jpg)
 
 ## Where We Stayed
 
@@ -50,7 +50,7 @@ Palacio Gran Via did, however, have a lovely rooftop bar with views of the Alham
 
 ## Food & Dining
 
-Granada is famous for its tapas culture. In most cities, tapas are small plates you choose and pay for. Here, they simply appear — one with each drink — and often far more substantial than you'd expect.  Some say this was once common across Spain; today, Granada is the place where the tradition still thrives.  Granada still follows the "tapa with a drink" tradition. We expected token snacks; instead, several plates were nearly meal-sized and genuinely good.  
+Granada is famous for its tapas culture. In most cities, tapas are small plates you choose and pay for. Here, they simply appear -- one with each drink -- and often far more substantial than you'd expect.  Some say this was once common across Spain; today, Granada is the place where the tradition still thrives.  Granada still follows the "tapa with a drink" tradition. We expected token snacks; instead, several plates were nearly meal-sized and genuinely good.  
 
 We'd recommend [Granada Tapa Tours](https://www.granadatapastours.com/) by Gayle.  During her tour, some of the tapas were outstanding, and after 4 restaurant visits we were overly full with just "free" tapas.  If you don't do the tour, order drinks and let the tapas guide you.
 
@@ -60,7 +60,7 @@ We'd recommend [Granada Tapa Tours](https://www.granadatapastours.com/) by Gayle
 
 Granada demands more logistics than Córdoba. It's larger, busier, and less seamlessly pedestrian, and the Alhambra's hilltop location means you'll need to budget both time and energy to reach it.
 
-Tickets and tours require real advance planning. The complex is expansive enough that a guide adds clarity, and popular time slots — especially night visits — disappear quickly. When we checked, evening entries were already sold out nearly eight weeks ahead, even outside peak season.
+Tickets and tours require real advance planning. The complex is expansive enough that a guide adds clarity, and popular time slots -- especially night visits -- disappear quickly. When we checked, evening entries were already sold out nearly eight weeks ahead, even outside peak season.
 
 :::nutshell Granada
 verdict: Would Plan Around
@@ -72,10 +72,10 @@ Worth the Splurge: If we return, we would still recommend a private tour of the 
 Return Visit: Yes
 :::
 
-**Granada is a high-value stop — but it rewards planners and wanderers differently.**
- The Alhambra lives up to its reputation, but it requires advance planning and stamina (mentally and physically). Beyond that, Granada feels bigger, busier, and a bit more chaotic than Córdoba — yet also more culturally layered. The Albaicín deserves real time (and good weather), the Sacromonte museum adds important context, and the tapas culture is genuinely delightful rather than gimmicky.
+**Granada is a high-value stop -- but it rewards planners and wanderers differently.**
+ The Alhambra lives up to its reputation, but it requires advance planning and stamina (mentally and physically). Beyond that, Granada feels bigger, busier, and a bit more chaotic than Córdoba -- yet also more culturally layered. The Albaicín deserves real time (and good weather), the Sacromonte museum adds important context, and the tapas culture is genuinely delightful rather than gimmicky.
 
-If you come expecting a compact, quiet Andalusian jewel, Granada may feel overwhelming. If you come prepared — tickets booked, walking shoes ready, afternoons reserved for hilltop wandering — it becomes a fascinating blend of grandeur, history, and everyday Spanish life.
+If you come expecting a compact, quiet Andalusian jewel, Granada may feel overwhelming. If you come prepared -- tickets booked, walking shoes ready, afternoons reserved for hilltop wandering -- it becomes a fascinating blend of grandeur, history, and everyday Spanish life.
 
 
 

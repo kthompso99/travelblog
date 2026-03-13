@@ -1,22 +1,26 @@
 #!/usr/bin/env node
 
 /**
- * Normalize Quotes — flattens all curly quotes to straight ASCII in markdown content.
+ * Normalize Typography — flattens all curly quotes and Unicode dashes
+ * to straight ASCII in markdown content.
  *
- * Source files should contain only straight quotes. The build pipeline converts
- * straight quotes to typographic curly quotes in the rendered HTML output.
+ * Source files should contain only ASCII quotes and hyphens. The build
+ * pipeline converts to typographic curly quotes and smart dashes in the
+ * rendered HTML output.
  *
  * Auto-fix:
  *   - Curly double quotes (\u201C \u201D) → straight double quotes (")
  *   - Curly single quotes (\u2018 \u2019) → straight apostrophe (')
+ *   - Em dashes (\u2014) → double hyphen (--)
+ *   - En dashes (\u2013) → double hyphen (--) or hyphen (-) for ranges
  *
  * Also detects (but does not auto-fix) single-quote scare quotes for manual review.
  *
  * Usage:
- *   npm run normalize-quotes                   # All trips
- *   npm run normalize-quotes -- spain          # All files in spain/
- *   npm run normalize-quotes -- spain/cordoba  # Just cordoba.md
- *   npm run normalize-quotes -- --dry-run      # Show what would change without modifying files
+ *   npm run normalize                   # All trips
+ *   npm run normalize -- spain          # All files in spain/
+ *   npm run normalize -- spain/cordoba  # Just cordoba.md
+ *   npm run normalize -- --dry-run      # Show what would change without modifying files
  */
 
 const fs = require('fs');
@@ -32,6 +36,36 @@ function flattenQuotes(content) {
     return content
         .replace(/[\u201C\u201D]/g, '"')   // curly doubles → straight double
         .replace(/[\u2018\u2019]/g, "'");   // curly singles → straight apostrophe
+}
+
+// ---------------------------------------------------------------------------
+// Dash flattening
+// ---------------------------------------------------------------------------
+
+function flattenDashes(content) {
+    // Em dash (U+2014) → double hyphen
+    content = content.replace(/\u2014/g, '--');
+
+    // En dash (U+2013) between digits → regular hyphen (range notation)
+    content = content.replace(/(\d)\u2013(\d)/g, '$1-$2');
+
+    // En dash (U+2013) surrounded by spaces → double hyphen (clause separator)
+    content = content.replace(/ \u2013 /g, ' -- ');
+
+    // Any remaining en dashes → hyphen (catch-all)
+    content = content.replace(/\u2013/g, '-');
+
+    return content;
+}
+
+// ---------------------------------------------------------------------------
+// Combined normalization
+// ---------------------------------------------------------------------------
+
+function normalizeTypography(content) {
+    content = flattenQuotes(content);
+    content = flattenDashes(content);
+    return content;
 }
 
 // ---------------------------------------------------------------------------
@@ -71,7 +105,7 @@ function detectSingleQuoteScarequotes(content, filePath) {
 
 function processFile(filePath, dryRun) {
     const original = fs.readFileSync(filePath, 'utf8');
-    const modified = flattenQuotes(original);
+    const modified = normalizeTypography(original);
     const changed = modified !== original;
 
     if (changed && !dryRun) {
@@ -112,7 +146,7 @@ function main() {
         return;
     }
 
-    console.log(`\n${dryRun ? '(DRY RUN) ' : ''}\u2550\u2550\u2550 Normalize Quotes \u2550\u2550\u2550\n`);
+    console.log(`\n${dryRun ? '(DRY RUN) ' : ''}\u2550\u2550\u2550 Normalize Typography \u2550\u2550\u2550\n`);
 
     let totalFixed = 0;
     let totalScareQuotes = 0;

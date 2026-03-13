@@ -1,6 +1,6 @@
 ## Overview
 
-After 3 nights at Sable Alley, we took a short charter flight — 20 minutes or so — to our second Okavango reserve. [North Island Okavango](https://naturalselection.travel/camps/north-island-okavango-delta/) is priced at a higher point than Sable Alley, and you could feel the difference immediately: more intimate (7 tents vs 12), better food, a higher level of service throughout. This isn't a criticism of Sable Alley, which was excellent. North Island was just in a different register.
+After 3 nights at Sable Alley, we took a short charter flight -- 20 minutes or so -- to our second Okavango reserve. [North Island Okavango](https://naturalselection.travel/camps/north-island-okavango-delta/) is priced at a higher point than Sable Alley, and you could feel the difference immediately: more intimate (7 tents vs 12), better food, a higher level of service throughout. This isn't a criticism of Sable Alley, which was excellent. North Island was just in a different register.
 
 > The camp sits next to a hippo pool. We woke up every night listening to them vocalize.
 
@@ -49,7 +49,7 @@ One morning we found a lioness with three cubs, an auntie standing watch while t
 
 
 
-![Gorgeous picture of lioness in the morning light — this was the first sighting before we saw the cubs.](images/north-island-17.jpg)
+![Gorgeous picture of lioness in the morning light -- this was the first sighting before we saw the cubs.](images/north-island-17.jpg)
 
 ![Auntie and cub waiting for mother to return.](images/north-island-19.jpg)
 
@@ -77,7 +77,7 @@ We had a second leopard sighting here, not as extended as the one at Sable Alley
 
 ![Leopard washing his face](images/north-island-49.jpg)
 
-![Second leopard sighting — this young male walked right up to Tiffany's side of the truck.](images/north-island-51.jpg)
+![Second leopard sighting -- this young male walked right up to Tiffany's side of the truck.](images/north-island-51.jpg)
 
 What started as a brief giraffe sighting turned into nearly an hour, including sundowner cocktails, just watching a group feed. We also caught one walking alongside an elephant herd, which we still can't quite believe we photographed.
 
@@ -100,7 +100,7 @@ We had two boat outings, one Saturday afternoon and one Sunday morning. The delt
 
 ![Both Saturday afternoon and Sunday morning we had outings on this boat.](images/north-island-58.jpg)
 
-![We did a multi-hour boat trip through the delta — dozens of hippos, sometimes surrounding us.](images/north-island-65.jpg)
+![We did a multi-hour boat trip through the delta -- dozens of hippos, sometimes surrounding us.](images/north-island-65.jpg)
 
 ![This hippo got skittish when our boat went by, and abruptly crashed into the water a bit closer than we wanted.](images/north-island-67.jpg)
 
@@ -119,7 +119,7 @@ We timed our trip for a full moon, which we were glad of. A cold front also came
 
 ## Where We Stayed
 
-[North Island Okavango](https://naturalselection.travel/camps/north-island-okavango-delta/) — 7 tents, higher service level than Sable Alley, better food, more intimate feel. The fire pit extends out over the hippo pool. We'd book it again without hesitation.
+[North Island Okavango](https://naturalselection.travel/camps/north-island-okavango-delta/) -- 7 tents, higher service level than Sable Alley, better food, more intimate feel. The fire pit extends out over the hippo pool. We'd book it again without hesitation.
 
 ![North Island back porch](images/north-island-07.jpg)
 
@@ -128,8 +128,8 @@ We timed our trip for a full moon, which we were glad of. A cold front also came
 :::nutshell North Island
 verdict: Would Plan Around
 Stay Overnight: Quieter and more personal than Sable Alley. The fire pit sits over the hippo pool; you'll hear them all night.
-Don't Miss: The wild dog den — 5-week-old pups, a thriving pack, one of the rarest sightings in the Okavango.
-Best Time of Day: Early morning and late afternoon — the lioness with cubs was around 8am, the male lion we'd given up on was 530pm.
+Don't Miss: The wild dog den -- 5-week-old pups, a thriving pack, one of the rarest sightings in the Okavango.
+Best Time of Day: Early morning and late afternoon -- the lioness with cubs was around 8am, the male lion we'd given up on was 530pm.
 Worth the Splurge: The upgrade from Sable Alley. Better food, higher service, and a fire pit over the hippo pool.
 Return Visit: Without hesitation.  The wild dogs aren't guaranteed, but the entire experience was incredible.
 :::
