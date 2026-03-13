@@ -24,7 +24,7 @@ The contrast between islands is sharper than we expected. Milos is quite sleepy 
 
 A lot of our feelings are based on when we went -- we have friends who visited Milos September 2024 when the beach clubs were open, and Milos was their favorite, largely because of its beaches.  
 
-> In early May, the beach isn't really "ready" yet (and the water is seriously cold), so for us 48 hours in Milos … was plenty, because there's only so much to see.
+> In early May, the beach isn't really "ready" yet (and the water is seriously cold), so for us 48 hours in Milos ... was plenty, because there's only so much to see.
 
 ### Ferries
 
@@ -46,7 +46,7 @@ Try Moussaka.  Often.  Yemeni in Paros makes a version with a noticeably light, 
 
 White wine: We like the Monemvasia (the grape) over Assyrtiko.  Assyrtiko's acidity is part of the appeal, but it wore on us over a week.  Malagousia is very tasty too.  
 
-The red wines from the islands … didn't impress us.
+The red wines from the islands ... didn't impress us.
 
 > The islands are simply too warm to grow most red grapes.   We drank a lot more xinomavro from northern Greece when it was cool enough for red.    
 

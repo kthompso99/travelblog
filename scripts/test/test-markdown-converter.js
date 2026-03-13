@@ -31,6 +31,8 @@
  *                    → no block           → content unchanged
  *                    → field ordering     → follows NUTSHELL_FIELDS from constants
  *                    → extra fields       → appended after schema-defined fields
+ * Smart ellipses     → three periods      → ... becomes ellipsis \u2026 in text
+ *                    → HTML attributes   → periods inside tags are NOT converted
  * Smart dashes       → double-hyphen     → -- becomes em dash \u2014 in text
  *                    → numeric ranges    → digit-hyphen-digit becomes en dash \u2013
  *                    → triple hyphens    → --- left alone (not converted)
@@ -368,6 +370,27 @@ Regular paragraph after.
             const md = 'No nutshell here, just text.\n';
             const result = processNutshell(md);
             assert('processNutshell returns markdown unchanged when no block', result === md);
+        }
+
+        // ── Smart ellipses ──────────────────────────────────────────────────
+        console.log('\n\u2026 Smart ellipses');
+
+        {
+            const f = writeMd(dir, 'se-basic.md', 'The view was lovely... but the food was not.\n');
+            const html = await convertMarkdown(f);
+            assert('... becomes ellipsis character in text', html.includes('lovely\u2026 but'));
+        }
+
+        {
+            const f = writeMd(dir, 'se-href.md', '[Link](https://example.com/path...more)\n');
+            const html = await convertMarkdown(f);
+            assert('href not corrupted by ellipsis conversion', html.includes('href="https://example.com/path...more"'));
+        }
+
+        {
+            const f = writeMd(dir, 'se-caption.md', '![The ruins... what remains](missing.jpg)\n');
+            const html = await convertMarkdown(f);
+            assert('... in figcaption becomes ellipsis', html.includes('ruins\u2026 what'));
         }
 
         // ── Smart dashes ────────────────────────────────────────────────────

@@ -62,7 +62,7 @@ The one morning we were there we did a 6am extended tour with  Dineh Bekeyah tha
 
 There are a few stops on the way from Monument Valley to Grand Canyon north rim that are worth it regardless.
 
-Upper Antelope Canyon is spectacular, you've seen [pictures of it](https://cdn-imgix.headout.com/media/images/0e78d243064bffba0b41459f5e34872e-Antelope.jpg?auto=format&w=1222.3999999999999&h=687.6&q=90&fit=crop&ar=16:9&crop=faces) even if you don't know it.  We used GetYourGuide to book a trip through Tse Bighanilini Tours, but honestly the 3 companies looked kinda the same -- they share a parking lot, and there's exactly one bus route, and one route through the slot canyon.   You take a 20?-minute bus to the entrance, and it's maybe an hour to walk through.  You will share the experience with many others, it's a lot of waiting to get the photo … but it's such a beautiful spot that we are still very happy to have done it.
+Upper Antelope Canyon is spectacular, you've seen [pictures of it](https://cdn-imgix.headout.com/media/images/0e78d243064bffba0b41459f5e34872e-Antelope.jpg?auto=format&w=1222.3999999999999&h=687.6&q=90&fit=crop&ar=16:9&crop=faces) even if you don't know it.  We used GetYourGuide to book a trip through Tse Bighanilini Tours, but honestly the 3 companies looked kinda the same -- they share a parking lot, and there's exactly one bus route, and one route through the slot canyon.   You take a 20?-minute bus to the entrance, and it's maybe an hour to walk through.  You will share the experience with many others, it's a lot of waiting to get the photo ... but it's such a beautiful spot that we are still very happy to have done it.
 
 Random note: in this part of the US, Arizona and Utah are on different time zones some/most of the year which can get confusing, and when you do Upper Antelope Canyon you're on Navajo reservation time which aligns with Utah even though you enter from Arizona (I think).  Be ultra-careful in this part of the trip so you don't miss something by an hour in either direction.
 
@@ -72,7 +72,7 @@ Horseshoe Bend is also in this area (15 minutes from Antelope Canyon).  Like Ant
 
 I think we're mixed on the North Rim.  The view is incredible, and has a very different "feel" from the South Rim which is \~20 miles away but due to the canyon being in the way it's a 4 hour drive from one rim to the other.  The North Rim is far far less touristed -- the South Rim is more accessible from large population centers (Flagstaff, Phoenix) and has more tourist facilities.  
 
-The lodge at the North Rim is super tired -- poor service, poorly maintained, below the level of a Motel 6\.  When we were there the heater was on full blast and no one knew how to turn it off, so the main lounge was \~80 degrees.  But yeah … the location doesn't stink.
+The lodge at the North Rim is super tired -- poor service, poorly maintained, below the level of a Motel 6\.  When we were there the heater was on full blast and no one knew how to turn it off, so the main lounge was \~80 degrees.  But yeah ... the location doesn't stink.
 
 The Cape Royal Road (an hour each way out and back) is extremely worth it if you go to the park, some of the best views.
 
@@ -93,8 +93,8 @@ We visited Cedar Breaks National Monument on the way from Kanab to Bryce, and fo
 First, we can't recommend enough staying in Zion Lodge.  It books far in advance (I think up to 365 days), and I'm sure if it's booked that staying outside the park works too, but it's nice for several reasons:
 
 * It's just a well-maintained lodge -- unlike Bryce or Grand Canyon North Rim, the facilities are in good shape, for whatever reason.  
-* Zion is closed to car traffic, you have to get around by a shuttle bus system.  Those shuttle buses stop around 6pm(?), and suddenly if you're at Zion Lodge … you have the park to yourself, it's soooo quiet and lovely.  
-* If you're trying to get to some of the canonical hikes (Narrows, Angels Landing) you want to beat the crowds if you can.  If you're at the Lodge, you beat the crowds because the crowds stayed outside the valley (typically in one of dozens of hotels in Springdale) and are a 20-30 minute shuttle ride outside the park … and you aren't.  This "beating the crowd" is well worth it.
+* Zion is closed to car traffic, you have to get around by a shuttle bus system.  Those shuttle buses stop around 6pm(?), and suddenly if you're at Zion Lodge ... you have the park to yourself, it's soooo quiet and lovely.  
+* If you're trying to get to some of the canonical hikes (Narrows, Angels Landing) you want to beat the crowds if you can.  If you're at the Lodge, you beat the crowds because the crowds stayed outside the valley (typically in one of dozens of hotels in Springdale) and are a 20-30 minute shuttle ride outside the park ... and you aren't.  This "beating the crowd" is well worth it.
 
 Kevin's knee doesn't always do steep hikes these days, so we didn't do Angel's Landing which gives a spectacular view down into the valley.  Note that Angel's Landing requires (most? All? Of the year) permits ahead of time, make sure you plan.
 

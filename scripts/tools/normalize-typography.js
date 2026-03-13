@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 
 /**
- * Normalize Typography — flattens all curly quotes and Unicode dashes
- * to straight ASCII in markdown content.
+ * Normalize Typography — flattens all curly quotes, Unicode dashes, and
+ * Unicode ellipses to straight ASCII in markdown content.
  *
- * Source files should contain only ASCII quotes and hyphens. The build
- * pipeline converts to typographic curly quotes and smart dashes in the
- * rendered HTML output.
+ * Source files should contain only ASCII quotes, hyphens, and periods.
+ * The build pipeline converts to typographic curly quotes, smart dashes,
+ * and ellipsis characters in the rendered HTML output.
  *
  * Auto-fix:
  *   - Curly double quotes (\u201C \u201D) → straight double quotes (")
  *   - Curly single quotes (\u2018 \u2019) → straight apostrophe (')
  *   - Em dashes (\u2014) → double hyphen (--)
  *   - En dashes (\u2013) → double hyphen (--) or hyphen (-) for ranges
+ *   - Ellipsis (\u2026) → three ASCII periods (...)
  *
  * Also detects (but does not auto-fix) single-quote scare quotes for manual review.
  *
@@ -59,12 +60,22 @@ function flattenDashes(content) {
 }
 
 // ---------------------------------------------------------------------------
+// Ellipsis flattening
+// ---------------------------------------------------------------------------
+
+function flattenEllipses(content) {
+    // Unicode ellipsis (U+2026) → three ASCII periods
+    return content.replace(/\u2026/g, '...');
+}
+
+// ---------------------------------------------------------------------------
 // Combined normalization
 // ---------------------------------------------------------------------------
 
 function normalizeTypography(content) {
     content = flattenQuotes(content);
     content = flattenDashes(content);
+    content = flattenEllipses(content);
     return content;
 }
 

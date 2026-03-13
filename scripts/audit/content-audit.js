@@ -49,6 +49,7 @@ const CURLY_SINGLE_QUOTES = /[\u2018\u2019]/;
 const SINGLE_QUOTE_SCARE = /'([^']{1,40})'/g;
 const EM_DASH = /\u2014/;
 const EN_DASH = /\u2013/;
+const UNICODE_ELLIPSIS = /\u2026/;
 
 // ---------------------------------------------------------------------------
 // Markdown parsing — line-aware
@@ -268,6 +269,27 @@ function checkDashTypography(contentLines) {
                 severity: 'warn', tag: 'DASH', line: lineNum,
                 text: truncate(line, 90),
                 detail: 'en dash in source — run npm run normalize to fix'
+            });
+        }
+    }
+    return issues;
+}
+
+function checkEllipsisTypography(contentLines) {
+    const issues = [];
+
+    for (let i = 0; i < contentLines.length; i++) {
+        const line = contentLines[i];
+        const lineNum = i + 1;
+
+        if (line.trim().startsWith('```')) continue;
+        if (line.trim().startsWith(':::')) continue;
+
+        if (UNICODE_ELLIPSIS.test(line)) {
+            issues.push({
+                severity: 'warn', tag: 'ELLIPSIS', line: lineNum,
+                text: truncate(line, 90),
+                detail: 'Unicode ellipsis in source — run npm run normalize to fix'
             });
         }
     }
@@ -523,6 +545,7 @@ function auditFile(filePath) {
     // Typography checks (quotes and dashes)
     issues.push(...checkQuoteTypography(contentLines));
     issues.push(...checkDashTypography(contentLines));
+    issues.push(...checkEllipsisTypography(contentLines));
 
     return { totalWords, contentLines, issues: sortIssues(issues) };
 }

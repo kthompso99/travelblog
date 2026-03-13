@@ -51,7 +51,7 @@ There's no single ground viewpoint that captures the whole thing.
 It's an option to fly over the falls by helicopter to see all of the falls at once.  While we appreciate how incredible the views are from "up there", our comfort level with helicopters is such that ... we passed.  Maybe next time.
 
 
-![This spot in particular was drenching.…](images/victoria-falls-25.jpg)
+![This spot in particular was drenching....](images/victoria-falls-25.jpg)
 
 
 ## Where We Stayed

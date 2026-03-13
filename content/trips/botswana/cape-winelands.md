@@ -24,7 +24,7 @@ Hermanus is a fairly typical quaint coastal town.  The whale watching is excelle
 
 ![Southern Right Whale and calf (near Hermanus, about an hour east of Cape Town)](images/cape-winelands-07.jpg)
 
-For both of these day trips, we lucked into an outstanding driver, Theunis Minnie.  Theunis is a lifelong South African of Dutch ancestry, and was extremely knowledgeable about wine, history, and culture.  We had had a few rough experiences with other locals attitude-wise, and we also have found around the world that people want to ask us about American politics and … it's fatiguing.  So we were unenthused by the end of the trip to engage in "politics" with people.
+For both of these day trips, we lucked into an outstanding driver, Theunis Minnie.  Theunis is a lifelong South African of Dutch ancestry, and was extremely knowledgeable about wine, history, and culture.  We had had a few rough experiences with other locals attitude-wise, and we also have found around the world that people want to ask us about American politics and ... it's fatiguing.  So we were unenthused by the end of the trip to engage in "politics" with people.
 
 > Theunis had such insights into government, democracy, how South Africa had evolved since apartheid (his age is such that his first vote was in the 1994 Mandela election), etc -- that we had outstanding conversations.  
 

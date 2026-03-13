@@ -11,7 +11,7 @@ Flow down to sea level; southern alps
 small town, wakling distance
 
 The train ride from Christchurch over Arthur Pass to Greymouth was quite lovely and relaxing -- just a nice relaxing 3-4 hours, pretty though not spectacular (since it's a low part of the Southern Alps) country.  
-The drive from Greymouth down to Franz Josef was gorgeous -- but not easy.  Apart from driving on the left ("wrong" for Americans) side of the road, most of NZ's South Island is 2-lane (one each way) roads, particularly winding on the west coast.  And one exciting wrinkle is that there are 1-lane bridges all over the west coast, where you gotta learn the right of way rules (easy once you get it down).  It's all doable, but …. The first hour or two can be a bit bare-knuckly.
+The drive from Greymouth down to Franz Josef was gorgeous -- but not easy.  Apart from driving on the left ("wrong" for Americans) side of the road, most of NZ's South Island is 2-lane (one each way) roads, particularly winding on the west coast.  And one exciting wrinkle is that there are 1-lane bridges all over the west coast, where you gotta learn the right of way rules (easy once you get it down).  It's all doable, but .... The first hour or two can be a bit bare-knuckly.
 
 The main glaciers have retreated quite a bit over the last 50 to 90 years (I think they think natural fluctuations, not "just" global warming), so they're pretty far up the valley from the easy-to-get-to viewpoints.  There are longish hikes for viewpoints to each, especially for Franz Josef that we did not do (Kevin's knee was not up to long hikes some of this trip).
 

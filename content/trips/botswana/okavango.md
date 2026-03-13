@@ -22,7 +22,7 @@ Many reviewers recommend as the best section of the Okavango "Chief's Island" or
 
 My one disappointment was that we didn't meet more local people.  There are villages in the Okavango, but they were at each lodge an hour-long bumpy ride from our lodge -- there was an option to visit from Sable Alley, and we did not choose it.
 
-At the lodges, there was usually a small subset of imported senior staff who had trained in hospitality and spoke impeccable English.  Then the majority of the staff were from local villages, and usually spoke quite limited English.  Very friendly … but communication was sparse.  Very friendly, lots of smiling and nodding, but not a lot of conversation with nuance.
+At the lodges, there was usually a small subset of imported senior staff who had trained in hospitality and spoke impeccable English.  Then the majority of the staff were from local villages, and usually spoke quite limited English.  Very friendly ... but communication was sparse.  Very friendly, lots of smiling and nodding, but not a lot of conversation with nuance.
 
 Near North Island, we noticed villagers gathering grass near the camp in what appeared to be a combination of income and tradition. At one point we saw locals walking through the Okavango in the middle of the day, far from a village.  We didn't fully understand how they stay safe wandering the bush in groups of 2 and 3. One of our group noted they tended to wear extremely bright clothing, in contrast to the all-khaki of official safari wear. We speculated they might prefer to be seen by wildlife so it moves away, the opposite of our goal.
 

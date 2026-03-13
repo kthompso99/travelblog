@@ -327,6 +327,18 @@ TTN source files (.md) use **ASCII hyphens only**. The build pipeline automatica
 
 ---
 
+# Typography: Ellipses
+
+TTN source files (.md) use **three ASCII periods** (`...`). The build pipeline automatically converts to the typographic ellipsis character (U+2026) in the rendered HTML.
+
+- **In source files**: Write `...` (three periods). Build converts to ... (U+2026).
+- **Never use** the Unicode ellipsis character in source files. The build handles typography.
+- **Cleanup tool**: `npm run normalize` flattens any Unicode ellipses back to ASCII.
+- **Audit**: `npm run audit` flags Unicode ellipses in source.
+- **AI tools note**: Claude, GPT, and Gemini all output Unicode ellipsis characters. Run `npm run normalize` after pasting from AI editing sessions.
+
+---
+
 # Editorial Checklist (Quick Reference)
 
 Use this for rapid review of any draft:

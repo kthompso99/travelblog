@@ -4,7 +4,7 @@ This was the highlight of our trip, not that everything else wasn't great.  We j
 
 We stayed in the Rosewood Matauri which was/is far from cheap, but was the nicest single property we stay in NZ -- high level of service, great staff, but very small (a few dozen rooms?).  Maybe 12-15 mins from downtown Queenstown which you may find a hassle, but also a glorious lake view from the rooms and restaurant.
 
-We flew on a day trip to Milford Sound, and can't recommend it enough.  You can drive to Milford Sound, but it's 4? hours as there is no direct route (d\*mn mountains); the flight was only 40 minutes, but even more so you're flying just hundreds of feet above the Southern Alps, the flight both directions was just incredible.  The boat trip up Milford Sound is I suspect weather-dependent -- we had just a glorious day, the water was glass, blue sky … note the Sound is one of the rainiest spots in NZ, so … not everyone gets that experience.
+We flew on a day trip to Milford Sound, and can't recommend it enough.  You can drive to Milford Sound, but it's 4? hours as there is no direct route (d\*mn mountains); the flight was only 40 minutes, but even more so you're flying just hundreds of feet above the Southern Alps, the flight both directions was just incredible.  The boat trip up Milford Sound is I suspect weather-dependent -- we had just a glorious day, the water was glass, blue sky ... note the Sound is one of the rainiest spots in NZ, so ... not everyone gets that experience.
 
 Per above, there's a great wine country (Central Otago) a very short distance away, the beginnings are I think 20-30 minutes from downtown.  Some videos recommend biking part of the wine country, we hired a driver.
 

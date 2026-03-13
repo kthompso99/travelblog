@@ -4,7 +4,7 @@
 
 The South Island is nuts.  Consistently gorgeous, wild, woolly (very sparsely populated) -- if you have a vision from a helicopter in Lord of the Rings of incredible NZ, you're imagining in the South Island.  We can't recommend it enough, especially Queenstown which we completely fell in love with.
 
-The North Island is very attractive, and there are large swaths of it we didn't see, especially the far north "Bay of Islands" which many travellers we met said was quite pretty, and quite a few people mentioned Coromandel only 1-2 hours from Auckland. That being said … it was a bit anticlimactic after the South.  Wellington is a cute city; maybe Auckland has a charm, but mostly Auckland seems just kinda "big city" (with a great harbor to be sure, worth a day) 
+The North Island is very attractive, and there are large swaths of it we didn't see, especially the far north "Bay of Islands" which many travellers we met said was quite pretty, and quite a few people mentioned Coromandel only 1-2 hours from Auckland. That being said ... it was a bit anticlimactic after the South.  Wellington is a cute city; maybe Auckland has a charm, but mostly Auckland seems just kinda "big city" (with a great harbor to be sure, worth a day) 
 
 ## Trip Overview
 

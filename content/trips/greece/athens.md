@@ -65,7 +65,7 @@ We were a block from the Tower of Winds but somehow managed to miss it, which I 
 
 I wanted to go see the massive ruins of the Temple of Olympian Zeus, but it's across a busy 8-lane road and we ended looking at it from afar. Honestly, when we looked down at it from the Acropolis, I felt like seeing it from afar was enough.
 
-The Benizelos Mansion is billed as "the oldest house in Athens". It has sections that are 16th century … it's not "amazing", but we were glad we spent 20 minutes of our time since it was right near our hotel.
+The Benizelos Mansion is billed as "the oldest house in Athens". It has sections that are 16th century ... it's not "amazing", but we were glad we spent 20 minutes of our time since it was right near our hotel.
 
 ![Benizelos House](images/Athens-10.jpg)
 
@@ -112,7 +112,7 @@ We didn't go out of our way to find Athens "fine dining" restaurants, but found 
 
 At a friend's recommendation, we stayed at the Electra Metropolis, and found it excellent in every way. We spent extra for the "Acropolis Suite", which was expensive, but the corner room had spectacular views of the full Acropolis. 
 
-If you choose not to invest in a top-tier room … the rooftop restaurant which serves breakfast, dinner, and late night drinks has all that same view for every customer without the extra cost. 
+If you choose not to invest in a top-tier room ... the rooftop restaurant which serves breakfast, dinner, and late night drinks has all that same view for every customer without the extra cost. 
 
 A number of other hotels in that district feature roughly the same rooftop restaurant.  We have no idea if this one is the best but we were pretty happy with the Electra.
 
