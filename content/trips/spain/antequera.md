@@ -45,7 +45,7 @@ verdict: Glad We Went
 Stay Overnight: We would not prioritize this town for an overnight visit.
 Don't Miss: The Dolmens; all three are interesting, the Dolmen of Menga most of all with Tholos a close second.
 Best Time of Day: The Dolmens are open much of the day; see [the museum site](https://whichmuseum.com/museum/archaeological-dolmens-of-antequera-28815/opening-hours).
-Worth the Splurge: Cost: Low. No 'splurge' needed; just go.
+Worth the Splurge: Cost: Low. No "splurge" needed; just go.
 Return Visit: This feels like a great place to visit -- once.
 :::
 

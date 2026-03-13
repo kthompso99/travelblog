@@ -27,7 +27,7 @@ One thing we wish we'd planned for: [Cueva Pileta](https://wagonersabroad.com/ro
 
 Beyond the specific sites, Ronda rewards wandering. Lookouts appear around most corners, and the old town is compact enough that you won't feel like you're missing anything.
 
-![The Plaza de Toros, the Ronda bullring, was the first one constructed in Spain, in the late 18th century. There is only 1 'fight' there per year now, which we thankfully did not encounter.](images/ronda-03.jpg)
+![The Plaza de Toros, the Ronda bullring, was the first one constructed in Spain, in the late 18th century. There is only 1 "fight" there per year now, which we thankfully did not encounter.](images/ronda-03.jpg)
 
 ## Where We Stayed
 

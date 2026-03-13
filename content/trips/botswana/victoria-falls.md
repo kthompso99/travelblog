@@ -2,7 +2,7 @@
 
 We visited Zimbabwe for 2 nights before heading to Botswana. This short part of our trip was better than we expected on both counts — as a safari introduction and as a way to see the mighty Victoria Falls. 
 
-We arrived by air from Cape Town (with a stop at Kruger airport) to Victoria Falls airport. A 15-minute car transfer took us, with a brief glimpse at the local town, to a boat dock and then a 20-minute boat transfer upriver to our home for 2 nights, the Old Drift Lodge. We didn't see a lot of animals in that first 20 minutes but it felt like we were 'in the wild'.
+We arrived by air from Cape Town (with a stop at Kruger airport) to Victoria Falls airport. A 15-minute car transfer took us, with a brief glimpse at the local town, to a boat dock and then a 20-minute boat transfer upriver to our home for 2 nights, the Old Drift Lodge. We didn't see a lot of animals in that first 20 minutes but it felt like we were "in the wild".
 
 ![Approaching Old Drift for the first time.](images/victoria-falls-01.jpg)
 
@@ -32,7 +32,7 @@ The afternoon was Victoria Falls. About a 25-minute drive to the park, then 3 ho
 
 ![Park entrance.](images/victoria-falls-22.jpg)
 
-It's not long after you start that you hear the rumble — in the local language the falls are known as Mosi-oa-Tunya, meaning "the smoke that thunders", which sounds considerably better than 'Victoria', and gives a sense of just how powerful and *loud* it is. 
+It's not long after you start that you hear the rumble — in the local language the falls are known as Mosi-oa-Tunya, meaning "the smoke that thunders", which sounds considerably better than "Victoria", and gives a sense of just how powerful and *loud* it is. 
 
 ![We could include 20 pictures just of the rainbows coming out of the falls. We were not at the highest water time of year (that's April, end of the rainy season), but I'm glad we saw it in August — the waterfall was nearly invisible in many spots due to the mist, and evidently that's even more true at higher water.](images/victoria-falls-24.jpg)
 
@@ -48,7 +48,7 @@ There's no single ground viewpoint that captures the whole thing.
 
 ![This is maybe 5% of the falls.](images/victoria-falls-27.jpg)
 
-It's an option to fly over the falls by helicopter to see all of the falls at once.  While we appreciate how incredible the views are from 'up there', our comfort level with helicopters is such that ... we passed.  Maybe next time.
+It's an option to fly over the falls by helicopter to see all of the falls at once.  While we appreciate how incredible the views are from "up there", our comfort level with helicopters is such that ... we passed.  Maybe next time.
 
 
 ![This spot in particular was drenching.…](images/victoria-falls-25.jpg)

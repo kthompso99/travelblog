@@ -34,11 +34,11 @@ We liked our hotel, the [Vincci Seleccion Unuk](https://en.vincciunuk.com/?utm_s
 
 ## Food & Dining
 
-Food in Seville is a unique proposition. Before the trip, I used the internet to find a dozen or more interesting-sounding restaurants within walking distance of our hotel.  In retrospect, we wish we hadn't bothered.  Seville more than any other place we've been really does seem to have 'tapas culture'.  Here it's not just in the sense of what's available, but in the sense of how people eat.  The several locals we met said that few locals sit at a restaurant for 90 minutes or 2 hours.  Locals drop in somewhere, have one drink \+ 1 tapas, and move on.  We could walk up to a restaurant and see it 'full' – but the turnover is such that a table seems to clear within 5-10 minutes.  
+Food in Seville is a unique proposition. Before the trip, I used the internet to find a dozen or more interesting-sounding restaurants within walking distance of our hotel.  In retrospect, we wish we hadn't bothered.  Seville more than any other place we've been really does seem to have 'tapas culture'.  Here it's not just in the sense of what's available, but in the sense of how people eat.  The several locals we met said that few locals sit at a restaurant for 90 minutes or 2 hours.  Locals drop in somewhere, have one drink \+ 1 tapas, and move on.  We could walk up to a restaurant and see it "full" – but the turnover is such that a table seems to clear within 5-10 minutes.  
 
 > The servers are like F-1 pit crews in clearing a table and prepping it for the next group.  So basically you can walk up to any restaurant, feel out whether you like the vibe, hang out, and sit down, all within 10 minutes.  
 
-So in 4 nights … we probably ate at 10 or 12 restaurants, almost all based on 'feel'. 
+So in 4 nights … we probably ate at 10 or 12 restaurants, almost all based on "feel". 
 
 That being said … as much as we enjoy Spanish food, there is a certain sameness to a lot of the meals.  We love Jamon Iberico (Spanish ham), but …. Towards the end of week 2 we couldn't even look at it.
 

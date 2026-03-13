@@ -26,15 +26,15 @@ We ate one night at Sunset Grill – it's up on a hill above Moab, the views are
 
 Arches now requires timed entry passes for most of the year, you need to know ahead of time "I'll arrive there between 2pm and 3pm on day X".  Depending on month, it can be a pretty crowded park; there's sorta The Loop through the park, and some pretty obvious turnouts for the best views.  Lots of people try to get there either first thing in the morning or last time at night for the magic hour of photos; we did late afternoon once and it was indeed amazing.
 
-Delicate Arch is the standard sunset hike for Instagram-worthy views, we didn't do that, just didn't have time for the 2-3 hours.  You can see Delicate Arch from afar without doing the hike – it's a pretty far away view, so it doesn't 'pop' like it does when you walk to it.
+Delicate Arch is the standard sunset hike for Instagram-worthy views, we didn't do that, just didn't have time for the 2-3 hours.  You can see Delicate Arch from afar without doing the hike – it's a pretty far away view, so it doesn't "pop" like it does when you walk to it.
 
 We did find Devil's Garden (a shorter hike) amazing.
 
-[Navtec](https://navtec.com/) is a Moab-based company that has a permit to take you into the Arches 'backcountry'.  We (the two of us and another couple, so cost split 4 ways) did a private [4.5-hour tour](https://navtec.com/national-park-tours/arches/arches-safari.html#details) into Arches.  It's cool because you're away from the crowds – instead of sharing an arch view with dozens or hundreds, you might share it with another van-load of 4\.  We thought seeing some arches this way was unique and worth it.  
+[Navtec](https://navtec.com/) is a Moab-based company that has a permit to take you into the Arches "backcountry".  We (the two of us and another couple, so cost split 4 ways) did a private [4.5-hour tour](https://navtec.com/national-park-tours/arches/arches-safari.html#details) into Arches.  It's cool because you're away from the crowds – instead of sharing an arch view with dozens or hundreds, you might share it with another van-load of 4\.  We thought seeing some arches this way was unique and worth it.  
 
 ## Canyonlands
 
-Canyonlands is huge, but sorta confusing, there are 3 completely different 'units' that are a good hour+ drive from one another.  We went to the most popular area, Island in the Sky, which is mostly an out and back scenic drive along a 2-lane road.  Unfortunately Grand View Overlook, the most famous spot, was closed for construction.
+Canyonlands is huge, but sorta confusing, there are 3 completely different "units" that are a good hour+ drive from one another.  We went to the most popular area, Island in the Sky, which is mostly an out and back scenic drive along a 2-lane road.  Unfortunately Grand View Overlook, the most famous spot, was closed for construction.
 
 On the way to Canyonlands, there's Dead Horse State Park on the left – we think it's almost better.  Incredible overlooks, much less crowded.  Well worth it.
 
@@ -52,7 +52,7 @@ Gooseneck State Park is similar to Antelope Canyon (not as spectacular, but stil
 
 On the way into Monument Valley is "Forrest Gump Point" – it's very recognizable, been in lots of movies (it's where Forrest stops running because he's tired).  Worth stopping for a picture.
 
-There is only one hotel 'in' Monument Valley, and it books far in advance, the 'View Hotel' is solid not amazing from an amenity perspective, but every room has a balcony looking right at the Mittens (one of the most famous rock formation in M.V.), so we thought it was worth a night.  We arrived maybe 3pm one day and left at 10am the next day, and there's not that much more to see.
+There is only one hotel "in" Monument Valley, and it books far in advance, the "View Hotel" is solid not amazing from an amenity perspective, but every room has a balcony looking right at the Mittens (one of the most famous rock formation in M.V.), so we thought it was worth a night.  We arrived maybe 3pm one day and left at 10am the next day, and there's not that much more to see.
 
 Some people self-drive the 17-mile drive in Monument Valley; we chose a tour operator, the road is pretty crazy, very much unpaved and lots of serious ruts.  There are a bunch of companies that will take you in a circle around the park, I don't know which ones are better or worse.
 
@@ -70,7 +70,7 @@ Horseshoe Bend is also in this area (15 minutes from Antelope Canyon).  Like Ant
 
 ## North Rim Grand Canyon
 
-I think we're mixed on the North Rim.  The view is incredible, and has a very different 'feel' from the South Rim which is \~20 miles away but due to the canyon being in the way it's a 4 hour drive from one rim to the other.  The North Rim is far far less touristed – the South Rim is more accessible from large population centers (Flagstaff, Phoenix) and has more tourist facilities.  
+I think we're mixed on the North Rim.  The view is incredible, and has a very different "feel" from the South Rim which is \~20 miles away but due to the canyon being in the way it's a 4 hour drive from one rim to the other.  The North Rim is far far less touristed – the South Rim is more accessible from large population centers (Flagstaff, Phoenix) and has more tourist facilities.  
 
 The lodge at the North Rim is super tired – poor service, poorly maintained, below the level of a Motel 6\.  When we were there the heater was on full blast and no one knew how to turn it off, so the main lounge was \~80 degrees.  But yeah … the location doesn't stink.
 

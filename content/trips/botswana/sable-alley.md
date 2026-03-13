@@ -16,7 +16,7 @@ For general information on the Okavango, see the [Okavango overview](okavango.ht
 
 We were there during flood season, which shapes everything about how you move through the delta. The roads were underwater — typically 1-2 feet deep, occasionally more. The game drives crossed these flooded tracks routinely, which felt alarming the first time and unremarkable by the third day.
 
-![A view of the 'road' covered in water — typically 1-2 feet deep, though we had some deeper crossings.](images/sable-alley-09.jpg)
+![A view of the "road" covered in water — typically 1-2 feet deep, though we had some deeper crossings.](images/sable-alley-09.jpg)
 
 ## Wildlife Highlights
 
@@ -68,7 +68,7 @@ Our guide CJ took us out on the Khwai River at sunset — the profile of dead tr
 
 > Interestingly, CJ is of the [San](https://en.wikipedia.org/wiki/San_people) tribe, which makes up less than 3% of the population of Botswana.  They are one of the most ancient people on earth.
 
-Early white settlers called them 'Bushmen' — the same patronizing framing that runs through the 1980 film "The Gods Must Be Crazy".  They were semi-nomadic until the 1960s before the government largely convinced (forced?) them to settle into villages.  This meant that CJ (he looked to be in his 40s?) remembers his grandfather who … lived much of his life as a hunter-gatherer, unchanged as far as I can tell from how his tribe had lived for thousands of years.  
+Early white settlers called them "Bushmen" — the same patronizing framing that runs through the 1980 film "The Gods Must Be Crazy".  They were semi-nomadic until the 1960s before the government largely convinced (forced?) them to settle into villages.  This meant that CJ (he looked to be in his 40s?) remembers his grandfather who … lived much of his life as a hunter-gatherer, unchanged as far as I can tell from how his tribe had lived for thousands of years.  
 
 His outdoor sense was immediately apparent: he read which direction animals were looking, identified alarm calls from other species, tracked footprint direction in ways we would never have registered on our own. Having him as a guide changed how we understood what we were looking at.
 

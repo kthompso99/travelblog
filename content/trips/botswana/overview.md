@@ -12,7 +12,7 @@ Safari planning is genuinely complex — which camps, which concessions, which t
 * Our [basics section](basics.html) explains for how we organized the trip, why we picked August, and some information on packing.
 * The [Okavango](okavango.html) talks about the Okavango in general, across the two different camps.
 * For each of the three camps we have separate articles, [Victoria Falls](victoria-falls.html), [Sable Alley](sable-alley.html), and [North Island](north-island.html).
-* We have 2 separate articles for our 'bookend' South Africa visits, [Cape Town](cape-town.html) and [Cape Winelands](cape-winelands.html).
+* We have 2 separate articles for our "bookend" South Africa visits, [Cape Town](cape-town.html) and [Cape Winelands](cape-winelands.html).
 * We have an article that is general observations on [South Africa](southafrica.html).  
 
 

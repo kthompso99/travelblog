@@ -14,7 +14,7 @@ To learn some about apartheid history, we found the District 6 museum compelling
 
 ![There's something about being right in front of an actual sign from the era that is searing.](images/cape-town-03.jpg)
 
-We thoroughly enjoyed [**GOLD**](https://goldrestaurant.co.za/) for an evening show.  We thought it was 'just' dinner, but it's really a full-on dinner theater, probably a 90-minute show with multi-course African-themed food.  It's unambiguously something for tourists … but it was/is extremely well-executed.  The performers had infectious energy, and the food was excellent.  Per our overall comments on Cape Town security … they had a Gold staff member escort us the 30 \*feet\* to our Uber.  
+We thoroughly enjoyed [**GOLD**](https://goldrestaurant.co.za/) for an evening show.  We thought it was "just" dinner, but it's really a full-on dinner theater, probably a 90-minute show with multi-course African-themed food.  It's unambiguously something for tourists … but it was/is extremely well-executed.  The performers had infectious energy, and the food was excellent.  Per our overall comments on Cape Town security … they had a Gold staff member escort us the 30 \*feet\* to our Uber.  
 
 ![We saw an African cultural show at Gold Restaurant our first night. Sure it was/is for tourists, but the energy was infectious, and the food was tasty.](images/cape-town-04.jpg)
 
@@ -45,7 +45,7 @@ We had a lovely lunch out at Cape Point at Two Oceans Restaurant, it was better 
 
 ## Gardens and Wine
 
-Kirstenbosch is the oldest botanical garden in South Africa.  It's a 15 or 20 minute drive from the Central Business District, "behind" Table Mountain from a Cape Town perspective, but a (beautiful) world apart.  It's to our mind well worth 2 or 3 hours of your time in Cape Town.  The best or only trails to the top of Table Mountain actually start near here, on the 'back' (less table-shaped) side of Table Mountain.  
+Kirstenbosch is the oldest botanical garden in South Africa.  It's a 15 or 20 minute drive from the Central Business District, "behind" Table Mountain from a Cape Town perspective, but a (beautiful) world apart.  It's to our mind well worth 2 or 3 hours of your time in Cape Town.  The best or only trails to the top of Table Mountain actually start near here, on the "back" (less table-shaped) side of Table Mountain.  
 
 ![The Kirstenbosch botanical garden is only 20 minutes from downtown Cape Town, but feels a world apart.](images/cape-town-07.jpg)
 

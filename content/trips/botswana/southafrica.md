@@ -1,7 +1,7 @@
 
 South Africa is a country that makes you feel the weight of its history whether you're looking for it or not. We were there for a week. That's enough time to notice things, not enough time to understand it all.
 
-Before visiting, I read a number of books and web pages to learn 'more', but … there's a lot to learn. I recommend the movie [Mandela: Long Walk to Freedom](https://www.imdb.com/title/tt2304771/?ref_=fn_t_1), and it's dense but I got a lot out of reading [South Africa – The Rise and Fall of Apartheid](https://www.routledge.com/South-Africa-The-rise-and-fall-of-apartheid/Clark-Worger/p/book/9780367551001).  
+Before visiting, I read a number of books and web pages to learn "more", but … there's a lot to learn. I recommend the movie [Mandela: Long Walk to Freedom](https://www.imdb.com/title/tt2304771/?ref_=fn_t_1), and it's dense but I got a lot out of reading [South Africa – The Rise and Fall of Apartheid](https://www.routledge.com/South-Africa-The-rise-and-fall-of-apartheid/Clark-Worger/p/book/9780367551001).  
 
 I also read Michener's [The Covenant](https://bookshop.org/p/books/the-covenant-james-a-michener/11741047?ean=9780812986693) – I have mixed emotions, it's 1200 pages, some of it is very dated-feeling. Michener definitely tries to be 1970s-style respectful of various cultures, but also very clearly has a hierarchy of cultures in his mind.  But … it did give me a feel of the whole sweep of South African history, and the differences between the Dutch and English settlers there (and how crazy the Boer war was).  
 
@@ -9,7 +9,7 @@ I also read Michener's [The Covenant](https://bookshop.org/p/books/the-covenant-
 
 From talking to various people as well as my reading, it feels remarkable that South Africa is not even in a worse place.  
 
- > As one guide said to us, as much as there was violence in the '80s and '90s … the country has moved from decades of a horrible apartheid regime to something like a black-majority democracy *without* a full-on civil war.  And that wasn't guaranteed, at all.  
+ > As one guide said to us, as much as there was violence in the "80s and "90s … the country has moved from decades of a horrible apartheid regime to something like a black-majority democracy *without* a full-on civil war.  And that wasn't guaranteed, at all.  
 
 All that being said … it's a strange dynamic.  The gap between rich & poor in South Africa is the [largest in the world](https://worldpopulationreview.com/country-rankings/wealth-inequality-by-country) and it's so evident.  On the way from the airport into Cape Town's C.B.D. (Central Business District), you pass just endless miles of townships, right next to the highway.  And then there are sections of Cape Town's suburbs that … look like the wealthiest suburbs of the US (with high walls/gates).  
 

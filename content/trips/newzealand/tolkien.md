@@ -33,7 +33,7 @@ We flew past Mordor, so can't answer whether it's exciting to see the volcano.
 
 ![Gandalf arriving in Minas Tirith.  Except it's Tiffany](images/tolkien-11.jpg)
 
-![This is the valley where Isengard lies ... we ran out of time to get super close, but evidently to have the right 'view' that looks like where the wizard's vale is, you need to be on private land.](images/tolkien-12.jpg)
+![This is the valley where Isengard lies ... we ran out of time to get super close, but evidently to have the right "view" that looks like where the wizard's vale is, you need to be on private land.](images/tolkien-12.jpg)
 
 ![Welcome to the North Island!  These eagles were installed in 2013 for the Hobbit, and taken down just 3 months after our January 2025 visit so we feel fortunate.](images/tolkien-13.jpg)
 

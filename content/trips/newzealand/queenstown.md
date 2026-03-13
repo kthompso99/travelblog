@@ -1,6 +1,6 @@
 ## Overview
 
-This was the highlight of our trip, not that everything else wasn't great.  We just found Queenstown a perfect blend of beauty, things to do, and just 'feel' / 'vibe'.  It's certainly not undiscovered, and the traffic in and out of town can get tough on the weekends if you're there in high season (as we were, January).  But to us the bit of traffic hassle was far outweighed by how beautiful a spot it is.
+This was the highlight of our trip, not that everything else wasn't great.  We just found Queenstown a perfect blend of beauty, things to do, and just "feel" / "vibe".  It's certainly not undiscovered, and the traffic in and out of town can get tough on the weekends if you're there in high season (as we were, January).  But to us the bit of traffic hassle was far outweighed by how beautiful a spot it is.
 
 We stayed in the Rosewood Matauri which was/is far from cheap, but was the nicest single property we stay in NZ – high level of service, great staff, but very small (a few dozen rooms?).  Maybe 12-15 mins from downtown Queenstown which you may find a hassle, but also a glorious lake view from the rooms and restaurant.
 

@@ -18,7 +18,7 @@ The Gibralfaro Castle is far far above town, and we recommend taking a taxi up t
 ![On to Malaga on the Mediterranean coast. This picture from atop the Gibralfaro castle shows how densely-packed the homes for sun-seekers are ... and a bull ring.](images/malaga-02.jpg)
 
 
-If you walk 15 or so minutes 'down' from the castle, you arrive at the Alcazaba of Malaga.  This is an 11thC Moorish palace.  We wandered this for maybe an hour or 90 minutes.  Worth the time, and lovely, but not quite at the level of the Alhambra.  
+If you walk 15 or so minutes "down" from the castle, you arrive at the Alcazaba of Malaga.  This is an 11thC Moorish palace.  We wandered this for maybe an hour or 90 minutes.  Worth the time, and lovely, but not quite at the level of the Alhambra.  
 
 ![The Malaga Alcazaba (Palace/fortress) is lovely and has some well-preserved spots, though it suffers in comparison if one was in the Alhambra 2 days earlier.](images/malaga-04.jpg)
 

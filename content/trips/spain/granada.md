@@ -5,7 +5,7 @@ Granada arrives with a big reputation. It's home to the Alhambra —  Spain's mo
 
 ## What We Did
 
-Granada is at its best when you treat the Alhambra as a timed 'anchor' and leave plenty of unstructured time for the rest.  We started with a guided walking tour to get oriented and decide what to explore later.  We chose [Cicerone](https://www.ciceronegranada.com/en/) (a Rick Steves recommendation).  We viewed the city Cathedral, which is worth 20-30 minutes but won't compete with Spain's top-tier interiors. 
+Granada is at its best when you treat the Alhambra as a timed "anchor" and leave plenty of unstructured time for the rest.  We started with a guided walking tour to get oriented and decide what to explore later.  We chose [Cicerone](https://www.ciceronegranada.com/en/) (a Rick Steves recommendation).  We viewed the city Cathedral, which is worth 20-30 minutes but won't compete with Spain's top-tier interiors. 
 
 ### Alhambra
 
@@ -25,7 +25,7 @@ After the Alhambra, we spent our remaining time looking for the Granada that doe
 
 Museo Cuevas del Sacromonte was worth the visit for context. It's small but specific — more lived history than museum spectacle — with intimate displays recreating daily life in the cave dwellings before residents were displaced in the 1960s. It adds cultural depth to Granada beyond its Moorish palaces. You can take a bus up the hill from town (recommended; it's a steep climb on foot).  
 
-> This was the most 'Granada' hour we had outside the Alhambra.  It changed how we interpreted the city's neighborhoods.
+> This was the most "Granada" hour we had outside the Alhambra.  It changed how we interpreted the city's neighborhoods.
 
 ![One of many small displays at Museo Cuevas del Sacromonte, giving a snapshot of Roma life as recently as the 1960s.](images/granada-10.jpg)
 
@@ -50,11 +50,11 @@ Palacio Gran Via did, however, have a lovely rooftop bar with views of the Alham
 
 ## Food & Dining
 
-Granada is famous for its tapas culture. In most cities, tapas are small plates you choose and pay for. Here, they simply appear — one with each drink — and often far more substantial than you'd expect.  Some say this was once common across Spain; today, Granada is the place where the tradition still thrives.  Granada still follows the 'tapa with a drink' tradition. We expected token snacks; instead, several plates were nearly meal-sized and genuinely good.  
+Granada is famous for its tapas culture. In most cities, tapas are small plates you choose and pay for. Here, they simply appear — one with each drink — and often far more substantial than you'd expect.  Some say this was once common across Spain; today, Granada is the place where the tradition still thrives.  Granada still follows the "tapa with a drink" tradition. We expected token snacks; instead, several plates were nearly meal-sized and genuinely good.  
 
-We'd recommend [Granada Tapa Tours](https://www.granadatapastours.com/) by Gayle.  During her tour, some of the tapas were outstanding, and after 4 restaurant visits we were overly full with just 'free' tapas.  If you don't do the tour, order drinks and let the tapas guide you.
+We'd recommend [Granada Tapa Tours](https://www.granadatapastours.com/) by Gayle.  During her tour, some of the tapas were outstanding, and after 4 restaurant visits we were overly full with just "free" tapas.  If you don't do the tour, order drinks and let the tapas guide you.
 
-![This was from our Granada tapas tour -- an indication that the 'free' tapas in this town aren't mere trifles.](images/madrid-15.jpg)
+![This was from our Granada tapas tour -- an indication that the "free" tapas in this town aren't mere trifles.](images/madrid-15.jpg)
 
 ## Practical Tips
 
@@ -85,7 +85,7 @@ If you come expecting a compact, quiet Andalusian jewel, Granada may feel overwh
 
 ![It's hard to get just the right angle of the Court of the Lions.](images/granada-04.jpg)
 
-![One of innumerable ceilings in the Alhambra, just stunning and impossible to capture 'fully', but this one evoked stalactites.](images/granada-05.jpg)
+![One of innumerable ceilings in the Alhambra, just stunning and impossible to capture "fully", but this one evoked stalactites.](images/granada-05.jpg)
 
 ![](images/granada-06.jpg)
 

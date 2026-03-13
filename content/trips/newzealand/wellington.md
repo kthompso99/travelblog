@@ -1,6 +1,6 @@
 ## Overview
 
-We found Wellington well worth 3 nights.  It's a very attractive town, on the water, and has a nice 'feel' to it.  
+We found Wellington well worth 3 nights.  It's a very attractive town, on the water, and has a nice "feel" to it.  
 
 Highlights to us:
 
