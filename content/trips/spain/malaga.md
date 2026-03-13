@@ -13,7 +13,7 @@ The most purely enjoyable thing we did in Málaga was rent bikes and ride along 
 
 ![Lovely bike ride along the coast, mid-70s in late October.](images/malaga-07.jpg)
 
-The Gibralfaro Castle is far far above town, and we recommend taking a taxi up there rather than walk (the walk *down* was fine).  The castle has an outstanding view of the Mediterranean, but otherwise isn’t that amazing of a destination.
+The Gibralfaro Castle is far far above town, and we recommend taking a taxi up there rather than walk (the walk *down* was fine).  The castle has an outstanding view of the Mediterranean, but otherwise isn't that amazing of a destination.
 
 ![On to Malaga on the Mediterranean coast. This picture from atop the Gibralfaro castle shows how densely-packed the homes for sun-seekers are ... and a bull ring.](images/malaga-02.jpg)
 

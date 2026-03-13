@@ -185,3 +185,15 @@ Decision usefulness is primary.
 
 Structural flaws reduce Prose Control.
 Weak summaries reduce Decision Clarity.
+
+---
+
+# Typography: Quotation Marks & Apostrophes
+
+TTN source files (.md) use **all-straight ASCII quotes**. The build pipeline automatically converts to typographic curly quotes in the rendered HTML.
+
+- **In source files**: Write `wasn't`, `"marble town"`, `Kevin's` — straight quotes only.
+- **Never use** curly quotes in source files. The build handles typography.
+- **Single-quote scare quotes**: Do not use. Use double quotes for emphasis/scare quotes. Example: `'lanes'` should be `"lanes"`.
+- **Cleanup tool**: `npm run normalize-quotes` flattens any curly quotes back to ASCII.
+- **Audit**: `npm run audit` flags curly quotes in source and single-quote scare quotes.

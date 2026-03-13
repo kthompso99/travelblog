@@ -10,7 +10,7 @@ The Royal Alcázar is the unqualified highlight of Seville, and arguably the bes
 
 ![The unquestionable highlight of Seville is the Royal Alcázar (palace), built in stages like most palaces but the best-known part was built in the 1360s. Interestingly it was built *after* the Catholic reconquest, but designed largely in Mudéjar (Moorish) style - under the direction of Christian kings but far more Moorish-looking than otherwise. Parts are comparable to the Alhambra in Granada in beauty.](images/seville-14.jpg)
 
-If you’re into the Game of Thrones, several scenes from Dorne were filmed at the Alcázar.  See, for example, in Season 5 of GoT where [Jaime meets with Prince Doran](https://www.youtube.com/watch?v=fdsbDTS4Mtg) and Ellaria Sand meets with her daughters to plot her revenge.
+If you're into the Game of Thrones, several scenes from Dorne were filmed at the Alcázar.  See, for example, in Season 5 of GoT where [Jaime meets with Prince Doran](https://www.youtube.com/watch?v=fdsbDTS4Mtg) and Ellaria Sand meets with her daughters to plot her revenge.
 
 The gardens behind deserve an hour on their own.
 
@@ -34,13 +34,13 @@ We liked our hotel, the [Vincci Seleccion Unuk](https://en.vincciunuk.com/?utm_s
 
 ## Food & Dining
 
-Food in Seville is a unique proposition. Before the trip, I used the internet to find a dozen or more interesting-sounding restaurants within walking distance of our hotel.  In retrospect, we wish we hadn’t bothered.  Seville more than any other place we’ve been really does seem to have ‘tapas culture’.  Here it's not just in the sense of what’s available, but in the sense of how people eat.  The several locals we met said that few locals sit at a restaurant for 90 minutes or 2 hours.  Locals drop in somewhere, have one drink \+ 1 tapas, and move on.  We could walk up to a restaurant and see it ‘full’ – but the turnover is such that a table seems to clear within 5-10 minutes.  
+Food in Seville is a unique proposition. Before the trip, I used the internet to find a dozen or more interesting-sounding restaurants within walking distance of our hotel.  In retrospect, we wish we hadn't bothered.  Seville more than any other place we've been really does seem to have 'tapas culture'.  Here it's not just in the sense of what's available, but in the sense of how people eat.  The several locals we met said that few locals sit at a restaurant for 90 minutes or 2 hours.  Locals drop in somewhere, have one drink \+ 1 tapas, and move on.  We could walk up to a restaurant and see it 'full' – but the turnover is such that a table seems to clear within 5-10 minutes.  
 
 > The servers are like F-1 pit crews in clearing a table and prepping it for the next group.  So basically you can walk up to any restaurant, feel out whether you like the vibe, hang out, and sit down, all within 10 minutes.  
 
-So in 4 nights … we probably ate at 10 or 12 restaurants, almost all based on ‘feel’. 
+So in 4 nights … we probably ate at 10 or 12 restaurants, almost all based on 'feel'. 
 
-That being said … as much as we enjoy Spanish food, there is a certain sameness to a lot of the meals.  We love Jamon Iberico (Spanish ham), but …. Towards the end of week 2 we couldn’t even look at it.
+That being said … as much as we enjoy Spanish food, there is a certain sameness to a lot of the meals.  We love Jamon Iberico (Spanish ham), but …. Towards the end of week 2 we couldn't even look at it.
 
 Bar El Comercio has been making fresh churros since 1904 — light, not greasy, served with chocolate for dipping. Nothing like what gets sold as churros elsewhere. Worth going even if you think you don't like churros. Not a sustainable daily breakfast, but we understood the temptation.
 
@@ -84,7 +84,7 @@ Return Visit: Yes. There is a richness to this city that supports multiple visit
 
 ![Fans are for sale everywhere](images/seville-12.jpg)
 
-!["Water Alley" is the iconic, picturesque 140-meter pedestrian street running directly alongside the ancient Moorish defensive walls in Seville’s Santa Cruz quarter.](images/seville-13.jpg)
+!["Water Alley" is the iconic, picturesque 140-meter pedestrian street running directly alongside the ancient Moorish defensive walls in Seville's Santa Cruz quarter.](images/seville-13.jpg)
 
 ![More of the Alcázar.](images/seville-15.jpg)
 

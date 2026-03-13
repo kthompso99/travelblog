@@ -182,6 +182,16 @@ High scores require clear overall stance, explicit or implicit "who it's for," t
 
 ---
 
+## Typography: Quotation Marks & Apostrophes
+
+TTN source files (.md) use **all-straight ASCII quotes**. The build pipeline automatically converts to typographic curly quotes in the rendered HTML.
+
+- **In source files**: Write `wasn't`, `"marble town"`, `Kevin's` — straight quotes only.
+- **Never use** curly quotes in source files. The build handles typography.
+- **Single-quote scare quotes**: Do not use. Use double quotes for emphasis/scare quotes.
+
+---
+
 # PART 3: Anti-AI Writing Guidelines
 
 The goal is eliminating statistical writing patterns that LLMs default to.

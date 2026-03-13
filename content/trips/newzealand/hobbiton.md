@@ -1,6 +1,6 @@
 ## Overview
 
-We did this drive so that we could see Hobbiton.  If you’re into LoTR, it’s very enjoyable.  We bought the “Hobbit lunch” or something afterwards, that was very much not worth (generic banquet buffet of mediocre food).
+We did this drive so that we could see Hobbiton.  If you're into LoTR, it's very enjoyable.  We bought the "Hobbit lunch" or something afterwards, that was very much not worth (generic banquet buffet of mediocre food).
 
 ## What We Did
 

@@ -4,7 +4,7 @@ This trip was built around a single idea: go see what's left of Al-Andalus.
 
 For nearly 800 years, much of the Iberian peninsula was under Moorish rule — and southern Spain still wears that history visibly, in its architecture, its street plans, and the layered way its cities feel. Córdoba was once the largest city in Europe. Granada held out until 1492, two and a half centuries after the rest of Andalucía had fallen. Even buildings constructed under Christian kings in the 14th and 15th centuries look more like mosques than cathedrals. 
 
-That isn’t accidental — it’s what happens when cultures overlap for centuries.
+That isn't accidental — it's what happens when cultures overlap for centuries.
 
 We spent 16 days in late October and early November, starting and ending in Madrid and spending the bulk of our time in the Andalucían cities. The weather was ideal. The crowds were manageable. 
 

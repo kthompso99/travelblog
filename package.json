@@ -14,6 +14,7 @@
     "serve": "node scripts/server.js 8000",
     "add": "node scripts/tools/add-trip.js",
     "audit": "node scripts/audit/content-audit.js",
+    "normalize-quotes": "node scripts/tools/normalize-quotes.js",
     "gpt-audit": "node scripts/audit/gpt-audit.mjs",
     "claude-audit": "node scripts/audit/claude-audit.mjs",
     "gpt-dashboard": "node scripts/audit/gpt-dashboard.mjs",

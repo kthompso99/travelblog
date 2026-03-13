@@ -1,6 +1,6 @@
 ## Overview 
 
-Ronda may be the most famous of Andalusia’s **Pueblos Blancos** — and unlike many famous places, it actually earns the reputation.  Rick Steves recommended spending a night rather than day-tripping from Seville or Málaga, and he's right. The bridge alone justifies the overnight.
+Ronda may be the most famous of Andalusia's **Pueblos Blancos** — and unlike many famous places, it actually earns the reputation.  Rick Steves recommended spending a night rather than day-tripping from Seville or Málaga, and he's right. The bridge alone justifies the overnight.
 
 ## What We Did
 
@@ -8,7 +8,7 @@ The Puente Nuevo — "new bridge," built in 1793 — spans a 400-foot gorge that
 
 ![The Puente Nuevo ("new" bridge) spanning the 400-foot deep river chasm that separates old from new Ronda, was built in 1793. It truly is an impressive bit of engineering for its time ... but mostly gorgeous.](images/ronda-01.jpg)
 
-A path winds down from the old town to several viewpoints along the gorge, and it’s not obvious where to stop.  Partway down the gorge is a paid attraction called [Tagus Gorge](https://desfiladerodeltajo.info/). We paid about €5 for access to one of its viewpoints, which was excellent.  There are other viewpoints "further down" but the day we were there it was plenty hot so we didn't feel the need to go much farther down for a better view.
+A path winds down from the old town to several viewpoints along the gorge, and it's not obvious where to stop.  Partway down the gorge is a paid attraction called [Tagus Gorge](https://desfiladerodeltajo.info/). We paid about €5 for access to one of its viewpoints, which was excellent.  There are other viewpoints "further down" but the day we were there it was plenty hot so we didn't feel the need to go much farther down for a better view.
 
 We were there on Halloween, which turns out to be worth knowing about. The town center was full of kids trick-or-treating in the downtown shops, and the bridge was lit up behind a queue of children waiting for a haunted house. 
 

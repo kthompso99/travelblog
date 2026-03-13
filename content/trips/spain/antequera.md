@@ -25,7 +25,7 @@ Tholos de El Romeral is from 1800 BC, so 2000 years "newer" than the previous tw
 
 ## The Town
 
-Antequera is a small town with over 30 churches, all with opulent interiors — which start to blur together. The real highlight is the citadel at the top of town.  Roman foundations sit beside a Roman bath; Moorish construction rises above them, with post-Reconquest Spanish layers added later. You can see the architectural discontinuity in the walls themselves. “Worth about an hour, more if you're having lunch, if you're already here for the dolmens.”
+Antequera is a small town with over 30 churches, all with opulent interiors — which start to blur together. The real highlight is the citadel at the top of town.  Roman foundations sit beside a Roman bath; Moorish construction rises above them, with post-Reconquest Spanish layers added later. You can see the architectural discontinuity in the walls themselves. "Worth about an hour, more if you're having lunch, if you're already here for the dolmens."
 
 ![Atop the town of Antequera is a Moorish fortress, which fell to Castilian forces in 1410. Note the ancient Roman rock on the wall to the left and at the base of the tower, then the discontinuity to 14th-century Moorish construction for the top 2/3 of the tower.](images/antequera-03.jpg)
 

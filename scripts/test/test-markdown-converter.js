@@ -31,6 +31,10 @@
  *                    → no block           → content unchanged
  *                    → field ordering     → follows NUTSHELL_FIELDS from constants
  *                    → extra fields       → appended after schema-defined fields
+ * Smart quotes       → apostrophes       → straight ' → curly \u2019 in text
+ *                    → double quotes      → straight " → curly \u201C/\u201D in text
+ *                    → HTML attributes    → quotes inside tags are NOT converted
+ *                    → nutshell blocks    → both labels and values get smart quotes
  */
 
 const fs   = require('fs');
@@ -360,6 +364,70 @@ Regular paragraph after.
             const md = 'No nutshell here, just text.\n';
             const result = processNutshell(md);
             assert('processNutshell returns markdown unchanged when no block', result === md);
+        }
+
+        // ── Smart quotes ────────────────────────────────────────────────────
+        console.log('\n\u201C Smart quotes');
+
+        {
+            const f = writeMd(dir, 'sq-apostrophe.md', "Kevin's trip wasn't bad.\n");
+            const html = await convertMarkdown(f);
+            assert('apostrophe in possessive becomes curly',   html.includes('Kevin\u2019s'));
+            assert('apostrophe in contraction becomes curly',  html.includes('wasn\u2019t'));
+        }
+
+        {
+            const f = writeMd(dir, 'sq-double.md', 'The "marble town" was beautiful.\n');
+            const html = await convertMarkdown(f);
+            assert('opening double quote becomes left curly',  html.includes('\u201Cmarble'));
+            assert('closing double quote becomes right curly', html.includes('town\u201D'));
+        }
+
+        {
+            const f = writeMd(dir, 'sq-attrs.md', "![Kevin's photo](missing.jpg)\n");
+            const html = await convertMarkdown(f);
+            assert('alt attribute not corrupted by smartquotes', /alt="Kevin&#39;s photo"/.test(html));
+            assert('figcaption text gets curly apostrophe',    html.includes('<figcaption>Kevin\u2019s photo</figcaption>'));
+        }
+
+        {
+            const f = writeMd(dir, 'sq-href.md', '[Visit](https://example.com)\n');
+            const html = await convertMarkdown(f);
+            assert('href attribute not corrupted by smartquotes', html.includes('href="https://example.com"'));
+        }
+
+        {
+            const f = writeMd(dir, 'sq-possessive-end.md', "The dogs' owners arrived.\n");
+            const html = await convertMarkdown(f);
+            assert('possessive apostrophe at word end becomes curly', html.includes('dogs\u2019'));
+        }
+
+        {
+            const f = writeMd(dir, 'sq-nutshell.md', `:::nutshell TestPlace
+verdict: Glad We Went
+Stay Overnight: Kevin's pick.
+Don't Miss: The "sunset walk" wasn't optional.
+Best Time of Day: Morning
+Worth the Splurge: Yes
+Return Visit: Yes
+:::
+`);
+            const html = await convertMarkdown(f);
+            assert('nutshell label gets smart apostrophe',     html.includes('Don\u2019t Miss'));
+            assert('nutshell value gets smart apostrophe',     html.includes('Kevin\u2019s pick'));
+            assert('nutshell value gets curly double quotes',  html.includes('\u201Csunset walk\u201D'));
+        }
+
+        {
+            const f = writeMd(dir, 'sq-start.md', '"Beautiful" is overused.\n');
+            const html = await convertMarkdown(f);
+            assert('quote at paragraph start is left curly',   html.includes('\u201CBeautiful\u201D'));
+        }
+
+        {
+            const f = writeMd(dir, 'sq-none.md', 'No quotes here at all.\n');
+            const html = await convertMarkdown(f);
+            assert('text without quotes passes through unchanged', html.includes('No quotes here at all.'));
         }
 
     } finally {

@@ -44,7 +44,7 @@ Victoria Falls is often described as the largest waterfall in the world when wid
 
 From the Zimbabwe side you walk a series of viewpoints along the entire length. Each viewpoint shows only a small portion of the falls — maybe 25–30% at most — so the experience unfolds gradually as you move along the path.
 
-There’s no single ground viewpoint that captures the whole thing.
+There's no single ground viewpoint that captures the whole thing.
 
 ![This is maybe 5% of the falls.](images/victoria-falls-27.jpg)
 

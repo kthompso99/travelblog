@@ -43,6 +43,11 @@ const VOICE_MARKERS = /\b(recommend|highlight|favorite|worth|skip|avoid|overrate
 
 const LOGISTICS_HEADINGS = ['practical tips', 'practical', 'logistics', 'getting there', 'getting around'];
 
+// Quote typography patterns — source files should be all-ASCII (build pipeline adds curly quotes)
+const CURLY_DOUBLE_QUOTES = /[\u201C\u201D]/;
+const CURLY_SINGLE_QUOTES = /[\u2018\u2019]/;
+const SINGLE_QUOTE_SCARE = /'([^']{1,40})'/g;
+
 // ---------------------------------------------------------------------------
 // Markdown parsing — line-aware
 // ---------------------------------------------------------------------------
@@ -184,6 +189,58 @@ function checkRedundantModifiers(sentence, lineNum) {
         return { severity: 'note', tag: 'REDUNDANT', line: lineNum, text: truncate(sentence, 90), detail: `"${cluster}" — pick one or two` };
     }
     return null;
+}
+
+// ---------------------------------------------------------------------------
+// Quote typography checks
+// ---------------------------------------------------------------------------
+
+function checkQuoteTypography(contentLines) {
+    const issues = [];
+
+    for (let i = 0; i < contentLines.length; i++) {
+        const line = contentLines[i];
+        const lineNum = i + 1;
+
+        // Skip code blocks and nutshell blocks
+        if (line.trim().startsWith('```')) continue;
+        if (line.trim().startsWith(':::')) continue;
+
+        // 1. Curly double quotes — should be straight ASCII in source
+        if (CURLY_DOUBLE_QUOTES.test(line)) {
+            issues.push({
+                severity: 'warn', tag: 'QUOTE', line: lineNum,
+                text: truncate(line, 90),
+                detail: 'curly double quote in source — run npm run normalize-quotes to fix'
+            });
+        }
+
+        // 2. Curly single quotes — should be straight ASCII in source
+        if (CURLY_SINGLE_QUOTES.test(line)) {
+            issues.push({
+                severity: 'warn', tag: 'QUOTE', line: lineNum,
+                text: truncate(line, 90),
+                detail: 'curly apostrophe in source — run npm run normalize-quotes to fix'
+            });
+        }
+
+        // 3. Single-quote scare quotes — need manual conversion to double quotes
+        const scareMatches = [...line.matchAll(SINGLE_QUOTE_SCARE)];
+        for (const match of scareMatches) {
+            const inner = match[1];
+            // Skip contraction fragments
+            if (/^(t|s|d|ll|re|ve|m)$/i.test(inner)) continue;
+            // Skip if preceded by a letter (likely a contraction like don't)
+            const idx = match.index;
+            if (idx > 0 && /[a-zA-Z]/.test(line[idx - 1])) continue;
+            issues.push({
+                severity: 'warn', tag: 'QUOTE', line: lineNum,
+                text: `${match[0]}`,
+                detail: 'single-quote scare quote — change to double quotes manually'
+            });
+        }
+    }
+    return issues;
 }
 
 // ---------------------------------------------------------------------------
@@ -431,6 +488,9 @@ function auditFile(filePath) {
     issues.push(...checkEnding(blocks));
     issues.push(...checkFirstSentence(blocks));
     issues.push(...checkVoiceProxy(blocks, totalWords));
+
+    // Quote typography checks
+    issues.push(...checkQuoteTypography(contentLines));
 
     return { totalWords, contentLines, issues: sortIssues(issues) };
 }

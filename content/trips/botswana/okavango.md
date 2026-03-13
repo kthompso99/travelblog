@@ -1,8 +1,8 @@
 The Okavango Delta is not what most people picture when they picture safari.  It looks nothing like the classic Serengeti landscape.
 
-There’s no open savanna and no distant horizon to scan for wildlife. Instead the delta is dense and flooded — water channels, thick vegetation, and animals that may be only ten feet away but completely hidden.
+There's no open savanna and no distant horizon to scan for wildlife. Instead the delta is dense and flooded — water channels, thick vegetation, and animals that may be only ten feet away but completely hidden.
 
-Guiding here requires a different skill set. Our guides read tracks, listened for alarm calls, and watched the direction animals were looking. It’s a very different style of safari.
+Guiding here requires a different skill set. Our guides read tracks, listened for alarm calls, and watched the direction animals were looking. It's a very different style of safari.
 
 We stayed at two camps across seven days. Neither was a lodge in any conventional sense — they were small collections of tents set into the landscape, separated by vast private concessions and accessible only by small charter plane. This is not an accident of geography. It's a deliberate, carefully managed structure, and understanding it changes how you appreciate what you're experiencing.
 
@@ -14,13 +14,13 @@ See this map which shows the various reserves in the Okavango.  The water flows 
 
 We stayed at two separate camps
 * [Sable Alley](https://naturalselection.travel/camps/sable-alley-okavango-delta/) (visible in the upper right part of the delta), in ([Khwai reserve](https://okavangodelta.com/destinations/khwai-pivate-reserve/), aka NG18 in the map
-* [North Island](https://naturalselection.travel/camps/north-island-okavango-delta/), which is in [NG23](https://okavangodelta.com/destinations/duba-concession/), near the “Duba Plains” in this map.  
+* [North Island](https://naturalselection.travel/camps/north-island-okavango-delta/), which is in [NG23](https://okavangodelta.com/destinations/duba-concession/), near the "Duba Plains" in this map.  
 
-Many reviewers recommend as the best section of the Okavango “Chief’s Island” or “Moremi Game Reserve”, which are more in the center of the delta.  I can’t compare those to where we went, but our organizer feels that NG23 more to the west is less crowded than the better-known Moremi game reserve, with just as good animal viewing.  We certainly felt incredibly *un*-crowded near North Island.
+Many reviewers recommend as the best section of the Okavango "Chief's Island" or "Moremi Game Reserve", which are more in the center of the delta.  I can't compare those to where we went, but our organizer feels that NG23 more to the west is less crowded than the better-known Moremi game reserve, with just as good animal viewing.  We certainly felt incredibly *un*-crowded near North Island.
 
 ## The People of Botswana 
 
-My one disappointment was that we didn’t meet more local people.  There are villages in the Okavango, but they were at each lodge an hour-long bumpy ride from our lodge – there was an option to visit from Sable Alley, and we did not choose it.
+My one disappointment was that we didn't meet more local people.  There are villages in the Okavango, but they were at each lodge an hour-long bumpy ride from our lodge – there was an option to visit from Sable Alley, and we did not choose it.
 
 At the lodges, there was usually a small subset of imported senior staff who had trained in hospitality and spoke impeccable English.  Then the majority of the staff were from local villages, and usually spoke quite limited English.  Very friendly … but communication was sparse.  Very friendly, lots of smiling and nodding, but not a lot of conversation with nuance.
 

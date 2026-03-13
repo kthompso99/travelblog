@@ -8,7 +8,7 @@ We visited three villages around Ronda: Setenil de las Bodegas, Grazalema, and Z
 
 ## Setenil de las Bodegas
 
-Setenil de las Bodegas is an ancient town, surrounded by cliffs in such a way that parts of the town are built into the hillside.  An entire block of houses is sheltered under an enormous boulder, another level of houses is built on top of a different enormous rock formation.  It’s very photogenic, but overall I think you can see the town in 90 or 120 minutes easily.  This was one time that daytrip was particularly helpful, because our driver could drop us off right at the entrance to the tourist area and pick us up 2 hours later – but parking was a good 15 minute walk away.
+Setenil de las Bodegas is an ancient town, surrounded by cliffs in such a way that parts of the town are built into the hillside.  An entire block of houses is sheltered under an enormous boulder, another level of houses is built on top of a different enormous rock formation.  It's very photogenic, but overall I think you can see the town in 90 or 120 minutes easily.  This was one time that daytrip was particularly helpful, because our driver could drop us off right at the entrance to the tourist area and pick us up 2 hours later – but parking was a good 15 minute walk away.
 
 ![An hour from Malaga lies Setenil de las Bodegas, a small (3000 inhabitants) village famous for homes built into enormous boulders. Cuevas del Sol ("Caves of the Sun") are on the side of the river that gets a moderate amount of sunlight.](images/setenil-01.jpg)
 
