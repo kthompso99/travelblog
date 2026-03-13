@@ -34,8 +34,10 @@ const validScripts = new Set(Object.keys(pkg.scripts || {}));
 // ── collect .md files ────────────────────────────────────────────────
 
 const SKIP_DIRS = new Set(['node_modules', '.git']);
+// Files with example markdown syntax that produces false-positive broken links
+const SKIP_FILES = new Set(['LIGHTBOX.md']);
 const mdFiles = [
-    ...walkDir(path.join(ROOT, 'docs'), { skipDirs: SKIP_DIRS, fileFilter: name => name.endsWith('.md') }),
+    ...walkDir(path.join(ROOT, 'docs'), { skipDirs: SKIP_DIRS, fileFilter: name => name.endsWith('.md') && !SKIP_FILES.has(name) }),
     path.join(ROOT, 'README.md'),
     path.join(ROOT, 'CLAUDE.md')
 ];
@@ -55,8 +57,8 @@ for (const mdFile of mdFiles) {
 
         // 1. npm script references  ──  npm run <name>
         for (const m of line.matchAll(/npm run (\S+)/g)) {
-            // Strip backticks, bold markers, trailing punctuation
-            let name = m[1].replace(/[`*]/g, '').replace(/[,;:)"]$/g, '').trim();
+            // Strip backticks, bold markers, trailing punctuation (repeat to handle stacked chars)
+            let name = m[1].replace(/[`*]/g, '').replace(/[,;:)"]+$/g, '').trim();
             if (!name || name.startsWith('-')) continue;   // --force etc.
             if (!validScripts.has(name)) {
                 issues.push({
@@ -67,7 +69,9 @@ for (const mdFile of mdFiles) {
         }
 
         // 2. Relative markdown links  ──  [text](href)
-        for (const m of line.matchAll(/\[([^\]]*)\]\(([^)]+)\)/g)) {
+        // Strip inline code spans first to avoid matching example syntax like `![caption](img.jpg)`
+        const lineWithoutCode = line.replace(/`[^`]+`/g, '');
+        for (const m of lineWithoutCode.matchAll(/\[([^\]]*)\]\(([^)]+)\)/g)) {
             const href = m[2];
             if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#')) continue;
             const filePart = decodeURIComponent(href.split('#')[0]);   // handle %20 etc.

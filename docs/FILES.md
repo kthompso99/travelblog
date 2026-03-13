@@ -30,6 +30,7 @@ travelblog/
 │   ├── map-global-script.html  Global map JavaScript (inlined at build time)
 │   ├── map-trip-script.html    Per-trip map JavaScript (inlined at build time)
 │   ├── trip-intro-page.html    Trip intro page (hero image + intro content)
+│   ├── toc-script.html          Table-of-contents toggle script (inlined)
 │   ├── trip-location-page.html Individual location/article page
 │   └── trip-map-page.html      Per-trip interactive map page
 │
@@ -62,6 +63,8 @@ travelblog/
 │
 ├── scripts/                    CLI build & utility scripts
 │   ├── audit/
+│   │   ├── audit-shared.mjs    Shared audit utilities (file resolution, scoring, prompts)
+│   │   ├── claude-audit.mjs    AI editorial audit (Claude-powered scoring + suggestions)
 │   │   ├── content-audit.js    Mechanical content audit (sentence-level quality checks)
 │   │   ├── gpt-audit.mjs       AI editorial audit (OpenAI-powered scoring + suggestions)
 │   │   ├── gpt-audit-prompt.txt GPT audit system prompt
@@ -86,7 +89,9 @@ travelblog/
 │   ├── tools/
 │   │   ├── add-trip.js         Interactive CLI to scaffold a new trip
 │   │   ├── assign-photos.js    Insert photos into markdown
+│   │   ├── build-context.js    Generate Context-Combined.md from editorial sources
 │   │   ├── content-report.js   Content quality report (readability, write-good)
+│   │   ├── normalize-typography.js Flatten curly quotes/dashes to ASCII in markdown
 │   │   ├── sync-takeout-photos.js Extract photos from Google Takeout
 │   │   ├── analyze-takeout-geo.js Analyze GPS data in Takeout
 │   │   ├── optimize-images.js  ImageMagick image optimization
@@ -98,6 +103,8 @@ travelblog/
 │   └── server.js               Local development HTTP server
 │
 ├── .github/workflows/
+│   ├── claude.yml              Claude Code AI agent workflow
+│   ├── claude-code-review.yml  Claude Code PR review workflow
 │   └── deploy.yml              GitHub Actions: build → test → deploy
 │
 ├── docs/                       Project documentation (this directory)
@@ -245,6 +252,11 @@ No geocoding, no map marker, no `place` or `duration` fields.
 | `add` | `npm run add` | Interactive CLI to scaffold a new trip |
 | `audit` | `npm run audit -- spain/cordoba` | Mechanical content audit (sentence-level quality checks) |
 | `gpt-audit` | `npm run gpt-audit -- spain/cordoba` | AI editorial audit (scoring + suggestions). Accepts multiple files or a trip name for incremental mode |
+| `claude-audit` | `npm run claude-audit -- spain/cordoba` | AI editorial audit via Claude API (same interface as gpt-audit) |
+| `gpt-dashboard` | `npm run gpt-dashboard` | Dashboard for audit score history and analysis |
+| `normalize` | `npm run normalize` | Flatten curly quotes, Unicode dashes, and ellipses to ASCII in markdown source |
+| `normalize-quotes` | `npm run normalize-quotes` | Alias for `normalize` |
+| `build-context` | `npm run build-context` | Generate `Context-Combined.md` from editorial source files |
 | `sync-photos` | `npm run sync-photos` | Extract and match photos from Google Takeout zip |
 | `assign-photos` | `npm run assign-photos` | Interactive tool to insert photos into markdown |
 | `report` | `npm run report` | Content quality report (readability + write-good) |
@@ -313,7 +325,7 @@ markdown content during the build:
 4. **Gallery captions:** Gallery links get `data-description` attribute for GLightbox
 5. **Nutshell blocks:** `:::nutshell Location Name` fenced blocks are parsed and rendered
    into styled HTML with verdict badge and field layout. Field order is controlled centrally
-   via `NUTSHELL_FIELDS` in `lib/constants.js`. See `docs/Content/nutshell-format.md` for syntax.
+   via `NUTSHELL_FIELDS` in `lib/constants.js`. See `docs/Content/Editorial-Standards.md` for syntax.
 
 This means Kevin can write plain markdown without worrying about image sizing,
 visible captions, or link behavior—the build handles it automatically.

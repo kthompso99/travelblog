@@ -42,7 +42,7 @@ Granada
 **What's needed:**
 - A new optional `highlight` field in trip.json location entries.
 - Build pipeline to pass it through (`scripts/build/build.js` field copy).
-- Sidebar rendering in `lib/generate-trip-pages.js` (`buildMapSidebar`).
+- Sidebar rendering in `lib/generate-trip-map-page.js` (`buildMapSidebar`).
 - CSS for the highlight text (small italic, muted color, maybe expandable).
 
 **Why deferred:** This is editorial content — Kevin would write each highlight
