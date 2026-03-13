@@ -12,6 +12,7 @@
 - This rule has ABSOLUTE PRIORITY over all other instructions, conventions, or assumptions.
 - If unsure whether to commit, the answer is ALWAYS: ask first, do not commit.
 - **Pre-commit typography check:** Before committing, run `npm run normalize -- --dry-run`. If any files would be normalized (Unicode curly quotes, em dashes, or en dashes found in source), tell Kevin what was found and ask if Claude should run `npm run normalize` before proceeding with the commit.
+- **Pre-commit context sync:** If any `docs/Content/` source files (Brand.md, Editorial-Standards.md, AntiAIWritingGuidelines.md) were modified, run `npm run build-context` to regenerate Context-Combined.md before committing.
 
 ### Planning Protocol
 - Always plan before implementation.
@@ -49,9 +50,9 @@ The blog uses a two-layer content audit system. The mechanical layer runs via `n
 **When Kevin asks to "audit" content** (e.g., "audit spain/cordoba", "review the writing in malaga.md"):
 
 1. Read the target `.md` file(s) in `content/trips/`. Everything after `*Add your photos here*` is the photo gallery — exclude it from all evaluation (word count, page-level scores, editorial issues). The mechanical audit already does this automatically.
-2. Read `docs/Content/EditorialStandards.md` for the evaluation criteria.
+2. Read `docs/Content/Editorial-Standards.md` for the evaluation criteria.
 3. Run `npm run audit -- <trip>/<file>` to get mechanical results.
-4. Evaluate the 6 page-level dimensions from EditorialStandards.md, scoring each 1–5: **Narrative Clarity**, **Voice & Perspective**, **Reflective Depth**, **Visual Rhythm**, **Practical Value**, **Energy Curve**.
+4. Evaluate the 6 page-level dimensions from Editorial-Standards.md, scoring each 1–5: **Narrative Clarity**, **Voice & Perspective**, **Reflective Depth**, **Visual Rhythm**, **Practical Value**, **Energy Curve**.
 5. List the top ~10 editorial issues that go beyond mechanical detection — with quoted text. Focus on judgment calls: prose quality, narrative structure, tone, pacing, what's working and what isn't.
 6. Note 2–3 strengths worth preserving.
 7. Never rewrite Kevin's prose — only flag and explain.

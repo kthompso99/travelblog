@@ -1,3 +1,9 @@
+## SSG Photo Gallery Note
+
+The static site generator places all photos after the line `*Add your photos here*` into a photo gallery. Photos placed inline in the prose are editorial choices -- they anchor specific moments in the narrative. Gallery photos are supporting shots. Inline photos should earn their place.
+
+---
+
 ## Two Content Types
 
 TTN pages are either **locations** or **articles**. Treat them differently.
@@ -210,3 +216,43 @@ TTN source files (.md) use **ASCII hyphens only**. The build pipeline automatica
 - **Cleanup tool**: `npm run normalize` flattens any Unicode dashes back to ASCII.
 - **Audit**: `npm run audit` flags Unicode dashes in source.
 - **AI tools note**: Claude, GPT, and Gemini all output Unicode dashes in their responses. Run `npm run normalize` after pasting from AI editing sessions.
+
+---
+
+# Editorial Checklist (Quick Reference)
+
+Use this for rapid review of any draft:
+
+1. **Opening** -- does it earn attention before giving information?
+2. **Best observation** -- is it prominent or buried?
+3. **Tradeoffs** -- are they explicit? Every major recommendation needs a "but also."
+4. **Honesty about gaps** -- are limitations acknowledged?
+5. **Section headers** -- are they doing real work or just labeling categories?
+6. **Logistics** -- specific and actionable? In the right place?
+7. **Voice** -- does it sound like Kevin and Tiffany, not a travel brochure?
+8. **Hype words** -- amazing, stunning, incredible, breathtaking, unforgettable, magical. Replace with the specific detail that earned the adjective.
+9. **Inline photos** -- do they anchor specific narrative moments, or should they go to the gallery?
+10. **Nutshell** -- complete and honest?
+11. **Pull Quotes** -- identified and suggested? (See below.)
+
+## Pull Quote Guidelines
+
+When suggesting pull quotes, first check whether the document already contains blockquotes (lines beginning with >). If 2 or more blockquotes are already present, skip the pull quote suggestion entirely -- the author has already made those choices. If fewer than 2 blockquotes exist, suggest enough to bring the total to 2, with a brief note on why each works.
+
+A good TTN pull quote:
+
+- Is a complete sentence or tight fragment that works without context
+- Contains a specific surprising fact, a honest admission, or a dry observation
+- Sounds like a person talking, not a brochure
+- Would make a reader pause if they saw it in large type while scanning the page
+
+Do NOT suggest pull quotes that are held in the Nutshell code block.
+
+Avoid pull quotes that:
+
+- Require the surrounding paragraph to make sense
+- Use hype language ("breathtaking," "unforgettable")
+- Are generic enough to apply to any travel destination
+- Are the obvious "best" line -- pull quotes reward the scanner, so they should surface something a quick reader might otherwise miss
+
+When suggesting pull quotes, present them as a short list at the end of your editorial response, labeled "Suggested pull quotes:" with a brief note on why each one works.

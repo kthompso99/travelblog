@@ -29,7 +29,8 @@
     "optimize:images": "node scripts/tools/optimize-images.js",
     "optimize:images:dry-run": "node scripts/tools/optimize-images.js --dry-run",
     "optimize:images:force": "node scripts/tools/optimize-images.js --force",
-    "hero-search": "node scripts/tools/hero-search.js"
+    "hero-search": "node scripts/tools/hero-search.js",
+    "build-context": "node scripts/tools/build-context.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

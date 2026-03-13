@@ -76,21 +76,6 @@ Avoid travel clichés. Replace adjectives with detail.
 
 ---
 
-## Visual Alignment
-
-- Deep navy → seriousness
-- Amber accent → warmth
-- Serif hero → editorial credibility
-- Clean grid → structure
-- Subtle motion → controlled energy
-
-Nothing screams.  
-Nothing gamifies.
-
-Restraint equals maturity.
-
----
-
 ## The Differentiator
 
 Most travel content refuses to say:
@@ -99,5 +84,20 @@ Most travel content refuses to say:
 
 We are willing to say that.
 
-Trust comes from discernment.  
+Trust comes from discernment.
 Discernment requires restraint.
+
+---
+
+## Visual Alignment
+
+- Deep navy → seriousness
+- Amber accent → warmth
+- Serif hero → editorial credibility
+- Clean grid → structure
+- Subtle motion → controlled energy
+
+Nothing screams.
+Nothing gamifies.
+
+Restraint equals maturity.
