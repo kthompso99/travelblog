@@ -13,11 +13,11 @@ It is over-run with tourists — we were there the first week of May and it was 
 
 ## Oia, Fira, and Imerovigli
 
-Oia is a stage set now -- it's all restaurants, hotels, and shops packed onto a narrow rim path.  A local we met from Imerovigli, a 20-minute drive away, said that she hadn't visited Oia for years, because it's "all for tourists".  Sadly, like many European tourist hot-spots, Oia is now nearly entirely unpopulated, as residents move to more affordable parts of the island.  
+Oia is a stage set now -- it’s all restaurants, hotels, and shops packed onto a narrow rim path.  A local we met from Imerovigli, a 20-minute drive away, said that she hadn’t visited Oia for years, because it’s "all for tourists".  Sadly, like many European tourist hot-spots, Oia is now nearly entirely unpopulated, as residents move to more affordable parts of the island.  
 
-> But the city's location clinging to the hillside makes it the jewel of the island, far more we thought than Fira or Imerovigli. Most of the classic photos you have in mind that say ‘Santorini” are from Oia.
+> But the city’s location clinging to the hillside makes it the jewel of the island, far more we thought than Fira or Imerovigli. Most of the classic photos you have in mind that say "Santorini" are from Oia.
 
-Oia's white-washed buildings are interrupted by the blue-domed churches you've seen in photographs — far less common in Fira.  The village has a layered view.  The descent from the rim is gentler, with buildings stacked down the hillside and narrow alleys between them.
+Oia’s white-washed buildings are interrupted by the blue-domed churches you’ve seen in photographs — far less common in Fira.  The village has a layered view.  The descent from the rim is gentler, with buildings stacked down the hillside and narrow alleys between them.
 
 ![We always imagined that Santorini was just filled with these blue-domed churches; there are actually only a handful, mostly in Oia](images/Santorini-08.jpg)
 
@@ -52,13 +52,13 @@ Wine-making here goes back thousands of years, so we recommend visiting a winery
 
 [Vassaltis](https://vassaltis.com/) winery is the closest to Fira and Oia, it was recommended to us and we enjoyed it very much.  It has horizontal tastings of various Greek white varietals and views of their vineyards. 
 
-Santo Wines is on the rim and most popular — one local sommelier told us it's better for the views than the wine. The same sommelier recommended Argyros, Gavalas, and Hatzidakis; all are further south and less accessible from Fira or Oia.
+Santo Wines is on the rim and most popular — one local sommelier told us it’s better for the views than the wine. The same sommelier recommended Argyros, Gavalas, and Hatzidakis; all are further south and less accessible from Fira or Oia.
 
 ## Where we Stayed
 
-We stayed in Dreams Luxury Suites between Fira and Imerovigli – the view is spectacular and the breakfast wonderful, but we'd choose differently next time.  It is a 20-25 minute walk from Fira so there’s not much “right there” at the hotel.  
+We stayed in Dreams Luxury Suites between Fira and Imerovigli – the view is spectacular and the breakfast wonderful, but we’d choose differently next time.  It is a 20-25 minute walk from Fira so there’s not much "right there" at the hotel.  
 
-If we visited Santorini again we’d pick based on what you want right outside your door.  We'd stay in Oia, it’s just that gorgeous – but Fira is more centrally located depending on your agenda.
+If we visited Santorini again we’d pick based on what you want right outside your door.  We’d stay in Oia, it’s just that gorgeous – but Fira is more centrally located depending on your agenda.
 
 ![The breakfast view from Dreams Luxury Suites was spectacular](images/Santorini-10.jpg)
 
@@ -72,16 +72,16 @@ There is a dense ribbon of bars and restaurants that are perched on the rim for 
 
 ![Another view of the front row at PK Bar](images/Santorini-07.jpg)
 
-Imerovigli actually has arguably the best view because it’s highest (1100 feet elevation, vs only 450 or so in Oia), and from Imerovigli you can see Oia (you can’t see Oia from most spots in Fira). We enjoyed a sunset from “Wine Bar”, a hotel bar but well-placed for sunsets.
+Imerovigli actually has arguably the best view because it’s highest (1100 feet elevation, vs only 450 or so in Oia), and from Imerovigli you can see Oia (you can’t see Oia from most spots in Fira). We enjoyed a sunset from "Wine Bar", a hotel bar but well-placed for sunsets.
 
 
 
 :::nutshell Santorini
 verdict: Would Plan Around
 Stay Overnight: Multiple nights — you want separate sunsets from Oia, Fira, and Imerovigli, each with a different angle.
-Don't Miss: Catamaran cruise with Spiridakos; front-row sunset at PK Bar in Fira.
+Don’t Miss: Catamaran cruise with Spiridakos; front-row sunset at PK Bar in Fira.
 Best Time of Day: Sunset, obviously — but each town catches it differently.
 Worth the Splurge: Front-row champagne at PK Bar; the Spiridakos catamaran.
-Return Visit: Yes — we'd stay in Oia next time. It's Disneyland, but spectacular Disneyland.
+Return Visit: Yes — we’d stay in Oia next time. It’s Disneyland, but spectacular Disneyland.
 :::
 

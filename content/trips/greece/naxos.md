@@ -11,7 +11,7 @@ Like anywhere in Greece seemingly, Naxos has a lot of interesting history.  Ther
 Naxos was known in the ancient world for its vast quarries of high-quality marble.  Throughout Greece, and particularly the Cycladic islands, the material was used for both sculpture and architecture.
 ![Marble Quarry](images/Naxos-01.jpg)
 
-Apeiranthos is a scenic mountain village in Naxos.  When it was being built in the 10th century, the best available and affordable material was … marble from nearby quarries.  It’s known as the ‘marble town’ and they used marble for everything, even including outdoor sidewalks.
+Apeiranthos is a scenic mountain village in Naxos.  When it was being built in the 10th century, the best available and affordable material was … marble from nearby quarries.  It’s known as the "marble town" and they used marble for everything, even including outdoor sidewalks.
 
 ![Stairway in Apeiranthos](images/Naxos-02.jpg)
 
@@ -23,9 +23,9 @@ We can’t recommend enough our tour guide Alex, see him [here](https://www.tour
 ![Apollo Temple](images/Naxos-05.jpg)
 
 :::nutshell Naxos
-verdict: Wish We'd Stayed Longer
-Stay Overnight: We didn't, and regretted it. Six hours was a tease — Naxos deserves at least two nights.
-Don't Miss: Panagia Drossiani (4th-century church); the marble village of Apeiranthos; the cherry tomatoes.
+verdict: Wish We’d Stayed Longer
+Stay Overnight: We didn’t, and regretted it. Six hours was a tease — Naxos deserves at least two nights.
+Don’t Miss: Panagia Drossiani (4th-century church); the marble village of Apeiranthos; the cherry tomatoes.
 Best Time of Day: Hard to say from a half-day, but the morning ferry from Santorini worked well.
 Worth the Splurge: A private tour with Alex — his local knowledge made the half-day count.
 Return Visit: Top of the list for a return to the Cyclades.
