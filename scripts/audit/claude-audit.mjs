@@ -94,6 +94,13 @@ if (files.length === 0) {
 const model = getModel();
 console.log(`Auditing ${files.length} file(s) with Claude (${model})...\n`);
 
+let failed = false;
 for (const file of files) {
-  await runAudit(file);
+  try {
+    await runAudit(file);
+  } catch (err) {
+    console.error(`\nFailed to audit ${file}: ${err.message}\n`);
+    failed = true;
+  }
 }
+if (failed) process.exit(1);

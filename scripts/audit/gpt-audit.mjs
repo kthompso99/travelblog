@@ -70,6 +70,13 @@ if (files.length === 0) {
 
 console.log(`Auditing ${files.length} file(s) with GPT...\n`);
 
+let failed = false;
 for (const file of files) {
-  await runAudit(file);
+  try {
+    await runAudit(file);
+  } catch (err) {
+    console.error(`\nFailed to audit ${file}: ${err.message}\n`);
+    failed = true;
+  }
 }
+if (failed) process.exit(1);

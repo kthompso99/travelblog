@@ -38,6 +38,38 @@ export function getContentType(filepath) {
 }
 
 // ==============================
+// 🔑 Key Normalization
+// ==============================
+
+const KEY_ALIASES = {
+  prose_control_structure: ["prosecontrolstructure", "prosecontrol", "prose"],
+  narrative_clarity_arc: ["narrativeclarityarc", "narrativeclarity", "narrative"],
+  opening_strength: ["openingstrength", "opening"],
+  brand_alignment: ["brandalignment", "brand"],
+  distinctiveness: ["distinctiveness", "distinct"],
+  decision_clarity: ["decisionclarity", "decision"]
+};
+
+function normalizeScoreKeys(rawScores) {
+  const normalized = {};
+  for (const [rawKey, value] of Object.entries(rawScores)) {
+    const stripped = rawKey.toLowerCase().replace(/[^a-z]/g, "");
+    let matched = false;
+    for (const [canonical, aliases] of Object.entries(KEY_ALIASES)) {
+      if (stripped === canonical.replace(/_/g, "") || aliases.includes(stripped)) {
+        normalized[canonical] = value;
+        matched = true;
+        break;
+      }
+    }
+    if (!matched) {
+      normalized[rawKey] = value;
+    }
+  }
+  return normalized;
+}
+
+// ==============================
 // 🧮 Weighted Score Calculator
 // ==============================
 
@@ -48,7 +80,10 @@ export function computeWeightedScore(scores, contentType) {
   for (const key in WEIGHTS) {
     if (contentType === "article" && key === "decision_clarity") continue;
     if (typeof scores[key] !== "number") {
-      throw new Error(`Missing score for dimension: ${key}`);
+      const received = Object.keys(scores).join(", ");
+      throw new Error(
+        `Missing score for dimension: ${key}\nReceived keys: ${received}`
+      );
     }
     total += scores[key] * WEIGHTS[key];
     activeWeight += WEIGHTS[key];
@@ -129,7 +164,7 @@ export function parseAuditResponse(output, contentType) {
     throw new Error("Parsed JSON does not contain 'scores' object.");
   }
 
-  const scores = parsed.scores;
+  const scores = normalizeScoreKeys(parsed.scores);
   scores.overall_score = computeWeightedScore(scores, contentType);
 
   const markdownStart = output.indexOf(jsonString) + jsonString.length;
