@@ -78,6 +78,7 @@ Imerovigli actually has arguably the best view because it's highest (1100 feet e
 
 :::nutshell Santorini
 verdict: Would Plan Around
+duration: 2 days
 Stay Overnight: Multiple nights -- you want separate sunsets from Oia, Fira, and Imerovigli, each with a different angle.
 Don't Miss: Catamaran cruise with Spiridakos; front-row sunset at PK Bar in Fira.
 Best Time of Day: Sunset, obviously -- but each town catches it differently.

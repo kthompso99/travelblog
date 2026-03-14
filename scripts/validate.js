@@ -61,7 +61,6 @@ function validateContentItem(item, itemIndex, tripDir, prefix) {
     // Type-specific validations
     if (itemType === 'location') {
         if (!item.place) warning(`${itemPrefix}: Missing "place" field for geocoding`);
-        if (!item.duration) warning(`${itemPrefix}: Missing "duration" field`);
     }
 
     // File existence check (common to both)

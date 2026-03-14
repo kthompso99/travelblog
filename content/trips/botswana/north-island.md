@@ -127,6 +127,7 @@ We timed our trip for a full moon, which we were glad of. A cold front also came
 
 :::nutshell North Island
 verdict: Would Plan Around
+duration: 4 days
 Stay Overnight: Quieter and more personal than Sable Alley. The fire pit sits over the hippo pool; you'll hear them all night.
 Don't Miss: The wild dog den -- 5-week-old pups, a thriving pack, one of the rarest sightings in the Okavango.
 Best Time of Day: Early morning and late afternoon -- the lioness with cubs was around 8am, the male lion we'd given up on was 530pm.

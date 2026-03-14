@@ -56,6 +56,7 @@ Seville has excellent train service to many cities including Madrid, that's easi
 
 :::nutshell Seville
 verdict: Would Plan Around
+duration: 4 days
 Stay Overnight: Yes -- four nights felt right. Two minimum to do it properly.
 Don't Miss: The Alcázar; Casa del Flamenco even if you're skeptical; Bar El Comercio for breakfast once.
 Best Time of Day: The Alcázar gardens in the late afternoon; the streets after dinner when locals are out.

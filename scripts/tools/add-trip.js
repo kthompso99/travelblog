@@ -38,11 +38,12 @@
  * CONTENT TYPES:
  *
  * - "location" = places with coordinates (geocoded, appears on map)
- *   Requires: place (for geocoding), duration
+ *   Requires: place (for geocoding)
+ *   Duration is prompted and scaffolded into the nutshell block in the .md file
  *   Example: Seville, Granada, Cordoba
  *
  * - "article" = text-only content (no map marker)
- *   Does NOT require: place or duration
+ *   Does NOT require: place
  *   Example: "Tips", "Planning Guide", "Packing List"
  *
  * AFTER RUNNING THIS SCRIPT:
@@ -141,6 +142,12 @@ async function gatherContentItems(ask, country) {
 }
 
 function buildTripConfig(metadata, content) {
+    // Strip duration from content items — it now lives in the nutshell block
+    const cleanContent = content.map(item => {
+        const { duration, ...rest } = item;
+        return rest;
+    });
+
     return {
         title: metadata.title,
         subtitle: metadata.subtitle,
@@ -158,7 +165,7 @@ function buildTripConfig(metadata, content) {
         thumbnail: `images/${metadata.tripId}.jpg`,
         mapCenter: metadata.mapCenter,
         mapNarrative: '',
-        content: content,
+        content: cleanContent,
         relatedTrips: []
     };
 }
@@ -234,6 +241,7 @@ Recommend restaurants and local cuisine...
 
 :::nutshell ${item.title}
 verdict: Glad We Went
+duration: ${item.duration}
 Stay Overnight: TBD
 Don't Miss: TBD
 Best Time of Day: TBD

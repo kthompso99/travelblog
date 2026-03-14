@@ -22,7 +22,7 @@
   "thumbnail": "images/botswana.jpg",
   "mapCenter": "Maun, Botswana",
   "content": [
-      {
+    {
       "type": "article",
       "title": "Basics",
       "file": "basics.md"
@@ -32,7 +32,6 @@
       "title": "Cape Town",
       "file": "cape-town.md",
       "place": "Cape Town, South Africa",
-      "duration": "3",
       "thumbnail": "images/cape-town-01.jpg"
     },
     {
@@ -40,7 +39,6 @@
       "title": "Victoria Falls",
       "file": "victoria-falls.md",
       "place": "Victoria Falls, Zimbabwe",
-      "duration": "3",
       "thumbnail": "images/victoria-falls-01.jpg",
       "travelMode": "fly",
       "travelDuration": "2 hours"
@@ -55,7 +53,6 @@
       "title": "Sable Alley",
       "file": "sable-alley.md",
       "place": "Sable Alley, Botswana",
-      "duration": "3",
       "thumbnail": "images/sable-alley-01.jpg",
       "travelMode": "fly",
       "travelDuration": "2 hours"
@@ -65,7 +62,6 @@
       "title": "North Island",
       "file": "north-island.md",
       "place": "North Island Okavango, Botswana",
-      "duration": "4 days",
       "thumbnail": "images/north-island-01.jpg",
       "travelMode": "fly",
       "travelDuration": "30 min"
@@ -75,12 +71,11 @@
       "title": "Cape Winelands",
       "file": "cape-winelands.md",
       "place": "Franschhoek, South Africa",
-      "duration": "4 days",
       "thumbnail": "images/cape-winelands-01.jpg",
       "travelMode": "fly",
       "travelDuration": "2.5 hours"
     },
-  {
+    {
       "type": "article",
       "title": "South Africa",
       "file": "southafrica.md"

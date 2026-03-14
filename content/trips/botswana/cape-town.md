@@ -87,6 +87,7 @@ Christopher Smith can be reached at Whatsapp \+27 83 699 6661\.
 
 :::nutshell Cape Town
 verdict: Glad We Went
+duration: 3 days
 Stay Overnight: The Mt Nelson is an oasis. Getting out at night requires more planning than it should.
 Don't Miss: Cape Peninsula day tour; District 6 Museum; Kirstenbosch with a guide.
 Best Time of Day: Afternoon for the Cape Peninsula loop -- catches the best light at the viewpoints.

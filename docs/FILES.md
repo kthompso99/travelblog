@@ -197,7 +197,6 @@ trip's interactive map and gets its own HTML page.
   "type": "location",
   "title": "Milos",
   "place": "Milos Greece",
-  "duration": "2 days",
   "file": "milos.md",
   "thumbnail": "images/Milos-01.jpg",
   "travelMode": "ferry",
@@ -210,16 +209,17 @@ trip's interactive map and gets its own HTML page.
 | `type` | Yes | Must be `"location"` |
 | `title` | Yes | Display name |
 | `place` | Yes | Geocoded via Google Maps API (be specific) |
-| `duration` | Yes | Free-text string shown on the page |
 | `file` | Yes | Path relative to the trip directory |
 | `thumbnail` | No | Shown in map popup; omit to hide image |
 | `travelMode` | No | How you arrived: `"train"`, `"drive"`, `"ferry"`, or `"fly"`. Omit for the first stop. |
 | `travelDuration` | No | Free-text travel time (e.g. `"1.5 hours"`). Shown between stops on the route page sidebar. |
 
+**Note:** `duration` (visit length) now lives in the nutshell block inside the `.md` file, not in trip.json. The build extracts it from the nutshell during markdown conversion. For locations without a nutshell block, `duration` can still be specified in trip.json as a fallback.
+
 ### `article`
 
 A non-geographic piece of content — e.g. a packing list or travel essay.
-No geocoding, no map marker, no `place` or `duration` fields.
+No geocoding, no map marker, no `place` fields.
 
 ```json
 {

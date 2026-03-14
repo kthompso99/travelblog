@@ -57,6 +57,7 @@ Madrid is an enormous city, and its tourist attractions are far more spread out 
 
 :::nutshell Madrid
 verdict: Glad We Went
+duration: 3 days
 Stay Overnight: Yes, but budget more than 36 hours.
 Don't Miss: Guernica at the Reina Sofía, with a guide if possible; the Archaeological Museum if ancient history is your thing.
 Best Time of Day: Museums in the morning before crowds build.

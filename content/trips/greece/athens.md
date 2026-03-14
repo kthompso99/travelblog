@@ -122,6 +122,7 @@ A number of other hotels in that district feature roughly the same rooftop resta
 
 :::nutshell Athens
 verdict: Would Plan Around
+duration: 3 days
 Stay Overnight: Electra Metropolis -- memorable Acropolis views from the suite and rooftop restaurant.
 Don't Miss: National Archaeology Museum (Mycenaean room first); Acropolis at sunset with a guide; Thespis in the Plaka.
 Best Time of Day: Late afternoon -- museum 4-6pm, then up the Acropolis 6-8pm per Rick Steves.

@@ -24,6 +24,7 @@ We can't recommend enough our tour guide Alex, see him [here](https://www.toursb
 
 :::nutshell Naxos
 verdict: Wish We'd Stayed Longer
+duration: 5 hours
 Stay Overnight: We didn't, and regretted it. Six hours was a tease -- Naxos deserves at least two nights.
 Don't Miss: Panagia Drossiani (4th-century church); the marble village of Apeiranthos; the cherry tomatoes.
 Best Time of Day: Hard to say from a half-day, but the morning ferry from Santorini worked well.

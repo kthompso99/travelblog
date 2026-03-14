@@ -31,7 +31,6 @@
       "title": "Cordoba",
       "file": "cordoba.md",
       "place": "Cordoba, Spain",
-      "duration": "2 days",
       "thumbnail": "images/cordoba-12.jpg"
     },
     {
@@ -39,7 +38,6 @@
       "title": "Granada",
       "file": "granada.md",
       "place": "Granada, Spain",
-      "duration": "3 days",
       "thumbnail": "images/granada-02.jpg",
       "travelMode": "train",
       "travelDuration": "1.5 hours"
@@ -49,7 +47,6 @@
       "title": "Antequera",
       "file": "antequera.md",
       "place": "Antequera, Spain",
-      "duration": "2 days",
       "thumbnail": "images/antequera-01.jpg",
       "travelMode": "drive",
       "travelDuration": "1 hour"
@@ -59,7 +56,6 @@
       "title": "Malaga",
       "file": "malaga.md",
       "place": "Malaga, Spain",
-      "duration": "2 days",
       "thumbnail": "images/malaga-08.jpg",
       "travelMode": "drive",
       "travelDuration": "45 min"
@@ -69,7 +65,6 @@
       "title": "White Villages",
       "file": "white-villages.md",
       "place": "Setenil de las Bodegas, Spain",
-      "duration": "1 day",
       "thumbnail": "images/setenil-01.jpg",
       "travelMode": "drive",
       "travelDuration": "1.5 hours"
@@ -79,7 +74,6 @@
       "title": "Ronda",
       "file": "ronda.md",
       "place": "Ronda, Spain",
-      "duration": "1 day",
       "thumbnail": "images/ronda-01.jpg",
       "travelMode": "drive",
       "travelDuration": "30 min"
@@ -89,7 +83,6 @@
       "title": "Seville",
       "file": "seville.md",
       "place": "Seville, Spain",
-      "duration": "4 days",
       "thumbnail": "images/seville-18.jpg",
       "travelMode": "drive",
       "travelDuration": "2 hours"
@@ -99,7 +92,6 @@
       "title": "Madrid",
       "file": "madrid.md",
       "place": "Madrid, Spain",
-      "duration": "3 days",
       "thumbnail": "images/madrid-09.jpg",
       "travelMode": "fly",
       "travelDuration": "1 hour"

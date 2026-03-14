@@ -131,6 +131,7 @@ Each location page ends with a Nutshell block. This uses a custom SSG directive 
 ```
 :::nutshell [Location Name]
 verdict: [Would Plan Around / Glad We Went / Lovely but Optional / Skip]
+duration: [specific duration, e.g. "2 days", "5 hours"]
 Stay Overnight: [one sentence on accommodation]
 Don't Miss: [specific sightings or experiences, not generic]
 Best Time of Day: [specific, with reason]
@@ -139,7 +140,7 @@ Return Visit: [honest answer]
 :::
 ```
 
-The opening line is `:::nutshell [Location Name]` and the closing line is `:::` — no other punctuation. Field names are exact (verdict, Stay Overnight, Don't Miss, Best Time of Day, Worth the Splurge, Return Visit). Values should be concise, specific, and in TTN voice — no hype words, no exclamation marks.
+The opening line is `:::nutshell [Location Name]` and the closing line is `:::` — no other punctuation. `verdict` and `duration` are header-level metadata (not rendered as field rows). Field names are exact (Stay Overnight, Don't Miss, Best Time of Day, Worth the Splurge, Return Visit). Values should be concise, specific, and in TTN voice — no hype words, no exclamation marks.
 
 ---
 # Two Travel Nuts — Editorial Standards

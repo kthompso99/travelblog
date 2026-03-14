@@ -85,6 +85,7 @@ His outdoor sense was immediately apparent: he read which direction animals were
 
 :::nutshell Sable Alley
 verdict: Would Plan Around
+duration: 3 days
 Stay Overnight: Canvas tents with flush toilets, a full shower, and hippos outside -- comfortable without being ostentatious.
 Don't Miss: The leopard -- 40 minutes from 50 feet away; sunset on the Khwai River.
 Best Time of Day: Sunset -- dead trees against the near-equatorial sun, hippos in the foreground.

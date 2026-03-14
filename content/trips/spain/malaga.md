@@ -47,6 +47,7 @@ Taxi up to Gibralfaro, walk down. If the weather is good, the bike ride along th
 
 :::nutshell Malaga
 verdict: Lovely but Optional
+duration: 2 days
 Stay Overnight: One night is enough -- two if the weather is good and you want the bike ride plus the historic sites at an unhurried pace.
 Don't Miss: The bike ride along the coast; the Alcazaba if you haven't just come from Granada.
 Best Time of Day: Castle and Alcazaba in the morning; bike ride in the afternoon.

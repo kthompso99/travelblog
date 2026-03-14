@@ -64,6 +64,7 @@ Tickets and tours require real advance planning. The complex is expansive enough
 
 :::nutshell Granada
 verdict: Would Plan Around
+duration: 3 days
 Best for: Travelers who want a major historical site (Alhambra) plus great food culture, and don't mind hills/crowds.
 Stay Overnight: Three nights felt ideal
 Don't Miss: The Alhambra (plan several months in advance!)

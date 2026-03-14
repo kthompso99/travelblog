@@ -66,8 +66,13 @@ async function convertContentMarkdown(processed, item, tripId, tripTitle, warnin
     try {
         console.log(`    📝 Converting markdown: ${filePath}`);
 
-        const { html, galleryImages } = await convertMarkdownWithGallery(filePath);
+        const { html, galleryImages, nutshellData } = await convertMarkdownWithGallery(filePath);
         processed.contentHtml = html;
+
+        // Capture nutshell duration for use by geocodeContentLocation
+        if (nutshellData?.duration) {
+            processed.nutshellDuration = nutshellData.duration;
+        }
 
         console.log(`    ✅ HTML generated (${processed.contentHtml.length} chars)`);
 
@@ -90,7 +95,7 @@ async function convertContentMarkdown(processed, item, tripId, tripTitle, warnin
 // Geocode a location content item and attach coordinates
 async function geocodeContentLocation(processed, item, tripTitle, warnings) {
     processed.place = item.place;
-    processed.duration = item.duration;
+    processed.duration = processed.nutshellDuration || item.duration;
     if (item.thumbnail) processed.thumbnail = item.thumbnail;
     if (item.travelMode) processed.travelMode = item.travelMode;
     if (item.travelDuration) processed.travelDuration = item.travelDuration;

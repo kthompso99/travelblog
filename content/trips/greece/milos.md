@@ -54,6 +54,7 @@ Medusa restaurant in Mandraki is well-known, Justin Bieber and Tom Hanks are amo
 
 :::nutshell Milos
 verdict: Glad We Went
+duration: 2 days
 Stay Overnight: Tania Milos in Pollonia -- direct sunset views from the balcony, under $300/night in shoulder season.
 Don't Miss: Sarakiniko beach; Kostankis winery, a 10-minute walk from Pollonia.
 Best Time of Day: Sunset from the Tania Milos balcony.

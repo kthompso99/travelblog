@@ -17,6 +17,7 @@ Sakis Grill House was what I found searching for "best gyro in Mykonos", and it 
 
 :::nutshell Mykonos
 verdict: Glad We Went
+duration: 2 hours
 Stay Overnight: We didn't -- three hours was enough to see why people love it, not enough to really explore.
 Don't Miss: The iconic windmills; the shopping (per Tiffany).
 Best Time of Day: Can't say from three hours -- we had midday.

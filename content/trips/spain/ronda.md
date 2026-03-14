@@ -44,6 +44,7 @@ Ronda is compact -- 10-15 minutes across the tourist zone on foot. Parking is sc
 
 :::nutshell Ronda
 verdict: Would Plan Around
+duration: 1 day
 Stay Overnight: Absolutely: the bridge lit up alone is worth the overnight.
 Don't Miss: The Puente Nuevo from below; Cueva Pileta if you plan ahead (we didn't).
 Best Time of Day: Late afternoon light from the gorge viewpoints; after dark from the hotel.

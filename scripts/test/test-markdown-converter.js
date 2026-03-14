@@ -245,6 +245,7 @@ async function run() {
 
 :::nutshell Ronda
 verdict: Would Plan Around
+duration: 1 day
 Stay Overnight: Yes, two nights.
 Don't Miss: The bridge at sunset.
 Best Time of Day: Late afternoon.
@@ -257,9 +258,21 @@ More text after.`;
             const parsed = parseNutshellBlock(md);
             assert('parseNutshellBlock extracts name',           parsed !== null && parsed.name === 'Ronda');
             assert('parseNutshellBlock extracts verdict',        parsed.verdict === 'Would Plan Around');
+            assert('parseNutshellBlock extracts duration',       parsed.duration === '1 day');
+            assert('parseNutshellBlock excludes duration from fields', !parsed.fields['duration'] && !parsed.fields['Duration']);
             assert('parseNutshellBlock extracts Stay Overnight', parsed.fields['Stay Overnight'] === 'Yes, two nights.');
             assert("parseNutshellBlock extracts Don't Miss",     parsed.fields["Don't Miss"] === 'The bridge at sunset.');
             assert('parseNutshellBlock extracts all 5 fields',   Object.keys(parsed.fields).length === 5);
+        }
+
+        {
+            // Nutshell block without duration line (backward compat)
+            const md = `:::nutshell OldPlace
+verdict: Glad We Went
+Stay Overnight: One night.
+:::`;
+            const parsed = parseNutshellBlock(md);
+            assert('parseNutshellBlock returns empty duration when absent', parsed.duration === '');
         }
 
         {
@@ -275,6 +288,7 @@ More text after.`;
             const parsed = {
                 name: 'Seville',
                 verdict: 'Would Plan Around',
+                duration: '4 days',
                 fields: {
                     'Return Visit': 'Yes.',
                     'Stay Overnight': 'Four nights.',
@@ -293,6 +307,10 @@ More text after.`;
             assert('renderNutshell includes header wrapper',         html.includes('nutshell-header'));
             assert('renderNutshell includes subtitle',               html.includes('Two Travel Nuts Verdict'));
             assert('renderNutshell verdict has CSS class',           html.includes('nutshell-verdict--would-plan-around'));
+
+            // Duration in header
+            assert('renderNutshell includes duration element',       html.includes('nutshell-duration'));
+            assert('renderNutshell includes duration value',         html.includes('4 days'));
 
             // Icon circles
             assert('renderNutshell includes icon containers',        html.includes('nutshell-icon'));
@@ -313,10 +331,17 @@ More text after.`;
         }
 
         {
+            // No duration — should not render duration element
+            const noDurHtml = renderNutshell({ name: 'Test', verdict: 'Glad We Went', duration: '', fields: {} });
+            assert('renderNutshell omits duration when empty', !noDurHtml.includes('nutshell-duration'));
+        }
+
+        {
             // Extra fields not in NUTSHELL_FIELDS should be appended
             const parsed = {
                 name: 'Granada',
                 verdict: 'Would Plan Around',
+                duration: '3 days',
                 fields: {
                     'Stay Overnight': 'Three nights.',
                     'Best for': 'History lovers.',
@@ -332,16 +357,16 @@ More text after.`;
 
         {
             // Verdict CSS classes for different levels
-            const gladHtml = renderNutshell({ name: 'Test', verdict: 'Glad We Went', fields: {} });
+            const gladHtml = renderNutshell({ name: 'Test', verdict: 'Glad We Went', duration: '', fields: {} });
             assert('Glad We Went gets correct CSS class',    gladHtml.includes('nutshell-verdict--glad-we-went'));
 
-            const optionalHtml = renderNutshell({ name: 'Test', verdict: 'Lovely but Optional', fields: {} });
+            const optionalHtml = renderNutshell({ name: 'Test', verdict: 'Lovely but Optional', duration: '', fields: {} });
             assert('Lovely but Optional gets correct CSS class', optionalHtml.includes('nutshell-verdict--lovely-but-optional'));
         }
 
         {
             // Return Visit "No" indicator
-            const noHtml = renderNutshell({ name: 'Test', verdict: '', fields: { 'Return Visit': 'No, too crowded.' } });
+            const noHtml = renderNutshell({ name: 'Test', verdict: '', duration: '', fields: { 'Return Visit': 'No, too crowded.' } });
             assert('Return Visit "No" gets X indicator',     noHtml.includes('nutshell-return-no'));
         }
 
@@ -353,6 +378,7 @@ More text after.`;
 
 :::nutshell TestPlace
 verdict: Glad We Went
+duration: 2 hours
 Stay Overnight: One night.
 Return Visit: Maybe.
 :::
@@ -362,6 +388,7 @@ Regular paragraph after.
             const html = await convertMarkdown(f);
             assert('nutshell block rendered in convertMarkdown pipeline',     html.includes('nutshell-section'));
             assert('heading rendered correctly',                              html.includes('TestPlace in a Nutshell'));
+            assert('duration rendered in pipeline',                           html.includes('2 hours'));
             assert('regular content after block is preserved',                html.includes('Regular paragraph after.'));
             assert('raw :::nutshell marker is not in output',                 !html.includes(':::nutshell'));
         }

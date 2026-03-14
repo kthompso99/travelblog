@@ -50,6 +50,7 @@ There is a [Franschhoek wine tram](https://winetram.co.za/) which we chose not t
 
 :::nutshell Cape Winelands
 verdict: Glad We Went
+duration: 4 days
 Stay Overnight: Franschhoek is walkable with excellent restaurants in every direction -- staying there made the evenings easy.
 Don't Miss: Kanonkop for Pinotage; Hermanus whale watching via the Hemel en Aarde valley.
 Best Time of Day: Early evening for wandering Franschhoek's restaurant row.

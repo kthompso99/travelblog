@@ -93,6 +93,7 @@ The old town is close to the train station, but not close enough to be walking d
 
 :::nutshell Cordoba
 verdict: Would Plan Around
+duration: 2 days
 Stay Overnight: Two nights felt ideal
 Don't Miss: The Mezquita (allow 2+ hours)
 Best Time of Day: Evening, after day-trippers leave

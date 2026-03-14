@@ -47,6 +47,7 @@ See the section on [Tips for Spain](tips.html) for how we chose [daytrip.com](ht
 
 :::nutshell White Villages
 verdict: Would Plan Around
+duration: 1 day
 Stay Overnight: Not necessary.
 Don't Miss: Setenil de las Bodegas is remarkable and unique.
 Best Time of Day: These are all day-trip destinations.

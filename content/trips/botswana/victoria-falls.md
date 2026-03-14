@@ -66,6 +66,7 @@ The Old Drift Lodge sits right on the mighty Zambezi, about 10 miles upstream fr
 
 :::nutshell Victoria Falls
 verdict: Would Plan Around
+duration: 3 days
 Stay Overnight: Old Drift Lodge is right on the Zambezi -- we thought of it as just a base for the Falls, but it's a safari experience in its own right.
 Don't Miss: Victoria Falls in the afternoon -- the rainbows are real and the guides were right about timing. Bring something waterproof.
 Best Time of Day: Afternoon for the Falls (the guides were right about the light); sunrise on the Zambezi.

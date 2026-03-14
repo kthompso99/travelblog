@@ -92,6 +92,7 @@ Moraitis winery is a moderate-length walk inland from Naoussa.  It's a very smal
 
 :::nutshell Paros
 verdict: Would Plan Around
+duration: 3 days
 Stay Overnight: Avant Mar near Naoussa -- resorty in a refreshing way, easy walk to town, opened 2023.
 Don't Miss: Naoussa port at sunset; Lefkes mountain village; the Church of 100 Doors.
 Best Time of Day: Late afternoon into sunset at the waterfront bar near the Venetian fort.
