@@ -14,6 +14,7 @@
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: { lat: 20, lng: 0 },
                     zoom: 2,
+                    minZoom: 1,
                     mapTypeId: 'roadmap',
                     zoomControl: true,
                     mapTypeControl: false,
@@ -36,16 +37,18 @@
         markers = [];
 
         // Amber teardrop icon (SVG data URI)
-        function createTearDropIcon() {
+        function createTearDropIcon(width) {
+            var w = width || 24;
+            var h = Math.round(w * 1.5);
             return {
                 url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
-                    '<svg width="24" height="36" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">' +
+                    '<svg width="' + w + '" height="' + h + '" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">' +
                     '<path d="M12 0C5.373 0 0 5.373 0 12c0 9 12 24 12 24s12-15 12-24C24 5.373 18.627 0 12 0z" fill="#f59e0b"/>' +
                     '<circle cx="12" cy="12" r="5" fill="white"/>' +
                     '</svg>'
                 ),
-                scaledSize: new google.maps.Size(24, 36),
-                anchor: new google.maps.Point(12, 36)
+                scaledSize: new google.maps.Size(w, h),
+                anchor: new google.maps.Point(w / 2, h)
             };
         }
 
@@ -284,14 +287,45 @@
         });
 
         // Auto-fit map to show all trips
-        var bounds = new google.maps.LatLngBounds();
+        var lats = [], lngs = [];
         config.trips.forEach(function(dest) {
             if (dest.mapCenter && dest.mapCenter.coordinates) {
-                bounds.extend({ lat: dest.mapCenter.coordinates.lat, lng: dest.mapCenter.coordinates.lng });
+                lats.push(dest.mapCenter.coordinates.lat);
+                lngs.push(dest.mapCenter.coordinates.lng);
             }
         });
-        if (!bounds.isEmpty()) {
-            map.fitBounds(bounds, 40);
+        if (lats.length > 0) {
+            var lngSpan = Math.max(...lngs) - Math.min(...lngs);
+            if (lngSpan > 180) {
+                // Globe-spanning: fitBounds misinterprets the arc direction,
+                // so calculate center and zoom manually.
+                var latCenter = (Math.min(...lats) + Math.max(...lats)) / 2;
+                var lngCenter = (Math.min(...lngs) + Math.max(...lngs)) / 2;
+                var mapWidth = document.getElementById('map').offsetWidth;
+                var zoom = Math.floor(Math.log2(mapWidth / 256 * 360 / lngSpan));
+                map.setCenter({ lat: latCenter, lng: lngCenter });
+                map.setZoom(Math.max(1, zoom));
+
+                // Shrink teardrop markers if they would clip at viewport edges
+                var appliedZoom = Math.max(1, zoom);
+                var worldPx = 256 * Math.pow(2, appliedZoom);
+                var edgeMargin = (mapWidth - lngSpan / 360 * worldPx) / 2;
+                if (edgeMargin < 14) {
+                    var fitWidth = Math.max(14, Math.floor(edgeMargin * 2));
+                    var fitIcon = createTearDropIcon(fitWidth);
+                    markerSets.forEach(function(ms) {
+                        if (ms.tripMarker) ms.tripMarker.setIcon(fitIcon);
+                    });
+                }
+            } else {
+                var bounds = new google.maps.LatLngBounds();
+                config.trips.forEach(function(dest) {
+                    if (dest.mapCenter && dest.mapCenter.coordinates) {
+                        bounds.extend(dest.mapCenter.coordinates);
+                    }
+                });
+                map.fitBounds(bounds, 40);
+            }
         }
 
         // Add zoom event listener for progressive detail disclosure
