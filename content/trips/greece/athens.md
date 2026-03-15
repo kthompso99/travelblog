@@ -3,7 +3,7 @@ Athens is one of those cities where the history isn't background -- it's the for
 
 ##  Getting Around in Athens
 
-Order taxis through Uber -- we didn't, and the communication was harder than we anticipated. Fares are cheap either way. The subway didn't serve anywhere we needed to go.
+Order taxis through Uber -- we didn't, and the communication with drivers about destinations was harder than we anticipated. Fares are cheap either way. The subway didn't serve anywhere we needed to go.
 
 ## The Acropolis
 
@@ -17,17 +17,17 @@ The museum does an excellent job reconstructing how the Parthenon sculpture prog
 
 ![The original Caryatids](images/Athens-12.jpg)
 
-The museum also includes sculptures from an earlier temple built on the Acropolis.  These are from 570BC, 140 years before the Parthenon that we know. Evidently paint lasts longer on limestone than marble -- it's surprising to see color on items this old.
+The museum also includes sculptures from an earlier temple built on the Acropolis.  These are from 570BC, 140 years before the Parthenon that we know. Evidently paint lasts longer on limestone than marble -- it's surprising to see color on items this old, even if it's fragmentary.
 
 ![Sculptures from an earlier Acropolis temple](images/Athens-11.jpg)
 
-The museum then focuses on the later Parthenon.  This is an artist's reproduction of the Parthenon's east pediment, based on 17th-century sketches.  The far left of this group is one of the key pieces that made its way to the British Museum.
+The museum then focuses on the later Parthenon.  The first exhibit is an artist's reproduction of the Parthenon's east pediment, based on 17th-century sketches.  The far left of this group is one of the key pieces that made its way to the British Museum.
 
 ![Artist Reproduction of the Full East Pediment.](images/Athens-13.jpg)
 
-These are reproductions of sculptures from the Parthenon.  
+Then the clear crescendo is a full-scale display of the Parthenon's east pediment, as it has made it through 2500 years of history.  
 
-> The originals of these are in London, expropriated by British Ambassador Lord Elgin in the early 19th century. This Athens museum makes it quite clear where they belong.
+> These are reproductions.  The originals of these are in London, expropriated by British Ambassador Lord Elgin in the early 19th century. This Athens museum makes it quite clear where they belong.
 
 ![Reproductions of the statues of the East Pediment](images/Athens-14.jpg)
 
@@ -63,7 +63,7 @@ We visited the Agora without a tour guide, and found it hard to visualize much -
 
 We were a block from the Tower of Winds but somehow managed to miss it, which I regret, it sounds interesting.
 
-I wanted to go see the massive ruins of the Temple of Olympian Zeus, but it's across a busy 8-lane road and we ended looking at it from afar. Honestly, when we looked down at it from the Acropolis, I felt like seeing it from afar was enough.
+We wanted to go see the massive ruins of the Temple of Olympian Zeus, but they lie across a busy 8-lane road and we ended looking at it from afar. Honestly, when we looked down at it from the Acropolis, I felt like seeing it from a distance was enough.
 
 The Benizelos Mansion is billed as "the oldest house in Athens". It has sections that are 16th century ... it's not "amazing", but we were glad we spent 20 minutes of our time since it was right near our hotel.
 

@@ -2,9 +2,9 @@ We didn't stay in Naxos. Instead, we arranged our ferry schedule to spend six ho
 
 Before the trip, we spent a lot of time deciding whether to stay in Paros or Naxos.  
 
-> While we don't regret our decision (we liked Paros a lot) ... our 6 hours in Naxos made us wish we'd stayed there longer.  
+> While we don't regret our decision (we liked Paros a lot) ... our 6 hours in Naxos made us wish we'd stayed longer.  
 
-Naxos sits in sharp contrast to Paros; its underground water supply makes it the most agricultural island in the Cyclades.  We didn't expect the cherry tomatoes to be the most memorable thing we ate in Greece. They were.
+Naxos sits in sharp contrast to Paros; its underground water supply makes it the most agricultural island in the Cyclades, it feels almost lush after Milos.  We didn't expect the cherry tomatoes to be the most memorable thing we ate in Greece. They were.
 
 Naxos has the usual density of Greek history.  There are many ancient churches dotted around the landscape; [Panagia Drossiani](https://www.greeka.com/cyclades/naxos/sightseeing/drosiani-church-naxos/) is a 4th-century church that requires only a 15-minute stop but justifies the detour for its scale and age. 
 
@@ -22,7 +22,7 @@ Apeiranthos is a scenic mountain village in Naxos.  When it was being built in t
 
 We used Alex as our guide; see him [here](https://www.toursbylocals.com/tours/greece/naxos/tour-details/naxos-highlights---half-day-private-tour-664d2315ebf20b195748906d).   
 
-ToursByLocals takes a substantial cut, so reaching out directly may be cheaper (Whatsapp \+30 694 514 5018). We have friends (late 2025) who have since booked him independently.  He was born in Naxos, grew up in Athens, spent part of his childhood in England -- his English is colloquial, and he seemed to know everyone we encountered. Hire him if you can.
+ToursByLocals takes a substantial cut, so reaching out directly may be cheaper (Whatsapp \+30 694 514 5018). We have friends who have since (late 2025) booked him independently.  He was born in Naxos, grew up in Athens, spent part of his childhood in England -- his English is colloquial, and he seemed to know everyone we encountered. Hire him if you can.
 
 
 ![Apollo Temple](images/Naxos-05.jpg)

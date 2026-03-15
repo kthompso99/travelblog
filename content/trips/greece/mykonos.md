@@ -14,7 +14,7 @@ The 16th-century windmills are the obvious landmark, and worth a picture, but th
 
 ![The windmills of Mykonos](images/Mykonos-01.jpg)
 
-The port area is dense with high-end shops and kept Tiffany busy.  That's an endorsement.
+The port area is dense with clothing and art shops of unique local creators, and kept Tiffany busy.  That's an endorsement.  And a warning.
 
 ![The outcome of a busy day in Mykonos](images/Mykonos-07.jpg)
 
@@ -30,6 +30,6 @@ duration: 3 hours
 Stay Overnight: We didn't -- three hours was enough to see why people love it, not enough to really explore.
 Don't Miss: Wandering the lanes; the windmills; the shopping (per Tiffany).
 Best Time of Day: Can't say from three hours -- we had midday.
-Worth the Splurge: TBD -- we didn't stay long enough to judge.
-Return Visit: Maybe -- we'd want more time to do it properly, but the crowds are real."
+Worth the Splurge: Shopping!  Unique boutiques.
+Return Visit: Maybe -- we'd want more time to do it properly, but the crowds are real.
 :::

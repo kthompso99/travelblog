@@ -1,8 +1,8 @@
-Paros was our deliberate choice as the Cycladic island to spend the longest, and slow the pace. We chose it over Mykonos (too focused on glamor), Milos (lovely, but small), or Santorini (over-discovered). Then we spent three of our five days barely leaving the tiny Naoussa port -- and didn't mind at all. We did rent a car for two days and made day trips to [Delos](delos.html) and [Mykonos](mykonos.html), but Paros earns its place as the natural home base for this stretch of the Cyclades.  
+Paros was our deliberate choice as the Cycladic island to spend the longest, and slow the pace. We chose it over Mykonos (too focused on glamor), Milos (lovely, but small), or Santorini (over-discovered). Then we spent three of our five days barely leaving the tiny Naoussa port -- and didn't mind at all. We did rent a car for two days, and separately made day trips to [Delos](delos.html) and [Mykonos](mykonos.html), but Paros earns its place as the natural home base for the Cyclades.  
 
 ## Naoussa Port
 
-Naoussa trades the functional bustle of the Parikia ferry port for a more refined harbor lined with excellent restaurants, whitewashed shops and 14th-century Venetian ruins.  The high-end resorts of Paros are largely clustered on this Northern part of the island, only a 15-minute drive from the ferry.
+Naoussa trades the functional bustle of the Parikia ferry port for a more refined harbor lined with excellent restaurants, whitewashed shops and 14th-century Venetian ruins.  The high-end resorts of Paros are largely clustered on this Northern part of the island, only a 15-minute drive from Parikia.
 
 ![This local resident greeted us at Naoussa port every day ](images/Paros-03.jpg)
 
@@ -17,9 +17,7 @@ Near Naoussa is a 14th-century Venetian fort; this is the view of Naoussa port f
 
 ![Sunset over Naoussa Port](images/Paros-09.jpg)
 
-Moraitis winery is a 10-minute walk from Naoussa.  The wines were some of the better Malagousia and Assyrtiko we tasted in the Cycladic islands.
 
-![Winery near Naoussa port](images/Paros-15.jpg)
 
 ## A Car Tour of Paros
 
@@ -53,8 +51,7 @@ Some friends visited a year before us and rented a bare boat to go around Paros 
 
 ## Antiparos: Paros' Small Drivable Neighbor
 
-Antiparos is a 10-minute ride on the small car ferry, which departs on the half-hour.  Antiparos was as promised sleepy; it's famous for being a hiding place for such A-listers as Tom Hanks (who has owned a villa there since 2004), Matthew McConaughey, Madonna, and Springsteen. 
-By comparison, it makes Paros feel almost like Santorini -- the infrastructure is modest, but the views are beautiful.
+Antiparos is a 10-minute ride on the small car ferry, which departs on the half-hour.  Antiparos was as promised sleepy; it's famous for being a hiding place for such A-listers as Tom Hanks (who has owned a villa there since 2004), Matthew McConaughey, Madonna, and Bruce Springsteen. By comparison, it makes Paros feel almost like Santorini -- the infrastructure is modest, but the views are beautiful.
 
 Antiparos has quite a few small beaches.  Many of these didn't impress us a lot in early May, but as we said about all the islands, it was before the season started so the chairs and services were not in evidence.  We drove the 25 minutes from the ferry to "Plage Ag Georgios", a smallish beach that's about as far from the ferry as you can get on this small island.
 
@@ -68,8 +65,7 @@ Antiparos has quite a few small beaches.  Many of these didn't impress us a lot 
   > We had a lunch at [Taverna Yorgi](https://www.tripadvisor.com/Restaurant_Review-g3569526-d6673076-Reviews-Taverna_Yorgi-Antiparos_Town_Antiparos_Cyclades_South_Aegean.html) 250 yards inland on the main street, and found its atmosphere delightful, we saw locals (kids leaving school, etc) wandering and living their life more than one might see on the waterfront.
 
 
-![Local enjoying the first minutes after a hard day at school.](images/Paros-13.jpg)
-
+![Antiparos schoolgirl relaxing after a hard day.](images/Paros-13.jpg)
 
 ## Where We Stayed
 
@@ -86,13 +82,13 @@ Dinner at Yemeni in Naoussa confirmed why it's hard to get a seat; the moussaka 
 
 ![Wine list at Yemeni, delightfully low-tech](images/Paros-04.jpg)
 
-On the water, there's a bar whose name I can't find, but it's right in front of Linardo (which is on Google Maps), right near where you walk out to the Venetian castle ruins. This is a perfect spot to watch the sun set over the water.   It's this [location in Google maps](https://www.google.com/maps/place/Lydia's+Charming+House/@37.1250863,25.2380653,3a,75y,90.79h,90t/data=!3m8!1e1!3m6!1sCIHM0ogKEICAgIDu1M27JA!2e10!3e11!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAB8u6HYjAocGF-8D9cIN-n5zhL7UIGkF1KO3Fh3qTarQaIXtNZBYzuDXh43VcNaLYku1uCKEA1rV-7BxL_hdZDGEoSAECadB2NtuFwQ1gsdJsUyKq0R4Psm7OdUkNtLIPnm4tyB-Bys%3Dw900-h600-k-no-pi0-ya90.79006991102646-ro0-fo100!7i5376!8i2688!4m6!3m5!1s0x149875fdcf0ff4ad:0xd4224d7849615f74!8m2!3d37.1201951!4d25.2390991!16s%2Fg%2F11rwx_7s7j?entry=ttu&g_ep=EgoyMDI1MDUxNS4wIKXMDSoASAFQAw%3D%3D), next to Barbarossa.  Attentive staff at least in May 2025.
+On the water, there's a bar whose name I can't find, but it's right in front of Linardo and next to Barbarossa (both of which are on Google Maps), right near where you walk out to the Venetian castle ruins. This is a perfect spot to watch the sun set over the water.   It's this [location](https://www.google.com/maps/place/Lydia's+Charming+House/@37.1250863,25.2380653,3a,75y,90.79h,90t/data=!3m8!1e1!3m6!1sCIHM0ogKEICAgIDu1M27JA!2e10!3e11!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAB8u6HYjAocGF-8D9cIN-n5zhL7UIGkF1KO3Fh3qTarQaIXtNZBYzuDXh43VcNaLYku1uCKEA1rV-7BxL_hdZDGEoSAECadB2NtuFwQ1gsdJsUyKq0R4Psm7OdUkNtLIPnm4tyB-Bys%3Dw900-h600-k-no-pi0-ya90.79006991102646-ro0-fo100!7i5376!8i2688!4m6!3m5!1s0x149875fdcf0ff4ad:0xd4224d7849615f74!8m2!3d37.1201951!4d25.2390991!16s%2Fg%2F11rwx_7s7j?entry=ttu&g_ep=EgoyMDI1MDUxNS4wIKXMDSoASAFQAw%3D%3D).  Attentive staff at least in May 2025.
 
 ![Sunset from our favorite spot in Naoussa](images/Paros-11.jpg)
 
-Located just outside Naoussa, Siparos was a great restaurant a short taxi ride from Naoussa.  It had lovely sunset views. Note that taxis around there are quite expensive, if you want to drive it'd be better (depending on what you choose to drink with dinner), we didn't have a car that evening.
+Located just outside Naoussa, Siparos was a great restaurant a short taxi ride from Naoussa, with lovely sunset views. Note that taxis around there are quite expensive, if you want to drive it'd be better (depending on what you choose to drink with dinner), we didn't have a car that evening.
 
-Moraitis winery is a moderate-length walk inland from Naoussa.  It's a very small family-owned business with friendly staff, a lovely view of their small vineyard, and tasty local white wines.
+Moraitis winery is a 10-minute walk inland from Naoussa.  It's a very small family-owned business with friendly staff.  The wines were some of the better Malagousia and Assyrtiko we tasted in the Cycladic islands.
 
 ![Moraitis Winery, near Naoussa](images/Paros-15.jpg)
 

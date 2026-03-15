@@ -6,7 +6,7 @@ Early May avoids crowds but arrives before the beach season really starts.
 
 Good news: the crowds were light.  In Milos and Paros we could just walk up to the most popular restaurants right at 7:30pm; Santorini was already busy even in May.    
 
-If you're coming for the beach-club version of the Greek islands, early May isn't it: beaches were empty May 3-13, and clubs open in June.  In May one sees stacks of lounge chairs that aren't available yet.   For beach visits, early May isn't shoulder season.  It's still off-season.
+If you're coming for the beach-club version of the Greek islands, early May isn't it: clubs open in June and the beaches are empty of people and feature stacks of unavailable lounge chairs.   For beach visits, early May isn't shoulder season.  It's still off-season.
 
 Many days topped out in the high 60s, and the wind made afternoons feel chilly.   We were wearing long sleeves in the evening, sometimes in the afternoon.  
 
@@ -18,7 +18,7 @@ We swam in the Mediterranean only once, during the Santorini catamaran cruise.  
 
 The advice to avoid "too many islands" proved correct. Ferries and hotel transfers carry significant overhead: the 30-minute early arrival, the shuttle logistics, and the repacking.  Anything more than three overnight stops in ten days (2 nights in Milos, 3 nights in Santorini, 5 nights in Paros) might feel like work rather than travel.
 
-But we enjoyed fitting in Naxos for six hours, Delos/Mykonos for three hours each, and Antiparos for a short visit. We only repacked luggage three times but still saw several islands, and we were surprised how different Naxos and Paros felt.  
+But we enjoyed fitting in Naxos for six hours, Delos and Mykonos for three hours each, and Antiparos for a short visit. We only repacked luggage three times but still saw several islands, and we were surprised how different Naxos and Paros felt.  
 
 The contrast between islands is sharper than we expected. Milos is quite sleepy -- Pollonia's entire restaurant row for tourists is 100 yards long. Santorini is the opposite: overrun with tourists, Oia almost entirely depopulated by locals who have been priced out. One resident told us she lives in Imerovigli and hadn't visited Oia -- 20 minutes away -- in years, because it's just for tourists now. And yet it's one of the most remarkable sights we've ever seen. Paros sits between them: first-class hotels and restaurants, genuinely busy, but still feels like a place actual Greek people live.
 
@@ -30,9 +30,9 @@ A lot of our feelings are based on when we went -- we have friends who visited M
 
 We flew Athens to Milos at the beginning, and Paros to Athens at the end.  We only took three ferries, so consider these field notes, not expertise.  
 
-We used Ferryhopper to compare routes, but the fastest option for us was always Seajets.  We booked directly through their website a week in advance, and paid the premium for "club" -- the Seajets "business class".   It's less crowded and usually only 10-20% more expensive. It felt worth it.  They had a platinum class for our long ferry (Santorini to Naxos, 2.5 hours) and that had at-seat drink service which was welcome.
+We used Ferryhopper to compare routes, but the fastest option for us was always Seajets.  We booked directly through their website a few weeks in advance, and paid the premium for "club" -- the Seajets "business class".   It's less crowded and usually only 10-20% more expensive. It felt worth it.  They had a platinum class for our long ferry (Santorini to Naxos, 2.5 hours) and that had at-seat drink service which was welcome.
 
-Check into Seajets online between 48 and 2 hours before departure to get a QR code to scan.   If you miss it, you'll need to find an in-person desk (usually near but not right at the ferry dock).
+Check into Seajets online between 48 and 2 hours before departure to get a QR code to scan.   If you miss the online window, you'll need to find an in-person desk (usually near but not right at the ferry dock).
 
 ### Food & Wine
 
@@ -48,11 +48,11 @@ White wine: We like the Monemvasia (the grape) over Assyrtiko.  Assyrtiko's acid
 
 The red wines from the islands ... didn't impress us.
 
-> The islands are simply too warm to grow most red grapes.   We drank a lot more xinomavro from northern Greece when it was cool enough for red.    
+> The islands are simply too warm to grow most red grapes.   We developed a taste for xinomavro from northern Greece when it was cool enough for red.    
 
 We skipped the Ouzo entirely, preferring Mastiha as a refreshing, palate-cleansing after-dinner drink.
 
-Greek desserts are dangerous. Many restaurants have a dessert menu, and when you decline, they bring a free treat anyway that we failed consistently to resist.
+Greek desserts are dangerous. Many restaurants have a dessert menu, and when you decline, they bring a free treat anyway that we consistently failed to resist.
 
 Early May gave us the Greek islands at a humane volume: easy tables, daylight towns, and long walks without heat. The tradeoff is that the beach culture is still in storage--literally--so plan your days around views, villages, and food, not swimming.
 
