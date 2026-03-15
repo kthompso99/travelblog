@@ -46,7 +46,7 @@ const KEY_ALIASES = {
   narrative_clarity_arc: ["narrativeclarityarc", "narrativeclarity", "narrative"],
   opening_strength: ["openingstrength", "opening"],
   brand_alignment: ["brandalignment", "brand"],
-  distinctiveness: ["distinctiveness", "distinct"],
+  distinctiveness: ["distinctiveness", "distinct", "branddistinctiveness"],
   decision_clarity: ["decisionclarity", "decision"]
 };
 
@@ -194,7 +194,35 @@ function getPreviousAudit(auditFolder, provider) {
   if (files.length === 0) return null;
 
   const latestFile = files[files.length - 1];
-  return JSON.parse(fs.readFileSync(path.join(auditFolder, latestFile), "utf-8"));
+  const fullPath = path.join(auditFolder, latestFile);
+  const data = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
+  const mtime = fs.statSync(fullPath).mtime;
+  data._mtime = mtime;
+  return data;
+}
+
+function formatPrevTimestamp(mtime) {
+  const now = new Date();
+  const isToday = mtime.toDateString() === now.toDateString();
+
+  const timeStr = mtime
+    .toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    })
+    .toLowerCase();
+
+  if (isToday) return `run at ${timeStr} today`;
+
+  const yesterday = new Date(now);
+  yesterday.setDate(yesterday.getDate() - 1);
+  if (mtime.toDateString() === yesterday.toDateString()) {
+    return `run at ${timeStr} yesterday`;
+  }
+
+  const dateStr = mtime.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  return `run at ${timeStr} on ${dateStr}`;
 }
 
 const DIMENSION_LABELS = {
@@ -209,6 +237,7 @@ const DIMENSION_LABELS = {
 function printComparison(prev, curr) {
   const dims = Object.keys(WEIGHTS);
   const labelW = Math.max(...Object.values(DIMENSION_LABELS).map(l => l.length));
+  const valW = 5;  // width for score values (e.g. " 8.35" or "  8.1")
 
   console.log("");
   for (const dim of dims) {
@@ -222,7 +251,7 @@ function printComparison(prev, curr) {
     const sign = delta >= 0 ? "+" : "";
     const flag = delta < 0 ? "  *** Downgrade" : "";
     console.log(
-      `  ${label.padEnd(labelW)}  ${oldVal.toFixed(1)} => ${newVal.toFixed(1)}  ${sign}${delta.toFixed(1)}${flag}`
+      `  ${label.padEnd(labelW)}  ${oldVal.toFixed(1).padStart(valW)} => ${newVal.toFixed(1).padStart(valW)}  ${(sign + delta.toFixed(1)).padStart(valW)}${flag}`
     );
   }
 
@@ -233,7 +262,7 @@ function printComparison(prev, curr) {
     const sign = delta >= 0 ? "+" : "";
     const flag = delta < 0 ? "  *** Downgrade" : "";
     console.log(
-      `  ${"Overall".padEnd(labelW)}  ${oldOverall.toFixed(2)} => ${newOverall.toFixed(2)}  ${sign}${delta.toFixed(2)}${flag}`
+      `  ${"Overall".padEnd(labelW)}  ${oldOverall.toFixed(2).padStart(valW)} => ${newOverall.toFixed(2).padStart(valW)}  ${(sign + delta.toFixed(2)).padStart(valW)}${flag}`
     );
   }
 }
@@ -266,7 +295,8 @@ export function saveAuditResults(filepath, scores, markdown, provider) {
   fs.writeFileSync(jsonPath, JSON.stringify(scores, null, 2));
   fs.writeFileSync(mdPath, `${auditTitle}\n\n${markdown}`);
 
-  console.log(`\nAudit complete: ${articleName} (${provider})`);
+  const baseline = prev ? `, comparing to ${formatPrevTimestamp(prev._mtime)}` : "";
+  console.log(`\nAudit complete: ${articleName} (${provider})${baseline}`);
   console.log(`Overall Score: ${scores.overall_score}`);
 
   if (prev) {
