@@ -94,6 +94,9 @@ Located just outside Naoussa, Siparos was a great restaurant a short taxi ride f
 
 Moraitis winery is a moderate-length walk inland from Naoussa.  It's a very small family-owned business with friendly staff, a lovely view of their small vineyard, and tasty local white wines.
 
+![Moraitis Winery, near Naoussa](images/Paros-15.jpg)
+
+
 :::nutshell Paros
 verdict: Would Plan Around
 duration: 3 days
