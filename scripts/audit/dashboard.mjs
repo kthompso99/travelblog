@@ -9,6 +9,8 @@
 //   npm run dashboard -- --provider gpt     # GPT audits only
 //   npm run dashboard -- --detail           # include per-dimension scores
 //   npm run dashboard -- --detail greece    # combine flags
+//   npm run dashboard -- --history          # score progression over time
+//   npm run dashboard -- --history greece   # history for one trip
 //
 
 import fs from "fs";
@@ -27,6 +29,14 @@ const TRIP_THRESHOLD = 8.7;
 const DETAIL_MODE = process.argv.includes("--detail") ||
   process.argv.includes("-detail");
 
+const HISTORY_MODE = process.argv.includes("--history") ||
+  process.argv.includes("-history");
+
+if (DETAIL_MODE && HISTORY_MODE) {
+  console.error("Cannot use --detail and --history together");
+  process.exit(1);
+}
+
 // --provider gpt | claude | all (default: all)
 function getProviderFilter() {
   const idx = process.argv.indexOf("--provider");
@@ -40,7 +50,7 @@ const PROVIDER_FILTER = getProviderFilter();
 
 // Optional trip filter: first positional arg (not a flag or flag value)
 function getTripFilter() {
-  const skip = new Set(["--detail", "-detail", "--provider"]);
+  const skip = new Set(["--detail", "-detail", "--history", "-history", "--provider"]);
   for (let i = 2; i < process.argv.length; i++) {
     const arg = process.argv[i];
     if (skip.has(arg)) {
@@ -55,7 +65,7 @@ function getTripFilter() {
 const TRIP_FILTER = getTripFilter();
 
 // Reject unknown flags
-const KNOWN_FLAGS = new Set(["--detail", "-detail", "--provider"]);
+const KNOWN_FLAGS = new Set(["--detail", "-detail", "--history", "-history", "--provider"]);
 for (let i = 2; i < process.argv.length; i++) {
   const arg = process.argv[i];
   if (arg === "--provider") { i++; continue; }
@@ -97,11 +107,33 @@ function getLatestAuditsByProvider(folderPath, providerFilter) {
   });
 }
 
+function getAllAuditsByProvider(folderPath, providerFilter) {
+  if (!fs.existsSync(folderPath)) return [];
+
+  let files = fs
+    .readdirSync(folderPath)
+    .filter(f => f.endsWith(".audit.json"));
+
+  if (providerFilter !== "all") {
+    files = files.filter(f => f.includes(`.${providerFilter}.`));
+  }
+
+  return files.map(filename => {
+    const provMatch = filename.match(/\.(\w+)\.audit\.json$/);
+    const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})\./);
+    const data = JSON.parse(fs.readFileSync(path.join(folderPath, filename), "utf-8"));
+    data._provider = provMatch ? provMatch[1] : "?";
+    data._date = dateMatch ? dateMatch[1] : "?";
+    return data;
+  });
+}
+
 function collectTrips() {
   const tripsRoot = "content/trips";
   const trips = {};
+  const history = {};  // { "trip/article": { provider: { date: score } } }
 
-  if (!fs.existsSync(tripsRoot)) return trips;
+  if (!fs.existsSync(tripsRoot)) return { trips, history };
 
   for (const tripName of fs.readdirSync(tripsRoot)) {
     const tripPath = path.join(tripsRoot, tripName);
@@ -119,9 +151,10 @@ function collectTrips() {
         "audits",
         articleName
       );
-
-      const audits = getLatestAuditsByProvider(auditFolder, PROVIDER_FILTER);
       const contentType = getContentType(path.join(tripPath, file));
+
+      // Latest audits (for readiness + triage/detail)
+      const audits = getLatestAuditsByProvider(auditFolder, PROVIDER_FILTER);
       for (const audit of audits) {
         const score = computeWeightedScore(audit, contentType);
         const entry = {
@@ -141,10 +174,22 @@ function collectTrips() {
         }
         trips[tripName].push(entry);
       }
+
+      // All audits (for history)
+      if (HISTORY_MODE) {
+        const key = `${tripName}/${articleName}`;
+        const allAudits = getAllAuditsByProvider(auditFolder, PROVIDER_FILTER);
+        for (const audit of allAudits) {
+          const score = computeWeightedScore(audit, contentType);
+          if (!history[key]) history[key] = {};
+          if (!history[key][audit._provider]) history[key][audit._provider] = {};
+          history[key][audit._provider][audit._date] = score;
+        }
+      }
     }
   }
 
-  return trips;
+  return { trips, history };
 }
 
 // ==============================
@@ -152,7 +197,7 @@ function collectTrips() {
 // ==============================
 
 function runDashboard() {
-  const trips = collectTrips();
+  const { trips, history } = collectTrips();
 
   console.log("\n======================================");
   console.log(" TWO TRAVEL NUTS EDITORIAL DASHBOARD ");
@@ -200,20 +245,76 @@ function runDashboard() {
     console.log("");
   }
 
-  // ---------- TRIAGE VIEW ----------
-  for (const prov of providers) {
-    const group = allArticles
-      .filter(a => a.provider === prov)
-      .sort((a, b) => a.score - b.score);
+  // ---------- HISTORY VIEW (replaces triage) ----------
+  if (HISTORY_MODE && Object.keys(history).length > 0) {
+    // Collect all dates per provider
+    const datesByProv = {};
+    for (const key in history) {
+      for (const prov in history[key]) {
+        if (!datesByProv[prov]) datesByProv[prov] = new Set();
+        for (const date of Object.keys(history[key][prov])) {
+          datesByProv[prov].add(date);
+        }
+      }
+    }
 
-    console.log(`\n📉 TRIAGE — ${prov.toUpperCase()} (Worst First)\n`);
+    const articles = Object.keys(history).sort();
+    const nameW = Math.max(7, ...articles.map(a => a.length));
+    const colW = 6;
 
-    group.forEach(a => {
-      const type = a.contentType === "article" ? " [A]" : "";
-      console.log(
-        `${a.score.toFixed(2)}  |  ${a.trip} / ${a.article}${type}`
-      );
-    });
+    for (const prov of providers) {
+      if (!datesByProv[prov]) continue;
+      const dates = [...datesByProv[prov]].sort();
+      // MM-DD labels
+      const dateLabels = dates.map(d => d.slice(5));
+
+      console.log(`\n📈 HISTORY — ${prov.toUpperCase()}\n`);
+
+      const header =
+        "Article".padEnd(nameW) + "  " +
+        dateLabels.map(d => d.padStart(colW)).join("") +
+        "   Δ";
+      console.log(header);
+      console.log("-".repeat(header.length));
+
+      for (const key of articles) {
+        const provData = history[key]?.[prov];
+        if (!provData) continue;
+        const cells = dates.map(d => {
+          const v = provData[d];
+          return v != null ? v.toFixed(2).padStart(colW) : " ".repeat(colW);
+        }).join("");
+
+        // Delta: last non-null minus first non-null
+        const scores = dates.map(d => provData[d]).filter(v => v != null);
+        let delta = "";
+        if (scores.length >= 2) {
+          const diff = scores[scores.length - 1] - scores[0];
+          const sign = diff >= 0 ? "+" : "";
+          delta = `${sign}${diff.toFixed(2)}`;
+        }
+
+        console.log(`${key.padEnd(nameW)}  ${cells}  ${delta}`);
+      }
+    }
+  }
+
+  // ---------- TRIAGE VIEW (default, skipped in history mode) ----------
+  if (!HISTORY_MODE) {
+    for (const prov of providers) {
+      const group = allArticles
+        .filter(a => a.provider === prov)
+        .sort((a, b) => a.score - b.score);
+
+      console.log(`\n📉 TRIAGE — ${prov.toUpperCase()} (Worst First)\n`);
+
+      group.forEach(a => {
+        const type = a.contentType === "article" ? " [A]" : "";
+        console.log(
+          `${a.score.toFixed(2)}  |  ${a.trip} / ${a.article}${type}`
+        );
+      });
+    }
   }
 
   // ---------- DETAIL GRID ----------
