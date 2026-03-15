@@ -304,7 +304,7 @@ Stay Overnight: One night.
             assert('renderNutshell uses <div> for fields',           html.includes('<div class="nutshell-fields">'));
 
             // Header structure
-            assert('renderNutshell includes header wrapper',         html.includes('nutshell-header'));
+            assert('renderNutshell includes meta row',               html.includes('nutshell-meta'));
             assert('renderNutshell includes subtitle',               html.includes('Two Travel Nuts Verdict'));
             assert('renderNutshell verdict has CSS class',           html.includes('nutshell-verdict--would-plan-around'));
 
