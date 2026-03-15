@@ -49,32 +49,32 @@ const TRIP_FILTER = getTripFilter();
 // 📂 Helpers
 // ==============================
 
-function getLatestAudit(folderPath, provider) {
-  if (!fs.existsSync(folderPath)) return null;
+function getLatestAuditsByProvider(folderPath, providerFilter) {
+  if (!fs.existsSync(folderPath)) return [];
 
   let files = fs
     .readdirSync(folderPath)
     .filter(f => f.endsWith(".audit.json"));
 
-  // Filter by provider if specified
-  if (provider !== "all") {
-    files = files.filter(f => f.includes(`.${provider}.`));
+  if (providerFilter !== "all") {
+    files = files.filter(f => f.includes(`.${providerFilter}.`));
   }
 
-  files.sort();
+  // Group by provider, keep latest per provider
+  const byProvider = {};
+  for (const f of files) {
+    const match = f.match(/\.(\w+)\.audit\.json$/);
+    const src = match ? match[1] : "?";
+    if (!byProvider[src] || f > byProvider[src]) {
+      byProvider[src] = f;
+    }
+  }
 
-  if (files.length === 0) return null;
-
-  const latestFile = files[files.length - 1];
-  const fullPath = path.join(folderPath, latestFile);
-
-  // Extract provider from filename: YYYY-MM-DD.{provider}.audit.json
-  const match = latestFile.match(/\.(\w+)\.audit\.json$/);
-  const src = match ? match[1] : "?";
-
-  const data = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
-  data._provider = src;
-  return data;
+  return Object.entries(byProvider).map(([src, filename]) => {
+    const data = JSON.parse(fs.readFileSync(path.join(folderPath, filename), "utf-8"));
+    data._provider = src;
+    return data;
+  });
 }
 
 function collectTrips() {
@@ -100,9 +100,9 @@ function collectTrips() {
         articleName
       );
 
-      const audit = getLatestAudit(auditFolder, PROVIDER_FILTER);
-      if (audit) {
-        const contentType = getContentType(path.join(tripPath, file));
+      const audits = getLatestAuditsByProvider(auditFolder, PROVIDER_FILTER);
+      const contentType = getContentType(path.join(tripPath, file));
+      for (const audit of audits) {
         const score = computeWeightedScore(audit, contentType);
         const entry = {
           article: articleName,
@@ -142,62 +142,59 @@ function runDashboard() {
   console.log("======================================\n");
 
   let allArticles = [];
-  let siteReady = true;
-
-  // ---------- TRIP VIEW ----------
-  console.log("📍 TRIP READINESS VIEW\n");
-
   for (const tripName in trips) {
-    const articles = trips[tripName];
-
-    if (articles.length === 0) continue;
-
-    const scores = articles.map(a => a.score);
-    const avg =
-      scores.reduce((a, b) => a + b, 0) / scores.length;
-
-    const lowest = Math.min(...scores);
-
-    const tripReady =
-      avg >= TRIP_THRESHOLD &&
-      lowest >= ARTICLE_THRESHOLD;
-
-    if (!tripReady) siteReady = false;
-
-    console.log(`${tripName}`);
-    console.log(`  Avg Score: ${avg.toFixed(2)}`);
-    console.log(`  Lowest Article: ${lowest.toFixed(2)}`);
-    console.log(
-      `  Status: ${
-        tripReady ? "READY" : "NOT READY"
-      }\n`
-    );
-
     allArticles.push(
-      ...articles.map(a => ({
-        ...a,
-        trip: tripName
-      }))
+      ...trips[tripName].map(a => ({ ...a, trip: tripName }))
     );
   }
 
-  console.log(
-    "Overall Site Status:",
-    siteReady ? "READY TO LAUNCH" : "NOT READY"
-  );
+  const providers = [...new Set(allArticles.map(a => a.provider))].sort();
+
+  // ---------- TRIP VIEW ----------
+  for (const prov of providers) {
+    console.log(`📍 TRIP READINESS — ${prov.toUpperCase()}\n`);
+
+    let provReady = true;
+
+    for (const tripName in trips) {
+      const articles = trips[tripName].filter(a => a.provider === prov);
+      if (articles.length === 0) continue;
+
+      const scores = articles.map(a => a.score);
+      const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+      const lowest = Math.min(...scores);
+      const tripReady = avg >= TRIP_THRESHOLD && lowest >= ARTICLE_THRESHOLD;
+
+      if (!tripReady) provReady = false;
+
+      console.log(`${tripName}`);
+      console.log(`  Avg Score: ${avg.toFixed(2)}`);
+      console.log(`  Lowest Article: ${lowest.toFixed(2)}`);
+      console.log(`  Status: ${tripReady ? "READY" : "NOT READY"}\n`);
+    }
+
+    console.log(
+      `Overall Site Status (${prov}):`,
+      provReady ? "READY TO LAUNCH" : "NOT READY"
+    );
+    console.log("");
+  }
 
   // ---------- TRIAGE VIEW ----------
-  console.log("\n📉 TRIAGE VIEW (Worst First)\n");
+  for (const prov of providers) {
+    const group = allArticles
+      .filter(a => a.provider === prov)
+      .sort((a, b) => a.score - b.score);
 
-  allArticles
-    .sort((a, b) => a.score - b.score)
-    .forEach(a => {
-      const src = a.provider ? ` [${a.provider}]` : "";
+    console.log(`\n📉 TRIAGE — ${prov.toUpperCase()} (Worst First)\n`);
+
+    group.forEach(a => {
       const type = a.contentType === "article" ? " [A]" : "";
       console.log(
-        `${a.score.toFixed(2)}  |  ${a.trip} / ${a.article}${type}${src}`
+        `${a.score.toFixed(2)}  |  ${a.trip} / ${a.article}${type}`
       );
     });
+  }
 
   // ---------- DETAIL GRID ----------
   if (DETAIL_MODE && allArticles.length > 0) {
