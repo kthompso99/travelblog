@@ -216,40 +216,9 @@ The static site generator places all photos after the line `*Add your photos her
 
 ---
 
-## Typography: Quotation Marks & Apostrophes
+## Typography
 
-TTN source files (.md) use **all-straight ASCII quotes**. The build pipeline automatically converts to typographic curly quotes in the rendered HTML.
-
-- **In source files**: Write `wasn't`, `"marble town"`, `Kevin's` -- straight quotes only.
-- **Never use** curly quotes in source files. The build handles typography.
-- **Single-quote scare quotes**: Do not use. Use double quotes for emphasis/scare quotes. Example: `'lanes'` should be `"lanes"`.
-- **Cleanup tool**: `npm run normalize` flattens any curly quotes back to ASCII.
-- **Audit**: `npm run audit` flags curly quotes in source and single-quote scare quotes.
-
----
-
-## Typography: Dashes
-
-TTN source files (.md) use **ASCII hyphens only**. The build pipeline automatically converts to typographic dashes in the rendered HTML.
-
-- **Em dash**: Write `--` (double hyphen) in source. Build converts to -- (U+2014). Example: `Six hours was a tease -- Naxos deserves two nights.`
-- **Numeric ranges**: Write a regular hyphen between digits. Build converts to en dash (U+2013). Example: `5-8 minute walk` renders as `5-8 minute walk`.
-- **Never use** Unicode em dashes or en dashes in source files. The build handles typography.
-- **Cleanup tool**: `npm run normalize` flattens any Unicode dashes back to ASCII.
-- **Audit**: `npm run audit` flags Unicode dashes in source.
-- **AI tools note**: Claude, GPT, and Gemini all output Unicode dashes in their responses. Run `npm run normalize` after pasting from AI editing sessions.
-
----
-
-## Typography: Ellipses
-
-TTN source files (.md) use **three ASCII periods** (`...`). The build pipeline automatically converts to the typographic ellipsis character (U+2026) in the rendered HTML.
-
-- **In source files**: Write `...` (three periods). Build converts to ... (U+2026).
-- **Never use** the Unicode ellipsis character in source files. The build handles typography.
-- **Cleanup tool**: `npm run normalize` flattens any Unicode ellipses back to ASCII.
-- **Audit**: `npm run audit` flags Unicode ellipses in source.
-- **AI tools note**: Claude, GPT, and Gemini all output Unicode ellipsis characters. Run `npm run normalize` after pasting from AI editing sessions.
+Source files use ASCII-only characters -- straight quotes, double hyphens (`--`) for em dashes, three periods for ellipses. The build pipeline converts to typographic characters in rendered HTML. A pre-commit hook enforces this automatically.
 
 ---
 
