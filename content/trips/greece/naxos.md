@@ -1,23 +1,28 @@
-### Naxos
+We didn't stay in Naxos. Instead, we arranged our ferry schedule to spend six hours there between Santorini and Paros.  The Santorini to Paros ferry actually stops in Naxos.  We were able to get a morning ferry (roughly 9:30-11:00) to Naxos, and then we had a driver pick us up to take us around for a half-day, with our luggage safely in his trunk.  Then it was only a 30-minute ferry ride around dinnertime to Paros.
 
-We did not stay in Naxos, but arranged a ferry schedule to be able to spend 6 hours in Naxos which was delightful.  The Santorini=>Paros ferry actually stops in Naxos.  We were able to get a morning ferry (roughly 930-11) to Naxos, and then we had a driver pick us up to take us around for a half-day, with our luggage safely in his trunk.  Then it was only a 30-minute ferry ride around dinnertime to Paros.
+Before the trip, we spent a lot of time deciding whether to stay in Paros or Naxos.  
 
-Before the trip, we spent a lot of time deciding whether to stay in Paros or Naxos, and while we don't regret our decision (we liked Paros a lot) ... our 6 hours in Naxos made us wish we'd stayed there longer.  Naxos is surprisingly different from Paros -- it has an underground water supply, so it has the most agriculture in the Cyclades (including OMG the best cherry tomatoes we've ever tasted).  
+> While we don't regret our decision (we liked Paros a lot) ... our 6 hours in Naxos made us wish we'd stayed there longer.  
 
-Like anywhere in Greece seemingly, Naxos has a lot of interesting history.  There are many ancient churches dotted around the landscape; a highlight to us was the 4th century [Panagia Drossiani](https://www.greeka.com/cyclades/naxos/sightseeing/drosiani-church-naxos/). It's tiny so it's a 15-minute stop not 2 hours, but highly worth the detour.  
+Naxos sits in sharp contrast to Paros; its underground water supply makes it the most agricultural island in the Cyclades.  We didn't expect the cherry tomatoes to be the most memorable thing we ate in Greece. They were.
+
+Naxos has the usual density of Greek history.  There are many ancient churches dotted around the landscape; [Panagia Drossiani](https://www.greeka.com/cyclades/naxos/sightseeing/drosiani-church-naxos/) is a 4th-century church that requires only a 15-minute stop but justifies the detour for its scale and age. 
 
 ![Ancient Fresco in Panagia Drossiani](images/Naxos-04.jpg)
 
-Naxos was known in the ancient world for its vast quarries of high-quality marble.  Throughout Greece, and particularly the Cycladic islands, the material was used for both sculpture and architecture.
+Naxos was known in the ancient world for its vast marble quarries.  The marble from Naxos is exceptionally pure white and fine-grained, with a slight translucency that gives finished sculptures an almost luminous, skin-like quality.   The Naxian quarries produce unusually large, defect-free blocks. The combination of beauty, workability, and sheer block size made it the premier sculptural material of the early Greek world.
+
 ![Marble Quarry](images/Naxos-01.jpg)
 
-Apeiranthos is a scenic mountain village in Naxos.  When it was being built in the 10th century, the best available and affordable material was ... marble from nearby quarries.  It's known as the "marble town" and they used marble for everything, even including outdoor sidewalks.
+Apeiranthos is a scenic mountain village in Naxos.  When it was being built in the 10th century, the best available and affordable material was simply marble from nearby quarries.  It's known as the "marble town" and they used marble for everything, even including outdoor sidewalks.
 
 ![Stairway in Apeiranthos](images/Naxos-02.jpg)
 
 ![Building in Apeiranthos](images/Naxos-03.jpg)
 
-We can't recommend enough our tour guide Alex, see him [here](https://www.toursbylocals.com/tours/greece/naxos/tour-details/naxos-highlights---half-day-private-tour-664d2315ebf20b195748906d).   Toursbylocals takes a pretty hefty cut, if you reach out to him directly at Whatsapp \+30 694 514 5018 and name-dropped Kevin & Tiffany, I suspect he'd be quite happy to provide you a tour, we have friends already (late 2025) who hired his services.  We found him delightful company, he was born in Naxos but grew up in Athens, and spent part of his childhood in England, so his English is colloquial and excellent.  He seemed to know everyone everywhere we went, Naxos is a small island.
+We used Alex as our guide; see him [here](https://www.toursbylocals.com/tours/greece/naxos/tour-details/naxos-highlights---half-day-private-tour-664d2315ebf20b195748906d).   
+
+ToursByLocals takes a substantial cut, so reaching out directly may be cheaper (Whatsapp \+30 694 514 5018). We have friends (late 2025) who have since booked him independently.  He was born in Naxos, grew up in Athens, spent part of his childhood in England -- his English is colloquial, and he seemed to know everyone we encountered. Hire him if you can.
 
 
 ![Apollo Temple](images/Naxos-05.jpg)
