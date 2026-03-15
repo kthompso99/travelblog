@@ -183,14 +183,73 @@ export function parseAuditResponse(output, contentType) {
 // 💾 Save Audit Results
 // ==============================
 
+function getPreviousAudit(auditFolder, provider) {
+  if (!fs.existsSync(auditFolder)) return null;
+
+  const files = fs
+    .readdirSync(auditFolder)
+    .filter(f => f.endsWith(`.${provider}.audit.json`))
+    .sort();
+
+  if (files.length === 0) return null;
+
+  const latestFile = files[files.length - 1];
+  return JSON.parse(fs.readFileSync(path.join(auditFolder, latestFile), "utf-8"));
+}
+
+const DIMENSION_LABELS = {
+  prose_control_structure: "Prose Control",
+  narrative_clarity_arc:   "Narrative Clarity",
+  opening_strength:        "Opening Strength",
+  brand_alignment:         "Brand Alignment",
+  distinctiveness:         "Distinctiveness",
+  decision_clarity:        "Decision Clarity"
+};
+
+function printComparison(prev, curr) {
+  const dims = Object.keys(WEIGHTS);
+  const labelW = Math.max(...Object.values(DIMENSION_LABELS).map(l => l.length));
+
+  console.log("");
+  for (const dim of dims) {
+    if (prev[dim] == null && curr[dim] == null) continue;
+    const label = DIMENSION_LABELS[dim] || dim;
+    const oldVal = prev[dim];
+    const newVal = curr[dim];
+    if (oldVal == null || newVal == null) continue;
+
+    const delta = newVal - oldVal;
+    const sign = delta >= 0 ? "+" : "";
+    const flag = delta < 0 ? "  *** Downgrade" : "";
+    console.log(
+      `  ${label.padEnd(labelW)}  ${oldVal.toFixed(1)} => ${newVal.toFixed(1)}  ${sign}${delta.toFixed(1)}${flag}`
+    );
+  }
+
+  const oldOverall = prev.overall_score;
+  const newOverall = curr.overall_score;
+  if (oldOverall != null && newOverall != null) {
+    const delta = newOverall - oldOverall;
+    const sign = delta >= 0 ? "+" : "";
+    const flag = delta < 0 ? "  *** Downgrade" : "";
+    console.log(
+      `  ${"Overall".padEnd(labelW)}  ${oldOverall.toFixed(2)} => ${newOverall.toFixed(2)}  ${sign}${delta.toFixed(2)}${flag}`
+    );
+  }
+}
+
 export function saveAuditResults(filepath, scores, markdown, provider) {
   const today = new Date().toISOString().split("T")[0];
   const articleName = path.basename(filepath, ".md");
   const auditFolder = path.join(path.dirname(filepath), "audits", articleName);
   fs.mkdirSync(auditFolder, { recursive: true });
 
-  const jsonPath = path.join(auditFolder, `${today}.${provider}.audit.json`);
+  const jsonFilename = `${today}.${provider}.audit.json`;
+  const jsonPath = path.join(auditFolder, jsonFilename);
   const mdPath = path.join(auditFolder, `${today}.${provider}.audit.md`);
+
+  // Load previous audit before overwriting
+  const prev = getPreviousAudit(auditFolder, provider);
 
   const timeStr = new Date()
     .toLocaleTimeString("en-US", {
@@ -208,7 +267,14 @@ export function saveAuditResults(filepath, scores, markdown, provider) {
   fs.writeFileSync(mdPath, `${auditTitle}\n\n${markdown}`);
 
   console.log(`\nAudit complete: ${articleName} (${provider})`);
-  console.log(`Overall Score: ${scores.overall_score}\n`);
+  console.log(`Overall Score: ${scores.overall_score}`);
+
+  if (prev) {
+    printComparison(prev, scores);
+  } else {
+    console.log("  (no previous audit to compare)");
+  }
+  console.log("");
 }
 
 // ==============================
