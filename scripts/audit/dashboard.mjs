@@ -1,6 +1,15 @@
 // ============================================
 // Two Travel Nuts Editorial Dashboard
 // ============================================
+//
+// Usage:
+//   npm run dashboard                       # all trips, all providers
+//   npm run dashboard -- greece             # single trip
+//   npm run dashboard -- --provider claude  # Claude audits only
+//   npm run dashboard -- --provider gpt     # GPT audits only
+//   npm run dashboard -- --detail           # include per-dimension scores
+//   npm run dashboard -- --detail greece    # combine flags
+//
 
 import fs from "fs";
 import path from "path";
@@ -44,6 +53,17 @@ function getTripFilter() {
 }
 
 const TRIP_FILTER = getTripFilter();
+
+// Reject unknown flags
+const KNOWN_FLAGS = new Set(["--detail", "-detail", "--provider"]);
+for (let i = 2; i < process.argv.length; i++) {
+  const arg = process.argv[i];
+  if (arg === "--provider") { i++; continue; }
+  if (arg.startsWith("-") && !KNOWN_FLAGS.has(arg)) {
+    console.error(`Unknown flag: ${arg}`);
+    process.exit(1);
+  }
+}
 
 // ==============================
 // 📂 Helpers
@@ -209,32 +229,40 @@ function runDashboard() {
       decision_clarity:        "Decis"
     };
 
-    // Column widths
+    // Column widths — derived from actual data
     const nameW = Math.max(
-      5,
+      7,
       ...allArticles.map(a => `${a.trip}/${a.article}`.length)
     );
+    const srcW = Math.max(
+      3,
+      ...allArticles.map(a => (a.provider || "?").length)
+    );
     const colW = 6;
-    const srcW = 4;
 
     // Header
     const header =
       "Article".padEnd(nameW) + "  " +
-      "Src".padStart(srcW) + "  " +
+      "Src".padEnd(srcW) + "  " +
       DIMENSIONS.map(d => (SHORT[d] || d).padStart(colW)).join("") +
       "  " + "Over".padStart(colW);
     console.log(header);
     console.log("-".repeat(header.length));
 
-    // Rows — sorted by overall score ascending (worst first)
+    // Rows — sorted alphabetically by article, then provider
     allArticles
-      .sort((a, b) => a.score - b.score)
+      .sort((a, b) => {
+        const nameA = `${a.trip}/${a.article}`;
+        const nameB = `${b.trip}/${b.article}`;
+        if (nameA !== nameB) return nameA.localeCompare(nameB);
+        return a.provider.localeCompare(b.provider);
+      })
       .forEach(a => {
         const name = `${a.trip}/${a.article}`;
-        const src = (a.provider || "?").padStart(srcW);
+        const src = (a.provider || "?").padEnd(srcW);
         const dims = DIMENSIONS.map(d => {
           const v = a[d];
-          return v != null ? v.toFixed(1).padStart(colW) : "  —   ";
+          return v != null ? v.toFixed(1).padStart(colW) : "   —  ";
         }).join("");
         const overall = a.score.toFixed(2).padStart(colW);
         console.log(`${name.padEnd(nameW)}  ${src}  ${dims}  ${overall}`);
