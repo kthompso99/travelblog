@@ -17,6 +17,10 @@ Near Naoussa is a 14th-century Venetian fort; this is the view of Naoussa port f
 
 ![Sunset over Naoussa Port](images/Paros-09.jpg)
 
+Moraitis winery is a 10-minute walk from Naoussa.  The wines were some of the better Malagousia and Assyrtiko we tasted in the Cycladic islands.
+
+![Winery near Naoussa port](images/Paros-15.jpg)
+
 ## A Car Tour of Paros
 
 While we spent several days walking around Naoussa, we were happy to rent a car for two middle days.  The island is large enough to be interesting but still worth visiting with day trips.  Taxis here are quite expensive, driving is a better option.  
