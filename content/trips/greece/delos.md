@@ -1,20 +1,31 @@
-If you're interested in archaeology and ancient ruins, Delos should be a priority, it has remarkable history and an impressive museum. It was a prominent religious and trading town for centuries in both Greek and Roman times.  The ruins are definitely *ruins*, very few intact buildings, but it's very evocative and the history is fascinating.
+Delos is one of the most significant archaeological sites in the Aegean. The onsite signage doesn't come close to conveying that -- which is why a guide matters more here than almost anywhere else we visited.
 
-Our one disappointment was that the signage in Delos wasn't great, and we found doing it without a tour guide frustrating. There are day trips you can find from Mykonos (Delos is only 15 mins from Mykonos) that include a tour guide ... if I coulda figured that out I would have, but we weren't starting in nearby Mykonos.  Because we had no guide, I felt like I got ~40% out of Delos what I might have with a good guide (but I'm a history nerd, others might need less detail). 
+It was a prominent religious and trading town for centuries in both Greek and Roman times. Almost nothing is intact. But the footprint of the town -- the street grid, the building foundations, the theater -- is large enough to suggest what it once was.
 
-We did a 1-day 3-way boat ferry from Paros to Delos & Mykonos with [Polos tours](https://polostoursparos.com/daily-cruises/delos-mykonos/).  This was a somewhat mixed bag -- it was extremely efficient, in that we saw two islands that we really wanted to see as a (long) day trip from Paros, and it was all very well-run.  On the other hand, there were no "guides" per se, and we wished we'd had a guide in Delos.  Polos tours is a ferry ride which optimizes seeing both Mykonos and Delos which was great, but doesn't help with tour guides. I've read that sometimes there are tour guides waiting outside the Delos gates, but that wasn't true in early May ... and who knows if they're good?
+Because Delos is only a 15-minute ferry from Mykonos, there are day trips you can find that include a tour guide ... if I could have figured that out I would have, but we weren't starting in nearby Mykonos.  
 
+We visited via a 3-way boat ferry from Paros to Delos & Mykonos with [Polos tours](https://polostoursparos.com/daily-cruises/delos-mykonos/).  The ferry was extremely efficient, in that we saw two islands we wanted to see as a (long) day trip from Paros.  It just doesn't include a guide, which matters more at Delos than Mykonos.  I've read that sometimes there are tour guides waiting outside the Delos gates, but that wasn't true in early May ... and who knows how to pick one.  
+
+> I felt like I got ~40% out of Delos what I might have with a good guide (but I'm a history nerd, others might need less detail). 
 
 
 ![Ruins at Delos](images/Delos-01.jpg)
 
 
-
 ![Ruins at Delos](images/Delos-02.jpg)
 
+The famous lions, now safely in a museum -- there are replicas outdoors where they once stood.
 
+![The lions](images/Delos-03.jpg)
 
-![The famous lions, now safely in a museum -- there are replicas outdoors where they once stood](images/Delos-03.jpg)
+![Ruins at Delos](images/Delos-04.jpg)
+
+![Ruins at Delos](images/Delos-05.jpg)
+
+![Ruins at Delos](images/Delos-06.jpg)
+
+![Ruins at Delos](images/Delos-07.jpg)
+
 
 :::nutshell Delos
 verdict: Glad We Went
