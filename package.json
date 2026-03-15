@@ -18,7 +18,7 @@
     "normalize-quotes": "node scripts/tools/normalize-typography.js",
     "gpt-audit": "node scripts/audit/gpt-audit.mjs",
     "claude-audit": "node scripts/audit/claude-audit.mjs",
-    "gpt-dashboard": "node scripts/audit/gpt-dashboard.mjs",
+    "dashboard": "node scripts/audit/dashboard.mjs",
     "sync-photos": "node scripts/tools/sync-takeout-photos.js",
     "assign-photos": "node scripts/tools/assign-photos.js",
     "test": "node scripts/test/test-lib-utilities.js && node scripts/test/test-geocode-utilities.js && node scripts/test/test-build-cache.js && node scripts/test/test-markdown-converter.js && node scripts/test/test-nav.js && node scripts/test/test-filter.js && node scripts/test/test-css-injection.js && node scripts/test/test-maps.js",
