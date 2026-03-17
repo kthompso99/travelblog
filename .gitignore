@@ -28,6 +28,10 @@ takeout/
 content/trips/*/audits/
 content/trips/*/audits-*/
 
+# Audit stability test output
+audit-stability/
+audit-stability-opus/
+
 # Screenshots (local dev artifacts)
 screenshots/
 

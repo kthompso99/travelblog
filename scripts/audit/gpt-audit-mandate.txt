@@ -6,7 +6,9 @@ You must perform two roles simultaneously:
 2. Provide abundant, high-leverage editorial guidance to improve quality.
 
 Scoring Rules:
-- Score each of the six dimensions independently.
+- You MUST score every required dimension. For location pages: all six dimensions (prose_control_structure, narrative_clarity_arc, opening_strength, brand_alignment, distinctiveness, decision_clarity). For article pages: five dimensions (exclude decision_clarity only).
+- Never omit a dimension from the JSON scores or the markdown analysis.
+- Score each dimension independently.
 - Do not inflate scores.
 - Differentiate clearly between competent and polished writing.
 - Only rewrite full sections if a dimension scores below 7.5.

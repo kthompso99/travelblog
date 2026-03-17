@@ -128,7 +128,10 @@ export function loadContextDocs() {
   const brandIdentity = fs.readFileSync(
     "docs/Content/Brand.md", "utf-8"
   );
-  return { editorialStandards, brandIdentity };
+  const antiAIGuidelines = fs.readFileSync(
+    "docs/Content/AntiAIWritingGuidelines.md", "utf-8"
+  );
+  return { editorialStandards, brandIdentity, antiAIGuidelines };
 }
 
 // ==============================
@@ -267,10 +270,10 @@ function printComparison(prev, curr) {
   }
 }
 
-export function saveAuditResults(filepath, scores, markdown, provider) {
+export function saveAuditResults(filepath, scores, markdown, provider, auditDirName = "audits") {
   const today = new Date().toISOString().split("T")[0];
   const articleName = path.basename(filepath, ".md");
-  const auditFolder = path.join(path.dirname(filepath), "audits", articleName);
+  const auditFolder = path.join(path.dirname(filepath), auditDirName, articleName);
   fs.mkdirSync(auditFolder, { recursive: true });
 
   const jsonFilename = `${today}.${provider}.audit.json`;
