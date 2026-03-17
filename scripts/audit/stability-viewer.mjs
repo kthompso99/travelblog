@@ -6,15 +6,19 @@
 // per-dimension statistics (min, max, range, mean, stdev).
 //
 // Usage:
-//   npm run stability-view                                    # per-file breakdown
+//   npm run stability-view                                    # per-file breakdown (all providers)
 //   npm run stability-view -- --dimensions                    # cross-file dimension summary
-//   npm run stability-view -- --dir audit-stability-opus      # view alternate results
+//   npm run stability-view -- --provider sonnet               # filter to one provider
+//   npm run stability-view -- --provider opus                 # filter to one provider
 
 import fs from "fs";
 import path from "path";
 
-const dirIdx = process.argv.indexOf("--dir");
-const OUTPUT_DIR = (dirIdx !== -1 && process.argv[dirIdx + 1]) || "audit-stability";
+const OUTPUT_DIR = "audit-stability";
+
+// --provider gpt | sonnet | opus (default: all)
+const provIdx = process.argv.indexOf("--provider");
+const PROVIDER_FILTER = provIdx !== -1 ? process.argv[provIdx + 1] : null;
 
 const DIMENSION_LABELS = {
   prose_control_structure: "Prose Control",
@@ -43,9 +47,19 @@ if (files.length === 0) {
   process.exit(1);
 }
 
-const results = files.map(f =>
+const allResults = files.map(f =>
   JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, f), "utf-8"))
 );
+
+const results = PROVIDER_FILTER
+  ? allResults.filter(r => r.provider === PROVIDER_FILTER)
+  : allResults;
+
+if (results.length === 0) {
+  const available = [...new Set(allResults.map(r => r.provider))].join(", ");
+  console.error(`No results for provider "${PROVIDER_FILTER}". Available: ${available}`);
+  process.exit(1);
+}
 
 // Group by file + provider
 const groups = {};

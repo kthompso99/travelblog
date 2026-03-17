@@ -2,19 +2,19 @@
 // Audit Stability Test — Score Variance Measurement
 // ============================================
 //
-// Experimental diagnostic tool. Runs the same content through GPT and/or
-// Claude repeatedly to measure how much scores vary between identical runs.
+// Experimental diagnostic tool. Runs the same content through GPT, Sonnet,
+// and/or Opus repeatedly to measure how much scores vary between identical runs.
 // Not part of the regular audit workflow.
 //
 // Usage:
-//   caffeinate -i npm run stability-test                          # 7 runs, 2 min apart, both providers
-//   caffeinate -i npm run stability-test -- --quick               # 2 runs, 10s apart (smoke test)
-//   caffeinate -i npm run stability-test -- --claude-only         # Sonnet only
-//   caffeinate -i npm run stability-test -- --claude-only --opus  # Opus only
+//   caffeinate -i npm run stability-test                              # 7 runs, 2 min apart, all 3 providers
+//   caffeinate -i npm run stability-test -- --quick                   # 2 runs, 10s apart (smoke test)
+//   caffeinate -i npm run stability-test -- --provider sonnet         # Sonnet only
+//   caffeinate -i npm run stability-test -- --provider opus           # Opus only
+//   caffeinate -i npm run stability-test -- --provider gpt            # GPT only
 //
-// Results saved to audit-stability/ (or audit-stability-opus/ with --opus).
+// Results saved to audit-stability/.
 // View results: npm run stability-view
-// View Opus:    npm run stability-view -- --dir audit-stability-opus
 //
 // Key findings (March 2026, 7 runs each):
 //   GPT 5.2:           stdev ~0.06 overall — stable, trustworthy for comparisons
@@ -39,13 +39,16 @@ import {
 // ==============================
 
 const QUICK_MODE = process.argv.includes("--quick");
-const OPUS_MODE = process.argv.includes("--opus");
-const CLAUDE_ONLY = process.argv.includes("--claude-only");
 const TOTAL_RUNS = QUICK_MODE ? 2 : 7;
 const INTERVAL_MS = QUICK_MODE ? 10_000 : 2 * 60 * 1000;
 
+// --provider gpt | sonnet | opus (default: all three)
+const providerIdx = process.argv.indexOf("--provider");
+const PROVIDER_FILTER = providerIdx !== -1 ? process.argv[providerIdx + 1] : null;
+
 const GPT_MODEL = "gpt-5.2";
-const CLAUDE_MODEL = OPUS_MODE ? "claude-opus-4-6" : "claude-sonnet-4-5-20250929";
+const SONNET_MODEL = "claude-sonnet-4-5-20250929";
+const OPUS_MODEL = "claude-opus-4-6";
 
 const FILES = [
   // 2 locations
@@ -56,7 +59,7 @@ const FILES = [
   { path: "content/trips/botswana/basics.md", slug: "basics-botswana" }
 ];
 
-const OUTPUT_DIR = OPUS_MODE ? "audit-stability-opus" : "audit-stability";
+const OUTPUT_DIR = "audit-stability";
 
 // ==============================
 // 📂 Snapshot & Setup
@@ -66,8 +69,7 @@ fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 console.log("=== Audit Stability Test ===");
 console.log(`Mode: ${QUICK_MODE ? "quick (2 runs, 10s apart)" : `full (${TOTAL_RUNS} runs, 2 min apart)`}`);
-if (CLAUDE_ONLY) console.log(`Provider: Claude only (${CLAUDE_MODEL})`);
-if (OPUS_MODE) console.log(`Output: ${OUTPUT_DIR}/`);
+if (PROVIDER_FILTER) console.log(`Provider: ${PROVIDER_FILTER} only`);
 console.log(`Started: ${new Date().toLocaleString()}\n`);
 
 // Snapshot content and context at startup
@@ -90,7 +92,7 @@ console.log("\nAll inputs frozen. Edits during the test will not affect results.
 // 🤖 Audit Functions
 // ==============================
 
-let gptClient, claudeClient;
+let gptClient, anthropicClient;
 
 async function auditGpt(content, contentType) {
   if (!gptClient) gptClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -109,24 +111,26 @@ async function auditGpt(content, contentType) {
   return scores;
 }
 
-async function auditClaude(content, contentType) {
-  if (!claudeClient) claudeClient = new Anthropic();
-  const systemPrompt = [
-    ENFORCEMENT_MANDATE,
-    "Binding Editorial Standards:\n\n" + editorialStandards,
-    "Brand Identity Context:\n\n" + brandIdentity,
-    "Anti-AI Writing Guidelines:\n\n" + antiAIGuidelines,
-    SYSTEM_PROMPT
-  ].join("\n\n---\n\n");
+async function auditAnthropic(model) {
+  return async function(content, contentType) {
+    if (!anthropicClient) anthropicClient = new Anthropic();
+    const systemPrompt = [
+      ENFORCEMENT_MANDATE,
+      "Binding Editorial Standards:\n\n" + editorialStandards,
+      "Brand Identity Context:\n\n" + brandIdentity,
+      "Anti-AI Writing Guidelines:\n\n" + antiAIGuidelines,
+      SYSTEM_PROMPT
+    ].join("\n\n---\n\n");
 
-  const response = await claudeClient.messages.create({
-    model: CLAUDE_MODEL,
-    max_tokens: 4096,
-    system: systemPrompt,
-    messages: [{ role: "user", content }]
-  });
-  const { scores } = parseAuditResponse(response.content[0].text, contentType);
-  return scores;
+    const response = await anthropicClient.messages.create({
+      model,
+      max_tokens: 4096,
+      system: systemPrompt,
+      messages: [{ role: "user", content }]
+    });
+    const { scores } = parseAuditResponse(response.content[0].text, contentType);
+    return scores;
+  };
 }
 
 // ==============================
@@ -134,12 +138,18 @@ async function auditClaude(content, contentType) {
 // ==============================
 
 const allProviders = [
-  { name: "gpt", model: GPT_MODEL, fn: auditGpt },
-  { name: "claude", model: CLAUDE_MODEL, fn: auditClaude }
+  { name: "gpt",    model: GPT_MODEL,    fn: auditGpt },
+  { name: "sonnet", model: SONNET_MODEL,  fn: auditAnthropic(SONNET_MODEL) },
+  { name: "opus",   model: OPUS_MODEL,    fn: auditAnthropic(OPUS_MODEL) }
 ];
-const providers = CLAUDE_ONLY
-  ? allProviders.filter(p => p.name === "claude")
+const providers = PROVIDER_FILTER
+  ? allProviders.filter(p => p.name === PROVIDER_FILTER)
   : allProviders;
+
+if (providers.length === 0) {
+  console.error(`Unknown provider: ${PROVIDER_FILTER}. Use gpt, sonnet, or opus.`);
+  process.exit(1);
+}
 
 for (let run = 0; run < TOTAL_RUNS; run++) {
   const runLabel = String(run).padStart(2, "0");
