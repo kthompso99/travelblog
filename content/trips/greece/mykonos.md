@@ -14,7 +14,7 @@ The 16th-century windmills are the obvious landmark, and worth a picture, but th
 
 ![The windmills of Mykonos](images/Mykonos-01.jpg)
 
-The port area is dense with clothing and art shops of unique local creators, and kept Tiffany busy.  That's an endorsement.  And a warning.
+The port area is dense with small non-chain clothing and jewelry shops, and kept Tiffany busy.  That's an endorsement.  And a warning.
 
 ![The outcome of a busy day in Mykonos](images/Mykonos-07.jpg)
 

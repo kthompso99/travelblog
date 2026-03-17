@@ -37,7 +37,7 @@ We went to "Golden Beach" which fit under the category of "maybe it's special wh
 
 In contrast, Kolympethres beach has quite striking rock formations.
 
-![The evocative Kolimpithres beach near Naoussa is evidently packed in summer, but we saw it with 4 or 5 beachgoers.](images/Paros-07.jpg)
+![The evocative Kolympithres beach near Naoussa is evidently packed in summer, but we saw it with 4 or 5 beachgoers.](images/Paros-07.jpg)
 
 I wish we'd gone to the small village of Marpissa, I read about it later, but we missed it, an oversight we regret.
 

@@ -83,9 +83,9 @@ We spent a well-invested two+ hours at the National Archaeology Museum. See this
 
 > The Mycenaean collection is so dense with gold and history that it's worth the admission price even if you skip the rest of the museum.
 
-![Mycenaen Amphora, Athens Archaeological museum](images/Athens-29.jpg)
-
 ![The so-called Mask of Agamemnon, housed in the Athens Archaeological museum](images/Athens-26.jpg)
+
+![Mycenaen Amphora, Athens Archaeological museum](images/Athens-29.jpg)
 
 ![Bull with horns, Athens Archaeological museum](images/Athens-27.jpg)
 
@@ -125,9 +125,9 @@ verdict: Would Plan Around
 duration: 3 days
 Stay Overnight: Electra Metropolis -- memorable Acropolis views from the suite and rooftop restaurant.
 Don't Miss: National Archaeology Museum (Mycenaean room first); Acropolis at sunset with a guide; Thespis in the Plaka.
-Best Time of Day: Late afternoon -- museum 4-6pm, then up the Acropolis 6-8pm per Rick Steves.
+Best Time of Day: Late afternoon -- museum 4-6pm, then up the Acropolis just before closing.
 Worth the Splurge: The Acropolis Suite at Electra Metropolis -- the corner view is everything.
-Return Visit: Yes -- we missed the Tower of Winds and barely scratched the Agora.
+Return Visit: Not a priority -- this feels like a great place to see once.
 :::
 
 *Add your photos here*
@@ -145,7 +145,5 @@ Return Visit: Yes -- we missed the Tower of Winds and barely scratched the Agora
 ![Parthenon](images/Athens-20.jpg)
 
 ![The Agora and Temple of Hephaestus from atop the Acropolis](images/Athens-22.jpg)
-
-![Another night view of the Parthenon](images/Athens-24.jpg)
 
 ![Another night view of the Parthenon](images/Athens-25.jpg)
