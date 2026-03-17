@@ -4,8 +4,9 @@
   "description": "Build script for travel blog - geocodes locations and converts markdown offline",
   "main": "scripts/build/build.js",
   "scripts": {
-    "validate": "node scripts/validate.js",
-    "build": "node scripts/validate.js && node scripts/build/build.js",
+    "validate": "node scripts/validate.js && node scripts/validate-images.js",
+    "validate:images": "node scripts/validate-images.js",
+    "build": "node scripts/validate.js && node scripts/validate-images.js && node scripts/build/build.js",
     "build:smart": "node scripts/build/build-smart.js",
     "dev": "node scripts/build/build-smart.js && concurrently \"npm run watch\" \"node scripts/server.js 8000\"",
     "writing": "node scripts/build/build-smart.js && concurrently \"npm run watch:writing\" \"node scripts/server.js 8000\"",

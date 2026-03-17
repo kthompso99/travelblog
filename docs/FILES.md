@@ -99,6 +99,7 @@ travelblog/
 │   │   ├── optimize-images.js  ImageMagick image optimization
 │   │   └── hero-search.js     Find hero image candidates from trip photos
 │   ├── validate.js             Pre-build validation of trip configs
+│   ├── validate-images.js      Image reference validator (case-sensitive)
 │   ├── deploy-check.js         Pre-deployment verification
 │   ├── sync-docs.js            Check docs for drift against code
 │   ├── test-geocode.js         Quick geocoding test utility
@@ -243,7 +244,8 @@ No geocoding, no map marker, no `place` fields.
 
 | Script | Command | What it does |
 |--------|---------|--------------|
-| `validate` | `npm run validate` | Check all trip configs for errors before building |
+| `validate` | `npm run validate` | Check all trip configs + image references before building |
+| `validate:images` | `npm run validate:images` | Validate image references exist with correct case |
 | `build` | `npm run build` | Validate → full build (geocode + render all trips) |
 | `build:smart` | `npm run build:smart` | Incremental build — only rebuilds changed trips |
 | `dev` | `npm run dev` | Smart build → start server + full incremental watcher |
