@@ -69,7 +69,9 @@ travelblog/
 │   │   ├── gpt-audit.mjs       AI editorial audit (OpenAI-powered scoring + suggestions)
 │   │   ├── gpt-audit-prompt.txt GPT audit system prompt
 │   │   ├── gpt-audit-mandate.txt GPT audit enforcement mandate
-│   │   └── gpt-dashboard.mjs  Dashboard for audit score history
+│   │   ├── dashboard.mjs      Dashboard for audit score history
+│   │   ├── stability-test.mjs Audit stability test (score variance measurement)
+│   │   └── stability-viewer.mjs Audit stability viewer (analyze variance results)
 │   ├── build/
 │   │   ├── build.js            Full build — geocodes, renders, outputs HTML
 │   │   ├── build-smart.js      Incremental build — skips unchanged trips
@@ -253,7 +255,9 @@ No geocoding, no map marker, no `place` fields.
 | `audit` | `npm run audit -- spain/cordoba` | Mechanical content audit (sentence-level quality checks) |
 | `gpt-audit` | `npm run gpt-audit -- spain/cordoba` | AI editorial audit (scoring + suggestions). Accepts multiple files or a trip name for incremental mode |
 | `claude-audit` | `npm run claude-audit -- spain/cordoba` | AI editorial audit via Claude API (same interface as gpt-audit) |
-| `gpt-dashboard` | `npm run gpt-dashboard` | Dashboard for audit score history and analysis |
+| `dashboard` | `npm run dashboard` | Dashboard for audit score history and analysis |
+| `stability-test` | `npm run stability-test` | Audit stability test for score variance measurement |
+| `stability-view` | `npm run stability-view` | Audit stability viewer for analyzing variance results |
 | `normalize` | `npm run normalize` | Flatten curly quotes, Unicode dashes, and ellipses to ASCII in markdown source |
 | `normalize-quotes` | `npm run normalize-quotes` | Alias for `normalize` |
 | `build-context` | `npm run build-context` | Generate `Context-Combined.md` from editorial source files |
@@ -310,7 +314,7 @@ All paths are resolved through `lib/config-paths.js`.
 | Trip map | `trip-map-page.html` | `/trips/{slug}/route.html` |
 | Location | `trip-location-page.html` | `/trips/{slug}/{loc}.html` |
 
-Trip intro pages feature a full-bleed hero (cover image + title overlay) injected via the `{{PRE_MAIN}}` placeholder in `base.html`.
+All trip pages (intro, location, and map) feature a full-bleed hero (cover image + title overlay) injected via the `{{PRE_MAIN}}` placeholder in `base.html`.
 
 ### Markdown Post-Processing
 
