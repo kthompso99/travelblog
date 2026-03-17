@@ -204,17 +204,17 @@ function getPreviousAudit(auditFolder, provider) {
   return data;
 }
 
+function formatTime(date) {
+  return date
+    .toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true })
+    .toLowerCase();
+}
+
 function formatPrevTimestamp(mtime) {
   const now = new Date();
   const isToday = mtime.toDateString() === now.toDateString();
 
-  const timeStr = mtime
-    .toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true
-    })
-    .toLowerCase();
+  const timeStr = formatTime(mtime);
 
   if (isToday) return `run at ${timeStr} today`;
 
@@ -283,13 +283,7 @@ export function saveAuditResults(filepath, scores, markdown, provider, auditDirN
   // Load previous audit before overwriting
   const prev = getPreviousAudit(auditFolder, provider);
 
-  const timeStr = new Date()
-    .toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true
-    })
-    .toLowerCase();
+  const timeStr = formatTime(new Date());
 
   const prettyName =
     articleName.charAt(0).toUpperCase() + articleName.slice(1);

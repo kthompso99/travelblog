@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
 const { MARKDOWN_IMAGE_REGEX } = require('../../lib/constants');
-const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, readTextFile, stripMarkdownToPlainText, countWords } = require('../../lib/build-utilities');
+const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, readTextFile, stripMarkdownToPlainText, countWords, countSentences } = require('../../lib/build-utilities');
 
 // Analysis libraries
 const rs = require('text-readability').default;
@@ -97,7 +97,7 @@ function analyzeMarkdownFile(filePath, itemFile) {
     // Plain text for analysis
     const plainText = stripMarkdownToPlainText(markdownContent);
     const words = countWords(plainText);
-    const sentences = plainText.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+    const sentences = countSentences(plainText);
 
     const { fk, fog, cl } = computeReadability(plainText, words);
     const { passivePct, weaselCount, totalIssues } = runWriteGoodAnalysis(plainText, words, sentences);
@@ -129,21 +129,21 @@ function fmtTone(n) {
     return sign + n.toFixed(2);
 }
 
-function printContentTable(rows, tripTitle, locationCount, articleCount) {
-    const cols = [
-        { key: 'name',         label: 'Page',     w: 18, align: 'left' },
-        { key: 'words',        label: 'Words',    w: 7 },
-        { key: 'sentences',    label: 'Sent',     w: 6 },
-        { key: 'inlineImages', label: 'Inline',   w: 7 },
-        { key: 'galleryCount', label: 'Gallery',  w: 8 },
-        { key: 'captionWords', label: 'Captions', w: 9 },
-    ];
-
-    const parts = [];
-    if (locationCount > 0) parts.push(`${locationCount} location${locationCount !== 1 ? 's' : ''}`);
-    if (articleCount > 0) parts.push(`${articleCount} article${articleCount !== 1 ? 's' : ''}`);
-    console.log(`\n${tripTitle} — ${parts.join(', ')}`);
-    console.log('  Content:');
+/**
+ * Print a box-drawing table with optional summary row.
+ *
+ * @param {Array} cols - Column definitions: { key, label, w, align?, fmt? }
+ *   fmt(v) formats a cell value to string (default: integers / pass-through)
+ * @param {Array} rows - Data objects keyed by col.key
+ * @param {Object} opts
+ *   summary: 'total' | 'avg' — what to compute for the footer row
+ *   summaryLabel: string shown in the left-aligned column (e.g. 'TOTAL', 'AVG')
+ *   summaryFilter: (row) => bool — filter rows before computing averages
+ * @returns {Object|undefined} The summary row values when summary is set
+ */
+function printTable(cols, rows, opts = {}) {
+    const { summary, summaryLabel, summaryFilter } = opts;
+    const defaultFmt = (v) => typeof v === 'number' ? fmtNum(v) : v;
 
     // Header
     const header = cols.map(c => pad(c.label, c.w, c.align)).join(' │ ');
@@ -155,154 +155,99 @@ function printContentTable(rows, tripTitle, locationCount, articleCount) {
     // Data rows
     for (const row of rows) {
         const line = cols.map(c => {
-            const v = row[c.key];
-            return pad(typeof v === 'number' ? fmtNum(v) : v, c.w, c.align);
+            const fmt = c.fmt || defaultFmt;
+            return pad(fmt(row[c.key]), c.w, c.align);
         }).join(' │ ');
         console.log('  │ ' + line + ' │');
     }
 
-    // Totals
-    const totals = { name: 'TOTAL' };
-    for (const c of cols) {
-        if (c.key === 'name') continue;
-        totals[c.key] = rows.reduce((sum, r) => sum + (r[c.key] || 0), 0);
+    if (!summary) {
+        console.log('  └─' + cols.map(c => '─'.repeat(c.w)).join('─┴─') + '─┘');
+        return;
     }
+
+    // Summary row
+    const sourceRows = summaryFilter ? rows.filter(summaryFilter) : rows;
+    const result = {};
+    for (const c of cols) {
+        if (c.align === 'left') {
+            result[c.key] = summaryLabel;
+        } else if (summary === 'avg') {
+            const sum = sourceRows.reduce((s, r) => s + (r[c.key] || 0), 0);
+            result[c.key] = sourceRows.length > 0 ? sum / sourceRows.length : 0;
+        } else {
+            result[c.key] = sourceRows.reduce((sum, r) => sum + (r[c.key] || 0), 0);
+        }
+    }
+
+    // For averages, default to 1 decimal; columns with explicit fmt keep theirs
+    const summaryDefaultFmt = summary === 'avg'
+        ? (v) => typeof v === 'number' ? fmtNum(v, 1) : v
+        : defaultFmt;
+
     console.log('  ├─' + sep + '─┤');
-    const totalLine = cols.map(c => {
-        const v = totals[c.key];
-        return pad(typeof v === 'number' ? fmtNum(v) : v, c.w, c.align);
+    const line = cols.map(c => {
+        const fmt = c.fmt || summaryDefaultFmt;
+        return pad(fmt(result[c.key]), c.w, c.align);
     }).join(' │ ');
-    console.log('  │ ' + totalLine + ' │');
+    console.log('  │ ' + line + ' │');
     console.log('  └─' + cols.map(c => '─'.repeat(c.w)).join('─┴─') + '─┘');
+
+    return result;
+}
+
+function printContentTable(rows, tripTitle, locationCount, articleCount) {
+    const parts = [];
+    if (locationCount > 0) parts.push(`${locationCount} location${locationCount !== 1 ? 's' : ''}`);
+    if (articleCount > 0) parts.push(`${articleCount} article${articleCount !== 1 ? 's' : ''}`);
+    console.log(`\n${tripTitle} — ${parts.join(', ')}`);
+    console.log('  Content:');
+
+    printTable([
+        { key: 'name',         label: 'Page',     w: 18, align: 'left' },
+        { key: 'words',        label: 'Words',    w: 7 },
+        { key: 'sentences',    label: 'Sent',     w: 6 },
+        { key: 'inlineImages', label: 'Inline',   w: 7 },
+        { key: 'galleryCount', label: 'Gallery',  w: 8 },
+        { key: 'captionWords', label: 'Captions', w: 9 },
+    ], rows, { summary: 'total', summaryLabel: 'TOTAL' });
 }
 
 function printQualityTable(rows) {
-    const cols = [
-        { key: 'name',       label: 'Page',    w: 18, align: 'left' },
-        { key: 'fk',         label: 'FK',      w: 5 },
-        { key: 'fog',        label: 'Fog',     w: 5 },
-        { key: 'cl',         label: 'CL',      w: 5 },
-        { key: 'passivePct', label: 'Passive',  w: 8 },
-        { key: 'weaselCount',label: 'Weasel',  w: 7 },
-        { key: 'totalIssues',label: 'Issues',  w: 7 },
-        { key: 'tone',       label: 'Tone',    w: 6 },
-    ];
-
     console.log('  Quality:');
 
-    const header = cols.map(c => pad(c.label, c.w, c.align)).join(' │ ');
-    const sep = cols.map(c => '─'.repeat(c.w)).join('─┼─');
-    console.log('  ┌─' + cols.map(c => '─'.repeat(c.w)).join('─┬─') + '─┐');
-    console.log('  │ ' + header + ' │');
-    console.log('  ├─' + sep + '─┤');
-
-    for (const row of rows) {
-        const line = cols.map(c => {
-            const v = row[c.key];
-            if (c.key === 'name') return pad(v, c.w, 'left');
-            if (c.key === 'passivePct') return pad(fmtNum(v) + '%', c.w);
-            if (c.key === 'tone') return pad(fmtTone(v), c.w);
-            if (c.key === 'fk' || c.key === 'fog' || c.key === 'cl') return pad(fmtNum(v, 1), c.w);
-            return pad(fmtNum(v), c.w);
-        }).join(' │ ');
-        console.log('  │ ' + line + ' │');
-    }
-
-    // Averages
-    const dataRows = rows.filter(r => r.words >= 20); // only average pages with enough text
-    const avg = { name: 'AVG' };
-    for (const c of cols) {
-        if (c.key === 'name') continue;
-        const sum = dataRows.reduce((s, r) => s + (r[c.key] || 0), 0);
-        avg[c.key] = dataRows.length > 0 ? sum / dataRows.length : 0;
-    }
-    console.log('  ├─' + sep + '─┤');
-    const avgLine = cols.map(c => {
-        const v = avg[c.key];
-        if (c.key === 'name') return pad(v, c.w, 'left');
-        if (c.key === 'passivePct') return pad(fmtNum(v) + '%', c.w);
-        if (c.key === 'tone') return pad(fmtTone(v), c.w);
-        if (c.key === 'fk' || c.key === 'fog' || c.key === 'cl') return pad(fmtNum(v, 1), c.w);
-        return pad(fmtNum(v, 1), c.w);
-    }).join(' │ ');
-    console.log('  │ ' + avgLine + ' │');
-    console.log('  └─' + cols.map(c => '─'.repeat(c.w)).join('─┴─') + '─┘');
+    printTable([
+        { key: 'name',        label: 'Page',    w: 18, align: 'left' },
+        { key: 'fk',          label: 'FK',      w: 5,  fmt: v => fmtNum(v, 1) },
+        { key: 'fog',         label: 'Fog',     w: 5,  fmt: v => fmtNum(v, 1) },
+        { key: 'cl',          label: 'CL',      w: 5,  fmt: v => fmtNum(v, 1) },
+        { key: 'passivePct',  label: 'Passive', w: 8,  fmt: v => fmtNum(v) + '%' },
+        { key: 'weaselCount', label: 'Weasel',  w: 7 },
+        { key: 'totalIssues', label: 'Issues',  w: 7 },
+        { key: 'tone',        label: 'Tone',    w: 6,  fmt: v => fmtTone(v) },
+    ], rows, { summary: 'avg', summaryLabel: 'AVG', summaryFilter: r => r.words >= 20 });
 }
 
 function printWordCountTable(rows, tripTitle) {
-    const cols = [
+    console.log(`\n${tripTitle}`);
+
+    const totals = printTable([
         { key: 'name',         label: 'Page',     w: 18, align: 'left' },
         { key: 'words',        label: 'Words',    w: 7 },
         { key: 'captionWords', label: 'Captions', w: 9 },
-    ];
-
-    console.log(`\n${tripTitle}`);
-
-    const header = cols.map(c => pad(c.label, c.w, c.align)).join(' │ ');
-    const sep = cols.map(c => '─'.repeat(c.w)).join('─┼─');
-    console.log('  ┌─' + cols.map(c => '─'.repeat(c.w)).join('─┬─') + '─┐');
-    console.log('  │ ' + header + ' │');
-    console.log('  ├─' + sep + '─┤');
-
-    for (const row of rows) {
-        const line = cols.map(c => {
-            const v = row[c.key];
-            return pad(typeof v === 'number' ? fmtNum(v) : v, c.w, c.align);
-        }).join(' │ ');
-        console.log('  │ ' + line + ' │');
-    }
-
-    const totals = { name: 'TOTAL' };
-    for (const c of cols) {
-        if (c.key === 'name') continue;
-        totals[c.key] = rows.reduce((sum, r) => sum + (r[c.key] || 0), 0);
-    }
-    console.log('  ├─' + sep + '─┤');
-    const totalLine = cols.map(c => {
-        const v = totals[c.key];
-        return pad(typeof v === 'number' ? fmtNum(v) : v, c.w, c.align);
-    }).join(' │ ');
-    console.log('  │ ' + totalLine + ' │');
-    console.log('  └─' + cols.map(c => '─'.repeat(c.w)).join('─┴─') + '─┘');
+    ], rows, { summary: 'total', summaryLabel: 'TOTAL' });
 
     return { words: totals.words, captionWords: totals.captionWords };
 }
 
 function printWordCountSummary(tripTotals) {
-    const cols = [
+    console.log('\n── Word Count Summary ──');
+
+    printTable([
         { key: 'name',         label: 'Trip',     w: 18, align: 'left' },
         { key: 'words',        label: 'Words',    w: 7 },
         { key: 'captionWords', label: 'Captions', w: 9 },
-    ];
-
-    console.log('\n── Word Count Summary ──');
-
-    const header = cols.map(c => pad(c.label, c.w, c.align)).join(' │ ');
-    const sep = cols.map(c => '─'.repeat(c.w)).join('─┼─');
-    console.log('  ┌─' + cols.map(c => '─'.repeat(c.w)).join('─┬─') + '─┐');
-    console.log('  │ ' + header + ' │');
-    console.log('  ├─' + sep + '─┤');
-
-    for (const row of tripTotals) {
-        const line = cols.map(c => {
-            const v = row[c.key];
-            return pad(typeof v === 'number' ? fmtNum(v) : v, c.w, c.align);
-        }).join(' │ ');
-        console.log('  │ ' + line + ' │');
-    }
-
-    const grand = { name: 'TOTAL' };
-    for (const c of cols) {
-        if (c.key === 'name') continue;
-        grand[c.key] = tripTotals.reduce((sum, r) => sum + (r[c.key] || 0), 0);
-    }
-    console.log('  ├─' + sep + '─┤');
-    const totalLine = cols.map(c => {
-        const v = grand[c.key];
-        return pad(typeof v === 'number' ? fmtNum(v) : v, c.w, c.align);
-    }).join(' │ ');
-    console.log('  │ ' + totalLine + ' │');
-    console.log('  └─' + cols.map(c => '─'.repeat(c.w)).join('─┴─') + '─┘');
+    ], tripTotals, { summary: 'total', summaryLabel: 'TOTAL' });
 }
 
 // ---------------------------------------------------------------------------
