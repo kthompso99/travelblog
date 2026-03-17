@@ -30,7 +30,9 @@
     "optimize:images:dry-run": "node scripts/tools/optimize-images.js --dry-run",
     "optimize:images:force": "node scripts/tools/optimize-images.js --force",
     "hero-search": "node scripts/tools/hero-search.js",
-    "build-context": "node scripts/tools/build-context.js"
+    "build-context": "node scripts/tools/build-context.js",
+    "stability-test": "node scripts/audit/stability-test.mjs",
+    "stability-view": "node scripts/audit/stability-viewer.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
