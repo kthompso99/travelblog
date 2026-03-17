@@ -3,14 +3,15 @@
 // ============================================
 //
 // Usage:
-//   npm run dashboard                       # all trips, all providers
-//   npm run dashboard -- greece             # single trip
-//   npm run dashboard -- --provider claude  # Claude audits only
-//   npm run dashboard -- --provider gpt     # GPT audits only
-//   npm run dashboard -- --detail           # include per-dimension scores
-//   npm run dashboard -- --detail greece    # combine flags
-//   npm run dashboard -- --history          # score progression over time
-//   npm run dashboard -- --history greece   # history for one trip
+//   npm run dashboard                        # all trips, all providers
+//   npm run dashboard -- greece              # single trip
+//   npm run dashboard -- --provider gpt      # GPT audits only
+//   npm run dashboard -- --provider sonnet   # Sonnet audits only
+//   npm run dashboard -- --provider opus     # Opus audits only
+//   npm run dashboard -- --detail            # include per-dimension scores
+//   npm run dashboard -- --detail greece     # combine flags
+//   npm run dashboard -- --history           # score progression over time
+//   npm run dashboard -- --history greece    # history for one trip
 //
 
 import fs from "fs";
@@ -37,7 +38,7 @@ if (DETAIL_MODE && HISTORY_MODE) {
   process.exit(1);
 }
 
-// --provider gpt | claude | all (default: all)
+// --provider gpt | sonnet | opus | all (default: all)
 function getProviderFilter() {
   const idx = process.argv.indexOf("--provider");
   if (idx !== -1 && process.argv[idx + 1]) {

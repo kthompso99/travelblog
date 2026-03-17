@@ -1,6 +1,9 @@
 // ==============================
-// Two Travel Nuts — Claude Editorial Audit
+// Two Travel Nuts — Anthropic Editorial Audit
 // ==============================
+//
+// Shared script for Sonnet and Opus audits.
+// Invoked via npm run sonnet-audit or npm run opus-audit.
 
 import Anthropic from "@anthropic-ai/sdk";
 import {
@@ -14,17 +17,17 @@ import {
   SYSTEM_PROMPT
 } from "./audit-shared.mjs";
 
-// Default model; override with --model claude-opus-4-6
-const DEFAULT_MODEL = "claude-sonnet-4-5-20250929";
-const PROVIDER = "claude";
+// Determine provider from --provider flag (set by npm script)
+const providerIdx = process.argv.indexOf("--provider");
+const providerArg = providerIdx !== -1 ? process.argv[providerIdx + 1] : "sonnet";
 
-function getModel() {
-  const idx = process.argv.indexOf("--model");
-  if (idx !== -1 && process.argv[idx + 1]) {
-    return process.argv[idx + 1];
-  }
-  return DEFAULT_MODEL;
-}
+const PROFILES = {
+  sonnet: { model: "claude-sonnet-4-5-20250929", provider: "sonnet", label: "Sonnet" },
+  opus:   { model: "claude-opus-4-6",            provider: "opus",   label: "Opus" }
+};
+
+const profile = PROFILES[providerArg] || PROFILES.sonnet;
+const { model: MODEL, provider: PROVIDER, label: LABEL } = profile;
 
 // ==============================
 // 📂 Audit via Anthropic
@@ -32,7 +35,6 @@ function getModel() {
 
 async function runAudit(filepath) {
   const client = new Anthropic();
-  const model = getModel();
 
   const contentType = getContentType(filepath);
   const rawContent = readArticleContent(filepath);
@@ -50,7 +52,7 @@ async function runAudit(filepath) {
   ].join("\n\n---\n\n");
 
   const response = await client.messages.create({
-    model,
+    model: MODEL,
     max_tokens: 4096,
     system: systemPrompt,
     messages: [
@@ -67,13 +69,13 @@ async function runAudit(filepath) {
 // CLI
 // ==============================
 
-// Strip --model, --audit-dir and their values from args before resolving files
+// Strip --provider, --audit-dir and their values from args before resolving files
 const rawArgs = process.argv.slice(2);
 const args = [];
 let auditDirName = "audits";
 for (let i = 0; i < rawArgs.length; i++) {
-  if (rawArgs[i] === "--model") {
-    i++; // skip the model value too
+  if (rawArgs[i] === "--provider") {
+    i++; // skip the provider value
   } else if (rawArgs[i] === "--audit-dir") {
     auditDirName = rawArgs[++i];
   } else {
@@ -81,11 +83,11 @@ for (let i = 0; i < rawArgs.length; i++) {
   }
 }
 
+const cmd = `npm run ${PROVIDER}-audit`;
 if (args.length === 0) {
-  console.log("Usage: npm run claude-audit -- spain/granada");
-  console.log("       npm run claude-audit -- spain  (all files, incremental)");
-  console.log("       npm run claude-audit -- --model claude-opus-4-6 spain/granada");
-  console.log("       npm run claude-audit -- --audit-dir audits-opus greece/paros  (save to alternate dir)");
+  console.log(`Usage: ${cmd} -- spain/granada`);
+  console.log(`       ${cmd} -- spain  (all files, incremental)`);
+  console.log(`       ${cmd} -- --audit-dir audits-test greece/paros  (save to alternate dir)`);
   process.exit(1);
 }
 
@@ -95,15 +97,14 @@ const files = auditDirName !== "audits"
   : resolveFiles(args, PROVIDER);
 
 if (files.length === 0) {
-  console.log("All Claude audits are current. Nothing to do.");
+  console.log(`All ${LABEL} audits are current. Nothing to do.`);
   process.exit(0);
 }
 
-const model = getModel();
 if (auditDirName !== "audits") {
   console.log(`Saving to ${auditDirName}/ (not affecting main audit history)\n`);
 }
-console.log(`Auditing ${files.length} file(s) with Claude (${model})...\n`);
+console.log(`Auditing ${files.length} file(s) with ${LABEL} (${MODEL})...\n`);
 
 let failed = false;
 for (const file of files) {

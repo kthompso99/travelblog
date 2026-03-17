@@ -64,7 +64,7 @@ travelblog/
 ├── scripts/                    CLI build & utility scripts
 │   ├── audit/
 │   │   ├── audit-shared.mjs    Shared audit utilities (file resolution, scoring, prompts)
-│   │   ├── claude-audit.mjs    AI editorial audit (Claude-powered scoring + suggestions)
+│   │   ├── anthropic-audit.mjs  AI editorial audit (Sonnet/Opus, invoked via sonnet-audit or opus-audit)
 │   │   ├── content-audit.js    Mechanical content audit (sentence-level quality checks)
 │   │   ├── gpt-audit.mjs       AI editorial audit (OpenAI-powered scoring + suggestions)
 │   │   ├── gpt-audit-prompt.txt GPT audit system prompt
@@ -254,7 +254,8 @@ No geocoding, no map marker, no `place` fields.
 | `add` | `npm run add` | Interactive CLI to scaffold a new trip |
 | `audit` | `npm run audit -- spain/cordoba` | Mechanical content audit (sentence-level quality checks) |
 | `gpt-audit` | `npm run gpt-audit -- spain/cordoba` | AI editorial audit (scoring + suggestions). Accepts multiple files or a trip name for incremental mode |
-| `claude-audit` | `npm run claude-audit -- spain/cordoba` | AI editorial audit via Claude API (same interface as gpt-audit) |
+| `sonnet-audit` | `npm run sonnet-audit -- spain/cordoba` | AI editorial audit via Sonnet (same interface as gpt-audit) |
+| `opus-audit` | `npm run opus-audit -- spain/cordoba` | AI editorial audit via Opus (same interface as gpt-audit) |
 | `dashboard` | `npm run dashboard` | Dashboard for audit score history and analysis |
 | `stability-test` | `npm run stability-test` | Audit stability test for score variance measurement |
 | `stability-view` | `npm run stability-view` | Audit stability viewer for analyzing variance results |
