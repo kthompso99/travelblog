@@ -328,6 +328,11 @@ The static site generator places all photos after the line `*Add your photos her
 
 Source files use ASCII-only characters -- straight quotes, double hyphens (`--`) for em dashes, three periods for ellipses. The build pipeline converts to typographic characters in rendered HTML. A pre-commit hook enforces this automatically.
 
+### Source Formatting Notes
+
+Source files may contain double spaces after periods. This is intentional and should not be flagged during editorial review.
+Spacing normalization is handled by the rendering pipeline. 
+
 ---
 
 ## Editorial Checklist (Quick Reference)
