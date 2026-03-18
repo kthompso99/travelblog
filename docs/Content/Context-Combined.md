@@ -87,7 +87,8 @@ We think in journeys, not posts.
 No hype. No urgency. No exclamation marks.
 
 ### Specific  
-Avoid travel clichés. Replace adjectives with detail.
+Avoid travel clichés. Replace adjectives with detail.  Avoid phrases like 
+“enough to see and do”, “something for everyone”, “a good mix of”, “plenty of options”.  Our brand is strongest when we name the pattern, not the category.
 
 ---
 
