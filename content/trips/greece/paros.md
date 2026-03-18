@@ -1,4 +1,4 @@
-Paros was our deliberate choice as the Cycladic island to spend the longest, and slow the pace. We chose it over Mykonos (too focused on glamor), Milos (lovely, but small), or Santorini (over-discovered). Then we spent three of our five days barely leaving the tiny Naoussa port -- and didn't mind at all. We did rent a car for two days, and separately made day trips to [Delos](delos.html) and [Mykonos](mykonos.html), but Paros earns its place as the natural home base for the Cyclades.  
+Paros was our deliberate choice as the Cycladic island to spend the longest, and slow the pace. We chose it over Mykonos (too focused on glamor), Milos (lovely, but small), or Santorini (over-discovered). Then we spent 3 of our 5 days barely leaving the tiny Naoussa port -- and didn't mind at all. We did rent a car for 2 days, and separately made day trips to [Delos](delos.html) and [Mykonos](mykonos.html), but Paros earns its place as the natural home base for the Cyclades.  
 
 ## Naoussa Port
 
@@ -21,7 +21,7 @@ Near Naoussa is a 14th-century Venetian fort; this is the view of Naoussa port f
 
 ## A Car Tour of Paros
 
-While we spent several days walking around Naoussa, we were happy to rent a car for two middle days.  The island is large enough to be interesting but still worth visiting with day trips.  Taxis here are quite expensive, driving is a better option.  
+While we spent several days walking around Naoussa, we were happy to rent a car for 2 middle days.  The island is large enough to be interesting but still worth visiting with day trips.  Taxis here are quite expensive, driving is a better option.  
 
 Lefkes is the island's highest village, found in the center of Paros.  Its small central district is touristy, but felt unhurried compared to the coastal towns. We spent an hour or two wandering and shopping. We didn't stay for lunch, but several places looked excellent.
 

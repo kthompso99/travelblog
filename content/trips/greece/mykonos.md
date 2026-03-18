@@ -1,4 +1,4 @@
-We chose not to prioritize Mykonos on this trip, but wanted to check it out for a possible future visit.  Three hours in Mykonos isn't long enough to understand the island, but it was far better than nothing.
+We chose not to prioritize Mykonos on this trip, but wanted to check it out for a possible future visit.  3 hours in Mykonos isn't long enough to understand the island, but it was far better than nothing.
 
 The day-trip tour from Paros on [Polos tours](https://polostoursparos.com/daily-cruises/delos-mykonos/) links Delos and Mykonos in a single circuit, making it possible to visit both while keeping Paros as a home base. It was a busy day, but it let us visit both without re-packing a suitcase.
 
@@ -27,9 +27,9 @@ After wandering the harbor lanes we stopped at Sakis Grill House, the top search
 :::nutshell Mykonos
 verdict: Glad We Went
 duration: 3 hours
-Stay Overnight: We didn't -- three hours was enough to see why people love it, not enough to really explore.
+Stay Overnight: We didn't -- 3 hours was enough to see why people love it, not enough to really explore.
 Don't Miss: Wandering the lanes; the windmills; the shopping (per Tiffany).
-Best Time of Day: Can't say from three hours -- we had midday.
+Best Time of Day: Can't say from 3 hours -- we had midday.
 Worth the Splurge: Shopping!  Unique boutiques.
 Return Visit: Maybe -- we'd want more time to do it properly, but the crowds are real.
 :::

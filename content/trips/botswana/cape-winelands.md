@@ -6,7 +6,7 @@ We spent 4 nights in the Cape Winelands, 90 minutes from Cape Town, after the sa
 
 The two main towns of the Cape Winelands are Stellenbosch and Franschhoek.  We spent a few hours in Stellenbosch on a day tour and found it pleasant, but we were glad to have stayed in Franschhoek -- it is/was very sleepy, but very compact and walkable.  After being unable to really stretch our legs for any decent-length walk in the Okavango, being 5 minutes from dinner was a delight. 
 
-We did two day tours from Franschhoek.  The first was a standard winery tour -- 3 wineries plus a wine lunch.  We particularly enjoyed [Kanonkop](https://kanonkop.co.za/), which a friend of Kevin's had recommended as having the best Pinotage she tasted -- suffice it to say we made some investments there.  Pinotage is a grape native to South Africa \- it's a blend of Pinot Noir and what was once called Hermitage, better-known as Cinsault.  
+We did 2 day tours from Franschhoek.  The first was a standard winery tour -- 3 wineries plus a wine lunch.  We particularly enjoyed [Kanonkop](https://kanonkop.co.za/), which a friend of Kevin's had recommended as having the best Pinotage she tasted -- suffice it to say we made some investments there.  Pinotage is a grape native to South Africa \- it's a blend of Pinot Noir and what was once called Hermitage, better-known as Cinsault.  
 
 > It's easy to make a bad Pinotage and many houses do, but Kanonkop made some very very tasty wines.  
 

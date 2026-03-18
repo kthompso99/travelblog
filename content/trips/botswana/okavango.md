@@ -1,10 +1,10 @@
 The Okavango Delta is not what most people picture when they picture safari.  It looks nothing like the classic Serengeti landscape.
 
-There's no open savanna and no distant horizon to scan for wildlife. Instead the delta is dense and flooded -- water channels, thick vegetation, and animals that may be only ten feet away but completely hidden.
+There's no open savanna and no distant horizon to scan for wildlife. Instead the delta is dense and flooded -- water channels, thick vegetation, and animals that may be only 10 feet away but completely hidden.
 
 Guiding here requires a different skill set. Our guides read tracks, listened for alarm calls, and watched the direction animals were looking. It's a very different style of safari.
 
-We stayed at two camps across seven days. Neither was a lodge in any conventional sense -- they were small collections of tents set into the landscape, separated by vast private concessions and accessible only by small charter plane. This is not an accident of geography. It's a deliberate, carefully managed structure, and understanding it changes how you appreciate what you're experiencing.
+We stayed at 2 camps across 7 days. Neither was a lodge in any conventional sense -- they were small collections of tents set into the landscape, separated by vast private concessions and accessible only by small charter plane. This is not an accident of geography. It's a deliberate, carefully managed structure, and understanding it changes how you appreciate what you're experiencing.
 
 The Okavango Delta is not a National Park -- Botswana has several of those. It's a network of private concessions, each managed differently, some community-owned, some not, with a governance structure I'll be honest I don't fully understand. What it produces is quiet: tiny camps spread far apart, very few vehicles, very few other people.
 

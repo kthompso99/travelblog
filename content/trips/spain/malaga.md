@@ -5,7 +5,7 @@ Málaga is a bit of a mixed bag: cruise ship port (blech), seaside destination f
 
 > Its Alcazaba is lovely -- it just suffers if you've been to the Alhambra a few days earlier. 
 
-We enjoyed our time here, though fairness requires noting that we arrived in the most old-testament-style rain of a three-week trip, which may have colored things.
+We enjoyed our time here, though fairness requires noting that we arrived in the most old-testament-style rain of a 3-week trip, which may have colored things.
 
 ## What We Did
 

@@ -1,6 +1,6 @@
 ## Overview
 
-Seville is the kind of city that rewards not having a plan. We spent four nights there, and more than anywhere else on this trip, we wandered -- through narrow streets that open unexpectedly into broad squares, past Moorish walls and orange trees, with no destination in mind. The historic core is compact enough (15 minutes across on foot) that getting pleasantly lost is low-risk. We loved it.
+Seville is the kind of city that rewards not having a plan. We spent 4 nights there, and more than anywhere else on this trip, we wandered -- through narrow streets that open unexpectedly into broad squares, past Moorish walls and orange trees, with no destination in mind. The historic core is compact enough (15 minutes across on foot) that getting pleasantly lost is low-risk. We loved it.
 
 Our hotel sat in the northern part of the medieval city, about a 10-minute walk from the Cathedral and Royal Alcázar -- a good position that we'd replicate.
 
@@ -57,7 +57,7 @@ Seville has excellent train service to many cities including Madrid, that's easi
 :::nutshell Seville
 verdict: Would Plan Around
 duration: 4 days
-Stay Overnight: Yes -- four nights felt right. Two minimum to do it properly.
+Stay Overnight: Yes -- 4 nights felt right. 2 minimum to do it properly.
 Don't Miss: The Alcázar; Casa del Flamenco even if you're skeptical; Bar El Comercio for breakfast once.
 Best Time of Day: The Alcázar gardens in the late afternoon; the streets after dinner when locals are out.
 Worth the Splurge: A private guide for the Alcázar -- the layers of history reward explanation; a walking tour with the excellent Concepcion.

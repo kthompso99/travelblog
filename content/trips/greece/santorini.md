@@ -6,7 +6,7 @@ There's a small airport, but most visitors arrive by ferry. When you arrive at t
 
 > Santorini is extreme in all ways.  
 
-It is over-run with tourists -- we were there the first week of May and it was still crowded.  But the view from the rim -- the 20th-century volcanic cone rising from pristine Mediterranean hundreds of feet below, surrounded by white buildings on the steep hillside -- is like nowhere else on earth.  During shoulder season, three nights allowed us to cover what we wanted before the summer heat and hordes arrive.
+It is over-run with tourists -- we were there the first week of May and it was still crowded.  But the view from the rim -- the 20th-century volcanic cone rising from pristine Mediterranean hundreds of feet below, surrounded by white buildings on the steep hillside -- is like nowhere else on earth.  During shoulder season, 3 nights allowed us to cover what we wanted before the summer heat and hordes arrive.
 
 ![The bowl of the Caldera from Imerovigli](images/Santorini-11.jpg)
 
@@ -50,7 +50,7 @@ Wine-making here goes back thousands of years, so we recommend visiting a winery
 
 [Vassaltis](https://vassaltis.com/) winery is the closest to Fira and Oia, it was recommended to us and we enjoyed it very much.  It has horizontal tastings of various Greek white varietals and views of their vineyards. 
 
-Santo Wines is on the rim and most popular -- one local sommelier told us it's better for the views than the wine, so we did not visit it. The same sommelier recommended Argyros, Gavalas, and Hatzidakis; all are further south and less accessible from Fira or Oia.
+Santo Wines is on the rim and most popular -- one local sommelier told us it's better for the views than the wine, so we did not visit. The same sommelier recommended Argyros, Gavalas, and Hatzidakis; all are further south and less accessible from Fira or Oia.
 
 ## Where we Stayed
 
@@ -62,7 +62,7 @@ If we visited Santorini again we'd pick based on what you want right outside you
 
 ## Where to Eat or Drink
 
-There is a dense ribbon of bars and restaurants that are perched on the rim for sunset viewing -- if you have multiple nights, I recommend taking one sunset at each town; Imerovigli for height, Oia for the architecture, and Fira for the central vantage point.
+There is a dense ribbon of bars and restaurants that are perched on the rim for sunset viewing -- if you have multiple nights, We recommend taking one sunset at each town; Imerovigli for height, Oia for the architecture, and Fira for the central vantage point.
 
 [PK Bar](https://pkbar.com/) is one of many "view" bars in Fira, but PK sits on a promontory that thrusts the seating forward from the rest of the Fira rim.  We booked weeks ahead for the champagne-front-row option, which was expensive but worth it for the romantic late afternoon. 
 

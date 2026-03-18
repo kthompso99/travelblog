@@ -30,7 +30,7 @@ You can follow the journey three ways on this site:
 
 **Go in late October or early November.** Crowds are manageable, temperatures are in the 70s, and Seville -- one of the hottest cities in Europe in summer -- is genuinely pleasant. The tradeoff is that some things close early and the evenings are cool. We'd make the same choice again without hesitation.
 
-**Don't skip Córdoba.** It's often treated as a half-day stop on the way to Granada or Seville. We gave it two nights and it became the unexpected highlight of the trip. The Mezquita alone justifies staying; the city rewards it.
+**Don't skip Córdoba.** It's often treated as a half-day stop on the way to Granada or Seville. We gave it 2 nights and it became the unexpected highlight of the trip. The Mezquita alone justifies staying; the city rewards it.
 
 ## Spain at a Glance
 
@@ -38,12 +38,12 @@ Each location page ends with a 🥜 Nutshell summary -- our honest verdict plus 
 
 | Location | Verdict | Why |
 |:---|:---|:---|
-| Córdoba | Would Plan Around | Two nights minimum |
+| Córdoba | Would Plan Around | 2 nights minimum |
 | Granada | Would Plan Around | Book the Alhambra months ahead |
 | Málaga | Lovely but Optional | One night; bike the coast if weather cooperates |
 | White Villages | Would Plan Around | Day trips; hire a driver |
 | Ronda | Would Plan Around | Stay the night; book the bridge-view room |
-| Seville | Would Plan Around | Four nights; no reservations needed for food |
+| Seville | Would Plan Around | 4 nights; no reservations needed for food |
 | Madrid | Glad We Went | We under-invested -- return with more time |
 
 Southern Spain rewards travelers who slow down and pay attention. This route gave us just enough time to start doing both.

@@ -1,12 +1,14 @@
-Milos is quieter than the more famous islands in the Cyclades, and wears it well. The tourist infrastructure is modest. That smaller scale gives the island a pace that Santorini and Mykonos traded away long ago. If you're willing to rent a car and explore, Milos easily rewards two or three days.
+Milos is quieter than the more famous islands in the Cyclades, and wears it well. Pollonia, the fishing village where we stayed, has a restaurant row only 100 yards long. The tourist infrastructure is modest, and there are no tour buses. That's not a gap -- it's the pace that Santorini and Mykonos traded away long ago.
 
-Most visitors base themselves in Adamantas, the busy ferry port also known as Adamas, or Pollonia, a quiet fishing village fifteen minutes away. We chose the quiet Pollonia. It has a restaurant row only 100 yards long. 
+> Milos isn't a "stroll town, stumble into sights" island. It's a "pick a target, drive, and commit" island. 
 
-> Milos isn't a "stroll town, stumble into sights" island. It's a "pick a target, drive, and commit" island.
+If you're willing to rent a car and explore, Milos easily rewards 2 or 3 days.
 
 ## Where We Stayed
 
-Tania Milos is owner-run in the best sense -- Tania herself is the concierge, the local expert, and the reason we would return. The hotel is positioned far enough from the port to remain quiet, yet the walk to dinner is only eight minutes on level ground. 
+Most visitors base themselves in Adamantas, the busy ferry port also known as Adamas, or Pollonia, a quiet fishing village 15 minutes away. We chose the quiet Pollonia.
+
+Hotel [Tania Milos](https://www.taniamilos.gr/) is owner-run in the best sense -- Tania herself is the concierge, the local expert, and the reason we would return. It is only an 8-minute walk on level ground from the restaurants. 
 
 ![Pollonia, Milos, from the walk towards Tania Milos](images/Milos-02.jpg)
 
@@ -18,7 +20,7 @@ It's the kind of place that works because the island works this way -- owner-run
 
 ## Getting Around
 
-Rent a car -- Milos doesn't really work without one.  There were few taxis, and the island's sites and beaches are spread out.  This is the tradeoff for an island that hasn't built itself around tour buses.
+Rent a car -- Milos doesn't really work without one.  Taxis are scarce, and the island's sites and beaches are spread out.  This is the tradeoff for an island that hasn't built itself around tour buses.
 
 Driving is straightforward on the main roads; the stress comes from the last mile to beaches. Don't accept the "upgrade" to a bigger car -- many roads are narrow, and the extra width adds anxiety.  Also the rental agency told us you couldn't take the car off-road.
 
@@ -30,7 +32,7 @@ Be careful driving near Plaka.  On GPS, avoid the "fastest" -- it will happily r
 
 The signature day trip on Milos is a catamaran cruise, as many of the iconic sites are undrivable.  We booked ours with Odysseus Cruises.  They cancelled at 7pm the night before -- not enough crew. So we can't report on it firsthand.  The cancellation was telling -- Milos doesn't yet have the volume or redundancy of a bigger island. We found no backup operator waiting to scoop us up. 
 
-If you're interested in art history, it's worth driving to the capital, Plaka, to see a replica of the Venus de Milo -- known locally as Aphrodite de Milos -- overlooking the water near where she was discovered.  She looks out over the water, armless and unbothered.
+The replica Venus de Milo in Plaka is worth the drive if art history matters to you.  The piece is known locally as Aphrodite de Milos, and the copy stands near where the statue was originally discovered.   She looks out over the water, armless and unbothered.
 
 ![Beautiful church above Plaka](images/Milos-04.jpg)
 
@@ -38,9 +40,11 @@ If you're interested in art history, it's worth driving to the capital, Plaka, t
 
 ## Beaches of Milos
   
-The beaches are spread out and varied; this [map](https://www.google.com/maps/d/edit?mid=10STMCKq4Tnfg4n-Z_B0SCEIKhQogt8I&usp=sharing) gives a sense of where the most popular beaches are.
+Milos has more beaches than you can visit in 2 days, and the best ones require the worst roads.  
   
-Sarakiniko "beach" deserves special attention. The water can be reached via a 5-8 minute walk downhill from the parking lot.  It's one of the most unusual beaches we saw in the Cyclades.  The island winds have carved its smooth, grayish-white volcanic rocks into shapes unlike anything else; the moonscape comparison is accurate.   
+Sarakiniko "beach" deserves special attention. A 5-8 minute walk downhill from the parking lot gets you to the water.  It's the most unusual beach we saw in the Cyclades.  
+
+The island winds have carved its smooth, grayish-white volcanic rocks into shapes unlike anything else; the landscape really does look lunar.   
 
 ![Sarakiniko Beach](images/Milos-03.jpg)
 
@@ -50,36 +54,45 @@ The white rock throws the light back at you from every angle, and contrasts stro
 
 The day we were there, a small food truck served snacks and drinks by the free parking lot.
 
-Beware that Sarakiniko is the most popular attraction on Milos, so a mid-day visit will be shared by many, even outside of high season.
+Sarakiniko is the most popular attraction on Milos, so a midday visit means crowds even outside high season.
 
 ![The swimming hole of Sarakiniko beach](images/Milos-11.jpg)
 
-Milos is quite rugged and hilly. For example, Fyriplaka beach looks close to Paliochori on the map, but you can't drive along the coast -- you drive back into the interior and then out again.  The road down from the interior to Fyriplaka is hairy. You're descending a steep road near a quarry, often with massive trucks around you.
+Milos is rugged and hilly, and the roads to its beaches remind you the island hasn't polished its rough edges for visitors. Fyriplaka beach looks close to Paliochori on the map, but you can't drive along the coast -- you drive back into the interior and then out again. The descent to Fyriplaka is hairy: a steep road near a quarry, often with massive trucks around you.
 
 ![Fyriplaka Beach](images/Milos-09.jpg)
 
-Fyriplaka is a more classic beach after visiting Sarakiniko -- soft sand surrounded by dramatic rocky cliffs.  In early May, seasonal workers were preparing the beach bar for the summer months, but we saw it nearly deserted.
+Fyriplaka is a more classic beach after visiting Sarakiniko. 
+
+In early May, seasonal workers were preparing the beach bar for summer, but we had the sand nearly to ourselves. Another month and the scene would be different -- but that isn't the Milos we experienced.  Without the hum of the beach bar or the crowds, what you notice is the soft sand coupled with the cliffs -- tall, layered in color, and close enough to feel like walls. 
+
 
 ![Kevin's first experience of early May water temperatures](images/Milos-10.jpg)
+
+This [map](https://www.google.com/maps/d/edit?mid=10STMCKq4Tnfg4n-Z_B0SCEIKhQogt8I&usp=sharing) shows where the varied beaches cluster -- or more accurately, where they don't.
 
 
 ## Food and Drink
 
-Among the short row of options in Pollonia, Yialos is the most frequent recommendation from residents. It is a more polished version of the typical Greek fish tavern, with a better-than-expected wine list. Some sites (e.g. [TripAdvisor](https://www.tripadvisor.com/Restaurant_Review-g1105860-d1797014-Reviews-Gialos_restaurant-Pollonia_Milos_Cyclades_South_Aegean.html)) list this as "Gialos", but the menu spelled it with a Y. 
+In Pollonia's short stretch of restaurants, [Yialos](https://yialos-milos.gr/) is the name locals give first.  It is a more polished version of the typical Greek fish tavern, with a better-than-expected wine list. You'll find it listed as 'Gialos' on TripAdvisor -- the menu spells it with a Y.
 
-There is an Asian (sushi) restaurant in Pollonia called Hanabi, the locals were unenthusiastic about it, but we enjoyed it as a change from the Greek fish restaurants which all have similar menus.
+[Hanabi](https://hanabimilos.gr/), a sushi restaurant in Pollonia, drew skepticism from locals -- but we enjoyed it as a change from the Greek fish restaurants, which all have similar menus.
 
-Medusa restaurant in Mandrakia is worth the 15-minute drive from Pollonia.  Mandrakia itself is a tiny fishing village with a circular harbor surrounded by colorful boat garages.
+![Hanabi overlooking the harbor](images/Milos-13.jpg)
+
+[Medusa](https://medusamilos.gr/) restaurant in Mandrakia is worth the 15-minute drive from Pollonia.  Mandrakia itself is a tiny fishing village with a circular harbor surrounded by colorful boat garages.
 
 ![Mandrakia Harbor](images/Milos-12.jpg)
 
-The restaurant terrace sits right above the crashing waves of the Aegean Sea. The food is traditional and fresh enough to make this a popular destination.  Visitors can see the day's catch, specifically octopus, hanging on lines to dry in the sea breeze just outside the restaurant before it is grilled and served.
+The restaurant terrace sits right above the crashing waves of the Aegean Sea. The food is traditional and fresh enough to make this a popular destination.  Octopus hangs on lines outside, drying in the sea breeze before it reaches the grill.
 
-[Kostankis](https://kostantakiswinery.com/) winery is a 10-min walk from Pollonia and the only commercial winery on Milos. Its tasting garden overlooks a small rustic vineyard of local varieties. 
+[Kostankis](https://kostantakiswinery.com/) winery is a 10-minute walk from Pollonia and the only commercial winery on Milos. Its tasting garden overlooks a small rustic vineyard of local varieties. 
 
 ![The vineyards of Kostankis](images/Milos-07.jpg)
 
-Tastings are relaxed and informal, held in a family-run garden.  Kostankis focuses largely on rare Greek grapes.  Monemvasia, Malagouzia, and Mavrotragano are not found at many Cycladic wineries, and here are often blended to create limited-edition labels that are rarely found outside of Milos.
+Tastings are relaxed and informal.  What makes Kostankis worth the walk is the focus on rare Greek grapes.  Monemvasia, Malagouzia, and Mavrotragano are not found at many Cycladic wineries, and here are often blended to create limited-edition labels.  Malagouzia was a particular favorite -- almost extinct in the 1970s, it was rescued and has an intense bouquet reminding us of Viognier. 
+
+One winery, a handful of local grapes, no gift shop -- Kostankis is Milos in miniature.
 
 ![Our friendly tasting advisor](images/Milos-08.jpg)
 
@@ -92,6 +105,6 @@ Stay Overnight: Tania Milos in Pollonia -- direct sunset views from the balcony,
 Don't Miss: Morning light at Sarakiniko beach; Kostankis winery.
 Best Time of Day: Sunset from the Tania Milos balcony.
 Worth the Splurge: The Deluxe Room with Full Sunset Sea View -- a bargain by island standards.
-Return Visit: Yes -- we missed the catamaran cruise and barely scratched the surface.
+Return Visit: Yes -- we missed the catamaran cruise.
 :::
 

@@ -5,7 +5,7 @@ Madrid bookended our trip -- 36 hours before the Andalucian loop, 36 hours after
 
 ## What We Did
 
-The practical reality of Madrid is that its major sites are spread out in a way that Seville and Granada are not. We did a Tuk Tuk tour on the first visit -- three hours that covered a lot of ground and worked well as an introduction to the city.  
+The practical reality of Madrid is that its major sites are spread out in a way that Seville and Granada are not. We did a Tuk Tuk tour on the first visit -- 3 hours that covered a lot of ground and worked well as an introduction to the city.  
 
 ![Neither of us drove the Tuk Tuk, but it was a good photo-op](images/madrid-06.jpg)
 

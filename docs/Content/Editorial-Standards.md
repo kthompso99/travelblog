@@ -216,6 +216,20 @@ The static site generator places all photos after the line `*Add your photos her
 
 ---
 
+## Numbers in Prose
+
+Use numerals for specific, practical quantities (e.g., time, distance, counts):
+
+- 8-minute walk
+- 15-minute drive
+- 2–3 days
+
+Spell out numbers only when used rhetorically or non-specifically ("a few minutes," "one of the best").
+
+This preference supports clarity and scanability over literary style.
+
+---
+
 ## Typography
 
 Source files use ASCII-only characters -- straight quotes, double hyphens (`--`) for em dashes, three periods for ellipses. The build pipeline converts to typographic characters in rendered HTML. A pre-commit hook enforces this automatically.

@@ -1,4 +1,4 @@
-We spent ten days in the Greek islands in early May 2025. Here's what we'd tell ourselves if we were planning it again.  If you want quiet towns, easy reservations, and daylight sightseeing, early May is a sweet spot. If your trip prioritizes beach clubs and warm water, wait until June.
+We spent 10 days in the Greek islands in early May 2025. Here's what we'd tell ourselves if we were planning it again.  If you want quiet towns, easy reservations, and daylight sightseeing, early May is a sweet spot. If your trip prioritizes beach clubs and warm water, wait until June.
 
 ### Going in early May
 
@@ -16,9 +16,9 @@ We swam in the Mediterranean only once, during the Santorini catamaran cruise.  
 
 ### Big Picture
 
-The advice to avoid "too many islands" proved correct. Ferries and hotel transfers carry significant overhead: the 30-minute early arrival, the shuttle logistics, and the repacking.  Anything more than three overnight stops in ten days (2 nights in Milos, 3 nights in Santorini, 5 nights in Paros) might feel like work rather than travel.
+The advice to avoid "too many islands" proved correct. Ferries and hotel transfers carry significant overhead: the 30-minute early arrival, the shuttle logistics, and the repacking.  Anything more than 3 overnight stops in 10 days (2 nights in Milos, 3 nights in Santorini, 5 nights in Paros) might feel like work rather than travel.
 
-But we enjoyed fitting in Naxos for six hours, Delos and Mykonos for three hours each, and Antiparos for a short visit. We only repacked luggage three times but still saw several islands, and we were surprised how different Naxos and Paros felt.  
+But we enjoyed fitting in Naxos for 6 hours, Delos and Mykonos for 3 hours each, and Antiparos for a short visit. We only repacked luggage 3 times but still saw several islands, and we were surprised how different Naxos and Paros felt.  
 
 The contrast between islands is sharper than we expected. Milos is quite sleepy -- Pollonia's entire restaurant row for tourists is 100 yards long. Santorini is the opposite: overrun with tourists, Oia almost entirely depopulated by locals who have been priced out. One resident told us she lives in Imerovigli and hadn't visited Oia -- 20 minutes away -- in years, because it's just for tourists now. And yet it's one of the most remarkable sights we've ever seen. Paros sits between them: first-class hotels and restaurants, genuinely busy, but still feels like a place actual Greek people live.
 

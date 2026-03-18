@@ -7,7 +7,7 @@ See the Mezquita. Walk the Roman bridge. Have lunch. Move on.
 
 Instead, it became one of our favorite cities in Europe.
 
-We spent two nights here -- and that turned out to be exactly right. Córdoba is compact, atmospheric, and just chaotic enough (directionally speaking) to make wandering feel like an adventure. 
+We spent 2 nights here -- and that turned out to be exactly right. Córdoba is compact, atmospheric, and just chaotic enough (directionally speaking) to make wandering feel like an adventure. 
 
 ![Beautiful Cordoba was once a Roman city -- this bridge, carrying vehicles until the 1990s, dates from Roman times. Under the Moors, Cordoba was the largest city in Europe in the 9th and 10th Century. Capital of the emirate of Al-Andalus from 756 until its reconquest by the Spanish in 1236, Cordoba grabbed our heart.](images/cordoba-02.jpg)
 
@@ -33,11 +33,11 @@ The Renaissance cathedral arises from right in the middle of the former mosque. 
 
 We actually thought the combination "could have been worse".  One could argue that it would be best to have the 8th- and 10th- century mosque 100% intact.  We saw a beautiful effort to harmonize the transition between the 2 buildings, and the cathedral is undeniably a must-see example of Renaissance architecture.
 
-> The entire result was to us fascinating.  We spent two hours in the building and could have spent longer. 
+> The entire result was to us fascinating.  We spent 2 hours in the building and could have spent longer. 
 
 We did not use a private guide for this visit, and cannot decide whether that was the right choice.  We undoubtedly would have learned some extra details by having a guide.  But it's such a special building that just wandering left us time to really absorb the building (mostly) silently, and look for great photos.   
 
-**Bottom Line:** Even if you don't love religious architecture, this is worth two hours. It's not just a mosque. It's not just a cathedral. It's a layered argument in stone.
+**Bottom Line:** Even if you don't love religious architecture, this is worth 2 hours. It's not just a mosque. It's not just a cathedral. It's a layered argument in stone.
 
 ![The uncontroversial highlight of Cordoba is the Mezquita (Mosque), built in 785 and then converted into a Cathedral after the reconquest. Various sources indicate it was either the largest or second-largest mosque in the world in the 10th Century. The beautiful arches, over 800 in all, recede endlessly into the distance, creating a beautiful visual.  The archways are original; the hanging lanterns are Christian-added.](images/cordoba-07.jpg)
 
@@ -94,7 +94,7 @@ The old town is close to the train station, but not close enough to be walking d
 :::nutshell Cordoba
 verdict: Would Plan Around
 duration: 2 days
-Stay Overnight: Two nights felt ideal
+Stay Overnight: 2 nights felt ideal
 Don't Miss: The Mezquita (allow 2+ hours)
 Best Time of Day: Evening, after day-trippers leave
 Worth the Splurge: Premium Royal Stables tickets

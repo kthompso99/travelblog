@@ -1,4 +1,4 @@
-We didn't stay in Naxos. Instead, we arranged our ferry schedule to spend six hours there between Santorini and Paros.  The Santorini to Paros ferry actually stops in Naxos.  We were able to get a morning ferry (roughly 9:30-11:00) to Naxos, and then we had a driver pick us up to take us around for a half-day, with our luggage safely in his trunk.  Then it was only a 30-minute ferry ride around dinnertime to Paros.
+We didn't stay in Naxos. Instead, we arranged our ferry schedule to spend 6 hours there between Santorini and Paros.  The Santorini to Paros ferry actually stops in Naxos.  We were able to get a morning ferry (roughly 9:30-11:00) to Naxos, and then we had a driver pick us up to take us around for a half-day, with our luggage safely in his trunk.  Then it was only a 30-minute ferry ride around dinnertime to Paros.
 
 Before the trip, we spent a lot of time deciding whether to stay in Paros or Naxos.  
 
@@ -30,7 +30,7 @@ ToursByLocals takes a substantial cut, so reaching out directly may be cheaper (
 :::nutshell Naxos
 verdict: Wish We'd Stayed Longer
 duration: 5 hours
-Stay Overnight: We didn't, and regretted it. Six hours was a tease -- Naxos deserves at least two nights.
+Stay Overnight: We didn't, and regretted it. 6 hours was a tease -- Naxos deserves at least 2 nights.
 Don't Miss: Panagia Drossiani (4th-century church); the marble village of Apeiranthos; the cherry tomatoes.
 Best Time of Day: Hard to say from a half-day, but the morning ferry from Santorini worked well.
 Worth the Splurge: A private tour with Alex -- his local knowledge made the half-day count.

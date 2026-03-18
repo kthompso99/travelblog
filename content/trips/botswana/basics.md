@@ -51,7 +51,7 @@ Our key goal was to see the Okavango Delta (one of the best places anywhere to s
 
 > Honestly, by day 9 of safari (because we did 2 days near Victoria Falls), it's hard to get as excited as you were a week ago at Yet Another Zebra -- but our very last game drive, at 5:30pm of day 9, was when we saw our one male lion, so it's just so hard to know what the right timeline is.  
 
-More time gives you more opportunity; a friend was in Tanzania a year earlier and saw his one cheetah pursuit on day 11\.  Nine days in the bush felt about right for us.    
+More time gives you more opportunity; a friend was in Tanzania a year earlier and saw his one cheetah pursuit on day 11\.  9 days in the bush felt about right for us.    
 * 4 nights in the Cape Winelands, the wine region an hour north and east of Cape Town.  We wanted, after 9 days on safari and before getting on a 15-hour flight to Atlanta, to have some downtime (our friends went home straight from the safari due to job considerations).  This was somewhat anticlimactic after all the safari animals, but quite pleasant.  2-3 nights would be totally reasonable.
 
 ### Getting Between Places
@@ -96,7 +96,7 @@ This means we were visiting Cape Town in their winter; we got lucky with minimal
 
 What we can add to the many available safari packing lists is that at the price point of our two Okavango camps, there is free laundry.  The clean laundry came back back same-day, so you leave some stuff out before you depart at 630am, and late that afternoon it's perfect.  So ... at that point you really don't need to bring a lot at all, two safari outfits might be sufficient.
 
-Many guides will tell you that in winter it's cold in Botswana, and take that seriously.  Our camp operators had large blanket-style ponchos available for the morning drives (with highly-appreciated hot-water bottles), but we used those *over* two shirts and a puffy jacket -- it's a raw 40 degrees or so first thing in the morning, and the trucks don't even have sides let alone windows.  You'll shed clothes all morning, but you want warm clothes for the first two hours for sure.
+Many guides will tell you that in winter it's cold in Botswana, and take that seriously.  Our camp operators had large blanket-style ponchos available for the morning drives (with highly-appreciated hot-water bottles), but we used those *over* two shirts and a puffy jacket -- it's a raw 40 degrees or so first thing in the morning, and the trucks don't even have sides let alone windows.  You'll shed clothes all morning, but you want warm clothes for the first 2 hours for sure.
 
 One other note: one nice thing about the Okavango is it's not nearly as dusty as the Serengeti -- honestly we'd come back after a day 'out on drive' ... and not feel all that dirty.  We remember feeling differently in Tanzania.
 

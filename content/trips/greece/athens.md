@@ -1,5 +1,5 @@
 
-Athens is one of those cities where the history isn't background -- it's the foreground, literally. The Parthenon is visible from the street, from rooftop bars, from your hotel room if you pick the right one. We spent three nights there at the end of the trip and it was for us just about right. The archaeology alone justifies it; the city around it is better than we expected.
+Athens is one of those cities where the history isn't background -- it's the foreground, literally. The Parthenon is visible from the street, from rooftop bars, from your hotel room if you pick the right one. We spent 3 nights there at the end of the trip and it was for us just about right. The archaeology alone justifies it; the city around it is better than we expected.
 
 ##  Getting Around in Athens
 
@@ -7,7 +7,7 @@ Order taxis through Uber -- we didn't, and the communication with drivers about 
 
 ## The Acropolis
 
-The Acropolis is the one site in Athens that requires no justification, but it does require a plan.  Our guide recommended a 4-hour tour from 4-8pm, we used 3.5 of that easily; Rick Steves also recommends "end of day" both for fewer crowds and less heat.  That four hours covered both the Acropolis museum -- at the foot of the hill -- and the Acropolis itself.  
+The Acropolis is the one site in Athens that requires no justification, but it does require a plan.  Our guide recommended a 4-hour tour from 4-8pm, we used 3.5 of that easily; Rick Steves also recommends "end of day" both for fewer crowds and less heat.  That 4 hours covered both the Acropolis museum -- at the foot of the hill -- and the Acropolis itself.  
 
 With this schedule you're spending 4:00-6:00 in the air conditioned museum, and walking outdoors 6-8pm -- that worked really well. We found about 1.5-2 hours in the museum just right, and then the 10 minute walk up the hill for our timed entry at 6pm to the top nicely choreographed.  Regardless of whether you hire a guide or not, you have to buy timed tickets for the museum and the actual Acropolis -- separately. 
 
@@ -103,7 +103,7 @@ We thought the Plaka district at the foot of the Acropolis was enjoyable, there 
 
 ## Food in Athens
 
-We didn't go out of our way to find Athens "fine dining" restaurants, but found some excellent spots to eat.  In particular, we chose Restaurant Thespis in the Plaka at the foot of the Acropolis for our first dinner.  We enjoyed the beef skewers so much that we returned two nights later.  
+We didn't go out of our way to find Athens "fine dining" restaurants, but found some excellent spots to eat.  In particular, we chose Restaurant Thespis in the Plaka at the foot of the Acropolis for our first dinner.  We enjoyed the beef skewers so much that we returned 2 nights later.  
 
 ![Restaurant Thespis](images/Athens-23.jpg)
 
