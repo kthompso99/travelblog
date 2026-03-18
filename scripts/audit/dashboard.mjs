@@ -24,6 +24,9 @@ import { WEIGHTS, getContentType, computeWeightedScore } from "./audit-shared.mj
 
 const DIMENSIONS = Object.keys(WEIGHTS);
 
+// Providers hidden from default "all" view (still viewable via --provider sonnet)
+const HIDDEN_PROVIDERS = new Set(["sonnet"]);
+
 const ARTICLE_THRESHOLD = 8.5;
 const TRIP_THRESHOLD = 8.7;
 
@@ -89,6 +92,8 @@ function getLatestAuditsByProvider(folderPath, providerFilter) {
 
   if (providerFilter !== "all") {
     files = files.filter(f => f.includes(`.${providerFilter}.`));
+  } else {
+    files = files.filter(f => !HIDDEN_PROVIDERS.has(f.match(/\.(\w+)\.audit\.json$/)?.[1]));
   }
 
   // Group by provider, keep latest per provider
@@ -117,6 +122,8 @@ function getAllAuditsByProvider(folderPath, providerFilter) {
 
   if (providerFilter !== "all") {
     files = files.filter(f => f.includes(`.${providerFilter}.`));
+  } else {
+    files = files.filter(f => !HIDDEN_PROVIDERS.has(f.match(/\.(\w+)\.audit\.json$/)?.[1]));
   }
 
   return files.map(filename => {
