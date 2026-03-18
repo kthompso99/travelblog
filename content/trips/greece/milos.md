@@ -1,4 +1,4 @@
-Milos is quieter than the more famous islands in the Cyclades, and wears it well. Pollonia, the fishing village where we stayed, has a restaurant row only 100 yards long. The tourist infrastructure is modest, and there are no tour buses. That's not a gap -- it's the pace that Santorini and Mykonos traded away long ago.
+Milos is quieter than the more famous islands in the Cyclades, and wears it well. Pollonia, the fishing village where we stayed, has a restaurant row only 100 yards long. The tourist infrastructure is modest.   There are no tour buses. That's not a gap -- it's the pace that Santorini and Mykonos traded away long ago.
 
 > Milos isn't a "stroll town, stumble into sights" island. It's a "pick a target, drive, and commit" island. 
 
@@ -20,7 +20,7 @@ It's the kind of place that works because the island works this way -- owner-run
 
 ## Getting Around
 
-Rent a car -- Milos doesn't really work without one.  Taxis are scarce, and the island's sites and beaches are spread out.  This is the tradeoff for an island that hasn't built itself around tour buses.
+Rent a car.  Milos doesn't work without one.  Taxis are scarce, and the island's sites and beaches are spread out.  This is the tradeoff for an island that hasn't built itself around tour buses.
 
 Driving is straightforward on the main roads; the stress comes from the last mile to beaches. Don't accept the "upgrade" to a bigger car -- many roads are narrow, and the extra width adds anxiety.  Also the rental agency told us you couldn't take the car off-road.
 
@@ -30,7 +30,11 @@ Be careful driving near Plaka.  On GPS, avoid the "fastest" -- it will happily r
 
 ## Exploring Milos
 
+### By Boat (If It Runs)
+
 The signature day trip on Milos is a catamaran cruise, as many of the iconic sites are undrivable.  We booked ours with Odysseus Cruises.  They cancelled at 7pm the night before -- not enough crew. So we can't report on it firsthand.  The cancellation was telling -- Milos doesn't yet have the volume or redundancy of a bigger island. We found no backup operator waiting to scoop us up. 
+
+### By Road (What We Did Instead)
 
 The replica Venus de Milo in Plaka is worth the drive if art history matters to you.  The piece is known locally as Aphrodite de Milos, and the copy stands near where the statue was originally discovered.   She looks out over the water, armless and unbothered.
 
@@ -48,11 +52,11 @@ The island winds have carved its smooth, grayish-white volcanic rocks into shape
 
 ![Sarakiniko Beach](images/Milos-03.jpg)
 
-The rock formations have created a natural amphitheater, but calling it a beach feels misleading -- think in terms of clambering over rounded rock terraces, not setting your umbrella.  Flip flops might not be the best choice here; something sturdier helped us.
+The rock formations have created a natural amphitheater, but calling it a beach feels misleading -- think in terms of clambering over rounded rock terraces, not setting your umbrella.  Skip flip flops; sturdier shoes helped on the rock terraces.
 
 The white rock throws the light back at you from every angle, and contrasts strongly with the brilliant blues of the Aegean.  We sat on a natural bench overlooking the water and just appreciated the moment for 20 minutes without needing more.
 
-The day we were there, a small food truck served snacks and drinks by the free parking lot.
+A small food truck by the lot sold snacks and drinks when we visited.
 
 Sarakiniko is the most popular attraction on Milos, so a midday visit means crowds even outside high season.
 
