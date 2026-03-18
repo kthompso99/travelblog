@@ -2,6 +2,8 @@
 // Two Travel Nuts — GPT Editorial Audit
 // ==============================
 
+import { execSync } from "child_process";
+import path from "path";
 import OpenAI from "openai";
 import {
   readArticleContent,
@@ -46,7 +48,7 @@ async function runAudit(filepath) {
   });
 
   const { scores, markdown } = parseAuditResponse(response.output_text, contentType);
-  saveAuditResults(filepath, scores, markdown, PROVIDER, auditDirName);
+  return saveAuditResults(filepath, scores, markdown, PROVIDER, auditDirName);
 }
 
 // ==============================
@@ -89,12 +91,24 @@ if (auditDirName !== "audits") {
 console.log(`Auditing ${files.length} file(s) with GPT...\n`);
 
 let failed = false;
+const mdPaths = [];
 for (const file of files) {
   try {
-    await runAudit(file);
+    const mdPath = await runAudit(file);
+    if (mdPath) mdPaths.push(mdPath);
   } catch (err) {
     console.error(`\nFailed to audit ${file}: ${err.message}\n`);
     failed = true;
   }
 }
+
+// Auto-open result for single-file audits; print paths for multi-file
+if (mdPaths.length === 1) {
+  const abs = path.resolve(mdPaths[0]);
+  execSync(`open "${abs}"`);
+} else if (mdPaths.length > 1) {
+  console.log("Audit results:");
+  for (const p of mdPaths) console.log(`  ${path.resolve(p)}`);
+}
+
 if (failed) process.exit(1);

@@ -302,6 +302,7 @@ export function saveAuditResults(filepath, scores, markdown, provider, auditDirN
     console.log("  (no previous audit to compare)");
   }
   console.log("");
+  return mdPath;
 }
 
 // ==============================
