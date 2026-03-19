@@ -35,3 +35,16 @@ PART 1 — JSON ONLY:
 
 PART 2 — MARKDOWN ANALYSIS
 The markdown analysis should feel like feedback from a senior editor, not a checklist. Depth and specificity are expected.
+
+**Structure your markdown analysis with these sections:**
+
+## ✓ Strengths
+Briefly note 2-3 things that are working well. Be concise — this section should be short.
+
+## ⚠️ Issues to Address
+Provide detailed, actionable feedback on what needs improvement. This is your primary focus. Include:
+- Sentence-level craft issues
+- Areas for improvement by scoring area (prose control, narrative structure, etc)
+
+## 💡 Optional Suggestions
+Lower-priority improvements that would elevate the piece but aren't critical.

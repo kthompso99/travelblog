@@ -5,7 +5,6 @@
 // Shared script for Sonnet and Opus audits.
 // Invoked via npm run sonnet-audit or npm run opus-audit.
 
-import { execSync } from "child_process";
 import path from "path";
 import Anthropic from "@anthropic-ai/sdk";
 import {
@@ -120,11 +119,8 @@ for (const file of files) {
   }
 }
 
-// Auto-open result for single-file audits; print paths for multi-file
-if (mdPaths.length === 1) {
-  const abs = path.resolve(mdPaths[0]);
-  execSync(`open "${abs}"`);
-} else if (mdPaths.length > 1) {
+// Print audit result paths
+if (mdPaths.length > 0) {
   console.log("Audit results:");
   for (const p of mdPaths) console.log(`  ${path.resolve(p)}`);
 }

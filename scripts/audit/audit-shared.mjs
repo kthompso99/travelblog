@@ -112,12 +112,12 @@ export function readArticleContent(filepath) {
 const scriptDir = path.dirname(new URL(import.meta.url).pathname);
 
 export const ENFORCEMENT_MANDATE = fs.readFileSync(
-  path.join(scriptDir, "gpt-audit-mandate.txt"),
+  path.join(scriptDir, "ai-audit-mandate.txt"),
   "utf-8"
 );
 
 export const SYSTEM_PROMPT = fs.readFileSync(
-  path.join(scriptDir, "gpt-audit-prompt.txt"),
+  path.join(scriptDir, "ai-audit-prompt.txt"),
   "utf-8"
 );
 

@@ -2,8 +2,8 @@
 // Two Travel Nuts — GPT Editorial Audit
 // ==============================
 
-import { execSync } from "child_process";
 import path from "path";
+import fs from "fs";
 import OpenAI from "openai";
 import {
   readArticleContent,
@@ -20,12 +20,32 @@ const MODEL = "gpt-5.2";
 const PROVIDER = "gpt";
 
 // ==============================
+// Load OpenAI API Key
+// ==============================
+
+function getOpenAIApiKey() {
+  // Try environment variable first
+  if (process.env.OPENAI_API_KEY) {
+    return process.env.OPENAI_API_KEY;
+  }
+
+  // Fall back to config file
+  const configPath = "config/openai.json";
+  if (fs.existsSync(configPath)) {
+    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    return config.apiKey;
+  }
+
+  throw new Error("Missing OpenAI API key. Set OPENAI_API_KEY environment variable or create config/openai.json with {\"apiKey\": \"sk-...\"}");
+}
+
+// ==============================
 // 📂 Audit via OpenAI
 // ==============================
 
 async function runAudit(filepath) {
   const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
+    apiKey: getOpenAIApiKey()
   });
 
   const contentType = getContentType(filepath);
@@ -102,11 +122,8 @@ for (const file of files) {
   }
 }
 
-// Auto-open result for single-file audits; print paths for multi-file
-if (mdPaths.length === 1) {
-  const abs = path.resolve(mdPaths[0]);
-  execSync(`open "${abs}"`);
-} else if (mdPaths.length > 1) {
+// Print audit result paths
+if (mdPaths.length > 0) {
   console.log("Audit results:");
   for (const p of mdPaths) console.log(`  ${path.resolve(p)}`);
 }

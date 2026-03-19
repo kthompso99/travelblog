@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* ========== Top Pane (Control Panel) ========== */
+    .control-panel {
+      background: white;
+      border-bottom: 2px solid #e0e0e0;
+      padding: 8px 16px;
+      max-height: 25vh;
+      overflow-y: auto;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .trip-selector {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1976d2;
+    }
+
+    .file-selector {
+      padding: 4px 8px;
+      font-size: 13px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: white;
+    }
+
+    .providers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .provider-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 10px;
+      background: #fafafa;
+      transition: all 0.2s;
+    }
+
+    .provider-card.active {
+      background: #e3f2fd;
+      border-color: #1976d2;
+      box-shadow: 0 2px 4px rgba(25, 118, 210, 0.15);
+    }
+
+    .provider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .provider-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .provider-name {
+      display: none;
+    }
+
+    .provider-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .provider-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .provider-score {
+      color: #333;
+      white-space: nowrap;
+    }
+
+    .provider-score strong {
+      font-size: 15px;
+      color: #1976d2;
+    }
+
+    .provider-status {
+      font-size: 13px;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    .provider-status.recent {
+      color: #4caf50;
+    }
+
+    .provider-status.stale {
+      color: #ff9800;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .btn-primary {
+      background: #1976d2;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1565c0;
+    }
+
+    .btn-primary:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: #f5f5f5;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+
+    .btn-secondary:hover {
+      background: #e0e0e0;
+    }
+
+    .deltas {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #333;
+      background: white;
+      padding: 10px;
+      border-radius: 4px;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    .delta-line {
+      white-space: pre;
+    }
+
+    .delta-line.downgrade {
+      color: #d32f2f;
+      font-weight: 600;
+    }
+
+    .lines-changed {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #666;
+      font-style: italic;
+    }
+
+    .collapse-toggle {
+      margin-top: 8px;
+      margin-bottom: 4px;
+      padding: 4px 8px;
+      font-size: 12px;
+      background: transparent;
+      border: none;
+      color: #1976d2;
+      cursor: pointer;
+      display: block;
+    }
+
+    .collapse-toggle:hover {
+      color: #1565c0;
+      text-decoration: underline;
+    }
+
+    .deltas.collapsed {
+      display: none;
+    }
+
+    .no-audit {
+      color: #999;
+      font-style: italic;
+      padding: 20px 0;
+    }
+
+    /* ========== Bottom Pane (Preview) ========== */
+    .preview-pane {
+      flex: 1;
+      background: white;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .preview-content {
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .preview-content h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #1976d2;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 10px;
+    }
+
+    .preview-content h2 {
+      font-size: 22px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .preview-content h3 {
+      font-size: 18px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .preview-content p {
+      margin-bottom: 15px;
+    }
+
+    .preview-content ul, .preview-content ol {
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+
+    .preview-content li {
+      margin-bottom: 8px;
+    }
+
+    .preview-content code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+
+    .preview-content pre {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin-bottom: 15px;
+    }
+
+    .preview-content blockquote {
+      border-left: 4px solid #ccc;
+      padding-left: 15px;
+      margin: 15px 0;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* ========== Issue Highlighting ========== */
+    .preview-content h2:has(+ *:contains("Issues")),
+    .preview-content h2:contains("⚠️"),
+    .preview-content h2:contains("Issues to Address") {
+      color: #d32f2f;
+      border-left: 4px solid #ff6b6b;
+      padding-left: 12px;
+    }
+
+    .preview-content h2:contains("⚠️") ~ ul,
+    .preview-content h2:contains("Issues to Address") ~ ul {
+      background: #fff3cd;
+      padding: 15px;
+      border-radius: 4px;
+      border-left: 4px solid #ff6b6b;
+    }
+
+    .preview-content h2:contains("✓"),
+    .preview-content h2:contains("Strengths") {
+      color: #388e3c;
+      border-left: 4px solid #4caf50;
+      padding-left: 12px;
+    }
+
+    .preview-content h2:contains("💡"),
+    .preview-content h2:contains("Optional Suggestions") {
+      color: #1976d2;
+      border-left: 4px solid #64b5f6;
+      padding-left: 12px;
+    }
+
+    .empty-preview {
+      text-align: center;
+      color: #999;
+      padding: 60px 20px;
+      font-size: 16px;
+    }
+
+    /* ========== Loading States ========== */
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #fff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin-right: 6px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Top Pane: Control Panel -->
+    <div class="control-panel">
+      <div class="header">
+        <div class="trip-selector" id="tripName">🌍 Loading...</div>
+        <select class="file-selector" id="fileSelector">
+          <option value="">Select file...</option>
+        </select>
+      </div>
+
+      <div class="providers" id="providers">
+        <!-- Provider cards will be injected here -->
+      </div>
+    </div>
+
+    <!-- Bottom Pane: Preview -->
+    <div class="preview-pane">
+      <div class="preview-content" id="previewContent">
+        <div class="empty-preview">
+          Click "Output →" on any audit to view results
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // State Management
+    // ============================================
+
+    const state = {
+      trip: null,
+      file: null,
+      status: null,
+      ws: null,
+      runningAudits: new Set()
+    };
+
+    // ============================================
+    // Initialize
+    // ============================================
+
+    async function init() {
+      // Get trip from URL
+      const path = window.location.pathname.slice(1);
+      state.trip = path || 'greece';
+
+      // Set up WebSocket
+      setupWebSocket();
+
+      // Load initial status
+      await loadStatus();
+
+      // Set up file selector change handler
+      document.getElementById('fileSelector').addEventListener('change', (e) => {
+        state.file = e.target.value;
+        loadStatus();
+      });
+    }
+
+    // ============================================
+    // WebSocket Connection
+    // ============================================
+
+    function setupWebSocket() {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      state.ws = new WebSocket(`${protocol}//${window.location.host}`);
+
+      state.ws.onmessage = (event) => {
+        const message = JSON.parse(event.data);
+
+        if (message.type === 'audit-complete') {
+          console.log(`[WS] Audit completed: ${message.provider} on ${message.file}`);
+
+          // Remove from running set
+          state.runningAudits.delete(`${message.provider}-${message.file}`);
+
+          // Reload status
+          loadStatus();
+
+          // Auto-load the output in preview pane
+          if (message.file === state.file) {
+            loadAuditOutput(message.provider);
+          }
+        }
+
+        if (message.type === 'audit-error') {
+          console.error(`[WS] Audit failed: ${message.error}`);
+          state.runningAudits.delete(`${message.provider}-${message.file}`);
+          alert(`Audit failed: ${message.error}`);
+          loadStatus();
+        }
+      };
+
+      state.ws.onclose = () => {
+        console.log('[WS] Connection closed, reconnecting in 3s...');
+        setTimeout(setupWebSocket, 3000);
+      };
+    }
+
+    // ============================================
+    // Load Trip Status
+    // ============================================
+
+    async function loadStatus() {
+      try {
+        const response = await fetch(`/api/status/${state.trip}`);
+        const data = await response.json();
+
+        state.status = data;
+
+        // Use recent file if no file selected
+        if (!state.file && data.recentFile) {
+          state.file = data.recentFile;
+        }
+
+        // Update UI
+        updateTripName();
+        updateFileSelector();
+        updateProviders();
+      } catch (err) {
+        console.error('Failed to load status:', err);
+      }
+    }
+
+    // ============================================
+    // Update UI Components
+    // ============================================
+
+    function updateTripName() {
+      const emoji = {
+        greece: '🇬🇷',
+        spain: '🇪🇸',
+        botswana: '🇧🇼',
+        newzealand: '🇳🇿',
+        utah: '🏜️'
+      }[state.trip] || '🌍';
+
+      const name = state.trip.charAt(0).toUpperCase() + state.trip.slice(1);
+      document.getElementById('tripName').textContent = `${emoji} ${name}`;
+    }
+
+    function updateFileSelector() {
+      const selector = document.getElementById('fileSelector');
+      selector.innerHTML = '<option value="">Select file...</option>';
+
+      if (!state.status) return;
+
+      state.status.files.forEach(({ file }) => {
+        const option = document.createElement('option');
+        option.value = file;
+        option.textContent = file.charAt(0).toUpperCase() + file.slice(1);
+        if (file === state.file) option.selected = true;
+        selector.appendChild(option);
+      });
+    }
+
+    function updateProviders() {
+      const container = document.getElementById('providers');
+      container.innerHTML = '';
+
+      if (!state.file || !state.status) {
+        container.innerHTML = '<div class="no-audit">Select a file to view audit status</div>';
+        return;
+      }
+
+      const fileStatus = state.status.files.find(f => f.file === state.file);
+      if (!fileStatus) return;
+
+      ['opus', 'gpt'].forEach(provider => {
+        const providerData = fileStatus.providers[provider];
+        const card = createProviderCard(provider, providerData);
+        container.appendChild(card);
+      });
+    }
+
+    function createProviderCard(provider, data) {
+      const card = document.createElement('div');
+      card.className = 'provider-card';
+
+      const name = provider === 'opus' ? 'Opus' : 'GPT';
+
+      if (!data.hasAudit) {
+        card.innerHTML = `
+          <div class="provider-header">
+            <div class="provider-left">
+              <div class="provider-name">${name}</div>
+            </div>
+            <div class="provider-status">No audit</div>
+          </div>
+          <div class="no-audit">No audit found for this file</div>
+        `;
+        return card;
+      }
+
+      const isRecent = data.lastModified.includes('ago') || data.lastModified === 'Just now';
+      const statusClass = isRecent ? 'recent' : 'stale';
+
+      const isRunning = state.runningAudits.has(`${provider}-${state.file}`);
+
+      const deltasId = `deltas-${provider}-${state.file}`;
+
+      card.className = 'provider-card';
+      card.dataset.provider = provider;
+
+      card.innerHTML = `
+        <div class="provider-header">
+          <div class="provider-left">
+            <div class="provider-name">${name}</div>
+            <div class="provider-actions">
+              <button class="btn btn-primary" onclick="runAudit('${provider}')" ${isRunning ? 'disabled' : ''}>
+                ${isRunning ? '<span class="spinner"></span>Running...' : `Run ${name}`}
+              </button>
+              <button class="btn btn-secondary" onclick="loadAuditOutput('${provider}')">
+                Output →
+              </button>
+            </div>
+          </div>
+          <div class="provider-right">
+            <div class="provider-score">Overall: <strong>${data.overall.toFixed(2)}</strong></div>
+          </div>
+        </div>
+        ${data.linesChanged ? `<div class="lines-changed" data-timestamp="${data.timestamp}">(${data.linesChanged} lines changed since last audit ${data.lastModified})</div>` : ''}
+        ${data.deltas ? `
+          <button class="collapse-toggle" onclick="toggleDeltas('${deltasId}')">
+            <span id="${deltasId}-icon">▼</span> Hide deltas
+          </button>
+          <div class="deltas" id="${deltasId}">${renderDeltas(data.deltas)}</div>
+        ` : ''}
+      `;
+
+      return card;
+    }
+
+    function renderDeltas(deltas) {
+      return deltas.map(d => {
+        const className = d.downgrade ? 'delta-line downgrade' : 'delta-line';
+        return `<div class="${className}">${d.text}</div>`;
+      }).join('');
+    }
+
+    // ============================================
+    // Audit Actions
+    // ============================================
+
+    async function runAudit(provider) {
+      if (!state.file) return;
+
+      state.runningAudits.add(`${provider}-${state.file}`);
+      updateProviders();
+
+      try {
+        await fetch('/api/run-audit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            trip: state.trip,
+            file: state.file,
+            provider
+          })
+        });
+
+        console.log(`[AUDIT] Started ${provider} audit on ${state.file}`);
+      } catch (err) {
+        console.error('Failed to start audit:', err);
+        state.runningAudits.delete(`${provider}-${state.file}`);
+        updateProviders();
+        alert(`Failed to start audit: ${err.message}`);
+      }
+    }
+
+    async function loadAuditOutput(provider) {
+      if (!state.file) return;
+
+      try {
+        const response = await fetch(`/api/audit/${state.trip}/${state.file}/${provider}.md`);
+        if (!response.ok) {
+          throw new Error('Audit not found');
+        }
+
+        const markdown = await response.text();
+        const html = marked.parse(markdown);
+
+        const previewContent = document.getElementById('previewContent');
+        previewContent.innerHTML = html;
+        previewContent.dataset.provider = provider;
+        previewContent.dataset.file = state.file;
+
+        // Mark active provider card
+        document.querySelectorAll('.provider-card').forEach(card => {
+          card.classList.remove('active');
+        });
+        const activeCard = document.querySelector(`.provider-card[data-provider="${provider}"]`);
+        if (activeCard) {
+          activeCard.classList.add('active');
+        }
+
+        // Scroll to top
+        document.querySelector('.preview-pane').scrollTop = 0;
+      } catch (err) {
+        console.error('Failed to load audit output:', err);
+        document.getElementById('previewContent').innerHTML = `
+          <div class="empty-preview">Failed to load audit: ${err.message}</div>
+        `;
+      }
+    }
+
+    // ============================================
+    // Toggle Deltas Visibility
+    // ============================================
+
+    function toggleDeltas(deltasId) {
+      const deltas = document.getElementById(deltasId);
+      const icon = document.getElementById(`${deltasId}-icon`);
+      const button = icon.parentElement;
+
+      if (deltas.classList.contains('collapsed')) {
+        deltas.classList.remove('collapsed');
+        icon.textContent = '▼';
+        button.childNodes[1].textContent = ' Hide deltas';
+      } else {
+        deltas.classList.add('collapsed');
+        icon.textContent = '▶';
+        button.childNodes[1].textContent = ' Show deltas';
+      }
+    }
+
+    // ============================================
+    // Update Timestamps Periodically
+    // ============================================
+
+    function formatTimestamp(timestamp) {
+      const auditDate = new Date(timestamp);
+      const now = new Date();
+      const diffMs = now - auditDate;
+      const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+      const diffDays = Math.floor(diffHours / 24);
+
+      if (diffHours < 2) return 'Just now';
+      if (diffHours < 24) return `${diffHours}h ago`;
+      if (diffDays === 1) return 'Yesterday';
+      if (diffDays < 7) return `${diffDays} days ago`;
+      return auditDate.toLocaleDateString();
+    }
+
+    function updateTimestamps() {
+      // Update lines-changed timestamps
+      document.querySelectorAll('.lines-changed[data-timestamp]').forEach(el => {
+        const timestamp = el.getAttribute('data-timestamp');
+        if (timestamp) {
+          const formatted = formatTimestamp(timestamp);
+          const linesText = el.textContent.match(/\((\d+) lines changed/);
+          if (linesText) {
+            el.textContent = `(${linesText[1]} lines changed since last audit ${formatted})`;
+          }
+        }
+      });
+    }
+
+    // Update timestamps every minute
+    setInterval(updateTimestamps, 60000);
+
+    // ============================================
+    // Make functions global for onclick handlers
+    // ============================================
+
+    window.runAudit = runAudit;
+    window.loadAuditOutput = loadAuditOutput;
+    window.toggleDeltas = toggleDeltas;
+
+    // ============================================
+    // Start App
+    // ============================================
+
+    init();
+  </script>
+</body>
+</html>
