@@ -139,11 +139,22 @@ function getLinesChanged(tripName, fileName, auditTimestamp) {
   try {
     const filePath = path.join("content/trips", tripName, `${fileName}.md`);
 
-    // Count uncommitted lines changed since HEAD (most recent commit)
-    const diffCmd = `git diff HEAD -- "${filePath}" | grep -E "^[+-]" | grep -v "^[+-]{3}" | wc -l`;
+    // Convert timestamp to ISO string if it's a Date object
+    const timestampStr = auditTimestamp instanceof Date
+      ? auditTimestamp.toISOString().split('T')[0]
+      : auditTimestamp;
+
+    // Get git commit hash at or before audit timestamp
+    const cmd = `git rev-list -n 1 --before="${timestampStr} 23:59:59" HEAD -- "${filePath}"`;
+    const hash = execSync(cmd, { encoding: "utf-8" }).trim();
+
+    if (!hash) return null;
+
+    // Count lines changed between that commit and current working directory (including uncommitted changes)
+    const diffCmd = `git diff ${hash} -- "${filePath}" | grep -E "^[+-]" | grep -v "^[+-]{3}" | wc -l`;
     const lines = parseInt(execSync(diffCmd, { encoding: "utf-8" }).trim(), 10);
 
-    return lines || null;
+    return lines;
   } catch (err) {
     // Git command failed or file not in git history
     return null;
