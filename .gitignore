@@ -18,6 +18,7 @@ _cache/
 # API Keys
 config/google-maps.json
 config/openai.json
+config/anthropic.json
 
 # Google Photos Takeout zips (too large for git)
 takeout/

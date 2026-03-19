@@ -6,6 +6,7 @@
 // Invoked via npm run sonnet-audit or npm run opus-audit.
 
 import path from "path";
+import fs from "fs";
 import Anthropic from "@anthropic-ai/sdk";
 import {
   readArticleContent,
@@ -31,11 +32,33 @@ const profile = PROFILES[providerArg] || PROFILES.sonnet;
 const { model: MODEL, provider: PROVIDER, label: LABEL } = profile;
 
 // ==============================
+// Load Anthropic API Key
+// ==============================
+
+function getAnthropicApiKey() {
+  // Try environment variable first
+  if (process.env.ANTHROPIC_API_KEY) {
+    return process.env.ANTHROPIC_API_KEY;
+  }
+
+  // Fall back to config file
+  const configPath = "config/anthropic.json";
+  if (fs.existsSync(configPath)) {
+    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    return config.apiKey;
+  }
+
+  throw new Error("Missing Anthropic API key. Set ANTHROPIC_API_KEY environment variable or create config/anthropic.json with {\"apiKey\": \"sk-...\"}");
+}
+
+// ==============================
 // 📂 Audit via Anthropic
 // ==============================
 
 async function runAudit(filepath) {
-  const client = new Anthropic();
+  const client = new Anthropic({
+    apiKey: getAnthropicApiKey()
+  });
 
   const contentType = getContentType(filepath);
   const rawContent = readArticleContent(filepath);

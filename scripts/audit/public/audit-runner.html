@@ -33,11 +33,21 @@
       overflow-y: auto;
     }
 
-    .header {
+    .providers-row {
       display: flex;
-      align-items: center;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .center-controls {
+      flex: 0 1 auto;
+      text-align: center;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
       gap: 8px;
-      margin-bottom: 8px;
+      align-items: center;
     }
 
     .trip-selector {
@@ -52,12 +62,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       background: white;
-    }
-
-    .providers {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      min-width: 150px;
     }
 
     .provider-card {
@@ -66,6 +71,7 @@
       padding: 10px;
       background: #fafafa;
       transition: all 0.2s;
+      flex: 0 1 calc(40% - 10px);
     }
 
     .provider-card.active {
@@ -219,6 +225,102 @@
       padding: 20px 0;
     }
 
+    /* ========== Rankings Modal ========== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 3000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 32px;
+      cursor: pointer;
+      color: #666;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: #333;
+    }
+
+    .modal-body {
+      padding: 0;
+    }
+
+    .ranking-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .ranking-item:hover {
+      background: #f5f5f5;
+    }
+
+    .ranking-item.current {
+      background: #e3f2fd;
+      font-weight: 600;
+    }
+
+    .rank-badge {
+      font-size: 14px;
+      color: #666;
+      min-width: 80px;
+    }
+
+    .rank-file {
+      flex: 1;
+      font-size: 16px;
+      text-transform: capitalize;
+    }
+
+    .rank-score {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1976d2;
+    }
+
     /* ========== Bottom Pane (Preview) ========== */
     .preview-pane {
       flex: 1;
@@ -351,15 +453,8 @@
   <div class="container">
     <!-- Top Pane: Control Panel -->
     <div class="control-panel">
-      <div class="header">
-        <div class="trip-selector" id="tripName">🌍 Loading...</div>
-        <select class="file-selector" id="fileSelector">
-          <option value="">Select file...</option>
-        </select>
-      </div>
-
-      <div class="providers" id="providers">
-        <!-- Provider cards will be injected here -->
+      <div class="providers-row" id="providersRow">
+        <!-- Provider cards and selectors will be injected here -->
       </div>
     </div>
 
@@ -369,6 +464,19 @@
         <div class="empty-preview">
           Click "Output →" on any audit to view results
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rankings Modal -->
+  <div id="rankingsModal" class="modal" onclick="closeRankingsIfOutside(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="rankingsTitle"></h2>
+        <button class="modal-close" onclick="closeRankings()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="rankingsList"></div>
       </div>
     </div>
   </div>
@@ -401,10 +509,12 @@
       // Load initial status
       await loadStatus();
 
-      // Set up file selector change handler
-      document.getElementById('fileSelector').addEventListener('change', (e) => {
-        state.file = e.target.value;
-        loadStatus();
+      // Set up file selector change handler (using event delegation)
+      document.addEventListener('change', (e) => {
+        if (e.target.id === 'fileSelector') {
+          state.file = e.target.value;
+          loadStatus();
+        }
       });
     }
 
@@ -431,6 +541,16 @@
           // Auto-load the output in preview pane
           if (message.file === state.file) {
             loadAuditOutput(message.provider);
+          }
+
+          // Refresh rankings if modal is open
+          const modal = document.getElementById('rankingsModal');
+          if (modal && modal.classList.contains('show')) {
+            const titleText = document.getElementById('rankingsTitle').textContent;
+            const modalProvider = titleText.includes('Opus') ? 'opus' : 'gpt';
+            if (modalProvider === message.provider) {
+              showRankings(message.provider);
+            }
           }
         }
 
@@ -506,7 +626,7 @@
     }
 
     function updateProviders() {
-      const container = document.getElementById('providers');
+      const container = document.getElementById('providersRow');
       container.innerHTML = '';
 
       if (!state.file || !state.status) {
@@ -517,11 +637,27 @@
       const fileStatus = state.status.files.find(f => f.file === state.file);
       if (!fileStatus) return;
 
-      ['opus', 'gpt'].forEach(provider => {
-        const providerData = fileStatus.providers[provider];
-        const card = createProviderCard(provider, providerData);
-        container.appendChild(card);
-      });
+      // Create Opus card
+      const opusCard = createProviderCard('opus', fileStatus.providers.opus);
+      container.appendChild(opusCard);
+
+      // Create center controls
+      const centerControls = document.createElement('div');
+      centerControls.className = 'center-controls';
+      centerControls.innerHTML = `
+        <div class="trip-selector" id="tripName">${state.trip ? '🇬🇷 ' + state.trip.charAt(0).toUpperCase() + state.trip.slice(1) : 'Loading...'}</div>
+        <select class="file-selector" id="fileSelector">
+          <option value="">Select file...</option>
+        </select>
+      `;
+      container.appendChild(centerControls);
+
+      // Create GPT card
+      const gptCard = createProviderCard('gpt', fileStatus.providers.gpt);
+      container.appendChild(gptCard);
+
+      // Update file selector options
+      updateFileSelector();
     }
 
     function createProviderCard(provider, data) {
@@ -563,6 +699,9 @@
               </button>
               <button class="btn btn-secondary" onclick="loadAuditOutput('${provider}')">
                 Output →
+              </button>
+              <button class="btn btn-secondary" onclick="showRankings('${provider}')">
+                Rank
               </button>
             </div>
           </div>
@@ -656,6 +795,73 @@
     }
 
     // ============================================
+    // Rankings Modal
+    // ============================================
+
+    async function showRankings(provider) {
+      if (!state.trip) return;
+
+      try {
+        // Fetch all files in trip
+        const response = await fetch(`/api/status/${state.trip}`);
+        const data = await response.json();
+
+        // Extract and sort by provider score
+        const rankings = data.files
+          .filter(f => f.providers[provider]?.hasAudit)
+          .map(f => ({
+            file: f.file,
+            score: f.providers[provider].overall
+          }))
+          .sort((a, b) => b.score - a.score); // Descending
+
+        // Build rankings HTML
+        const rankingsHTML = rankings.length > 0
+          ? rankings.map((item, index) => {
+              const isCurrent = item.file === state.file;
+              return `
+                <div class="ranking-item ${isCurrent ? 'current' : ''}"
+                     onclick="selectFileFromRankings('${item.file}')">
+                  <div class="rank-badge">#${index + 1} of ${rankings.length}</div>
+                  <div class="rank-file">${item.file}</div>
+                  <div class="rank-score">${item.score.toFixed(2)}</div>
+                </div>
+              `;
+            }).join('')
+          : '<div class="no-audit" style="padding: 40px; text-align: center;">No audits found</div>';
+
+        // Update modal
+        const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
+        const tripLabel = state.trip.charAt(0).toUpperCase() + state.trip.slice(1);
+        document.getElementById('rankingsTitle').textContent =
+          `${providerLabel} Rankings — ${tripLabel}`;
+        document.getElementById('rankingsList').innerHTML = rankingsHTML;
+
+        // Show modal
+        document.getElementById('rankingsModal').classList.add('show');
+      } catch (err) {
+        console.error('Failed to load rankings:', err);
+        alert('Failed to load rankings: ' + err.message);
+      }
+    }
+
+    function closeRankings() {
+      document.getElementById('rankingsModal').classList.remove('show');
+    }
+
+    function closeRankingsIfOutside(event) {
+      if (event.target.id === 'rankingsModal') {
+        closeRankings();
+      }
+    }
+
+    function selectFileFromRankings(fileName) {
+      state.file = fileName;
+      loadStatus();
+      closeRankings();
+    }
+
+    // ============================================
     // Toggle Deltas Visibility
     // ============================================
 
@@ -717,6 +923,23 @@
     window.runAudit = runAudit;
     window.loadAuditOutput = loadAuditOutput;
     window.toggleDeltas = toggleDeltas;
+    window.showRankings = showRankings;
+    window.closeRankings = closeRankings;
+    window.closeRankingsIfOutside = closeRankingsIfOutside;
+    window.selectFileFromRankings = selectFileFromRankings;
+
+    // ============================================
+    // ESC Key Handler
+    // ============================================
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('rankingsModal');
+        if (modal && modal.classList.contains('show')) {
+          closeRankings();
+        }
+      }
+    });
 
     // ============================================
     // Start App
