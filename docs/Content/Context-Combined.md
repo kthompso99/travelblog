@@ -209,6 +209,7 @@ Density alone is not a flaw.
 
 Penalize:
 - Repetitive phrasing
+- Too much use of "We recommend"
 - Overuse of intensifiers
 - Hedging clusters
 - Long sentence streaks without variation
