@@ -196,6 +196,7 @@ export function getFileStatus(tripName, fileName) {
       timestamp: latest.timestamp,
       lastModified,
       overall: latest.overall,
+      scores: latest.scores,
       deltas,
       linesChanged,
       mdPath: latest.mdPath

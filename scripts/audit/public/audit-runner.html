@@ -516,9 +516,23 @@
       await loadStatus();
 
       // Set up file selector change handler
-      document.getElementById('fileSelector').addEventListener('change', (e) => {
+      document.getElementById('fileSelector').addEventListener('change', async (e) => {
+        // Check which provider (if any) is currently displayed
+        const previewContent = document.getElementById('previewContent');
+        const previousProvider = previewContent.dataset.provider;
+        console.log('[File Selector] Previous provider:', previousProvider, 'New file:', e.target.value);
+
+        // Update file and reload status
         state.file = e.target.value;
-        loadStatus();
+        await loadStatus();
+
+        // Auto-load same provider's output for new file if one was displayed
+        if (previousProvider) {
+          console.log('[File Selector] Auto-loading', previousProvider, 'output for', state.file);
+          loadAuditOutput(previousProvider);
+        } else {
+          console.log('[File Selector] No previous provider, skipping auto-load');
+        }
       });
 
       // Set up ESC key handler for modal
@@ -710,11 +724,11 @@
           </div>
         </div>
         ${data.linesChanged ? `<div class="lines-changed" data-timestamp="${data.timestamp}">(${data.linesChanged} lines changed since last audit ${data.lastModified})</div>` : ''}
-        ${data.deltas ? `
+        ${data.scores ? `
           <button class="collapse-toggle" onclick="toggleDeltas('${deltasId}')">
-            <span id="${deltasId}-icon">▼</span> Hide deltas
+            <span id="${deltasId}-icon">▼</span> ${data.deltas ? 'Hide deltas' : 'Hide details'}
           </button>
-          <div class="deltas" id="${deltasId}">${renderDeltas(data.deltas)}</div>
+          <div class="deltas" id="${deltasId}">${data.deltas ? renderDeltas(data.deltas) : renderScores(data.scores)}</div>
         ` : ''}
       `;
 
@@ -726,6 +740,24 @@
         const className = d.downgrade ? 'delta-line downgrade' : 'delta-line';
         return `<div class="${className}">${d.text}</div>`;
       }).join('');
+    }
+
+    function renderScores(scores) {
+      const dimensions = {
+        prose_control_structure: 'Prose Control',
+        narrative_clarity_arc: 'Narrative Clarity',
+        opening_strength: 'Opening Strength',
+        brand_alignment: 'Brand Alignment',
+        distinctiveness: 'Distinctiveness',
+        decision_clarity: 'Decision Clarity'
+      };
+
+      return Object.entries(dimensions)
+        .filter(([key, _]) => scores[key] != null)
+        .map(([key, label]) => {
+          const text = `${label.padEnd(20)} ${scores[key].toFixed(1)}`;
+          return `<div class="delta-line">${text}</div>`;
+        }).join('');
     }
 
     // ============================================
@@ -802,15 +834,17 @@
       const deltas = document.getElementById(deltasId);
       const icon = document.getElementById(`${deltasId}-icon`);
       const button = icon.parentElement;
+      const currentText = button.childNodes[1].textContent.trim();
+      const label = currentText.includes('deltas') ? 'deltas' : 'details';
 
       if (deltas.classList.contains('collapsed')) {
         deltas.classList.remove('collapsed');
         icon.textContent = '▼';
-        button.childNodes[1].textContent = ' Hide deltas';
+        button.childNodes[1].textContent = ` Hide ${label}`;
       } else {
         deltas.classList.add('collapsed');
         icon.textContent = '▶';
-        button.childNodes[1].textContent = ' Show deltas';
+        button.childNodes[1].textContent = ` Show ${label}`;
       }
     }
 
