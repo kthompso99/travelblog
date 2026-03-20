@@ -18,6 +18,14 @@ export const WEIGHTS = {
   decision_clarity: 0.10
 };
 
+// Get local date in YYYY-MM-DD format (not UTC)
+function getLocalDateString(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
 const GALLERY_MARKER = "*Add your photos here*";
 
 // ==============================
@@ -271,7 +279,7 @@ function printComparison(prev, curr) {
 }
 
 export function saveAuditResults(filepath, scores, markdown, provider, auditDirName = "audits") {
-  const today = new Date().toISOString().split("T")[0];
+  const today = getLocalDateString();
   const articleName = path.basename(filepath, ".md");
   const auditFolder = path.join(path.dirname(filepath), auditDirName, articleName);
   fs.mkdirSync(auditFolder, { recursive: true });
