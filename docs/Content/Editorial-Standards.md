@@ -215,7 +215,8 @@ Weak summaries reduce Decision Clarity.
 
 The static site generator places all photos after the line `*Add your photos here*` into a photo gallery. Photos placed inline in the prose are editorial choices -- they anchor specific moments in the narrative. Gallery photos are supporting shots. Inline photos should earn their place.
 
----
+## Pronouns
+Default to "we" for shared experiences. Use "I" when the experience was genuinely solo or reflects only one person's judgment — but signal the shift briefly so the reader isn't confused.
 
 ## Numbers in Prose
 
