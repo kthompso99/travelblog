@@ -69,7 +69,7 @@ But move a block or two off the tourist arteries and it gets remarkably quiet: o
 
 ## The National Archaeology Museum
 
-We spent a well-invested two+ hours at the National Archaeology Museum. See this [museum map](https://www.namuseum.gr/wp-content/uploads/2022/03/nam-brochure-ΕΝ-low.pdf) online. The rooms are chronological (e.g., room 1 has the oldest piece, room 35 the newest).  Don't pace yourself evenly at this museum.  Instead, focus on the first 10-15 rooms, especially the Mycenaean room (#4) which is right in your face as you enter.  
+We spent a solid 2 hours at the National Archaeology Museum. See this [museum map](https://www.namuseum.gr/wp-content/uploads/2022/03/nam-brochure-ΕΝ-low.pdf) online. The rooms are chronological (e.g., room 1 has the oldest piece, room 35 the newest).  The collection is front-loaded — spend most of your time in the first 10-15 rooms, especially the Mycenaean room (#4) which is right in your face as you enter.  
 
 ![Fresco fragment depicting female, from Mycenae, Athens Archaeological museum](images/Athens-28.jpg)
 
@@ -93,15 +93,7 @@ It would be a remarkable invention even if 2000 years newer.  Its 37 bronze gear
 
 Rick Steves says it's easy to walk through the museum in order. That's not entirely true -- watch for dead ends.  For example, there's a scale statue of Athena from the Parthenon at the end of a cul de sac that probably most people miss -- it's in room 20.
 
-The Benizelos Mansion is billed as "the oldest house in Athens". It has sections that are 16th century ... it's not "amazing", but we were glad we spent 20 minutes of our time since it was right near our hotel.
 
-![Benizelos House](images/Athens-10.jpg)
-
-When we visited the Benizelos House, they were filming a period movie, so we got to see some period costumes.
-
-![Preparing for a scene.](images/Athens-08.jpg)
-
-![Actors in costume at the Benizelos House](images/Athens-09.jpg)
 
 ## Food in Athens
 
@@ -122,6 +114,20 @@ Several hotels in the district have similar rooftop setups. We can't compare -- 
 ![Parthenon from our hotel, night view](images/Athens-06.jpg)
 
 ![Parthenon from our hotel, day view](images/Athens-07.jpg)
+
+The neighborhood had its own small surprises. The Benizelos Mansion, billed as the oldest house in Athens and one of the few survivors of Ottoman Athens, was a block from the hotel. It has sections that are 16th century.  
+
+The upper floor has an open-air wooden gallery where you can imagine the original residents catching a breeze; the enclosed balcony projecting over the courtyard feels like it was built for eavesdropping. After days of temples and ruins, it was oddly grounding to stand in someone's actual house -- a well-worn marble staircase, a courtyard that still feels private, and somehow no noise from the road outside.
+
+![Benizelos House](images/Athens-10.jpg)
+
+When we visited, a film crew had taken over for a period production — actors in Ottoman-era costumes threading through 16th-century rooms. 
+
+![Preparing for a scene.](images/Athens-08.jpg)
+
+It was 20 minutes we hadn't planned, and exactly the kind of accidental moment Athens does well.
+
+![Actors in costume at the Benizelos House](images/Athens-09.jpg)
 
 ##  Getting Around in Athens
 
