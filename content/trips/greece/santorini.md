@@ -1,6 +1,6 @@
-Santorini is a view-driven destination — and the view is a volcanic caldera, collapsed circa 1600 B.C. in an eruption that may have ended Minoan Crete. What matters comes down to three things: time on the rim, where you watch sunset, and one day on the water.
+Santorini is a view-driven destination -- and the view is a volcanic caldera, collapsed circa 1600 B.C. in an eruption that may have ended Minoan Crete. What matters comes down to three things: time on the rim, where you watch sunset, and one day on the water.
 
-The island is crowded — even in early May. But the view from the rim -- the 20th-century volcanic cone rising from pristine Mediterranean hundreds of feet below, surrounded by white buildings on the steep hillside -- earned every bit of the hype. Three nights in early May felt right -- enough to hit each town and get on the water, without competing for every seat and sidewalk.
+The island is crowded -- even in early May. But the view from the rim -- the 20th-century volcanic cone rising from pristine Mediterranean hundreds of feet below, surrounded by white buildings on the steep hillside -- earned every bit of the hype. Three nights in early May felt right -- enough to hit each town and get on the water, without competing for every seat and sidewalk.
 
 ![The bowl of the Caldera from Imerovigli](images/Santorini-11.jpg)
 
@@ -24,7 +24,7 @@ Finding the classic blue-dome Oia shots requires moving off the main Oia walkway
 
 The other two rim towns offer different angles on the same caldera view.
 
-At 1,100 feet, Imerovigli sits high enough to see all the way to Oia shimmering at the northern tip of the caldera — a view the lower towns can't match.
+At 1,100 feet, Imerovigli sits high enough to see all the way to Oia shimmering at the northern tip of the caldera -- a view the lower towns can't match.
 
 ![Oia from Imerovigli](images/Santorini-15.jpg)
 
@@ -53,13 +53,13 @@ Near the volcano, the water temperature rises noticeably -- warm enough to swim,
 
 The crew grilled lunch right there in the caldera, the rim towns arrayed above us like a white ribbon. With only 16 passengers and free drinks, the afternoon felt unhurried in a way that nothing on the rim does.
 
-We chose [Spiridakos](https://www.santorini-yachts.com/); the operation was well-run and unhurried. Some friends chose Sunset Oia the previous year and loved that too.  Most operators run 4-hour trips twice daily — enough time without overdoing it.  The route starts south of the caldera and loops through it — not far, which is why 4 hours is the right length.
+We chose [Spiridakos](https://www.santorini-yachts.com/); the operation was well-run and unhurried. Some friends chose Sunset Oia the previous year and loved that too.  Most operators run 4-hour trips twice daily -- enough time without overdoing it.  The route starts south of the caldera and loops through it -- not far, which is why 4 hours is the right length.
 
 ![Enjoying the Spiridakos cruise](images/Santorini-04.jpg)
 
 ## Dining in Santorini
 
-Our hotel provided breakfast, and a large breakfast usually made lunch unnecessary.  On Santorini, dinner is less about the food than the seat — the view does most of the work.
+Our hotel provided breakfast, and a large breakfast usually made lunch unnecessary.  On Santorini, dinner is less about the food than the seat -- the view does most of the work.
 
 In Oia, [Pelekanos](https://www.pelekanosrestaurant.gr/) is a family-run rooftop with views in every direction -- caldera, volcano, and village. Arrive early, because the best seats face the sunset and fill fast. The lamb kebab was the standout; the local wine list was better than expected.
 

@@ -1,10 +1,10 @@
-Delos is one of the most significant archaeological sites in the Aegean. The onsite signage doesn't come close to conveying that -- which is why a guide matters more here than almost anywhere else we visited.
+Delos is one of the most significant archaeological sites in the Aegean -- a religious center for a thousand years, a trading hub that once rivaled any port in the Mediterranean. The onsite signage doesn't come close to conveying that, which is why a guide matters more here than almost anywhere else we visited.
 
 It was a prominent religious and trading town for centuries in both Greek and Roman times. Almost nothing is intact. But the footprint of the town -- the street grid, the building foundations, the theater -- is large enough to suggest what it once was.
 
 Because Delos is only a 15-minute ferry from Mykonos, there are day trips you can find that include a tour guide ... if I could have figured that out I would have, but we weren't starting in nearby Mykonos.  
 
-We visited via a 3-way boat ferry from Paros to Delos & Mykonos with [Polos tours](https://polostoursparos.com/daily-cruises/delos-mykonos/).  The ferry was extremely efficient, in that we saw two islands we wanted to see as a (long) day trip from Paros.  It just doesn't include a guide, which matters more at Delos than Mykonos.  I've read that sometimes there are tour guides waiting outside the Delos gates, but that wasn't true in early May ... and who knows how to pick one.  
+We visited via a 3-way boat ferry from Paros to Delos & Mykonos with [Polos tours](https://polostoursparos.com/daily-cruises/delos-mykonos/).  The routing was smart: two islands in one long day from Paros.  It just doesn't include a guide, which matters more at Delos than Mykonos.  We've read that freelance guides sometimes wait outside the gates. None did in early May. And even if they had, there's no way to vet them.
 
 > I felt like I got ~40% out of Delos what I might have with a good guide (but I'm a history nerd, others might need less detail). 
 
