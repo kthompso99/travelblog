@@ -132,7 +132,7 @@ function computeDeltas(current, previous) {
 }
 
 // ============================================
-// Detect Lines Changed Since Last Audit
+// Detect Lines Changed Since Last Commit
 // ============================================
 
 function getLinesChanged(tripName, fileName, auditTimestamp) {
@@ -144,6 +144,21 @@ function getLinesChanged(tripName, fileName, auditTimestamp) {
     const lines = parseInt(execSync(diffCmd, { encoding: "utf-8" }).trim(), 10);
 
     return lines || null;
+  } catch (err) {
+    return null;
+  }
+}
+
+// ============================================
+// Get Last Commit Time for File
+// ============================================
+
+function getLastCommitTime(tripName, fileName) {
+  try {
+    const filePath = path.join("content/trips", tripName, `${fileName}.md`);
+    const cmd = `git log -1 --format=%ct -- "${filePath}"`;
+    const timestamp = parseInt(execSync(cmd, { encoding: "utf-8" }).trim(), 10);
+    return timestamp ? new Date(timestamp * 1000) : null;
   } catch (err) {
     return null;
   }
@@ -190,6 +205,8 @@ export function getFileStatus(tripName, fileName) {
     const deltas = computeDeltas(latest.scores, previous);
     const linesChanged = getLinesChanged(tripName, fileName, latest.timestamp);
     const lastModified = getLastModifiedTime(latest.timestamp);
+    const lastCommitTime = getLastCommitTime(tripName, fileName);
+    const lastCommitFormatted = lastCommitTime ? getLastModifiedTime(lastCommitTime) : null;
 
     status.providers[provider] = {
       hasAudit: true,
@@ -199,6 +216,8 @@ export function getFileStatus(tripName, fileName) {
       scores: latest.scores,
       deltas,
       linesChanged,
+      lastCommitTime: lastCommitTime ? lastCommitTime.toISOString() : null,
+      lastCommitFormatted,
       mdPath: latest.mdPath
     };
   }

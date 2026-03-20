@@ -36,7 +36,7 @@
     .header {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
       margin-bottom: 8px;
     }
 
@@ -44,6 +44,22 @@
       font-size: 14px;
       font-weight: 600;
       color: #1976d2;
+    }
+
+    .global-toggle {
+      margin-left: auto;
+      padding: 6px 12px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      color: #666;
+      transition: background 0.2s;
+    }
+
+    .global-toggle:hover {
+      background: #f5f5f5;
     }
 
     .file-selector {
@@ -185,11 +201,17 @@
       font-weight: 600;
     }
 
-    .lines-changed {
-      margin-top: 8px;
+    .status-line-flex {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
       font-size: 13px;
       color: #666;
       font-style: italic;
+    }
+
+    .last-audit {
+      text-align: right;
     }
 
     .collapse-toggle {
@@ -457,6 +479,9 @@
         <select class="file-selector" id="fileSelector">
           <option value="">Select file...</option>
         </select>
+        <button class="global-toggle" id="globalToggle" onclick="toggleAllDeltas()">
+          <span id="global-icon">▼</span> Hide details
+        </button>
       </div>
 
       <div class="providers" id="providers">
@@ -723,11 +748,11 @@
             <div class="provider-score">Overall: <strong>${data.overall.toFixed(2)}</strong></div>
           </div>
         </div>
-        ${data.linesChanged ? `<div class="lines-changed" data-timestamp="${data.timestamp}">(${data.linesChanged} lines changed since last audit ${data.lastModified})</div>` : ''}
+        <div class="status-line-flex">
+          ${data.linesChanged ? `<span>${data.linesChanged} lines changed since last commit ${data.lastCommitFormatted || 'unknown'}</span>` : '<span></span>'}
+          <span class="last-audit">Last audit: ${data.lastModified}</span>
+        </div>
         ${data.scores ? `
-          <button class="collapse-toggle" onclick="toggleDeltas('${deltasId}')">
-            <span id="${deltasId}-icon">▼</span> ${data.deltas ? 'Hide deltas' : 'Hide details'}
-          </button>
           <div class="deltas" id="${deltasId}">${data.deltas ? renderDeltas(data.deltas) : renderScores(data.scores)}</div>
         ` : ''}
       `;
@@ -827,24 +852,27 @@
     }
 
     // ============================================
-    // Toggle Deltas Visibility
+    // Toggle All Deltas Visibility
     // ============================================
 
-    function toggleDeltas(deltasId) {
-      const deltas = document.getElementById(deltasId);
-      const icon = document.getElementById(`${deltasId}-icon`);
-      const button = icon.parentElement;
-      const currentText = button.childNodes[1].textContent.trim();
-      const label = currentText.includes('deltas') ? 'deltas' : 'details';
+    function toggleAllDeltas() {
+      const allDeltas = document.querySelectorAll('.deltas');
+      const button = document.getElementById('globalToggle');
+      const icon = document.getElementById('global-icon');
 
-      if (deltas.classList.contains('collapsed')) {
-        deltas.classList.remove('collapsed');
-        icon.textContent = '▼';
-        button.childNodes[1].textContent = ` Hide ${label}`;
-      } else {
-        deltas.classList.add('collapsed');
+      // Check if any are visible
+      const anyVisible = Array.from(allDeltas).some(d => !d.classList.contains('collapsed'));
+
+      if (anyVisible) {
+        // Hide all
+        allDeltas.forEach(d => d.classList.add('collapsed'));
         icon.textContent = '▶';
-        button.childNodes[1].textContent = ` Show ${label}`;
+        button.innerHTML = '<span id="global-icon">▶</span> Show details';
+      } else {
+        // Show all
+        allDeltas.forEach(d => d.classList.remove('collapsed'));
+        icon.textContent = '▼';
+        button.innerHTML = '<span id="global-icon">▼</span> Hide details';
       }
     }
 
@@ -865,23 +893,6 @@
       if (diffDays < 7) return `${diffDays} days ago`;
       return auditDate.toLocaleDateString();
     }
-
-    function updateTimestamps() {
-      // Update lines-changed timestamps
-      document.querySelectorAll('.lines-changed[data-timestamp]').forEach(el => {
-        const timestamp = el.getAttribute('data-timestamp');
-        if (timestamp) {
-          const formatted = formatTimestamp(timestamp);
-          const linesText = el.textContent.match(/\((\d+) lines changed/);
-          if (linesText) {
-            el.textContent = `(${linesText[1]} lines changed since last audit ${formatted})`;
-          }
-        }
-      });
-    }
-
-    // Update timestamps every minute
-    setInterval(updateTimestamps, 60000);
 
     // ============================================
     // Notification Sound
@@ -981,7 +992,7 @@
 
     window.runAudit = runAudit;
     window.loadAuditOutput = loadAuditOutput;
-    window.toggleDeltas = toggleDeltas;
+    window.toggleAllDeltas = toggleAllDeltas;
     window.showRankings = showRankings;
     window.closeRankings = closeRankings;
     window.closeRankingsIfOutside = closeRankingsIfOutside;
