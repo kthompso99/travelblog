@@ -219,6 +219,102 @@
       padding: 20px 0;
     }
 
+    /* ========== Rankings Modal ========== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 3000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 32px;
+      cursor: pointer;
+      color: #666;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: #333;
+    }
+
+    .modal-body {
+      padding: 0;
+    }
+
+    .ranking-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .ranking-item:hover {
+      background: #f5f5f5;
+    }
+
+    .ranking-item.current {
+      background: #e3f2fd;
+      font-weight: 600;
+    }
+
+    .rank-badge {
+      font-size: 14px;
+      color: #666;
+      min-width: 80px;
+    }
+
+    .rank-file {
+      flex: 1;
+      font-size: 16px;
+      text-transform: capitalize;
+    }
+
+    .rank-score {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1976d2;
+    }
+
     /* ========== Bottom Pane (Preview) ========== */
     .preview-pane {
       flex: 1;
@@ -231,6 +327,11 @@
       max-width: 900px;
       margin: 0 auto;
       line-height: 1.7;
+    }
+
+    .preview-content:focus {
+      outline: 2px solid #e3f2fd;
+      outline-offset: -2px;
     }
 
     .preview-content h1 {
@@ -365,10 +466,23 @@
 
     <!-- Bottom Pane: Preview -->
     <div class="preview-pane">
-      <div class="preview-content" id="previewContent">
+      <div class="preview-content" id="previewContent" contenteditable="true">
         <div class="empty-preview">
           Click "Output →" on any audit to view results
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rankings Modal -->
+  <div id="rankingsModal" class="modal" onclick="closeRankingsIfOutside(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="rankingsTitle"></h2>
+        <button class="modal-close" onclick="closeRankings()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="rankingsList"></div>
       </div>
     </div>
   </div>
@@ -406,6 +520,16 @@
         state.file = e.target.value;
         loadStatus();
       });
+
+      // Set up ESC key handler for modal
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const modal = document.getElementById('rankingsModal');
+          if (modal.classList.contains('show')) {
+            closeRankings();
+          }
+        }
+      });
     }
 
     // ============================================
@@ -422,6 +546,9 @@
         if (message.type === 'audit-complete') {
           console.log(`[WS] Audit completed: ${message.provider} on ${message.file}`);
 
+          // Play notification sound
+          playNotificationSound();
+
           // Remove from running set
           state.runningAudits.delete(`${message.provider}-${message.file}`);
 
@@ -431,6 +558,15 @@
           // Auto-load the output in preview pane
           if (message.file === state.file) {
             loadAuditOutput(message.provider);
+          }
+
+          // Refresh rankings if modal is open
+          const modal = document.getElementById('rankingsModal');
+          if (modal && modal.classList.contains('show')) {
+            const titleText = document.getElementById('rankingsTitle').textContent;
+            if (titleText.includes(message.provider === 'opus' ? 'Opus' : 'GPT')) {
+              showRankings(message.provider);
+            }
           }
         }
 
@@ -564,6 +700,9 @@
               <button class="btn btn-secondary" onclick="loadAuditOutput('${provider}')">
                 Output →
               </button>
+              <button class="btn btn-secondary" onclick="showRankings('${provider}')">
+                Rank
+              </button>
             </div>
           </div>
           <div class="provider-right">
@@ -686,7 +825,7 @@
       const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
       const diffDays = Math.floor(diffHours / 24);
 
-      if (diffHours < 2) return 'Just now';
+      if (diffHours < 1) return 'Just now';
       if (diffHours < 24) return `${diffHours}h ago`;
       if (diffDays === 1) return 'Yesterday';
       if (diffDays < 7) return `${diffDays} days ago`;
@@ -711,12 +850,108 @@
     setInterval(updateTimestamps, 60000);
 
     // ============================================
+    // Notification Sound
+    // ============================================
+
+    function playNotificationSound() {
+      try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.value = 800; // Hz
+        oscillator.type = 'sine';
+
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.3);
+      } catch (err) {
+        console.log('Could not play notification sound:', err);
+      }
+    }
+
+    // ============================================
+    // Rankings Modal
+    // ============================================
+
+    async function showRankings(provider) {
+      if (!state.trip) return;
+
+      try {
+        // Fetch all files in trip
+        const response = await fetch(`/api/status/${state.trip}`);
+        const data = await response.json();
+
+        // Extract and sort by provider score
+        const rankings = data.files
+          .filter(f => f.providers[provider]?.hasAudit)
+          .map(f => ({
+            file: f.file,
+            score: f.providers[provider].overall
+          }))
+          .sort((a, b) => b.score - a.score); // Descending
+
+        // Build rankings HTML
+        const rankingsHTML = rankings.map((item, index) => {
+          const isCurrent = item.file === state.file;
+          const isPublishable = item.score >= 8.5;
+          const scoreColor = isPublishable ? '#4caf50' : '#1976d2';
+          return `
+            <div class="ranking-item ${isCurrent ? 'current' : ''}"
+                 onclick="selectFileFromRankings('${item.file}')">
+              <div class="rank-badge">#${index + 1} of ${rankings.length}</div>
+              <div class="rank-file">${item.file}</div>
+              <div class="rank-score" style="color: ${scoreColor}">${item.score.toFixed(2)}</div>
+            </div>
+          `;
+        }).join('');
+
+        // Update modal
+        const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
+        document.getElementById('rankingsTitle').textContent =
+          `${providerLabel} Rankings — ${state.trip}`;
+        document.getElementById('rankingsList').innerHTML = rankingsHTML;
+
+        // Show modal
+        document.getElementById('rankingsModal').classList.add('show');
+      } catch (err) {
+        console.error('Failed to load rankings:', err);
+      }
+    }
+
+    function closeRankings() {
+      document.getElementById('rankingsModal').classList.remove('show');
+    }
+
+    function closeRankingsIfOutside(event) {
+      if (event.target.id === 'rankingsModal') {
+        closeRankings();
+      }
+    }
+
+    function selectFileFromRankings(fileName) {
+      state.file = fileName;
+      document.getElementById('fileSelector').value = fileName;
+      loadStatus();
+      closeRankings();
+    }
+
+    // ============================================
     // Make functions global for onclick handlers
     // ============================================
 
     window.runAudit = runAudit;
     window.loadAuditOutput = loadAuditOutput;
     window.toggleDeltas = toggleDeltas;
+    window.showRankings = showRankings;
+    window.closeRankings = closeRankings;
+    window.closeRankingsIfOutside = closeRankingsIfOutside;
+    window.selectFileFromRankings = selectFileFromRankings;
 
     // ============================================
     // Start App
