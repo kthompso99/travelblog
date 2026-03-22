@@ -1,15 +1,15 @@
 
-Athens is one of those cities where the history isn't background -- it's the foreground, literally. The Parthenon is visible from the street, from rooftop bars, from your hotel room if you pick the right one. We spent 3 nights there at the end of the trip and it was for us just about right. The archaeology alone justifies it; the city around it is better than we expected.
+Athens is one of those cities where the history isn't background -- it's the foreground, literally. The Parthenon is visible from the street, from rooftop bars, from your hotel room if you pick the right one. We spent 3 nights there at the end of the trip and it was just about right. The archaeology alone justifies it; the city around it is better than we expected.
 
-## The Acropolis
+## The Acropolis (Plan for 4 hours)
 
 The Acropolis is the one site in Athens that requires no justification, but it does require a plan.  Our guide recommended a 4-hour tour from 4-8pm.  We used 3.5 of that easily; Rick Steves also recommends "end of day" both for fewer crowds and less heat.  That 4 hours covered both the Acropolis museum -- at the foot of the hill -- and the Acropolis itself.  
 
-With this schedule you're spending 4:00-6:00 in the air conditioned museum, and walking outdoors 6-8pm -- that worked really well. 1.5-2 hours in the museum felt right, and then the 10 minute walk up the hill for our timed entry at 6pm to the top nicely choreographed.   Whether or not you hire a guide, you need timed tickets for the museum and the Acropolis -- bought separately.
+With this schedule you're spending 4:00-6:00 in the air conditioned museum, and walking outdoors 6:00-8:00pm -- that worked really well. 1.5-2 hours in the museum felt right.  The 10-minute walk up the hill for our timed entry at 6pm to the top was nicely choreographed.   Whether or not you hire a guide, you need timed tickets for the museum and the Acropolis -- bought separately.
 
-We found our private guide on toursbylocals; she gave us a lot of detail in the museum in particular that we would have been sad to miss.  She was good, but not so good we'd automatically recommend her.
+We found our private guide on toursbylocals.  She brought the museum to life in ways we'd have been sorry to miss.  She was good, but not so good we'd automatically recommend her.
 
-The museum carefully reconstructs how the Parthenon sculpture program originally fit together, and holds some of the original pieces removed from the Acropolis for preservation.  The most striking are the Caryatids -- the sculpted female figures that supported the porch of the Erechtheion temple. The originals are in the museum; reproductions stand on the hill.
+The museum carefully reconstructs how the Parthenon's sculpture originally fit together, and holds some of the original pieces removed from the Acropolis for preservation.  The most striking are the Caryatids -- the sculpted female figures that supported the porch of the Erechtheion temple. The originals are in the museum; reproductions stand on the hill.
 
 ![The original Caryatids](images/Athens-12.jpg)
 
@@ -43,7 +43,7 @@ The Erechtheion is a temple of Athena Polias, less than 100 yards from the Parth
 
 As remarkable as it is, you can spend only so much time up there before you run out of angles for photos, or topics to talk about with your guide.
 
-## Below the Acropolis
+## The Ancient Agora and Other Sites Below
 
 The ancient Agora covers 30 acres and feels more like a park than an archaeological site -- shaded paths, scattered ruins, and almost no crowds. After the Acropolis and the Plaka, the quiet was welcome.
 
@@ -67,19 +67,19 @@ Also at the foot of the Acropolis, the Plaka's main lanes are overrun with souve
 
 But move a block or two off the tourist arteries and it gets remarkably quiet: old stone architecture in a mix of styles, resident cats sunning on walls, no one trying to sell you anything. Head uphill and the tourists thin out almost immediately. Like Santorini, the crowds are the price of admission -- and like Santorini, what's behind them is worth the effort.
 
-## The National Archaeology Museum
+## The National Archaeology Museum (Front-Load Your Tour)
 
-We spent a solid 2 hours at the National Archaeology Museum. See this [museum map](https://www.namuseum.gr/wp-content/uploads/2022/03/nam-brochure-ΕΝ-low.pdf) online. The rooms are chronological (e.g., room 1 has the oldest piece, room 35 the newest).  The collection is front-loaded — spend most of your time in the first 10-15 rooms, especially the Mycenaean room (#4) which is right in your face as you enter.  
+We spent a solid 2 hours at the National Archaeology Museum. See this [museum map](https://www.namuseum.gr/wp-content/uploads/2022/03/nam-brochure-ΕΝ-low.pdf) online. The rooms are chronological (e.g., room 1 has the oldest piece, room 35 the newest).  
 
-![Fresco fragment depicting female, from Mycenae, Athens Archaeological museum](images/Athens-28.jpg)
+![The so-called Mask of Agamemnon](images/Athens-26.jpg)
 
-The Mycenaean collection is so dense with gold and history that it's worth the admission price even if you skip the rest of the museum.
+The collection is front-loaded -- spend most of your time in the first 10-15 rooms, especially the Mycenaean room (#4) which is right in your face as you enter.  
 
-![The so-called Mask of Agamemnon, housed in the Athens Archaeological museum](images/Athens-26.jpg)
+![Fresco fragment depicting female, from Mycenae](images/Athens-28.jpg)
 
-![Mycenaen Amphora, Athens Archaeological museum](images/Athens-29.jpg)
+The Mycenaean collection is so dense with gold and history that it's worth the admission price on its own.
 
-![Bull with horns, Athens Archaeological museum](images/Athens-27.jpg)
+![Bull with horns, the head is silver and the horns made of gold](images/Athens-27.jpg)
 
 Moving past the Mycenaeans, the collection shifts toward the better-known, more familiar sculptures of classical Athens.
 
@@ -93,15 +93,13 @@ It would be a remarkable invention even if 2000 years newer.  Its 37 bronze gear
 
 Rick Steves says it's easy to walk through the museum in order. That's not entirely true -- watch for dead ends.  For example, there's a scale statue of Athena from the Parthenon at the end of a cul de sac that probably most people miss -- it's in room 20.
 
-
-
 ## Food in Athens
 
 We didn't explore Athens dining broadly. Restaurant Thespis in the Plaka pulled us back twice.  The beef skewers earned the return trip, which says something in a city we had only 3 nights in.  
 
 ![Restaurant Thespis](images/Athens-23.jpg)
 
-Plaka and elsewhere all featured many small family spots for the usual Greek fare -- if you follow the usual advice to stay off the main tourist drags, several were tasty.  
+Plaka featured many small family spots for the usual Greek fare -- if you follow the usual advice to stay off the main tourist drags, several were tasty.  
 
 ## Where We Stayed
 
@@ -121,7 +119,7 @@ The upper floor has an open-air wooden gallery where you can imagine the origina
 
 ![Benizelos House](images/Athens-10.jpg)
 
-When we visited, a film crew had taken over for a period production — actors in Ottoman-era costumes threading through 16th-century rooms. 
+When we visited, a film crew had taken over for a period production -- actors in Ottoman-era costumes threading through 16th-century rooms. 
 
 ![Preparing for a scene.](images/Athens-08.jpg)
 
@@ -146,6 +144,8 @@ Return Visit: Not a priority -- this feels like a great place to see once.
 :::
 
 *Add your photos here*
+
+![Mycenaen Amphora, Athens Archaeological museum](images/Athens-29.jpg)
 
 ![Temple of Hephaestus in Athens' ancient Agora](images/Athens-01.jpg)
 
