@@ -16,6 +16,10 @@ The on-site museum is small but a highlight -- the original lions are inside, we
 
 ![The original lions](images/Delos-03.jpg)
 
+Near the lions, the sanctuary ruins spread out -- collapsed columns, scattered marble blocks, and the low outlines of temples and shrines. Without labels, one foundation looks much like another. The landscape is open and windswept, which explains both why so much survived and why so little stands.
+
+![Ruins at Delos](images/Delos-02.jpg)
+
 ## Where the Money Lived
 
 The sanctuary and the lions are the public face of Delos. But most of the site is something else -- a city where people lived, traded, and decorated their floors.
@@ -50,7 +54,6 @@ Several audio guides are available online. We didn't use one and regret it.
 
 > I probably extracted roughly 50% of what Delos has to offer -- and I'm the history nerd in this pair.
 
-![Ruins at Delos](images/Delos-02.jpg)
 
 Delos deserves better than we gave it. Two hours and no guide left us reading surfaces when we should have been reading history. We'd go back -- but next time, prepared.
 
