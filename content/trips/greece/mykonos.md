@@ -1,12 +1,12 @@
-We chose not to prioritize Mykonos on this trip, but wanted to check it out for a possible future visit.  3 hours in Mykonos isn't long enough to understand the island, but it was far better than nothing.
+We didn't prioritize Mykonos — like Santorini, it felt overdiscovered before we ever arrived. But 3 hours on a day-trip from Paros was enough to understand why it earns the crowds, even if it wasn't enough to properly explore.
 
-The day-trip tour from Paros on [Polos tours](https://polostoursparos.com/daily-cruises/delos-mykonos/) links Delos and Mykonos in a single circuit, making it possible to visit both while keeping Paros as a home base. It was a busy day, but it let us visit both without re-packing a suitcase.
+The day-trip tour from Paros on [Polos tours](https://polostoursparos.com/daily-cruises/delos-mykonos/) links Delos and Mykonos in a single circuit.   A busy day, but it meant seeing both without re-packing a suitcase.
 
-> We didn't prioritize Mykonos because, like Santorini, it is so "overdiscovered".  But we now know why it's so well-appreciated.
+Chora is the main town of Mykonos -- "Chora" just means "the town" in Greek, and most islands have one. This one earns the name. It's a tight maze of whitewashed lanes, supposedly laid out to confuse pirates, now doing the same to tourists. We got lost repeatedly and it never mattered.
 
-The white buildings and harbor views are exactly what you've seen in photographs, and somehow that doesn't diminish them. The car-free lanes are so narrow you're never more than a few turns from getting pleasantly lost.
+Every wrong turn led to another shop or another cafe with a view we hadn't seen yet.
 
-![caption 05](images/Mykonos-05.jpg)
+![Beautiful flowers](images/Mykonos-05.jpg)
 
 The 16th-century windmills are the obvious landmark, and worth a picture, but the town below was what held our attention.
 
@@ -14,15 +14,43 @@ The 16th-century windmills are the obvious landmark, and worth a picture, but th
 
 ![The windmills of Mykonos](images/Mykonos-01.jpg)
 
-The port area is dense with small non-chain clothing and jewelry shops, and kept Tiffany busy.  That's an endorsement.  And a warning.
+## Shopping
+
+The wandering turned into shopping, which surprised us.  Mykonos is one of the better shopping stops in the Cyclades, and not for the reasons you'd expect. The narrow lanes of Chora are lined with small, independent boutiques rather than the international brands that have overtaken most European resort towns. Many are Greek-owned; some are run by the designers themselves.
+
+![Tiffany trying on a dress](images/Mykonos-08.jpg)
+
+The aesthetic fits the island -- breezy linens, soft cottons, hand-finished details, pieces that look better slightly rumpled after a day in the salt air. Tiffany bought a dress from the designer, and came away with a story about the fabric and the season along with the purchase. That kind of transaction is hard to find in most tourist towns.
+
+![Buying a dress from the designer](images/Mykonos-11.jpg)
+
+We only had a few hours and spent more of them shopping than we'd planned -- which, for a couple that doesn't usually shop on vacation, says something about the quality of what's here.
+
+> The shops kept Tiffany busy.  That's an endorsement.  And a warning.
+
+![Not all shoppers were equally motivated.](images/Mykonos-09.jpg)
+
 
 ![The outcome of a busy day in Mykonos](images/Mykonos-07.jpg)
 
-Bars line the ancient protective walls, many with small openings carved to see the harbor.
+Little Venice is where the maze opens up. After the narrow lanes of Chora, you turn a corner and suddenly there's nothing between you and the Aegean -- 18th-century merchant houses built right on the water, wooden balconies hanging over the sea. No promenade, no buffer. Just buildings, then waves.
 
-![View of the port through ancient wall](images/Mykonos-03.jpg)
+The merchants who built these houses used the lower floors for storage and trade. Now those same rooms are bars and cafes, but the bones haven't changed. We were there mid-afternoon, too early for the famous sunset, but you could already feel the crowd building -- chairs angling west, drinks appearing on balcony tables.
 
-After wandering the harbor lanes we stopped at Sakis Grill House, the top search result for "best gyro in Mykonos." The gyros and souvlaki earned the crowds.
+Little Venice isn't a hidden gem and doesn't pretend to be. The sunset will be crowded and the drinks will be expensive. Go anyway -- the light on those old balconies earns it.
+
+![View of Little Venice through ancient wall](images/Mykonos-03.jpg)
+
+## A Quick Bite
+
+Sakis Grill House sits in the middle of Chora's maze, impossible to miss if you're shopping nearby. It's been there since the mid-1980s, and looks it -- counter service, tight outdoor seating, orders out in minutes. This is not a linger-over-dinner spot. It's fast, loud, and slightly chaotic.
+
+The gyro is the thing to get: warm pita, meat carved off the spit, tzatziki, and fries stuffed inside. Messy, salty, and exactly right after a few hours of walking. By Mykonos standards, it's practically free.
+
+We ate sitting awkwardly on a wall and went back to shopping. Sometimes that's the best review a place can get.
+
+Three hours was enough to understand why this island still has an audience that isn't just chasing a photo.
+
 
 :::nutshell Mykonos
 verdict: Glad We Went
@@ -30,6 +58,6 @@ duration: 3 hours
 Stay Overnight: We didn't -- 3 hours was enough to see why people love it, not enough to really explore.
 Don't Miss: Wandering the lanes; the windmills; the shopping (per Tiffany).
 Best Time of Day: Can't say from 3 hours -- we had midday.
-Worth the Splurge: Shopping!  Unique boutiques.
+Worth the Splurge: Shopping — the boutiques are genuinely unique.
 Return Visit: Maybe -- we'd want more time to do it properly, but the crowds are real.
 :::
