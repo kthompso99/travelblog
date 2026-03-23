@@ -1,4 +1,4 @@
-We didn't prioritize Mykonos — like Santorini, it felt overdiscovered before we ever arrived. But 3 hours on a day-trip from Paros was enough to understand why it earns the crowds, even if it wasn't enough to properly explore.
+We didn't prioritize Mykonos -- like Santorini, it felt overdiscovered before we ever arrived. But 3 hours on a day-trip from Paros was enough to understand why it earns the crowds, even if it wasn't enough to properly explore.
 
 The day-trip tour from Paros on [Polos tours](https://polostoursparos.com/daily-cruises/delos-mykonos/) links Delos and Mykonos in a single circuit.   A busy day, but it meant seeing both without re-packing a suitcase.
 
@@ -58,6 +58,6 @@ duration: 3 hours
 Stay Overnight: We didn't -- 3 hours was enough to see why people love it, not enough to really explore.
 Don't Miss: Wandering the lanes; the windmills; the shopping (per Tiffany).
 Best Time of Day: Can't say from 3 hours -- we had midday.
-Worth the Splurge: Shopping — the boutiques are genuinely unique.
+Worth the Splurge: Shopping -- the boutiques are genuinely unique.
 Return Visit: Maybe -- we'd want more time to do it properly, but the crowds are real.
 :::

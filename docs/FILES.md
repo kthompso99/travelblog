@@ -12,7 +12,9 @@ travelblog/
 ├── config/                     Source configuration
 │   ├── site.json               Site title, description, heroImages, base URL
 │   ├── google-maps.json        Google Maps API key (local dev only, gitignored)
-│   └── remark42.json           Remark42 commenting system config (dev/prod hosts)
+│   ├── remark42.json           Remark42 commenting system config (dev/prod hosts)
+│   ├── anthropic.json          Anthropic API key for Opus audits (gitignored)
+│   └── openai.json             OpenAI API key for GPT audits (gitignored)
 │
 ├── content/                    Editable source content
 │   └── trips/                  Auto-discovered (sorted by date, newest first)
@@ -64,14 +66,18 @@ travelblog/
 ├── scripts/                    CLI build & utility scripts
 │   ├── audit/
 │   │   ├── audit-shared.mjs    Shared audit utilities (file resolution, scoring, prompts)
+│   │   ├── audit-server.mjs    Express + WebSocket server for live audit dashboard
+│   │   ├── audit-status.mjs    Status computation and readiness checking
 │   │   ├── anthropic-audit.mjs  AI editorial audit (Sonnet/Opus, invoked via sonnet-audit or opus-audit)
 │   │   ├── content-audit.js    Mechanical content audit (sentence-level quality checks)
 │   │   ├── gpt-audit.mjs       AI editorial audit (OpenAI-powered scoring + suggestions)
-│   │   ├── gpt-audit-prompt.txt GPT audit system prompt
-│   │   ├── gpt-audit-mandate.txt GPT audit enforcement mandate
+│   │   ├── ai-audit-prompt.txt AI audit system prompt
+│   │   ├── ai-audit-mandate.txt AI audit enforcement mandate
 │   │   ├── dashboard.mjs      Dashboard for audit score history
 │   │   ├── stability-test.mjs Audit stability test (score variance measurement)
-│   │   └── stability-viewer.mjs Audit stability viewer (analyze variance results)
+│   │   ├── stability-viewer.mjs Audit stability viewer (analyze variance results)
+│   │   └── public/
+│   │       └── audit-runner.html Interactive web dashboard UI
 │   ├── build/
 │   │   ├── build.js            Full build — geocodes, renders, outputs HTML
 │   │   ├── build-smart.js      Incremental build — skips unchanged trips
@@ -246,6 +252,7 @@ No geocoding, no map marker, no `place` fields.
 |--------|---------|--------------|
 | `validate` | `npm run validate` | Check all trip configs + image references before building |
 | `validate:images` | `npm run validate:images` | Validate image references exist with correct case |
+| `pre-commit` | (git hook) | Pre-commit linting hook (invoked automatically before git commits) |
 | `build` | `npm run build` | Validate → full build (geocode + render all trips) |
 | `build:smart` | `npm run build:smart` | Incremental build — only rebuilds changed trips |
 | `dev` | `npm run dev` | Smart build → start server + full incremental watcher |
@@ -258,7 +265,8 @@ No geocoding, no map marker, no `place` fields.
 | `gpt-audit` | `npm run gpt-audit -- spain/cordoba` | AI editorial audit (scoring + suggestions). Accepts multiple files or a trip name for incremental mode |
 | `sonnet-audit` | `npm run sonnet-audit -- spain/cordoba` | AI editorial audit via Sonnet (same interface as gpt-audit) |
 | `opus-audit` | `npm run opus-audit -- spain/cordoba` | AI editorial audit via Opus (same interface as gpt-audit) |
-| `dashboard` | `npm run dashboard` | Dashboard for audit score history and analysis |
+| `dashboard` | `npm run dashboard` | CLI dashboard for audit score history and analysis |
+| `audit-dash` | `npm run audit-dash` | Interactive web dashboard with live audit monitoring (Express + WebSocket) |
 | `stability-test` | `npm run stability-test` | Audit stability test for score variance measurement |
 | `stability-view` | `npm run stability-view` | Audit stability viewer for analyzing variance results |
 | `normalize` | `npm run normalize` | Flatten curly quotes, Unicode dashes, and ellipses to ASCII in markdown source |
