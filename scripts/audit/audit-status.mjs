@@ -11,17 +11,9 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import { WEIGHTS } from "./audit-shared.mjs";
+import { WEIGHTS, DIMENSION_LABELS, computeDeltas } from "./audit-shared.mjs";
 
 const PROVIDERS = ["opus", "gpt"];
-const DIMENSION_LABELS = {
-  prose_control_structure: "Prose Control",
-  narrative_clarity_arc: "Narrative Clarity",
-  opening_strength: "Opening Strength",
-  brand_alignment: "Brand Alignment",
-  distinctiveness: "Distinctiveness",
-  decision_clarity: "Decision Clarity"
-};
 
 // ============================================
 // Get All Files in Trip
@@ -32,7 +24,7 @@ function getTripFiles(tripName) {
   if (!fs.existsSync(tripPath)) return [];
 
   return fs.readdirSync(tripPath)
-    .filter(f => f.endsWith(".md") && f !== "overview.md")
+    .filter(f => f.endsWith(".md"))
     .map(f => f.replace(".md", ""))
     .sort();
 }
@@ -84,51 +76,6 @@ function getPreviousAudit(tripName, fileName, provider) {
 
   const jsonPath = path.join(auditDir, files[1]);
   return JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
-}
-
-// ============================================
-// Compute Score Deltas
-// ============================================
-
-function computeDeltas(current, previous) {
-  if (!previous) return null;
-
-  const deltas = [];
-  const dimensions = Object.keys(DIMENSION_LABELS);
-
-  for (const dim of dimensions) {
-    const curr = current[dim];
-    const prev = previous[dim];
-
-    if (curr == null || prev == null) continue;
-
-    const delta = curr - prev;
-    const flag = delta < 0 ? " *** Downgrade" : "";
-
-    deltas.push({
-      dimension: DIMENSION_LABELS[dim],
-      prev: prev.toFixed(1),
-      curr: curr.toFixed(1),
-      delta: (delta >= 0 ? "+" : "") + delta.toFixed(1),
-      downgrade: delta < 0,
-      text: `${DIMENSION_LABELS[dim].padEnd(20)} ${prev.toFixed(1)} => ${curr.toFixed(1)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(1)}${flag}`
-    });
-  }
-
-  // Overall score
-  if (current.overall_score != null && previous.overall_score != null) {
-    const delta = current.overall_score - previous.overall_score;
-    deltas.push({
-      dimension: "Overall",
-      prev: previous.overall_score.toFixed(2),
-      curr: current.overall_score.toFixed(2),
-      delta: (delta >= 0 ? "+" : "") + delta.toFixed(2),
-      downgrade: delta < 0,
-      text: `${"Overall".padEnd(20)} ${previous.overall_score.toFixed(2)} => ${current.overall_score.toFixed(2)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(2)}${delta < 0 ? " *** Downgrade" : ""}`
-    });
-  }
-
-  return deltas;
 }
 
 // ============================================

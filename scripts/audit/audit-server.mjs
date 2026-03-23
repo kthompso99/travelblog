@@ -11,7 +11,7 @@
 import express from "express";
 import { WebSocketServer } from "ws";
 import { createServer } from "http";
-import { execSync } from "child_process";
+import { spawn } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -23,6 +23,12 @@ const server = createServer(app);
 const wss = new WebSocketServer({ server });
 
 const PORT = 3001;
+
+// ============================================
+// Track Running Audits
+// ============================================
+
+const runningAudits = new Map(); // key: "provider-trip-file", value: childProcess
 
 // ============================================
 // Middleware
@@ -153,36 +159,67 @@ app.post("/api/run-audit", async (req, res) => {
     return res.status(400).json({ error: "Invalid provider" });
   }
 
+  const auditKey = `${provider}-${trip}-${file}`;
+
+  // Check if already running
+  if (runningAudits.has(auditKey)) {
+    return res.status(409).json({ error: "Audit already running" });
+  }
+
   res.json({ status: "running" });
 
   // Run audit in background
   setImmediate(() => {
-    try {
-      console.log(`[AUDIT] Running ${provider} audit on ${trip}/${file}...`);
+    console.log(`[AUDIT] Running ${provider} audit on ${trip}/${file}...`);
 
-      const scriptMap = {
-        opus: "opus-audit",
-        gpt: "gpt-audit"
-      };
+    const scriptMap = {
+      opus: "opus-audit",
+      gpt: "gpt-audit"
+    };
 
-      const cmd = `npm run ${scriptMap[provider]} -- ${trip}/${file}`;
-      execSync(cmd, {
-        stdio: "inherit",
-        cwd: process.cwd(),
-        env: process.env
-      });
+    const childProcess = spawn("npm", ["run", scriptMap[provider], "--", `${trip}/${file}`], {
+      stdio: "inherit",
+      cwd: process.cwd(),
+      env: process.env,
+      shell: true
+    });
 
-      console.log(`[AUDIT] Completed ${provider} audit on ${trip}/${file}`);
+    runningAudits.set(auditKey, childProcess);
 
-      // Broadcast completion to all connected clients
-      broadcast({
-        type: "audit-complete",
-        trip,
-        file,
-        provider
-      });
-    } catch (err) {
-      console.error(`[AUDIT] Failed: ${err.message}`);
+    childProcess.on("exit", (code, signal) => {
+      runningAudits.delete(auditKey);
+
+      if (signal === "SIGTERM" || signal === "SIGKILL") {
+        console.log(`[AUDIT] Stopped ${provider} audit on ${trip}/${file}`);
+        broadcast({
+          type: "audit-stopped",
+          trip,
+          file,
+          provider
+        });
+      } else if (code === 0) {
+        console.log(`[AUDIT] Completed ${provider} audit on ${trip}/${file}`);
+        broadcast({
+          type: "audit-complete",
+          trip,
+          file,
+          provider
+        });
+      } else {
+        console.error(`[AUDIT] Failed ${provider} audit on ${trip}/${file} (exit code ${code})`);
+        broadcast({
+          type: "audit-error",
+          trip,
+          file,
+          provider,
+          error: `Process exited with code ${code}`
+        });
+      }
+    });
+
+    childProcess.on("error", (err) => {
+      runningAudits.delete(auditKey);
+      console.error(`[AUDIT] Error: ${err.message}`);
       broadcast({
         type: "audit-error",
         trip,
@@ -190,8 +227,32 @@ app.post("/api/run-audit", async (req, res) => {
         provider,
         error: err.message
       });
-    }
+    });
   });
+});
+
+// ============================================
+// API: Stop Running Audit
+// ============================================
+
+app.post("/api/stop-audit", (req, res) => {
+  const { trip, file, provider } = req.body;
+
+  if (!trip || !file || !provider) {
+    return res.status(400).json({ error: "Missing trip, file, or provider" });
+  }
+
+  const auditKey = `${provider}-${trip}-${file}`;
+  const childProcess = runningAudits.get(auditKey);
+
+  if (!childProcess) {
+    return res.status(404).json({ error: "No running audit found" });
+  }
+
+  console.log(`[AUDIT] Stopping ${provider} audit on ${trip}/${file}...`);
+  childProcess.kill("SIGTERM");
+
+  res.json({ status: "stopping" });
 });
 
 // ============================================

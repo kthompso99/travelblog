@@ -16,7 +16,7 @@
 
 import fs from "fs";
 import path from "path";
-import { WEIGHTS, getContentType, computeWeightedScore } from "./audit-shared.mjs";
+import { WEIGHTS, ARTICLE_THRESHOLD, TRIP_THRESHOLD, getContentType, computeWeightedScore } from "./audit-shared.mjs";
 
 // ==============================
 // 🔧 CONFIG
@@ -26,9 +26,6 @@ const DIMENSIONS = Object.keys(WEIGHTS);
 
 // Providers hidden from default "all" view (still viewable via --provider sonnet)
 const HIDDEN_PROVIDERS = new Set(["sonnet"]);
-
-const ARTICLE_THRESHOLD = 8.5;
-const TRIP_THRESHOLD = 8.7;
 
 const DETAIL_MODE = process.argv.includes("--detail") ||
   process.argv.includes("-detail");

@@ -18,12 +18,26 @@ export const WEIGHTS = {
   decision_clarity: 0.10
 };
 
+// Readiness thresholds (shared with dashboard.mjs)
+export const ARTICLE_THRESHOLD = 8.5;
+export const TRIP_THRESHOLD = 8.7;
+
 // Get local date in YYYY-MM-DD format (not UTC)
 function getLocalDateString(date = new Date()) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
+}
+
+// Get local datetime with timestamp for unique audit filenames
+function getLocalDateTimeString(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hour = String(date.getHours()).padStart(2, '0');
+  const minute = String(date.getMinutes()).padStart(2, '0');
+  return `${year}-${month}-${day}-${hour}${minute}`;
 }
 
 const GALLERY_MARKER = "*Add your photos here*";
@@ -194,7 +208,7 @@ export function parseAuditResponse(output, contentType) {
 // 💾 Save Audit Results
 // ==============================
 
-function getPreviousAudit(auditFolder, provider) {
+export function getPreviousAudit(auditFolder, provider) {
   if (!fs.existsSync(auditFolder)) return null;
 
   const files = fs
@@ -236,7 +250,7 @@ function formatPrevTimestamp(mtime) {
   return `run at ${timeStr} on ${dateStr}`;
 }
 
-const DIMENSION_LABELS = {
+export const DIMENSION_LABELS = {
   prose_control_structure: "Prose Control",
   narrative_clarity_arc:   "Narrative Clarity",
   opening_strength:        "Opening Strength",
@@ -245,48 +259,68 @@ const DIMENSION_LABELS = {
   decision_clarity:        "Decision Clarity"
 };
 
-function printComparison(prev, curr) {
-  const dims = Object.keys(WEIGHTS);
-  const labelW = Math.max(...Object.values(DIMENSION_LABELS).map(l => l.length));
-  const valW = 5;  // width for score values (e.g. " 8.35" or "  8.1")
+// Compute deltas between two audit scores (returns structured data)
+export function computeDeltas(current, previous) {
+  if (!previous) return null;
 
-  console.log("");
-  for (const dim of dims) {
-    if (prev[dim] == null && curr[dim] == null) continue;
-    const label = DIMENSION_LABELS[dim] || dim;
-    const oldVal = prev[dim];
-    const newVal = curr[dim];
-    if (oldVal == null || newVal == null) continue;
+  const deltas = [];
+  const dimensions = Object.keys(DIMENSION_LABELS);
 
-    const delta = newVal - oldVal;
-    const sign = delta >= 0 ? "+" : "";
-    const flag = delta < 0 ? "  *** Downgrade" : "";
-    console.log(
-      `  ${label.padEnd(labelW)}  ${oldVal.toFixed(1).padStart(valW)} => ${newVal.toFixed(1).padStart(valW)}  ${(sign + delta.toFixed(1)).padStart(valW)}${flag}`
-    );
+  for (const dim of dimensions) {
+    const curr = current[dim];
+    const prev = previous[dim];
+
+    if (curr == null || prev == null) continue;
+
+    const delta = curr - prev;
+    const flag = delta < 0 ? " *** Downgrade" : "";
+
+    deltas.push({
+      dimension: DIMENSION_LABELS[dim],
+      prev: prev.toFixed(1),
+      curr: curr.toFixed(1),
+      delta: (delta >= 0 ? "+" : "") + delta.toFixed(1),
+      downgrade: delta < 0,
+      text: `${DIMENSION_LABELS[dim].padEnd(20)} ${prev.toFixed(1)} => ${curr.toFixed(1)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(1)}${flag}`
+    });
   }
 
-  const oldOverall = prev.overall_score;
-  const newOverall = curr.overall_score;
-  if (oldOverall != null && newOverall != null) {
-    const delta = newOverall - oldOverall;
-    const sign = delta >= 0 ? "+" : "";
-    const flag = delta < 0 ? "  *** Downgrade" : "";
-    console.log(
-      `  ${"Overall".padEnd(labelW)}  ${oldOverall.toFixed(2).padStart(valW)} => ${newOverall.toFixed(2).padStart(valW)}  ${(sign + delta.toFixed(2)).padStart(valW)}${flag}`
-    );
+  // Overall score
+  if (current.overall_score != null && previous.overall_score != null) {
+    const delta = current.overall_score - previous.overall_score;
+    deltas.push({
+      dimension: "Overall",
+      prev: previous.overall_score.toFixed(2),
+      curr: current.overall_score.toFixed(2),
+      delta: (delta >= 0 ? "+" : "") + delta.toFixed(2),
+      downgrade: delta < 0,
+      text: `${"Overall".padEnd(20)} ${previous.overall_score.toFixed(2)} => ${current.overall_score.toFixed(2)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(2)}${delta < 0 ? " *** Downgrade" : ""}`
+    });
+  }
+
+  return deltas;
+}
+
+function printComparison(prev, curr) {
+  const deltas = computeDeltas(curr, prev);
+  if (!deltas) return;
+
+  console.log("");
+  for (const d of deltas) {
+    console.log(`  ${d.text}`);
   }
 }
 
 export function saveAuditResults(filepath, scores, markdown, provider, auditDirName = "audits") {
+  const timestamp = getLocalDateTimeString();
   const today = getLocalDateString();
   const articleName = path.basename(filepath, ".md");
   const auditFolder = path.join(path.dirname(filepath), auditDirName, articleName);
   fs.mkdirSync(auditFolder, { recursive: true });
 
-  const jsonFilename = `${today}.${provider}.audit.json`;
+  const jsonFilename = `${timestamp}.${provider}.audit.json`;
   const jsonPath = path.join(auditFolder, jsonFilename);
-  const mdPath = path.join(auditFolder, `${today}.${provider}.audit.md`);
+  const mdPath = path.join(auditFolder, `${timestamp}.${provider}.audit.md`);
 
   // Load previous audit before overwriting
   const prev = getPreviousAudit(auditFolder, provider);

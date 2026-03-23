@@ -180,6 +180,15 @@
       background: #e0e0e0;
     }
 
+    .btn-danger {
+      background: #d32f2f;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #c62828;
+    }
+
     .deltas {
       font-family: 'Courier New', monospace;
       font-size: 12px;
@@ -615,6 +624,12 @@
           alert(`Audit failed: ${message.error}`);
           loadStatus();
         }
+
+        if (message.type === 'audit-stopped') {
+          console.log(`[WS] Audit stopped: ${message.provider} on ${message.file}`);
+          state.runningAudits.delete(`${message.provider}-${message.file}`);
+          loadStatus();
+        }
       };
 
       state.ws.onclose = () => {
@@ -736,6 +751,7 @@
               <button class="btn btn-primary" onclick="runAudit('${provider}')" ${isRunning ? 'disabled' : ''}>
                 ${isRunning ? '<span class="spinner"></span>Running...' : `Run ${name}`}
               </button>
+              ${isRunning ? `<button class="btn btn-danger" onclick="stopAudit('${provider}')">Stop</button>` : ''}
               <button class="btn btn-secondary" onclick="loadAuditOutput('${provider}')">
                 Output →
               </button>
@@ -812,6 +828,27 @@
         state.runningAudits.delete(`${provider}-${state.file}`);
         updateProviders();
         alert(`Failed to start audit: ${err.message}`);
+      }
+    }
+
+    async function stopAudit(provider) {
+      if (!state.file) return;
+
+      try {
+        await fetch('/api/stop-audit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            trip: state.trip,
+            file: state.file,
+            provider
+          })
+        });
+
+        console.log(`[AUDIT] Stopping ${provider} audit on ${state.file}`);
+      } catch (err) {
+        console.error('Failed to stop audit:', err);
+        alert(`Failed to stop audit: ${err.message}`);
       }
     }
 
@@ -956,10 +993,27 @@
           `;
         }).join('');
 
+        // Calculate average score and readiness (matches dashboard.mjs logic)
+        const ARTICLE_THRESHOLD = 8.5;
+        const TRIP_THRESHOLD = 8.7;
+
+        const avgScore = rankings.length > 0
+          ? (rankings.reduce((sum, r) => sum + r.score, 0) / rankings.length).toFixed(2)
+          : '0.00';
+
+        const lowestScore = rankings.length > 0
+          ? Math.min(...rankings.map(r => r.score))
+          : 0;
+
+        const tripReady = parseFloat(avgScore) >= TRIP_THRESHOLD && lowestScore >= ARTICLE_THRESHOLD;
+        const readinessStatus = tripReady ? 'READY' : 'NOT READY';
+        const readinessColor = tripReady ? '#4caf50' : '#ff9800';
+
         // Update modal
         const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
-        document.getElementById('rankingsTitle').textContent =
-          `${providerLabel} Rankings — ${state.trip}`;
+        const tripLabel = state.trip.charAt(0).toUpperCase() + state.trip.slice(1);
+        document.getElementById('rankingsTitle').innerHTML =
+          `${providerLabel} Rankings — ${tripLabel}  •  Avg: ${avgScore}  •  <span style="color: ${readinessColor}">${readinessStatus}</span>`;
         document.getElementById('rankingsList').innerHTML = rankingsHTML;
 
         // Show modal
@@ -991,6 +1045,7 @@
     // ============================================
 
     window.runAudit = runAudit;
+    window.stopAudit = stopAudit;
     window.loadAuditOutput = loadAuditOutput;
     window.toggleAllDeltas = toggleAllDeltas;
     window.showRankings = showRankings;
