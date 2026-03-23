@@ -16,6 +16,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getTripStatus, getFileStatus, getMostRecentFile } from "./audit-status.mjs";
+import { ARTICLE_THRESHOLD, TRIP_THRESHOLD } from "./audit-shared.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -61,6 +62,17 @@ function broadcast(message) {
     }
   });
 }
+
+// ============================================
+// API: Get Configuration
+// ============================================
+
+app.get("/api/config", (req, res) => {
+  res.json({
+    articleThreshold: ARTICLE_THRESHOLD,
+    tripThreshold: TRIP_THRESHOLD
+  });
+});
 
 // ============================================
 // API: Get Available Trips

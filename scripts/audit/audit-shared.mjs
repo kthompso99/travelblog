@@ -208,22 +208,42 @@ export function parseAuditResponse(output, contentType) {
 // 💾 Save Audit Results
 // ==============================
 
-export function getPreviousAudit(auditFolder, provider) {
-  if (!fs.existsSync(auditFolder)) return null;
+// Get sorted list of audit files (newest first) - shared helper
+export function getAuditFiles(auditFolder, provider) {
+  if (!fs.existsSync(auditFolder)) return [];
 
-  const files = fs
+  return fs
     .readdirSync(auditFolder)
     .filter(f => f.endsWith(`.${provider}.audit.json`))
-    .sort();
+    .sort()
+    .reverse(); // Newest first
+}
 
-  if (files.length === 0) return null;
+// Get the Nth audit file (0 = latest, 1 = previous, etc.) - shared helper
+export function getAuditByIndex(auditFolder, provider, index = 0) {
+  const files = getAuditFiles(auditFolder, provider);
+  if (files.length <= index) return null;
 
-  const latestFile = files[files.length - 1];
-  const fullPath = path.join(auditFolder, latestFile);
+  const filename = files[index];
+  const fullPath = path.join(auditFolder, filename);
   const data = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
   const mtime = fs.statSync(fullPath).mtime;
-  data._mtime = mtime;
-  return data;
+
+  return {
+    data,
+    filename,
+    fullPath,
+    mtime
+  };
+}
+
+// Get previous audit (for CLI comparison before overwrite)
+export function getPreviousAudit(auditFolder, provider) {
+  const result = getAuditByIndex(auditFolder, provider, 0);
+  if (!result) return null;
+
+  result.data._mtime = result.mtime;
+  return result.data;
 }
 
 function formatTime(date) {

@@ -531,7 +531,8 @@
       file: null,
       status: null,
       ws: null,
-      runningAudits: new Set()
+      runningAudits: new Set(),
+      config: null  // Loaded from /api/config
     };
 
     // ============================================
@@ -542,6 +543,9 @@
       // Get trip from URL
       const path = window.location.pathname.slice(1);
       state.trip = path || 'greece';
+
+      // Load configuration (thresholds, etc.)
+      await loadConfig();
 
       // Set up WebSocket
       setupWebSocket();
@@ -578,6 +582,24 @@
           }
         }
       });
+    }
+
+    // ============================================
+    // Load Configuration
+    // ============================================
+
+    async function loadConfig() {
+      try {
+        const response = await fetch('/api/config');
+        state.config = await response.json();
+      } catch (err) {
+        console.error('Failed to load config:', err);
+        // Fallback to defaults if API fails
+        state.config = {
+          articleThreshold: 8.5,
+          tripThreshold: 8.7
+        };
+      }
     }
 
     // ============================================
@@ -981,7 +1003,7 @@
         // Build rankings HTML
         const rankingsHTML = rankings.map((item, index) => {
           const isCurrent = item.file === state.file;
-          const isPublishable = item.score >= 8.5;
+          const isPublishable = state.config && item.score >= state.config.articleThreshold;
           const scoreColor = isPublishable ? '#4caf50' : '#1976d2';
           return `
             <div class="ranking-item ${isCurrent ? 'current' : ''}"
@@ -993,10 +1015,7 @@
           `;
         }).join('');
 
-        // Calculate average score and readiness (matches dashboard.mjs logic)
-        const ARTICLE_THRESHOLD = 8.5;
-        const TRIP_THRESHOLD = 8.7;
-
+        // Calculate average score and readiness (uses thresholds from /api/config)
         const avgScore = rankings.length > 0
           ? (rankings.reduce((sum, r) => sum + r.score, 0) / rankings.length).toFixed(2)
           : '0.00';
@@ -1005,7 +1024,9 @@
           ? Math.min(...rankings.map(r => r.score))
           : 0;
 
-        const tripReady = parseFloat(avgScore) >= TRIP_THRESHOLD && lowestScore >= ARTICLE_THRESHOLD;
+        const tripReady = state.config &&
+          parseFloat(avgScore) >= state.config.tripThreshold &&
+          lowestScore >= state.config.articleThreshold;
         const readinessStatus = tripReady ? 'READY' : 'NOT READY';
         const readinessColor = tripReady ? '#4caf50' : '#ff9800';
 

@@ -11,7 +11,7 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import { WEIGHTS, DIMENSION_LABELS, computeDeltas } from "./audit-shared.mjs";
+import { WEIGHTS, DIMENSION_LABELS, computeDeltas, getAuditByIndex } from "./audit-shared.mjs";
 
 const PROVIDERS = ["opus", "gpt"];
 
@@ -35,27 +35,15 @@ function getTripFiles(tripName) {
 
 function getLatestAudit(tripName, fileName, provider) {
   const auditDir = path.join("content/trips", tripName, "audits", fileName);
-  if (!fs.existsSync(auditDir)) return null;
-
-  const files = fs.readdirSync(auditDir)
-    .filter(f => f.endsWith(`.${provider}.audit.json`))
-    .sort()
-    .reverse();
-
-  if (files.length === 0) return null;
-
-  const jsonPath = path.join(auditDir, files[0]);
-  const mdPath = jsonPath.replace(".json", ".md");
-
-  const data = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
-  const fileStat = fs.statSync(jsonPath);
+  const result = getAuditByIndex(auditDir, provider, 0);
+  if (!result) return null;
 
   return {
-    jsonPath,
-    mdPath,
-    timestamp: fileStat.mtime,
-    scores: data,
-    overall: data.overall_score
+    jsonPath: result.fullPath,
+    mdPath: result.fullPath.replace(".json", ".md"),
+    timestamp: result.mtime,
+    scores: result.data,
+    overall: result.data.overall_score
   };
 }
 
@@ -65,17 +53,8 @@ function getLatestAudit(tripName, fileName, provider) {
 
 function getPreviousAudit(tripName, fileName, provider) {
   const auditDir = path.join("content/trips", tripName, "audits", fileName);
-  if (!fs.existsSync(auditDir)) return null;
-
-  const files = fs.readdirSync(auditDir)
-    .filter(f => f.endsWith(`.${provider}.audit.json`))
-    .sort()
-    .reverse();
-
-  if (files.length < 2) return null;
-
-  const jsonPath = path.join(auditDir, files[1]);
-  return JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+  const result = getAuditByIndex(auditDir, provider, 1);
+  return result ? result.data : null;
 }
 
 // ============================================
