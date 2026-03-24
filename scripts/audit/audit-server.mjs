@@ -336,12 +336,27 @@ function collectHistoryData(trip, provider) {
   // Sort dates chronologically
   const dates = [...allDates].sort();
 
-  // Compute trip average per date
+  // Compute trip average per date (using most recent audit for each article)
   const tripAverage = {};
   for (const date of dates) {
-    const scores = Object.values(articles)
-      .map(a => a[date])
-      .filter(s => s != null);
+    const scores = [];
+
+    // For each article, use its most recent audit on or before this date
+    for (const article in articles) {
+      let mostRecentScore = null;
+
+      // Find most recent audit for this article on or before current date
+      for (const auditDate of dates) {
+        if (auditDate > date) break; // Don't look ahead
+        if (articles[article][auditDate] != null) {
+          mostRecentScore = articles[article][auditDate];
+        }
+      }
+
+      if (mostRecentScore != null) {
+        scores.push(mostRecentScore);
+      }
+    }
 
     if (scores.length > 0) {
       tripAverage[date] = scores.reduce((a, b) => a + b, 0) / scores.length;
