@@ -11,6 +11,7 @@ const { execSync } = require('child_process');
 const CONFIG = require('../../lib/config-paths');
 const { GALLERY_MARKER } = require('../../lib/constants');
 const { prompt } = require('../../lib/prompt-utilities');
+const { parseToolArgs, validateToolArgs } = require('./tool-helpers');
 
 /**
  * Parse trip structure from trip.json
@@ -426,13 +427,16 @@ async function runInteractiveAssignment(tripId) {
 }
 
 // CLI entry point
-const tripId = process.argv[2];
+const { tripFilter } = parseToolArgs(process.argv, {
+  allowTripFilePattern: false
+});
 
-if (!tripId) {
-  console.error('Usage: npm run assign-photos <trip-id>');
-  console.error('Example: npm run assign-photos spain-2025');
-  process.exit(1);
-}
+validateToolArgs({ tripFilter }, {
+  requireTrip: true,
+  usageMessage: 'Usage: npm run assign-photos <trip-id>\nExample: npm run assign-photos spain-2025'
+});
+
+const tripId = tripFilter;
 
 runInteractiveAssignment(tripId).catch(err => {
   console.error(`\n❌ Error: ${err.message}`);

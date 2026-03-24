@@ -15,6 +15,7 @@ const path = require('path');
 const CONFIG = require('../../lib/config-paths');
 const { MARKDOWN_IMAGE_REGEX } = require('../../lib/constants');
 const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, readTextFile, stripMarkdownToPlainText, countWords, countSentences } = require('../../lib/build-utilities');
+const { parseToolArgs } = require('./tool-helpers');
 
 // Analysis libraries
 const rs = require('text-readability').default;
@@ -264,10 +265,11 @@ console.log = function (...args) {
 
 // Parse CLI arguments
 function parseArgs(argv) {
-    const args = argv.slice(2).filter(a => a !== '--');
-    const wordcountMode = args.includes('--wordcount');
-    const filterTrip = args.find(a => !a.startsWith('--')) || null;
-    return { wordcountMode, filterTrip };
+    const { tripFilter, flags } = parseToolArgs(argv, {
+        booleanFlags: ['--wordcount'],
+        allowTripFilePattern: false
+    });
+    return { wordcountMode: flags.wordcount, filterTrip: tripFilter };
 }
 
 // Analyze a single trip's files

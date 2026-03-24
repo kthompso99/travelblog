@@ -24,7 +24,7 @@ Naxos was known in the ancient world for its marble quarries.
 
 ![Marble Quarry](images/Naxos-01.jpg)
 
-The stone is unusually white and fine-grained, with a slight translucency — you can see why early Greek sculptors preferred it. The quarries also produced enormous defect-free blocks, which is how a 10th-century mountain village called Apeiranthos ended up building everything out of marble, sidewalks included.
+The stone is unusually white and fine-grained, with a slight translucency -- you can see why early Greek sculptors preferred it. The quarries also produced enormous defect-free blocks, which is how a 10th-century mountain village called Apeiranthos ended up building everything out of marble, sidewalks included.
 
 ![Stairway in Apeiranthos](images/Naxos-02.jpg)
 

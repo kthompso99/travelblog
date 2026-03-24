@@ -21,6 +21,7 @@ const { execSync } = require('child_process');
 
 const CONFIG = require('../../lib/config-paths');
 const { discoverAllTrips, ensureDir, getFileSize } = require('../../lib/build-utilities');
+const { parseToolArgs } = require('./tool-helpers');
 
 // Configuration
 const MAX_WIDTH = 1800;          // Max width in pixels (for 600px CSS @ 3x retina)
@@ -28,10 +29,13 @@ const JPEG_QUALITY = 85;         // 85% quality (good balance of quality/size)
 const BACKUP_DIR = '.originals'; // Backup directory name
 
 // Parse command line arguments
-const args = process.argv.slice(2);
-const isDryRun = args.includes('--dry-run');
-const isForce = args.includes('--force');
-const specificTrip = args.find(arg => !arg.startsWith('--'));
+const { tripFilter, flags } = parseToolArgs(process.argv, {
+  booleanFlags: ['--dry-run', '--force'],
+  allowTripFilePattern: false
+});
+const isDryRun = flags.dryrun;
+const isForce = flags.force;
+const specificTrip = tripFilter;
 
 // Statistics
 let stats = {

@@ -28,6 +28,7 @@ const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
 const { discoverAllTrips, loadTripConfig } = require('../../lib/build-utilities');
+const { parseToolArgs } = require('./tool-helpers');
 
 // ---------------------------------------------------------------------------
 // Quote flattening
@@ -132,25 +133,16 @@ function processFile(filePath, dryRun) {
 // ---------------------------------------------------------------------------
 
 function parseArgs(argv) {
-    const args = argv.slice(2);
-    const dryRun = args.includes('--dry-run');
-    const positional = args.filter(a => !a.startsWith('--'));
+    const { tripFilter, fileFilter, flags } = parseToolArgs(argv, {
+        booleanFlags: ['--dry-run'],
+        allowTripFilePattern: true
+    });
 
-    let tripFilter = null;
-    let fileFilter = null;
-
-    if (positional.length > 0) {
-        const arg = positional[0];
-        if (arg.includes('/')) {
-            const parts = arg.split('/');
-            tripFilter = parts[0];
-            fileFilter = parts[1];
-        } else {
-            tripFilter = arg;
-        }
-    }
-
-    return { dryRun, tripFilter, fileFilter };
+    return {
+        dryRun: flags.dryrun,
+        tripFilter,
+        fileFilter: fileFilter ? path.basename(fileFilter, '.md') : null
+    };
 }
 
 // ---------------------------------------------------------------------------
