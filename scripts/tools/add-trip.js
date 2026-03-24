@@ -261,8 +261,8 @@ function createTripFiles(tripDir, tripConfig, content, metadata) {
     ensureDir(tripDir);
     console.log(`\n✅ Created directory: ${tripDir}`);
 
-    ensureDir(path.join(tripDir, 'images'));
-    console.log(`✅ Created directory: ${path.join(tripDir, 'images')}`);
+    ensureDir(path.join(tripDir, CONFIG.TRIP_IMAGES_SUBDIR));
+    console.log(`✅ Created directory: ${path.join(tripDir, CONFIG.TRIP_IMAGES_SUBDIR)}`);
 
     const tripConfigPath = CONFIG.getTripConfigPath(metadata.tripId);
     writeJsonFile(tripConfigPath, tripConfig);

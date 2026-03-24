@@ -27,7 +27,7 @@
 const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
-const { discoverAllTrips, loadTripConfig } = require('../../lib/build-utilities');
+const { discoverTrips, loadTripConfig } = require('../../lib/build-utilities');
 const { parseToolArgs } = require('./tool-helpers');
 
 // ---------------------------------------------------------------------------
@@ -149,12 +149,10 @@ function parseArgs(argv) {
 // File discovery
 // ---------------------------------------------------------------------------
 
-function collectFilesToProcess(tripIds, tripFilter, fileFilter) {
+function collectFilesToProcess(tripIds, fileFilter) {
     const filesToProcess = [];
 
     for (const tripId of tripIds) {
-        if (tripFilter && tripId !== tripFilter) continue;
-
         const tripConfig = loadTripConfig(tripId);
         const tripDir = CONFIG.getTripDir(tripId);
         const contentItems = tripConfig.content || [];
@@ -206,7 +204,7 @@ function printResults(totalFixed, allScareQuotes, dryRun) {
 function main() {
     const { dryRun, tripFilter, fileFilter } = parseArgs(process.argv);
 
-    const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
+    const tripIds = discoverTrips(tripFilter);
 
     if (tripIds.length === 0) {
         console.log('No trips found.');
@@ -215,7 +213,7 @@ function main() {
 
     console.log(`\n${dryRun ? '(DRY RUN) ' : ''}\u2550\u2550\u2550 Normalize Typography \u2550\u2550\u2550\n`);
 
-    const filesToProcess = collectFilesToProcess(tripIds, tripFilter, fileFilter);
+    const filesToProcess = collectFilesToProcess(tripIds, fileFilter);
 
     let totalFixed = 0;
     const allScareQuotes = [];

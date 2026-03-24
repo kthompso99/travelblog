@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
 const { MARKDOWN_IMAGE_REGEX } = require('../../lib/constants');
-const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, readTextFile, stripMarkdownToPlainText, countWords, countSentences } = require('../../lib/build-utilities');
+const { discoverTrips, loadTripConfig, processMarkdownWithGallery, readTextFile, stripMarkdownToPlainText, countWords, countSentences } = require('../../lib/build-utilities');
 const { parseToolArgs } = require('./tool-helpers');
 
 // Analysis libraries
@@ -318,7 +318,7 @@ function analyzeTripFiles(tripId) {
 function main() {
     const { wordcountMode, filterTrip } = parseArgs(process.argv);
 
-    const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
+    const tripIds = discoverTrips(filterTrip);
 
     if (tripIds.length === 0) {
         origLog('No trips found.');
@@ -330,7 +330,6 @@ function main() {
     const tripTotals = [];
 
     for (const tripId of tripIds) {
-        if (filterTrip && tripId !== filterTrip) continue;
 
         const tripData = analyzeTripFiles(tripId);
         if (tripData.rows.length === 0) continue;

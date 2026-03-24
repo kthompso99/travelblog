@@ -16,7 +16,7 @@
 const fs = require('fs');
 const path = require('path');
 const CONFIG = require('../../lib/config-paths');
-const { discoverAllTrips, loadTripConfig, processMarkdownWithGallery, stripInlineMarkdown, countWords } = require('../../lib/build-utilities');
+const { discoverTrips, loadTripConfig, processMarkdownWithGallery, stripInlineMarkdown, countWords } = require('../../lib/build-utilities');
 const writeGood = require('write-good');
 
 // ---------------------------------------------------------------------------
@@ -609,7 +609,7 @@ function main() {
         }
     }
 
-    const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
+    const tripIds = discoverTrips(tripFilter);
 
     if (tripIds.length === 0) {
         console.log('No trips found.');
@@ -621,7 +621,6 @@ function main() {
     const summaries = [];
 
     for (const tripId of tripIds) {
-        if (tripFilter && tripId !== tripFilter) continue;
 
         const tripConfig = loadTripConfig(tripId);
         const tripDir = CONFIG.getTripDir(tripId);

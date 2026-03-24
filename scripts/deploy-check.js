@@ -160,7 +160,7 @@ check('All images are optimized', () => {
     const unoptimized = [];
 
     for (const tripId of tripIds) {
-        const imagesDir = path.join(CONFIG.TRIPS_DIR, tripId, 'images');
+        const imagesDir = path.join(CONFIG.TRIPS_DIR, tripId, CONFIG.TRIP_IMAGES_SUBDIR);
         const originalsDir = path.join(imagesDir, '.originals');
 
         if (!fs.existsSync(imagesDir)) continue;

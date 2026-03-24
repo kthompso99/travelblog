@@ -12,17 +12,18 @@ const fs = require('fs');
 const path = require('path');
 const { imageSize } = require('image-size');
 const CONFIG = require('../../lib/config-paths');
+const { parseToolArgs, validateToolArgs } = require('./tool-helpers');
 
 const MIN_WIDTH = 1200;
 const MAX_RESULTS = 5;
 const IMAGE_EXT = /\.(jpe?g|png)$/i;
 
-const tripId = process.argv[2];
-if (!tripId) {
-    console.error('Usage: npm run hero-search -- <trip-id>');
-    console.error('Example: npm run hero-search -- utah');
-    process.exit(1);
-}
+const { tripFilter } = parseToolArgs(process.argv);
+validateToolArgs({ tripFilter }, {
+    requireTrip: true,
+    usageMessage: 'Usage: npm run hero-search -- <trip-id>\nExample: npm run hero-search -- utah'
+});
+const tripId = tripFilter;
 
 const imagesDir = CONFIG.getTripImagesDir(tripId);
 if (!fs.existsSync(imagesDir)) {

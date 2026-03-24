@@ -4,6 +4,7 @@
 
 import fs from "fs";
 import path from "path";
+import { GALLERY_MARKER } from "../../lib/constants.js";
 
 // ==============================
 // 🔧 Configuration
@@ -42,8 +43,6 @@ function getLocalDateTimeString(date = new Date()) {
   const minute = String(date.getMinutes()).padStart(2, '0');
   return `${year}-${month}-${day}-${hour}${minute}`;
 }
-
-const GALLERY_MARKER = "*Add your photos here*";
 
 // ==============================
 // 🗂️ Content Type Detection

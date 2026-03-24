@@ -177,7 +177,7 @@ function optimizeImage(imagePath, backupDir) {
  */
 function optimizeTrip(tripDir) {
   const tripName = path.basename(tripDir);
-  const imagesDir = path.join(tripDir, 'images');
+  const imagesDir = path.join(tripDir, CONFIG.TRIP_IMAGES_SUBDIR);
   const backupDir = path.join(imagesDir, BACKUP_DIR);
 
   const imageFiles = getImageFiles(imagesDir);
