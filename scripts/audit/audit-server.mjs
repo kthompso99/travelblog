@@ -16,7 +16,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getTripStatus, getFileStatus, getMostRecentFile } from "./audit-status.mjs";
-import { ARTICLE_THRESHOLD, TRIP_THRESHOLD } from "./audit-shared.mjs";
+import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, getTripAuditPath } from "./audit-shared.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -365,6 +365,97 @@ function collectHistoryData(trip, provider) {
 
   return { trip, provider, dates, articles, tripAverage };
 }
+
+// ============================================
+// API: Get Trip Audit Scores
+// ============================================
+
+app.get("/api/trip-audit-scores/:trip/:provider", (req, res) => {
+  try {
+    const { trip, provider } = req.params;
+    const tripAuditDir = getTripAuditPath(trip);
+
+    if (!fs.existsSync(tripAuditDir)) {
+      return res.status(404).json({ error: "No trip audits found" });
+    }
+
+    // Find most recent audit JSON for this provider
+    const auditFiles = fs.readdirSync(tripAuditDir)
+      .filter(f => f.endsWith(`.${provider}.audit.json`))
+      .sort()
+      .reverse();
+
+    if (auditFiles.length === 0) {
+      return res.status(404).json({ error: "No audit found for provider" });
+    }
+
+    const jsonPath = path.join(tripAuditDir, auditFiles[0]);
+    const scores = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+    const mtime = fs.statSync(jsonPath).mtime;
+
+    // Format timestamp
+    const now = new Date();
+    const diffMs = now - mtime;
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffHours / 24);
+
+    let lastModified;
+    if (diffHours < 1) lastModified = 'Just now';
+    else if (diffHours < 24) lastModified = `${diffHours}h ago`;
+    else if (diffDays === 1) lastModified = 'Yesterday';
+    else if (diffDays < 7) lastModified = `${diffDays} days ago`;
+    else lastModified = mtime.toLocaleDateString();
+
+    res.json({
+      scores,
+      lastModified,
+      filename: auditFiles[0]
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ============================================
+// API: Run Trip Audit
+// ============================================
+
+app.post("/api/trip-audit", async (req, res) => {
+  const { trip, provider } = req.body;
+
+  if (!trip || !provider) {
+    return res.status(400).json({ error: "Missing trip or provider" });
+  }
+
+  const validProviders = ["opus", "gpt"];
+  if (!validProviders.includes(provider)) {
+    return res.status(400).json({ error: "Invalid provider" });
+  }
+
+  try {
+    console.log(`[TRIP AUDIT] Running ${provider} trip audit on ${trip}...`);
+
+    // Import trip audit functions dynamically
+    const { default: runTripAudit } = await import("./trip-audit-api.mjs");
+
+    const { scores, markdown, jsonFilename, mdFilename } = await runTripAudit(trip, provider);
+
+    console.log(`[TRIP AUDIT] Completed ${provider} trip audit on ${trip}`);
+
+    res.json({
+      success: true,
+      scores,
+      markdown,
+      jsonFilename,
+      mdFilename
+    });
+
+  } catch (err) {
+    console.error(`[TRIP AUDIT] Failed: ${err.message}`);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // ============================================
 // Serve Audit Runner HTML

@@ -200,6 +200,8 @@
       border-radius: 4px;
       max-height: 250px;
       overflow-y: auto;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
     .delta-line {
@@ -359,6 +361,8 @@
       max-width: 900px;
       margin: 0 auto;
       line-height: 1.7;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
     }
 
     .preview-content:focus {
@@ -407,6 +411,8 @@
       border-radius: 3px;
       font-family: 'Courier New', monospace;
       font-size: 14px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .preview-content pre {
@@ -415,6 +421,9 @@
       border-radius: 4px;
       overflow-x: auto;
       margin-bottom: 15px;
+      max-width: 100%;
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
 
     .preview-content blockquote {
@@ -489,7 +498,7 @@
         <select class="file-selector" id="fileSelector">
           <option value="">Select file...</option>
         </select>
-        <button class="global-toggle" id="globalToggle" onclick="toggleAllDeltas()">
+        <button class="global-toggle" id="globalToggle" onclick="toggleAllDeltas()" style="margin-left: auto;">
           <span id="global-icon">▼</span> Hide details
         </button>
       </div>
@@ -537,6 +546,13 @@
 
   <script>
     // ============================================
+    // Constants
+    // ============================================
+
+    // Trip-level audit file identifier (must match TRIP_AUDIT_SUBDIR in audit-shared.mjs)
+    const TRIP_AUDIT_FILE = '_trip';
+
+    // ============================================
     // State Management
     // ============================================
 
@@ -546,7 +562,8 @@
       status: null,
       ws: null,
       runningAudits: new Set(),
-      config: null  // Loaded from /api/config
+      config: null,  // Loaded from /api/config
+      tripAuditControllers: {}  // AbortControllers for trip audits
     };
 
     // ============================================
@@ -726,6 +743,20 @@
 
       if (!state.status) return;
 
+      // Add _trip as first option (trip-level audit)
+      const tripOption = document.createElement('option');
+      tripOption.value = TRIP_AUDIT_FILE;
+      tripOption.textContent = '🎯 Trip Audit';
+      if (TRIP_AUDIT_FILE === state.file) tripOption.selected = true;
+      selector.appendChild(tripOption);
+
+      // Add separator
+      const separator = document.createElement('option');
+      separator.disabled = true;
+      separator.textContent = '──────────';
+      selector.appendChild(separator);
+
+      // Add individual files
       state.status.files.forEach(({ file }) => {
         const option = document.createElement('option');
         option.value = file;
@@ -735,7 +766,7 @@
       });
     }
 
-    function updateProviders() {
+    async function updateProviders() {
       const container = document.getElementById('providers');
       container.innerHTML = '';
 
@@ -744,12 +775,24 @@
         return;
       }
 
+      // Handle trip audit mode
+      if (state.file === TRIP_AUDIT_FILE) {
+        const tripStatus = await loadTripAuditStatus();
+        ['opus', 'gpt'].forEach(provider => {
+          const providerData = tripStatus[provider];
+          const card = createTripProviderCard(provider, providerData);
+          container.appendChild(card);
+        });
+        return;
+      }
+
+      // Handle regular file mode
       const fileStatus = state.status.files.find(f => f.file === state.file);
       if (!fileStatus) return;
 
       ['opus', 'gpt'].forEach(provider => {
         const providerData = fileStatus.providers[provider];
-        const card = createProviderCard(provider, providerData);
+        const card = createProviderCard(provider, providerData, false);
         container.appendChild(card);
       });
     }
@@ -819,10 +862,118 @@
       return card;
     }
 
+    // Load trip audit status from _trip directory
+    async function loadTripAuditStatus() {
+      const tripDir = `content/trips/${state.trip}/audits/_trip`;
+      const status = {
+        opus: { hasAudit: false, scores: null, lastModified: null },
+        gpt: { hasAudit: false, scores: null, lastModified: null }
+      };
+
+      for (const provider of ['opus', 'gpt']) {
+        try {
+          // Try to fetch the latest audit JSON for this provider
+          const response = await fetch(`/api/audit/${state.trip}/_trip/${provider}.md`);
+          if (response.ok) {
+            // Try to load the JSON file (we'll need to add an API endpoint for this)
+            // For now, just mark as having an audit
+            status[provider].hasAudit = true;
+            status[provider].lastModified = 'Available';
+
+            // Load JSON scores (need to read the JSON file, not the MD)
+            // We'll fetch this via a new pattern - try to load from known path
+            const jsonResponse = await fetch(`/api/trip-audit-scores/${state.trip}/${provider}`);
+            if (jsonResponse.ok) {
+              const data = await jsonResponse.json();
+              status[provider].scores = data.scores;
+              status[provider].lastModified = data.lastModified || 'Available';
+            }
+          }
+        } catch (err) {
+          console.log(`No ${provider} trip audit found:`, err);
+        }
+      }
+
+      return status;
+    }
+
+    function createTripProviderCard(provider, data) {
+      const card = document.createElement('div');
+      card.className = 'provider-card';
+      card.dataset.provider = provider;
+
+      const name = provider === 'opus' ? 'Opus' : 'GPT';
+      const isRunning = state.tripAuditControllers[provider] != null;
+
+      if (!data.hasAudit) {
+        card.innerHTML = `
+          <div class="provider-header">
+            <div class="provider-left">
+              <div class="provider-actions">
+                <button class="btn btn-primary" id="runTripBtn-${provider}" onclick="runTripAudit('${provider}')" ${isRunning ? 'disabled' : ''}>
+                  ${isRunning ? '<span class="spinner"></span>Running...' : `Run ${name}`}
+                </button>
+                ${isRunning ? `<button class="btn btn-danger" onclick="stopTripAudit('${provider}')">Stop</button>` : ''}
+                <button class="btn btn-secondary" onclick="loadTripAuditOutput('${provider}')">
+                  Output →
+                </button>
+              </div>
+            </div>
+            <div class="provider-status">No trip audit</div>
+          </div>
+          <div class="no-audit">No trip audit found</div>
+        `;
+        return card;
+      }
+
+      // Trip audit exists - show scores
+      const scores = data.scores || {};
+      const scoresHTML = renderTripScores(scores);
+      const overallScore = scores.overall_score ? scores.overall_score.toFixed(2) : 'N/A';
+
+      card.innerHTML = `
+        <div class="provider-header">
+          <div class="provider-left">
+            <div class="provider-actions">
+              <button class="btn btn-primary" id="runTripBtn-${provider}" onclick="runTripAudit('${provider}')" ${isRunning ? 'disabled' : ''}>
+                ${isRunning ? '<span class="spinner"></span>Running...' : `Run ${name}`}
+              </button>
+              ${isRunning ? `<button class="btn btn-danger" onclick="stopTripAudit('${provider}')">Stop</button>` : ''}
+              <button class="btn btn-secondary" onclick="loadTripAuditOutput('${provider}')">
+                Output →
+              </button>
+            </div>
+          </div>
+          <div class="provider-right">
+            <div class="provider-score">Overall: <strong>${overallScore}</strong></div>
+          </div>
+        </div>
+        <div class="status-line-flex">
+          <span></span>
+          <span class="last-audit">Last audit: ${data.lastModified}</span>
+        </div>
+        ${scoresHTML ? `<div class="deltas">${scoresHTML}</div>` : ''}
+      `;
+
+      return card;
+    }
+
+    function loadTripAuditOutput(provider) {
+      loadAuditOutput(provider);
+    }
+
     function renderDeltas(deltas) {
       return deltas.map(d => {
-        const className = d.downgrade ? 'delta-line downgrade' : 'delta-line';
-        return `<div class="${className}">${d.text}</div>`;
+        const color = d.downgrade ? '#d32f2f' : '#333';
+        const parts = d.text.split(/\s{2,}/); // Split on multiple spaces
+        if (parts.length >= 2) {
+          // Format: "Label    prev => curr  delta"
+          const label = parts[0].trim();
+          const rest = parts.slice(1).join('  ');
+          return `<div style="display: flex; justify-content: space-between; padding: 0; color: ${color}; ${d.downgrade ? 'font-weight: 600;' : ''}"><span>${label}</span><span style="margin-left: 8px; white-space: nowrap;">${rest}</span></div>`;
+        }
+        // Fallback for unexpected format
+        return `<div style="padding: 0; color: ${color}; ${d.downgrade ? 'font-weight: 600;' : ''}">${d.text}</div>`;
       }).join('');
     }
 
@@ -839,9 +990,62 @@
       return Object.entries(dimensions)
         .filter(([key, _]) => scores[key] != null)
         .map(([key, label]) => {
-          const text = `${label.padEnd(20)} ${scores[key].toFixed(1)}`;
-          return `<div class="delta-line">${text}</div>`;
+          return `<div style="display: flex; justify-content: space-between; padding: 0;"><span>${label}</span><span style="font-weight: 600; margin-left: 8px;">${scores[key].toFixed(1)}</span></div>`;
         }).join('');
+    }
+
+    function renderTripScores(scores) {
+      const tripDimensions = {
+        redundant_overlaps: 'Redundant Overlaps',
+        information_gaps: 'Information Gaps',
+        stylistic_consistency: 'Stylistic Consistency',
+        narrative_flow_sequencing: 'Narrative Flow'
+      };
+
+      return Object.entries(tripDimensions)
+        .filter(([key, _]) => scores[key] != null)
+        .map(([key, label]) => {
+          const value = scores[key].toFixed(1);
+          return `<div style="display: flex; justify-content: space-between; padding: 0; max-width: 100%; overflow: hidden;"><span style="flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${label}</span><span style="font-weight: 600; margin-left: 8px; flex-shrink: 0;">${value}</span></div>`;
+        }).join('');
+    }
+
+    function renderTripScoresCard(scores) {
+      const tripDimensions = {
+        redundant_overlaps: 'Redundant Overlaps',
+        information_gaps: 'Information Gaps',
+        stylistic_consistency: 'Stylistic Consistency',
+        narrative_flow_sequencing: 'Narrative Flow'
+      };
+
+      const scoreRows = Object.entries(tripDimensions)
+        .filter(([key, _]) => scores[key] != null)
+        .map(([key, label]) => {
+          const value = scores[key].toFixed(1);
+          const color = key === 'redundant_overlaps'
+            ? (scores[key] <= 3 ? '#4caf50' : scores[key] <= 6 ? '#ff9800' : '#d32f2f')
+            : (scores[key] >= 8 ? '#4caf50' : scores[key] >= 6 ? '#ff9800' : '#d32f2f');
+          return `
+            <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+              <span style="font-weight: 500;">${label}</span>
+              <span style="font-weight: 600; color: ${color};">${value}</span>
+            </div>
+          `;
+        }).join('');
+
+      const overallScore = scores.overall_score ? scores.overall_score.toFixed(2) : 'N/A';
+      const overallColor = parseFloat(overallScore) >= 8.7 ? '#4caf50' : parseFloat(overallScore) >= 7.5 ? '#ff9800' : '#d32f2f';
+
+      return `
+        <div style="background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 6px; padding: 16px; margin-bottom: 24px;">
+          <h3 style="margin-top: 0; margin-bottom: 12px; color: #333;">Trip Audit Scores</h3>
+          ${scoreRows}
+          <div style="display: flex; justify-content: space-between; padding: 12px 0; margin-top: 8px; border-top: 2px solid #333;">
+            <span style="font-weight: 700; font-size: 16px;">Overall Score</span>
+            <span style="font-weight: 700; font-size: 18px; color: ${overallColor};">${overallScore}</span>
+          </div>
+        </div>
+      `;
     }
 
     // ============================================
@@ -851,6 +1055,7 @@
     async function runAudit(provider) {
       if (!state.file) return;
 
+      state.lastProvider = provider;  // Track last used provider
       state.runningAudits.add(`${provider}-${state.file}`);
       updateProviders();
 
@@ -893,6 +1098,98 @@
         console.error('Failed to stop audit:', err);
         alert(`Failed to stop audit: ${err.message}`);
       }
+    }
+
+    async function runTripAudit(provider) {
+      if (!state.trip) {
+        alert('No trip loaded');
+        return;
+      }
+
+      // Create AbortController for this trip audit
+      const controller = new AbortController();
+      state.tripAuditControllers[provider] = controller;
+
+      // Update UI to show loading state
+      updateProviders();
+
+      try {
+        console.log(`[TRIP AUDIT] Starting ${provider} trip audit on ${state.trip}...`);
+
+        const response = await fetch('/api/trip-audit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            trip: state.trip,
+            provider
+          }),
+          signal: controller.signal
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          console.log(`[TRIP AUDIT] Completed: ${data.mdFilename}`);
+          displayTripAuditResults(data.markdown, data.mdFilename, provider, data.scores);
+        } else {
+          throw new Error(data.error || 'Trip audit failed');
+        }
+
+      } catch (err) {
+        if (err.name === 'AbortError') {
+          console.log(`[TRIP AUDIT] Cancelled ${provider} trip audit`);
+        } else {
+          console.error('Trip audit failed:', err);
+          alert(`Trip audit failed: ${err.message}`);
+        }
+      } finally {
+        delete state.tripAuditControllers[provider];
+        updateProviders();
+      }
+    }
+
+    function stopTripAudit(provider) {
+      const controller = state.tripAuditControllers[provider];
+      if (controller) {
+        console.log(`[TRIP AUDIT] Stopping ${provider} trip audit...`);
+        controller.abort();
+      }
+    }
+
+    function displayTripAuditResults(markdown, filename, provider, scores) {
+      // Convert markdown to HTML
+      const html = marked.parse(markdown);
+
+      // Display in preview pane
+      const previewContent = document.getElementById('previewContent');
+      const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
+
+      // Build scores display if available
+      const scoresHTML = scores ? renderTripScoresCard(scores) : '';
+
+      previewContent.innerHTML = `
+        <div style="padding: 20px;">
+          <h2>Trip-Level Audit (${providerLabel})</h2>
+          <p style="color: #666; font-size: 0.9em; margin-bottom: 20px;">${filename}</p>
+          ${scoresHTML}
+          <div>${html}</div>
+        </div>
+      `;
+
+      // Highlight the provider card that ran the trip audit
+      document.querySelectorAll('.provider-card').forEach(card => {
+        card.classList.remove('active');
+      });
+      const activeCard = document.querySelector(`.provider-card[data-provider="${provider}"]`);
+      if (activeCard) {
+        activeCard.classList.add('active');
+      }
+
+      // Scroll to top
+      document.querySelector('.preview-pane').scrollTop = 0;
+
+      // Reload providers to show updated scores in card
+      updateProviders();
     }
 
     async function loadAuditOutput(provider) {
@@ -1266,7 +1563,10 @@
 
     window.runAudit = runAudit;
     window.stopAudit = stopAudit;
+    window.runTripAudit = runTripAudit;
+    window.stopTripAudit = stopTripAudit;
     window.loadAuditOutput = loadAuditOutput;
+    window.loadTripAuditOutput = loadTripAuditOutput;
     window.toggleAllDeltas = toggleAllDeltas;
     window.showRankings = showRankings;
     window.closeRankings = closeRankings;

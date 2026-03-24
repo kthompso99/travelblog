@@ -26,13 +26,12 @@ import path from "path";
 import OpenAI from "openai";
 import Anthropic from "@anthropic-ai/sdk";
 import {
-  readArticleContent,
   loadContextDocs,
   parseAuditResponse,
-  getContentType,
   SYSTEM_PROMPT,
   ENFORCEMENT_MANDATE
 } from "./audit-shared.mjs";
+import { prepareAuditContent } from "./audit-cli-shared.mjs";
 
 // ==============================
 // 🔧 CONFIG
@@ -77,12 +76,8 @@ const { editorialStandards, brandIdentity, antiAIGuidelines } = loadContextDocs(
 console.log("Snapshotted context docs (Editorial-Standards.md, Brand.md, AntiAIWritingGuidelines.md)");
 
 const targets = FILES.map(f => {
-  const contentType = getContentType(f.path);
-  const rawContent = readArticleContent(f.path);
-  const content = contentType === "article"
-    ? "[Content type: article — evaluate on 5 dimensions only, exclude Decision Clarity per editorial standards]\n\n" + rawContent
-    : rawContent;
-  console.log(`Snapshotted ${f.slug}.md (${contentType}, ${rawContent.length} chars)`);
+  const { content, contentType } = prepareAuditContent(f.path);
+  console.log(`Snapshotted ${f.slug}.md (${contentType}, ${content.length} chars)`);
   return { slug: f.slug, contentType, content };
 });
 

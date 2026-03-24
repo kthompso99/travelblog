@@ -2,19 +2,22 @@
 // Two Travel Nuts — GPT Editorial Audit
 // ==============================
 
-import path from "path";
 import fs from "fs";
 import OpenAI from "openai";
 import {
-  readArticleContent,
-  loadContextDocs,
   parseAuditResponse,
   saveAuditResults,
   resolveFiles,
-  getContentType,
   ENFORCEMENT_MANDATE,
   SYSTEM_PROMPT
 } from "./audit-shared.mjs";
+import {
+  parseCLIArgs,
+  prepareAuditContent,
+  runAuditBatch,
+  reportResults,
+  printUsage
+} from "./audit-cli-shared.mjs";
 
 const MODEL = "gpt-5.2";
 const PROVIDER = "gpt";
@@ -48,12 +51,8 @@ async function runAudit(filepath) {
     apiKey: getOpenAIApiKey()
   });
 
-  const contentType = getContentType(filepath);
-  const rawContent = readArticleContent(filepath);
-  const content = contentType === "article"
-    ? "[Content type: article — evaluate on 5 dimensions only, exclude Decision Clarity per editorial standards]\n\n" + rawContent
-    : rawContent;
-  const { editorialStandards, brandIdentity, antiAIGuidelines } = loadContextDocs();
+  const { content, contentType, context } = prepareAuditContent(filepath);
+  const { editorialStandards, brandIdentity, antiAIGuidelines } = context;
 
   const response = await client.responses.create({
     model: MODEL,
@@ -75,24 +74,16 @@ async function runAudit(filepath) {
 // CLI
 // ==============================
 
-// Strip --audit-dir and its value from args
-const rawArgs = process.argv.slice(2);
-const args = [];
-let auditDirName = "audits";
-for (let i = 0; i < rawArgs.length; i++) {
-  if (rawArgs[i] === "--audit-dir") {
-    auditDirName = rawArgs[++i];
-  } else {
-    args.push(rawArgs[i]);
-  }
-}
+const { args, flags } = parseCLIArgs(process.argv, ["auditDir"]);
+const auditDirName = flags.auditDir || "audits";
 
 if (args.length === 0) {
-  console.log("Usage: npm run gpt-audit -- spain/granada");
-  console.log("       npm run gpt-audit -- spain/ronda spain/seville");
-  console.log("       npm run gpt-audit -- spain  (all files, incremental)");
-  console.log("       npm run gpt-audit -- --audit-dir audits-antiAI greece  (save to alternate dir)");
-  process.exit(1);
+  printUsage("npm run gpt-audit", [
+    "npm run gpt-audit -- spain/granada",
+    "npm run gpt-audit -- spain/ronda spain/seville",
+    "npm run gpt-audit -- spain  (all files, incremental)",
+    "npm run gpt-audit -- --audit-dir audits-antiAI greece  (save to alternate dir)"
+  ]);
 }
 
 // Skip incremental check when using alternate audit dir
@@ -110,22 +101,5 @@ if (auditDirName !== "audits") {
 }
 console.log(`Auditing ${files.length} file(s) with GPT...\n`);
 
-let failed = false;
-const mdPaths = [];
-for (const file of files) {
-  try {
-    const mdPath = await runAudit(file);
-    if (mdPath) mdPaths.push(mdPath);
-  } catch (err) {
-    console.error(`\nFailed to audit ${file}: ${err.message}\n`);
-    failed = true;
-  }
-}
-
-// Print audit result paths
-if (mdPaths.length > 0) {
-  console.log("Audit results:");
-  for (const p of mdPaths) console.log(`  ${path.resolve(p)}`);
-}
-
-if (failed) process.exit(1);
+const { mdPaths, failed } = await runAuditBatch(files, runAudit);
+reportResults(mdPaths, failed);

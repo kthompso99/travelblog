@@ -21,6 +21,7 @@
     "gpt-audit": "node scripts/audit/gpt-audit.mjs",
     "sonnet-audit": "node scripts/audit/anthropic-audit.mjs --provider sonnet",
     "opus-audit": "node scripts/audit/anthropic-audit.mjs --provider opus",
+    "trip-audit": "node scripts/audit/trip-audit.mjs",
     "dashboard": "node scripts/audit/dashboard.mjs",
     "audit-dash": "node scripts/audit/audit-server.mjs",
     "sync-photos": "node scripts/tools/sync-takeout-photos.js",

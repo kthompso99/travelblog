@@ -11,30 +11,16 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import { WEIGHTS, DIMENSION_LABELS, computeDeltas, getAuditByIndex } from "./audit-shared.mjs";
+import { WEIGHTS, DIMENSION_LABELS, computeDeltas, getAuditByIndex, getTripMdFiles, getAuditPath } from "./audit-shared.mjs";
 
 const PROVIDERS = ["opus", "gpt"];
-
-// ============================================
-// Get All Files in Trip
-// ============================================
-
-function getTripFiles(tripName) {
-  const tripPath = path.join("content/trips", tripName);
-  if (!fs.existsSync(tripPath)) return [];
-
-  return fs.readdirSync(tripPath)
-    .filter(f => f.endsWith(".md"))
-    .map(f => f.replace(".md", ""))
-    .sort();
-}
 
 // ============================================
 // Get Latest Audit for Provider
 // ============================================
 
 function getLatestAudit(tripName, fileName, provider) {
-  const auditDir = path.join("content/trips", tripName, "audits", fileName);
+  const auditDir = getAuditPath(tripName, fileName);
   const result = getAuditByIndex(auditDir, provider, 0);
   if (!result) return null;
 
@@ -52,7 +38,7 @@ function getLatestAudit(tripName, fileName, provider) {
 // ============================================
 
 function getPreviousAudit(tripName, fileName, provider) {
-  const auditDir = path.join("content/trips", tripName, "audits", fileName);
+  const auditDir = getAuditPath(tripName, fileName);
   const result = getAuditByIndex(auditDir, provider, 1);
   return result ? result.data : null;
 }
@@ -156,7 +142,7 @@ export function getFileStatus(tripName, fileName) {
 // ============================================
 
 export function getTripStatus(tripName) {
-  const files = getTripFiles(tripName);
+  const files = getTripMdFiles(tripName);
 
   return {
     trip: tripName,

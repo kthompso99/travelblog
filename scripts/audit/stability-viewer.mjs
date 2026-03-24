@@ -13,21 +13,13 @@
 
 import fs from "fs";
 import path from "path";
+import { DIMENSION_LABELS } from "./audit-shared.mjs";
 
 const OUTPUT_DIR = "audit-stability";
 
 // --provider gpt | sonnet | opus (default: all)
 const provIdx = process.argv.indexOf("--provider");
 const PROVIDER_FILTER = provIdx !== -1 ? process.argv[provIdx + 1] : null;
-
-const DIMENSION_LABELS = {
-  prose_control_structure: "Prose Control",
-  narrative_clarity_arc:   "Narrative Clarity",
-  opening_strength:        "Opening Strength",
-  brand_alignment:         "Brand Alignment",
-  distinctiveness:         "Distinctiveness",
-  decision_clarity:        "Decision Clarity"
-};
 
 const DIMENSIONS = Object.keys(DIMENSION_LABELS);
 

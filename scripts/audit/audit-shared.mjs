@@ -22,8 +22,11 @@ export const WEIGHTS = {
 export const ARTICLE_THRESHOLD = 8.5;
 export const TRIP_THRESHOLD = 8.7;
 
+// Trip-level audit subdirectory name
+export const TRIP_AUDIT_SUBDIR = "_trip";
+
 // Get local date in YYYY-MM-DD format (not UTC)
-function getLocalDateString(date = new Date()) {
+export function getLocalDateString(date = new Date()) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
@@ -127,6 +130,67 @@ export function readArticleContent(filepath) {
   return content;
 }
 
+export function loadTripConfig(tripSlug) {
+  const tripJsonPath = path.join("content/trips", tripSlug, "trip.json");
+  if (!fs.existsSync(tripJsonPath)) {
+    throw new Error(`Trip not found: ${tripSlug} (looking for ${tripJsonPath})`);
+  }
+  return JSON.parse(fs.readFileSync(tripJsonPath, "utf-8"));
+}
+
+// ==============================
+// 📂 Path Helpers
+// ==============================
+
+export function getTripPath(tripSlug) {
+  return path.join("content/trips", tripSlug);
+}
+
+export function getAuditPath(tripSlug, fileName) {
+  return path.join("content/trips", tripSlug, "audits", fileName);
+}
+
+export function getTripAuditPath(tripSlug) {
+  return path.join("content/trips", tripSlug, "audits", TRIP_AUDIT_SUBDIR);
+}
+
+// ==============================
+// 📂 File Filtering Helpers
+// ==============================
+
+export const AUDIT_DATE_PATTERN = /^(\d{4}-\d{2}-\d{2})/;
+
+export function getTripMdFiles(tripSlug) {
+  const tripPath = getTripPath(tripSlug);
+  if (!fs.existsSync(tripPath)) return [];
+
+  return fs.readdirSync(tripPath)
+    .filter(f => f.endsWith(".md"))
+    .map(f => f.replace(".md", ""))
+    .sort();
+}
+
+export function getLatestAuditFile(auditDir, provider) {
+  if (!fs.existsSync(auditDir)) return null;
+
+  const files = fs.readdirSync(auditDir)
+    .filter(f => f.endsWith(`.${provider}.audit.json`))
+    .sort()
+    .reverse();
+
+  return files.length > 0 ? files[0] : null;
+}
+
+// ==============================
+// 📊 Score Aggregation
+// ==============================
+
+export function computeTripAverage(scores) {
+  if (!scores || scores.length === 0) return 0;
+  const sum = scores.reduce((a, b) => a + b, 0);
+  return sum / scores.length;
+}
+
 // ==============================
 // 📂 Load Prompt Files
 // ==============================
@@ -160,7 +224,9 @@ export function loadContextDocs() {
 // 🧠 Parse Audit Response
 // ==============================
 
-export function parseAuditResponse(output, contentType) {
+// Shared helper: extract JSON and markdown from LLM output
+export function extractJsonAndMarkdown(output) {
+  // Extract JSON
   let jsonString;
   const fencedMatch = output.match(/```json\s*([\s\S]*?)\s*```/);
 
@@ -177,6 +243,7 @@ export function parseAuditResponse(output, contentType) {
     jsonString = output.slice(firstBrace, lastBrace + 1);
   }
 
+  // Parse JSON
   let parsed;
   try {
     parsed = JSON.parse(jsonString);
@@ -185,13 +252,7 @@ export function parseAuditResponse(output, contentType) {
     throw err;
   }
 
-  if (!parsed.scores) {
-    throw new Error("Parsed JSON does not contain 'scores' object.");
-  }
-
-  const scores = normalizeScoreKeys(parsed.scores);
-  scores.overall_score = computeWeightedScore(scores, contentType);
-
+  // Extract and clean markdown
   const markdownStart = output.indexOf(jsonString) + jsonString.length;
   let markdown = output.slice(markdownStart).trim();
 
@@ -200,6 +261,19 @@ export function parseAuditResponse(output, contentType) {
     .replace(/\n?```\s*$/, "")
     .replace(/^#{0,3}\s*PART 2\s*[—–-]\s*MARKDOWN ANALYSIS:?\s*\n*/i, "")
     .trim();
+
+  return { parsed, markdown };
+}
+
+export function parseAuditResponse(output, contentType) {
+  const { parsed, markdown } = extractJsonAndMarkdown(output);
+
+  if (!parsed.scores) {
+    throw new Error("Parsed JSON does not contain 'scores' object.");
+  }
+
+  const scores = normalizeScoreKeys(parsed.scores);
+  scores.overall_score = computeWeightedScore(scores, contentType);
 
   return { scores, markdown };
 }
@@ -246,13 +320,36 @@ export function getPreviousAudit(auditFolder, provider) {
   return result.data;
 }
 
-function formatTime(date) {
+// Get previous trip audit (for CLI comparison)
+export function getPreviousTripAudit(tripSlug, provider) {
+  const tripAuditDir = getTripAuditPath(tripSlug);
+
+  if (!fs.existsSync(tripAuditDir)) return null;
+
+  const auditFiles = fs
+    .readdirSync(tripAuditDir)
+    .filter(f => f.endsWith(`.${provider}.audit.json`))
+    .sort()
+    .reverse();
+
+  if (auditFiles.length === 0) return null;
+
+  const filename = auditFiles[0];
+  const fullPath = path.join(tripAuditDir, filename);
+  const data = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
+  const mtime = fs.statSync(fullPath).mtime;
+
+  data._mtime = mtime;
+  return data;
+}
+
+export function formatTime(date) {
   return date
     .toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true })
     .toLowerCase();
 }
 
-function formatPrevTimestamp(mtime) {
+export function formatPrevTimestamp(mtime) {
   const now = new Date();
   const isToday = mtime.toDateString() === now.toDateString();
 
@@ -279,12 +376,19 @@ export const DIMENSION_LABELS = {
   decision_clarity:        "Decision Clarity"
 };
 
-// Compute deltas between two audit scores (returns structured data)
-export function computeDeltas(current, previous) {
+export const TRIP_DIMENSION_LABELS = {
+  redundant_overlaps:         "Redundant Overlaps",
+  information_gaps:           "Information Gaps",
+  stylistic_consistency:      "Stylistic Consistency",
+  narrative_flow_sequencing:  "Narrative Flow"
+};
+
+// Internal helper: compute deltas with configurable labels and padding
+function computeGenericDeltas(current, previous, labelMap, padding) {
   if (!previous) return null;
 
   const deltas = [];
-  const dimensions = Object.keys(DIMENSION_LABELS);
+  const dimensions = Object.keys(labelMap);
 
   for (const dim of dimensions) {
     const curr = current[dim];
@@ -296,12 +400,12 @@ export function computeDeltas(current, previous) {
     const flag = delta < 0 ? " *** Downgrade" : "";
 
     deltas.push({
-      dimension: DIMENSION_LABELS[dim],
+      dimension: labelMap[dim],
       prev: prev.toFixed(1),
       curr: curr.toFixed(1),
       delta: (delta >= 0 ? "+" : "") + delta.toFixed(1),
       downgrade: delta < 0,
-      text: `${DIMENSION_LABELS[dim].padEnd(20)} ${prev.toFixed(1)} => ${curr.toFixed(1)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(1)}${flag}`
+      text: `${labelMap[dim].padEnd(padding)} ${prev.toFixed(1)} => ${curr.toFixed(1)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(1)}${flag}`
     });
   }
 
@@ -314,11 +418,21 @@ export function computeDeltas(current, previous) {
       curr: current.overall_score.toFixed(2),
       delta: (delta >= 0 ? "+" : "") + delta.toFixed(2),
       downgrade: delta < 0,
-      text: `${"Overall".padEnd(20)} ${previous.overall_score.toFixed(2)} => ${current.overall_score.toFixed(2)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(2)}${delta < 0 ? " *** Downgrade" : ""}`
+      text: `${"Overall".padEnd(padding)} ${previous.overall_score.toFixed(2)} => ${current.overall_score.toFixed(2)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(2)}${delta < 0 ? " *** Downgrade" : ""}`
     });
   }
 
   return deltas;
+}
+
+// Compute deltas between two audit scores (returns structured data)
+export function computeDeltas(current, previous) {
+  return computeGenericDeltas(current, previous, DIMENSION_LABELS, 20);
+}
+
+// Compute deltas for trip audits (4 dimensions instead of 6)
+export function computeTripDeltas(current, previous) {
+  return computeGenericDeltas(current, previous, TRIP_DIMENSION_LABELS, 24);
 }
 
 function printComparison(prev, curr) {

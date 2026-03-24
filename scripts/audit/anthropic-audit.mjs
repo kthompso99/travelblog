@@ -5,22 +5,26 @@
 // Shared script for Sonnet and Opus audits.
 // Invoked via npm run sonnet-audit or npm run opus-audit.
 
-import path from "path";
 import Anthropic from "@anthropic-ai/sdk";
 import {
-  readArticleContent,
-  loadContextDocs,
   parseAuditResponse,
   saveAuditResults,
   resolveFiles,
-  getContentType,
   ENFORCEMENT_MANDATE,
   SYSTEM_PROMPT
 } from "./audit-shared.mjs";
+import {
+  parseCLIArgs,
+  prepareAuditContent,
+  runAuditBatch,
+  reportResults,
+  printUsage
+} from "./audit-cli-shared.mjs";
 
-// Determine provider from --provider flag (set by npm script)
-const providerIdx = process.argv.indexOf("--provider");
-const providerArg = providerIdx !== -1 ? process.argv[providerIdx + 1] : "sonnet";
+// Parse CLI flags
+const { args: fileArgs, flags } = parseCLIArgs(process.argv, ["provider", "auditDir"]);
+const providerArg = flags.provider || "sonnet";
+const auditDirName = flags.auditDir || "audits";
 
 const PROFILES = {
   sonnet: { model: "claude-sonnet-4-5-20250929", provider: "sonnet", label: "Sonnet" },
@@ -37,12 +41,8 @@ const { model: MODEL, provider: PROVIDER, label: LABEL } = profile;
 async function runAudit(filepath) {
   const client = new Anthropic();
 
-  const contentType = getContentType(filepath);
-  const rawContent = readArticleContent(filepath);
-  const content = contentType === "article"
-    ? "[Content type: article — evaluate on 5 dimensions only, exclude Decision Clarity per editorial standards]\n\n" + rawContent
-    : rawContent;
-  const { editorialStandards, brandIdentity, antiAIGuidelines } = loadContextDocs();
+  const { content, contentType, context } = prepareAuditContent(filepath);
+  const { editorialStandards, brandIdentity, antiAIGuidelines } = context;
 
   const systemPrompt = [
     ENFORCEMENT_MANDATE,
@@ -70,32 +70,19 @@ async function runAudit(filepath) {
 // CLI
 // ==============================
 
-// Strip --provider, --audit-dir and their values from args before resolving files
-const rawArgs = process.argv.slice(2);
-const args = [];
-let auditDirName = "audits";
-for (let i = 0; i < rawArgs.length; i++) {
-  if (rawArgs[i] === "--provider") {
-    i++; // skip the provider value
-  } else if (rawArgs[i] === "--audit-dir") {
-    auditDirName = rawArgs[++i];
-  } else {
-    args.push(rawArgs[i]);
-  }
-}
-
 const cmd = `npm run ${PROVIDER}-audit`;
-if (args.length === 0) {
-  console.log(`Usage: ${cmd} -- spain/granada`);
-  console.log(`       ${cmd} -- spain  (all files, incremental)`);
-  console.log(`       ${cmd} -- --audit-dir audits-test greece/paros  (save to alternate dir)`);
-  process.exit(1);
+if (fileArgs.length === 0) {
+  printUsage(cmd, [
+    `${cmd} -- spain/granada`,
+    `${cmd} -- spain  (all files, incremental)`,
+    `${cmd} -- --audit-dir audits-test greece/paros  (save to alternate dir)`
+  ]);
 }
 
 // Skip incremental check when using alternate audit dir
 const files = auditDirName !== "audits"
-  ? resolveFiles(args, "__force__")
-  : resolveFiles(args, PROVIDER);
+  ? resolveFiles(fileArgs, "__force__")
+  : resolveFiles(fileArgs, PROVIDER);
 
 if (files.length === 0) {
   console.log(`All ${LABEL} audits are current. Nothing to do.`);
@@ -107,22 +94,5 @@ if (auditDirName !== "audits") {
 }
 console.log(`Auditing ${files.length} file(s) with ${LABEL} (${MODEL})...\n`);
 
-let failed = false;
-const mdPaths = [];
-for (const file of files) {
-  try {
-    const mdPath = await runAudit(file);
-    if (mdPath) mdPaths.push(mdPath);
-  } catch (err) {
-    console.error(`\nFailed to audit ${file}: ${err.message}\n`);
-    failed = true;
-  }
-}
-
-// Print audit result paths
-if (mdPaths.length > 0) {
-  console.log("Audit results:");
-  for (const p of mdPaths) console.log(`  ${path.resolve(p)}`);
-}
-
-if (failed) process.exit(1);
+const { mdPaths, failed } = await runAuditBatch(files, runAudit);
+reportResults(mdPaths, failed);
