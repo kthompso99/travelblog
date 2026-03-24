@@ -7,7 +7,8 @@
 
 const fs = require('fs');
 const path = require('path');
-const { discoverAllTrips, CONFIG } = require('../../lib/config-paths.js');
+const CONFIG = require('../../lib/config-paths.js');
+const { discoverAllTrips } = require('../../lib/build-utilities.js');
 
 /**
  * Parse CLI arguments for tool scripts.
@@ -92,7 +93,7 @@ function parseToolArgs(argv, options = {}) {
  * // Returns all .md files from all trips (excluding main.md)
  */
 function collectContentFiles(tripFilter = null, fileFilter = null) {
-  const tripIds = discoverAllTrips();
+  const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
   const files = [];
 
   for (const tripId of tripIds) {
