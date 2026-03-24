@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Audit Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -521,6 +522,19 @@
     </div>
   </div>
 
+  <!-- History Modal -->
+  <div id="historyModal" class="modal" onclick="closeHistoryIfOutside(event)">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h2 id="historyTitle"></h2>
+        <button class="modal-close" onclick="closeHistory()">×</button>
+      </div>
+      <div class="modal-body" style="padding: 20px;">
+        <canvas id="historyChart"></canvas>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ============================================
     // State Management
@@ -573,12 +587,16 @@
         }
       });
 
-      // Set up ESC key handler for modal
+      // Set up ESC key handler for modals
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-          const modal = document.getElementById('rankingsModal');
-          if (modal.classList.contains('show')) {
+          const rankingsModal = document.getElementById('rankingsModal');
+          const historyModal = document.getElementById('historyModal');
+
+          if (rankingsModal.classList.contains('show')) {
             closeRankings();
+          } else if (historyModal.classList.contains('show')) {
+            closeHistory();
           }
         }
       });
@@ -779,6 +797,9 @@
               </button>
               <button class="btn btn-secondary" onclick="showRankings('${provider}')">
                 Rank
+              </button>
+              <button class="btn btn-secondary" onclick="showHistory('${provider}')">
+                History
               </button>
             </div>
           </div>
@@ -1062,6 +1083,184 @@
     }
 
     // ============================================
+    // History Chart Functions
+    // ============================================
+
+    let historyChartInstance = null;
+
+    async function showHistory(provider) {
+      if (!state.trip) return;
+
+      try {
+        // Fetch history data
+        const response = await fetch(`/api/history/${state.trip}/${provider}`);
+        const data = await response.json();
+
+        // Update modal title
+        const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
+        const tripLabel = state.trip.charAt(0).toUpperCase() + state.trip.slice(1);
+        document.getElementById('historyTitle').textContent =
+          `${providerLabel} History — ${tripLabel}`;
+
+        // Prepare chart data
+        const chartData = prepareChartData(data);
+
+        // Render chart
+        renderHistoryChart(chartData);
+
+        // Show modal
+        document.getElementById('historyModal').classList.add('show');
+      } catch (err) {
+        console.error('Failed to load history:', err);
+        alert(`Failed to load history: ${err.message}`);
+      }
+    }
+
+    function prepareChartData(historyData) {
+      const { dates, articles, tripAverage } = historyData;
+
+      // X-axis labels: MM-DD format
+      const labels = dates.map(d => d.slice(5));
+
+      // Expanded color palette with more distinct colors
+      const colors = [
+        '#1976d2', // blue
+        '#388e3c', // green
+        '#d32f2f', // red
+        '#f57c00', // orange
+        '#7b1fa2', // purple
+        '#0097a7', // cyan
+        '#e91e63', // pink
+        '#ff9800', // amber
+        '#00897b', // teal
+        '#5d4037', // brown
+        '#795548', // dark brown
+        '#607d8b'  // blue grey
+      ];
+
+      const datasets = [];
+      let maxScore = 0;
+
+      // Article datasets (dashed lines)
+      const articleNames = Object.keys(articles).sort();
+      articleNames.forEach((article, index) => {
+        const color = colors[index % colors.length];
+        const articleData = articles[article];
+        const dataPoints = dates.map(date => articleData[date] ?? null);
+
+        // Track max score
+        dataPoints.forEach(score => {
+          if (score != null && score > maxScore) maxScore = score;
+        });
+
+        datasets.push({
+          label: article.charAt(0).toUpperCase() + article.slice(1),
+          data: dataPoints,
+          borderColor: color,
+          backgroundColor: color + '33',
+          borderWidth: 2,
+          borderDash: [5, 5],
+          spanGaps: true,
+          pointRadius: 3,
+          pointHoverRadius: 5
+        });
+      });
+
+      // Trip average dataset (solid, thicker)
+      const avgData = dates.map(date => tripAverage[date]);
+      avgData.forEach(score => {
+        if (score != null && score > maxScore) maxScore = score;
+      });
+
+      datasets.push({
+        label: 'Trip Average',
+        data: avgData,
+        borderColor: '#333',
+        backgroundColor: '#33333333',
+        borderWidth: 3,
+        borderDash: [],
+        spanGaps: true,
+        pointRadius: 4,
+        pointHoverRadius: 6
+      });
+
+      return { labels, datasets, maxScore };
+    }
+
+    function renderHistoryChart(chartData) {
+      const ctx = document.getElementById('historyChart').getContext('2d');
+
+      // Destroy previous chart
+      if (historyChartInstance) {
+        historyChartInstance.destroy();
+      }
+
+      // Calculate Y-axis max: round up to nearest 0.5, minimum 9.5
+      const maxScore = chartData.maxScore || 9;
+      const yMax = Math.max(9.5, Math.ceil(maxScore * 2) / 2);
+
+      // Create new chart
+      historyChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 2,
+          plugins: {
+            legend: {
+              position: 'right',
+              labels: { font: { size: 12 }, padding: 10, usePointStyle: true }
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(context) {
+                  const label = context.dataset.label || '';
+                  const value = context.parsed.y;
+                  return value != null ? `${label}: ${value.toFixed(2)}` : null;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'Date (MM-DD)', font: { size: 13 } },
+              grid: { display: false }
+            },
+            y: {
+              title: { display: true, text: 'Score', font: { size: 13 } },
+              min: 7,
+              max: yMax,
+              ticks: { stepSize: 0.5 },
+              grid: { color: '#e0e0e0' }
+            }
+          },
+          interaction: {
+            mode: 'nearest',
+            axis: 'x',
+            intersect: false
+          }
+        }
+      });
+    }
+
+    function closeHistory() {
+      document.getElementById('historyModal').classList.remove('show');
+      if (historyChartInstance) {
+        historyChartInstance.destroy();
+        historyChartInstance = null;
+      }
+    }
+
+    function closeHistoryIfOutside(event) {
+      if (event.target.id === 'historyModal') {
+        closeHistory();
+      }
+    }
+
+    // ============================================
     // Make functions global for onclick handlers
     // ============================================
 
@@ -1072,6 +1271,9 @@
     window.showRankings = showRankings;
     window.closeRankings = closeRankings;
     window.closeRankingsIfOutside = closeRankingsIfOutside;
+    window.showHistory = showHistory;
+    window.closeHistory = closeHistory;
+    window.closeHistoryIfOutside = closeHistoryIfOutside;
     window.selectFileFromRankings = selectFileFromRankings;
 
     // ============================================

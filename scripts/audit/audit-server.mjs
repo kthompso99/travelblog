@@ -268,6 +268,90 @@ app.post("/api/stop-audit", (req, res) => {
 });
 
 // ============================================
+// API: Get History Data
+// ============================================
+
+app.get("/api/history/:trip/:provider", (req, res) => {
+  try {
+    const { trip, provider } = req.params;
+
+    const validProviders = ["opus", "gpt"];
+    if (!validProviders.includes(provider)) {
+      return res.status(400).json({ error: "Invalid provider" });
+    }
+
+    const history = collectHistoryData(trip, provider);
+    res.json(history);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+function collectHistoryData(trip, provider) {
+  const tripsPath = path.join("content/trips", trip);
+  if (!fs.existsSync(tripsPath)) {
+    throw new Error("Trip not found");
+  }
+
+  const allDates = new Set();
+  const articles = {};
+
+  // Scan all article audit folders
+  for (const file of fs.readdirSync(tripsPath)) {
+    if (!file.endsWith(".md")) continue;
+
+    const articleName = file.replace(".md", "");
+    const auditFolder = path.join(tripsPath, "audits", articleName);
+
+    if (!fs.existsSync(auditFolder)) continue;
+
+    // Read all audit files for this provider
+    const auditFiles = fs.readdirSync(auditFolder)
+      .filter(f => f.endsWith(`.${provider}.audit.json`));
+
+    // Group by date, keep latest if multiple audits same day
+    const byDate = {};
+    for (const file of auditFiles) {
+      const match = file.match(/^(\d{4}-\d{2}-\d{2})(?:-\d{4})?/);
+      if (!match) continue;
+      const date = match[1];
+
+      if (!byDate[date] || file > byDate[date]) {
+        byDate[date] = file;
+      }
+    }
+
+    // Load scores
+    articles[articleName] = {};
+    for (const [date, file] of Object.entries(byDate)) {
+      const data = JSON.parse(
+        fs.readFileSync(path.join(auditFolder, file), "utf-8")
+      );
+      const score = data.overall_score;
+      articles[articleName][date] = score;
+      allDates.add(date);
+    }
+  }
+
+  // Sort dates chronologically
+  const dates = [...allDates].sort();
+
+  // Compute trip average per date
+  const tripAverage = {};
+  for (const date of dates) {
+    const scores = Object.values(articles)
+      .map(a => a[date])
+      .filter(s => s != null);
+
+    if (scores.length > 0) {
+      tripAverage[date] = scores.reduce((a, b) => a + b, 0) / scores.length;
+    }
+  }
+
+  return { trip, provider, dates, articles, tripAverage };
+}
+
+// ============================================
 // Serve Audit Runner HTML
 // ============================================
 
