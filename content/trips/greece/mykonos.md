@@ -1,14 +1,14 @@
 We didn't prioritize Mykonos -- like Santorini, it felt overdiscovered before we ever arrived. But 3 hours on a day-trip from Paros was enough to understand why it earns the crowds, even if it wasn't enough to properly explore.
 
-Chora is the main town of Mykonos -- "Chora" just means "the town" in Greek, and most islands have one. This one earns the name. It's a tight maze of whitewashed lanes, supposedly laid out to confuse pirates, now doing the same to tourists. We got lost repeatedly and it never mattered.
+Chora is the main town of Mykonos -- "Chora" just means "the town" in Greek, and most islands have one. This one earns the name. It's a radial maze of whitewashed lanes fanning out from the harbor -- paths branch and reconnect at odd angles, small squares appear without warning, then collapse back into alleys. Supposedly the layout was designed to confuse pirates. We got lost repeatedly and it never mattered.
 
 ![Beautiful flowers](images/Mykonos-05.jpg)
 
-The 16th-century windmills are the obvious landmark, and worth a picture, but the town below was what held our attention.
+The 16th-century windmills are the obvious landmark, and worth a picture, but the town below held us longer.
 
 ![Windmill close-up](images/Mykonos-06.jpg)
 
-## Shopping
+## The Lanes That Kept Tiffany Busy
 
 The wandering turned into shopping, which surprised us.  Mykonos is one of the better shopping stops in the Cyclades, and not for the reasons you'd expect. The narrow lanes of Chora are lined with small, independent boutiques rather than the international brands that have overtaken most European resort towns. Many are Greek-owned; some are run by the designers themselves.
 
@@ -28,15 +28,15 @@ Little Venice is where the maze opens up. After the narrow lanes of Chora, you t
 
 The merchants who built these houses used the lower floors for storage and trade. Now those rooms are bars and cafes -- but the low ceilings, thick walls, and narrow doorways remind you these weren't designed for cocktail service. You duck through thresholds that were built for 18th-century frames, not modern ones.
 
-We were there mid-afternoon, too early for the famous sunset, but you could already feel the crowd building -- chairs angling west, drinks appearing on balcony tables.
+We were there mid-afternoon, too early for the famous sunset, but the crowd was already building -- chairs angling west, drinks appearing on balcony tables.
 
 Little Venice isn't a hidden gem and doesn't pretend to be. The sunset will be crowded and the drinks will be expensive. Go anyway -- it looks exactly like the photographs, and that turns out not to matter.
 
 ![View of Little Venice through ancient wall](images/Mykonos-03.jpg)
 
-## A Quick Bite
+## A Stop for a Gyro
 
-Sakis Grill House sits in the middle of Chora's maze, impossible to miss if you're shopping nearby. It's been there since the mid-1980s, and looks it -- counter service, tight outdoor seating, orders out in minutes. This is not a linger-over-dinner spot. It's fast, loud, and slightly chaotic.
+Sakis Grill House sits in the middle of Chora's maze, impossible to miss if you're shopping nearby. It's been there since the mid-1980s, and looks it -- counter service, tight outdoor seating, orders out in minutes.  It's fast, loud, and slightly chaotic.
 
 The gyro is the thing to get: warm pita, meat carved off the spit, tzatziki, and fries stuffed inside. Messy, salty, and exactly right after a few hours of walking. By Mykonos standards, it's practically free.
 
@@ -54,7 +54,7 @@ verdict: Glad We Went
 duration: 3 hours
 Stay Overnight: We didn't -- 3 hours was enough to see why people love it, not enough to really explore.
 Don't Miss: Getting lost in Chora's maze -- the pirate-proofing still works; the shopping (per Tiffany).
-Best Time of Day: Can't say from 3 hours -- we had midday.
+Best Time of Day: Mid-afternoon worked for shopping and wandering, not for sunset.
 Worth the Splurge: Shopping -- the boutiques are genuinely unique.
-Return Visit: Maybe -- we'd want more time to do it properly, but the crowds are real.
+Return Visit: Maybe -- we'd want more time to see more of the island, but the crowds are real.
 :::
