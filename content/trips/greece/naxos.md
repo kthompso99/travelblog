@@ -6,9 +6,7 @@ Before the trip, we spent a lot of time deciding whether to stay in Paros or Nax
 
 Naxos sits in sharp contrast to Paros; its underground water supply makes it the most agricultural island in the Cyclades, it feels almost lush after Milos.  We didn't expect the cherry tomatoes to be the most memorable thing we ate in Greece. They were.
 
-Naxos has the usual density of Greek history.  
-
-Many ancient churches dot  the landscape; [Panagia Drossiani](https://www.greeka.com/cyclades/naxos/sightseeing/drosiani-church-naxos/) is a 4th-century church that requires only a 15-minute stop but justifies the detour for its scale and age. 
+Many ancient churches dot the landscape. [Panagia Drossiani](https://www.greeka.com/cyclades/naxos/sightseeing/drosiani-church-naxos/) is a 4th-century church that requires only a 15-minute stop but justifies the detour for its scale and age. 
 
 Panagia Drossiani sits just outside the mountain village of Moni, and you almost miss it -- a cluster of squat stone chapels, low-domed and fused together over centuries, pressing into the hillside like they grew there. It's one of the oldest Christian sites in Greece, and looks it: walls don't quite align, ceilings are low, and the geometry feels organic rather than planned.
 
@@ -30,13 +28,15 @@ The stone is unusually white and fine-grained, with a slight translucency — yo
 
 ![Stairway in Apeiranthos](images/Naxos-02.jpg)
 
-Apeiranthos sits at nearly 2,000 feet on the slopes of Mount Fanari, and feels nothing like the coast. The whitewashed sugar cubes of the shoreline give way to stern stone towers with Venetian balconies -- defensive, permanent, built from the mountain itself. The marble-paved lanes have been polished by centuries of footsteps into a soft sheen that's elegant and treacherous in equal measure. 
+Apeiranthos sits at nearly 2,000 feet on the slopes of Mount Fanari, and feels nothing like the coast. The whitewashed sugar cubes of the shoreline give way to stern stone towers with Venetian balconies -- defensive, permanent, built from the mountain itself. 
+
+> The marble-paved lanes have been polished by centuries of footsteps into a soft sheen that's elegant and treacherous in equal measure. 
 
 ![Building in Apeiranthos](images/Naxos-03.jpg)
 
 We stopped for lunch at a terrace where the narrow streets fell away to a view of the Naxian mountain ranges -- the kind of spot where you forget you're on an island.
 
-## A Great Guide
+## Hire Alex
 
 We used Alex as our guide; see him [here](https://www.toursbylocals.com/tours/greece/naxos/tour-details/naxos-highlights---half-day-private-tour-664d2315ebf20b195748906d).   
 
