@@ -321,32 +321,89 @@ async function handleRangeAssignment(photo, photos, locations, menu, tripId) {
 }
 
 /**
- * Main interactive assignment loop
+ * Setup assignment data
  */
-async function runInteractiveAssignment(tripId) {
+async function setupAssignment(tripId) {
   const { locations } = await parseTripStructure(tripId);
   const photos = await parseSyncedPhotos(tripId);
-
   await initializeLocationPhotoCounts(locations, tripId);
 
   console.log(`📁 Trip: ${tripId} (${CONFIG.getTripDir(tripId)})`);
   console.log(`📝 Found ${photos.length} unassigned photos in all-synced-photos.md`);
   console.log(`📂 Found ${locations.length} content items: ${locations.map(l => l.id).join(', ')}\n`);
 
+  return { locations, photos };
+}
+
+/**
+ * Build location menu string
+ */
+function buildLocationMenu(locations) {
+  return locations
+    .map((loc, idx) => `\x1b[1m\x1b[31m(${idx + 1})\x1b[0m ${loc.id}`)
+    .join('  ');
+}
+
+/**
+ * Handle user input for photo assignment
+ * Returns true to continue, false to break
+ */
+async function processUserInput(answer, photo, photos, locations, menu, tripId) {
+  if (answer === 'q') {
+    console.log('\n👋 Exiting. Progress saved.');
+    return false;
+  }
+
+  if (answer === 's') {
+    console.log('⏭️  Skipped');
+    return true;
+  }
+
+  if (answer === 'r') {
+    await handleRangeAssignment(photo, photos, locations, menu, tripId);
+    return true;
+  }
+
+  // Single photo assignment
+  const locationIdx = parseInt(answer) - 1;
+  if (locationIdx < 0 || locationIdx >= locations.length) {
+    console.log('❌ Invalid choice');
+    return 'retry'; // Special return value to not advance photo index
+  }
+
+  await assignPhotoToLocation(photo, locations[locationIdx], tripId);
+  return true;
+}
+
+/**
+ * Print assignment summary
+ */
+function printSummary(locations) {
+  console.log('\n✨ Assignment complete!\n');
+  console.log('📊 Summary:');
+  locations.forEach(loc => {
+    if (loc.photoCount > 0) {
+      console.log(`   ${loc.id}: ${loc.photoCount} photos`);
+    }
+  });
+}
+
+/**
+ * Main interactive assignment loop
+ */
+async function runInteractiveAssignment(tripId) {
+  const { locations, photos } = await setupAssignment(tripId);
+
   if (photos.length === 0) {
     console.log('✅ All photos already assigned!');
     return;
   }
 
-  const menu = locations
-    .map((loc, idx) => `\x1b[1m\x1b[31m(${idx + 1})\x1b[0m ${loc.id}`)
-    .join('  ');
-
+  const menu = buildLocationMenu(locations);
   let photoIndex = 0;
 
   while (photoIndex < photos.length) {
     const photo = photos[photoIndex];
-
     if (photo.assigned) { photoIndex++; continue; }
 
     showThumbnail(photo, photoIndex + 1, photos.length, tripId);
@@ -355,24 +412,9 @@ async function runInteractiveAssignment(tripId) {
       `\nAssign to:\n  ${menu}\n  (s) skip  (r) range  (q) quit\n> `
     );
 
-    if (answer === 'q') { console.log('\n👋 Exiting. Progress saved.'); break; }
-    if (answer === 's') { console.log('⏭️  Skipped'); photoIndex++; continue; }
-
-    if (answer === 'r') {
-      await handleRangeAssignment(photo, photos, locations, menu, tripId);
-      photoIndex++;
-      continue;
-    }
-
-    // Single photo assignment
-    const locationIdx = parseInt(answer) - 1;
-    if (locationIdx < 0 || locationIdx >= locations.length) {
-      console.log('❌ Invalid choice');
-      continue;
-    }
-
-    await assignPhotoToLocation(photo, locations[locationIdx], tripId);
-    photoIndex++;
+    const result = await processUserInput(answer, photo, photos, locations, menu, tripId);
+    if (result === false) break; // Quit requested
+    if (result !== 'retry') photoIndex++; // Advance unless invalid input
   }
 
   const assignedPhotos = photos.filter(p => p.assigned);
@@ -380,13 +422,7 @@ async function runInteractiveAssignment(tripId) {
     await updateSyncedPhotosMarkdown(tripId, photos);
   }
 
-  console.log('\n✨ Assignment complete!\n');
-  console.log('📊 Summary:');
-  locations.forEach(loc => {
-    if (loc.photoCount > 0) {
-      console.log(`   ${loc.id}: ${loc.photoCount} photos`);
-    }
-  });
+  printSummary(locations);
 }
 
 // CLI entry point

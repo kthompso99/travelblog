@@ -262,10 +262,59 @@ console.log = function (...args) {
     origLog.apply(console, args);
 };
 
-function main() {
-    const args = process.argv.slice(2).filter(a => a !== '--');
+// Parse CLI arguments
+function parseArgs(argv) {
+    const args = argv.slice(2).filter(a => a !== '--');
     const wordcountMode = args.includes('--wordcount');
     const filterTrip = args.find(a => !a.startsWith('--')) || null;
+    return { wordcountMode, filterTrip };
+}
+
+// Analyze a single trip's files
+function analyzeTripFiles(tripId) {
+    const tripConfig = loadTripConfig(tripId);
+    const tripDir = CONFIG.getTripDir(tripId);
+    const contentItems = tripConfig.content || [];
+    const rows = [];
+
+    // Analyze main.md first
+    const mainPath = path.join(tripDir, CONFIG.TRIP_MAIN_FILE);
+    if (fs.existsSync(mainPath)) {
+        suppressLog = true;
+        const metrics = analyzeMarkdownFile(mainPath, 'main.md');
+        suppressLog = false;
+        rows.push({ name: 'overview', ...metrics });
+    }
+
+    // Analyze each content item
+    let locationCount = 0;
+    let articleCount = 0;
+    for (const item of contentItems) {
+        if (item.type === 'location') locationCount++;
+        else if (item.type === 'article') articleCount++;
+
+        const filePath = path.join(tripDir, item.file);
+        if (!fs.existsSync(filePath)) continue;
+
+        const pageName = path.basename(item.file, '.md');
+        suppressLog = true;
+        const metrics = analyzeMarkdownFile(filePath, item.file);
+        suppressLog = false;
+        rows.push({ name: pageName, ...metrics });
+    }
+
+    return {
+        tripId,
+        title: tripConfig.title || tripId,
+        rows,
+        locationCount,
+        articleCount
+    };
+}
+
+// Main function
+function main() {
+    const { wordcountMode, filterTrip } = parseArgs(process.argv);
 
     const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
 
@@ -281,47 +330,16 @@ function main() {
     for (const tripId of tripIds) {
         if (filterTrip && tripId !== filterTrip) continue;
 
-        const tripConfig = loadTripConfig(tripId);
-        const tripDir = CONFIG.getTripDir(tripId);
-
-        const contentItems = tripConfig.content || [];
-        const rows = [];
-
-        // Analyze main.md first
-        const mainPath = path.join(tripDir, CONFIG.TRIP_MAIN_FILE);
-        if (fs.existsSync(mainPath)) {
-            suppressLog = true;
-            const metrics = analyzeMarkdownFile(mainPath, 'main.md');
-            suppressLog = false;
-            rows.push({ name: 'overview', ...metrics });
-        }
-
-        // Analyze each content item
-        let locationCount = 0;
-        let articleCount = 0;
-        for (const item of contentItems) {
-            if (item.type === 'location') locationCount++;
-            else if (item.type === 'article') articleCount++;
-
-            const filePath = path.join(tripDir, item.file);
-            if (!fs.existsSync(filePath)) continue;
-
-            const pageName = path.basename(item.file, '.md');
-            suppressLog = true;
-            const metrics = analyzeMarkdownFile(filePath, item.file);
-            suppressLog = false;
-            rows.push({ name: pageName, ...metrics });
-        }
-
-        if (rows.length === 0) continue;
+        const tripData = analyzeTripFiles(tripId);
+        if (tripData.rows.length === 0) continue;
 
         if (wordcountMode) {
-            const totals = printWordCountTable(rows, tripConfig.title || tripId);
-            tripTotals.push({ name: tripId, ...totals });
+            const totals = printWordCountTable(tripData.rows, tripData.title);
+            tripTotals.push({ name: tripData.tripId, ...totals });
         } else {
-            printContentTable(rows, tripConfig.title || tripId, locationCount, articleCount);
+            printContentTable(tripData.rows, tripData.title, tripData.locationCount, tripData.articleCount);
             origLog('');
-            printQualityTable(rows);
+            printQualityTable(tripData.rows);
         }
     }
 

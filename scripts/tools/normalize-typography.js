@@ -128,11 +128,11 @@ function processFile(filePath, dryRun) {
 }
 
 // ---------------------------------------------------------------------------
-// Main
+// CLI argument parsing
 // ---------------------------------------------------------------------------
 
-function main() {
-    const args = process.argv.slice(2);
+function parseArgs(argv) {
+    const args = argv.slice(2);
     const dryRun = args.includes('--dry-run');
     const positional = args.filter(a => !a.startsWith('--'));
 
@@ -150,18 +150,15 @@ function main() {
         }
     }
 
-    const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
+    return { dryRun, tripFilter, fileFilter };
+}
 
-    if (tripIds.length === 0) {
-        console.log('No trips found.');
-        return;
-    }
+// ---------------------------------------------------------------------------
+// File discovery
+// ---------------------------------------------------------------------------
 
-    console.log(`\n${dryRun ? '(DRY RUN) ' : ''}\u2550\u2550\u2550 Normalize Typography \u2550\u2550\u2550\n`);
-
-    let totalFixed = 0;
-    let totalScareQuotes = 0;
-    const allScareQuotes = [];
+function collectFilesToProcess(tripIds, tripFilter, fileFilter) {
+    const filesToProcess = [];
 
     for (const tripId of tripIds) {
         if (tripFilter && tripId !== tripFilter) continue;
@@ -169,8 +166,6 @@ function main() {
         const tripConfig = loadTripConfig(tripId);
         const tripDir = CONFIG.getTripDir(tripId);
         const contentItems = tripConfig.content || [];
-
-        const filesToProcess = [];
 
         if (!fileFilter) {
             const mainPath = path.join(tripDir, CONFIG.TRIP_MAIN_FILE);
@@ -188,26 +183,21 @@ function main() {
 
             filesToProcess.push({ filePath, label: `${tripId}/${pageName}.md` });
         }
-
-        for (const entry of filesToProcess) {
-            const { changed, scareQuoteWarnings } = processFile(entry.filePath, dryRun);
-
-            if (changed) {
-                console.log(`  ${dryRun ? 'Would fix' : 'Fixed'}: ${entry.label}`);
-                totalFixed++;
-            }
-
-            if (scareQuoteWarnings.length > 0) {
-                allScareQuotes.push(...scareQuoteWarnings.map(w => ({ ...w, label: entry.label })));
-                totalScareQuotes += scareQuoteWarnings.length;
-            }
-        }
     }
 
+    return filesToProcess;
+}
+
+// ---------------------------------------------------------------------------
+// Results reporting
+// ---------------------------------------------------------------------------
+
+function printResults(totalFixed, allScareQuotes, dryRun) {
     console.log(`\n  ${totalFixed} file${totalFixed !== 1 ? 's' : ''} ${dryRun ? 'would be' : ''} normalized`);
 
     if (allScareQuotes.length > 0) {
-        console.log(`\n  \u26A0\uFE0F  ${totalScareQuotes} possible single-quote scare quote${totalScareQuotes !== 1 ? 's' : ''} (manual review needed):\n`);
+        const total = allScareQuotes.length;
+        console.log(`\n  \u26A0\uFE0F  ${total} possible single-quote scare quote${total !== 1 ? 's' : ''} (manual review needed):\n`);
         for (const w of allScareQuotes) {
             console.log(`    ${w.label}:${w.line}  ${w.text}`);
             console.log(`      "${w.context}"`);
@@ -215,6 +205,43 @@ function main() {
     }
 
     console.log('');
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+
+function main() {
+    const { dryRun, tripFilter, fileFilter } = parseArgs(process.argv);
+
+    const tripIds = discoverAllTrips(CONFIG.TRIPS_DIR, (id) => CONFIG.getTripConfigPath(id));
+
+    if (tripIds.length === 0) {
+        console.log('No trips found.');
+        return;
+    }
+
+    console.log(`\n${dryRun ? '(DRY RUN) ' : ''}\u2550\u2550\u2550 Normalize Typography \u2550\u2550\u2550\n`);
+
+    const filesToProcess = collectFilesToProcess(tripIds, tripFilter, fileFilter);
+
+    let totalFixed = 0;
+    const allScareQuotes = [];
+
+    for (const entry of filesToProcess) {
+        const { changed, scareQuoteWarnings } = processFile(entry.filePath, dryRun);
+
+        if (changed) {
+            console.log(`  ${dryRun ? 'Would fix' : 'Fixed'}: ${entry.label}`);
+            totalFixed++;
+        }
+
+        if (scareQuoteWarnings.length > 0) {
+            allScareQuotes.push(...scareQuoteWarnings.map(w => ({ ...w, label: entry.label })));
+        }
+    }
+
+    printResults(totalFixed, allScareQuotes, dryRun);
 }
 
 main();

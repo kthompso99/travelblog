@@ -59,6 +59,8 @@ const CITY_COORDS = {
   madrid: { lat: 40.4168, lon: -3.7038, name: 'Madrid' }
 };
 
+const AUTO_ASSIGN_RADIUS_KM = 30;
+
 // Calculate distance between two coordinates (Haversine formula)
 function calculateDistance(lat1, lon1, lat2, lon2) {
   const R = 6371; // Earth's radius in km
@@ -88,12 +90,8 @@ function findNearestCity(lat, lon) {
   return nearest;
 }
 
-async function analyzeTakeoutGeo(zipPath) {
-  if (!fs.existsSync(zipPath)) {
-    console.error(`❌ Zip file not found: ${zipPath}`);
-    process.exit(1);
-  }
-
+// Extract and catalog files from ZIP
+function extractFilesFromZip(zipPath) {
   console.log('📦 Opening Takeout ZIP...');
   const zip = new AdmZip(zipPath);
   const zipEntries = zip.getEntries();
@@ -115,8 +113,40 @@ async function analyzeTakeoutGeo(zipPath) {
 
   console.log(`🔍 Found ${Object.keys(photos).length} photos and ${Object.keys(metadata).length} JSON files.\n`);
 
-  // Analyze geolocation data
-  const photoKeys = Object.keys(photos).sort();
+  return { zip, photos, metadata };
+}
+
+// Find and parse JSON metadata for a photo
+function findPhotoMetadata(photoPath, metadata, zip) {
+  const possibleJsonPaths = [
+    `${photoPath}.supplemental-metada.json`,
+    `${photoPath}.supplemental-meta.json`,
+    `${photoPath}.json`
+  ];
+
+  for (const jsonPath of possibleJsonPaths) {
+    if (metadata[jsonPath]) {
+      try {
+        return JSON.parse(zip.readAsText(metadata[jsonPath]));
+      } catch (e) {
+        // Ignore parse errors
+      }
+    }
+  }
+
+  return null;
+}
+
+// Extract device information from metadata
+function getDeviceModel(jsonContent) {
+  return jsonContent.deviceType?.device ||
+    (jsonContent.cameraMake && jsonContent.cameraModel
+      ? `${jsonContent.cameraMake} ${jsonContent.cameraModel}`
+      : 'Unknown Device');
+}
+
+// Initialize results structure
+function createResultsStructure() {
   const results = {
     total: 0,
     withGeo: 0,
@@ -125,7 +155,7 @@ async function analyzeTakeoutGeo(zipPath) {
     noGeoAtAll: 0,
     geoButTooFar: 0,
     photosByCity: {},
-    deviceStats: {}  // Track stats by device model
+    deviceStats: {}
   };
 
   // Initialize city counters
@@ -133,115 +163,101 @@ async function analyzeTakeoutGeo(zipPath) {
     results.photosByCity[cityId] = { count: 0, photos: [] };
   });
 
-  console.log('📊 Analyzing geolocation data...\n');
-  console.log('=' .repeat(80));
+  return results;
+}
 
-  photoKeys.forEach((photoPath, index) => {
-    const filename = path.basename(photoPath);
-    results.total++;
+// Ensure device stats exist for a device
+function ensureDeviceStats(results, deviceModel) {
+  if (!results.deviceStats[deviceModel]) {
+    results.deviceStats[deviceModel] = {
+      total: 0,
+      withValidGeo: 0,
+      noGeo: 0,
+      zeroGeo: 0
+    };
+  }
+}
 
-    // Find matching JSON metadata
-    const possibleJsonPaths = [
-      `${photoPath}.supplemental-metada.json`,
-      `${photoPath}.supplemental-meta.json`,
-      `${photoPath}.json`
-    ];
+// Process a single photo's geolocation data
+function processPhoto(photoPath, index, metadata, zip, results) {
+  const filename = path.basename(photoPath);
+  results.total++;
 
-    let jsonContent = null;
-    for (const jsonPath of possibleJsonPaths) {
-      if (metadata[jsonPath]) {
-        try {
-          jsonContent = JSON.parse(zip.readAsText(metadata[jsonPath]));
-        } catch (e) {
-          // Ignore parse errors
-        }
-        break;
-      }
-    }
+  const jsonContent = findPhotoMetadata(photoPath, metadata, zip);
 
-    if (!jsonContent) {
-      console.log(`[${index + 1}] ${filename}`);
-      console.log(`   ❌ No metadata found`);
-      console.log();
-      results.noGeoAtAll++;
-      return;
-    }
-
-    const geoData = jsonContent.geoData || jsonContent.geoDataExif;
-    const caption = jsonContent.description || '';
-
-    // Extract device information
-    const deviceModel = jsonContent.deviceType?.device ||
-                       (jsonContent.cameraMake && jsonContent.cameraModel
-                         ? `${jsonContent.cameraMake} ${jsonContent.cameraModel}`
-                         : 'Unknown Device');
-
-    // Initialize device stats if needed
-    if (!results.deviceStats[deviceModel]) {
-      results.deviceStats[deviceModel] = {
-        total: 0,
-        withValidGeo: 0,
-        noGeo: 0,
-        zeroGeo: 0
-      };
-    }
-    results.deviceStats[deviceModel].total++;
-
+  if (!jsonContent) {
     console.log(`[${index + 1}] ${filename}`);
-    console.log(`   📱 Device: ${deviceModel}`);
-    if (caption) {
-      console.log(`   Caption: "${caption.substring(0, 60)}${caption.length > 60 ? '...' : ''}"`);
-    }
-
-    if (geoData && typeof geoData.latitude === 'number' && typeof geoData.longitude === 'number') {
-      results.withGeo++;
-
-      const lat = geoData.latitude;
-      const lon = geoData.longitude;
-
-      // Check if coordinates are meaningful (not 0,0)
-      if (lat !== 0 && lon !== 0) {
-        results.withValidGeo++;
-
-        // Find nearest city
-        const nearest = findNearestCity(lat, lon);
-
-        console.log(`   ✅ GPS: ${lat.toFixed(6)}, ${lon.toFixed(6)}`);
-        console.log(`   📍 Nearest: ${nearest.name} (${nearest.distance.toFixed(1)} km away)`);
-
-        // Only auto-assign if within 30km (reasonable city radius)
-        if (nearest.distance < 30) {
-          console.log(`   🎯 AUTO-ASSIGN: ${nearest.name}`);
-          results.photosByCity[nearest.cityId].count++;
-          results.photosByCity[nearest.cityId].photos.push({
-            filename,
-            caption,
-            lat,
-            lon,
-            distance: nearest.distance
-          });
-          results.deviceStats[deviceModel].withValidGeo++;
-        } else {
-          console.log(`   ⚠️  Too far from known cities (>30km)`);
-          results.geoButTooFar++;
-          results.deviceStats[deviceModel].withValidGeo++;
-        }
-      } else {
-        results.withZeroGeo++;
-        results.noGeoAtAll++;
-        results.deviceStats[deviceModel].zeroGeo++;
-        console.log(`   ⚠️  GPS: 0.0, 0.0 (invalid/placeholder)`);
-      }
-    } else {
-      console.log(`   ❌ No geolocation data`);
-      results.noGeoAtAll++;
-      results.deviceStats[deviceModel].noGeo++;
-    }
-
+    console.log(`   ❌ No metadata found`);
     console.log();
-  });
+    results.noGeoAtAll++;
+    return;
+  }
 
-  // Summary report
+  const geoData = jsonContent.geoData || jsonContent.geoDataExif;
+  const caption = jsonContent.description || '';
+  const deviceModel = getDeviceModel(jsonContent);
+
+  ensureDeviceStats(results, deviceModel);
+  results.deviceStats[deviceModel].total++;
+
+  console.log(`[${index + 1}] ${filename}`);
+  console.log(`   📱 Device: ${deviceModel}`);
+  if (caption) {
+    console.log(`   Caption: "${caption.substring(0, 60)}${caption.length > 60 ? '...' : ''}"`);
+  }
+
+  if (geoData && typeof geoData.latitude === 'number' && typeof geoData.longitude === 'number') {
+    results.withGeo++;
+    const lat = geoData.latitude;
+    const lon = geoData.longitude;
+
+    // Check if coordinates are meaningful (not 0,0)
+    if (lat !== 0 && lon !== 0) {
+      processValidGPS(lat, lon, filename, caption, deviceModel, results);
+    } else {
+      results.withZeroGeo++;
+      results.noGeoAtAll++;
+      results.deviceStats[deviceModel].zeroGeo++;
+      console.log(`   ⚠️  GPS: 0.0, 0.0 (invalid/placeholder)`);
+    }
+  } else {
+    console.log(`   ❌ No geolocation data`);
+    results.noGeoAtAll++;
+    results.deviceStats[deviceModel].noGeo++;
+  }
+
+  console.log();
+}
+
+// Process valid GPS coordinates
+function processValidGPS(lat, lon, filename, caption, deviceModel, results) {
+  results.withValidGeo++;
+
+  const nearest = findNearestCity(lat, lon);
+
+  console.log(`   ✅ GPS: ${lat.toFixed(6)}, ${lon.toFixed(6)}`);
+  console.log(`   📍 Nearest: ${nearest.name} (${nearest.distance.toFixed(1)} km away)`);
+
+  if (nearest.distance < AUTO_ASSIGN_RADIUS_KM) {
+    console.log(`   🎯 AUTO-ASSIGN: ${nearest.name}`);
+    results.photosByCity[nearest.cityId].count++;
+    results.photosByCity[nearest.cityId].photos.push({
+      filename,
+      caption,
+      lat,
+      lon,
+      distance: nearest.distance
+    });
+    results.deviceStats[deviceModel].withValidGeo++;
+  } else {
+    console.log(`   ⚠️  Too far from known cities (>${AUTO_ASSIGN_RADIUS_KM}km)`);
+    results.geoButTooFar++;
+    results.deviceStats[deviceModel].withValidGeo++;
+  }
+}
+
+// Generate summary report
+function printSummaryReport(results) {
   console.log('=' .repeat(80));
   console.log('\n📊 SUMMARY REPORT\n');
 
@@ -268,10 +284,14 @@ async function analyzeTakeoutGeo(zipPath) {
   console.log(`   • No geo location at all: ${results.noGeoAtAll} photos (${Math.round(results.noGeoAtAll / results.total * 100)}%)`);
   console.log(`   • Has geo but too far from cities: ${results.geoButTooFar} photos (${Math.round(results.geoButTooFar / results.total * 100)}%)\n`);
 
-  // Device breakdown
+  return totalAutoAssignable;
+}
+
+// Generate device breakdown
+function printDeviceBreakdown(results) {
   console.log('📱 BREAKDOWN BY DEVICE:\n');
   Object.entries(results.deviceStats)
-    .sort((a, b) => b[1].total - a[1].total)  // Sort by total count
+    .sort((a, b) => b[1].total - a[1].total)
     .forEach(([device, stats]) => {
       const geoPercent = Math.round((stats.withValidGeo / stats.total) * 100);
       const noGeoPercent = Math.round((stats.noGeo / stats.total) * 100);
@@ -284,8 +304,10 @@ async function analyzeTakeoutGeo(zipPath) {
       console.log(`   ⚠️  Zero/placeholder GPS: ${stats.zeroGeo} (${zeroGeoPercent}%)`);
       console.log();
     });
+}
 
-  // Detailed breakdown by city
+// Generate detailed city breakdown
+function printCityDetails(results) {
   console.log('=' .repeat(80));
   console.log('\n📍 DETAILED BREAKDOWN BY CITY\n');
 
@@ -300,8 +322,10 @@ async function analyzeTakeoutGeo(zipPath) {
       });
     }
   });
+}
 
-  // Recommendation
+// Generate recommendation based on results
+function printRecommendation(results, totalAutoAssignable) {
   console.log('\n' + '='.repeat(80));
   console.log('\n💡 RECOMMENDATION\n');
 
@@ -321,6 +345,30 @@ async function analyzeTakeoutGeo(zipPath) {
   }
 
   console.log();
+}
+
+// Main analysis function
+async function analyzeTakeoutGeo(zipPath) {
+  if (!fs.existsSync(zipPath)) {
+    console.error(`❌ Zip file not found: ${zipPath}`);
+    process.exit(1);
+  }
+
+  const { zip, photos, metadata } = extractFilesFromZip(zipPath);
+  const results = createResultsStructure();
+
+  console.log('📊 Analyzing geolocation data...\n');
+  console.log('=' .repeat(80));
+
+  const photoKeys = Object.keys(photos).sort();
+  photoKeys.forEach((photoPath, index) => {
+    processPhoto(photoPath, index, metadata, zip, results);
+  });
+
+  const totalAutoAssignable = printSummaryReport(results);
+  printDeviceBreakdown(results);
+  printCityDetails(results);
+  printRecommendation(results, totalAutoAssignable);
 }
 
 // CLI entry point
