@@ -117,7 +117,7 @@ Our favorite sunset seat in Naoussa was the unnamed bar between Linardo and Barb
 
 Siparos has a tranquil location on the water's edge just a short taxi ride from Naoussa.  Book a table at sunset for its premier views across the bay, and select a fresh-caught whole fish. Drive if you can -- we couldn't that evening, and paid for it.
 
-Moraitis winery is a 10-minute walk inland.  Family-run, and unhurried -- the tasting felt personal rather than transactional.  The wines were some of the better Malagousia and Assyrtiko we tasted in the Cycladic islands.
+Moraitis winery is a 10-minute walk inland.  Family-run, and unhurried -- the tasting felt personal rather than transactional.  Moraitis pecializes in the unique Parian tradition of co-fermenting red and white grapes, resulting in vibrant, food-friendly rosés and reds.
 
 ![Moraitis Winery](images/Paros-15.jpg)
 
