@@ -1164,14 +1164,10 @@
       const previewContent = document.getElementById('previewContent');
       const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
 
-      // Build scores display if available
-      const scoresHTML = scores ? renderTripScoresCard(scores) : '';
-
       previewContent.innerHTML = `
         <div style="padding: 20px;">
           <h2>Trip-Level Audit (${providerLabel})</h2>
           <p style="color: #666; font-size: 0.9em; margin-bottom: 20px;">${filename}</p>
-          ${scoresHTML}
           <div>${html}</div>
         </div>
       `;

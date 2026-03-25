@@ -51,6 +51,10 @@ function getLocalDateTimeString(date = new Date()) {
 export function getContentType(filepath) {
   const dir = path.dirname(filepath);
   const filename = path.basename(filepath);
+
+  // Overview is always an article type (evaluative/narrative, not location-specific)
+  if (filename === "overview.md") return "article";
+
   const tripJsonPath = path.join(dir, "trip.json");
 
   if (!fs.existsSync(tripJsonPath)) return "location";
