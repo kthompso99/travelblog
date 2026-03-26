@@ -14,7 +14,7 @@ We did a 10-day cruise from Barcelona to Athens before this trip, and leave that
 
 Athens → Milos → Santorini → Naxos (6 hrs) → Paros → Athens
 
-We did 3 inter-island ferries and 2 flights. The ferry overhead -- arriving early, repacking, transferring -- is real, and we'd caution against cramming in more than we did. That said, we also fit in Naxos, Delos, Mykonos, and Antiparos as day trips without re-packing once, which is worth knowing.
+We did 3 inter-island ferries and 2 flights. The ferry overhead is real, and we'd caution against cramming in more than we did. That said, we also fit in Naxos, Delos, Mykonos, and Antiparos as day trips without re-packing, which is worth knowing.
 
 Before you dive into the island pages, start with our [Tips](tips.html) page -- ferry logistics, what May actually feels like, and what we learned about eating and drinking across the Cyclades.
 

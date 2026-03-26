@@ -64,7 +64,7 @@ When you're in the islands, the "view" restaurants by the water (Milos, Paros) o
 
 A block or two off the waterfront, you'll usually find well-seasoned gyros or souvlaki or kebabs at lower prices. Use the view restaurants for fish and scenery; use the back-street spots for speed and value.
 
-Try Moussaka.  Often.  Yemeni in Paros makes a version with a noticeably light, silken bechamel.   
+Try moussaka. Often. Every restaurant has its own version, and comparing them became a running project. Yemeni in Paros set the bar -- see our [Paros](paros.html) page for why.
 
 Greek desserts are dangerous. Many restaurants have a dessert menu, and when you decline, they bring a free treat anyway that we consistently failed to resist.
 
