@@ -17,6 +17,7 @@ When scoring:
 - Reward structured summaries that help readers decide.
 - Penalize filler, hedging, repetition, and slack phrasing.
 - Do not penalize analytical density if readable.
+- When a dimension scores below 8.2, prepare to list up to 20 identifiable issues in that category.
 
 Return:
 
@@ -42,9 +43,14 @@ The markdown analysis should feel like feedback from a senior editor, not a chec
 Briefly note 2-3 things that are working well. Be concise — this section should be short.
 
 ## ⚠️ Issues to Address
-Provide detailed, actionable feedback on what needs improvement. This is your primary focus. Include:
-- Sentence-level craft issues
-- Areas for improvement by scoring area (prose control, narrative structure, etc)
+Provide detailed, actionable feedback on what needs improvement. This is your primary focus.
+
+**CRITICAL: When a dimension scores below 8.2, list up to 20 identifiable issues in that category, not just the top few.** Exhaustive feedback upfront prevents multiple revision cycles. For prose control issues, quote specific examples of weak verbs, slack phrases, hedges, and structural problems.
+
+Include:
+- Sentence-level craft issues (quote specific examples)
+- All issues grouped by dimension (prose control, narrative structure, decision clarity, etc.)
+- For low-scoring dimensions: comprehensive lists (up to 20 issues), not prioritized subsets
 
 ## 💡 Optional Suggestions
 Lower-priority improvements that would elevate the piece but aren't critical.
