@@ -31,6 +31,15 @@ Kevin's content follows a three-layer structure:
 - If a practical insight appears in more than one location page → probably belongs in tips
 - If an evaluative judgment appears in tips → probably belongs in overview or the location page that earned it
 
+**CRITICAL: File Attribution**
+Each article is separated by markers: `===== ARTICLE: {title} ({filename}) =====`
+
+When citing content in your analysis:
+- ALWAYS reference the specific filename (e.g., "In overview.md..." or "The tips.md section on...")
+- NEVER say "tips/overview" or "overview/tips" — these are SEPARATE files with DISTINCT roles
+- Overview (overview.md) and Tips (tips.md) are both trip-level articles, but contain different content types
+- Be precise: if you see text in the "Trip Overview (overview.md)" section, cite it as "overview.md", NOT "tips.md"
+
 PART 1 — JSON SCORES (1-10 scale):
 Return JSON with these 4 dimensions:
 {

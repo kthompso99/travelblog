@@ -1184,8 +1184,7 @@
       // Scroll to top
       document.querySelector('.preview-pane').scrollTop = 0;
 
-      // Reload providers to show updated scores in card
-      updateProviders();
+      // Note: updateProviders() is called in runTripAudit's finally block
     }
 
     async function loadAuditOutput(provider) {
