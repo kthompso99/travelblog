@@ -8,13 +8,17 @@ Our hotel sat in the northern part of the medieval city, about a 10-minute walk 
 
 ## The Royal Palace
 
-The Royal Alcázar was the highlight of our time in Seville, and the one site we'd tell anyone not to skip.  The most famous sections were built in the 1360s by Moorish artisans still living in the city — decades after the Catholic reconquest.  The first impression is "Moorish".  The result is a palace that looks more like Granada than anything you'd expect from 14th-century Christian kings. 
+The Royal Alcázar was the highlight of our time in Seville, and the one site we'd tell anyone not to skip.  The most famous sections were built in the 1360s by Moorish artisans still living in the city -- decades after the Catholic reconquest.  The result looks more like the court of a caliph than anything you'd expect from 14th-century Christian kings.
 
-![The unquestionable highlight of Seville is the Royal Alcázar (palace), built in stages like most palaces but the best-known part was built in the 1360s. Interestingly it was built *after* the Catholic reconquest, but designed largely in Mudéjar (Moorish) style - under the direction of Christian kings but far more Moorish-looking than otherwise. Parts are comparable to the Alhambra in Granada in beauty.](images/seville-14.jpg)
+![The Alcazar](images/seville-15.jpg)
 
-If the Alcázar looks familiar, it will to some -- parts of it doubled as Dorne in Game of Thrones. We'd watched those scenes without realizing the setting was real and visitable. Standing in the same courtyards, the production design suddenly made more sense -- they barely had to change anything.
+The Courtyard of the Maidens is the centerpiece of the Mudéjar Palace -- a long reflecting pool flanked by arches with plasterwork so fine it looks like frozen lace. On a still day the pool doubles everything, and the space feels twice its actual size. 
 
-The gardens behind the Alcázar are worth as much time as the palace itself. They sprawl across several acres, shifting from tight Moorish courtyards with sunken flowerbeds to open Renaissance-era expanses -- each section feels like a different century built the room next door.
+![Courtyard of the Maidens](images/seville-14.jpg)
+
+The Alcázar may look familiar -- parts of it doubled as Dorne in Game of Thrones.  We'd watched those scenes without realizing the setting was real. Standing in the same courtyards, the production design suddenly made more sense -- they barely had to change anything.
+
+The gardens behind the Alcázar are worth as much time as the palace itself. They sprawl across several acres, shifting from tight Moorish courtyards with sunken flowerbeds to open Renaissance-era expanses -- it feels as if each century added its own wing.
 
 Water is everywhere. Hundreds of small fountains and channels create a constant low murmur that blocks out the city entirely. The older Moorish sections use thick stone walls and recessed beds to trap cool air -- we noticed the temperature drop the moment we stepped in from the street.
 
@@ -26,29 +30,35 @@ Resident peacocks wander through as if they own the place, which they effectivel
 
 ## Beyond the Palace
 
-We did a [walking tour](https://www.sevillawalkingtours.com/city-intro) with [Concepcion](https://www.sevillawalkingtours.com/about-us), whom Rick Steves recommends -- a 3-hour walk that included the Cathedral. She was excellent. 
+The rest of the old town can't match the Alcázar, but it doesn't need to.
 
-The Cathedral itself is enormous -- one of the largest church buildings on earth -- and impressive from outside. 
+Concepcion's 3-hour [walking tour](https://www.sevillawalkingtours.com/city-intro) -- recommended by Rick Steves -- covered the Cathedral and the old town.  
 
-The Seville Cathedral is the 3rd largest in Europe, and bills itself as the world's largest Gothic cathedral. 
+The Cathedral is the largest Gothic church in the world, and it looks it -- the exterior commands the skyline from almost anywhere in the old town. The interior impressed us less. The nave is wide enough that stained glass light barely reaches the center, leaving the core dim and cool, and the scale reads more as engineering than beauty.
 
-It is gorgeous from the outside, though the inside is less overwhelming to our taste.  The interior is vast enough that the stone pillars feel less like architecture and more like a forest canopy -- your eye follows them up and loses the ceiling in shadow. It's the widest cathedral in the world, and you feel it: the stained glass light barely reaches the center nave, leaving the core of the building dim and cool. After the warmth of the Alcázar gardens, the shift is almost physical.
+After the warmth of the Alcázar gardens, the shift is almost physical.
 
 ![Seville Cathedral interior](images/seville-09.jpg)
 
-The tower is worth the climb.  It started as a minaret, which is why the ascent is ramps rather than stairs: the muezzin (caller) needed to get up 250 feet by donkey five times each day.  The walk up is crowded, but worth the 10-15 minutes each way of climbing the ramps. 
+The tower is worth the climb. It started as a minaret, which is why the ascent is ramps rather than stairs -- the muezzin needed to reach the top by donkey five times a day. Crowded, but 10-15 minutes each way.
 
 ![ The large bell tower is largely a 12th-Century minaret, with only the top 20% being later Christian additions.](images/seville-03.jpg)
 
-## Other Experiences
-
-Las Setas is worth seeing even if you don't know what to make of it. Officially the Metropol Parasol, it was built in 2011 and is billed as the world's largest wooden structure. The architect's name didn't stick; locals immediately started calling them "The Mushrooms." 
-
-They're polarizing, but the square beneath them feels genuinely used -- kids on scooters, families at the surrounding cafes, pickup soccer in the flat open spaces. It is a neighborhood plaza that happens to have a landmark on top. 
+Las Setas -- "The Mushrooms" -- is what locals call the Metropol Parasol, a massive wooden structure built in 2011 that nobody quite knows how to feel about. They're polarizing, but the square beneath them feels genuinely used -- kids on scooters, families at the surrounding cafes, pickup soccer in the flat open spaces. It's a neighborhood plaza that happens to have a landmark on top.
 
 It's hard not to wonder if they'll eventually become beloved the way the Eiffel Tower was once loathed. The rooftop walkway has the best sunset view of the Cathedral skyline in the city, and the basement holds Roman ruins -- a reminder that in Seville, you're never more than a few feet from another century.
 
 ![Las Setas](images/seville-02.jpg)
+
+The Plaza de España was built for the 1929 Ibero-American Exposition -- an exercise in national showmanship that still delivers. The curved building wraps around you in a mix of Baroque, Renaissance, and Moorish revival styles, and the scale is deliberately cinematic. Where the Alcázar is intimate and layered, the Plaza is expansive and performative -- street performers, tourists posing on the tiled bridges, and a 'world's fair' energy that somehow hasn't faded in nearly a century. It opened just before the Depression hit, which makes the optimism feel both earned and poignant.
+
+![Plaza de España](images/seville-05.jpg)
+
+"Water Alley" is the iconic, picturesque 140-meter pedestrian street running directly alongside the ancient Moorish defensive walls in Seville's Santa Cruz quarter.
+
+![Water Alley](images/seville-13.jpg)
+
+## An Evening of Flamenco
 
 We were skeptical about [La Casa del Flamenco](https://lacasadelflamencosevilla.com/en/la-casa-del-flamenco/)-- not sure we liked flamenco, and suspicious of anything aimed at tourists.  Multiple locals, including the guitarist from Ronda, pointed us here as the most authentic show in the city. They were right. 
 
@@ -64,7 +74,7 @@ The ground-floor restaurant was fine. The hotel was fine. But "fine" is what you
 
 ## Food & Dining
 
-Before the trip, we researched a dozen restaurants near our hotel.  In retrospect, we wish we hadn't bothered.  Seville is a place where tapas culture isn't a marketing term -- it's how people eat.  
+The hotel's rooftop was a loss for drinks, not dinner -- we'd always planned to eat out. We just planned too carefully.  Seville is a place where tapas culture isn't a marketing term -- it's how people eat.  
 
 Every local we talked to said the same thing: nobody sits down for two hours.  Locals drop in somewhere, have one drink and 1 tapa, and move on.  We could walk up to a restaurant and see it "full" -- but the turnover is such that a table seems to clear within 5-10 minutes.  
 
@@ -92,7 +102,7 @@ At tapas bars, stand at the bar rather than asking for a table. It's faster, mor
 
 Seville has excellent train connections -- Madrid is under 3 hours by high-speed rail. We arrived by car from Ronda, which has no train service, using the drive to see some [White Villages](./white-villages.html) along the way. From most other cities, the train is the obvious choice.
 
-Seville held together better than any city on this trip. The Alcázar alone would justify the stop, but what stayed with us was the rhythm -- the wandering, the unplanned tapas, the flamenco we almost skipped. Even the hotel disappointment fit the pattern: the best things in Seville were the ones we didn't book in advance. Four nights felt right. We'd do it again with even less of a plan.
+Seville held together better than any city on this trip. The Alcázar alone would justify the stop, but what stayed with us was the rhythm -- the wandering, the unplanned tapas, the flamenco we almost skipped. Even the hotel disappointment fit the pattern: the best things in Seville were the ones we didn't book in advance. We'd do it again with even less of a plan.
 
 :::nutshell Seville
 verdict: Would Plan Around
@@ -110,12 +120,7 @@ Return Visit: Yes. There is a richness to this city that supports multiple visit
 
 *Last updated: February 2026*
 
-
-
-
 ![There a few places where one can see the pipes inside this Moorish wall that carried water to the palace.](images/seville-04.jpg)
-
-![The Plaza de España was built in 1928 for the Ibero-American Exposition of 1929 (which opened just before the world entered the depression -- d'oh). It mixes elements of the Baroque Revival, Renaissance Revival and Moorish Revival styles in a beautiful way.](images/seville-05.jpg)
 
 ![Tiffany in a small Seville shop, that dates back to Moorish times, on a market lane filled with remnants of 1000 years ago.](images/seville-08.jpg)
 
@@ -125,9 +130,6 @@ Return Visit: Yes. There is a richness to this city that supports multiple visit
 
 ![Fans are for sale everywhere](images/seville-12.jpg)
 
-!["Water Alley" is the iconic, picturesque 140-meter pedestrian street running directly alongside the ancient Moorish defensive walls in Seville's Santa Cruz quarter.](images/seville-13.jpg)
-
-![More of the Alcázar.](images/seville-15.jpg)
 
 ![Evidently some materials, including columns like this, were repurposed from earlier Roman buildings.](images/seville-16.jpg)
 
