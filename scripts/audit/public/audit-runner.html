@@ -993,7 +993,9 @@
 
     function renderDeltas(deltas) {
       return deltas.map(d => {
-        const color = d.downgrade ? '#d32f2f' : '#333';
+        // Determine color based on delta value: green for positive, black for flat, red for negative
+        const deltaValue = parseFloat(d.delta);
+        const color = deltaValue > 0 ? '#4caf50' : (deltaValue < 0 ? '#d32f2f' : '#333');
         const parts = d.text.split(/\s{2,}/); // Split on multiple spaces
         if (parts.length >= 2) {
           // Format: "Label    prev => curr  delta"

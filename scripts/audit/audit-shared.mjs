@@ -400,7 +400,6 @@ function computeGenericDeltas(current, previous, labelMap, padding) {
     if (curr == null || prev == null) continue;
 
     const delta = curr - prev;
-    const flag = delta < 0 ? " *** Downgrade" : "";
 
     deltas.push({
       dimension: labelMap[dim],
@@ -408,7 +407,7 @@ function computeGenericDeltas(current, previous, labelMap, padding) {
       curr: curr.toFixed(1),
       delta: (delta >= 0 ? "+" : "") + delta.toFixed(1),
       downgrade: delta < 0,
-      text: `${labelMap[dim].padEnd(padding)} ${prev.toFixed(1)} => ${curr.toFixed(1)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(1)}${flag}`
+      text: `${labelMap[dim].padEnd(padding)} ${prev.toFixed(1)} => ${curr.toFixed(1)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(1)}`
     });
   }
 
@@ -421,7 +420,7 @@ function computeGenericDeltas(current, previous, labelMap, padding) {
       curr: current.overall_score.toFixed(2),
       delta: (delta >= 0 ? "+" : "") + delta.toFixed(2),
       downgrade: delta < 0,
-      text: `${"Overall".padEnd(padding)} ${previous.overall_score.toFixed(2)} => ${current.overall_score.toFixed(2)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(2)}${delta < 0 ? " *** Downgrade" : ""}`
+      text: `${"Overall".padEnd(padding)} ${previous.overall_score.toFixed(2)} => ${current.overall_score.toFixed(2)}  ${(delta >= 0 ? "+" : "")}${delta.toFixed(2)}`
     });
   }
 
