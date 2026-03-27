@@ -42,7 +42,8 @@
       "file": "christchurch.md",
       "place": "Christchurch, NZ",
       "duration": "3 days",
-      "thumbnail": "images/christchurch-07.jpg"
+      "thumbnail": "images/christchurch-07.jpg",
+      "sameAs": ["https://en.wikipedia.org/wiki/Christchurch"]
     },
     {
       "type": "location",
@@ -52,7 +53,8 @@
       "duration": "3 days",
       "thumbnail": "images/glacier-country-09.jpg",
       "travelMode": "drive",
-      "travelDuration": "5 hours"
+      "travelDuration": "5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Franz_Josef_Glacier"]
     },
     {
       "type": "location",
@@ -62,7 +64,8 @@
       "duration": "3 hours",
       "thumbnail": "images/wanaka-05.jpg",
       "travelMode": "drive",
-      "travelDuration": "1.5 hours"
+      "travelDuration": "1.5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Wanaka"]
     },
     {
       "type": "location",
@@ -72,7 +75,8 @@
       "duration": "3 days",
       "thumbnail": "images/queenstown-01.jpg",
       "travelMode": "drive",
-      "travelDuration": "1 hour"
+      "travelDuration": "1 hour",
+      "sameAs": ["https://en.wikipedia.org/wiki/Queenstown,_New_Zealand"]
     },
     {
       "type": "location",
@@ -82,7 +86,8 @@
       "duration": "3 days",
       "thumbnail": "images/kaikoura-01.jpg",
       "travelMode": "drive",
-      "travelDuration": "4.5 hours"
+      "travelDuration": "4.5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Kaikoura"]
     },
     {
       "type": "location",
@@ -92,7 +97,8 @@
       "duration": "3 days",
       "thumbnail": "images/nelson-02.jpg",
       "travelMode": "drive",
-      "travelDuration": "3 hours"
+      "travelDuration": "3 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Nelson,_New_Zealand"]
     },
     {
       "type": "location",
@@ -102,7 +108,8 @@
       "duration": "3 days",
       "thumbnail": "images/wellington-04.jpg",
       "travelMode": "ferry",
-      "travelDuration": "3.5 hours"
+      "travelDuration": "3.5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Wellington"]
     },
     {
       "type": "location",
@@ -112,7 +119,8 @@
       "duration": "3 days",
       "thumbnail": "images/rotorua-01.jpg",
       "travelMode": "drive",
-      "travelDuration": "4.5 hours"
+      "travelDuration": "4.5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Rotorua"]
     },
     {
       "type": "location",
@@ -122,7 +130,8 @@
       "duration": "3 hours",
       "thumbnail": "images/hobbiton-05.jpg",
       "travelMode": "drive",
-      "travelDuration": "1 hour"
+      "travelDuration": "1 hour",
+      "sameAs": ["https://en.wikipedia.org/wiki/Hobbiton_Movie_Set"]
     },
     {
       "type": "location",
@@ -132,7 +141,8 @@
       "duration": "3 days",
       "thumbnail": "images/auckland-04.jpg",
       "travelMode": "drive",
-      "travelDuration": "2.5 hours"
+      "travelDuration": "2.5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Auckland"]
     },
     {
       "type": "location",
@@ -142,7 +152,8 @@
       "duration": "3 days",
       "thumbnail": "images/cook-islands-12.jpg",
       "travelMode": "fly",
-      "travelDuration": "3.5 hours"
+      "travelDuration": "3.5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Rarotonga"]
     }
   ],
   "relatedTrips": []

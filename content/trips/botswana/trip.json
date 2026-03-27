@@ -32,7 +32,8 @@
       "title": "Cape Town",
       "file": "cape-town.md",
       "place": "Cape Town, South Africa",
-      "thumbnail": "images/cape-town-01.jpg"
+      "thumbnail": "images/cape-town-01.jpg",
+      "sameAs": ["https://en.wikipedia.org/wiki/Cape_Town"]
     },
     {
       "type": "location",
@@ -41,7 +42,8 @@
       "place": "Victoria Falls, Zimbabwe",
       "thumbnail": "images/victoria-falls-01.jpg",
       "travelMode": "fly",
-      "travelDuration": "2 hours"
+      "travelDuration": "2 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Victoria_Falls"]
     },
     {
       "type": "article",
@@ -55,7 +57,8 @@
       "place": "Sable Alley, Botswana",
       "thumbnail": "images/sable-alley-01.jpg",
       "travelMode": "fly",
-      "travelDuration": "2 hours"
+      "travelDuration": "2 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Okavango_Delta"]
     },
     {
       "type": "location",
@@ -64,7 +67,8 @@
       "place": "North Island Okavango, Botswana",
       "thumbnail": "images/north-island-01.jpg",
       "travelMode": "fly",
-      "travelDuration": "30 min"
+      "travelDuration": "30 min",
+      "sameAs": ["https://en.wikipedia.org/wiki/Okavango_Delta"]
     },
     {
       "type": "location",
@@ -73,7 +77,8 @@
       "place": "Franschhoek, South Africa",
       "thumbnail": "images/cape-winelands-01.jpg",
       "travelMode": "fly",
-      "travelDuration": "2.5 hours"
+      "travelDuration": "2.5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Franschhoek"]
     },
     {
       "type": "article",

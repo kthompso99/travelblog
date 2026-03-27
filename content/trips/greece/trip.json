@@ -31,7 +31,8 @@
       "title": "Milos",
       "place": "Milos Greece",
       "file": "milos.md",
-      "thumbnail": "images/Milos-01.jpg"
+      "thumbnail": "images/Milos-01.jpg",
+      "sameAs": ["https://en.wikipedia.org/wiki/Milos"]
     },
     {
       "type": "location",
@@ -40,7 +41,8 @@
       "file": "santorini.md",
       "thumbnail": "images/Santorini-02.jpg",
       "travelMode": "ferry",
-      "travelDuration": "3 hours"
+      "travelDuration": "3 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Santorini"]
     },
     {
       "type": "location",
@@ -49,7 +51,8 @@
       "file": "naxos.md",
       "thumbnail": "images/Naxos-02.jpg",
       "travelMode": "ferry",
-      "travelDuration": "1.5 hours"
+      "travelDuration": "1.5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Naxos"]
     },
     {
       "type": "location",
@@ -58,7 +61,8 @@
       "file": "paros.md",
       "thumbnail": "images/Paros-08.jpg",
       "travelMode": "ferry",
-      "travelDuration": "45 min"
+      "travelDuration": "45 min",
+      "sameAs": ["https://en.wikipedia.org/wiki/Paros"]
     },
     {
       "type": "location",
@@ -67,7 +71,8 @@
       "file": "delos.md",
       "thumbnail": "images/Delos-03.jpg",
       "travelMode": "ferry",
-      "travelDuration": "30 min"
+      "travelDuration": "30 min",
+      "sameAs": ["https://en.wikipedia.org/wiki/Delos"]
     },
     {
       "type": "location",
@@ -76,7 +81,8 @@
       "file": "mykonos.md",
       "thumbnail": "images/Mykonos-01.jpg",
       "travelMode": "ferry",
-      "travelDuration": "30 min"
+      "travelDuration": "30 min",
+      "sameAs": ["https://en.wikipedia.org/wiki/Mykonos"]
     },
     {
       "type": "location",
@@ -85,7 +91,8 @@
       "file": "athens.md",
       "thumbnail": "images/Athens-15.jpg",
       "travelMode": "ferry",
-      "travelDuration": "3 hours"
+      "travelDuration": "3 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Athens"]
     }
   ],
   "relatedTrips": []

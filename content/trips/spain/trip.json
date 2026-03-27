@@ -31,7 +31,8 @@
       "title": "Cordoba",
       "file": "cordoba.md",
       "place": "Cordoba, Spain",
-      "thumbnail": "images/cordoba-12.jpg"
+      "thumbnail": "images/cordoba-12.jpg",
+      "sameAs": ["https://en.wikipedia.org/wiki/C%C3%B3rdoba,_Spain"]
     },
     {
       "type": "location",
@@ -40,7 +41,8 @@
       "place": "Granada, Spain",
       "thumbnail": "images/granada-02.jpg",
       "travelMode": "train",
-      "travelDuration": "1.5 hours"
+      "travelDuration": "1.5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Granada"]
     },
     {
       "type": "location",
@@ -49,7 +51,8 @@
       "place": "Antequera, Spain",
       "thumbnail": "images/antequera-01.jpg",
       "travelMode": "drive",
-      "travelDuration": "1 hour"
+      "travelDuration": "1 hour",
+      "sameAs": ["https://en.wikipedia.org/wiki/Antequera"]
     },
     {
       "type": "location",
@@ -58,7 +61,8 @@
       "place": "Malaga, Spain",
       "thumbnail": "images/malaga-08.jpg",
       "travelMode": "drive",
-      "travelDuration": "45 min"
+      "travelDuration": "45 min",
+      "sameAs": ["https://en.wikipedia.org/wiki/M%C3%A1laga"]
     },
     {
       "type": "location",
@@ -67,7 +71,8 @@
       "place": "Setenil de las Bodegas, Spain",
       "thumbnail": "images/setenil-01.jpg",
       "travelMode": "drive",
-      "travelDuration": "1.5 hours"
+      "travelDuration": "1.5 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Setenil_de_las_Bodegas"]
     },
     {
       "type": "location",
@@ -76,7 +81,8 @@
       "place": "Ronda, Spain",
       "thumbnail": "images/ronda-01.jpg",
       "travelMode": "drive",
-      "travelDuration": "30 min"
+      "travelDuration": "30 min",
+      "sameAs": ["https://en.wikipedia.org/wiki/Ronda"]
     },
     {
       "type": "location",
@@ -85,7 +91,8 @@
       "place": "Seville, Spain",
       "thumbnail": "images/seville-18.jpg",
       "travelMode": "drive",
-      "travelDuration": "2 hours"
+      "travelDuration": "2 hours",
+      "sameAs": ["https://en.wikipedia.org/wiki/Seville"]
     },
     {
       "type": "location",
@@ -94,7 +101,8 @@
       "place": "Madrid, Spain",
       "thumbnail": "images/madrid-09.jpg",
       "travelMode": "fly",
-      "travelDuration": "1 hour"
+      "travelDuration": "1 hour",
+      "sameAs": ["https://en.wikipedia.org/wiki/Madrid"]
     }
   ],
   "relatedTrips": []
