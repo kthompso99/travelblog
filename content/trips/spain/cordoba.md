@@ -14,13 +14,13 @@ Cordoba was the largest city in Europe in the 9th and 10th centuries -- capital 
 
 Cordoba was our first stop in Andalucía, and it set a high bar. The city is easy to navigate, and the Mezquita alone would justify the trip. But staying overnight is what makes Cordoba memorable.  The quiet evening version of this city is a different place entirely.
 
-Cordoba's old city is compact and walkable -- and extremely easy to get lost in.  Kevin lost his sense of direction more than once -- but in a city like this, you can only wander so far.  The street "plan" is Moorish, and it shows -- there isn't a right angle anywhere. Every lane curves, narrows, or dead-ends on its own terms.
+Cordoba's old city is compact and walkable -- and extremely easy to get lost in.  Kevin lost his sense of direction more than once -- but in a city like this, you can only wander so far.  The street "plan" is Moorish -- there isn't a right angle anywhere. Every lane curves, narrows, or dead-ends on its own terms.
 
-It's not fully car-free, but the few taxis creep through so that wandering feels safe.
+It's not fully car-free, but the few taxis creep through slowly enough that wandering feels safe.
 
 ## The Mezquita and the City Around It
 
-The Mezquita -- simply Spanish for 'mosque' -- is the reason most people come to Cordoba, and the building the building delivers something no photograph prepares you for: a thousand-year-old Islamic prayer hall with a Renaissance cathedral built into its center.
+The Mezquita -- simply Spanish for 'mosque' -- is the reason most people come to Cordoba, and the building delivers something no photograph prepares you for: a thousand-year-old Islamic prayer hall with a Renaissance cathedral built into its center.
 
 Abd al-Rahman I, founder of the Islamic Emirate of Cordoba, ordered it built in 756-757 AD.  After its final expansion in the late 10th century, Mezquita was the second largest mosque in the world for hundreds of years.  Only a mosque in Samarra (modern-day Iraq) was larger, and it now lies largely in ruins.  
 
@@ -95,17 +95,17 @@ Parts of the wall may be Roman rather than medieval -- the layers blur, and even
 
 Much of the best eating in Cordoba happens in courtyards: white-washed patios hung with geraniums, trickling fountains, the restaurant blurring into the city's famous floral alleyways. 
 
-Salmorejo -- gazpacho's thicker, creamier cousin, topped with hard-boiled egg and jamón ibérico -- appeared at nearly every lunch and never got old. A flamenquín one afternoon (pork loin wrapped around serrano ham, breaded and fried) was the kind of simple, heavy comfort food that justifies a slower pace for the rest of the day.
+Salmorejo -- gazpacho's thicker, creamier cousin, topped with hard-boiled egg and jamón ibérico -- appeared at nearly every lunch and never got old. A flamenquín one afternoon (pork loin wrapped around serrano ham, breaded and fried) was the kind of simple, heavy comfort food that justifies a slower afternoon.
 
 We didn't need to make reservations anywhere, but one night we did book ahead at [Restaurant El Rincon de Carmen](https://restauranterincondecarmen.es/).  It felt like eating in someone's private courtyard -- set back from the main street, quiet enough that the guitarist's playing carried without effort.
 
 ## Practical Tips
 
-The old town is a short taxi ride from the train station — close, but not walkable with luggage.  Taxis were easy to find. Uber doesn't operate in Cordoba.  
+The old town is a short taxi ride from the train station.  Taxis were easy to find. Uber doesn't operate in Cordoba.  
 
 Once you're in the old town, everything is very walkable, it's roughly 10-15 minutes across on foot.
 
-We initially bought the premium tickets to the horse show through a 3rd-party because search results pushed us there.  However, the 3rd-party site didn't give the option to select seats or get premium.  If you buy your tickets directly [from the official site](https://cordobaecuestre.com/), you can select premium seats (but those are limited, and disappear weeks in advance, so it's worth planning). 
+We initially bought the premium tickets to the horse show through a 3rd-party because search results pushed us there.  The 3rd-party site didn't give the option to select seats or get premium.  If you buy your tickets directly [from the official site](https://cordobaecuestre.com/), you can select premium seats (but those are limited, and disappear weeks in advance, so it's worth planning). 
 
 :::nutshell Cordoba
 verdict: Would Plan Around
