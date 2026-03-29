@@ -1,32 +1,49 @@
 
 ## Overview
 
-The **Ruta de los Pueblos Blancos** (Route of the White Villages) is one of Andalusia's most iconic journeys, primarily winding through the south of Spain. These towns are famous for their whitewashed walls--traditionally used to reflect the intense southern sun--and their narrow, winding Moorish streets.  Ronda is the most famous town of the White Villages -- we treat that in [ronda.html](a Ronda article).  We visited other smaller villages around Ronda -- and while each is charming and worth visiting, one truly stood out.
+Most visitors to the **Ruta de los Pueblos Blancos** (Route of the White Villages) go straight to Ronda. We did too, but we also spent two separate days visiting three smaller villages around it, and the detour reshaped how we thought about the route. Setenil de las Bodegas has houses built into boulders. Zahara de la Sierra has a castle you'll have entirely to yourself. Grazalema has mountains. The question isn't whether they're beautiful -- they all are. 
 
-We visited three villages around Ronda: Setenil de las Bodegas, Grazalema, and Zahara de la Sierra.  The first was on the way to Ronda, the second two were on the way from Ronda to Seville.  Of the three, Setenil is the most unique; Zahara the most scenic; Grazalema the most atmospheric.
-
+The whitewash isn't decorative, it reflects heat. The Moorish street plans aren't quaint, they were built to channel shade.  
 
 ## Setenil de las Bodegas
 
-Setenil de las Bodegas is an ancient town, surrounded by cliffs in such a way that parts of the town are built into the hillside.  An entire block of houses is sheltered under an enormous boulder, another level of houses is built on top of a different enormous rock formation.  It's very photogenic, but overall I think you can see the town in 90 or 120 minutes easily.  This was one time that daytrip was particularly helpful, because our driver could drop us off right at the entrance to the tourist area and pick us up 2 hours later -- but parking was a good 15 minute walk away.
+Setenil de las Bodegas, population 2500, is an hour from Malaga. The town is built into the cliffs -- entire blocks of houses sheltered under enormous boulders, with another layer of homes perched on top. Worth the stop, but 2 hours covers it.
 
-![An hour from Malaga lies Setenil de las Bodegas, a small (3000 inhabitants) village famous for homes built into enormous boulders. Cuevas del Sol ("Caves of the Sun") are on the side of the river that gets a moderate amount of sunlight.](images/setenil-01.jpg)
+Our driver dropped us at the town entrance and picked us up at the same spot.  The parking lot is a 15-minute walk that would have eaten into a short visit.
 
-![Cuevas de la Sombra ("Caves of Shadow") lies across the river, in the shade. The size of the boulders over the road are unbelievable.](images/setenil-02.jpg)
+Cuevas del Sol ('Caves of the Sun') is a row of whitewashed cafes built under a massive limestone overhang on the sunnier side of the river. The rock forms a natural roof, close enough overhead that you're aware of it the entire time you're drinking your coffee.
 
-![We made a friend in Setenil. I'm pretty sure it wasn't the first time she had had Iberian ham (yes not the healthiest, but she was darn cute).](images/setenil-03.jpg)
+![Cuevas del Sol](images/setenil-01.jpg)
 
-![Many shops are built into the sides of boulders.](images/setenil-04.jpg)
+Cuevas de la Sombra ('Caves of Shadow') lies across the river, in permanent shade. The boulders overhead dwarf the buildings beneath them.  Buildings fit under a single rock formation.
+
+![Cuevas de la Sombra](images/setenil-02.jpg)
+
+We made a friend in Setenil -- a cat who appeared the moment the jamón came out, with the confidence of a creature who'd run this routine before.
+
+![Setenil resident](images/setenil-03.jpg)
+
+Many shops are built into the sides of boulders.  One ceramics shop had painted plates on one wall and raw rock on the other, the inventory ending where the cliff began.
+
+![Setenil shop](images/setenil-04.jpg)
 
 ## Grazalema
 
-We spent only 45 minutes in Grazalema and have to admit we saw more of it from the outside than from within. The town itself is small (population ~2000) and the square, while pleasant, isn't the reason to come. The reason is the setting: Grazalema sits in a valley ringed by the Sierra del Pinar mountains, white buildings against green peaks, and it photographs beautifully from the approach road. With more time we'd have wandered longer -- but even from outside, it earns its reputation.
+We spent only 45 minutes in Grazalema and saw more of it from the outside than from within. The town is small -- population around 2,000 -- and the square isn't a grand civic center. It's a car-free plaza where the loudest sounds are coffee spoons and a fountain. Local men in flat caps looked like they hadn't moved in hours. Doing nothing appeared to be a respected afternoon activity.
 
-![Grazalema is situated in a spectacular setting.  It's very windy there -- hence holding the hat](images/graza-01.jpg)
+![The Grazalema square](images/graza-02.jpg)
+
+The reason is the setting. Grazalema sits in a bowl of the Sierra de Grazalema, white buildings against jagged limestone peaks that look like crumpled grey velvet from the town's lookout points. It's famously the wettest place in Spain, and it shows -- the valley has a lushness you don't expect in Andalusia, with moss on the rock faces and thick clusters of firs that feel more Alpine than Mediterranean.  
+
+![Grazalema is situated in a mountain bowl.  It's very windy there -- hence holding the hat](images/graza-01.jpg)
+
+Looking out into the valley, you see the road you just drove up snaking away like a tiny grey thread.  With more time we'd have wandered longer -- but even from outside, it earns its reputation.
+
+![The valley surrounding Grazalema](images/graza-03.mp4)
 
 ## Zahara de la Sierra 
 
-We loved Zahara de la Sierra.  Like many of the towns in this area, it began as a Moorish outpost due to its strategic position between Ronda and Seville. The town has preserved its medieval labyrinthine urban layout, making it a scenic place to stroll through the narrow streets. 
+Zahara de la Sierra was a favorite. A former Moorish outpost perched strategically between Ronda and Seville, it still has the medieval street plan -- narrow, labyrinthine, and built for defense rather than convenience. Good for an hour of wandering.
 
 ![Lively but mellow town square in central Zahara](images/zahara-03.jpg)
 
@@ -40,10 +57,9 @@ From the town square it's a 15-minute walk up to the tower of the 13th-century M
 
 ## Practical Tips
 
-We had a driver take us to all 3, and are happy we did.  In almost all cases the car park is a decent distance from these small towns, so we were able to get dropped off right near the main square, enjoy it, and efficiently get back in.  But that's not an option for everyone.
+We hired a driver for all three, and it was the right call.  Car parks are always a walk from the town centers, and being dropped at the main square and picked up when we were done let us see three towns in two travel days without the logistics eating into the time.
 
-See the section on [Tips for Spain](tips.html) for how we chose [daytrip.com](http://daytrip.com) for various of our shuttles from point A to point B.    
-
+See our [Tips for Spain](tips.html) page for more on booking drivers through [daytrip.com](http://daytrip.com).
 
 :::nutshell White Villages
 verdict: Would Plan Around
@@ -52,7 +68,7 @@ Stay Overnight: Not necessary.
 Don't Miss: Setenil de las Bodegas is remarkable and unique.
 Best Time of Day: These are all day-trip destinations.
 Worth the Splurge: Hiring a driver who dropped us off right at the town center, thus avoiding shuttles or walks from the remote parking lots.
-Return Visit: Not sure. Each is beautiful, but not sure there's enough that I'd return.
+Return Visit: Not sure. Each is beautiful, but not sure there's enough that we'd return.
 :::
 
 *Add your photos here*
