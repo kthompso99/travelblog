@@ -1,7 +1,7 @@
 
 ## Overview
 
-Most visitors to the **Ruta de los Pueblos Blancos** (Route of the White Villages) go straight to Ronda. We did too, but we also spent two separate days visiting three smaller villages around it, and the detour reshaped how we thought about the route. Setenil de las Bodegas has houses built into boulders. Zahara de la Sierra has a castle you'll have entirely to yourself. Grazalema has mountains. The question isn't whether they're beautiful -- they all are. 
+Most visitors to the **Ruta de los Pueblos Blancos** (Route of the White Villages) go straight to Ronda. We did too, but we also spent two days visiting three smaller villages nearby, and each one justified the detour in a different way. Setenil de las Bodegas has houses built into boulders. Zahara de la Sierra has a castle you'll have entirely to yourself. Grazalema has mountains that make you forget you're in Andalusia.  
 
 The whitewash isn't decorative, it reflects heat. The Moorish street plans aren't quaint, they were built to channel shade.  
 
@@ -37,7 +37,7 @@ The reason is the setting. Grazalema sits in a bowl of the Sierra de Grazalema, 
 
 ![Grazalema is situated in a mountain bowl.  It's very windy there -- hence holding the hat](images/graza-01.jpg)
 
-Looking out into the valley, you see the road you just drove up snaking away like a tiny grey thread.  With more time we'd have wandered longer -- but even from outside, it earns its reputation.
+Looking out into the valley, you see the road you just drove up snaking away like a tiny grey thread. The setting is the reason to come -- the town itself is a 45-minute visit, but the mountains around it stay with you longer.
 
 ![The valley surrounding Grazalema](images/graza-03.mp4)
 
@@ -60,6 +60,8 @@ From the town square it's a 15-minute walk up to the tower of the 13th-century M
 We hired a driver for all three, and it was the right call.  Car parks are always a walk from the town centers, and being dropped at the main square and picked up when we were done let us see three towns in two travel days without the logistics eating into the time.
 
 See our [Tips for Spain](tips.html) page for more on booking drivers through [daytrip.com](http://daytrip.com).
+
+Ronda gets the attention, and deserves it. But the White Villages are worth a day on their own -- each one took less than 2 hours, none felt rushed, and together they show you how differently three Andalusian towns can wear the same whitewash. Even Setenil, which draws the largest crowds, feels nothing like Zahara's quiet castle or Grazalema's mountain bowl.
 
 :::nutshell White Villages
 verdict: Would Plan Around
