@@ -1,0 +1,249 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://twotravelnuts.com/#website",
+      "url": "https://twotravelnuts.com/",
+      "name": "Two Travel Nuts",
+      "inLanguage": "en-US",
+      "publisher": { "@id": "https://twotravelnuts.com/#organization" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://twotravelnuts.com/#organization",
+      "name": "Two Travel Nuts",
+      "url": "https://twotravelnuts.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://twotravelnuts.com/logo.png"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://twotravelnuts.com/#author",
+      "name": "Kevin Thompson",
+      "jobTitle": "Travel Photographer & Writer",
+      "knowsAbout": [
+        "Luxury Travel",
+        "Travel Photography",
+        "European Travel",
+        "Cultural Travel"
+      ],
+      "sameAs": ["https://www.instagram.com/twotravelnuts"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://twotravelnuts.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Greece",
+          "item": "https://twotravelnuts.com/trips/greece/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Athens",
+          "item": "https://twotravelnuts.com/trips/greece/athens.html"
+        }
+      ]
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#image-hero",
+      "url": "https://twotravelnuts.com/images/athens-01.jpg",
+      "contentUrl": "https://twotravelnuts.com/images/athens-01.jpg",
+      "name": "The Parthenon at golden hour",
+      "caption": "The Parthenon at golden hour",
+      "representativeOfPage": true
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#image-caryatids",
+      "url": "https://twotravelnuts.com/images/athens-12.jpg",
+      "contentUrl": "https://twotravelnuts.com/images/athens-12.jpg",
+      "name": "Caryatids at the Erechtheion",
+      "caption": "Caryatids at the Erechtheion"
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#image-areopagus-view",
+      "url": "https://twotravelnuts.com/images/athens-15.jpg",
+      "contentUrl": "https://twotravelnuts.com/images/athens-15.jpg",
+      "name": "View of the Acropolis from Areopagus Hill",
+      "caption": "View of the Acropolis from Areopagus Hill"
+    },
+    {
+      "@type": "TouristAttraction",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#attraction-acropolis",
+      "name": "Acropolis of Athens",
+      "description": "Ancient citadel containing the Parthenon and other monuments of classical Greece.",
+      "url": "https://en.wikipedia.org/wiki/Acropolis_of_Athens",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.9715,
+        "longitude": 23.7267
+      },
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Acropolis_of_Athens",
+        "https://www.wikidata.org/wiki/Q1555"
+      ]
+    },
+    {
+      "@type": "Museum",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#attraction-acropolis-museum",
+      "name": "Acropolis Museum",
+      "description": "Modern museum housing artifacts from the Acropolis archaeological sites.",
+      "url": "https://en.wikipedia.org/wiki/Acropolis_Museum",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.9684,
+        "longitude": 23.7285
+      },
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Acropolis_Museum",
+        "https://www.wikidata.org/wiki/Q421084"
+      ]
+    },
+    {
+      "@type": "TouristAttraction",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#attraction-ancient-agora",
+      "name": "Ancient Agora of Athens",
+      "description": "The ancient marketplace and civic center of Athens.",
+      "url": "https://en.wikipedia.org/wiki/Ancient_Agora_of_Athens",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.9753,
+        "longitude": 23.7224
+      },
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Ancient_Agora_of_Athens",
+        "https://www.wikidata.org/wiki/Q464108"
+      ]
+    },
+    {
+      "@type": "Museum",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#attraction-national-archaeological-museum",
+      "name": "National Archaeological Museum",
+      "description": "Greece's largest museum with the world's finest collection of ancient Greek artifacts.",
+      "url": "https://en.wikipedia.org/wiki/National_Archaeological_Museum,_Athens",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.9895,
+        "longitude": 23.7320
+      },
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/National_Archaeological_Museum,_Athens",
+        "https://www.wikidata.org/wiki/Q3336890"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#article",
+      "headline": "Athens: Ancient Ruins and Modern Tavernas",
+      "description": "3-night Athens guide covering the Acropolis, ancient ruins, and the best tavernas in Plaka.",
+      "inLanguage": "en-US",
+      "mainEntityOfPage": "https://twotravelnuts.com/trips/greece/athens.html",
+      "author": { "@id": "https://twotravelnuts.com/#author" },
+      "datePublished": "2025-06-10",
+      "dateModified": "2025-06-10",
+      "publisher": { "@id": "https://twotravelnuts.com/#organization" },
+      "mainEntity": { "@id": "https://twotravelnuts.com/trips/greece/athens.html#destination" },
+      "about": { "@id": "https://twotravelnuts.com/trips/greece/athens.html#destination" },
+      "image": { "@id": "https://twotravelnuts.com/trips/greece/athens.html#image-hero" },
+      "primaryImageOfPage": { "@id": "https://twotravelnuts.com/trips/greece/athens.html#image-hero" },
+      "review": [
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#review-hotel-grande-bretagne" },
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#review-acropolis-museum" }
+      ]
+    },
+    {
+      "@type": "TouristDestination",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#destination",
+      "name": "Athens",
+      "description": "3-night Athens guide covering the Acropolis, ancient ruins, and the best tavernas in Plaka.",
+      "mainEntityOfPage": "https://twotravelnuts.com/trips/greece/athens.html",
+      "isPartOf": { "@id": "https://twotravelnuts.com/trips/greece/#itinerary" },
+      "touristType": ["Luxury Travelers", "Mature Travelers", "History Enthusiasts"],
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Athens",
+        "https://www.wikidata.org/wiki/Q1524"
+      ],
+      "review": [
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#review-hotel-grande-bretagne" },
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#review-acropolis-museum" }
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.9755,
+        "longitude": 23.7348
+      },
+      "image": [
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#image-hero" },
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#image-caryatids" },
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#image-areopagus-view" }
+      ],
+      "containedInPlace": {
+        "@type": "Country",
+        "name": "Greece",
+        "sameAs": ["https://www.wikidata.org/wiki/Q41"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "GR"
+        }
+      },
+      "includesAttraction": [
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#attraction-acropolis" },
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#attraction-acropolis-museum" },
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#attraction-ancient-agora" },
+        { "@id": "https://twotravelnuts.com/trips/greece/athens.html#attraction-national-archaeological-museum" }
+      ]
+    },
+    {
+      "@type": "Review",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#review-hotel-grande-bretagne",
+      "itemReviewed": {
+        "@type": "Hotel",
+        "name": "Hotel Grande Bretagne",
+        "url": "https://www.grandebretagne.gr/",
+        "sameAs": [
+          "https://en.wikipedia.org/wiki/Hotel_Grande_Bretagne",
+          "https://www.wikidata.org/wiki/Q1630716"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Athens",
+          "addressCountry": "GR"
+        }
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5.0",
+        "bestRating": "5"
+      },
+      "author": { "@id": "https://twotravelnuts.com/#author" },
+      "datePublished": "2025-06-10",
+      "reviewBody": "Exceptional service, central location with Acropolis views, and the best breakfast spread in Athens."
+    },
+    {
+      "@type": "Review",
+      "@id": "https://twotravelnuts.com/trips/greece/athens.html#review-acropolis-museum",
+      "itemReviewed": { "@id": "https://twotravelnuts.com/trips/greece/athens.html#attraction-acropolis-museum" },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5.0",
+        "bestRating": "5"
+      },
+      "author": { "@id": "https://twotravelnuts.com/#author" },
+      "datePublished": "2025-06-10",
+      "reviewBody": "World-class modern museum that contextualizes the Parthenon sculptures beautifully. Don't skip the top floor's glass walls with direct Acropolis views."
+    }
+  ]
+}

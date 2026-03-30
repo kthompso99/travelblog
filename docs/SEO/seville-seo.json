@@ -1,0 +1,258 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://twotravelnuts.com/#website",
+      "url": "https://twotravelnuts.com/",
+      "name": "Two Travel Nuts",
+      "inLanguage": "en-US",
+      "publisher": { "@id": "https://twotravelnuts.com/#organization" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://twotravelnuts.com/#organization",
+      "name": "Two Travel Nuts",
+      "url": "https://twotravelnuts.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://twotravelnuts.com/logo.png"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://twotravelnuts.com/#author",
+      "name": "Kevin Thompson",
+      "jobTitle": "Travel Photographer & Writer",
+      "knowsAbout": [
+        "Luxury Travel",
+        "Travel Photography",
+        "European Travel",
+        "Cultural Travel"
+      ],
+      "sameAs": ["https://www.instagram.com/twotravelnuts"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://twotravelnuts.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Southern Spain",
+          "item": "https://twotravelnuts.com/trips/spain/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Seville",
+          "item": "https://twotravelnuts.com/trips/spain/seville.html"
+        }
+      ]
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#image-hero",
+      "url": "https://twotravelnuts.com/images/seville-15.jpg",
+      "contentUrl": "https://twotravelnuts.com/images/seville-15.jpg",
+      "name": "Seville Cathedral through Moorish arch",
+      "caption": "Moorish arch framing the cathedral in Seville's old town",
+      "representativeOfPage": true
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#image-alcazar-pond",
+      "url": "https://twotravelnuts.com/images/seville-14.jpg",
+      "contentUrl": "https://twotravelnuts.com/images/seville-14.jpg",
+      "name": "Mercury's Pond at the Alcázar",
+      "caption": "The large, emerald-green Mercury's Pond at the Alcázar"
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#image-peacock",
+      "url": "https://twotravelnuts.com/images/seville-18.jpg",
+      "contentUrl": "https://twotravelnuts.com/images/seville-18.jpg",
+      "name": "Close encounter with peacock in Seville",
+      "caption": "Not sure I've ever been quite this close to a peacock"
+    },
+    {
+      "@type": "TouristAttraction",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-royal-alcazar",
+      "name": "Royal Alcázar of Seville",
+      "description": "A stunning 14th-century Mudéjar palace and gardens.",
+      "url": "https://en.wikipedia.org/wiki/Alc%C3%A1zar_of_Seville",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.3830,
+        "longitude": -5.9930
+      },
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Alc%C3%A1zar_of_Seville",
+        "https://www.wikidata.org/wiki/Q1134300"
+      ]
+    },
+    {
+      "@type": "CatholicChurch",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-seville-cathedral",
+      "name": "Seville Cathedral",
+      "description": "The largest Gothic church in the world, featuring the Giralda Tower.",
+      "url": "https://en.wikipedia.org/wiki/Seville_Cathedral",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.3859,
+        "longitude": -5.9930
+      },
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Seville_Cathedral",
+        "https://www.wikidata.org/wiki/Q2973"
+      ]
+    },
+    {
+      "@type": ["MusicVenue", "TouristAttraction"],
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-la-casa-del-flamenco",
+      "name": "La Casa del Flamenco",
+      "description": "Authentic, unamplified flamenco in a 15th-century courtyard.",
+      "url": "https://lacasadelflamencosevilla.com/",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.3845,
+        "longitude": -5.9920
+      }
+    },
+    {
+      "@type": "TouristAttraction",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-metropol-parasol",
+      "name": "Metropol Parasol (Las Setas)",
+      "description": "A massive wooden structure with Roman ruins and panoramic views.",
+      "url": "https://en.wikipedia.org/wiki/Metropol_Parasol",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.3930,
+        "longitude": -5.9915
+      },
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Metropol_Parasol",
+        "https://www.wikidata.org/wiki/Q1311020"
+      ]
+    },
+    {
+      "@type": "TouristAttraction",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-plaza-de-espana",
+      "name": "Plaza de España",
+      "description": "A cinematic landmark built for the 1929 Ibero-American Exposition.",
+      "url": "https://en.wikipedia.org/wiki/Plaza_de_Espa%C3%B1a,_Seville",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.3770,
+        "longitude": -5.9869
+      },
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Plaza_de_Espa%C3%B1a,_Seville",
+        "https://www.wikidata.org/wiki/Q956014"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#article",
+      "headline": "Seville: Where the Best Moments Come from Wrong Turns",
+      "description": "4-night guide to Seville covering the Royal Alcázar, authentic flamenco, and the reality of high-end lodging.",
+      "inLanguage": "en-US",
+      "mainEntityOfPage": "https://twotravelnuts.com/trips/spain/seville.html",
+      "author": { "@id": "https://twotravelnuts.com/#author" },
+      "datePublished": "2025-11-15",
+      "dateModified": "2025-11-15",
+      "publisher": { "@id": "https://twotravelnuts.com/#organization" },
+      "mainEntity": { "@id": "https://twotravelnuts.com/trips/spain/seville.html#destination" },
+      "about": { "@id": "https://twotravelnuts.com/trips/spain/seville.html#destination" },
+      "image": { "@id": "https://twotravelnuts.com/trips/spain/seville.html#image-hero" },
+      "primaryImageOfPage": { "@id": "https://twotravelnuts.com/trips/spain/seville.html#image-hero" },
+      "review": [
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#review-hotel-unuk" },
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#review-flamenco" }
+      ]
+    },
+    {
+      "@type": "TouristDestination",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#destination",
+      "name": "Seville",
+      "description": "4-night guide to Seville covering the Royal Alcázar, authentic flamenco, and the reality of high-end lodging.",
+      "mainEntityOfPage": "https://twotravelnuts.com/trips/spain/seville.html",
+      "isPartOf": { "@id": "https://twotravelnuts.com/trips/spain/#itinerary" },
+      "touristType": ["Luxury Travelers", "Mature Travelers", "Culture Seekers"],
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Seville",
+        "https://www.wikidata.org/wiki/Q8717"
+      ],
+      "review": [
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#review-hotel-unuk" },
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#review-flamenco" }
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.3891,
+        "longitude": -5.9845
+      },
+      "image": [
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#image-hero" },
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#image-alcazar-pond" },
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#image-peacock" }
+      ],
+      "containedInPlace": {
+        "@type": "Country",
+        "name": "Spain",
+        "sameAs": ["https://www.wikidata.org/wiki/Q29"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "ES"
+        }
+      },
+      "includesAttraction": [
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-royal-alcazar" },
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-seville-cathedral" },
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-la-casa-del-flamenco" },
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-metropol-parasol" },
+        { "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-plaza-de-espana" }
+      ]
+    },
+    {
+      "@type": "Review",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#review-hotel-unuk",
+      "itemReviewed": {
+        "@type": "Hotel",
+        "name": "Vincci Seleccion Unuk",
+        "url": "https://www.vinccihoteles.com/en/hotels/seville/vincci-seleccion-unuk",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Seville",
+          "addressCountry": "ES"
+        }
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "3.5",
+        "bestRating": "5"
+      },
+      "author": { "@id": "https://twotravelnuts.com/#author" },
+      "datePublished": "2025-11-15",
+      "reviewBody": "Beautiful hotel with high-end touches, but disappointing communication regarding amenity closures. The rooftop bar and restaurant were closed for the entire stay without prior notice."
+    },
+    {
+      "@type": "Review",
+      "@id": "https://twotravelnuts.com/trips/spain/seville.html#review-flamenco",
+      "itemReviewed": { "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-la-casa-del-flamenco" },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5.0",
+        "bestRating": "5"
+      },
+      "author": { "@id": "https://twotravelnuts.com/#author" },
+      "datePublished": "2025-11-15",
+      "reviewBody": "Authentic, unamplified flamenco in an intimate 15th-century courtyard. The real thing."
+    }
+  ]
+}
