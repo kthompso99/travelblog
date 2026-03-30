@@ -505,6 +505,7 @@ Structure depends on page depth - see examples below.
   - **@id naming:** Use `#attraction-{kebab-case-slug}` pattern (e.g., `#attraction-royal-alcazar`, `#attraction-acropolis-museum`)
   - **Properties:** name, description, **url**, **geo coordinates** (GeoCoordinates), Schema.org type (or type array), sameAs array
   - **CRITICAL REQUIREMENT - url property:** All normalized attraction entities MUST include a `url` property (official website preferred, Wikipedia URL as fallback). This is non-negotiable - the entire disambiguation strategy depends on canonical URLs for entity identity.
+  - **sameAs array (RECOMMENDED):** Include Wikipedia + Wikidata URLs for major landmarks; for smaller venues without Wikipedia entries, include official website URL in sameAs array for consistency
   - **Geo coordinates required:** Enables "near me" searches and Google Maps integration
   - **Type specificity:** Use the most specific Schema.org type possible (e.g., `CatholicChurch` not `LandmarksOrHistoricalBuildings`)
   - **Multi-typing:** Use arrays like `["MusicVenue", "TouristAttraction"]` to broaden search result surface area when appropriate
@@ -538,9 +539,11 @@ Structure depends on page depth - see examples below.
     - **Attractions (normalized):** Reference via @id to top-level attraction entity
       - Pattern: `"itemReviewed": { "@id": "https://twotravelnuts.com/trips/spain/seville.html#attraction-la-casa-del-flamenco" }`
       - **Benefits:** Single source of truth, tight entity linkage, enables cross-page references
-    - **Hotels (inline):** Define inline with url/sameAs for disambiguation
+    - **Hotels (inline):** Define inline with url for disambiguation
       - Hotels rarely appear in multiple contexts (only reviewed once per trip)
       - Inline definition acceptable: `"itemReviewed": { "@type": "Hotel", "name": "...", "url": "..." }`
+      - **RECOMMENDED:** Include `sameAs` array for notable landmark hotels (Wikipedia + Wikidata)
+      - Example: Hotel Grande Bretagne (Athens) includes sameAs because it's a historic landmark with Wikipedia entry
     - Creates chain: Review → itemReviewed (@id or disambiguated inline) → Wikidata/Wikipedia → Knowledge Graph
     - Strengthens assertion: "Known author reviewed precisely identified entity"
 

@@ -122,7 +122,8 @@
         "@type": "GeoCoordinates",
         "latitude": 37.3845,
         "longitude": -5.9920
-      }
+      },
+      "sameAs": ["https://lacasadelflamencosevilla.com/"]
     },
     {
       "@type": "TouristAttraction",
