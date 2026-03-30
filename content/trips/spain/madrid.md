@@ -2,20 +2,19 @@
 
 Madrid bookended our trip -- 36 hours before the Andalucian loop, 36 hours after -- and we were deliberate about not making it the focus. We can return and do it properly; early November in northern Spain is also not the ideal weather window. That said, we came away with more than we expected from the time we had.
 
-
 ## What We Did
 
-The practical reality of Madrid is that its major sites are spread out in a way that Seville and Granada are not. We did a Tuk Tuk tour on the first visit -- 3 hours that covered a lot of ground and worked well as an introduction to the city.  
+Madrid's major sites are more spread out than Seville's or Granada's. We did a Tuk Tuk tour on the first visit -- 3 hours that covered a lot of ground and worked well as an introduction to the city.  
 
 ![Neither of us drove the Tuk Tuk, but it was a good photo-op](images/madrid-06.jpg)
 
-We visited the Mercado de San Miguel near Plaza Mayor -- 100% tourist-oriented, but housed in a lovely wrought-iron and glass structure and worth an hour if you're in the area.
+The Mercado de San Miguel near Plaza Mayor is entirely tourist-oriented, but the wrought-iron and glass structure is worth an hour on its own.
 
 ![The Mercado de San Miguel](images/madrid-04.jpg)
 
 ![Typical meat counter at Mercado de San Miguel](images/madrid-02.jpg)
 
-The Tuk Tuk took us also to the modern cathedral and the palace, neither of which we entered.
+The Tuk Tuk also took us to the modern cathedral and the palace, neither of which we entered.
 
 ![Catedral de Santa María la Real de la Almudena, Madrid.  A cathedral with an impressively long name.](images/madrid-01.jpg)
 
@@ -45,15 +44,15 @@ On our last day we spent a few hours at the Madrid Archaeological Museum -- we w
 
 We stayed in different neighborhoods on each visit, which worked well.
 
-After we arrived, we stayed at the [Gran Hotel Inglés](https://www.hyatt.com/mr-and-mrs-smith/en-US/m1391-gran-hotel-ingles).  This is an elegant hotel well-situated near many tourist sites, and has a history dating to 1886.  We were very happy for our 36 hours there.
+The [Gran Hotel Inglés](https://www.hyatt.com/mr-and-mrs-smith/en-US/m1391-gran-hotel-ingles) sits in the Barrio de las Letras -- Madrid's Literary Quarter -- and the neighborhood made the hotel choice for us. The streets around it are narrow, lined with independent bookshops rather than chains, and the evening energy is vermouth and tapas spilling onto sidewalks without ever getting loud. The hotel itself is Madrid's oldest, renovated into something sharper than you'd expect: Art Deco details, modern comfort, and none of the stiffness that 'historic hotel' usually implies.
 
-The [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/fenix-gran-melia) is a bit further from the tourist center but a 5-minute walk from the Archaeological Museum. The 1953 lobby atrium is the kind of space that makes you want to dress for it, which we did. The Beatles and Cary Grant stayed here, which tells you something about the register. As we often notice in Spain, locals look far more put-together -- a scarf, a jacket, some deliberate choice.  The contrast was immediately noticable when we re-entered the US.
+The [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/fenix-gran-melia) is a bit further from the tourist center but a 5-minute walk from the Archaeological Museum. The 1953 lobby atrium is the kind of space that makes you want to dress for it, which we did. The Beatles and Cary Grant stayed here, which tells you something about the register. As we often notice in Spain, locals look far more put-together -- a scarf, a jacket, some deliberate choice.  The contrast was immediately noticeable when we re-entered the US.
 
 ![Tiffany said I should add this picture as evidence that *sometime* I dress up in Europe.](images/madrid-14.jpg)
 
 ## Practical Tips
 
-Madrid is an enormous city, and its tourist attractions are far more spread out than any of the other cities we visited in Spain.   The Tuk Tuk was a very comfortable way to get around, you feel like you're a bit more 'in' the city than hiding in an SUV, but you can get to different parts of town easily.  The city rewards a longer visit than we gave it.
+Madrid is big in a way the other Spanish cities aren't -- the sights are spread across the city rather than clustered in a walkable old town. The tuk-tuk worked well for that: more connected to the street than a car, but covering ground we couldn't have managed on foot. Two days gave us enough to know we'd shortchanged it. Madrid rewards a longer stay than we gave it, and we'd come back with more time and less itinerary.
 
 :::nutshell Madrid
 verdict: Glad We Went
