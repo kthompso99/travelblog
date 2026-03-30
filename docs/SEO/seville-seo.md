@@ -27,12 +27,14 @@ Location pages use **two linked entities** in the @graph:
 3. **Knowledge graph linking**: Uses `isPartOf` to connect this location to parent trip itinerary
 4. **Attraction entities (fully normalized)**: All 5 attractions extracted as top-level @graph entities with unique @id values
    - **@id naming:** `#attraction-{kebab-case-slug}` (e.g., `#attraction-royal-alcazar`, `#attraction-la-casa-del-flamenco`)
-   - **Properties:** name, description, url, geo coordinates, Schema.org type, sameAs array
+   - **Properties:** name, description, **url (REQUIRED)**, geo coordinates, Schema.org type, sameAs array
+   - **CRITICAL: url requirement** - All normalized attraction entities MUST include a `url` property (official website preferred, Wikipedia URL as fallback). This is non-negotiable for entity disambiguation.
    - **Graph order:** Defined after images, before BlogPosting (so they exist when referenced)
    - **TouristDestination.includesAttraction:** Array of @id references (no inline definitions)
    - **Benefits:** Enables attraction reuse across pages, tight review linking via @id, consistent with images/reviews architecture
 5. **Multiple reviews with explicit connectivity**: Separate Review entities for hotel + "Don't Miss" attractions
    - Each Review has unique `@id` using fully-qualified URLs (e.g., `https://twotravelnuts.com/trips/spain/seville.html#review-hotel-unuk`)
+   - **CRITICAL: Temporal alignment** - All Review.datePublished values MUST match BlogPosting.datePublished exactly for clean freshness signals
    - Both BlogPosting and TouristDestination link to reviews via `review` property
    - Creates explicit semantic relationship: "this guide contains these reviews"
    - **itemReviewed patterns:**
@@ -42,11 +44,7 @@ Location pages use **two linked entities** in the @graph:
 6. **Geo coordinates**: All attractions include precise lat/long for "near me" searches
 7. **Type specificity**: Cathedral uses `CatholicChurch` not generic `TouristAttraction`
 8. **Dual identifiers**: Both Wikipedia URLs and Wikidata IDs in `sameAs` arrays
-9. **Attraction URL consistency**: All attractions include `url` property for entity disambiguation
-   - Preferred: Official website (e.g., La Casa del Flamenco uses `https://lacasadelflamencosevilla.com/`)
-   - Fallback: Wikipedia URL from `sameAs` array (for landmarks without official sites)
-   - Ensures consistent entity linking across all attractions
-10. **All images as top-level @graph entities**: Hero and gallery images defined once with unique @id values
+9. **All images as top-level @graph entities**: Hero and gallery images defined once with unique @id values
    - **Hero image:** `@id: #image-hero` with `representativeOfPage: true`
    - **Gallery images:** Descriptive @id values (`#image-alcazar-pond`, `#image-peacock`)
    - **All include:** `url`, `contentUrl`, `name` (descriptive title), `caption` (from markdown alt-text)
@@ -99,7 +97,7 @@ The `@graph` array links WebSite, Organization, Person, BreadcrumbList, TouristD
 * containedInPlace establishes geographic hierarchy (Seville → Spain) using `@type: "Country"` with Wikidata ID (Q29) for entity disambiguation
 * TouristDestination includes city-center GeoCoordinates (37.3891, -5.9845) for broad location queries
 * Individual attractions have their own specific coordinates for precision
-* All attractions include `url` property: official website where available, otherwise Wikipedia URL from sameAs
+* **CRITICAL:** All attractions MUST include `url` property (official website where available, otherwise Wikipedia URL from sameAs) - this is required for entity disambiguation
 * Review entities are top-level @graph nodes with fully-qualified @id URLs for explicit linking
 * Both BlogPosting and TouristDestination reference reviews via `review` property (dual context)
 * Reviews use two itemReviewed patterns:

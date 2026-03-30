@@ -40,7 +40,8 @@ All 4 attractions extracted as top-level @graph entities:
 
 **Normalization pattern:**
 * **@id naming:** `#attraction-{kebab-case-slug}` for each attraction
-* **Properties:** name, description, url, geo coordinates, Schema.org type, sameAs array
+* **Properties:** name, description, **url (REQUIRED)**, geo coordinates, Schema.org type, sameAs array
+* **CRITICAL: url requirement** - All normalized attraction entities MUST include a `url` property (official website preferred, Wikipedia URL as fallback). This is non-negotiable for entity disambiguation.
 * **TouristDestination.includesAttraction:** Array of @id references (no inline definitions)
 * **Review.itemReviewed:** References attraction entity via @id (e.g., Acropolis Museum review → `#attraction-acropolis-museum`)
 * **Benefits:** Single source of truth, tight entity linkage, consistent with images/reviews architecture
@@ -53,7 +54,7 @@ All 4 attractions extracted as top-level @graph entities:
 **Individual attractions (top-level entities):**
 * All four attractions include precise GeoCoordinates
 * Both Wikipedia URLs and Wikidata IDs in sameAs arrays
-* All attractions include `url` property (Wikipedia URLs from sameAs for entity disambiguation)
+* **CRITICAL:** All attractions MUST include `url` property (Wikipedia URLs from sameAs for entity disambiguation) - required for entity identity
 * Detailed descriptions explaining their significance
 
 ### Enhanced Image Metadata
@@ -66,6 +67,8 @@ All images (hero + gallery) are top-level @graph entities with unique @id values
 * **Benefits:** Enables image reuse across pages, tighter graph cohesion, single source of truth
 
 ### Multiple Review Entities with Connectivity
+
+**CRITICAL: Temporal alignment** - All Review.datePublished values MUST match BlogPosting.datePublished exactly for clean freshness signals.
 
 **Hotel Review:**
 * @id: `https://twotravelnuts.com/trips/greece/athens.html#review-hotel-grande-bretagne`

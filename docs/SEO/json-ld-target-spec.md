@@ -504,7 +504,7 @@ Structure depends on page depth - see examples below.
 - **Attraction entities (top-level @graph nodes):** 3-7 key attractions extracted as first-class entities (Claude-extracted from content)
   - **@id naming:** Use `#attraction-{kebab-case-slug}` pattern (e.g., `#attraction-royal-alcazar`, `#attraction-acropolis-museum`)
   - **Properties:** name, description, **url**, **geo coordinates** (GeoCoordinates), Schema.org type (or type array), sameAs array
-  - **url property (required):** Official website preferred, Wikipedia URL from sameAs as fallback - ensures consistent entity linking
+  - **CRITICAL REQUIREMENT - url property:** All normalized attraction entities MUST include a `url` property (official website preferred, Wikipedia URL as fallback). This is non-negotiable - the entire disambiguation strategy depends on canonical URLs for entity identity.
   - **Geo coordinates required:** Enables "near me" searches and Google Maps integration
   - **Type specificity:** Use the most specific Schema.org type possible (e.g., `CatholicChurch` not `LandmarksOrHistoricalBuildings`)
   - **Multi-typing:** Use arrays like `["MusicVenue", "TouristAttraction"]` to broaden search result surface area when appropriate
@@ -515,7 +515,8 @@ Structure depends on page depth - see examples below.
   - Pattern: `"includesAttraction": [{ "@id": "...#attraction-royal-alcazar" }, ...]`
   - **Benefits:** Enables attraction reuse across pages, tight review linking, consistent with images/reviews architecture
 - **Review entities (array):** Multiple reviews for different aspects of the destination
-  - **Standard properties:** All reviews include author (@id reference), datePublished (matches BlogPosting date), reviewRating, reviewBody
+  - **Standard properties:** All reviews include author (@id reference), datePublished, reviewRating, reviewBody
+  - **CRITICAL: Temporal alignment** - Review.datePublished MUST match BlogPosting.datePublished exactly. Crawlers prefer aligned dates for clean "freshness" signals. Never use different dates for reviews vs. the post they reside in.
   - **Hotel review:** Extract from "Where We Stayed" section
     - Map nutshell verdict → rating using standardized scale:
 
