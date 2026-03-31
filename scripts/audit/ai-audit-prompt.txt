@@ -17,7 +17,7 @@ When scoring:
 - Reward structured summaries that help readers decide.
 - Penalize filler, hedging, repetition, and slack phrasing.
 - Do not penalize analytical density if readable.
-- When a dimension scores below 8.2, prepare to list up to 20 identifiable issues in that category.
+- When a dimension scores below 8.2, prepare to list up to 30 identifiable issues in that category.
 
 Return:
 

@@ -2,51 +2,75 @@
 
 Madrid bookended our trip -- 36 hours before the Andalucian loop, 36 hours after -- and we were deliberate about not making it the focus. We can return and do it properly; early November in northern Spain is also not the ideal weather window. That said, we came away with more than we expected from the time we had.
 
-## What We Did
+## Tuk Tuk Overview
 
-Madrid's major sites are more spread out than Seville's or Granada's. We did a Tuk Tuk tour on the first visit -- 3 hours that covered a lot of ground and worked well as an introduction to the city.  
+We did a tuk-tuk tour on our first visit -- 3 hours that covered a lot of ground and worked well as an introduction to a city too spread out to walk between highlights.
 
 ![Neither of us drove the Tuk Tuk, but it was a good photo-op](images/madrid-06.jpg)
 
-The Mercado de San Miguel near Plaza Mayor is entirely tourist-oriented, but the wrought-iron and glass structure is worth an hour on its own.
+The Mercado de San Miguel, just off Plaza Mayor, is entirely tourist-oriented and doesn't pretend otherwise. The 1916 wrought-iron and glass building is worth seeing on its own terms.
 
 ![The Mercado de San Miguel](images/madrid-04.jpg)
 
-![Typical meat counter at Mercado de San Miguel](images/madrid-02.jpg)
+Inside, it's a food hall built for grazing -- small plates, wine by the glass, standing-room at high tables, everyone eating with one hand. We started with a vermouth on tap, tried a flight of Manchego from young to sharp, and kept moving. Not cheap, but the quality held up.
 
-The Tuk Tuk also took us to the modern cathedral and the palace, neither of which we entered.
+![Typical meat counter](images/madrid-02.jpg)
 
-![Catedral de Santa María la Real de la Almudena, Madrid.  A cathedral with an impressively long name.](images/madrid-01.jpg)
+The tuk-tuk took us past the Catedral de Santa María la Real de la Almudena and the Royal Palace. We didn't go inside either, but the cathedral's exterior was worth the stop on its own. It took 110 years to finish -- started in 1883, interrupted by the Civil War and funding problems, finally consecrated in 1993. 
 
-One genuine surprise: we stumbled onto the Real Basílica de San Francisco el Grande almost by accident, and it ended up being one of our favorite churches in Spain. Worth seeking out even if it's not on the standard itinerary.
+The neoclassical facade was designed to match the Royal Palace next door, and the cathedral was oriented north-south instead of the traditional east-west just to align with it. The result looks like it's been there for centuries, which is exactly the point.
 
-![Real Basílica de San Francisco el Grande, Madrid.  We found this almost by accident, and it was one of our favorite churches in Spain.](images/madrid-05.jpg)
+![Catedral de Santa María la Real de la Almudena, Madrid.](images/madrid-01.jpg)
 
-## Museums
+The Real Basílica de San Francisco el Grande was an accident -- not on our itinerary. It turned out to be one of our favorite churches in Spain. 
 
-We split the art museums across both visits -- the Prado on the way in, the Reina Sofía on the way out. The Prado we'd each seen before and caught a few highlights at the end of a long day; we didn't do it justice and knew it. The Reina Sofía, the main modern art museum of Madrid, was new to both of us.
+> After weeks of heavy Baroque gilt in Seville and elsewhere, the late 18th-century neoclassical interior was a relief: clean lines, balanced proportions, and a dome that's the largest in Spain. 
 
-There are several remarkable pieces in Reina Sofía, including some of Dali's more famous works.  The draw is Guernica. Picasso refused to let it display in Spain while Franco was alive, so it hung in New York until 1981 -- which means it's possible I saw it as a child without quite registering what it was. I thought I knew the painting well. 
+The building lets the architecture and the light do the work instead of burying every surface in gold.
+
+![Real Basílica de San Francisco el Grande, Madrid.](images/madrid-05.jpg)
+
+## Art and Archaeology Museums
+
+We visited both the Prado and the Reina Sofía during our first Madrid stay. The Prado was a revisit for both of us, but we caught only a few highlights at the end of a long day -- we knew we weren't doing it justice. The Reina Sofía was new to both of us, and got the better share of our attention.
+
+The Reina Sofía holds a strong collection of Dalí, though not the greatest-hits version most people picture. The works here cluster around his late-1920s Surrealist phase -- earlier, stranger, and more personal than the melting clocks. They're worth seeking out before you reach Guernica, not after.
+
+![Dali's The Great Masturbator](images/madrid-07.jpg)
+
+![Detail of Dalí's Great Masturbator, including his signature](images/madrid-08.jpg)
+
+But the reason you go is Guernica. Picasso refused to let it display in Spain while Franco was alive, so it hung in New York until 1981 -- which means it's possible Kevin saw it as a child without quite registering it. We each thought we knew the painting well. 
 
 > Seeing it in person, the scale stops you: it's nearly 12 feet tall and 25 feet wide, and the grey tones that read as flat in reproduction have a texture and weight that photographs don't capture. 
 
-We had a guide who walked us through it left to right, and I noticed details I'd never seen despite years of looking at it. That hour was worth the trip to the museum on its own.
+Our guide walked us through it left to right, and details we'd missed in years of looking at reproductions came into focus. 
+
+The horse's body is covered in small hatch marks that resemble newspaper columns -- Picasso first learned of the bombing through press reports, and he put the medium right into the paint. At the bottom, in the hand of a dismembered soldier, a tiny flower grows next to a broken sword. It's the only hopeful thing in the painting, and it's small enough that only a guide called our attention to it.
 
 ![Guernica, Reina Sofía](images/madrid-09.jpg)
 
-On our last day we spent a few hours at the Madrid Archaeological Museum -- we were tired by then, but it's well-curated, well-displayed, and has genuinely remarkable pieces across a wide span of ancient history.
+Picasso in Guernica is processing a war; Dalí in the same building is processing himself. The museum is better for holding both.
 
-![The Madrid Archaeological museum featured displays from over many centuries, including some beautiful Roman mosaics.](images/madrid-12.jpg)
+We considered a second pass at the Prado, but after two weeks of Spanish art across multiple cities, we were ready for something older.  On our last day we spent a few hours at Madrid's National Archaeological Museum (the MAN).   After the Prado's scale, the MAN felt navigable -- chronological, unhurried, and designed for learning rather than endurance. The renovated courtyards, now covered in glass, flood the larger stone pieces with natural light and give you room to breathe between the denser galleries.
 
-![Our last day in Madrid we visited Madrid's National Archeological Museum, which has a vast collection dating back to pre-Roman times. This Lady of Elche -was probably an Iberian funeral urn, but not much is known. It is estimated to be from the 5th century BC, and was found in 1897 by farmers clearing a field.](images/madrid-13.jpg)
+![The archaeology museum includes some striking Roman mosaics.](images/madrid-12.jpg)
+
+The collection spans 10,000 years of Iberian history. The Lady of Elche -- probably a funeral urn, 5th century BCE, found by farmers clearing a field in 1897 -- is the piece that stops most visitors. Not much is known about it, which somehow adds to the effect.
+
+![The Lady of Elche](images/madrid-13.jpg)
 
 ## Where We Stayed
 
 We stayed in different neighborhoods on each visit, which worked well.
 
-The [Gran Hotel Inglés](https://www.hyatt.com/mr-and-mrs-smith/en-US/m1391-gran-hotel-ingles) sits in the Barrio de las Letras -- Madrid's Literary Quarter -- and the neighborhood made the hotel choice for us. The streets around it are narrow, lined with independent bookshops rather than chains, and the evening energy is vermouth and tapas spilling onto sidewalks without ever getting loud. The hotel itself is Madrid's oldest, renovated into something sharper than you'd expect: Art Deco details, modern comfort, and none of the stiffness that 'historic hotel' usually implies.
+The [Gran Hotel Inglés](https://www.hyatt.com/mr-and-mrs-smith/en-US/m1391-gran-hotel-ingles) sits in the Barrio de las Letras -- Madrid's Literary Quarter -- and the neighborhood made the hotel choice for us. The streets around it are narrow, lined with independent bookshops rather than chains, and the evening energy is vermouth and tapas spilling onto sidewalks without ever getting loud. 
 
-The [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/fenix-gran-melia) is a bit further from the tourist center but a 5-minute walk from the Archaeological Museum. The 1953 lobby atrium is the kind of space that makes you want to dress for it, which we did. The Beatles and Cary Grant stayed here, which tells you something about the register. As we often notice in Spain, locals look far more put-together -- a scarf, a jacket, some deliberate choice.  The contrast was immediately noticeable when we re-entered the US.
+The hotel itself is Madrid's oldest, but the recent renovation avoids the usual "historic hotel" stiffness -- it's sharp, Art Deco-inflected, and feels lived-in rather than preserved.
+
+The [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/spain/madrid/fenix-gran-melia) is a bit further from the tourist center but a 5-minute walk from the Archaeological Museum. The 1953 lobby atrium is the kind of space that makes you want to dress for it, which we did. You get the sense this place has always expected its guests to make an effort.
+
+Spanish locals dress with intention -- a scarf, a jacket, some deliberate choice.  
 
 ![Tiffany said I should add this picture as evidence that *sometime* I dress up in Europe.](images/madrid-14.jpg)
 
@@ -70,27 +94,8 @@ Return Visit: Yes, and with more time. This is a city we under-invested in.
 
 *Last updated: February 2026*
 
-
-
 ![Mercado de San Miguel](images/madrid-03.jpg)
-
-
-
-
-
-
-![Dali's The Great Masturbator](images/madrid-07.jpg)
-
-![Detail of Dalí's Great Masturbator, including his signature](images/madrid-08.jpg)
-
 
 ![We passed on the Baby Eel toast (yes, that's really what the menu said).](images/madrid-10.jpg)
 
 ![A pretty typical tapas meal.](images/madrid-11.jpg)
-
-
-
-
-
-
-
