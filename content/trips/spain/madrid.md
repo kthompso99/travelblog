@@ -1,10 +1,10 @@
 ## Madrid, Twice
 
-Madrid bookended our trip -- 36 hours on each end of an Andalucían loop -- and we were deliberate about not making it the focus. We don't regret the choice, but everything we saw made the case for a longer return. This was a preview, not the visit.
+Madrid bookended our trip -- 36 hours at the beginning and 24 at the end of an Andalucían loop -- and we were deliberate about not making it the focus. We don't regret the choice, but everything we saw made the case for a longer return. This was a preview, not the visit.
 
 ## The Tuk-Tuk Introduction
 
-A 3-hour tuk-tuk tour on our first visit covered more ground than walking could have.  With only 36 hours, breadth was the right trade: we saw the exteriors of things we'd want to return to, and stopped long enough at the Mercado to get a real taste of the city.
+A 3-hour tuk-tuk tour on our first visit covered more ground than walking could have.  The open sides keep you in the city rather than watching it slide past a car window.  With only 36 hours, breadth was the right trade: we saw the exteriors of things we'd want to return to, and stopped long enough at the Mercado to get a real taste of the city.
 
 ![Neither of us drove it, which is probably for the best.](images/madrid-06.jpg)
 
@@ -30,7 +30,7 @@ The interior lets space and light do the work instead of burying every surface i
 
 ![Real Basílica de San Francisco el Grande, Madrid.](images/madrid-05.jpg)
 
-## Reina Sofia and Prado
+## Reina Sofia -- The Modern
 
 We visited both the Prado and the Reina Sofía during our first Madrid stay. The Prado was a revisit for both of us, but we caught only a few highlights at the end of a long day -- we knew we weren't doing it justice. The Reina Sofía was new to both of us, and got the better share of our attention.
 
@@ -51,6 +51,16 @@ The horse's body is covered in small hatch marks that resemble newspaper columns
 ![Guernica, Reina Sofía](images/madrid-09.jpg)
 
 > Picasso in Guernica is processing a war; Dalí in the same building is processing himself. The museum is better for holding both.
+
+## Prado -- Masterpieces
+
+We gave the Prado less than 2 hours and knew it wasn't enough. But even a sprint through one of Europe's great collections turned up three paintings that stopped us.
+
+Las Meninas rewards getting close -- closer than the guards prefer, as Kevin discovered. From across the room, the lace on the Infanta's dress looks like fine silk. Up close, it's loose slaps of white paint, pure abstraction that resolves into fabric only when you step back. And the mirror on the far wall reflects the King and Queen, which means they're standing exactly where you are. You're not just looking at the painting; you're filling the shoes of the most powerful people in the 17th-century world.
+
+Bosch's Garden of Earthly Delights pulls you in with color and holds you with dread. The right panel -- the Hell scene -- is cold and black after the hallucinogenic greens of the center. Look for the man crushed under a giant lute in the lower left: Bosch painted an actual musical score on his backside. Historians have transcribed it. It's as grim as you'd expect.
+
+Goya's Third of May 1808 hangs near his Black Paintings and shares their raw hopelessness. The firing squad has no faces -- not one visible eye or expression. They're not men; they're the mechanism. Nearby, his Saturn Devouring His Son is worth comparing to Rubens' version elsewhere in the Prado: Rubens painted a powerful god, Goya painted a terrified old man who looks more frightened than what he's eating.
 
 ## The Return Stay
 
