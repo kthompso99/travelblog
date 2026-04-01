@@ -16,13 +16,13 @@ Inside, it's a food hall built for grazing -- small plates, wine by the glass, s
 
 ![Typical meat counter](images/madrid-02.jpg)
 
-The tuk-tuk took us past the Catedral de Santa María la Real de la Almudena and the Royal Palace. We didn't go inside either, but the cathedral's exterior was worth the stop on its own. Construction started in 1883 and took 110 years. The Civil War interrupted; it wasn't consecrated until 1993.
+The tuk-tuk took us past the Catedral de Santa María la Real de la Almudena and the Royal Palace. We didn't go inside either, but the cathedral's exterior was worth the stop on its own. Construction started in 1883. The Civil War interrupted; it wasn't consecrated until 1993.
 
-The neoclassical facade was designed to match the Royal Palace next door, and the cathedral was oriented north-south instead of the traditional east-west just to align with it. The result looks like it's been there for centuries, which is exactly the point.
+The neoclassical facade was designed to match the Royal Palace next door, and the cathedral was oriented north-south instead of the traditional east-west just to align with it. 
 
 ![Catedral de Santa María la Real de la Almudena, Madrid.](images/madrid-01.jpg)
 
-The Real Basílica de San Francisco el Grande wasn't on our itinerary, and turned out to be one of our favorite churches in Spain.
+The cathedral took 110 years and three architects to finish, and you can feel the committee in the result. The Real Basílica de San Francisco el Grande, which we stumbled onto later that day, is the opposite -- one dome, one idea, no compromise.
 
 > After weeks of heavy Baroque gilt in Seville and elsewhere, the late 18th-century neoclassical interior was a relief: clean lines, balanced proportions, and a dome that's the largest in Spain. 
 
