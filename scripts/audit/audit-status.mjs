@@ -44,6 +44,38 @@ function getPreviousAudit(tripName, fileName, provider) {
 }
 
 // ============================================
+// Get Previous Score from Git Commit History
+// ============================================
+
+function getPreviousScoreFromGit(tripName, fileName) {
+  try {
+    const filePath = path.join('content/trips', tripName, `${fileName}.md`);
+    const lastMessage = execSync(
+      `git log -1 --format=%s -- "${filePath}"`,
+      { encoding: 'utf-8' }
+    ).trim();
+
+    // Parse for Content(fileName) patterns
+    const patterns = [
+      /Content\([^)]+\)\s+from\s+([\d.]+)\s+to\s+([\d.]+)/,  // "Content(X) from Y to Z" → use Z
+      /Content\([^)]+\)\s+up to\s+([\d.]+)/,                  // "Content(X) up to Y" → use Y
+      /Content\([^)]+\)\s+at\s+([\d.]+)/                      // "Content(X) at Y" → use Y
+    ];
+
+    for (const pattern of patterns) {
+      const match = lastMessage.match(pattern);
+      if (match) {
+        return parseFloat(match[match.length - 1]);
+      }
+    }
+
+    return null; // No Content() commit found
+  } catch (err) {
+    return null; // Git command failed (file never committed, etc.)
+  }
+}
+
+// ============================================
 // Detect Lines Changed Since Last Commit
 // ============================================
 
@@ -51,11 +83,27 @@ function getLinesChanged(tripName, fileName, auditTimestamp) {
   try {
     const filePath = path.join("content/trips", tripName, `${fileName}.md`);
 
-    // Count uncommitted lines changed since HEAD (most recent commit)
-    const diffCmd = `git diff HEAD -- "${filePath}" | grep -E "^[+-]" | grep -v "^[+-]{3}" | wc -l`;
-    const lines = parseInt(execSync(diffCmd, { encoding: "utf-8" }).trim(), 10);
+    // Get insertions and deletions using --numstat
+    const diffOutput = execSync(
+      `git diff HEAD --numstat -- "${filePath}"`,
+      { encoding: "utf-8" }
+    ).trim();
 
-    return lines || null;
+    if (!diffOutput) return null;
+
+    // Parse numstat output: "additions\tdeletions\tfilename"
+    const [additions, deletions] = diffOutput.split('\t').map(n => parseInt(n, 10));
+
+    // Return formatted string like "+2 -1" or just the number if only one type
+    if (additions > 0 && deletions > 0) {
+      return `+${additions} -${deletions}`;
+    } else if (additions > 0) {
+      return `+${additions}`;
+    } else if (deletions > 0) {
+      return `-${deletions}`;
+    }
+
+    return null;
   } catch (err) {
     return null;
   }
@@ -104,6 +152,9 @@ export function getFileStatus(tripName, fileName) {
     providers: {}
   };
 
+  // Get previous score once (same for all providers)
+  const prevScore = getPreviousScoreFromGit(tripName, fileName);
+
   for (const provider of PROVIDERS) {
     const latest = getLatestAudit(tripName, fileName, provider);
     if (!latest) {
@@ -127,6 +178,7 @@ export function getFileStatus(tripName, fileName) {
       overall: latest.overall,
       scores: latest.scores,
       deltas,
+      prevScore,
       linesChanged,
       lastCommitTime: lastCommitTime ? lastCommitTime.toISOString() : null,
       lastCommitFormatted,

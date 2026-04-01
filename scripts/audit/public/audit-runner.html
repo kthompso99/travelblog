@@ -172,13 +172,20 @@
     }
 
     .btn-secondary {
-      background: #f5f5f5;
-      color: #333;
-      border: 1px solid #ccc;
+      background: #444;
+      color: white;
+      border: 1px solid #444;
     }
 
     .btn-secondary:hover {
+      background: #333;
+    }
+
+    .btn-secondary:disabled {
       background: #e0e0e0;
+      color: #999;
+      border: 1px solid #ccc;
+      cursor: not-allowed;
     }
 
     .btn-danger {
@@ -498,6 +505,12 @@
         <select class="file-selector" id="fileSelector">
           <option value="">Select file...</option>
         </select>
+        <button class="btn btn-primary" id="commitBtn" onclick="openCommitModal(false)" disabled style="padding: 4px 12px; font-size: 13px; border: none; border-radius: 4px;">
+          Commit
+        </button>
+        <button class="btn btn-secondary" id="pushBtn" onclick="openCommitModal(true)" disabled style="padding: 4px 12px; font-size: 13px; border: none; border-radius: 4px;">
+          Push
+        </button>
         <button class="global-toggle" id="globalToggle" onclick="toggleAllDeltas()" style="margin-left: auto;">
           <span id="global-icon">▼</span> Hide details
         </button>
@@ -540,6 +553,42 @@
       </div>
       <div class="modal-body" style="padding: 20px;">
         <canvas id="historyChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Commit Modal -->
+  <div id="commitModal" class="modal" onclick="closeCommitIfOutside(event)">
+    <div class="modal-content" style="max-width: 600px;">
+      <div class="modal-header">
+        <h2 id="commitModalTitle">Commit Changes</h2>
+        <button class="modal-close" onclick="closeCommitModal()">×</button>
+      </div>
+      <div class="modal-body" style="padding: 20px;">
+        <div style="margin-bottom: 16px;">
+          <strong>File:</strong> <span id="commitFilePath"></span>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <strong>Lines changed:</strong> <span id="commitLinesChanged"></span>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label for="commitMessage" style="display: block; margin-bottom: 8px; font-weight: 600;">
+            Commit message:
+          </label>
+          <input
+            type="text"
+            id="commitMessage"
+            style="width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"
+            placeholder="Enter commit message..."
+          />
+        </div>
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+          <button class="btn btn-secondary" onclick="closeCommitModal()" style="padding: 8px 16px; font-size: 14px; background: #999; color: white; border: none; border-radius: 4px; cursor: pointer;">Cancel</button>
+          <button class="btn btn-primary" id="confirmCommitBtn" onclick="confirmCommit()" style="padding: 8px 16px; font-size: 14px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Commit
+          </button>
+        </div>
+        <div id="commitError" style="display: none; margin-top: 16px; padding: 12px; background: #ffebee; border-left: 4px solid #d32f2f; color: #c62828; font-size: 13px;"></div>
       </div>
     </div>
   </div>
@@ -633,16 +682,48 @@
       // Set up ESC key handler for modals
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
+          const commitModal = document.getElementById('commitModal');
           const rankingsModal = document.getElementById('rankingsModal');
           const historyModal = document.getElementById('historyModal');
 
-          if (rankingsModal.classList.contains('show')) {
+          if (commitModal.classList.contains('show')) {
+            closeCommitModal();
+          } else if (rankingsModal.classList.contains('show')) {
             closeRankings();
           } else if (historyModal.classList.contains('show')) {
             closeHistory();
           }
         }
       });
+
+      // Start status polling
+      startStatusPolling();
+
+      // Stop polling on page unload
+      window.addEventListener('beforeunload', stopStatusPolling);
+    }
+
+    // ============================================
+    // Status Polling
+    // ============================================
+
+    let statusPollInterval = null;
+
+    function startStatusPolling() {
+      if (statusPollInterval) return; // Already polling
+
+      statusPollInterval = setInterval(async () => {
+        if (state.trip) {
+          await loadStatus();
+        }
+      }, 5000); // 5 seconds
+    }
+
+    function stopStatusPolling() {
+      if (statusPollInterval) {
+        clearInterval(statusPollInterval);
+        statusPollInterval = null;
+      }
     }
 
     // ============================================
@@ -824,6 +905,10 @@
         const card = createProviderCard(provider, providerData, false);
         container.appendChild(card);
       });
+
+      // Update button states
+      updateCommitButton();
+      updatePushButton();
     }
 
     function createProviderCard(provider, data) {
@@ -880,7 +965,7 @@
           </div>
         </div>
         <div class="status-line-flex">
-          ${data.linesChanged ? `<span>${data.linesChanged} lines changed since last commit ${data.lastCommitFormatted || 'unknown'}</span>` : '<span></span>'}
+          <span>${data.linesChanged ? `${data.linesChanged} since last commit ${data.lastCommitFormatted || 'unknown'}` : `no changes since last commit ${data.lastCommitFormatted || 'unknown'}`}</span>
           <span class="last-audit">Last audit: ${data.lastModified}</span>
         </div>
         ${data.scores ? `
@@ -1594,6 +1679,192 @@
     }
 
     // ============================================
+    // Commit Button Management
+    // ============================================
+
+    function updateCommitButtons() {
+      const commitBtn = document.getElementById('commitBtn');
+      const pushBtn = document.getElementById('pushBtn');
+
+      // If buttons don't exist yet, return
+      if (!commitBtn || !pushBtn) return;
+
+      // Determine if buttons should be enabled
+      let shouldEnable = false;
+
+      // Check if we have a file selected (not trip audit)
+      if (state.file && state.file !== TRIP_AUDIT_FILE) {
+        // Check for uncommitted changes
+        const fileStatus = state.status?.files?.find(f => f.file === state.file);
+        if (fileStatus) {
+          // linesChanged is now a string like "+2 -1" or null
+          shouldEnable = ['opus', 'gpt'].some(provider => {
+            const providerData = fileStatus.providers[provider];
+            return providerData?.linesChanged != null && providerData.linesChanged !== '';
+          });
+        }
+      }
+
+      // Update both buttons together to keep them in sync
+      commitBtn.disabled = !shouldEnable;
+      pushBtn.disabled = !shouldEnable;
+    }
+
+    // Backward compatibility - keep these names for existing calls
+    function updateCommitButton() {
+      updateCommitButtons();
+    }
+
+    function updatePushButton() {
+      updateCommitButtons();
+    }
+
+    // ============================================
+    // Commit Modal
+    // ============================================
+
+    function openCommitModal(shouldPush = false) {
+      const modal = document.getElementById('commitModal');
+      const title = document.getElementById('commitModalTitle');
+      const confirmBtn = document.getElementById('confirmCommitBtn');
+      const filePathSpan = document.getElementById('commitFilePath');
+      const linesChangedSpan = document.getElementById('commitLinesChanged');
+      const messageInput = document.getElementById('commitMessage');
+      const errorDiv = document.getElementById('commitError');
+
+      // Get current provider from preview pane
+      const previewContent = document.getElementById('previewContent');
+      const provider = previewContent.dataset.provider || 'opus';
+
+      // Get file status and provider data
+      const fileStatus = state.status?.files?.find(f => f.file === state.file);
+      if (!fileStatus) return;
+
+      const providerData = fileStatus.providers[provider];
+      if (!providerData) return;
+
+      // Get scores
+      const currScore = providerData.overall;
+      const prevScore = providerData.prevScore;
+
+      // Build commit message
+      let defaultMessage;
+      if (prevScore !== null && prevScore !== undefined) {
+        defaultMessage = `Content(${state.file}) from ${prevScore.toFixed(2)} to ${currScore.toFixed(2)}`;
+      } else {
+        defaultMessage = `Content(${state.file}) at ${currScore.toFixed(2)}`;
+      }
+
+      // Update modal
+      title.textContent = shouldPush ? 'Commit & Push' : 'Commit Changes';
+      confirmBtn.textContent = shouldPush ? 'Commit & Push' : 'Commit';
+      filePathSpan.textContent = `content/trips/${state.trip}/${state.file}.md`;
+      linesChangedSpan.textContent = providerData.linesChanged || 'none';
+      messageInput.value = defaultMessage;
+      errorDiv.style.display = 'none';
+
+      // Store shouldPush flag
+      modal.dataset.shouldPush = shouldPush;
+
+      // Show modal and focus input
+      modal.classList.add('show');
+      messageInput.focus();
+      messageInput.select();
+    }
+
+    function closeCommitModal() {
+      const modal = document.getElementById('commitModal');
+      modal.classList.remove('show');
+    }
+
+    function closeCommitIfOutside(event) {
+      if (event.target.id === 'commitModal') {
+        closeCommitModal();
+      }
+    }
+
+    async function confirmCommit() {
+      const modal = document.getElementById('commitModal');
+      const messageInput = document.getElementById('commitMessage');
+      const confirmBtn = document.getElementById('confirmCommitBtn');
+      const errorDiv = document.getElementById('commitError');
+      const message = messageInput.value.trim();
+
+      // Validate message
+      if (!message) {
+        alert('Please enter a commit message');
+        return;
+      }
+
+      const shouldPush = modal.dataset.shouldPush === 'true';
+      const originalBtnText = confirmBtn.textContent;
+
+      try {
+        // Disable button
+        confirmBtn.disabled = true;
+        confirmBtn.textContent = shouldPush ? 'Committing & Pushing...' : 'Committing...';
+        errorDiv.style.display = 'none';
+
+        // Commit file
+        console.log('[COMMIT] Committing', state.trip, state.file, 'with message:', message);
+        const commitResponse = await fetch('/api/commit-file', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            trip: state.trip,
+            file: state.file,
+            message
+          })
+        });
+
+        const commitResult = await commitResponse.json();
+
+        if (!commitResponse.ok) {
+          throw new Error(commitResult.error || commitResult.details || 'Commit failed');
+        }
+
+        const commitHash = commitResult.commitHash;
+        console.log('[COMMIT] Success:', commitHash);
+
+        // If shouldPush, push to remote
+        if (shouldPush) {
+          console.log('[PUSH] Pushing to remote...');
+          const pushResponse = await fetch('/api/push', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+          });
+
+          const pushResult = await pushResponse.json();
+
+          if (!pushResponse.ok) {
+            // Commit succeeded but push failed
+            errorDiv.textContent = `Committed locally (${commitHash}), but push failed: ${pushResult.error || pushResult.details}`;
+            errorDiv.style.display = 'block';
+            confirmBtn.disabled = false;
+            confirmBtn.textContent = originalBtnText;
+            return;
+          }
+
+          console.log('[PUSH] Success');
+          alert(`Committed and pushed successfully (${commitHash})`);
+        } else {
+          alert(`Committed successfully (${commitHash})`);
+        }
+
+        // Close modal and reload status
+        closeCommitModal();
+        await loadStatus();
+
+      } catch (err) {
+        console.error('[COMMIT] Error:', err);
+        errorDiv.textContent = err.message;
+        errorDiv.style.display = 'block';
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = originalBtnText;
+      }
+    }
+
+    // ============================================
     // Make functions global for onclick handlers
     // ============================================
 
@@ -1611,6 +1882,10 @@
     window.closeHistory = closeHistory;
     window.closeHistoryIfOutside = closeHistoryIfOutside;
     window.selectFileFromRankings = selectFileFromRankings;
+    window.openCommitModal = openCommitModal;
+    window.closeCommitModal = closeCommitModal;
+    window.closeCommitIfOutside = closeCommitIfOutside;
+    window.confirmCommit = confirmCommit;
 
     // ============================================
     // Start App

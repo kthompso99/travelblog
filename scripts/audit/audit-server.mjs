@@ -11,7 +11,7 @@
 import express from "express";
 import { WebSocketServer } from "ws";
 import { createServer } from "http";
-import { spawn } from "child_process";
+import { spawn, execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -454,6 +454,144 @@ app.post("/api/trip-audit", async (req, res) => {
   } catch (err) {
     console.error(`[TRIP AUDIT] Failed: ${err.message}`);
     res.status(500).json({ error: err.message });
+  }
+});
+
+// ============================================
+// API: Commit File
+// ============================================
+
+app.post("/api/commit-file", async (req, res) => {
+  const { trip, file, message } = req.body;
+
+  // Validate inputs
+  if (!trip || !file || !message) {
+    return res.status(400).json({ error: "Missing trip, file, or message" });
+  }
+
+  try {
+    // Check file exists
+    const filePath = path.join("content/trips", trip, `${file}.md`);
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ error: "File not found" });
+    }
+
+    console.log(`[COMMIT] Starting commit for ${trip}/${file}...`);
+
+    // Step 1: Run typography normalization
+    console.log(`[COMMIT] Normalizing typography...`);
+    execSync(`npm run normalize -- "${filePath}"`, {
+      encoding: "utf-8",
+      stdio: "pipe"
+    });
+
+    // Step 2: Stage the markdown file
+    console.log(`[COMMIT] Staging ${filePath}...`);
+    execSync(`git add "${filePath}"`, { encoding: "utf-8" });
+
+    // Step 3: Parse markdown for image references and stage uncommitted images
+    console.log(`[COMMIT] Checking for uncommitted images...`);
+    const content = fs.readFileSync(filePath, "utf-8");
+    const imageRegex = /!\[.*?\]\((images\/[^)]+)\)/g;
+    const images = [];
+    let match;
+    while ((match = imageRegex.exec(content)) !== null) {
+      images.push(match[1]);
+    }
+
+    // Stage uncommitted images
+    for (const imagePath of images) {
+      const fullImagePath = path.join("content/trips", trip, imagePath);
+
+      try {
+        // Check if image is uncommitted
+        const diffOutput = execSync(
+          `git diff HEAD --name-only "${fullImagePath}"`,
+          { encoding: "utf-8" }
+        ).trim();
+
+        if (diffOutput) {
+          console.log(`[COMMIT] Staging uncommitted image: ${imagePath}`);
+          execSync(`git add "${fullImagePath}"`, { encoding: "utf-8" });
+        }
+      } catch (err) {
+        // Image might be new (not tracked), try to stage it
+        if (fs.existsSync(fullImagePath)) {
+          console.log(`[COMMIT] Staging new image: ${imagePath}`);
+          execSync(`git add "${fullImagePath}"`, { encoding: "utf-8" });
+        }
+      }
+    }
+
+    // Step 4: Validate image references
+    console.log(`[COMMIT] Validating image references...`);
+    try {
+      execSync(`node scripts/validate-images.js "${filePath}"`, {
+        encoding: "utf-8",
+        stdio: "pipe"
+      });
+    } catch (err) {
+      return res.status(500).json({
+        error: "Image validation failed",
+        details: err.message
+      });
+    }
+
+    // Step 5: Commit staged files (pre-commit hook runs automatically)
+    console.log(`[COMMIT] Committing with message: "${message}"`);
+    execSync(`git commit -m "${message.replace(/"/g, '\\"')}"`, {
+      encoding: "utf-8",
+      stdio: "pipe"
+    });
+
+    // Step 6: Get updated stats
+    const commitHash = execSync("git rev-parse --short HEAD", {
+      encoding: "utf-8"
+    }).trim();
+
+    console.log(`[COMMIT] Success! Commit hash: ${commitHash}`);
+
+    res.json({
+      success: true,
+      commitHash,
+      message: "Committed successfully"
+    });
+
+  } catch (err) {
+    console.error(`[COMMIT] Failed: ${err.message}`);
+    res.status(500).json({
+      error: "Commit failed",
+      details: err.message
+    });
+  }
+});
+
+// ============================================
+// API: Push to Remote
+// ============================================
+
+app.post("/api/push", async (req, res) => {
+  try {
+    console.log(`[PUSH] Pushing to remote...`);
+
+    execSync("git push", {
+      encoding: "utf-8",
+      stdio: "pipe"
+    });
+
+    console.log(`[PUSH] Success!`);
+
+    res.json({
+      success: true,
+      message: "Pushed to remote"
+    });
+
+  } catch (err) {
+    console.error(`[PUSH] Failed: ${err.message}`);
+    res.status(500).json({
+      error: "Push failed",
+      details: err.message
+    });
   }
 });
 
