@@ -9,16 +9,15 @@ We enjoyed our time here, though fairness requires noting that we arrived in the
 
 ## What We Did
 
-The most purely enjoyable thing we did in Málaga was rent bikes and ride along the seaside -- relaxed pace, Mediterranean views, beachside restaurants pulling you in every direction. Mid-70s in late October. Easy to recommend.
+Our most enjoyable Malaga activity was renting bikes and riding along the seaside -- relaxed pace, Mediterranean views, beachside restaurants pulling you in every direction. Mid-70s in late October. Easy to recommend.
 
 ![Lovely bike ride along the coast, mid-70s in late October.](images/malaga-07.jpg)
 
-The Gibralfaro Castle is far far above town, and we recommend taking a taxi up there rather than walk (the walk *down* was fine).  The castle has an outstanding view of the Mediterranean, but otherwise isn't that amazing of a destination.
+Gibralfaro Castle is far above town -- taxi up, walk down. The view of the Mediterranean is the reason to go; the castle itself isn't much beyond that.
 
 ![On to Malaga on the Mediterranean coast. This picture from atop the Gibralfaro castle shows how densely-packed the homes for sun-seekers are ... and a bull ring.](images/malaga-02.jpg)
 
-
-If you walk 15 or so minutes "down" from the castle, you arrive at the Alcazaba of Malaga.  This is an 11thC Moorish palace.  We wandered this for maybe an hour or 90 minutes.  Worth the time, and lovely, but not quite at the level of the Alhambra.  
+If you walk 15 or so minutes "down" from the castle, you arrive at the Alcazaba of Malaga.  This is an 11thC Moorish palace.  We wandered this for 60-90 minutes.  Worth the time, and lovely, but not quite at the level of the Alhambra.  
 
 ![The Malaga Alcazaba (Palace/fortress) is lovely and has some well-preserved spots, though it suffers in comparison if one was in the Alhambra 2 days earlier.](images/malaga-04.jpg)
 
@@ -26,10 +25,9 @@ The Málaga Cathedral is worth a look as you pass.  It is notable for remaining 
 
 ![The Malaga Cathedral remains unfinished (one tower), but is still lovely.](images/malaga-08.jpg)
 
-We spent quite a few hours strolling around the historic center and shopping street, Calle Larios.  This is pedestrian-only and worth some time, though like too much of Europe it's filled with the 'standard' brands.  
+We spent a few hours in the historic center, anchored by Calle Larios -- a pedestrian corridor paved in polished marble that catches the light like an indoor gallery. The shops are the usual European brands, but the street itself is worth the walk. Designed in the 1890s, every building corner is curved rather than sharp -- a deliberate choice to pull the sea breeze through the city's dense core. The effect is a street that feels designed, not just built.
 
-![Malaga features a very busy shopping district, much of it with the usual generic high-end brands found on every shopping street in Europe, but ... the Iberian Ham makes it look a bit more distinct.](images/malaga-01.jpg)
-
+![Malaga features a very busy shopping district, much of it with the usual generic high-end brands, but ... the Iberian Ham makes it look a bit more distinct.](images/malaga-01.jpg)
 
 ## Where We Stayed
 
@@ -37,11 +35,13 @@ We stayed at [Vincci Larios Diez](https://en.vinccihoteles.com/hotels/malaga/vin
 
 ## Food & Dining
 
-We really enjoyed our meal at [Tercer Acto](https://www.grupoterceracto.com/) ([TA](https://www.tripadvisor.com/Restaurant_Review-g187438-d19462809-Reviews-Tercer_Acto-Malaga_Costa_del_Sol_Province_of_Malaga_Andalucia.html)) near our hotel.   It featured Japanese fusion that shouldn't work but does: Iberian ham, sushi, steak tartare, gyoza, meatballs. Worth seeking out.
+[Tercer Acto](https://www.grupoterceracto.com/), near our hotel, is owned by Antonio Banderas -- a Málaga native investing back in his hometown. The menu is Japanese-Mediterranean fusion that sounds like a mistake on paper: Iberian ham alongside sushi, gyoza next to meatballs.  It works.  We'd go back just for the steak tartare.
+
+Tercer Acto is the polished option. For something grittier, [Caravana -- Cocina Viajera](https://www.instagram.com/caravanamalaga/) is a few blocks from the polished marble of Calle Larios and feels like a different city. It's narrow, loud, and entirely focused on the kitchen. The ceviche had a Latin American sharpness the Spanish versions usually lack, and the burger was better than it had any right to be. The kind of place you stumble into and immediately wish you had a second night to come back.
 
 ## Practical Tips
 
-The downtown area is walking only.  Getting to our hotel wasn't difficult, but was less than pleasant in a horrendous rain storm.
+The downtown is pedestrian-only, which is lovely in good weather. We arrived in a downpour, which turned the last stretch to the hotel into a soggy luggage drag.
 
 Taxi up to Gibralfaro, walk down. If the weather is good, the bike ride along the coast is the best few hours you'll spend here.
 
