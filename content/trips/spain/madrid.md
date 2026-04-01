@@ -1,10 +1,10 @@
 ## Madrid, Twice
 
-Madrid bookended our trip -- 36 hours at the beginning and 24 at the end of an Andalucían loop -- and we were deliberate about not making it the focus. We don't regret the choice, but everything we saw made the case for a longer return. This was a preview, not the visit.
+Madrid bookended our trip -- 36 hours before Andalucía, 24 after -- and we were deliberate about not making it the focus. It's a different register from the south: wide boulevards, chaotic traffic circles, a pace that doesn't wait for you. Everything we saw made the case for a longer return. This was a preview, not the visit.
 
 ## The Tuk-Tuk Introduction
 
-A 3-hour tuk-tuk tour on our first visit covered more ground than walking could have.  The open sides keep you in the city rather than watching it slide past a car window.  With only 36 hours, breadth was the right trade: we saw the exteriors of things we'd want to return to, and stopped long enough at the Mercado to get a real taste of the city.
+A 3-hour tuk-tuk tour on our first visit covered more ground than walking could have.  The open sides put you in the noise and heat of the city.  With only 36 hours, breadth was the right trade: we saw the exteriors of things we'd want to return to, and stopped long enough at the Mercado to get a real taste of the city.
 
 ![Neither of us drove it, which is probably for the best.](images/madrid-06.jpg)
 
@@ -50,11 +50,13 @@ The horse's body is covered in small hatch marks that resemble newspaper columns
 
 ![Guernica, Reina Sofía](images/madrid-09.jpg)
 
+It was the one thing in Madrid we gave proper time to, and the details repaid it -- we'd have walked past the flower without the guide, and never noticed the newsprint in the horse.
+
 > Picasso in Guernica is processing a war; Dalí in the same building is processing himself. The museum is better for holding both.
 
-## Prado -- Masterpieces
+## Prado -- Two Hours, Several Masterpieces
 
-We gave the Prado less than 2 hours and knew it wasn't enough. But even a sprint through one of Europe's great collections turned up three paintings that stopped us.
+The Prado is a 15-minute walk from the Reina Sofía, but centuries away. We gave it less than 2 hours and knew it wasn't enough. But even a sprint through one of Europe's great collections turned up three paintings that stopped us.
 
 Las Meninas rewards getting close -- closer than the guards prefer, as Kevin discovered. From across the room, the lace on the Infanta's dress looks like fine silk. Up close, it's loose slaps of white paint, pure abstraction that resolves into fabric only when you step back. And the mirror on the far wall reflects the King and Queen, which means they're standing exactly where you are. You're not just looking at the painting; you're filling the shoes of the most powerful people in the 17th-century world.
 
@@ -64,16 +66,23 @@ Goya's Third of May 1808 hangs near his Black Paintings and shares their raw hop
 
 ## The Return Stay
 
-We came back to Madrid after two weeks in Andalucía, staying in a different neighborhood and with different priorities.
+After two weeks in Andalucía, Madrid was a jolt -- bigger, faster, less personal. A different country almost. We stayed in a new neighborhood and came with different priorities.
 
 We considered a second pass at the Prado, but after two weeks of Spanish art across multiple cities, we wanted something that predated all of it. The National Archaeological Museum (the MAN) goes back 10,000 years, and after the Prado's density, its chronological layout felt easier to navigate. The renovated courtyards, now covered in glass, flood the larger stone pieces with natural light and give you room to breathe between the denser galleries.
 
-![The archaeology museum includes some striking Roman mosaics.](images/madrid-12.jpg)
-
-The collection spans 10,000 years of Iberian history. The Lady of Elche -- probably a funeral urn, 5th century BCE, found by farmers clearing a field in 1897 -- is the piece that stops most visitors.  Though she is bare limestone today, she was once painted in red and blue -- the effect would have been much closer to a face staring back at you than the austere sculpture you see now.
-
+The Lady of Elche -- probably a funeral urn, 5th century BCE, found by farmers clearing a field in 1897 -- is the piece that stops most visitors.  Though she is bare limestone today, she was once painted in red and blue -- the effect would have been much closer to a face staring back at you than the austere sculpture you see now.  The eyes feel less carved than set, as if they were meant to meet yours. The elaborate side coils read as something ceremonial and unfamiliar -- almost mask-like.
 
 ![The Lady of Elche](images/madrid-13.jpg)
+
+The collection of Roman mosaics took us by surprise. The MAN has dozens of them, lifted from villa floors across Hispania and mounted on the walls. The shift in orientation changes how you see them -- what was designed to be walked across is now hung at eye level, and details that would have blurred underfoot come into sharp focus.
+
+Up close, they're rough grids of stone chips. Step back and a partridge appears in a vine scroll, pomegranates hang from branches, a geometric border frames the whole scene like a carpet edge -- which is exactly what these were. 
+
+The museum's clean modern lighting makes the earthy palette pop in a way the original owners never saw. In a candlelit Roman dining room, the effect would have been warmer and softer -- less museum piece, more living room.
+
+![What looks like a tapestry at first is actually a Roman floor -- patterned, bordered, and detailed enough that you forget it was meant to be walked across.](images/madrid-12.jpg)
+
+Two hours in the MAN covered more ground than we expected -- and reminded us how much of Madrid we'd been driving past without stopping.
 
 ## Where We Stayed
 
@@ -87,17 +96,19 @@ For the return, the [Hotel Fénix Gran Meliá](https://www.melia.com/en/hotels/s
 
 The lobby sets the tone: a stained-glass dome that throws colored light across marble floors, with a rotunda scaled more like a palace entrance than a hotel reception.  It's the kind of space that makes you want to dress for it.   We did. Spanish locals seem to feel the same way -- a scarf, a jacket, some deliberate choice.
 
-![Tiffany said I should add this picture as evidence that *sometime* I dress up in Europe.](images/madrid-14.jpg)
+![Tiffany said I should add this picture as evidence that sometimes I dress up in Europe.](images/madrid-14.jpg)
+
+We didn't eat memorably in Madrid. Our first night we arrived bleary-eyed from the airport and ate at the hotel. On the return, after 15 days on the road, we chose the hotel's sushi -- the kind of decision that tells you where you are in a trip, not where you are in a city. Madrid's restaurants deserve better than we gave them, which is another reason to come back.
 
 ## Practical Tips
 
-Direct flights from the US to Seville or Málaga are limited and expensive, which is how Madrid became our gateway. The high-speed trains south are good enough that the connection cost us hours, not a day.
+Madrid is a city of distinct hubs, not a single walkable core like Seville or Granada. The Royal Palace and Almudena Cathedral are a 20-minute drive from the art district around the Prado, Reina Sofía, and Archaeological Museum. A tuk-tuk tour is a good way to connect them -- our hotel, the Gran Hotel Inglés, arranged ours.
 
-Don't make the mistake of treating Madrid like Seville or Granada, where the historic core is a single walkable knot. Madrid is a city of distinct hubs: the Royal Palace and Almudena Cathedral are a 20-minute drive from the art district around the Prado, Reina Sofía, and Archaeological Museum. 
+Direct flights from the US to Seville or Málaga are limited and expensive, which is how Madrid became our gateway. The high-speed trains south meant the connection cost us hours, not a day.
 
-The Prado deserves more time than we gave it. We spent under 2 hours sprinting between highlights and left overwhelmed rather than enriched. If we go back, the Prado gets a full morning to itself.
+The Prado deserves more time than we gave it. We spent under 2 hours sprinting between highlights and left overwhelmed more than enriched. If we go back, the Prado gets much of a day to itself.
 
-Madrid was the one city on this trip we knowingly underspent. Everything we saw -- Guernica, the Archaeological Museum, San Francisco el Grande -- rewarded the time we gave it, which only made the gaps more obvious. Next time, Madrid gets the full visit it deserves.
+Madrid was the one city on this trip we knowingly underspent. We came expecting a gateway; we left knowing it was a destination. Next time, Madrid gets the full visit it deserves.
 
 :::nutshell Madrid
 verdict: Glad We Went
