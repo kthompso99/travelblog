@@ -1752,12 +1752,19 @@
 
       // Get scores
       const currScore = providerData.overall;
-      const prevScore = providerData.prevScore;
+      // Use remote score for push (cumulative), local score for commit (incremental)
+      const prevScore = shouldPush ? providerData.prevScoreRemote : providerData.prevScore;
 
       // Build commit message
       let defaultMessage;
       if (prevScore !== null && prevScore !== undefined) {
-        defaultMessage = `Content(${state.file}) from ${prevScore.toFixed(2)} to ${currScore.toFixed(2)}`;
+        if (shouldPush) {
+          // Push format: "Content(malaga): 8.03=>8.80"
+          defaultMessage = `Content(${state.file}): ${prevScore.toFixed(2)}=>${currScore.toFixed(2)}`;
+        } else {
+          // Commit format: "Content(malaga) from 8.75 to 8.80"
+          defaultMessage = `Content(${state.file}) from ${prevScore.toFixed(2)} to ${currScore.toFixed(2)}`;
+        }
       } else {
         defaultMessage = `Content(${state.file}) at ${currScore.toFixed(2)}`;
       }

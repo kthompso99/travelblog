@@ -47,11 +47,12 @@ function getPreviousAudit(tripName, fileName, provider) {
 // Get Previous Score from Git Commit History
 // ============================================
 
-function getPreviousScoreFromGit(tripName, fileName) {
+function getPreviousScoreFromGit(tripName, fileName, useRemote = false) {
   try {
     const filePath = path.join('content/trips', tripName, `${fileName}.md`);
+    const ref = useRemote ? 'origin/main' : 'HEAD';
     const lastMessage = execSync(
-      `git log -1 --format=%s -- "${filePath}"`,
+      `git log ${ref} -1 --format=%s -- "${filePath}"`,
       { encoding: 'utf-8' }
     ).trim();
 
@@ -59,7 +60,8 @@ function getPreviousScoreFromGit(tripName, fileName) {
     const patterns = [
       /Content\([^)]+\)\s+from\s+([\d.]+)\s+to\s+([\d.]+)/,  // "Content(X) from Y to Z" → use Z
       /Content\([^)]+\)\s+up to\s+([\d.]+)/,                  // "Content(X) up to Y" → use Y
-      /Content\([^)]+\)\s+at\s+([\d.]+)/                      // "Content(X) at Y" → use Y
+      /Content\([^)]+\)\s+at\s+([\d.]+)/,                     // "Content(X) at Y" → use Y
+      /([^\s:]+)\s+([\d.]+)=>([\d.]+)/                        // "Malaga 7.7=>8.03" → use 8.03
     ];
 
     for (const pattern of patterns) {
@@ -155,7 +157,8 @@ export function getFileStatus(tripName, fileName) {
   };
 
   // Get previous score once (same for all providers)
-  const prevScore = getPreviousScoreFromGit(tripName, fileName);
+  const prevScore = getPreviousScoreFromGit(tripName, fileName, false); // Local commits
+  const prevScoreRemote = getPreviousScoreFromGit(tripName, fileName, true); // Remote commits
 
   for (const provider of PROVIDERS) {
     const latest = getLatestAudit(tripName, fileName, provider);
@@ -181,6 +184,7 @@ export function getFileStatus(tripName, fileName) {
       scores: latest.scores,
       deltas,
       prevScore,
+      prevScoreRemote,
       linesChanged,
       lastCommitTime: lastCommitTime ? lastCommitTime.toISOString() : null,
       lastCommitFormatted,

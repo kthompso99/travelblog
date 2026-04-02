@@ -503,23 +503,27 @@ app.post("/api/commit-file", async (req, res) => {
     for (const imagePath of images) {
       const fullImagePath = path.join("content/trips", trip, imagePath);
 
+      if (!fs.existsSync(fullImagePath)) {
+        console.log(`[COMMIT] Warning: Referenced image not found: ${imagePath}`);
+        continue;
+      }
+
       try {
-        // Check if image is uncommitted
-        const diffOutput = execSync(
-          `git diff HEAD --name-only "${fullImagePath}"`,
+        // Check git status: modified files (M) and untracked files (??)
+        const statusOutput = execSync(
+          `git status --porcelain "${fullImagePath}"`,
           { encoding: "utf-8" }
         ).trim();
 
-        if (diffOutput) {
-          console.log(`[COMMIT] Staging uncommitted image: ${imagePath}`);
+        if (statusOutput) {
+          // File is either modified or untracked - stage it
+          const statusCode = statusOutput.substring(0, 2);
+          const fileType = statusCode.includes('?') ? 'new' : 'modified';
+          console.log(`[COMMIT] Staging ${fileType} image: ${imagePath}`);
           execSync(`git add "${fullImagePath}"`, { encoding: "utf-8" });
         }
       } catch (err) {
-        // Image might be new (not tracked), try to stage it
-        if (fs.existsSync(fullImagePath)) {
-          console.log(`[COMMIT] Staging new image: ${imagePath}`);
-          execSync(`git add "${fullImagePath}"`, { encoding: "utf-8" });
-        }
+        console.log(`[COMMIT] Error checking image status: ${imagePath}`, err.message);
       }
     }
 
