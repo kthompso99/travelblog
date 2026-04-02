@@ -715,7 +715,7 @@
 
       statusPollInterval = setInterval(async () => {
         if (state.trip) {
-          await loadStatus();
+          await loadStatus(true); // isBackgroundPoll = true
         }
       }, 5000); // 5 seconds
     }
@@ -810,7 +810,7 @@
     // Load Trip Status
     // ============================================
 
-    async function loadStatus() {
+    async function loadStatus(isBackgroundPoll = false) {
       try {
         const response = await fetch(`/api/status/${state.trip}`);
         const data = await response.json();
@@ -822,10 +822,16 @@
           state.file = data.recentFile;
         }
 
-        // Update UI
-        updateTripName();
-        updateFileSelector();
-        updateProviders();
+        // Update UI - but skip full re-render during background polls if audit is running
+        // (WebSocket handles real-time updates for running audits)
+        if (!isBackgroundPoll || state.runningAudits.size === 0) {
+          updateTripName();
+          updateFileSelector();
+          updateProviders();
+        } else {
+          // Only update commit buttons during background poll (no re-render)
+          updateCommitButtons();
+        }
       } catch (err) {
         console.error('Failed to load status:', err);
       }

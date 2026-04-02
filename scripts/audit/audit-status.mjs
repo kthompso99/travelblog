@@ -132,10 +132,12 @@ function getLastModifiedTime(timestamp) {
   const auditDate = timestamp instanceof Date ? timestamp : new Date(timestamp);
   const now = new Date();
   const diffMs = now - auditDate;
+  const diffMinutes = Math.floor(diffMs / (1000 * 60));
   const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
   const diffDays = Math.floor(diffHours / 24);
 
-  if (diffHours < 1) return "Just now";
+  if (diffMinutes < 1) return "Just now";
+  if (diffMinutes < 60) return `${diffMinutes}m ago`;
   if (diffHours < 24) return `${diffHours}h ago`;
   if (diffDays === 1) return "Yesterday";
   if (diffDays < 7) return `${diffDays} days ago`;
