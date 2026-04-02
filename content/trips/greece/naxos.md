@@ -10,29 +10,29 @@ Many ancient churches dot the landscape. [Panagia Drossiani](https://www.greeka.
 
 Panagia Drossiani sits just outside the mountain village of Moni, and you almost miss it -- a cluster of squat stone chapels, low-domed and fused together over centuries, pressing into the hillside like they grew there. It's one of the oldest Christian sites in Greece, and looks it: walls don't quite align, ceilings are low, and the geometry feels organic rather than planned.
 
-![Old Dome of Panagia Drossiani](images/Naxos-06.jpg)
+![Old Dome of Panagia Drossiani](images/naxos-06.jpg)
 
 Inside, your eyes need a moment. The frescoes emerge slowly from the dim -- some of the earliest Christian wall paintings in Greece, faces that feel direct and slightly haunting, less refined than later Byzantine work. There's no theatrical lighting, no interpretation panels. Just cool stone and images that have been there for over a thousand years.
 
 After the visual drama of coastal Naxos, Drossiani is a reset. It's not engineered for visitors, and that's exactly what makes it worth the detour.  
 
-![Ancient Fresco in Panagia Drossiani](images/Naxos-04.jpg)
+![Ancient Fresco in Panagia Drossiani](images/naxos-04.jpg)
 
 
 
 Naxos was known in the ancient world for its marble quarries. 
 
-![Marble Quarry](images/Naxos-01.jpg)
+![Marble Quarry](images/naxos-01.jpg)
 
 The stone is unusually white and fine-grained, with a slight translucency -- you can see why early Greek sculptors preferred it. The quarries also produced enormous defect-free blocks, which is how a 10th-century mountain village called Apeiranthos ended up building everything out of marble, sidewalks included.
 
-![Stairway in Apeiranthos](images/Naxos-02.jpg)
+![Stairway in Apeiranthos](images/naxos-02.jpg)
 
 Apeiranthos sits at nearly 2,000 feet on the slopes of Mount Fanari, and feels nothing like the coast. The whitewashed sugar cubes of the shoreline give way to stern stone towers with Venetian balconies -- defensive, permanent, built from the mountain itself. 
 
 > The marble-paved lanes have been polished by centuries of footsteps into a soft sheen that's elegant and treacherous in equal measure. 
 
-![Building in Apeiranthos](images/Naxos-03.jpg)
+![Building in Apeiranthos](images/naxos-03.jpg)
 
 We stopped for lunch at a terrace where the narrow streets fell away to a view of the Naxian mountain ranges -- the kind of spot where you forget you're on an island.
 
@@ -40,13 +40,12 @@ We stopped for lunch at a terrace where the narrow streets fell away to a view o
 
 We used Alex as our guide; see him [here](https://www.toursbylocals.com/tours/greece/naxos/tour-details/naxos-highlights---half-day-private-tour-664d2315ebf20b195748906d).   
 
-ToursByLocals takes a substantial cut, so reaching out directly may be cheaper (Whatsapp \+30 694 514 5018). We have friends who have since (late 2025) booked him independently.  Born in Naxos, partly raised in England, now back on the island -- his English is colloquial.  As we journey around the island, he seemed to know everyone we encountered. Hire him if you can.
+ToursByLocals takes a substantial cut, so reaching out directly may be cheaper (Whatsapp \+30 694 514 5018). We have friends who have since (late 2025) booked him independently and were glad they did.  Born in Naxos, partly raised in England, now back on the island -- his English is colloquial.  As we journey around the island, he seemed to know everyone we encountered. Hire him if you can.
 
+![Apollo Temple](images/naxos-05.jpg)
 
-![Apollo Temple](images/Naxos-05.jpg)
-
-![Marble Shop](images/Naxos-07.jpg)
-![Ancient Statue](images/Naxos-08.jpg)
+![Marble Shop](images/naxos-07.jpg)
+![Ancient Statue](images/naxos-08.jpg)
 
 
 :::nutshell Naxos
