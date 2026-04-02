@@ -17,11 +17,11 @@ But Málaga has moments that belong to no other city. We spent a few hours in th
 
 The shops are the usual European brands, but the street itself is worth the walk. Designed in the 1890s, every building corner is curved rather than sharp -- a deliberate choice to pull the sea breeze through the city's dense core. The effect is a street that feels designed, not just built.
 
-The core was lively, including some impromptu chess matches that appeared to mix locals and tourists.
+In the middle of Calle Larios, a concrete table had drawn a crowd -- locals and teenagers hunched over chess boards with clocks running, spectators standing three deep. It was the least tourist-oriented thing we saw in Málaga's center.
 
 ![Impromptu chess matches](images/malaga-13.jpg)
 
-Our most enjoyable Málaga activity was renting e-bikes from eBike Malaga and riding along the seaside. The path is flat, and the e-bikes turned what could have been exercise into a low-effort glide.  In mid-70s late October heat, we focused on the views rather than the pedaling.
+The best few hours we spent in Málaga were on e-bikes, riding the coast. The path is flat, and the e-bikes turned what could have been exercise into a low-effort glide.  In mid-70s late October heat, we focused on the views rather than the pedaling.
 
 ![Bike ride along the coast, mid-70s in late October.](images/malaga-07.jpg)
 
