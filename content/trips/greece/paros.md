@@ -8,21 +8,21 @@ Naoussa trades the functional bustle of the Parikia ferry port for a more refine
 
 The Venetian fort is partially submerged, and at low tide we walked out to its weathered walls -- built to fend off Ottoman incursions, now slowly losing to the Aegean.   A few of Naoussa's restaurants sit inside repurposed Venetian warehouses -- the stone walls are original, even if the wine lists aren't.
 
-![From the fort, towards the port.](images/Paros-08.jpg)
+![From the fort, towards the port.](images/paros-08.jpg)
 
 Most of the higher-end villas and resorts sit in the north around Naoussa -- close enough to Parikia to be convenient, far enough to forget the ferry exists.
 
-![This local resident greeted us every day ](images/Paros-03.jpg)
+![This local resident greeted us every day ](images/paros-03.jpg)
 
 We stayed a 5-minute walk from the harbor. Most of 3 days unfolded within the compact grid -- shops, waterfront restaurants, nowhere to rush.  
 
 > After a week bouncing between three islands, staying put felt like the point, not the compromise. Naoussa stayed interesting simply by repeating well -- the harbor at different light, the same few streets, the ever-present cats, dinners that blurred together in a good way.
 
-![Fireworks over Naoussa](images/Paros-05.jpg)
+![Fireworks over Naoussa](images/paros-05.jpg)
 
 From the fort, Naoussa looks like what it is -- a fishing village that dressed up without losing its essence.
 
-![Sunset over the Port](images/Paros-09.jpg)
+![Sunset over the Port](images/paros-09.jpg)
 
 ## A Car Tour of Paros
 
@@ -34,23 +34,23 @@ Lefkes is the island's highest village, found in the center of Paros.  Its main 
 
 The small central district is touristy, but unhurried compared to the coastal towns. We spent an hour or two wandering and shopping. We didn't stay for lunch, though the terrace views toward the Aegean tempted us.
 
-![The whitewashed alleys of Lefkes remained quiet even mid-day](images/Paros-06.jpg)
+![The whitewashed alleys of Lefkes remained quiet even mid-day](images/paros-06.jpg)
 
 ## Beaches
 
 Golden Beach didn't offer much in May -- a broad sandy stretch waiting for its beach clubs to open. Kolympethres and Aliki were different stories.
 
-![Golden Beach in May](images/Paros-14.jpg)
+![Golden Beach in May](images/paros-14.jpg)
 
 Aliki is a compact fishing village that feels more grounded than Naoussa. The restaurants here exist because the fishing fleet does.  We watched fishermen mending nets on the pier while someone grilled their morning catch a few steps away.
 
-![The small beach town of Aliki was a great lunch spot](images/Paros-10.jpg)
+![The small beach town of Aliki was a great lunch spot](images/paros-10.jpg)
 
 Kolymbithres beach stands out for its rock formations -- genuinely unusual.  Unlike the volcanic ash and pumice that form the white "lunar" landscape of Milos, Kolybpithres is defined by massive, silver-grey granite boulders that have been sculpted by the sea into smooth, abstract shapes.  
 
 Rather than one long stretch, the beach is made up of several small, sandy pockets tucked between the boulders.  Because it is tucked into a deep bay, the wind is noticeably lighter, and the water flatter.
 
-![The evocative Kolymbithres beach near Naoussa is evidently packed in summer, but we saw it with 4 or 5 beachgoers.](images/Paros-07.jpg)
+![The evocative Kolymbithres beach near Naoussa is evidently packed in summer, but we saw it with 4 or 5 beachgoers.](images/paros-07.jpg)
 
 We missed Marpissa entirely -- a hilltop village we only read about after leaving. Based on what we've seen since, it's the one stop we'd add next time.
 
@@ -60,11 +60,11 @@ Back in Parikia, one stop justifies the detour.  The Panagia Ekatontapiliani, ak
 
 The oldest section of this Christian church likely predates the adoption of Christianity as the state religion of the Roman Empire in 391.  As the complex has evolved, it has become a visual record of PaleoChristian, Byzantine, and post-Byzantine styles. 
 
-![The "Church of 100 Doors"](images/Paros-02.jpg)
+![The "Church of 100 Doors"](images/paros-02.jpg)
 
 The entire complex is architecturally dense.  But it is the 4th-century crypt that stops you. Low-ceilinged and unadorned. The air is cooler, the silence is heavier, and you realize you are standing in a space that has survived nearly 1,700 years of change.
 
-![Low-ceilinged is very real](images/Paros-01.jpg)
+![Low-ceilinged is very real](images/paros-01.jpg)
 
 ## Antiparos: Paros' Small Drivable Neighbor
 
@@ -74,7 +74,7 @@ Antiparos' small beaches blurred together in early May -- no chairs, no services
 
 We drove the 25 minutes from the ferry to "Plage Ag Georgios", a smallish beach that's about as far from the ferry as you can get on this small island.
 
-![Plage Ag Georgios in early May is pleasant but not spectacular](images/Antiparos-02.jpg)
+![Plage Ag Georgios in early May is pleasant but not spectacular](images/antiparos-02.jpg)
 
  We enjoyed a drink at Mpakas Fish Tavern, which has a sand-in-the-toes intimacy that most of Paros and Antiparos can't match.
  
@@ -85,11 +85,11 @@ From the tavern tables, the view settles on Despotiko -- a scrub-covered ridge t
 We skipped the short boat ride over -- likely an oversight.
 
 
- ![Despotiko, visible from Antiparos](images/Antiparos-01.jpg)
+ ![Despotiko, visible from Antiparos](images/antiparos-01.jpg)
 
   Lunch at [Taverna Yorgi](https://www.tripadvisor.com/Restaurant_Review-g3569526-d6673076-Reviews-Taverna_Yorgi-Antiparos_Town_Antiparos_Cyclades_South_Aegean.html), 250 yards inland on the main street, gave us something the waterfront didn't -- kids leaving school, locals wandering unhurried. It felt like a town, not a destination.  In small doses, this is exactly the appeal -- but also what made us happy to base ourselves back in Naoussa.
 
-![Antiparos schoolgirl relaxing after a hard day.](images/Paros-13.jpg)
+![Antiparos schoolgirl relaxing after a hard day.](images/paros-13.jpg)
 
 ## Where We Stayed
 
@@ -105,21 +105,21 @@ Dinner at Yemeni in Naoussa confirmed why it's hard to get a seat.  The moussaka
 
 Yemeni is not "right on the water" like the 5-6 most-visible restaurants, so the view isn't as special.  But we went twice; we liked it that much.
 
-![Moussaka at Yemeni](images/Paros-12.jpg)
+![Moussaka at Yemeni](images/paros-12.jpg)
 
-![Wine list at Yemeni, delightfully low-tech](images/Paros-04.jpg)
+![Wine list at Yemeni, delightfully low-tech](images/paros-04.jpg)
 
 Our favorite sunset seat in Naoussa was the unnamed bar between Linardo and Barbarossa -- right where the walkway leads toward the Venetian ruins.  The view stacks well -- brightly colored fishing boats, harbor, then open water catching the last light.  See [this location](https://bit.ly/4uAT3YP).  Attentive staff when we visited.
 
-![Sunset framed by the boats](images/Paros-16.jpg)
+![Sunset framed by the boats](images/paros-16.jpg)
 
-![Sunset from our favorite spot in Naoussa](images/Paros-11.jpg)
+![Sunset from our favorite spot in Naoussa](images/paros-11.jpg)
 
 Siparos has a tranquil location on the water's edge just a short taxi ride from Naoussa.  Book a table at sunset for its premier views across the bay, and select a fresh-caught whole fish. Drive if you can -- we couldn't that evening, and paid for it.
 
 Moraitis winery is a 10-minute walk inland.  Family-run, and unhurried -- the tasting felt personal rather than transactional.  Moraitis pecializes in the unique Parian tradition of co-fermenting red and white grapes, resulting in vibrant, food-friendly rosés and reds.
 
-![Moraitis Winery](images/Paros-15.jpg)
+![Moraitis Winery](images/paros-15.jpg)
 
 ## How Paros Works
 

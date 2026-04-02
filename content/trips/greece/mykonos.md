@@ -2,25 +2,25 @@ We didn't prioritize Mykonos -- like Santorini, it felt overdiscovered before we
 
 Chora is the main town of Mykonos -- "Chora" just means "the town" in Greek, and most islands have one. This one earns the name. It's a radial maze of whitewashed lanes fanning out from the harbor -- paths branch and reconnect at odd angles, small squares appear without warning, then collapse back into alleys. Supposedly the layout was designed to confuse pirates. We got lost repeatedly and it never mattered.
 
-![Beautiful flowers](images/Mykonos-05.jpg)
+![Beautiful flowers](images/mykonos-05.jpg)
 
 The 16th-century windmills are the obvious landmark, and worth a picture, but the town below held us longer.
 
-![Windmill close-up](images/Mykonos-06.jpg)
+![Windmill close-up](images/mykonos-06.jpg)
 
 ## The Lanes That Kept Tiffany Busy
 
 The wandering turned into shopping, which surprised us.  Mykonos is one of the better shopping stops in the Cyclades, and not for the reasons you'd expect. The narrow lanes of Chora are lined with small, independent boutiques rather than the international brands that have overtaken most European resort towns. Many are Greek-owned; some are run by the designers themselves.
 
-![Not all shoppers were equally motivated.](images/Mykonos-09.jpg)
+![Not all shoppers were equally motivated.](images/mykonos-09.jpg)
 
 The aesthetic fits the island -- breezy linens, soft cottons, hand-finished details, pieces that look better slightly rumpled after a day in the salt air. Tiffany bought a dress from the designer, and came away with a story about the fabric and the season along with the purchase. That kind of transaction is hard to find in most tourist towns.
 
-![Buying a dress from the designer](images/Mykonos-11.jpg)
+![Buying a dress from the designer](images/mykonos-11.jpg)
 
 > We don't usually shop much on travel.  Here, the shops kept Tiffany busy.  That's an endorsement.  And a warning.
 
-![The outcome of a busy day in Mykonos](images/Mykonos-07.jpg)
+![The outcome of a busy day in Mykonos](images/mykonos-07.jpg)
 
 ## Little Venice
 
@@ -32,7 +32,7 @@ We were there mid-afternoon, too early for the famous sunset, but the crowd was 
 
 Little Venice isn't a hidden gem and doesn't pretend to be. The sunset will be crowded and the drinks will be expensive. Go anyway -- it looks exactly like the photographs, and that turns out not to matter.
 
-![View of Little Venice through ancient wall](images/Mykonos-03.jpg)
+![View of Little Venice through ancient wall](images/mykonos-03.jpg)
 
 ## A Stop for a Gyro
 

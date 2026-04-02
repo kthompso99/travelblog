@@ -31,7 +31,7 @@
       "title": "Milos",
       "place": "Milos Greece",
       "file": "milos.md",
-      "thumbnail": "images/Milos-01.jpg",
+      "thumbnail": "images/milos-01.jpg",
       "sameAs": ["https://en.wikipedia.org/wiki/Milos"]
     },
     {
@@ -39,7 +39,7 @@
       "title": "Santorini",
       "place": "Santorini Greece",
       "file": "santorini.md",
-      "thumbnail": "images/Santorini-02.jpg",
+      "thumbnail": "images/santorini-02.jpg",
       "travelMode": "ferry",
       "travelDuration": "3 hours",
       "sameAs": ["https://en.wikipedia.org/wiki/Santorini"]
@@ -49,7 +49,7 @@
       "title": "Naxos",
       "place": "Naxos Greece",
       "file": "naxos.md",
-      "thumbnail": "images/Naxos-02.jpg",
+      "thumbnail": "images/naxos-02.jpg",
       "travelMode": "ferry",
       "travelDuration": "1.5 hours",
       "sameAs": ["https://en.wikipedia.org/wiki/Naxos"]
@@ -59,7 +59,7 @@
       "title": "Paros",
       "place": "Avant Mar Paros",
       "file": "paros.md",
-      "thumbnail": "images/Paros-08.jpg",
+      "thumbnail": "images/paros-08.jpg",
       "travelMode": "ferry",
       "travelDuration": "45 min",
       "sameAs": ["https://en.wikipedia.org/wiki/Paros"]
@@ -69,7 +69,7 @@
       "title": "Delos",
       "place": "Delos Greece",
       "file": "delos.md",
-      "thumbnail": "images/Delos-03.jpg",
+      "thumbnail": "images/delos-03.jpg",
       "travelMode": "ferry",
       "travelDuration": "30 min",
       "sameAs": ["https://en.wikipedia.org/wiki/Delos"]
@@ -79,7 +79,7 @@
       "title": "Mykonos",
       "place": "Mykonos Greece",
       "file": "mykonos.md",
-      "thumbnail": "images/Mykonos-01.jpg",
+      "thumbnail": "images/mykonos-01.jpg",
       "travelMode": "ferry",
       "travelDuration": "30 min",
       "sameAs": ["https://en.wikipedia.org/wiki/Mykonos"]
@@ -89,7 +89,7 @@
       "title": "Athens",
       "place": "Electra Metropolis Athens",
       "file": "athens.md",
-      "thumbnail": "images/Athens-15.jpg",
+      "thumbnail": "images/athens-15.jpg",
       "travelMode": "ferry",
       "travelDuration": "3 hours",
       "sameAs": ["https://en.wikipedia.org/wiki/Athens"]

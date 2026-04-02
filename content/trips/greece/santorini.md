@@ -2,7 +2,7 @@ Santorini is a view-driven destination -- and the view is a volcanic caldera, co
 
 The island is crowded -- even in early May. But the view from the rim -- the 20th-century volcanic cone rising from pristine Mediterranean hundreds of feet below, surrounded by white buildings on the steep hillside -- earned every bit of the hype. Three nights in early May felt right -- enough to hit each town and get on the water, without competing for every seat and sidewalk.
 
-![The bowl of the Caldera from Imerovigli](images/Santorini-11.jpg)
+![The bowl of the Caldera from Imerovigli](images/santorini-11.jpg)
 
 ## Optimizing Rim Time
 
@@ -16,17 +16,17 @@ But Oia's location clinging to the hillside makes it the jewel of the island -- 
 
 Oia's white-washed buildings are interrupted by the blue-domed churches you've seen in photographs -- far less common in Fira.  The descent from the rim is gentler, with buildings stacked down the hillside and narrow alleys between them.  It's the one rim town where you look down into the village, not just along it.
 
-![We always imagined that Santorini was just filled with these blue-domed churches; there are actually only a handful, mostly in Oia](images/Santorini-08.jpg)
+![We always imagined that Santorini was just filled with these blue-domed churches; there are actually only a handful, mostly in Oia](images/santorini-08.jpg)
 
 Finding the classic blue-dome Oia shots requires moving off the main Oia walkway; this [video](https://www.youtube.com/watch?v=nWoZJjqbdHQ) is the best map for those paths.  The creator has an analogous video for [Fira](https://www.youtube.com/watch?v=zdWbX0SMdlg). 
 
-![One of the classic views from near the Oia walking path](images/Santorini-01.jpg)
+![One of the classic views from near the Oia walking path](images/santorini-01.jpg)
 
 The other two rim towns offer different angles on the same caldera view.
 
 At 1,100 feet, Imerovigli sits high enough to see all the way to Oia shimmering at the northern tip of the caldera -- a view the lower towns can't match.
 
-![Oia from Imerovigli](images/Santorini-15.jpg)
+![Oia from Imerovigli](images/santorini-15.jpg)
 
 Fira is far more developed -- its clifftop promenade stretches on, lined with tourist shops and cafes.  Its views stretch across the caldera and open sea -- but you're looking at landscape, not village.
 
@@ -36,13 +36,13 @@ A dense ribbon of bars and restaurants perches on the rim for sunset.  With mult
 
 [PK Bar](https://pkbar.com/) is one of many "view" bars in Fira, but PK sits on a promontory that thrusts the seating forward from the rest of the Fira rim.  We booked weeks ahead for the champagne-front-row option.  The expensive seat was worth it for the romantic late afternoon, away from the tourist crush. 
 
-![Sunset from PK Bar](images/Santorini-06.jpg)
+![Sunset from PK Bar](images/santorini-06.jpg)
 
-![Another view of the front row at PK Bar](images/Santorini-07.jpg)
+![Another view of the front row at PK Bar](images/santorini-07.jpg)
 
 Imerovigli's height gives it the widest canvas -- from Wine Bar, a small hotel bar on the rim, we watched the light move across the full caldera toward Oia. Less famous than the Fira sunset spots, but a better view.
 
-![Near Sunset from Imerovigli](images/Santorini-14.jpg)
+![Near Sunset from Imerovigli](images/santorini-14.jpg)
 
 
 ## An Essential Water Day
@@ -55,7 +55,7 @@ The crew grilled lunch right there in the caldera, the rim towns arrayed above u
 
 We chose [Spiridakos](https://www.santorini-yachts.com/); the operation was well-run and unhurried. Some friends chose Sunset Oia the previous year and loved that too.  Most operators run 4-hour trips twice daily -- enough time without overdoing it.  The route starts south of the caldera and loops through it -- not far, which is why 4 hours is the right length.
 
-![Enjoying the Spiridakos cruise](images/Santorini-04.jpg)
+![Enjoying the Spiridakos cruise](images/santorini-04.jpg)
 
 ## Dining in Santorini
 
@@ -63,7 +63,7 @@ Our hotel provided breakfast, and a large breakfast usually made lunch unnecessa
 
 In Oia, [Pelekanos](https://www.pelekanosrestaurant.gr/) is a family-run rooftop with views in every direction -- caldera, volcano, and village. Arrive early, because the best seats face the sunset and fill fast. The lamb kebab was the standout; the local wine list was better than expected.
 
-![Dinner in Oia](images/Santorini-12.jpg)
+![Dinner in Oia](images/santorini-12.jpg)
 
 [Kaliya](https://www.kaliya-restaurant.com/) sits just across the path from PK Bar, slightly recessed from the rim -- a better spot for dinner than sunset. The wood-fired scallops were good, but what made the evening was a sommelier who sketched out a wine strategy on a bar napkin. He picked us an excellent Parian Malagousia for that evening and pointed us toward Vassaltis, which we visited the following day.
 
@@ -75,7 +75,7 @@ The vines are wound into low baskets that sit directly on the volcanic soil -- a
 
 [Vassaltis](https://vassaltis.com/), the sommelier's recommendation, sits away from the rim -- no sunset crowds, no view tax. The horizontal flights made the point concretely -- these grapes pull real flavor from ash and stone.
 
-![Vassaltis Winery](images/Santorini-13.jpg)
+![Vassaltis Winery](images/santorini-13.jpg)
 
 Santo Wines is on the rim and most popular -- one local sommelier told us it's better for the views than the wine, so we did not visit. The same sommelier recommended Argyros, Gavalas, and Hatzidakis; all are further south and less accessible from Fira or Oia.
 
@@ -83,7 +83,7 @@ Santo Wines is on the rim and most popular -- one local sommelier told us it's b
 
 Perched between Fira and Imerovigli, our suite in Dreams Luxury Suites was a beautifully renovated 100-year-old cave house. It had the classic Cycladic look -- curves, whitewash, thick walls, without sacrificing modern comfort, or the view into the caldera.  Mornings started with breakfast on the terrace -- a-la-carte, sparkling wine included.
 
-![Breakfast looking straight into the caldera from Dreams Luxury Suites.](images/Santorini-10.jpg)
+![Breakfast looking straight into the caldera from Dreams Luxury Suites.](images/santorini-10.jpg)
 
 A rare luxury for a cliff-side property: the access is nearly step-free. While other travelers were navigating vertical marathons with their luggage -- a common sight in the steeper parts of Oia -- we could walk almost directly from the road into our suite.
 
