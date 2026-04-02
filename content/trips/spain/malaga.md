@@ -3,7 +3,7 @@
 
 Málaga keeps almost delivering. It's a cruise ship port -- something you feel immediately after the quieter inland cities -- and a seaside hub for British expats. But it's also a genuinely historic city that keeps surprising you in between.  
 
-The Alcazaba is lovely -- until you compare it to the Alhambra you saw two days ago. The cathedral has a great story but not a great interior. The shopping street has striking architecture lined with the same brands you'd find in any European city. The bike ride along the coast was genuinely excellent -- but we caught the tail end of the season, beach clubs winding down, the setup visible but the energy fading.
+The Alcazaba (palace) is lovely -- until you compare it to the Alhambra you saw two days ago. The cathedral has a great story but not a great interior. The shopping street has striking architecture lined with the same brands you'd find in any European city. The bike ride along the coast was genuinely excellent -- but we caught the tail end of the season.
 
 None of this makes Málaga bad. It makes it a city that's hard to judge on its own terms when it comes right between Granada and Seville.
 
@@ -11,33 +11,61 @@ We enjoyed our time here, though fairness requires noting that we arrived in the
 
 ## What Málaga Does Well
 
-But Málaga has moments that belong to no other city. We spent a few hours in the historic center, anchored by Calle Larios -- a pedestrian corridor paved in polished marble that catches the light like an indoor gallery. The shops are the usual European brands, but the street itself is worth the walk. Designed in the 1890s, every building corner is curved rather than sharp -- a deliberate choice to pull the sea breeze through the city's dense core. The effect is a street that feels designed, not just built.
+But Málaga has moments that belong to no other city. We spent a few hours in the historic center, anchored by Calle Larios -- a pedestrian corridor paved in polished marble that catches the light like an indoor gallery. 
 
 ![Malaga features a very busy shopping district, much of it with the usual generic high-end brands, but ... the Iberian Ham makes it look a bit more distinct.](images/malaga-01.jpg)
 
-Our most enjoyable Málaga activity was renting e-bikes from eBike Malaga and riding along the seaside. The path is flat, and the e-bikes turned what could have been exercise into a low-effort glide -- in mid-70s late October heat, we focused on the views rather than the pedaling.
+The shops are the usual European brands, but the street itself is worth the walk. Designed in the 1890s, every building corner is curved rather than sharp -- a deliberate choice to pull the sea breeze through the city's dense core. The effect is a street that feels designed, not just built.
 
-On the return leg, we stopped at a beachside spot where the transition from bike path to cocktail table was about ten feet. We sat under a thatched roof with cold drinks, watching the boats, knowing the city center was a short coast away. That stretch of the afternoon was the most relaxed we felt in Málaga.
+The core was lively, including some impromptu chess matches that appeared to mix locals and tourists.
+
+![Impromptu chess matches](images/malaga-13.jpg)
+
+Our most enjoyable Málaga activity was renting e-bikes from eBike Malaga and riding along the seaside. The path is flat, and the e-bikes turned what could have been exercise into a low-effort glide.  In mid-70s late October heat, we focused on the views rather than the pedaling.
+
+![Bike ride along the coast, mid-70s in late October.](images/malaga-07.jpg)
+
+On the return leg, we stopped at a beachside spot where the transition from bike path to cocktail table was about ten feet. We sat under a retractable awning with a refreshing Tinto de Verano, watching the boats, knowing the city center was a short ride away. 
+
+![Tinto de Verano by the Sea](images/malaga-12.jpg)
 
 The season was winding down -- beach clubs visible but quiet, the setup still there without the crowds. A month earlier and the energy would have been different. We got the tail end, and it was enough.
 
-![Lovely bike ride along the coast, mid-70s in late October.](images/malaga-07.jpg)
+That stretch of the afternoon was the most relaxed we felt in Málaga.
 
-Gibralfaro Castle is far above town -- taxi up, walk down. The view of the Mediterranean is the reason to go; the castle itself isn't much beyond that.
+It’s also the one part of the city that doesn’t suffer from the comparison problem. The historic sites do.
+
+Gibralfaro Castle is far above town -- taxi up, walk down. The 360-degree view of the Mediterranean, the coastline, and the bullring below is the reason to go. The castle itself is mostly fortified walls -- an excellent viewing platform, but not much to see once you've taken it in.
 
 ![On to Malaga on the Mediterranean coast. This picture from atop the Gibralfaro castle shows how densely-packed the homes for sun-seekers are ... and a bull ring.](images/malaga-02.jpg)
 
-The Alcazaba — an 11th-century Moorish palace about 15 minutes walk downhill — took us about an hour.  We spent about an hour inside -- enough to appreciate the courtyards without feeling like we'd exhausted them.  Worth the time, and lovely, but not quite at the level of the Alhambra.  
+The Alcazaba is an 11th-century Moorish fortress-palace about 15 minutes' walk downhill from Gibralfaro -- the two were once connected as a single defensive system. Where the Alhambra overwhelms with ornament, the Alcazaba works on a smaller scale: compact sun-drenched courtyards, brick arches, orange trees, and the sound of running water doing most of the work. The decoration is restrained and earlier in style -- this is the fortified original, not the refined showpiece.
 
-![The Malaga Alcazaba (Palace/fortress) is lovely and has some well-preserved spots, though it suffers in comparison if one was in the Alhambra 2 days earlier.](images/malaga-04.jpg)
+![Part of the Pavilion of Lobed Arches, a small, highly decorative pavilion dating back to the 11th century.](images/malaga-10.jpg)
+
+Because it's overlooked in favor of Granada, the Alcazaba lacks the timed-entry pressure and tour-group crush of the Alhambra. We lingered in courtyards without being ushered along, and the upper terraces have Mediterranean views that Granada can't offer. An hour was enough to appreciate it without feeling rushed.
+
+![Patio de la Alberca](images/malaga-11.jpg)
+
+It's not the Alhambra. But on a quiet morning with the sea below, it doesn't need to be.
+
+![The Malaga Alcazaba (Palace/fortress) was heavily restored in the 20th century after centuries of disrepair](images/malaga-04.jpg)
+
+At the base of the Alcazaba, a Roman amphitheater sits in the open -- 1st century BCE stonework with the Moorish fortress walls rising directly above it. The layering is blunt: Rome built the theater, the Moors built on top of it, and modern Málaga put a walkway through the middle. Two thousand years of the city's history visible in a single frame.
+
+![Roman Amphitheater, with the walls of the Alcazaba above](images/malaga-14.jpg)
 
 The Málaga Cathedral is worth a look as you pass.  It is notable for remaining unfinished, one tower short.  Many sources say this is a consequence of funds being diverted to the American Revolution, though there are other theories. That detail alone is worth stopping for.
 
-![The Malaga Cathedral remains unfinished (one tower), but is still lovely.](images/malaga-08.jpg)
+![The Malaga Cathedral is permanently unfinished](images/malaga-08.jpg)
 
 ## Where We Stayed
 
-We stayed at [Vincci Larios Diez](https://en.vinccihoteles.com/hotels/malaga/vincci-larios-diez/).  We booked this hotel largely because we were able to book the "Luxe Essence City Views" room.  This room lies on the top floor with a corner window and great views.  But the overall hotel experience was "fine".  Not our top hotel of the trip.
+We stayed at [Vincci Larios Diez](https://en.vinccihoteles.com/hotels/malaga/vincci-larios-diez/), largely for the top-floor 'Luxe Essence City Views' room -- a corner balcony with the cathedral's lone tower and the rooftops of Calle Larios spread out below. Champagne on the balcony at sunset, with the city at a murmur beneath you, was the high point of the stay.
+
+![View from the top floor room](images/malaga-09.jpg)
+
+The hotel itself is polished but impersonal -- high-end chain efficiency without much local texture. It hits every four-star note but none of the human ones. The location, steps from Calle Larios, is the real asset. We'd book the view room again; we wouldn't write home about the lobby or the adequate service.
 
 ## Food & Dining
 
@@ -47,11 +75,13 @@ Tercer Acto is the polished option. For something grittier, [Caravana -- Cocina 
 
 ## Practical Tips
 
-The downtown is pedestrian-only, which is lovely in good weather. We arrived in a downpour, which turned the last stretch to the hotel into a soggy luggage drag.
+The downtown is pedestrian-only, and lively in good weather. We arrived in a downpour, which turned the last stretch to the hotel into a soggy luggage drag.
 
 Taxi up to Gibralfaro, walk down. 
 
-If the weather is good, the bike ride along the coast is the best few hours you'll spend here.  We chose [eBike Malaga](https://ebikemalaga.es/) of the many options near the cruise terminal.  
+If the weather is good, the bike ride along the coast is the best few hours you'll spend here.  We chose [eBike Malaga](https://ebikemalaga.es/) from the many options near the cruise terminal. 
+
+Málaga didn't need to compete with Granada or Seville. We just couldn't help comparing. On its own terms -- the coast, the food, the marble streets -- it earned its two days.
 
 :::nutshell Malaga
 verdict: Lovely but Optional
