@@ -65,19 +65,31 @@ travelblog/
 │
 ├── scripts/                    CLI build & utility scripts
 │   ├── audit/
-│   │   ├── audit-shared.mjs    Shared audit utilities (file resolution, scoring, prompts)
-│   │   ├── audit-server.mjs    Express + WebSocket server for live audit dashboard
-│   │   ├── audit-status.mjs    Status computation and readiness checking
-│   │   ├── anthropic-audit.mjs  AI editorial audit (Sonnet/Opus, invoked via sonnet-audit or opus-audit)
-│   │   ├── content-audit.js    Mechanical content audit (sentence-level quality checks)
-│   │   ├── gpt-audit.mjs       AI editorial audit (OpenAI-powered scoring + suggestions)
+│   │   ├── audit-shared.js     Shared audit utilities (file resolution, scoring, prompts)
+│   │   ├── audit-server.js     Express + WebSocket server for live audit dashboard
+│   │   ├── audit-status.js     Status computation and readiness checking
+│   │   ├── audit-rankings.js   Rankings generation (CLI + API endpoint)
+│   │   ├── audit-history.js    Historical score trends (CLI + API endpoint)
+│   │   ├── anthropic-audit.js  AI editorial audit (Sonnet/Opus, invoked via sonnet-audit or opus-audit)
+│   │   ├── gpt-audit.js        AI editorial audit (OpenAI-powered scoring + suggestions)
+│   │   ├── trip-audit.js       Trip-level audit CLI (cross-article analysis)
+│   │   ├── trip-audit-api.js   Trip-level audit shared logic (CLI + dashboard)
+│   │   ├── trip-audit-prompt.txt Trip audit system prompt
 │   │   ├── ai-audit-prompt.txt AI audit system prompt
 │   │   ├── ai-audit-mandate.txt AI audit enforcement mandate
-│   │   ├── dashboard.mjs      Dashboard for audit score history
-│   │   ├── stability-test.mjs Audit stability test (score variance measurement)
-│   │   ├── stability-viewer.mjs Audit stability viewer (analyze variance results)
-│   │   └── public/
-│   │       └── audit-runner.html Interactive web dashboard UI
+│   │   └── public/             Dashboard UI (modular architecture)
+│   │       ├── audit-runner.html   Minimal HTML shell
+│   │       ├── css/
+│   │       │   └── audit-runner.css    All dashboard styles
+│   │       └── js/
+│   │           ├── audit-api.js        API client - thin wrapper around fetch (no business logic)
+│   │           ├── audit-ui.js         UI rendering - pure DOM manipulation (no API calls)
+│   │           ├── audit-state.js      State management + WebSocket + polling
+│   │           └── audit-runner.js     Main coordinator - ties API + State + UI together
+│   ├── audit-legacy/           Experimental audit tools (archived)
+│   │   ├── content-audit.js    Mechanical content audit (sentence-level quality checks)
+│   │   ├── stability-test.js   Audit stability test (score variance measurement)
+│   │   └── stability-viewer.js Audit stability viewer (analyze variance results)
 │   ├── build/
 │   │   ├── build.js            Full build — geocodes, renders, outputs HTML
 │   │   ├── build-smart.js      Incremental build — skips unchanged trips
