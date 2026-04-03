@@ -22,9 +22,10 @@ import {
 } from "./audit-cli-shared.mjs";
 
 // Parse CLI flags
-const { args: fileArgs, flags } = parseCLIArgs(process.argv, ["provider", "auditDir"]);
+const { args: fileArgs, flags } = parseCLIArgs(process.argv, ["provider", "auditDir", "force"]);
 const providerArg = flags.provider || "sonnet";
 const auditDirName = flags.auditDir || "audits";
+const forceReaudit = flags.force || false;
 
 const PROFILES = {
   sonnet: { model: "claude-sonnet-4-5-20250929", provider: "sonnet", label: "Sonnet" },
@@ -75,12 +76,13 @@ if (fileArgs.length === 0) {
   printUsage(cmd, [
     `${cmd} -- spain/granada`,
     `${cmd} -- spain  (all files, incremental)`,
+    `${cmd} -- spain --force  (re-audit all files, skip change detection)`,
     `${cmd} -- --audit-dir audits-test greece/paros  (save to alternate dir)`
   ]);
 }
 
-// Skip incremental check when using alternate audit dir
-const files = auditDirName !== "audits"
+// Skip incremental check when using alternate audit dir or --force flag
+const files = (auditDirName !== "audits" || forceReaudit)
   ? resolveFiles(fileArgs, "__force__")
   : resolveFiles(fileArgs, PROVIDER);
 

@@ -280,91 +280,20 @@ app.get("/api/history/:trip/:provider", (req, res) => {
       return res.status(400).json({ error: "Invalid provider" });
     }
 
-    const history = collectHistoryData(trip, provider);
+    // Spawn history script and capture JSON output
+    const result = execSync(
+      `npm run audit:history -- ${trip} --provider ${provider} --format json`,
+      { encoding: "utf-8", stdio: "pipe" }
+    );
+
+    const history = JSON.parse(result);
     res.json(history);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-function collectHistoryData(trip, provider) {
-  const tripsPath = path.join("content/trips", trip);
-  if (!fs.existsSync(tripsPath)) {
-    throw new Error("Trip not found");
-  }
-
-  const allDates = new Set();
-  const articles = {};
-
-  // Scan all article audit folders
-  for (const file of fs.readdirSync(tripsPath)) {
-    if (!file.endsWith(".md")) continue;
-
-    const articleName = file.replace(".md", "");
-    const auditFolder = path.join(tripsPath, "audits", articleName);
-
-    if (!fs.existsSync(auditFolder)) continue;
-
-    // Read all audit files for this provider
-    const auditFiles = fs.readdirSync(auditFolder)
-      .filter(f => f.endsWith(`.${provider}.audit.json`));
-
-    // Group by date, keep latest if multiple audits same day
-    const byDate = {};
-    for (const file of auditFiles) {
-      const match = file.match(/^(\d{4}-\d{2}-\d{2})(?:-\d{4})?/);
-      if (!match) continue;
-      const date = match[1];
-
-      if (!byDate[date] || file > byDate[date]) {
-        byDate[date] = file;
-      }
-    }
-
-    // Load scores
-    articles[articleName] = {};
-    for (const [date, file] of Object.entries(byDate)) {
-      const data = JSON.parse(
-        fs.readFileSync(path.join(auditFolder, file), "utf-8")
-      );
-      const score = data.overall_score;
-      articles[articleName][date] = score;
-      allDates.add(date);
-    }
-  }
-
-  // Sort dates chronologically
-  const dates = [...allDates].sort();
-
-  // Compute trip average per date (using most recent audit for each article)
-  const tripAverage = {};
-  for (const date of dates) {
-    const scores = [];
-
-    // For each article, use its most recent audit on or before this date
-    for (const article in articles) {
-      let mostRecentScore = null;
-
-      // Find most recent audit for this article on or before current date
-      for (const auditDate of dates) {
-        if (auditDate > date) break; // Don't look ahead
-        if (articles[article][auditDate] != null) {
-          mostRecentScore = articles[article][auditDate];
-        }
-      }
-
-      if (mostRecentScore != null) {
-        scores.push(mostRecentScore);
-      }
-    }
-
-    if (scores.length > 0) {
-      tripAverage[date] = scores.reduce((a, b) => a + b, 0) / scores.length;
-    }
-  }
-
-  return { trip, provider, dates, articles, tripAverage };
-}
+// collectHistoryData moved to scripts/audit/audit-history.mjs
 
 // ============================================
 // API: Get Trip Audit Scores
@@ -433,28 +362,72 @@ app.post("/api/trip-audit", async (req, res) => {
     return res.status(400).json({ error: "Invalid provider" });
   }
 
-  try {
+  res.json({ status: "running" });
+
+  // Run trip audit in background
+  setImmediate(() => {
     console.log(`[TRIP AUDIT] Running ${provider} trip audit on ${trip}...`);
 
-    // Import trip audit functions dynamically
-    const { default: runTripAudit } = await import("./trip-audit-api.mjs");
-
-    const { scores, markdown, jsonFilename, mdFilename } = await runTripAudit(trip, provider);
-
-    console.log(`[TRIP AUDIT] Completed ${provider} trip audit on ${trip}`);
-
-    res.json({
-      success: true,
-      scores,
-      markdown,
-      jsonFilename,
-      mdFilename
+    const childProcess = spawn("npm", ["run", "trip-audit", "--", trip, "--provider", provider], {
+      stdio: "pipe",
+      cwd: process.cwd(),
+      env: process.env,
+      shell: true
     });
 
-  } catch (err) {
-    console.error(`[TRIP AUDIT] Failed: ${err.message}`);
-    res.status(500).json({ error: err.message });
-  }
+    let stdout = '';
+    let stderr = '';
+
+    childProcess.stdout.on('data', (data) => {
+      const output = data.toString();
+      stdout += output;
+
+      // Try to parse as JSON progress messages
+      const lines = output.split('\n');
+      for (const line of lines) {
+        if (!line.trim()) continue;
+        try {
+          const msg = JSON.parse(line);
+          if (msg.type === 'progress') {
+            broadcast({ type: 'trip-audit-progress', trip, provider, ...msg });
+          }
+        } catch {
+          // Not JSON, regular console output
+        }
+      }
+    });
+
+    childProcess.stderr.on('data', (data) => {
+      stderr += data.toString();
+    });
+
+    childProcess.on("exit", (code, signal) => {
+      if (signal === "SIGTERM" || signal === "SIGKILL") {
+        console.log(`[TRIP AUDIT] Stopped ${provider} trip audit on ${trip}`);
+        broadcast({
+          type: "trip-audit-stopped",
+          trip,
+          provider
+        });
+      } else if (code === 0) {
+        console.log(`[TRIP AUDIT] Completed ${provider} trip audit on ${trip}`);
+        broadcast({
+          type: "trip-audit-complete",
+          trip,
+          provider
+        });
+      } else {
+        console.error(`[TRIP AUDIT] Failed ${provider} trip audit on ${trip} (exit code ${code})`);
+        console.error(`[TRIP AUDIT] stderr: ${stderr}`);
+        broadcast({
+          type: "trip-audit-error",
+          trip,
+          provider,
+          error: stderr || `Exit code ${code}`
+        });
+      }
+    });
+  });
 });
 
 // ============================================
@@ -478,80 +451,15 @@ app.post("/api/commit-file", async (req, res) => {
 
     console.log(`[COMMIT] Starting commit for ${trip}/${file}...`);
 
-    // Step 1: Run typography normalization
-    console.log(`[COMMIT] Normalizing typography...`);
-    execSync(`npm run normalize -- "${filePath}"`, {
-      encoding: "utf-8",
-      stdio: "pipe"
-    });
+    // Spawn commit script and capture output
+    const output = execSync(
+      `npm run commit -- ${trip}/${file} --message "${message.replace(/"/g, '\\"')}"`,
+      { encoding: "utf-8", stdio: "pipe" }
+    );
 
-    // Step 2: Stage the markdown file
-    console.log(`[COMMIT] Staging ${filePath}...`);
-    execSync(`git add "${filePath}"`, { encoding: "utf-8" });
-
-    // Step 3: Parse markdown for image references and stage uncommitted images
-    console.log(`[COMMIT] Checking for uncommitted images...`);
-    const content = fs.readFileSync(filePath, "utf-8");
-    const imageRegex = /!\[.*?\]\((images\/[^)]+)\)/g;
-    const images = [];
-    let match;
-    while ((match = imageRegex.exec(content)) !== null) {
-      images.push(match[1]);
-    }
-
-    // Stage uncommitted images
-    for (const imagePath of images) {
-      const fullImagePath = path.join("content/trips", trip, imagePath);
-
-      if (!fs.existsSync(fullImagePath)) {
-        console.log(`[COMMIT] Warning: Referenced image not found: ${imagePath}`);
-        continue;
-      }
-
-      try {
-        // Check git status: modified files (M) and untracked files (??)
-        const statusOutput = execSync(
-          `git status --porcelain "${fullImagePath}"`,
-          { encoding: "utf-8" }
-        ).trim();
-
-        if (statusOutput) {
-          // File is either modified or untracked - stage it
-          const statusCode = statusOutput.substring(0, 2);
-          const fileType = statusCode.includes('?') ? 'new' : 'modified';
-          console.log(`[COMMIT] Staging ${fileType} image: ${imagePath}`);
-          execSync(`git add "${fullImagePath}"`, { encoding: "utf-8" });
-        }
-      } catch (err) {
-        console.log(`[COMMIT] Error checking image status: ${imagePath}`, err.message);
-      }
-    }
-
-    // Step 4: Validate image references
-    console.log(`[COMMIT] Validating image references...`);
-    try {
-      execSync(`node scripts/validate-images.js "${filePath}"`, {
-        encoding: "utf-8",
-        stdio: "pipe"
-      });
-    } catch (err) {
-      return res.status(500).json({
-        error: "Image validation failed",
-        details: err.message
-      });
-    }
-
-    // Step 5: Commit staged files (pre-commit hook runs automatically)
-    console.log(`[COMMIT] Committing with message: "${message}"`);
-    execSync(`git commit -m "${message.replace(/"/g, '\\"')}"`, {
-      encoding: "utf-8",
-      stdio: "pipe"
-    });
-
-    // Step 6: Get updated stats
-    const commitHash = execSync("git rev-parse --short HEAD", {
-      encoding: "utf-8"
-    }).trim();
+    // Extract commit hash from output
+    const hashMatch = output.match(/([a-f0-9]{7})/);
+    const commitHash = hashMatch ? hashMatch[1] : null;
 
     console.log(`[COMMIT] Success! Commit hash: ${commitHash}`);
 

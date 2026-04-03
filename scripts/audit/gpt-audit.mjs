@@ -74,20 +74,22 @@ async function runAudit(filepath) {
 // CLI
 // ==============================
 
-const { args, flags } = parseCLIArgs(process.argv, ["auditDir"]);
+const { args, flags } = parseCLIArgs(process.argv, ["auditDir", "force"]);
 const auditDirName = flags.auditDir || "audits";
+const forceReaudit = flags.force || false;
 
 if (args.length === 0) {
   printUsage("npm run gpt-audit", [
     "npm run gpt-audit -- spain/granada",
     "npm run gpt-audit -- spain/ronda spain/seville",
     "npm run gpt-audit -- spain  (all files, incremental)",
+    "npm run gpt-audit -- spain --force  (re-audit all files, skip change detection)",
     "npm run gpt-audit -- --audit-dir audits-antiAI greece  (save to alternate dir)"
   ]);
 }
 
-// Skip incremental check when using alternate audit dir
-const files = auditDirName !== "audits"
+// Skip incremental check when using alternate audit dir or --force flag
+const files = (auditDirName !== "audits" || forceReaudit)
   ? resolveFiles(args, "__force__")
   : resolveFiles(args, PROVIDER);
 

@@ -44,6 +44,19 @@ Compare what exists in the codebase against what's documented:
 - List any `scripts/**/*.js` tool that has no mention in any documentation
 - Flag any template file not described in the architecture docs
 
+### 7. Verify UI-to-CLI mappings (audit-runner dashboard)
+For the audit-runner dashboard (`scripts/audit/public/audit-runner.html`):
+- **UI button mapping**: List all button onclick handlers and verify each maps to an npm script (via API endpoint that spawns the script)
+- **API endpoint delegation**: For each endpoint in `scripts/audit/audit-server.mjs`, verify it spawns an npm script rather than implementing business logic inline
+- **CLI equivalents**: Verify every UI action has a documented CLI command alternative
+- **Documentation coverage**: Check that new audit scripts (`audit:rank`, `audit:history`, `commit`) are documented in `CLAUDE.md` or `docs/FILES.md`
+
+Report format for UI-CLI mapping violations:
+```
+UI Button: "Rank" → API: /api/rank → ❌ NO CLI EQUIVALENT
+Expected: npm run audit:rank -- <trip> --provider <provider>
+```
+
 ## Report Format
 
 Present findings in a numbered list, categorized by severity:

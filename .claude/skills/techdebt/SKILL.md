@@ -23,12 +23,17 @@ When triggered with `/techdebt` or asked to audit, follow these steps:
     - **Score calculation logic:** Manual averaging/aggregation that could use shared helpers
     - **File operation patterns:** Repeated `fs.readFileSync()`, `fs.existsSync()` sequences
 
-5.  **Report Structure:** Provide a list of issues categorized by severity:
-    - **High:** Duplicate logic (3+ copies), security issues, broken patterns
-    - **Medium:** Function complexity (>50 lines), magic strings (3+ occurrences)
+5.  **Check API Server Architecture:** Scan `scripts/audit/audit-server.mjs` for endpoints violating clean architecture:
+    - **Business logic in API endpoints:** Endpoints with >20 lines of logic (excluding validation/spawning)
+    - **Functions bypassing npm scripts:** API endpoints that directly import/call business logic instead of spawning CLI scripts
+    - **Mixed abstraction levels:** Endpoints that mix subprocess spawning with inline logic
+
+6.  **Report Structure:** Provide a list of issues categorized by severity:
+    - **High:** Duplicate logic (3+ copies), security issues, broken patterns, business logic in API endpoints (>20 lines)
+    - **Medium:** Function complexity (>50 lines), magic strings (3+ occurrences), endpoints bypassing npm scripts
     - **Low:** Minor style issues, commented code
 
-6.  **Refactoring Advice:** For each issue:
+7.  **Refactoring Advice:** For each issue:
     - Suggest where to centralize duplicate code
     - Propose helper function names
     - Show before/after examples for clarity
@@ -67,4 +72,53 @@ const dir3 = path.join(baseDir, "audits", "_trip");
 const avg = (a + b + c + d) / 4;
 const avg2 = (x + y + z) / 3;
 // Suggest: function computeAverage(values) { return values.reduce((a,b) => a+b) / values.length; }
+```
+
+### Business Logic in API Endpoints (Anti-pattern)
+```javascript
+// BAD: Inline business logic in API endpoint
+app.post("/api/process", async (req, res) => {
+  const { trip, file } = req.body;
+
+  // 30+ lines of business logic here
+  const data = processData(trip, file);
+  const results = aggregateResults(data);
+  const scores = calculateScores(results);
+
+  res.json({ scores });
+});
+
+// GOOD: Spawn npm script instead
+app.post("/api/process", async (req, res) => {
+  const { trip, file } = req.body;
+
+  // Validate inputs (OK to be inline)
+  if (!trip || !file) {
+    return res.status(400).json({ error: "Missing parameters" });
+  }
+
+  // Spawn script (business logic lives in scripts/)
+  const result = execSync(
+    `npm run process -- ${trip}/${file} --format json`,
+    { encoding: "utf-8" }
+  );
+
+  res.json(JSON.parse(result));
+});
+```
+
+### Bypassing CLI Scripts (Anti-pattern)
+```javascript
+// BAD: Directly importing business logic modules
+app.post("/api/audit", async (req, res) => {
+  const { default: runAudit } = await import("./audit-logic.mjs");
+  const result = await runAudit(trip, file);
+  res.json(result);
+});
+
+// GOOD: Spawn the CLI script
+app.post("/api/audit", async (req, res) => {
+  const child = spawn("npm", ["run", "audit", "--", `${trip}/${file}`]);
+  // Stream output, return result
+});
 ```
