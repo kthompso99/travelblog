@@ -555,7 +555,7 @@ export function resolveFiles(args, provider) {
   for (const arg of args) {
     let resolved = arg;
     if (!resolved.startsWith("content/"))
-      resolved = `${CONTENT_TRIPS_PATH}/${resolved}`;
+      resolved = `${CONFIG.TRIPS_DIR}/${resolved}`;
 
     if (fs.existsSync(resolved) && fs.statSync(resolved).isDirectory()) {
       const mds = fs
