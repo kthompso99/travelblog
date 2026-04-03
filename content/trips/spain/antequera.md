@@ -39,10 +39,11 @@ You need a car to reach the dolmens -- they're close to town but not walkable. T
 
 See the section on [Tips for Spain](tips.html) for how we chose [daytrip.com](http://daytrip.com) for various of our shuttles from point A to point B.    
 
+Antequera is an easy undersell. The town alone wouldn't justify a stop, but the dolmens reframe it entirely -- one of the oldest and most physically impressive megalithic sites in Europe, free, uncrowded, and 15 minutes off the main route between Granada and the coast. If you're passing through, there's no good reason to skip it.
 
 :::nutshell Antequera
 verdict: Glad We Went
-duration: 2 days
+duration: 3 hours
 Stay Overnight: We would not prioritize this town for an overnight visit.
 Don't Miss: The Dolmens; all three are interesting, the Dolmen of Menga most of all with Tholos a close second.
 Best Time of Day: The Dolmens are open much of the day; see [the museum site](https://whichmuseum.com/museum/archaeological-dolmens-of-antequera-28815/opening-hours).
