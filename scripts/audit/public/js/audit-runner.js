@@ -470,6 +470,7 @@ window.openCommitModal = openCommitModal;
 window.closeCommitModal = closeCommitModal;
 window.closeCommitIfOutside = closeCommitIfOutside;
 window.confirmCommit = confirmCommit;
+window.getProviderLabel = UI.getProviderLabel;
 
 // ============================================
 // Start App
