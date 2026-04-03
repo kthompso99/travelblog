@@ -21,7 +21,7 @@ In the middle of Calle Larios, a concrete table had drawn a crowd -- locals and 
 
 ![Impromptu chess matches](images/malaga-13.jpg)
 
-The best few hours we spent in Málaga were on e-bikes, riding the coast. The path is flat, and the e-bikes turned what could have been exercise into a low-effort glide.  In mid-70s late October heat, we focused on the views rather than the pedaling.
+The best few hours we spent in Málaga were on e-bikes, riding east along the coast. The path is flat, and the e-bikes turned what could have been exercise into a low-effort glide.  It’s less a ride to somewhere than along something—a continuous stretch of beach bars and seafood places just off the path.  In mid-70s late October heat, we focused on the views rather than the pedaling.
 
 ![Bike ride along the coast, mid-70s in late October.](images/malaga-07.jpg)
 
@@ -61,7 +61,7 @@ The Málaga Cathedral is worth a look as you pass.  It is notable for remaining 
 
 ## Where We Stayed
 
-We stayed at [Vincci Larios Diez](https://en.vinccihoteles.com/hotels/malaga/vincci-larios-diez/), largely for the top-floor 'Luxe Essence City Views' room -- a corner balcony with the cathedral's lone tower and the rooftops of Calle Larios spread out below. Champagne on the balcony at sunset, with the city at a murmur beneath you, was the high point of the stay.
+We stayed at [Vincci Larios Diez](https://en.vinccihoteles.com/hotels/malaga/vincci-larios-diez/), largely for the top-floor 'Luxe Essence City Views' room -- a corner balcony with the cathedral's lone tower and the rooftops of Calle Larios spread out below. The high point of the stay was champagne on the balcony at sunset, the cathedral's lone tower lit up across the rooftops.
 
 ![View from the top floor room](images/malaga-09.jpg)
 
