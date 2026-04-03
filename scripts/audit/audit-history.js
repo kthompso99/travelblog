@@ -9,6 +9,7 @@
 import fs from "fs";
 import path from "path";
 import { AUDITS_DIR_NAME, validateProvider, getProviderLabel, getTripPath } from "./audit-shared.js";
+import { loadJsonFile as readJsonFile } from "../../lib/build-utilities.js";
 import CONFIG from "../../lib/config-paths.js";
 const CONTENT_TRIPS_PATH = CONFIG.TRIPS_DIR;
 
@@ -53,9 +54,7 @@ function collectHistoryData(trip, provider) {
     // Load scores
     articles[articleName] = {};
     for (const [date, file] of Object.entries(byDate)) {
-      const data = JSON.parse(
-        fs.readFileSync(path.join(auditFolder, file), "utf-8")
-      );
+      const data = readJsonFile(path.join(auditFolder, file));
       const score = data.overall_score;
       articles[articleName][date] = score;
       allDates.add(date);

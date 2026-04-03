@@ -5,7 +5,7 @@
 import fs from "fs";
 import path from "path";
 import { GALLERY_MARKER } from "../../lib/constants.js";
-import { loadJsonFile as readJsonFile, writeJsonFile, readTextFile } from "../../lib/build-utilities.js";
+import { loadJsonFile as readJsonFile, writeJsonFile, readTextFile, writeTextFile } from "../../lib/build-utilities.js";
 import CONFIG from "../../lib/config-paths.js";
 
 // ==============================
@@ -236,26 +236,18 @@ export function computeTripAverage(scores) {
 
 const scriptDir = path.dirname(new URL(import.meta.url).pathname);
 
-export const ENFORCEMENT_MANDATE = fs.readFileSync(
-  path.join(scriptDir, "ai-audit-mandate.txt"),
-  "utf-8"
+export const ENFORCEMENT_MANDATE = readTextFile(
+  path.join(scriptDir, "ai-audit-mandate.txt")
 );
 
-export const SYSTEM_PROMPT = fs.readFileSync(
-  path.join(scriptDir, "ai-audit-prompt.txt"),
-  "utf-8"
+export const SYSTEM_PROMPT = readTextFile(
+  path.join(scriptDir, "ai-audit-prompt.txt")
 );
 
 export function loadContextDocs() {
-  const editorialStandards = fs.readFileSync(
-    "docs/Content/Editorial-Standards.md", "utf-8"
-  );
-  const brandIdentity = fs.readFileSync(
-    "docs/Content/Brand.md", "utf-8"
-  );
-  const antiAIGuidelines = fs.readFileSync(
-    "docs/Content/AntiAIWritingGuidelines.md", "utf-8"
-  );
+  const editorialStandards = readTextFile("docs/Content/Editorial-Standards.md");
+  const brandIdentity = readTextFile("docs/Content/Brand.md");
+  const antiAIGuidelines = readTextFile("docs/Content/AntiAIWritingGuidelines.md");
   return { editorialStandards, brandIdentity, antiAIGuidelines };
 }
 
@@ -504,7 +496,7 @@ export function saveAuditResults(filepath, scores, markdown, provider, auditDirN
   const auditTitle = `# ${prettyName} Audit (${provider}) — ${today} ${timeStr}`;
 
   writeJsonFile(jsonPath, scores);
-  fs.writeFileSync(mdPath, `${auditTitle}\n\n${markdown}`);
+  writeTextFile(mdPath, `${auditTitle}\n\n${markdown}`);
 
   const baseline = prev ? `, comparing to ${formatPrevTimestamp(prev._mtime)}` : "";
   console.log(`\nAudit complete: ${articleName} (${provider})${baseline}`);

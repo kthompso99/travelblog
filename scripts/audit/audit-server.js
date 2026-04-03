@@ -17,7 +17,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { getTripStatus, getFileStatus, getMostRecentFile } from "./audit-status.js";
 import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, getTripAuditPath, AUDITS_DIR_NAME, getAuditPath, getContentFilePath, getTripPath } from "./audit-shared.js";
-import { loadJsonFile as readJsonFile } from "../../lib/build-utilities.js";
+import { loadJsonFile as readJsonFile, readTextFile } from "../../lib/build-utilities.js";
 import CONFIG from "../../lib/config-paths.js";
 const CONTENT_TRIPS_PATH = CONFIG.TRIPS_DIR;
 
@@ -148,7 +148,7 @@ app.get("/api/audit/:trip/:file/:provider.md", (req, res) => {
     }
 
     const mdPath = path.join(auditDir, files[0]);
-    const content = fs.readFileSync(mdPath, "utf-8");
+    const content = readTextFile(mdPath);
 
     res.setHeader("Content-Type", "text/markdown");
     res.send(content);

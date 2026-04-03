@@ -14,6 +14,7 @@
 import fs from "fs";
 import path from "path";
 import { DIMENSION_LABELS } from "./audit-shared.js";
+import { loadJsonFile as readJsonFile } from "../../lib/build-utilities.js";
 
 const OUTPUT_DIR = "audit-stability";
 
@@ -39,9 +40,7 @@ if (files.length === 0) {
   process.exit(1);
 }
 
-const allResults = files.map(f =>
-  JSON.parse(fs.readFileSync(path.join(OUTPUT_DIR, f), "utf-8"))
-);
+const allResults = files.map(f => readJsonFile(path.join(OUTPUT_DIR, f)));
 
 const results = PROVIDER_FILTER
   ? allResults.filter(r => r.provider === PROVIDER_FILTER)

@@ -9,7 +9,7 @@ import path from "path";
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
 import { readArticleContent, loadContextDocs, loadTripConfig, extractJsonAndMarkdown, getLocalDateString, getTripAuditPath, computeTripAverage, getTripPath } from "./audit-shared.js";
-import { readTextFile, writeJsonFile } from "../../lib/build-utilities.js";
+import { readTextFile, writeJsonFile, writeTextFile } from "../../lib/build-utilities.js";
 import CONFIG from "../../lib/config-paths.js";
 
 // Assemble trip content (overview + all articles)
@@ -148,7 +148,7 @@ export default async function runTripAudit(tripSlug, provider) {
 
   // Save JSON and MD files
   writeJsonFile(jsonPath, scores);
-  fs.writeFileSync(mdPath, markdown);
+  writeTextFile(mdPath, markdown);
 
   return { scores, markdown, jsonFilename, mdFilename, jsonPath, mdPath };
 }

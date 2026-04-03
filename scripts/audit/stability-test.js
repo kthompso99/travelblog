@@ -32,6 +32,7 @@ import {
   ENFORCEMENT_MANDATE
 } from "./audit-shared.js";
 import { prepareAuditContent } from "./audit-cli-shared.js";
+import { writeJsonFile } from "../../lib/build-utilities.js";
 
 // ==============================
 // 🔧 CONFIG
@@ -166,10 +167,7 @@ for (let run = 0; run < TOTAL_RUNS; run++) {
         };
         const dateStr = new Date().toISOString().split("T")[0];
         const filename = `${target.slug}-${prov.name}-${dateStr}T${runLabel}.json`;
-        fs.writeFileSync(
-          path.join(OUTPUT_DIR, filename),
-          JSON.stringify(result, null, 2)
-        );
+        writeJsonFile(path.join(OUTPUT_DIR, filename), result);
         console.log(`  ${target.slug}/${prov.name}: ${scores.overall_score}`);
       } catch (err) {
         console.error(`  FAILED: ${target.slug}/${prov.name}: ${err.message}`);
