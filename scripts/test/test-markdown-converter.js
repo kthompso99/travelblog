@@ -47,7 +47,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { convertMarkdown } from '../../lib/markdown-converter.js';
-import { convertMarkdownWithGallery } from '../../lib/build-utilities.js';
+import { convertMarkdownWithGallery, writeTextFile } from '../../lib/build-utilities.js';
 import { parseNutshellBlock, renderNutshell, processNutshell } from '../../lib/nutshell.js';
 import { createTestRunner, createTempDir, removeTempDir } from './test-helpers.js';
 
@@ -58,7 +58,7 @@ const { assert, report } = createTestRunner('📋 markdown-converter');
 /** Write a markdown file into dir and return its full path. */
 function writeMd(dir, name, content) {
     const p = path.join(dir, name);
-    fs.writeFileSync(p, content, 'utf8');
+    writeTextFile(p, content);
     return p;
 }
 

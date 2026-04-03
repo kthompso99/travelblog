@@ -12,6 +12,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { readTextFile } from '../lib/build-utilities.js';
 
 const TRIPS_DIR = 'content/trips';
 
@@ -76,7 +77,7 @@ function existsCaseSensitive(filePath) {
 
 function validateFile(filePath) {
   const errors = [];
-  const content = fs.readFileSync(filePath, 'utf-8');
+  const content = readTextFile(filePath);
   const lines = content.split('\n');
   const mdDir = path.dirname(filePath);
 

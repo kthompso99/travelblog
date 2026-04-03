@@ -12,6 +12,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { createTestRunner, backupFile, restoreFile } from './test-helpers.js';
 import { loadGeocodeCache, geocodeLocation } from '../../lib/geocode.js';
+import { writeJsonFile } from '../../lib/build-utilities.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,7 +48,7 @@ const testCache = {
 if (!fs.existsSync(TEST_CACHE_DIR)) {
     fs.mkdirSync(TEST_CACHE_DIR, { recursive: true });
 }
-fs.writeFileSync(TEST_CACHE_FILE, JSON.stringify(testCache, null, 2), 'utf8');
+writeJsonFile(TEST_CACHE_FILE, testCache);
 
 // Reload cache
 loadGeocodeCache();

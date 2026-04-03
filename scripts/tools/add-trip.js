@@ -60,7 +60,7 @@
 import fs from 'fs';
 import path from 'path';
 import { slugify } from '../../lib/slug-utilities.js';
-import { ensureDir, writeJsonFile } from '../../lib/build-utilities.js';
+import { ensureDir, writeJsonFile, writeTextFile } from '../../lib/build-utilities.js';
 import { createPromptSession } from '../../lib/prompt-utilities.js';
 
 // Import centralized configuration paths
@@ -269,12 +269,12 @@ function createTripFiles(tripDir, tripConfig, content, metadata) {
     console.log(`✅ Created ${tripConfigPath}`);
 
     const mainPath = CONFIG.getTripOverviewPath(metadata.tripId);
-    fs.writeFileSync(mainPath, buildIntroMarkdown(metadata, content), 'utf8');
+    writeTextFile(mainPath, buildIntroMarkdown(metadata, content));
     console.log(`✅ Created ${mainPath}`);
 
     for (const item of content) {
         const filePath = path.join(tripDir, `${slugify(item.title)}.md`);
-        fs.writeFileSync(filePath, buildContentMarkdown(item), 'utf8');
+        writeTextFile(filePath, buildContentMarkdown(item));
         console.log(`✅ Created ${filePath}`);
     }
 }

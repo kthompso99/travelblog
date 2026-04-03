@@ -27,7 +27,7 @@
 import fs from 'fs';
 import path from 'path';
 import CONFIG from '../../lib/config-paths.js';
-import { discoverTrips, loadTripConfig } from '../../lib/build-utilities.js';
+import { discoverTrips, loadTripConfig, readTextFile, writeTextFile } from '../../lib/build-utilities.js';
 import { parseToolArgs } from './tool-helpers.js';
 
 // ---------------------------------------------------------------------------
@@ -116,12 +116,12 @@ function detectSingleQuoteScarequotes(content, filePath) {
 // ---------------------------------------------------------------------------
 
 function processFile(filePath, dryRun) {
-    const original = fs.readFileSync(filePath, 'utf8');
+    const original = readTextFile(filePath);
     const modified = normalizeTypography(original);
     const changed = modified !== original;
 
     if (changed && !dryRun) {
-        fs.writeFileSync(filePath, modified, 'utf8');
+        writeTextFile(filePath, modified);
     }
 
     const scareQuoteWarnings = detectSingleQuoteScarequotes(modified, filePath);

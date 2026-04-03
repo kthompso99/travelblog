@@ -18,6 +18,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { readTextFile, writeTextFile } from '../../lib/build-utilities.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -41,7 +42,7 @@ This file contains three things in order:
 `;
 
 function readSource(filename) {
-    return fs.readFileSync(path.join(DOCS_DIR, filename), 'utf8').trimEnd();
+    return readTextFile(path.join(DOCS_DIR, filename)).trimEnd();
 }
 
 function truncateBrandAtVisualAlignment(content) {
@@ -80,12 +81,12 @@ function main() {
     ].join('\n') + '\n';
 
     const outputPath = path.join(DOCS_DIR, 'Context-Combined.md');
-    const existing = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, 'utf8') : '';
+    const existing = fs.existsSync(outputPath) ? readTextFile(outputPath) : '';
 
     if (combined === existing) {
         console.log('Context-Combined.md is up to date.');
     } else {
-        fs.writeFileSync(outputPath, combined, 'utf8');
+        writeTextFile(outputPath, combined);
         console.log('Context-Combined.md regenerated.');
     }
 }

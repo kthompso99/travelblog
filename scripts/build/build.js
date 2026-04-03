@@ -32,7 +32,8 @@ import {
     generateSitemapToFile,
     generateTripHtmlPages,
     printBuildWarnings,
-    getFileSize
+    getFileSize,
+    writeTextFile
 } from '../../lib/build-utilities.js';
 
 // Import centralized configuration paths
@@ -372,7 +373,7 @@ async function generateGlobalPages(output, domain) {
     console.log(`   📄 Generating about page...`);
     ensureDir('about');
     const aboutHtml = await generateAboutPage(output, domain, convertMarkdown);
-    fs.writeFileSync('about/index.html', aboutHtml, 'utf8');
+    writeTextFile('about/index.html', aboutHtml);
     const aboutSize = getFileSize('about/index.html');
     htmlSize += aboutSize;
     console.log(`   ✅ About page generated (${(aboutSize / 1024).toFixed(1)}KB)`);
@@ -383,7 +384,7 @@ async function generateGlobalPages(output, domain) {
 
     console.log(`   📄 Generating robots.txt...`);
     const robotsTxt = generateRobotsTxt(domain);
-    fs.writeFileSync('robots.txt', robotsTxt, 'utf8');
+    writeTextFile('robots.txt', robotsTxt);
     const robotsSize = getFileSize('robots.txt');
     console.log(`   ✅ Robots.txt generated (${(robotsSize / 1024).toFixed(0)} bytes)`);
 
