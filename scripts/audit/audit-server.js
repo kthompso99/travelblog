@@ -11,13 +11,18 @@
 import express from "express";
 import { WebSocketServer } from "ws";
 import { createServer } from "http";
-import { spawn, execSync } from "child_process";
+import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getTripStatus, getFileStatus, getMostRecentFile } from "./audit-status.js";
 import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, getTripAuditPath, AUDITS_DIR_NAME, getAuditPath, getContentFilePath, getTripPath } from "./audit-shared.js";
 import { generateRankings } from "./audit-rankings.js";
+import { collectHistoryData } from "./audit-history.js";
+import { runAnthropicAudit } from "./anthropic-audit.js";
+import { runGPTAudit } from "./gpt-audit.js";
+import runTripAuditAPI from "./trip-audit-api.js";
+import { commitFile } from "../tools/commit-file.js";
 import { loadJsonFile as readJsonFile, readTextFile } from "../../lib/build-utilities.js";
 import CONFIG from "../../lib/config-paths.js";
 const CONTENT_TRIPS_PATH = CONFIG.TRIPS_DIR;
@@ -33,7 +38,7 @@ const PORT = 3001;
 // Track Running Audits
 // ============================================
 
-const runningAudits = new Map(); // key: "provider-trip-file", value: childProcess
+const runningAudits = new Map(); // key: "provider-trip-file", value: Promise
 
 // ============================================
 // Middleware
@@ -183,58 +188,27 @@ app.post("/api/run-audit", async (req, res) => {
 
   res.json({ status: "running" });
 
-  // Run audit in background
-  setImmediate(() => {
-    console.log(`[AUDIT] Running ${provider} audit on ${trip}/${file}...`);
+  // Run audit in background (direct function call, no child process)
+  const filepath = `${trip}/${file}`;
+  console.log(`[AUDIT] Running ${provider} audit on ${filepath}...`);
 
-    const scriptMap = {
-      opus: "opus-audit",
-      gpt: "gpt-audit"
-    };
-
-    const childProcess = spawn("npm", ["run", scriptMap[provider], "--", `${trip}/${file}`], {
-      stdio: "inherit",
-      cwd: process.cwd(),
-      env: process.env,
-      shell: true
-    });
-
-    runningAudits.set(auditKey, childProcess);
-
-    childProcess.on("exit", (code, signal) => {
-      runningAudits.delete(auditKey);
-
-      if (signal === "SIGTERM" || signal === "SIGKILL") {
-        console.log(`[AUDIT] Stopped ${provider} audit on ${trip}/${file}`);
-        broadcast({
-          type: "audit-stopped",
-          trip,
-          file,
-          provider
-        });
-      } else if (code === 0) {
-        console.log(`[AUDIT] Completed ${provider} audit on ${trip}/${file}`);
-        broadcast({
-          type: "audit-complete",
-          trip,
-          file,
-          provider
-        });
-      } else {
-        console.error(`[AUDIT] Failed ${provider} audit on ${trip}/${file} (exit code ${code})`);
-        broadcast({
-          type: "audit-error",
-          trip,
-          file,
-          provider,
-          error: `Process exited with code ${code}`
-        });
+  const auditPromise = (async () => {
+    try {
+      if (provider === "opus" || provider === "sonnet") {
+        await runAnthropicAudit(filepath, provider);
+      } else if (provider === "gpt") {
+        await runGPTAudit(filepath);
       }
-    });
 
-    childProcess.on("error", (err) => {
-      runningAudits.delete(auditKey);
-      console.error(`[AUDIT] Error: ${err.message}`);
+      console.log(`[AUDIT] Completed ${provider} audit on ${filepath}`);
+      broadcast({
+        type: "audit-complete",
+        trip,
+        file,
+        provider
+      });
+    } catch (err) {
+      console.error(`[AUDIT] Failed ${provider} audit on ${filepath}: ${err.message}`);
       broadcast({
         type: "audit-error",
         trip,
@@ -242,8 +216,12 @@ app.post("/api/run-audit", async (req, res) => {
         provider,
         error: err.message
       });
-    });
-  });
+    } finally {
+      runningAudits.delete(auditKey);
+    }
+  })();
+
+  runningAudits.set(auditKey, auditPromise);
 });
 
 // ============================================
@@ -258,16 +236,15 @@ app.post("/api/stop-audit", (req, res) => {
   }
 
   const auditKey = `${provider}-${trip}-${file}`;
-  const childProcess = runningAudits.get(auditKey);
+  const auditPromise = runningAudits.get(auditKey);
 
-  if (!childProcess) {
+  if (!auditPromise) {
     return res.status(404).json({ error: "No running audit found" });
   }
 
-  console.log(`[AUDIT] Stopping ${provider} audit on ${trip}/${file}...`);
-  childProcess.kill("SIGTERM");
-
-  res.json({ status: "stopping" });
+  // Note: Stopping in-flight API calls not currently supported
+  // Would require AbortController support in audit functions
+  res.status(501).json({ error: "Stopping audits not currently supported" });
 });
 
 // ============================================
@@ -303,13 +280,8 @@ app.get("/api/history/:trip/:provider", (req, res) => {
       return res.status(400).json({ error: "Invalid provider" });
     }
 
-    // Spawn history script and capture JSON output
-    const result = execSync(
-      `npm run audit:history -- ${trip} --provider ${provider} --format json`,
-      { encoding: "utf-8", stdio: "pipe" }
-    );
-
-    const history = JSON.parse(result);
+    // Call history function directly (no child process)
+    const history = collectHistoryData(trip, provider);
     res.json(history);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -387,69 +359,28 @@ app.post("/api/trip-audit", async (req, res) => {
 
   res.json({ status: "running" });
 
-  // Run trip audit in background
-  setImmediate(() => {
+  // Run trip audit in background (direct function call, no child process)
+  setImmediate(async () => {
     console.log(`[TRIP AUDIT] Running ${provider} trip audit on ${trip}...`);
 
-    const childProcess = spawn("npm", ["run", "trip-audit", "--", trip, "--provider", provider], {
-      stdio: "pipe",
-      cwd: process.cwd(),
-      env: process.env,
-      shell: true
-    });
+    try {
+      const { scores, markdown, jsonFilename, mdFilename } = await runTripAuditAPI(trip, provider);
 
-    let stdout = '';
-    let stderr = '';
-
-    childProcess.stdout.on('data', (data) => {
-      const output = data.toString();
-      stdout += output;
-
-      // Try to parse as JSON progress messages
-      const lines = output.split('\n');
-      for (const line of lines) {
-        if (!line.trim()) continue;
-        try {
-          const msg = JSON.parse(line);
-          if (msg.type === 'progress') {
-            broadcast({ type: 'trip-audit-progress', trip, provider, ...msg });
-          }
-        } catch {
-          // Not JSON, regular console output
-        }
-      }
-    });
-
-    childProcess.stderr.on('data', (data) => {
-      stderr += data.toString();
-    });
-
-    childProcess.on("exit", (code, signal) => {
-      if (signal === "SIGTERM" || signal === "SIGKILL") {
-        console.log(`[TRIP AUDIT] Stopped ${provider} trip audit on ${trip}`);
-        broadcast({
-          type: "trip-audit-stopped",
-          trip,
-          provider
-        });
-      } else if (code === 0) {
-        console.log(`[TRIP AUDIT] Completed ${provider} trip audit on ${trip}`);
-        broadcast({
-          type: "trip-audit-complete",
-          trip,
-          provider
-        });
-      } else {
-        console.error(`[TRIP AUDIT] Failed ${provider} trip audit on ${trip} (exit code ${code})`);
-        console.error(`[TRIP AUDIT] stderr: ${stderr}`);
-        broadcast({
-          type: "trip-audit-error",
-          trip,
-          provider,
-          error: stderr || `Exit code ${code}`
-        });
-      }
-    });
+      console.log(`[TRIP AUDIT] Completed ${provider} trip audit on ${trip}`);
+      broadcast({
+        type: "trip-audit-complete",
+        trip,
+        provider
+      });
+    } catch (err) {
+      console.error(`[TRIP AUDIT] Failed ${provider} trip audit on ${trip}: ${err.message}`);
+      broadcast({
+        type: "trip-audit-error",
+        trip,
+        provider,
+        error: err.message
+      });
+    }
   });
 });
 
@@ -466,29 +397,16 @@ app.post("/api/commit-file", async (req, res) => {
   }
 
   try {
-    // Check file exists
-    const filePath = getContentFilePath(trip, file);
-    if (!fs.existsSync(filePath)) {
-      return res.status(404).json({ error: "File not found" });
-    }
-
     console.log(`[COMMIT] Starting commit for ${trip}/${file}...`);
 
-    // Spawn commit script and capture output
-    const output = execSync(
-      `npm run commit -- ${trip}/${file} --message "${message.replace(/"/g, '\\"')}"`,
-      { encoding: "utf-8", stdio: "pipe" }
-    );
+    // Call commit function directly (no child process)
+    const result = await commitFile(trip, file, message, { push: false, dryRun: false });
 
-    // Extract commit hash from output
-    const hashMatch = output.match(/([a-f0-9]{7})/);
-    const commitHash = hashMatch ? hashMatch[1] : null;
-
-    console.log(`[COMMIT] Success! Commit hash: ${commitHash}`);
+    console.log(`[COMMIT] Success! Commit hash: ${result.commitHash}`);
 
     res.json({
       success: true,
-      commitHash,
+      commitHash: result.commitHash,
       message: "Committed successfully"
     });
 

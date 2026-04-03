@@ -1,7 +1,12 @@
 // ==============================
 // Two Travel Nuts — GPT Editorial Audit
 // ==============================
+//
+// Core audit logic (exported for API server use) + CLI wrapper.
+// CLI: npm run gpt-audit
+// API: import { runGPTAudit } from './gpt-audit.js'
 
+import { fileURLToPath } from 'url';
 import fs from "fs";
 import OpenAI from "openai";
 import {
@@ -44,10 +49,16 @@ function getOpenAIApiKey() {
 }
 
 // ==============================
-// 📂 Audit via OpenAI
+// Core Audit Logic (Exported)
 // ==============================
 
-async function runAudit(filepath) {
+/**
+ * Run GPT audit on a single file
+ * @param {string} filepath - Path to content file (e.g., "spain/granada.md")
+ * @param {string} auditDirName - Audit directory name (default: "audits")
+ * @returns {Promise<{jsonPath: string, mdPath: string}>}
+ */
+export async function runGPTAudit(filepath, auditDirName = "audits") {
   const client = new OpenAI({
     apiKey: getOpenAIApiKey()
   });
@@ -72,23 +83,30 @@ async function runAudit(filepath) {
 }
 
 // ==============================
-// CLI
+// CLI Wrapper (only runs when executed directly)
 // ==============================
 
-const { args, flags } = parseCLIArgs(process.argv, ["auditDir", "force"]);
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const { args, flags } = parseCLIArgs(process.argv, ["auditDir", "force"]);
 
-if (args.length === 0) {
-  printUsage("npm run gpt-audit", [
-    "npm run gpt-audit -- spain/granada",
-    "npm run gpt-audit -- spain/ronda spain/seville",
-    "npm run gpt-audit -- spain  (all files, incremental)",
-    "npm run gpt-audit -- spain --force  (re-audit all files, skip change detection)",
-    "npm run gpt-audit -- --audit-dir audits-antiAI greece  (save to alternate dir)"
-  ]);
+  if (args.length === 0) {
+    printUsage("npm run gpt-audit", [
+      "npm run gpt-audit -- spain/granada",
+      "npm run gpt-audit -- spain/ronda spain/seville",
+      "npm run gpt-audit -- spain  (all files, incremental)",
+      "npm run gpt-audit -- spain --force  (re-audit all files, skip change detection)",
+      "npm run gpt-audit -- --audit-dir audits-antiAI greece  (save to alternate dir)"
+    ]);
+  }
+
+  const { files, auditDirName } = resolveAuditFiles(args, flags, PROVIDER, "GPT");
+  console.log(`Auditing ${files.length} file(s) with GPT...\n`);
+
+  // Wrapper function that calls core logic with auditDirName from CLI scope
+  async function runAuditCLI(filepath) {
+    return runGPTAudit(filepath, auditDirName);
+  }
+
+  const { mdPaths, failed } = await runAuditBatch(files, runAuditCLI);
+  reportResults(mdPaths, failed);
 }
-
-const { files, auditDirName } = resolveAuditFiles(args, flags, PROVIDER, "GPT");
-console.log(`Auditing ${files.length} file(s) with GPT...\n`);
-
-const { mdPaths, failed } = await runAuditBatch(files, runAudit);
-reportResults(mdPaths, failed);
