@@ -1165,7 +1165,7 @@
         }).join('');
 
       const overallScore = scores.overall_score ? scores.overall_score.toFixed(2) : 'N/A';
-      const overallColor = parseFloat(overallScore) >= 8.7 ? '#4caf50' : parseFloat(overallScore) >= 7.5 ? '#ff9800' : '#d32f2f';
+      const overallColor = parseFloat(overallScore) >= state.config.tripThreshold ? '#4caf50' : parseFloat(overallScore) >= 7.5 ? '#ff9800' : '#d32f2f';
 
       return `
         <div style="background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 6px; padding: 16px; margin-bottom: 24px;">
@@ -1441,54 +1441,34 @@
       if (!state.trip) return;
 
       try {
-        // Fetch all files in trip
-        const response = await fetch(`/api/status/${state.trip}`);
+        // Fetch rankings from API
+        const response = await fetch(`/api/rankings/${state.trip}/${provider}`);
         const data = await response.json();
 
-        // Extract and sort by provider score
-        const rankings = data.files
-          .filter(f => f.providers[provider]?.hasAudit)
-          .map(f => ({
-            file: f.file,
-            score: f.providers[provider].overall
-          }))
-          .sort((a, b) => b.score - a.score); // Descending
-
         // Build rankings HTML
-        const rankingsHTML = rankings.map((item, index) => {
+        const rankingsHTML = data.rankings.map((item, index) => {
           const isCurrent = item.file === state.file;
-          const isPublishable = state.config && item.score >= state.config.articleThreshold;
+          const isPublishable = item.score >= data.articleThreshold;
           const scoreColor = isPublishable ? '#4caf50' : '#1976d2';
           return `
             <div class="ranking-item ${isCurrent ? 'current' : ''}"
                  onclick="selectFileFromRankings('${item.file}')">
-              <div class="rank-badge">#${index + 1} of ${rankings.length}</div>
+              <div class="rank-badge">#${index + 1} of ${data.rankings.length}</div>
               <div class="rank-file">${item.file}</div>
               <div class="rank-score" style="color: ${scoreColor}">${item.score.toFixed(2)}</div>
             </div>
           `;
         }).join('');
 
-        // Calculate average score and readiness (uses thresholds from /api/config)
-        const avgScore = rankings.length > 0
-          ? (rankings.reduce((sum, r) => sum + r.score, 0) / rankings.length).toFixed(2)
-          : '0.00';
-
-        const lowestScore = rankings.length > 0
-          ? Math.min(...rankings.map(r => r.score))
-          : 0;
-
-        const tripReady = state.config &&
-          parseFloat(avgScore) >= state.config.tripThreshold &&
-          lowestScore >= state.config.articleThreshold;
-        const readinessStatus = tripReady ? 'READY' : 'NOT READY';
-        const readinessColor = tripReady ? '#4caf50' : '#ff9800';
+        // Format readiness status
+        const readinessStatus = data.tripReady ? 'READY' : 'NOT READY';
+        const readinessColor = data.tripReady ? '#4caf50' : '#ff9800';
 
         // Update modal
         const providerLabel = getProviderLabel(provider);
-        const tripLabel = state.trip.charAt(0).toUpperCase() + state.trip.slice(1);
+        const tripLabel = data.trip.charAt(0).toUpperCase() + data.trip.slice(1);
         document.getElementById('rankingsTitle').innerHTML =
-          `${providerLabel} Rankings — ${tripLabel}  •  Avg: ${avgScore}  •  <span style="color: ${readinessColor}">${readinessStatus}</span>`;
+          `${providerLabel} Rankings — ${tripLabel}  •  Avg: ${data.average.toFixed(2)}  •  <span style="color: ${readinessColor}">${readinessStatus}</span>`;
         document.getElementById('rankingsList').innerHTML = rankingsHTML;
 
         // Show modal

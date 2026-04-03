@@ -6,6 +6,7 @@
 // Usage: npm run audit:rank -- greece --provider opus --format text
 //
 
+import { fileURLToPath } from 'url';
 import { getTripStatus } from "./audit-status.js";
 import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, validateProvider, getProviderLabel } from "./audit-shared.js";
 
@@ -91,43 +92,46 @@ function formatJSON(data) {
 // CLI
 // ==============================
 
-const args = process.argv.slice(2);
+// Only run CLI code if this file is executed directly (not imported)
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const args = process.argv.slice(2);
 
-if (args.length === 0 || args[0].startsWith('--')) {
-  console.error('Usage: npm run audit:rank -- <trip> [--provider opus|gpt] [--format text|json]');
-  process.exit(1);
-}
-
-const trip = args[0];
-const providerIdx = args.indexOf("--provider");
-const provider = providerIdx !== -1 ? args[providerIdx + 1] : "opus";
-const formatIdx = args.indexOf("--format");
-const format = formatIdx !== -1 ? args[formatIdx + 1] : "text";
-
-try {
-  validateProvider(provider);
-} catch (err) {
-  console.error(err.message);
-  process.exit(1);
-}
-
-const validFormats = ["text", "json"];
-if (!validFormats.includes(format)) {
-  console.error(`Invalid format: ${format}. Must be one of: ${validFormats.join(', ')}`);
-  process.exit(1);
-}
-
-try {
-  const data = generateRankings(trip, provider, format);
-
-  if (format === 'text') {
-    formatText(data);
-  } else if (format === 'json') {
-    formatJSON(data);
+  if (args.length === 0 || args[0].startsWith('--')) {
+    console.error('Usage: npm run audit:rank -- <trip> [--provider opus|gpt] [--format text|json]');
+    process.exit(1);
   }
-} catch (err) {
-  console.error(`Error: ${err.message}`);
-  process.exit(1);
+
+  const trip = args[0];
+  const providerIdx = args.indexOf("--provider");
+  const provider = providerIdx !== -1 ? args[providerIdx + 1] : "opus";
+  const formatIdx = args.indexOf("--format");
+  const format = formatIdx !== -1 ? args[formatIdx + 1] : "text";
+
+  try {
+    validateProvider(provider);
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+
+  const validFormats = ["text", "json"];
+  if (!validFormats.includes(format)) {
+    console.error(`Invalid format: ${format}. Must be one of: ${validFormats.join(', ')}`);
+    process.exit(1);
+  }
+
+  try {
+    const data = generateRankings(trip, provider, format);
+
+    if (format === 'text') {
+      formatText(data);
+    } else if (format === 'json') {
+      formatJSON(data);
+    }
+  } catch (err) {
+    console.error(`Error: ${err.message}`);
+    process.exit(1);
+  }
 }
 
 // Export for use by API server

@@ -17,6 +17,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { getTripStatus, getFileStatus, getMostRecentFile } from "./audit-status.js";
 import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, getTripAuditPath, AUDITS_DIR_NAME, getAuditPath, getContentFilePath, getTripPath } from "./audit-shared.js";
+import { generateRankings } from "./audit-rankings.js";
 import { loadJsonFile as readJsonFile, readTextFile } from "../../lib/build-utilities.js";
 import CONFIG from "../../lib/config-paths.js";
 const CONTENT_TRIPS_PATH = CONFIG.TRIPS_DIR;
@@ -267,6 +268,26 @@ app.post("/api/stop-audit", (req, res) => {
   childProcess.kill("SIGTERM");
 
   res.json({ status: "stopping" });
+});
+
+// ============================================
+// API: Get Rankings
+// ============================================
+
+app.get("/api/rankings/:trip/:provider", (req, res) => {
+  try {
+    const { trip, provider } = req.params;
+
+    const validProviders = ["opus", "gpt"];
+    if (!validProviders.includes(provider)) {
+      return res.status(400).json({ error: "Invalid provider" });
+    }
+
+    const rankings = generateRankings(trip, provider);
+    res.json(rankings);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // ============================================
