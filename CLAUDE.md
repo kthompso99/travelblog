@@ -27,6 +27,7 @@
 ### Architecture Quick-Reference
 
 - **Generators (split by concern):** `lib/generate-homepage.js` (homepage), `lib/generate-trip-pages.js` (trip intro/content), `lib/generate-trip-map-page.js` (trip map), `lib/generate-global-pages.js` (global map + about), `lib/generate-html-helpers.js` (shared: renderPage, readTemplate, buildTripsMenu).
+- **Audit system (first-class infrastructure):** Content quality management with AI scoring, WebSocket dashboard, and CLI tools. Core files: `scripts/audit/audit-shared.js` (shared logic, prompts, scoring), `scripts/audit/audit-server.js` (WebSocket dashboard on port 3001), `scripts/audit/anthropic-audit.js` + `gpt-audit.js` (CLI audit runners), `scripts/audit/trip-audit.js` + `trip-audit-api.js` (trip-level audits), `scripts/audit/audit-status.js` (readiness tracking: 8.5 article / 8.7 trip thresholds), `scripts/audit/audit-rankings.js` (score-based rankings), `scripts/audit/audit-history.js` (historical trends). Usage: `npm run opus-audit -- <trip>/<file>`, `npm run dashboard` (audit-runner.html). Legacy experiments in `scripts/audit-legacy/`.
 - **Path config:** `lib/config-paths.js` — single source of truth for every path. Never hardcode.
 - **Master template:** `templates/base.html` — all shared CSS, nav, footer. Trip hero (`{{PRE_MAIN}}`) is injected here and appears on all trip pages (intro, content, map).
 - **Trip intro template:** `templates/trip-intro-page.html` — minimal template with intro content, comments, and prev/next nav.

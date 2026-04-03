@@ -2,7 +2,7 @@
 // CLI Shared Utilities for Audit Scripts
 // ==============================
 //
-// Shared utilities for anthropic-audit.js, gpt-audit.js, stability-test.js
+// Shared utilities for anthropic-audit.js, gpt-audit.js
 // Reduces duplication in CLI argument parsing, content prep, and batch execution
 
 import path from "path";

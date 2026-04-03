@@ -15,7 +15,7 @@
     "watch:writing": "nodemon --watch content/trips/ --ext md --ignore '**/audits/**' --exec 'node scripts/build/build-writing.js'",
     "serve": "node scripts/server.js 8000",
     "add": "node scripts/tools/add-trip.js",
-    "audit": "node scripts/audit/content-audit.js",
+    "audit": "node scripts/audit-legacy/content-audit.js",
     "normalize": "node scripts/tools/normalize-typography.js",
     "normalize-quotes": "node scripts/tools/normalize-typography.js",
     "pre-commit": "node scripts/pre-commit-lint.js",
@@ -40,8 +40,8 @@
     "optimize:images:force": "node scripts/tools/optimize-images.js --force",
     "hero-search": "node scripts/tools/hero-search.js",
     "build-context": "node scripts/tools/build-context.js",
-    "stability-test": "node scripts/audit/stability-test.js",
-    "stability-view": "node scripts/audit/stability-viewer.js"
+    "stability-test": "node scripts/audit-legacy/stability-test.js",
+    "stability-view": "node scripts/audit-legacy/stability-viewer.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

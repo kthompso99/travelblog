@@ -13,7 +13,7 @@
 
 import fs from "fs";
 import path from "path";
-import { DIMENSION_LABELS } from "./audit-shared.js";
+import { DIMENSION_LABELS } from "../audit/audit-shared.js";
 import { loadJsonFile as readJsonFile } from "../../lib/build-utilities.js";
 
 const OUTPUT_DIR = "audit-stability";

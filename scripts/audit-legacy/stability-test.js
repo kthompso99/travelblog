@@ -30,8 +30,8 @@ import {
   parseAuditResponse,
   SYSTEM_PROMPT,
   ENFORCEMENT_MANDATE
-} from "./audit-shared.js";
-import { prepareAuditContent } from "./audit-cli-shared.js";
+} from "../audit/audit-shared.js";
+import { prepareAuditContent } from "../audit/audit-cli-shared.js";
 import { writeJsonFile } from "../../lib/build-utilities.js";
 
 // ==============================
