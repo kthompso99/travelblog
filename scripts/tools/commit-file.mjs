@@ -9,7 +9,7 @@
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import { CONTENT_TRIPS_PATH } from "../audit/audit-shared.mjs";
+import { CONTENT_TRIPS_PATH, readTextFile } from "../audit/audit-shared.mjs";
 
 // ==============================
 // Commit File
@@ -52,7 +52,7 @@ async function commitFile(trip, file, message, options = {}) {
 
   // Step 3: Parse markdown for image references and stage uncommitted images
   console.log(`[COMMIT] Checking for uncommitted images...`);
-  const content = fs.readFileSync(filePath, "utf-8");
+  const content = readTextFile(filePath);
   const imageRegex = /!\[.*?\]\((images\/[^)]+)\)/g;
   const images = [];
   let match;

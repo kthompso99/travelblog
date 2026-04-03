@@ -8,7 +8,8 @@ import {
   parseAuditResponse,
   saveAuditResults,
   ENFORCEMENT_MANDATE,
-  SYSTEM_PROMPT
+  SYSTEM_PROMPT,
+  readJsonFile
 } from "./audit-shared.mjs";
 import {
   parseCLIArgs,
@@ -35,7 +36,7 @@ function getOpenAIApiKey() {
   // Fall back to config file
   const configPath = "config/openai.json";
   if (fs.existsSync(configPath)) {
-    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    const config = readJsonFile(configPath);
     return config.apiKey;
   }
 

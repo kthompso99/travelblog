@@ -16,7 +16,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getTripStatus, getFileStatus, getMostRecentFile } from "./audit-status.mjs";
-import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, getTripAuditPath, CONTENT_TRIPS_PATH, AUDITS_DIR_NAME, getAuditPath, getContentFilePath, getTripPath } from "./audit-shared.mjs";
+import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, getTripAuditPath, CONTENT_TRIPS_PATH, AUDITS_DIR_NAME, getAuditPath, getContentFilePath, getTripPath, readJsonFile } from "./audit-shared.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -318,7 +318,7 @@ app.get("/api/trip-audit-scores/:trip/:provider", (req, res) => {
     }
 
     const jsonPath = path.join(tripAuditDir, auditFiles[0]);
-    const scores = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+    const scores = readJsonFile(jsonPath);
     const mtime = fs.statSync(jsonPath).mtime;
 
     // Format timestamp

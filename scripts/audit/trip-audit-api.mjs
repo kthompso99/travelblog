@@ -8,7 +8,7 @@ import fs from "fs";
 import path from "path";
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
-import { readArticleContent, loadContextDocs, loadTripConfig, extractJsonAndMarkdown, getLocalDateString, getTripAuditPath, computeTripAverage, getTripPath, getOverviewPath } from "./audit-shared.mjs";
+import { readArticleContent, loadContextDocs, loadTripConfig, extractJsonAndMarkdown, getLocalDateString, getTripAuditPath, computeTripAverage, getTripPath, getOverviewPath, readTextFile, writeJsonFile } from "./audit-shared.mjs";
 
 // Assemble trip content (overview + all articles)
 function assembleTripContent(tripSlug) {
@@ -85,9 +85,8 @@ export default async function runTripAudit(tripSlug, provider) {
 
   // Load prompts and context
   const scriptDir = path.dirname(new URL(import.meta.url).pathname);
-  const tripPrompt = fs.readFileSync(
-    path.join(scriptDir, "trip-audit-prompt.txt"),
-    "utf-8"
+  const tripPrompt = readTextFile(
+    path.join(scriptDir, "trip-audit-prompt.txt")
   );
   const { editorialStandards, brandIdentity } = loadContextDocs();
 
@@ -146,7 +145,7 @@ export default async function runTripAudit(tripSlug, provider) {
   const mdPath = path.join(auditDir, mdFilename);
 
   // Save JSON and MD files
-  fs.writeFileSync(jsonPath, JSON.stringify(scores, null, 2));
+  writeJsonFile(jsonPath, scores);
   fs.writeFileSync(mdPath, markdown);
 
   return { scores, markdown, jsonFilename, mdFilename, jsonPath, mdPath };

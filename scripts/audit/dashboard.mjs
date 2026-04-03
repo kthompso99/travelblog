@@ -16,7 +16,7 @@
 
 import fs from "fs";
 import path from "path";
-import { WEIGHTS, ARTICLE_THRESHOLD, TRIP_THRESHOLD, getContentType, computeWeightedScore, CONTENT_TRIPS_PATH, AUDITS_DIR_NAME, getTripPath } from "./audit-shared.mjs";
+import { WEIGHTS, ARTICLE_THRESHOLD, TRIP_THRESHOLD, getContentType, computeWeightedScore, CONTENT_TRIPS_PATH, AUDITS_DIR_NAME, getTripPath, readJsonFile } from "./audit-shared.mjs";
 
 // ==============================
 // 🔧 CONFIG
@@ -104,7 +104,7 @@ function getLatestAuditsByProvider(folderPath, providerFilter) {
   }
 
   return Object.entries(byProvider).map(([src, filename]) => {
-    const data = JSON.parse(fs.readFileSync(path.join(folderPath, filename), "utf-8"));
+    const data = readJsonFile(path.join(folderPath, filename));
     data._provider = src;
     return data;
   });
@@ -126,7 +126,7 @@ function getAllAuditsByProvider(folderPath, providerFilter) {
   return files.map(filename => {
     const provMatch = filename.match(/\.(\w+)\.audit\.json$/);
     const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})\./);
-    const data = JSON.parse(fs.readFileSync(path.join(folderPath, filename), "utf-8"));
+    const data = readJsonFile(path.join(folderPath, filename));
     data._provider = provMatch ? provMatch[1] : "?";
     data._date = dateMatch ? dateMatch[1] : "?";
     return data;

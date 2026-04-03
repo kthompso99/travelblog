@@ -80,7 +80,7 @@ export function getContentType(filepath) {
 
   if (!fs.existsSync(tripJsonPath)) return "location";
 
-  const trip = JSON.parse(fs.readFileSync(tripJsonPath, "utf-8"));
+  const trip = readJsonFile(tripJsonPath);
   const entry = trip.content?.find(c => c.file === filename);
 
   return entry?.type === "article" ? "article" : "location";
@@ -146,7 +146,7 @@ export function computeWeightedScore(scores, contentType) {
 // ==============================
 
 export function readArticleContent(filepath) {
-  let content = fs.readFileSync(filepath, "utf-8");
+  let content = readTextFile(filepath);
   const galleryIdx = content.indexOf(GALLERY_MARKER);
   if (galleryIdx !== -1) {
     content = content.slice(0, galleryIdx).trim();
@@ -159,7 +159,7 @@ export function loadTripConfig(tripSlug) {
   if (!fs.existsSync(tripJsonPath)) {
     throw new Error(`Trip not found: ${tripSlug} (looking for ${tripJsonPath})`);
   }
-  return JSON.parse(fs.readFileSync(tripJsonPath, "utf-8"));
+  return readJsonFile(tripJsonPath);
 }
 
 // ==============================
@@ -188,6 +188,22 @@ export function getOverviewPath(tripSlug) {
 
 export function getTripJsonPath(tripSlug) {
   return path.join(getTripPath(tripSlug), "trip.json");
+}
+
+// ==============================
+// 📄 File I/O Utilities
+// ==============================
+
+export function readJsonFile(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+}
+
+export function writeJsonFile(filePath, data) {
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
+}
+
+export function readTextFile(filePath) {
+  return fs.readFileSync(filePath, "utf-8");
 }
 
 // ==============================
@@ -336,7 +352,7 @@ export function getAuditByIndex(auditFolder, provider, index = 0) {
 
   const filename = files[index];
   const fullPath = path.join(auditFolder, filename);
-  const data = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
+  const data = readJsonFile(fullPath);
   const mtime = fs.statSync(fullPath).mtime;
 
   return {
@@ -372,7 +388,7 @@ export function getPreviousTripAudit(tripSlug, provider) {
 
   const filename = auditFiles[0];
   const fullPath = path.join(tripAuditDir, filename);
-  const data = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
+  const data = readJsonFile(fullPath);
   const mtime = fs.statSync(fullPath).mtime;
 
   data._mtime = mtime;
@@ -500,7 +516,7 @@ export function saveAuditResults(filepath, scores, markdown, provider, auditDirN
     articleName.charAt(0).toUpperCase() + articleName.slice(1);
   const auditTitle = `# ${prettyName} Audit (${provider}) — ${today} ${timeStr}`;
 
-  fs.writeFileSync(jsonPath, JSON.stringify(scores, null, 2));
+  writeJsonFile(jsonPath, scores);
   fs.writeFileSync(mdPath, `${auditTitle}\n\n${markdown}`);
 
   const baseline = prev ? `, comparing to ${formatPrevTimestamp(prev._mtime)}` : "";
