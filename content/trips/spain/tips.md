@@ -16,6 +16,8 @@ While the crowds at the major "spots" (Mezquita, Alhambra, etc) were certainly n
 
 As we said elsewhere, as much as we love Jamon Iberico, we did find that, at least in restaurants near tourist areas, that most restaurants had very similar menus to the point of some monotony.  We found mixing it up with some Italian food (great everywhere in Europe) or even some Asian fusion spots (lots of excellent sushi so near the sea) made for some great respites.
 
+Tinto e Verano
+
 ### Reading List
 
 Kevin highly recommends "Ghosts of Spain" ([Goodreads](https://www.goodreads.com/book/show/94797.Ghosts_of_Spain?from_search=true&from_srp=true&qid=f5OAMNGSNn&rank=1)).  It's written by a British journalist who spent much of the 1990s and 2000s living in Seville, visiting Spain soon after Franco's death.  It's good to be reminded of how important 40 years of fascist dictatorship was/is to what modern Spain is like.  Very readable and enjoyable, if now feeling a bit dated (written circa 2005).  
