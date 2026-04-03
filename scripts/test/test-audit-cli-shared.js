@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 
 /**
- * Unit tests for scripts/audit/audit-cli-shared.mjs
+ * Unit tests for scripts/audit/audit-cli-shared.js
  * Tests CLI argument parsing and content preparation functions.
  * Does NOT test batch execution or API calls.
  */
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const { createTestRunner } = require('./test-helpers');
-const { parseCLIArgs, prepareAuditContent } = require('../audit/audit-cli-shared.mjs');
+import fs from 'fs';
+import path from 'path';
+import { createTestRunner } from './test-helpers.js';
+import { parseCLIArgs, prepareAuditContent } from '../audit/audit-cli-shared.js';
 
 const { assert, report } = createTestRunner('🔧 Audit CLI shared utilities unit tests');
 

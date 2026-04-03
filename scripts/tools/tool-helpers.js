@@ -5,10 +5,10 @@
  * across all scripts in scripts/tools/.
  */
 
-const fs = require('fs');
-const path = require('path');
-const CONFIG = require('../../lib/config-paths.js');
-const { discoverAllTrips } = require('../../lib/build-utilities.js');
+import fs from 'fs';
+import path from 'path';
+import CONFIG from '../../lib/config-paths.js';
+import { discoverAllTrips } from '../../lib/build-utilities.js';
 
 /**
  * Parse CLI arguments for tool scripts.
@@ -141,7 +141,7 @@ function validateToolArgs(parsed, requirements = {}) {
   }
 }
 
-module.exports = {
+export {
   parseToolArgs,
   collectContentFiles,
   validateToolArgs

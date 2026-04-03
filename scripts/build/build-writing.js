@@ -12,12 +12,12 @@
  * until you run a full build before committing.
  */
 
-const fs = require('fs');
-const path = require('path');
-const { generateTripContentPage } = require('../../lib/generate-trip-pages');
-const CONFIG = require('../../lib/config-paths');
-const { ensureDir, convertMarkdownWithGallery, discoverAllTrips, loadBuiltTripData } = require('../../lib/build-utilities');
-const { slugify } = require('../../lib/slug-utilities');
+import fs from 'fs';
+import path from 'path';
+import { generateTripContentPage } from '../../lib/generate-trip-pages.js';
+import CONFIG from '../../lib/config-paths.js';
+import { ensureDir, convertMarkdownWithGallery, discoverAllTrips, loadBuiltTripData } from '../../lib/build-utilities.js';
+import { slugify } from '../../lib/slug-utilities.js';
 
 const NODEMON_TRIGGER_WINDOW_MS = 5000; // nodemon fires within ~5s of a file save
 

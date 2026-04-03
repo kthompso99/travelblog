@@ -38,9 +38,9 @@
  *    outside the dropdown closes it.
  */
 
-const path = require('path');
-const { readTextFile } = require('../../lib/build-utilities');
-const { ROOT_DIR: ROOT, findHtmlFiles, extractCssRule, hasCssProperty, getCssValue, createTestRunner } = require('./test-helpers');
+import path from 'path';
+import { readTextFile } from '../../lib/build-utilities.js';
+import { ROOT_DIR as ROOT, findHtmlFiles, extractCssRule, hasCssProperty, getCssValue, createTestRunner } from './test-helpers.js';
 
 // ── test runner ──────────────────────────────────────────────────
 const htmlFiles = findHtmlFiles(ROOT);

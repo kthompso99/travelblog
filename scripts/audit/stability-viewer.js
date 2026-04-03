@@ -2,7 +2,7 @@
 // Audit Stability Viewer — Analyze Variance
 // ============================================
 //
-// Companion to stability-test.mjs. Reads JSON results and computes
+// Companion to stability-test.js. Reads JSON results and computes
 // per-dimension statistics (min, max, range, mean, stdev).
 //
 // Usage:
@@ -13,7 +13,7 @@
 
 import fs from "fs";
 import path from "path";
-import { DIMENSION_LABELS } from "./audit-shared.mjs";
+import { DIMENSION_LABELS } from "./audit-shared.js";
 
 const OUTPUT_DIR = "audit-stability";
 

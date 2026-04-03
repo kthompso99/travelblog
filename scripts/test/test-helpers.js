@@ -8,10 +8,14 @@
 
 'use strict';
 
-const fs   = require('fs');
-const path = require('path');
-const os   = require('os');
-const { walkDir } = require('../../lib/build-utilities');
+import fs from 'fs';
+import path from 'path';
+import os from 'os';
+import { fileURLToPath } from 'url';
+import { walkDir } from '../../lib/build-utilities.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const ROOT_DIR = path.join(__dirname, '../..');
 
@@ -151,7 +155,7 @@ function removeTempDir(dir) {
     fs.rmSync(dir, { recursive: true, force: true });
 }
 
-module.exports = {
+export {
     ROOT_DIR,
     findHtmlFiles,
     findTestTrip,

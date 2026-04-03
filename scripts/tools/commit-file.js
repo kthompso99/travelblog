@@ -9,7 +9,7 @@
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import { CONTENT_TRIPS_PATH, readTextFile } from "../audit/audit-shared.mjs";
+import { CONTENT_TRIPS_PATH, readTextFile } from "../audit/audit-shared.js";
 
 // ==============================
 // Commit File

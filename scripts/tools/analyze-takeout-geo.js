@@ -42,9 +42,9 @@
  * Run it once per trip to decide if GPS-based assignment is viable.
  */
 
-const fs = require('fs');
-const path = require('path');
-const AdmZip = require('adm-zip');
+import fs from 'fs';
+import path from 'path';
+import AdmZip from 'adm-zip';
 
 // Known city coordinates (approximate centers)
 const CITY_COORDS = {

@@ -37,17 +37,17 @@
  * - Handles edited photos by checking original file's metadata
  */
 
-const fs = require('fs').promises;
-const path = require('path');
-const { spawn } = require('child_process');
-const CONFIG = require('../../lib/config-paths');
-const { prompt } = require('../../lib/prompt-utilities');
-const {
+import { promises as fs } from 'fs';
+import path from 'path';
+import { spawn } from 'child_process';
+import CONFIG from '../../lib/config-paths.js';
+import { prompt } from '../../lib/prompt-utilities.js';
+import {
   getPossibleMetadataPaths,
   catalogZipContents,
   detectAlbumFolder,
   filterAlbumPhotos
-} = require('../../lib/takeout-utilities');
+} from '../../lib/takeout-utilities.js';
 
 /**
  * Read photo caption and ID from zip metadata files

@@ -8,7 +8,9 @@
 
 import fs from "fs";
 import path from "path";
-import { CONTENT_TRIPS_PATH, AUDITS_DIR_NAME, validateProvider, getProviderLabel, getTripPath } from "./audit-shared.mjs";
+import { AUDITS_DIR_NAME, validateProvider, getProviderLabel, getTripPath } from "./audit-shared.js";
+import CONFIG from "../../lib/config-paths.js";
+const CONTENT_TRIPS_PATH = CONFIG.TRIPS_DIR;
 
 // ==============================
 // Collect History Data

@@ -6,18 +6,19 @@
  * Run with: node build.js or npm run build
  */
 
-const fs = require('fs');
-const path = require('path');
-const { getContentItemSlug } = require('../../lib/slug-utilities');
-const { geocodeLocation, loadGeocodeCache, isCachedGeocode } = require('../../lib/geocode');
-const { convertMarkdown } = require('../../lib/markdown-converter');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { getContentItemSlug } from '../../lib/slug-utilities.js';
+import { geocodeLocation, loadGeocodeCache, isCachedGeocode } from '../../lib/geocode.js';
+import { convertMarkdown } from '../../lib/markdown-converter.js';
 
 // Load HTML generators (paths relative to project root since script runs from root)
-const { generateHomepage } = require('../../lib/generate-homepage');
-const { generateMapPage, generateAboutPage } = require('../../lib/generate-global-pages');
-const { generateSitemap, generateRobotsTxt } = require('../../lib/generate-sitemap');
-const { generateTripFiles } = require('../../lib/generate-trip-files');
-const {
+import { generateHomepage } from '../../lib/generate-homepage.js';
+import { generateMapPage, generateAboutPage } from '../../lib/generate-global-pages.js';
+import { generateSitemap, generateRobotsTxt } from '../../lib/generate-sitemap.js';
+import { generateTripFiles } from '../../lib/generate-trip-files.js';
+import {
     ensureDir,
     loadJsonFile,
     loadTripConfig,
@@ -32,13 +33,13 @@ const {
     generateTripHtmlPages,
     printBuildWarnings,
     getFileSize
-} = require('../../lib/build-utilities');
+} from '../../lib/build-utilities.js';
 
 // Import centralized configuration paths
-const CONFIG = require('../../lib/config-paths');
+import CONFIG from '../../lib/config-paths.js';
 
 // Import cache management
-const { createEmptyCache, updateFullCache, saveCache } = require('../../lib/build-cache');
+import { createEmptyCache, updateFullCache, saveCache } from '../../lib/build-cache.js';
 
 const GEOCODING_RATE_LIMIT_MS = 1000; // 1 request per second
 
@@ -228,7 +229,7 @@ async function processTrip(tripId, warnings = []) {
     if (!tripConfig) return null;
 
     // Validate main.md exists
-    const mainMdPath = CONFIG.getTripMainPath(tripId);
+    const mainMdPath = CONFIG.getTripOverviewPath(tripId);
     if (!fs.existsSync(mainMdPath)) {
         console.log(`  ⚠️  WARNING: overview.md not found at ${mainMdPath}`);
         console.log(`     Every trip should have an overview.md file for the intro page.\n`);
@@ -511,10 +512,11 @@ async function build(specificTripId = null) {
 }
 
 // Export processTrip for use by incremental build scripts
-module.exports = { processTrip };
+export { processTrip };
 
-// Only run full build when executed directly (not when required by build-smart)
-if (require.main === module) {
+// Only run full build when executed directly (not when imported by build-smart)
+const __filename = fileURLToPath(import.meta.url);
+if (process.argv[1] && fs.realpathSync(process.argv[1]) === fs.realpathSync(__filename)) {
     // Get trip ID from command line args (e.g., "npm run build greece")
     const specificTripId = process.argv[2];
 

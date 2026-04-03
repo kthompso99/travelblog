@@ -7,8 +7,9 @@
 
 import fs from "fs";
 import path from "path";
-import runTripAuditAPI from "./trip-audit-api.mjs";
-import { getPreviousTripAudit, computeTripDeltas, formatTime, formatPrevTimestamp, loadTripConfig, getTripAuditPath, getTripPath, getOverviewPath, validateProvider } from "./audit-shared.mjs";
+import runTripAuditAPI from "./trip-audit-api.js";
+import { getPreviousTripAudit, computeTripDeltas, formatTime, formatPrevTimestamp, loadTripConfig, getTripAuditPath, getTripPath, validateProvider } from "./audit-shared.js";
+import CONFIG from "../../lib/config-paths.js";
 
 // ==============================
 // Change Detection
@@ -34,7 +35,7 @@ function tripNeedsAudit(tripSlug, provider, force = false) {
   const auditTime = fs.statSync(latestAudit).mtime;
 
   // Check if overview.md changed
-  const overviewPath = getOverviewPath(tripSlug);
+  const overviewPath = CONFIG.getTripOverviewPath(tripSlug);
   if (fs.existsSync(overviewPath) && fs.statSync(overviewPath).mtime > auditTime) {
     return true;
   }

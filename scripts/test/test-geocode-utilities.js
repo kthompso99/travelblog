@@ -7,10 +7,14 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const { createTestRunner, backupFile, restoreFile } = require('./test-helpers');
-const { loadGeocodeCache, geocodeLocation } = require('../../lib/geocode');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { createTestRunner, backupFile, restoreFile } from './test-helpers.js';
+import { loadGeocodeCache, geocodeLocation } from '../../lib/geocode.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const { assert, report } = createTestRunner('🌍 Geocode utility tests');
 

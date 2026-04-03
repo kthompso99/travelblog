@@ -21,7 +21,7 @@ In the middle of Calle Larios, a concrete table had drawn a crowd -- locals and 
 
 ![Impromptu chess matches](images/malaga-13.jpg)
 
-The best few hours we spent in Málaga were on e-bikes, riding east along the coast. The path is flat, and the e-bikes turned what could have been exercise into a low-effort glide.  It’s less a ride to somewhere than along something—a continuous stretch of beach bars and seafood places just off the path.  In mid-70s late October heat, we focused on the views rather than the pedaling.
+The best few hours we spent in Málaga were on e-bikes, riding east along the coast. The path is flat, and the e-bikes turned what could have been exercise into a low-effort glide.  It's less a ride to somewhere than along something--a continuous stretch of beach bars and seafood places just off the path.  In mid-70s late October heat, we focused on the views rather than the pedaling.
 
 ![Bike ride along the coast, mid-70s in late October.](images/malaga-07.jpg)
 
@@ -33,7 +33,7 @@ The season was winding down -- beach clubs visible but quiet, the setup still th
 
 That stretch of the afternoon was the most relaxed we felt in Málaga.
 
-It’s also the one part of the city that doesn’t suffer from the comparison problem. The historic sites do.
+It's also the one part of the city that doesn't suffer from the comparison problem. The historic sites do.
 
 Gibralfaro Castle is far above town -- taxi up, walk down. The 360-degree view of the Mediterranean, the coastline, and the bullring below is the reason to go. The castle itself is mostly fortified walls -- an excellent viewing platform, but not much to see once you've taken it in.
 

@@ -12,15 +12,15 @@
  * For full rebuild without cache, use: npm run build [tripId]
  */
 
-const fs = require('fs');
-const { execSync } = require('child_process');
+import fs from 'fs';
+import { execSync } from 'child_process';
 
-const CONFIG = require('../../lib/config-paths');
-const { generateHomepage } = require('../../lib/generate-homepage');
-const { generateMapPage } = require('../../lib/generate-global-pages');
-const { generateTripFiles } = require('../../lib/generate-trip-files');
-const { generateSitemap } = require('../../lib/generate-sitemap');
-const {
+import CONFIG from '../../lib/config-paths.js';
+import { generateHomepage } from '../../lib/generate-homepage.js';
+import { generateMapPage } from '../../lib/generate-global-pages.js';
+import { generateTripFiles } from '../../lib/generate-trip-files.js';
+import { generateSitemap } from '../../lib/generate-sitemap.js';
+import {
     loadJsonFile,
     writeTripContentJson,
     extractTripMetadata,
@@ -30,10 +30,10 @@ const {
     generateSitemapToFile,
     generateTripHtmlPages,
     printBuildWarnings
-} = require('../../lib/build-utilities');
+} from '../../lib/build-utilities.js';
 
 // Import shared cache management
-const {
+import {
     loadCache,
     createEmptyCache,
     saveCache,
@@ -41,7 +41,9 @@ const {
     getChangedTrips,
     updateCacheForTrips,
     updateFullCache
-} = require('../../lib/build-cache');
+} from '../../lib/build-cache.js';
+
+import * as buildModule from './build.js';
 
 function runFullBuild() {
     console.log('🔄 Running full build...\n');
@@ -61,10 +63,10 @@ function runFullBuild() {
 // ─── Incremental build ───────────────────────────────────────────────────────
 
 // Process changed trips and write per-trip JSON files
-async function processChangedTrips(tripIds, buildModule, warnings) {
+async function processChangedTrips(tripIds, buildMod, warnings) {
     const rebuiltTrips = {};
     for (const tripId of tripIds) {
-        const trip = await buildModule.processTrip(tripId, warnings);
+        const trip = await buildMod.processTrip(tripId, warnings);
         if (trip) {
             rebuiltTrips[tripId] = trip;
             writeTripContentJson(trip, tripId, CONFIG.TRIPS_OUTPUT_DIR);
@@ -115,7 +117,6 @@ function regenerateSharedPages(output, domain) {
 async function runIncrementalBuild(tripIds) {
     console.log(`\n🔄 Incremental build for: ${tripIds.join(', ')}\n`);
 
-    const buildModule = require('./build');
     const siteConfig = loadJsonFile(CONFIG.SITE_CONFIG);
     const domain = siteConfig.domain || 'https://example.com';
 

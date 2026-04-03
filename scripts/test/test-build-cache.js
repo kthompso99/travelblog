@@ -7,10 +7,11 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const { createTestRunner } = require('./test-helpers');
-const {
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { createTestRunner } from './test-helpers.js';
+import {
     loadCache,
     createEmptyCache,
     saveCache,
@@ -18,8 +19,11 @@ const {
     getChangedTrips,
     updateCacheForTrips,
     updateFullCache
-} = require('../../lib/build-cache');
-const CONFIG = require('../../lib/config-paths');
+} from '../../lib/build-cache.js';
+import CONFIG from '../../lib/config-paths.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const { assert, report } = createTestRunner('📦 Build cache tests');
 
@@ -45,7 +49,7 @@ assert('loadCache: has required structure', 'files' in cache && 'trips' in cache
 // We need to access getCoreFiles indirectly by checking what coreBuildFilesChanged touches
 
 // Read build-cache.js to extract the getCoreFiles logic
-const { readTextFile } = require('../../lib/build-utilities');
+import { readTextFile } from '../../lib/build-utilities.js';
 const buildCacheSource = readTextFile(path.join(__dirname, '../../lib/build-cache.js'));
 const getCoreFilesMatch = buildCacheSource.match(/function getCoreFiles\(\) \{([\s\S]*?)\n\}/);
 

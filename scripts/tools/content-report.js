@@ -10,17 +10,17 @@
  *   npm run report -- greece --wordcount   # Single trip, word counts only
  */
 
-const fs = require('fs');
-const path = require('path');
-const CONFIG = require('../../lib/config-paths');
-const { MARKDOWN_IMAGE_REGEX } = require('../../lib/constants');
-const { discoverTrips, loadTripConfig, processMarkdownWithGallery, readTextFile, stripMarkdownToPlainText, countWords, countSentences } = require('../../lib/build-utilities');
-const { parseToolArgs } = require('./tool-helpers');
+import fs from 'fs';
+import path from 'path';
+import CONFIG from '../../lib/config-paths.js';
+import { MARKDOWN_IMAGE_REGEX } from '../../lib/constants.js';
+import { discoverTrips, loadTripConfig, processMarkdownWithGallery, readTextFile, stripMarkdownToPlainText, countWords, countSentences } from '../../lib/build-utilities.js';
+import { parseToolArgs } from './tool-helpers.js';
 
 // Analysis libraries
-const rs = require('text-readability').default;
-const writeGood = require('write-good');
-const Sentiment = require('sentiment');
+import rs from 'text-readability';
+import writeGood from 'write-good';
+import Sentiment from 'sentiment';
 const sentiment = new Sentiment();
 
 // ---------------------------------------------------------------------------
@@ -280,7 +280,7 @@ function analyzeTripFiles(tripId) {
     const rows = [];
 
     // Analyze main.md first
-    const mainPath = path.join(tripDir, CONFIG.TRIP_MAIN_FILE);
+    const mainPath = CONFIG.getTripOverviewPath(tripId);
     if (fs.existsSync(mainPath)) {
         suppressLog = true;
         const metrics = analyzeMarkdownFile(mainPath, 'main.md');

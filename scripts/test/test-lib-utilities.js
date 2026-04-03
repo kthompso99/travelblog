@@ -7,13 +7,13 @@
 
 'use strict';
 
-const { createTestRunner } = require('./test-helpers');
-const { slugify, getContentItemSlug } = require('../../lib/slug-utilities');
-const { getTripImagePath } = require('../../lib/image-utilities');
-const { assembleTemplate } = require('../../lib/template-utilities');
-const { escapeHtml } = require('../../lib/seo-metadata');
-const { getPageCSS } = require('../../lib/css-utilities');
-const CONFIG = require('../../lib/config-paths');
+import { createTestRunner } from './test-helpers.js';
+import { slugify, getContentItemSlug } from '../../lib/slug-utilities.js';
+import { getTripImagePath } from '../../lib/image-utilities.js';
+import { assembleTemplate } from '../../lib/template-utilities.js';
+import { escapeHtml } from '../../lib/seo-metadata.js';
+import { getPageCSS } from '../../lib/css-utilities.js';
+import CONFIG from '../../lib/config-paths.js';
 
 const { assert, report } = createTestRunner('🧪 Library utility unit tests');
 
@@ -83,7 +83,7 @@ assert('escapeHtml: undefined returns empty', escapeHtml(undefined) === '');
 assert('getTripDir', CONFIG.getTripDir('spain') === 'content/trips/spain');
 assert('getTripConfigPath', CONFIG.getTripConfigPath('spain') === 'content/trips/spain/trip.json');
 assert('getTripImagesDir', CONFIG.getTripImagesDir('spain') === 'content/trips/spain/images');
-assert('getTripMainPath', CONFIG.getTripMainPath('spain') === 'content/trips/spain/overview.md');
+assert('getTripOverviewPath', CONFIG.getTripOverviewPath('spain') === 'content/trips/spain/overview.md');
 assert('getSyncedPhotosPath', CONFIG.getSyncedPhotosPath('spain') === 'content/trips/spain/images/all-synced-photos.md');
 
 // ── css-utilities ───────────────────────────────────────────

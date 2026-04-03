@@ -10,7 +10,7 @@ All file paths and directory structures are defined in **`lib/config-paths.js`**
 // ✅ CORRECT - Import from config-paths.js
 const CONFIG = require('../lib/config-paths');
 const tripConfig = CONFIG.getTripConfigPath('greece');
-const mainMd = CONFIG.getTripMainPath('greece');
+const mainMd = CONFIG.getTripOverviewPath('greece');
 ```
 
 ### ❌ Never Do This
@@ -27,7 +27,7 @@ module.exports = {
     SITE_CONFIG: 'config/site.json',
     TRIPS_DIR: 'content/trips',
     TRIP_CONFIG_FILE: 'trip.json',
-    TRIP_MAIN_FILE: 'overview.md',
+    TRIP_OVERVIEW_FILE: 'overview.md',
     OUTPUT_FILE: 'config.built.json',
     TRIPS_OUTPUT_DIR: 'trips',
     CACHE_DIR: '_cache',
@@ -35,7 +35,7 @@ module.exports = {
     BUILD_CACHE_FILE: '_cache/build-cache.json',
     getTripDir(tripId) { ... },
     getTripConfigPath(tripId) { ... },
-    getTripMainPath(tripId) { ... },
+    getTripOverviewPath(tripId) { ... },
     getTripImagesDir(tripId) { ... },
     getSyncedPhotosPath(tripId) { ... }
 };

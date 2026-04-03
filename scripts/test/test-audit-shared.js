@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * Unit tests for scripts/audit/audit-shared.mjs
+ * Unit tests for scripts/audit/audit-shared.js
  * Tests parsing, path helpers, file filtering, and utility functions.
  * Does NOT test LLM API calls (parseAuditResponse, parseTripAuditResponse).
  */
 
 'use strict';
 
-const { createTestRunner } = require('./test-helpers');
-const {
+import { createTestRunner } from './test-helpers.js';
+import {
     extractJsonAndMarkdown,
     getTripPath,
     getAuditPath,
@@ -20,7 +20,7 @@ const {
     getLocalDateString,
     TRIP_AUDIT_SUBDIR,
     DIMENSION_LABELS
-} = require('../audit/audit-shared.mjs');
+} from '../audit/audit-shared.js';
 
 const { assert, report } = createTestRunner('📊 Audit shared utilities unit tests');
 

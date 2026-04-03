@@ -8,11 +8,11 @@
  * Usage: npm run hero-search -- <trip-id>
  */
 
-const fs = require('fs');
-const path = require('path');
-const { imageSize } = require('image-size');
-const CONFIG = require('../../lib/config-paths');
-const { parseToolArgs, validateToolArgs } = require('./tool-helpers');
+import fs from 'fs';
+import path from 'path';
+import { imageSize } from 'image-size';
+import CONFIG from '../../lib/config-paths.js';
+import { parseToolArgs, validateToolArgs } from './tool-helpers.js';
 
 const MIN_WIDTH = 1200;
 const MAX_RESULTS = 5;

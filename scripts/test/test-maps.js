@@ -5,8 +5,8 @@
  * Verifies that maps load correctly and don't show blank screens
  */
 
-const puppeteer = require('puppeteer');
-const {
+import puppeteer from 'puppeteer';
+import {
     BASE_URL,
     ZOOM_ANIMATION_DELAY,
     HOVER_DELAY,
@@ -20,7 +20,7 @@ const {
     logMapsApiDiagnostics,
     testMarkerHover,
     validateHoverResult
-} = require('./test-maps-helpers');
+} from './test-maps-helpers.js';
 
 async function testGlobalMap(browser) {
     console.log('\n📍 Testing Global Map Page...');

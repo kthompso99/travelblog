@@ -6,14 +6,14 @@
  * Run with: npm run validate or node scripts/validate.js
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 // Import centralized configuration paths
-const CONFIG = require('../lib/config-paths');
-const { loadJsonFile, loadTripConfig, discoverAllTrips } = require('../lib/build-utilities');
+import CONFIG from '../lib/config-paths.js';
+import { loadJsonFile, loadTripConfig, discoverAllTrips } from '../lib/build-utilities.js';
 
-const { SITE_CONFIG, TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_MAIN_FILE, VALID_CONTINENTS } = CONFIG;
+const { SITE_CONFIG, TRIPS_DIR, TRIP_CONFIG_FILE, TRIP_OVERVIEW_FILE, VALID_CONTINENTS } = CONFIG;
 
 let errors = [];
 let warnings = [];
@@ -81,7 +81,7 @@ function validateContentItem(item, itemIndex, tripDir, prefix) {
 
 function validateTrip(tripId, index) {
     const tripDir = CONFIG.getTripDir(tripId);
-    const mainMdPath = CONFIG.getTripMainPath(tripId);
+    const mainMdPath = CONFIG.getTripOverviewPath(tripId);
     const prefix = `Trip #${index + 1} (${tripId})`;
 
     // Check trip directory exists

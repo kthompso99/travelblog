@@ -11,7 +11,7 @@ import {
   saveAuditResults,
   ENFORCEMENT_MANDATE,
   SYSTEM_PROMPT
-} from "./audit-shared.mjs";
+} from "./audit-shared.js";
 import {
   parseCLIArgs,
   prepareAuditContent,
@@ -19,7 +19,7 @@ import {
   reportResults,
   printUsage,
   resolveAuditFiles
-} from "./audit-cli-shared.mjs";
+} from "./audit-cli-shared.js";
 
 // Parse CLI flags
 const { args: fileArgs, flags } = parseCLIArgs(process.argv, ["provider", "auditDir", "force"]);

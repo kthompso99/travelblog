@@ -30,8 +30,8 @@ import {
   parseAuditResponse,
   SYSTEM_PROMPT,
   ENFORCEMENT_MANDATE
-} from "./audit-shared.mjs";
-import { prepareAuditContent } from "./audit-cli-shared.mjs";
+} from "./audit-shared.js";
+import { prepareAuditContent } from "./audit-cli-shared.js";
 
 // ==============================
 // 🔧 CONFIG

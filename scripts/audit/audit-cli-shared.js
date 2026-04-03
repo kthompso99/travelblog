@@ -2,11 +2,11 @@
 // CLI Shared Utilities for Audit Scripts
 // ==============================
 //
-// Shared utilities for anthropic-audit.mjs, gpt-audit.mjs, stability-test.mjs
+// Shared utilities for anthropic-audit.js, gpt-audit.js, stability-test.js
 // Reduces duplication in CLI argument parsing, content prep, and batch execution
 
 import path from "path";
-import { getContentType, readArticleContent, loadContextDocs, AUDITS_DIR_NAME, resolveFiles } from "./audit-shared.mjs";
+import { getContentType, readArticleContent, loadContextDocs, AUDITS_DIR_NAME, resolveFiles } from "./audit-shared.js";
 
 // ==============================
 // CLI Argument Parsing

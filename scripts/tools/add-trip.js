@@ -57,14 +57,14 @@
  * 7. Run 'npm run serve' to preview locally
  */
 
-const fs = require('fs');
-const path = require('path');
-const { slugify } = require('../../lib/slug-utilities');
-const { ensureDir, writeJsonFile } = require('../../lib/build-utilities');
-const { createPromptSession } = require('../../lib/prompt-utilities');
+import fs from 'fs';
+import path from 'path';
+import { slugify } from '../../lib/slug-utilities.js';
+import { ensureDir, writeJsonFile } from '../../lib/build-utilities.js';
+import { createPromptSession } from '../../lib/prompt-utilities.js';
 
 // Import centralized configuration paths
-const CONFIG = require('../../lib/config-paths');
+import CONFIG from '../../lib/config-paths.js';
 
 const { VALID_CONTINENTS } = CONFIG;
 const CONTINENTS = VALID_CONTINENTS;
@@ -268,7 +268,7 @@ function createTripFiles(tripDir, tripConfig, content, metadata) {
     writeJsonFile(tripConfigPath, tripConfig);
     console.log(`✅ Created ${tripConfigPath}`);
 
-    const mainPath = CONFIG.getTripMainPath(metadata.tripId);
+    const mainPath = CONFIG.getTripOverviewPath(metadata.tripId);
     fs.writeFileSync(mainPath, buildIntroMarkdown(metadata, content), 'utf8');
     console.log(`✅ Created ${mainPath}`);
 

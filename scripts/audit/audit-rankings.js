@@ -6,8 +6,8 @@
 // Usage: npm run audit:rank -- greece --provider opus --format text
 //
 
-import { getTripStatus } from "./audit-status.mjs";
-import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, validateProvider, getProviderLabel } from "./audit-shared.mjs";
+import { getTripStatus } from "./audit-status.js";
+import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, validateProvider, getProviderLabel } from "./audit-shared.js";
 
 // ==============================
 // Generate Rankings

@@ -43,13 +43,13 @@
  *                    → nutshell blocks    → both labels and values get smart quotes
  */
 
-const fs   = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-const { convertMarkdown } = require('../../lib/markdown-converter');
-const { convertMarkdownWithGallery } = require('../../lib/build-utilities');
-const { parseNutshellBlock, renderNutshell, processNutshell } = require('../../lib/nutshell');
-const { createTestRunner, createTempDir, removeTempDir } = require('./test-helpers');
+import { convertMarkdown } from '../../lib/markdown-converter.js';
+import { convertMarkdownWithGallery } from '../../lib/build-utilities.js';
+import { parseNutshellBlock, renderNutshell, processNutshell } from '../../lib/nutshell.js';
+import { createTestRunner, createTempDir, removeTempDir } from './test-helpers.js';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 

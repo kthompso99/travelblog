@@ -6,9 +6,9 @@
  * or: node scripts/test-geocode.js "North Island"
  */
 
-const https = require('https');
-const fs = require('fs');
-const { loadJsonFile } = require('../lib/build-utilities');
+import https from 'https';
+import fs from 'fs';
+import { loadJsonFile } from '../lib/build-utilities.js';
 
 // Load Google Maps API key
 let googleMapsApiKey = null;

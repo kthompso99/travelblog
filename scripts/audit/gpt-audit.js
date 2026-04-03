@@ -10,7 +10,7 @@ import {
   ENFORCEMENT_MANDATE,
   SYSTEM_PROMPT,
   readJsonFile
-} from "./audit-shared.mjs";
+} from "./audit-shared.js";
 import {
   parseCLIArgs,
   prepareAuditContent,
@@ -18,7 +18,7 @@ import {
   reportResults,
   printUsage,
   resolveAuditFiles
-} from "./audit-cli-shared.mjs";
+} from "./audit-cli-shared.js";
 
 const MODEL = "gpt-5.2";
 const PROVIDER = "gpt";

@@ -13,11 +13,11 @@
  *   npm run audit -- spain --all      # Show all issues (no cap)
  */
 
-const fs = require('fs');
-const path = require('path');
-const CONFIG = require('../../lib/config-paths');
-const { discoverTrips, loadTripConfig, processMarkdownWithGallery, stripInlineMarkdown, countWords } = require('../../lib/build-utilities');
-const writeGood = require('write-good');
+import fs from 'fs';
+import path from 'path';
+import CONFIG from '../../lib/config-paths.js';
+import { discoverTrips, loadTripConfig, processMarkdownWithGallery, stripInlineMarkdown, countWords } from '../../lib/build-utilities.js';
+import writeGood from 'write-good';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -631,9 +631,9 @@ function main() {
 
         // Include main.md unless filtering to a specific file
         if (!fileFilter) {
-            const mainPath = path.join(tripDir, CONFIG.TRIP_MAIN_FILE);
+            const mainPath = CONFIG.getTripOverviewPath(tripId);
             if (fs.existsSync(mainPath)) {
-                filesToAudit.push({ filePath: mainPath, name: 'main', title: 'Trip Intro', file: CONFIG.TRIP_MAIN_FILE });
+                filesToAudit.push({ filePath: mainPath, name: 'main', title: 'Trip Intro', file: CONFIG.TRIP_OVERVIEW_FILE });
             }
         }
 

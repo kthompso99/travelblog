@@ -24,11 +24,11 @@
  *   npm run normalize -- --dry-run      # Show what would change without modifying files
  */
 
-const fs = require('fs');
-const path = require('path');
-const CONFIG = require('../../lib/config-paths');
-const { discoverTrips, loadTripConfig } = require('../../lib/build-utilities');
-const { parseToolArgs } = require('./tool-helpers');
+import fs from 'fs';
+import path from 'path';
+import CONFIG from '../../lib/config-paths.js';
+import { discoverTrips, loadTripConfig } from '../../lib/build-utilities.js';
+import { parseToolArgs } from './tool-helpers.js';
 
 // ---------------------------------------------------------------------------
 // Quote flattening
@@ -158,7 +158,7 @@ function collectFilesToProcess(tripIds, fileFilter) {
         const contentItems = tripConfig.content || [];
 
         if (!fileFilter) {
-            const mainPath = path.join(tripDir, CONFIG.TRIP_MAIN_FILE);
+            const mainPath = CONFIG.getTripOverviewPath(tripId);
             if (fs.existsSync(mainPath)) {
                 filesToProcess.push({ filePath: mainPath, label: `${tripId}/main.md` });
             }

@@ -5,6 +5,8 @@
 import fs from "fs";
 import path from "path";
 import { GALLERY_MARKER } from "../../lib/constants.js";
+import { loadJsonFile as readJsonFile, writeJsonFile, readTextFile } from "../../lib/build-utilities.js";
+import CONFIG from "../../lib/config-paths.js";
 
 // ==============================
 // 🔧 Configuration
@@ -19,7 +21,7 @@ export const WEIGHTS = {
   decision_clarity: 0.10
 };
 
-// Readiness thresholds (shared with dashboard.mjs)
+// Readiness thresholds (shared with dashboard.js)
 export const ARTICLE_THRESHOLD = 8.5;
 export const TRIP_THRESHOLD = 8.7;
 
@@ -27,7 +29,7 @@ export const TRIP_THRESHOLD = 8.7;
 export const TRIP_AUDIT_SUBDIR = "_trip";
 
 // Path constants
-export const CONTENT_TRIPS_PATH = "content/trips";
+// (CONTENT_TRIPS_PATH removed — files now use CONFIG.TRIPS_DIR directly from lib/config-paths.js)
 export const AUDITS_DIR_NAME = "audits";
 
 // Provider constants
@@ -167,7 +169,7 @@ export function loadTripConfig(tripSlug) {
 // ==============================
 
 export function getTripPath(tripSlug) {
-  return path.join(CONTENT_TRIPS_PATH, tripSlug);
+  return CONFIG.getTripDir(tripSlug);
 }
 
 export function getAuditPath(tripSlug, fileName) {
@@ -182,29 +184,14 @@ export function getContentFilePath(tripSlug, fileName) {
   return path.join(getTripPath(tripSlug), `${fileName}.md`);
 }
 
-export function getOverviewPath(tripSlug) {
-  return path.join(getTripPath(tripSlug), "overview.md");
-}
-
 export function getTripJsonPath(tripSlug) {
-  return path.join(getTripPath(tripSlug), "trip.json");
+  return CONFIG.getTripConfigPath(tripSlug);
 }
 
 // ==============================
 // 📄 File I/O Utilities
 // ==============================
-
-export function readJsonFile(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
-}
-
-export function writeJsonFile(filePath, data) {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
-}
-
-export function readTextFile(filePath) {
-  return fs.readFileSync(filePath, "utf-8");
-}
+// (Removed re-exports — audit files now import directly from lib/build-utilities.js)
 
 // ==============================
 // 📂 File Filtering Helpers

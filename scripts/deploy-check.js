@@ -6,10 +6,10 @@
  * Run with: node deploy-check.js
  */
 
-const fs = require('fs');
-const path = require('path');
-const CONFIG = require('../lib/config-paths');
-const { discoverAllTrips, loadJsonFile } = require('../lib/build-utilities');
+import fs from 'fs';
+import path from 'path';
+import CONFIG from '../lib/config-paths.js';
+import { discoverAllTrips, loadJsonFile } from '../lib/build-utilities.js';
 
 const checks = [];
 let passed = 0;

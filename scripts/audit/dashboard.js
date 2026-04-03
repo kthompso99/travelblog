@@ -16,7 +16,10 @@
 
 import fs from "fs";
 import path from "path";
-import { WEIGHTS, ARTICLE_THRESHOLD, TRIP_THRESHOLD, getContentType, computeWeightedScore, CONTENT_TRIPS_PATH, AUDITS_DIR_NAME, getTripPath, readJsonFile } from "./audit-shared.mjs";
+import { WEIGHTS, ARTICLE_THRESHOLD, TRIP_THRESHOLD, getContentType, computeWeightedScore, AUDITS_DIR_NAME, getTripPath } from "./audit-shared.js";
+import { loadJsonFile as readJsonFile } from "../../lib/build-utilities.js";
+import CONFIG from "../../lib/config-paths.js";
+const CONTENT_TRIPS_PATH = CONFIG.TRIPS_DIR;
 
 // ==============================
 // 🔧 CONFIG

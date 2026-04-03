@@ -15,13 +15,13 @@
  *   npm run optimize:images -- spain     # Optimize only Spain trip
  */
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+import fs from 'fs';
+import path from 'path';
+import { execSync } from 'child_process';
 
-const CONFIG = require('../../lib/config-paths');
-const { discoverAllTrips, ensureDir, getFileSize } = require('../../lib/build-utilities');
-const { parseToolArgs } = require('./tool-helpers');
+import CONFIG from '../../lib/config-paths.js';
+import { discoverAllTrips, ensureDir, getFileSize } from '../../lib/build-utilities.js';
+import { parseToolArgs } from './tool-helpers.js';
 
 // Configuration
 const MAX_WIDTH = 1800;          // Max width in pixels (for 600px CSS @ 3x retina)

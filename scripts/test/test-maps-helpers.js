@@ -5,8 +5,8 @@
 
 'use strict';
 
-const http = require('http');
-const handler = require('serve-handler');
+import http from 'http';
+import handler from 'serve-handler';
 
 // Test timing constants
 const PORT = 8001;
@@ -260,7 +260,7 @@ function validateHoverResult(result, label) {
     console.log(`  ✅ ${label} hover card shows: "${result.title}"`);
 }
 
-module.exports = {
+export {
     PORT,
     BASE_URL,
     PAGE_LOAD_TIMEOUT,

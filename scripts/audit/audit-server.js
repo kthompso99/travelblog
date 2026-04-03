@@ -15,8 +15,11 @@ import { spawn, execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { getTripStatus, getFileStatus, getMostRecentFile } from "./audit-status.mjs";
-import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, getTripAuditPath, CONTENT_TRIPS_PATH, AUDITS_DIR_NAME, getAuditPath, getContentFilePath, getTripPath, readJsonFile } from "./audit-shared.mjs";
+import { getTripStatus, getFileStatus, getMostRecentFile } from "./audit-status.js";
+import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, getTripAuditPath, AUDITS_DIR_NAME, getAuditPath, getContentFilePath, getTripPath } from "./audit-shared.js";
+import { loadJsonFile as readJsonFile } from "../../lib/build-utilities.js";
+import CONFIG from "../../lib/config-paths.js";
+const CONTENT_TRIPS_PATH = CONFIG.TRIPS_DIR;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -292,7 +295,7 @@ app.get("/api/history/:trip/:provider", (req, res) => {
   }
 });
 
-// collectHistoryData moved to scripts/audit/audit-history.mjs
+// collectHistoryData moved to scripts/audit/audit-history.js
 
 // ============================================
 // API: Get Trip Audit Scores

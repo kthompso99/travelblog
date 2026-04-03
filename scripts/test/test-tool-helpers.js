@@ -7,8 +7,8 @@
 
 'use strict';
 
-const { createTestRunner } = require('./test-helpers');
-const { parseToolArgs, collectContentFiles, validateToolArgs } = require('../tools/tool-helpers');
+import { createTestRunner } from './test-helpers.js';
+import { parseToolArgs, collectContentFiles, validateToolArgs } from '../tools/tool-helpers.js';
 
 const { assert, report } = createTestRunner('🧰 Tool helpers unit tests');
 

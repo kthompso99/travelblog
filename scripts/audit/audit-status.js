@@ -11,7 +11,9 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import { WEIGHTS, DIMENSION_LABELS, CONTENT_TRIPS_PATH, computeDeltas, getAuditByIndex, getTripMdFiles, getAuditPath, getContentFilePath, getTripPath } from "./audit-shared.mjs";
+import { WEIGHTS, DIMENSION_LABELS, computeDeltas, getAuditByIndex, getTripMdFiles, getAuditPath, getContentFilePath, getTripPath } from "./audit-shared.js";
+import CONFIG from "../../lib/config-paths.js";
+const CONTENT_TRIPS_PATH = CONFIG.TRIPS_DIR;
 
 const PROVIDERS = ["opus", "gpt"];
 

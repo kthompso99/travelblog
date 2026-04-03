@@ -3,10 +3,10 @@
  * Verifies that each page type has the CSS it needs
  */
 
-const fs = require('fs');
-const path = require('path');
-const { readTextFile } = require('../../lib/build-utilities');
-const { ROOT_DIR, extractCssRule, createTestRunner, findTestTrip } = require('./test-helpers');
+import fs from 'fs';
+import path from 'path';
+import { readTextFile } from '../../lib/build-utilities.js';
+import { ROOT_DIR, extractCssRule, createTestRunner, findTestTrip } from './test-helpers.js';
 
 const { assert, report } = createTestRunner('🎨 CSS Injection smoke-test');
 

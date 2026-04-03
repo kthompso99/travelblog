@@ -32,11 +32,11 @@
 
 'use strict';
 
-const { JSDOM } = require('jsdom');
-const fs   = require('fs');
-const path = require('path');
-const { readTextFile } = require('../../lib/build-utilities');
-const { ROOT_DIR: ROOT, createTestRunner } = require('./test-helpers');
+import { JSDOM } from 'jsdom';
+import fs from 'fs';
+import path from 'path';
+import { readTextFile } from '../../lib/build-utilities.js';
+import { ROOT_DIR as ROOT, createTestRunner } from './test-helpers.js';
 
 const indexPath = path.join(ROOT, 'index.html');
 

@@ -5,13 +5,13 @@
  * Renames photos from spain-2025-XX.jpg to location-XX.jpg
  */
 
-const fs = require('fs').promises;
-const path = require('path');
-const { execSync } = require('child_process');
-const CONFIG = require('../../lib/config-paths');
-const { GALLERY_MARKER } = require('../../lib/constants');
-const { prompt } = require('../../lib/prompt-utilities');
-const { parseToolArgs, validateToolArgs } = require('./tool-helpers');
+import { promises as fs } from 'fs';
+import path from 'path';
+import { execSync } from 'child_process';
+import CONFIG from '../../lib/config-paths.js';
+import { GALLERY_MARKER } from '../../lib/constants.js';
+import { prompt } from '../../lib/prompt-utilities.js';
+import { parseToolArgs, validateToolArgs } from './tool-helpers.js';
 
 /**
  * Parse trip structure from trip.json

@@ -5,13 +5,13 @@
  * Does NOT modify any files - only outputs diagnostic information
  */
 
-const path = require('path');
-const {
+import path from 'path';
+import {
   getPossibleMetadataPaths,
   catalogZipContents,
   detectAlbumFolder,
   filterAlbumPhotos
-} = require('../../lib/takeout-utilities');
+} from '../../lib/takeout-utilities.js';
 
 /**
  * Check each photo for caption metadata and categorize results
