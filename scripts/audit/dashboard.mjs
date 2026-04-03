@@ -16,7 +16,7 @@
 
 import fs from "fs";
 import path from "path";
-import { WEIGHTS, ARTICLE_THRESHOLD, TRIP_THRESHOLD, getContentType, computeWeightedScore } from "./audit-shared.mjs";
+import { WEIGHTS, ARTICLE_THRESHOLD, TRIP_THRESHOLD, getContentType, computeWeightedScore, CONTENT_TRIPS_PATH, AUDITS_DIR_NAME, getTripPath } from "./audit-shared.mjs";
 
 // ==============================
 // 🔧 CONFIG
@@ -134,14 +134,13 @@ function getAllAuditsByProvider(folderPath, providerFilter) {
 }
 
 function collectTrips() {
-  const tripsRoot = "content/trips";
   const trips = {};
   const history = {};  // { "trip/article": { provider: { date: score } } }
 
-  if (!fs.existsSync(tripsRoot)) return { trips, history };
+  if (!fs.existsSync(CONTENT_TRIPS_PATH)) return { trips, history };
 
-  for (const tripName of fs.readdirSync(tripsRoot)) {
-    const tripPath = path.join(tripsRoot, tripName);
+  for (const tripName of fs.readdirSync(CONTENT_TRIPS_PATH)) {
+    const tripPath = getTripPath(tripName);
     if (!fs.statSync(tripPath).isDirectory()) continue;
     if (TRIP_FILTER && tripName !== TRIP_FILTER) continue;
 
@@ -153,7 +152,7 @@ function collectTrips() {
       const articleName = file.replace(".md", "");
       const auditFolder = path.join(
         tripPath,
-        "audits",
+        AUDITS_DIR_NAME,
         articleName
       );
       const contentType = getContentType(path.join(tripPath, file));

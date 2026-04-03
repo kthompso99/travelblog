@@ -26,6 +26,13 @@ export const TRIP_THRESHOLD = 8.7;
 // Trip-level audit subdirectory name
 export const TRIP_AUDIT_SUBDIR = "_trip";
 
+// Path constants
+export const CONTENT_TRIPS_PATH = "content/trips";
+export const AUDITS_DIR_NAME = "audits";
+
+// Provider constants
+export const VALID_PROVIDERS = ["opus", "gpt"];
+
 // Get local date in YYYY-MM-DD format (not UTC)
 export function getLocalDateString(date = new Date()) {
   const year = date.getFullYear();
@@ -42,6 +49,20 @@ function getLocalDateTimeString(date = new Date()) {
   const hour = String(date.getHours()).padStart(2, '0');
   const minute = String(date.getMinutes()).padStart(2, '0');
   return `${year}-${month}-${day}-${hour}${minute}`;
+}
+
+// ==============================
+// 🔧 Provider Helpers
+// ==============================
+
+export function validateProvider(provider) {
+  if (!VALID_PROVIDERS.includes(provider)) {
+    throw new Error(`Invalid provider: ${provider}. Must be one of: ${VALID_PROVIDERS.join(', ')}`);
+  }
+}
+
+export function getProviderLabel(provider) {
+  return provider === 'opus' ? 'Opus' : 'GPT';
 }
 
 // ==============================
@@ -134,7 +155,7 @@ export function readArticleContent(filepath) {
 }
 
 export function loadTripConfig(tripSlug) {
-  const tripJsonPath = path.join("content/trips", tripSlug, "trip.json");
+  const tripJsonPath = getTripJsonPath(tripSlug);
   if (!fs.existsSync(tripJsonPath)) {
     throw new Error(`Trip not found: ${tripSlug} (looking for ${tripJsonPath})`);
   }
@@ -146,15 +167,27 @@ export function loadTripConfig(tripSlug) {
 // ==============================
 
 export function getTripPath(tripSlug) {
-  return path.join("content/trips", tripSlug);
+  return path.join(CONTENT_TRIPS_PATH, tripSlug);
 }
 
 export function getAuditPath(tripSlug, fileName) {
-  return path.join("content/trips", tripSlug, "audits", fileName);
+  return path.join(getTripPath(tripSlug), AUDITS_DIR_NAME, fileName);
 }
 
 export function getTripAuditPath(tripSlug) {
-  return path.join("content/trips", tripSlug, "audits", TRIP_AUDIT_SUBDIR);
+  return path.join(getTripPath(tripSlug), AUDITS_DIR_NAME, TRIP_AUDIT_SUBDIR);
+}
+
+export function getContentFilePath(tripSlug, fileName) {
+  return path.join(getTripPath(tripSlug), `${fileName}.md`);
+}
+
+export function getOverviewPath(tripSlug) {
+  return path.join(getTripPath(tripSlug), "overview.md");
+}
+
+export function getTripJsonPath(tripSlug) {
+  return path.join(getTripPath(tripSlug), "trip.json");
 }
 
 // ==============================
@@ -519,7 +552,7 @@ export function resolveFiles(args, provider) {
   for (const arg of args) {
     let resolved = arg;
     if (!resolved.startsWith("content/"))
-      resolved = `content/trips/${resolved}`;
+      resolved = `${CONTENT_TRIPS_PATH}/${resolved}`;
 
     if (fs.existsSync(resolved) && fs.statSync(resolved).isDirectory()) {
       const mds = fs

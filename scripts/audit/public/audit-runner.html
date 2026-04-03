@@ -603,6 +603,14 @@
     const TRIP_AUDIT_FILE = '_trip';
 
     // ============================================
+    // Helper Functions
+    // ============================================
+
+    function getProviderLabel(provider) {
+      return provider === 'opus' ? 'Opus' : 'GPT';
+    }
+
+    // ============================================
     // State Management
     // ============================================
 
@@ -780,7 +788,7 @@
           const modal = document.getElementById('rankingsModal');
           if (modal && modal.classList.contains('show')) {
             const titleText = document.getElementById('rankingsTitle').textContent;
-            if (titleText.includes(message.provider === 'opus' ? 'Opus' : 'GPT')) {
+            if (titleText.includes(getProviderLabel(message.provider))) {
               showRankings(message.provider);
             }
           }
@@ -922,7 +930,7 @@
       const card = document.createElement('div');
       card.className = 'provider-card';
 
-      const name = provider === 'opus' ? 'Opus' : 'GPT';
+      const name = getProviderLabel(provider);
 
       if (!data.hasAudit) {
         card.innerHTML = `
@@ -1023,7 +1031,7 @@
       card.className = 'provider-card';
       card.dataset.provider = provider;
 
-      const name = provider === 'opus' ? 'Opus' : 'GPT';
+      const name = getProviderLabel(provider);
       const isRunning = state.tripAuditControllers[provider] != null;
 
       if (!data.hasAudit) {
@@ -1295,7 +1303,7 @@
 
       // Display in preview pane
       const previewContent = document.getElementById('previewContent');
-      const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
+      const providerLabel = getProviderLabel(provider);
 
       previewContent.innerHTML = `
         <div style="padding: 20px;">
@@ -1477,7 +1485,7 @@
         const readinessColor = tripReady ? '#4caf50' : '#ff9800';
 
         // Update modal
-        const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
+        const providerLabel = getProviderLabel(provider);
         const tripLabel = state.trip.charAt(0).toUpperCase() + state.trip.slice(1);
         document.getElementById('rankingsTitle').innerHTML =
           `${providerLabel} Rankings — ${tripLabel}  •  Avg: ${avgScore}  •  <span style="color: ${readinessColor}">${readinessStatus}</span>`;
@@ -1522,7 +1530,7 @@
         const data = await response.json();
 
         // Update modal title
-        const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
+        const providerLabel = getProviderLabel(provider);
         const tripLabel = state.trip.charAt(0).toUpperCase() + state.trip.slice(1);
         document.getElementById('historyTitle').textContent =
           `${providerLabel} History — ${tripLabel}`;
@@ -1753,7 +1761,9 @@
       // Get scores
       const currScore = providerData.overall;
       // Use remote score for push (cumulative), local score for commit (incremental)
-      const prevScore = shouldPush ? providerData.prevScoreRemote : providerData.prevScore;
+      const prevScoreGit = shouldPush ? providerData.prevScoreRemote : providerData.prevScore;
+      // Fall back to audit history if no git commit with score
+      const prevScore = prevScoreGit ?? providerData.prevAuditScore;
 
       // Build commit message
       let defaultMessage;

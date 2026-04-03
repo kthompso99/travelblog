@@ -8,13 +8,14 @@
 
 import fs from "fs";
 import path from "path";
+import { CONTENT_TRIPS_PATH, AUDITS_DIR_NAME, validateProvider, getProviderLabel, getTripPath } from "./audit-shared.mjs";
 
 // ==============================
 // Collect History Data
 // ==============================
 
 function collectHistoryData(trip, provider) {
-  const tripsPath = path.join("content/trips", trip);
+  const tripsPath = getTripPath(trip);
   if (!fs.existsSync(tripsPath)) {
     throw new Error("Trip not found");
   }
@@ -27,7 +28,7 @@ function collectHistoryData(trip, provider) {
     if (!file.endsWith(".md")) continue;
 
     const articleName = file.replace(".md", "");
-    const auditFolder = path.join(tripsPath, "audits", articleName);
+    const auditFolder = path.join(tripsPath, AUDITS_DIR_NAME, articleName);
 
     if (!fs.existsSync(auditFolder)) continue;
 
@@ -98,7 +99,7 @@ function collectHistoryData(trip, provider) {
 
 function formatText(data) {
   const { trip, provider, dates, articles, tripAverage } = data;
-  const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
+  const providerLabel = getProviderLabel(provider);
   const tripLabel = trip.charAt(0).toUpperCase() + trip.slice(1);
 
   console.log(`\n${providerLabel} History — ${tripLabel}\n`);
@@ -189,9 +190,10 @@ const provider = providerIdx !== -1 ? args[providerIdx + 1] : "opus";
 const formatIdx = args.indexOf("--format");
 const format = formatIdx !== -1 ? args[formatIdx + 1] : "text";
 
-const validProviders = ["opus", "gpt"];
-if (!validProviders.includes(provider)) {
-  console.error(`Invalid provider: ${provider}. Must be one of: ${validProviders.join(', ')}`);
+try {
+  validateProvider(provider);
+} catch (err) {
+  console.error(err.message);
   process.exit(1);
 }
 

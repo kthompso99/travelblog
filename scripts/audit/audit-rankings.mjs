@@ -7,7 +7,7 @@
 //
 
 import { getTripStatus } from "./audit-status.mjs";
-import { ARTICLE_THRESHOLD, TRIP_THRESHOLD } from "./audit-shared.mjs";
+import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, validateProvider, getProviderLabel } from "./audit-shared.mjs";
 
 // ==============================
 // Generate Rankings
@@ -55,7 +55,7 @@ function generateRankings(trip, provider, format = 'text') {
 function formatText(data) {
   const { trip, provider, rankings, average, tripReady, articleThreshold, tripThreshold } = data;
 
-  const providerLabel = provider === 'opus' ? 'Opus' : 'GPT';
+  const providerLabel = getProviderLabel(provider);
   const tripLabel = trip.charAt(0).toUpperCase() + trip.slice(1);
   const readiness = tripReady ? 'READY' : 'NOT READY';
 
@@ -104,9 +104,10 @@ const provider = providerIdx !== -1 ? args[providerIdx + 1] : "opus";
 const formatIdx = args.indexOf("--format");
 const format = formatIdx !== -1 ? args[formatIdx + 1] : "text";
 
-const validProviders = ["opus", "gpt"];
-if (!validProviders.includes(provider)) {
-  console.error(`Invalid provider: ${provider}. Must be one of: ${validProviders.join(', ')}`);
+try {
+  validateProvider(provider);
+} catch (err) {
+  console.error(err.message);
   process.exit(1);
 }
 

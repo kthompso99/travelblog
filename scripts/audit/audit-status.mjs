@@ -11,7 +11,7 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import { WEIGHTS, DIMENSION_LABELS, computeDeltas, getAuditByIndex, getTripMdFiles, getAuditPath } from "./audit-shared.mjs";
+import { WEIGHTS, DIMENSION_LABELS, CONTENT_TRIPS_PATH, computeDeltas, getAuditByIndex, getTripMdFiles, getAuditPath, getContentFilePath, getTripPath } from "./audit-shared.mjs";
 
 const PROVIDERS = ["opus", "gpt"];
 
@@ -49,7 +49,7 @@ function getPreviousAudit(tripName, fileName, provider) {
 
 function getPreviousScoreFromGit(tripName, fileName, useRemote = false) {
   try {
-    const filePath = path.join('content/trips', tripName, `${fileName}.md`);
+    const filePath = getContentFilePath(tripName, fileName);
     const ref = useRemote ? 'origin/main' : 'HEAD';
     const lastMessage = execSync(
       `git log ${ref} -1 --format=%s -- "${filePath}"`,
@@ -58,6 +58,7 @@ function getPreviousScoreFromGit(tripName, fileName, useRemote = false) {
 
     // Parse for Content(fileName) patterns
     const patterns = [
+      /Content\([^)]+\):\s+([\d.]+)=>([\d.]+)/,               // "Content(X): Y=>Z" → use Z
       /Content\([^)]+\)\s+from\s+([\d.]+)\s+to\s+([\d.]+)/,  // "Content(X) from Y to Z" → use Z
       /Content\([^)]+\)\s+up to\s+([\d.]+)/,                  // "Content(X) up to Y" → use Y
       /Content\([^)]+\)\s+at\s+([\d.]+)/,                     // "Content(X) at Y" → use Y
@@ -83,7 +84,7 @@ function getPreviousScoreFromGit(tripName, fileName, useRemote = false) {
 
 function getLinesChanged(tripName, fileName, auditTimestamp) {
   try {
-    const filePath = path.join("content/trips", tripName, `${fileName}.md`);
+    const filePath = getContentFilePath(tripName, fileName);
 
     // Get insertions and deletions using --numstat
     const diffOutput = execSync(
@@ -117,7 +118,7 @@ function getLinesChanged(tripName, fileName, auditTimestamp) {
 
 function getLastCommitTime(tripName, fileName) {
   try {
-    const filePath = path.join("content/trips", tripName, `${fileName}.md`);
+    const filePath = getContentFilePath(tripName, fileName);
     const cmd = `git log -1 --format=%ct -- "${filePath}"`;
     const timestamp = parseInt(execSync(cmd, { encoding: "utf-8" }).trim(), 10);
     return timestamp ? new Date(timestamp * 1000) : null;
@@ -185,6 +186,7 @@ export function getFileStatus(tripName, fileName) {
       deltas,
       prevScore,
       prevScoreRemote,
+      prevAuditScore: previous?.overall_score || null,  // Fallback to audit history when no git commit
       linesChanged,
       lastCommitTime: lastCommitTime ? lastCommitTime.toISOString() : null,
       lastCommitFormatted,
@@ -213,7 +215,7 @@ export function getTripStatus(tripName) {
 // ============================================
 
 export function getMostRecentFile(tripName) {
-  const tripPath = path.join("content/trips", tripName);
+  const tripPath = getTripPath(tripName);
   if (!fs.existsSync(tripPath)) return null;
 
   const files = fs.readdirSync(tripPath)

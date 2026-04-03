@@ -8,15 +8,15 @@ import fs from "fs";
 import path from "path";
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
-import { readArticleContent, loadContextDocs, loadTripConfig, extractJsonAndMarkdown, getLocalDateString, getTripAuditPath, computeTripAverage } from "./audit-shared.mjs";
+import { readArticleContent, loadContextDocs, loadTripConfig, extractJsonAndMarkdown, getLocalDateString, getTripAuditPath, computeTripAverage, getTripPath, getOverviewPath } from "./audit-shared.mjs";
 
 // Assemble trip content (overview + all articles)
 function assembleTripContent(tripSlug) {
-  const tripDir = path.join("content/trips", tripSlug);
+  const tripDir = getTripPath(tripSlug);
   const articles = [];
 
   // 1. Overview (always first, if exists)
-  const overviewPath = path.join(tripDir, "overview.md");
+  const overviewPath = getOverviewPath(tripSlug);
   if (fs.existsSync(overviewPath)) {
     articles.push({
       title: "Trip Overview",

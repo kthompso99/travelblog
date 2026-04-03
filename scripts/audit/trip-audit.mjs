@@ -8,7 +8,7 @@
 import fs from "fs";
 import path from "path";
 import runTripAuditAPI from "./trip-audit-api.mjs";
-import { getPreviousTripAudit, computeTripDeltas, formatTime, formatPrevTimestamp, loadTripConfig, getTripAuditPath } from "./audit-shared.mjs";
+import { getPreviousTripAudit, computeTripDeltas, formatTime, formatPrevTimestamp, loadTripConfig, getTripAuditPath, getTripPath, getOverviewPath, validateProvider } from "./audit-shared.mjs";
 
 // ==============================
 // Change Detection
@@ -18,6 +18,7 @@ function tripNeedsAudit(tripSlug, provider, force = false) {
   if (force) return true;
 
   const tripAuditDir = getTripAuditPath(tripSlug);
+  const tripDir = getTripPath(tripSlug);
 
   if (!fs.existsSync(tripAuditDir)) return true;
 
@@ -33,7 +34,7 @@ function tripNeedsAudit(tripSlug, provider, force = false) {
   const auditTime = fs.statSync(latestAudit).mtime;
 
   // Check if overview.md changed
-  const overviewPath = path.join(tripDir, "overview.md");
+  const overviewPath = getOverviewPath(tripSlug);
   if (fs.existsSync(overviewPath) && fs.statSync(overviewPath).mtime > auditTime) {
     return true;
   }
@@ -74,8 +75,10 @@ if (tripArgs.length === 0) {
   process.exit(1);
 }
 
-if (!["opus", "gpt"].includes(provider)) {
-  console.error(`Error: Invalid provider "${provider}". Use "opus" or "gpt".`);
+try {
+  validateProvider(provider);
+} catch (err) {
+  console.error(err.message);
   process.exit(1);
 }
 

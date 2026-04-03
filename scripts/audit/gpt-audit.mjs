@@ -7,7 +7,6 @@ import OpenAI from "openai";
 import {
   parseAuditResponse,
   saveAuditResults,
-  resolveFiles,
   ENFORCEMENT_MANDATE,
   SYSTEM_PROMPT
 } from "./audit-shared.mjs";
@@ -16,7 +15,8 @@ import {
   prepareAuditContent,
   runAuditBatch,
   reportResults,
-  printUsage
+  printUsage,
+  resolveAuditFiles
 } from "./audit-cli-shared.mjs";
 
 const MODEL = "gpt-5.2";
@@ -75,8 +75,6 @@ async function runAudit(filepath) {
 // ==============================
 
 const { args, flags } = parseCLIArgs(process.argv, ["auditDir", "force"]);
-const auditDirName = flags.auditDir || "audits";
-const forceReaudit = flags.force || false;
 
 if (args.length === 0) {
   printUsage("npm run gpt-audit", [
@@ -88,19 +86,7 @@ if (args.length === 0) {
   ]);
 }
 
-// Skip incremental check when using alternate audit dir or --force flag
-const files = (auditDirName !== "audits" || forceReaudit)
-  ? resolveFiles(args, "__force__")
-  : resolveFiles(args, PROVIDER);
-
-if (files.length === 0) {
-  console.log("All GPT audits are current. Nothing to do.");
-  process.exit(0);
-}
-
-if (auditDirName !== "audits") {
-  console.log(`Saving to ${auditDirName}/ (not affecting main audit history)\n`);
-}
+const { files, auditDirName } = resolveAuditFiles(args, flags, PROVIDER, "GPT");
 console.log(`Auditing ${files.length} file(s) with GPT...\n`);
 
 const { mdPaths, failed } = await runAuditBatch(files, runAudit);

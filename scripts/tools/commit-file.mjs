@@ -9,6 +9,7 @@
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
+import { CONTENT_TRIPS_PATH } from "../audit/audit-shared.mjs";
 
 // ==============================
 // Commit File
@@ -18,7 +19,7 @@ async function commitFile(trip, file, message, options = {}) {
   const { push = false, dryRun = false } = options;
 
   // Build file path
-  const filePath = path.join("content/trips", trip, `${file}.md`);
+  const filePath = path.join(CONTENT_TRIPS_PATH, trip, `${file}.md`);
 
   // Validate file exists
   if (!fs.existsSync(filePath)) {
@@ -61,7 +62,7 @@ async function commitFile(trip, file, message, options = {}) {
 
   let imageCount = 0;
   for (const imagePath of images) {
-    const fullImagePath = path.join("content/trips", trip, imagePath);
+    const fullImagePath = path.join(CONTENT_TRIPS_PATH, trip, imagePath);
 
     if (!fs.existsSync(fullImagePath)) {
       console.log(`[COMMIT] Warning: Referenced image not found: ${imagePath}`);

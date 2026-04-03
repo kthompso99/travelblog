@@ -6,7 +6,7 @@
 // Reduces duplication in CLI argument parsing, content prep, and batch execution
 
 import path from "path";
-import { getContentType, readArticleContent, loadContextDocs } from "./audit-shared.mjs";
+import { getContentType, readArticleContent, loadContextDocs, AUDITS_DIR_NAME, resolveFiles } from "./audit-shared.mjs";
 
 // ==============================
 // CLI Argument Parsing
@@ -17,6 +17,9 @@ export function parseCLIArgs(argv, supportedFlags = []) {
   const args = [];
   const flags = {};
 
+  // Boolean flags that don't require values
+  const booleanFlags = ['force', 'dryRun', 'push'];
+
   for (let i = 0; i < rawArgs.length; i++) {
     const arg = rawArgs[i];
 
@@ -24,9 +27,16 @@ export function parseCLIArgs(argv, supportedFlags = []) {
       flags.provider = rawArgs[++i];
     } else if (arg === "--audit-dir" && supportedFlags.includes("auditDir")) {
       flags.auditDir = rawArgs[++i];
+    } else if (arg === "--force" && supportedFlags.includes("force")) {
+      flags.force = true;
+    } else if (arg === "--dry-run" && supportedFlags.includes("dryRun")) {
+      flags.dryRun = true;
+    } else if (arg === "--push" && supportedFlags.includes("push")) {
+      flags.push = true;
     } else if (arg.startsWith("--")) {
-      // Skip unknown flags and their values
-      if (i + 1 < rawArgs.length && !rawArgs[i + 1].startsWith("--")) {
+      // Skip unknown flags and their values (only if not boolean)
+      const flagName = arg.slice(2);
+      if (i + 1 < rawArgs.length && !rawArgs[i + 1].startsWith("--") && !booleanFlags.some(bf => arg.includes(bf))) {
         i++; // Skip flag value
       }
     } else {
@@ -35,6 +45,31 @@ export function parseCLIArgs(argv, supportedFlags = []) {
   }
 
   return { args, flags };
+}
+
+// ==============================
+// File Resolution with Audit Dir Support
+// ==============================
+
+export function resolveAuditFiles(args, flags, provider, label) {
+  const auditDirName = flags.auditDir || AUDITS_DIR_NAME;
+  const forceReaudit = flags.force || false;
+
+  // Skip incremental check when using alternate audit dir or --force flag
+  const files = (auditDirName !== AUDITS_DIR_NAME || forceReaudit)
+    ? resolveFiles(args, "__force__")
+    : resolveFiles(args, provider);
+
+  if (files.length === 0) {
+    console.log(`All ${label} audits are current. Nothing to do.`);
+    process.exit(0);
+  }
+
+  if (auditDirName !== AUDITS_DIR_NAME) {
+    console.log(`Saving to ${auditDirName}/ (not affecting main audit history)\n`);
+  }
+
+  return { files, auditDirName };
 }
 
 // ==============================

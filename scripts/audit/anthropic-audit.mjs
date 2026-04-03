@@ -9,7 +9,6 @@ import Anthropic from "@anthropic-ai/sdk";
 import {
   parseAuditResponse,
   saveAuditResults,
-  resolveFiles,
   ENFORCEMENT_MANDATE,
   SYSTEM_PROMPT
 } from "./audit-shared.mjs";
@@ -18,14 +17,13 @@ import {
   prepareAuditContent,
   runAuditBatch,
   reportResults,
-  printUsage
+  printUsage,
+  resolveAuditFiles
 } from "./audit-cli-shared.mjs";
 
 // Parse CLI flags
 const { args: fileArgs, flags } = parseCLIArgs(process.argv, ["provider", "auditDir", "force"]);
 const providerArg = flags.provider || "sonnet";
-const auditDirName = flags.auditDir || "audits";
-const forceReaudit = flags.force || false;
 
 const PROFILES = {
   sonnet: { model: "claude-sonnet-4-5-20250929", provider: "sonnet", label: "Sonnet" },
@@ -81,19 +79,7 @@ if (fileArgs.length === 0) {
   ]);
 }
 
-// Skip incremental check when using alternate audit dir or --force flag
-const files = (auditDirName !== "audits" || forceReaudit)
-  ? resolveFiles(fileArgs, "__force__")
-  : resolveFiles(fileArgs, PROVIDER);
-
-if (files.length === 0) {
-  console.log(`All ${LABEL} audits are current. Nothing to do.`);
-  process.exit(0);
-}
-
-if (auditDirName !== "audits") {
-  console.log(`Saving to ${auditDirName}/ (not affecting main audit history)\n`);
-}
+const { files, auditDirName } = resolveAuditFiles(fileArgs, flags, PROVIDER, LABEL);
 console.log(`Auditing ${files.length} file(s) with ${LABEL} (${MODEL})...\n`);
 
 const { mdPaths, failed } = await runAuditBatch(files, runAudit);

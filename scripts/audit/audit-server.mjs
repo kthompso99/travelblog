@@ -16,7 +16,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getTripStatus, getFileStatus, getMostRecentFile } from "./audit-status.mjs";
-import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, getTripAuditPath } from "./audit-shared.mjs";
+import { ARTICLE_THRESHOLD, TRIP_THRESHOLD, getTripAuditPath, CONTENT_TRIPS_PATH, AUDITS_DIR_NAME, getAuditPath, getContentFilePath, getTripPath } from "./audit-shared.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -79,10 +79,9 @@ app.get("/api/config", (req, res) => {
 // ============================================
 
 app.get("/api/trips", (req, res) => {
-  const tripsPath = "content/trips";
-  const trips = fs.readdirSync(tripsPath)
+  const trips = fs.readdirSync(CONTENT_TRIPS_PATH)
     .filter(name => {
-      const stat = fs.statSync(path.join(tripsPath, name));
+      const stat = fs.statSync(getTripPath(name));
       return stat.isDirectory();
     })
     .map(name => ({ name, label: name.charAt(0).toUpperCase() + name.slice(1) }));
@@ -130,7 +129,7 @@ app.get("/api/status/:trip/:file", (req, res) => {
 app.get("/api/audit/:trip/:file/:provider.md", (req, res) => {
   try {
     const { trip, file, provider } = req.params;
-    const auditDir = path.join("content/trips", trip, "audits", file);
+    const auditDir = getAuditPath(trip, file);
 
     if (!fs.existsSync(auditDir)) {
       return res.status(404).json({ error: "No audits found" });
@@ -444,7 +443,7 @@ app.post("/api/commit-file", async (req, res) => {
 
   try {
     // Check file exists
-    const filePath = path.join("content/trips", trip, `${file}.md`);
+    const filePath = getContentFilePath(trip, file);
     if (!fs.existsSync(filePath)) {
       return res.status(404).json({ error: "File not found" });
     }
